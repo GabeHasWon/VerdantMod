@@ -1,0 +1,105 @@
+[NOTES] - DO NOT let this leak
+	- ADD MILLIONS OF HP WORM BOSS!!!
+		- PROJECTILE.NEWPROJECTILE - MUST REACH PROJ. CAP
+		- INFLICTS DEBUFF - REMOVES ALL MOVEMENT AND INCREASES DEFENSE TO SHORT.MAXVALUE FOR 5 MINUTES
+	- npc.CollideY (true if ceiling or ground)
+
+[CONCEPTS]
+	- Marble/Verdant minibiomes? (Structures?)
+	- "Underground City" minibiomes (Granite/Marble)
+	- [Directional] Spring flower
+
+[FINISHED CONTENT] -------------------------------------------------
+	MISC
+	- Vines gen
+
+	BLOCKS [ITEMS]
+	- Verdant Armor Set
+	- Lush Soil Block(*)
+	- Verdant Chandelier [Small]
+	- Verdant Flower Bulb
+	- Verdant Hung Tables(*)
+	- Verdant Strong Vine Item
+	- Verdant Wood Block
+	- Verdant Wood Chest Block
+	- Verdant Yellow Petal Chest Block
+
+	WALLS [ITEMS]
+	- Red Petal Wall Item
+	- Pink Petal Wall Item
+	- Verdant Leaf Wall Item
+
+	CRITTERS [ITEMS]
+	- Flotie Item
+	- Flotiny Item
+
+	MATERIALS
+	- Red Petal
+	- Pink Petal
+	- Yellow Bulb(*)
+	- Lush Leaf
+	- Lightbulb(*)
+
+	WEAPONS
+	- Bouncebulb Staff - Unobtainable
+	- Verdant Snail Staff(*)
+	- Verdant Staff
+
+	TOOLS
+	- Verdant Fishing Rod
+
+	ENEMIES
+	- Ambler - Unspawnable
+	- Hostfly - NEEDS MULTIPLAYER
+	- Small Fly - NEEDS MULTIPLAYER
+
+	CRITTERS [NPC]
+	- Flotie
+	- Flotiny
+
+	TILES [BLOCKS]
+	- Lush Soil
+	- Verdant Leaves
+	- Pink Petal Block
+	- Red Petal Block
+	- Verdant Wood Block (NEEDS RESPRITE)
+
+	TILES [PLANTS]
+	- Verdant Lightbulb
+	- Verdant Lillie
+	- Verdant Strong Vine
+	- Verdant Vine
+	- Bouncebloom : Might want touch ups
+
+	TILES [GENERAL]
+	- Verdant Decor
+	- Verdant Tree : Needs branch edge casing
+
+	EQUIPABLES [ITEMS]
+	- Blight : Unfinished, but unobtainable
+
+	PROJECTILES
+	- Verdant Healing Minion : Needs VFX cleanup & retouches
+
+[NEEDS FINISHING] -------------------------------------------------
+	BLOCKS [ITEMS]
+	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BED, BOOKCASE, CLOCK, DRESSER, PIANO, CANDELABRA, LANTERN, SINK
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
+	- Verdant/Marble Furniture : Not implemented / designed
+
+	CRITTERS [ITEMS]
+	- All Critter Items : Not implemented / designed
+		EXCLUDING: Flotiny & Flotie items
+
+	EQUIPABLES [ITEMS]
+	- Lightbloom : Needs cooler VFX / sound? Maybe even an equip texture
+
+	TOOLS
+	- Bouncebulb : Enemy bounce function
+	- Verdant Leaf Wand : Needs finishing
+
+	CRITTERS [NPC]
+	- Folifish : Does not spawn & needs variants
+
+	PROJECTILES
+	- Verdant Snail Minion : Needs AI changes & polish

@@ -1,0 +1,49 @@
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Utilities;
+
+namespace Verdant.Items.Verdant.Equipables
+{
+    class Lightbloom : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Lightbloom");
+            Tooltip.SetDefault("Increases life regeneration when in light\nThe stronger the light, the larger the increase");
+        }
+
+        public override void SetDefaults()
+        {
+            item.defense = 1;
+            item.accessory = true;
+            item.rare = ItemRarityID.Green;
+            item.value = Item.sellPrice(silver: 3);
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            Color col = Lighting.GetColor((int)(player.MountedCenter.X / 16f), (int)(player.MountedCenter.Y / 16f));
+            int val;
+            int total = col.R + col.G + col.B;
+            if (total < 200) val = 0;
+            else if (total < 400) val = 1;
+            else val = 2;
+
+            if (Main.rand.Next(80) < val * 2)
+            {
+                for (int i = 0; i < val; ++i)
+                {
+                    Vector2 pos = player.Center + new Vector2(50, 0).RotatedByRandom(MathHelper.TwoPi);
+                    Dust d = Dust.NewDustPerfect(pos, 59, Vector2.Normalize(player.Center - pos) * 2.5f, 0, default, 0.12f);
+                    d.fadeIn = 1.14f;
+                    d.noLight = true;
+                    d.noGravity = true;
+                }
+            }
+
+            player.lifeRegen += val;
+        }
+    }
+}

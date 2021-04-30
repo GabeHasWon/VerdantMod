@@ -1,0 +1,65 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks;
+using Verdant.Projectiles.Verdant.Minion;
+using static Terraria.ModLoader.ModContent;
+
+namespace Verdant.Items.Verdant.Weapons
+{
+    class VerdantStaff : ModItem
+    {
+        public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Lush Healing Staff");
+            Tooltip.SetDefault("Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only handle summoning one at a time."
+                + (Main.dedServ || Main.netMode == NetmodeID.MultiplayerClient ? "Summoning multiple flowers will empower the original flower." : ""));
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (Main.dedServ || Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                TooltipLine line = new TooltipLine(mod, "Verdant Staff", "Summoning multiple flowers will empower the original flower.");
+                tooltips.Add(line);
+            }
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            int y = Helper.FindDown(Main.MouseWorld) * 16;
+            position = new Vector2(Main.MouseWorld.X, y - 70);
+
+            if (Main.projectile.Any(x => x.active && x.type == ProjectileType<VerdantHealingMinion>())) //we are good - adjust position
+            {
+                var adjList = Main.projectile.Where(x => x.type == ProjectileType<VerdantHealingMinion>() && x.modProjectile is VerdantHealingMinion);
+
+                if (player.HasBuff(BuffType<Buffs.Minion.HealingFlowerBuff>()))
+                {
+                    for (int l = 0; l < adjList.Count(); ++l)
+                        (adjList.ElementAt(l).modProjectile as VerdantHealingMinion).goPosition = position - new Vector2(24, 24);
+                }
+                else
+                    for (int l = 0; l < adjList.Count(); ++l)
+                        adjList.ElementAt(l).ai[0]++;
+                return false;
+            }
+            player.AddBuff(BuffType<Buffs.Minion.HealingFlowerBuff>(), 2000);
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            for (int i = -2; i < 2; ++i)
+                for (int j = -3; j < 0; ++j)
+                    if (Helper.SolidTile(Helper.MouseTile().X + i, Helper.MouseTile().Y + j))
+                        return false;
+            return true;
+        }
+    }
+}
