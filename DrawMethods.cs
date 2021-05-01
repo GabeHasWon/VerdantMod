@@ -22,5 +22,15 @@ namespace Verdant
             if (Terraria.Main.playerLoaded && BGItemHandler != null)
                 BGItemHandler.RunAll(playerInv);
         }
+
+        private void Main_DrawPlayer(Main.orig_DrawPlayer orig, Terraria.Main self, Terraria.Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
+        {
+            orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
+            if (Terraria.Main.playerLoaded)
+            {
+                //new Vector2(Main.screenWidth - 4, Main.screenHeight - 4) / 2
+                Foreground.ForegroundManager.Run();
+            }
+        }
     }
 }

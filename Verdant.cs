@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Backgrounds.BGItem;
+using Verdant.Foreground;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Trees;
@@ -38,7 +40,7 @@ namespace Verdant
             Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.09f), EffectPriority.VeryHigh); //Verdant Green shader
             SkyManager.Instance["Verdant:Verdant"] = new VerdantSky();
 
-            BGItemHandler = new BaseBGItem(); //Main BGItem draw op
+            BGItemHandler = new BaseBGItem(); //Main BGItem draw
 
             OnHooks();
         }
@@ -49,15 +51,6 @@ namespace Verdant
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
-        }
-
-        private void Main_DrawPlayer(On.Terraria.Main.orig_DrawPlayer orig, Main self, Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
-        {
-            orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
-            if (Main.LocalPlayer.active)
-            {
-                //Main.spriteBatch.Draw(Main.magicPixel, new Vector2(Main.screenWidth - 4, Main.screenHeight - 4) / 2, new Rectangle(0, 0, 20, 20), Color.White);
-            }
         }
 
         private void Main_DrawWater(On.Terraria.Main.orig_DrawWater orig, Main self, bool bg, int Style, float Alpha)
@@ -81,6 +74,7 @@ namespace Verdant
 
         public override void Unload()
         {
+            ForegroundManager.Unload();
             VerdantPlayer.Unload();
             UnHookOn();
 

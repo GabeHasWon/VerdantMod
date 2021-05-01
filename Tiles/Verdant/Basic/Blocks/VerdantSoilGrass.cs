@@ -2,6 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Foreground;
+using Verdant.Foreground.Tiled;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using static Terraria.ModLoader.ModContent;
@@ -36,7 +38,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //decor 2x1
             if (TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && !Framing.GetTileSafely(i, j - 1).active() && !Framing.GetTileSafely(i + 1, j - 1).active() && Main.rand.Next(8) == 0)
             {
-                WorldGen.PlaceTile(i, j - 1, TileType<VerdantDecor2x1>(), true, false, -1, Main.rand.Next(4));
+                WorldGen.PlaceTile(i, j - 1, TileType<VerdantDecor2x1>(), true, false, -1, Main.rand.Next(6));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
@@ -57,21 +59,23 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //lightbulb
             if (Main.rand.Next(220) == 0 && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
             {
-                WorldGen.PlaceTile(i, j - 2, TileType<VerdantLightbulb>(), true, false, -1, 0);
+                WorldGen.PlaceTile(i, j - 2, TileType<VerdantLightbulb>(), true, false, -1, Main.rand.Next(3));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
             //decor 2x2
             if (Main.rand.Next(15) == 0 && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
             {
-                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor2x2>(), true, false, -1, 0);
+                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor2x2>(), true, false, -1, Main.rand.Next(6));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
             //decor 1x2
             if (Main.rand.Next(11) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 2, 1, 2))
             {
-                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor1x2>(), true, false, -1, 0);
+                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor1x2>(), true, false, -1, Main.rand.Next(6));
+                if (Main.rand.NextBool())
+                    ForegroundManager.AddItem(new VerdantBush(new Point(i, j)));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }

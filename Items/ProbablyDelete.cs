@@ -44,18 +44,19 @@ namespace Verdant.Items
         {
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
-
-            int height = Main.rand.Next(9, 24);
-            GenHelper.GenBezierDirectWall(new double[] {
-                i, j,
-                i + 30, j + height,
-                i + 60, j,
-            }, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
-            GenHelper.GenBezierDirectWall(new double[] {
-                i, j,
-                i + 30, j + height - 1,
-                i + 60, j - 1,
-            }, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
+            
+            //int height = Main.rand.Next(9, 24);
+            //GenHelper.GenBezierDirectWall(new double[] {
+            //    i, j,
+            //    i + 30, j + height,
+            //    i + 60, j,
+            //}, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
+            //GenHelper.GenBezierDirectWall(new double[] {
+            //    i, j,
+            //    i + 30, j + height - 1,
+            //    i + 60, j - 1,
+            //}, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
+            Foreground.ForegroundManager.AddItem(new Foreground.Tiled.TiledForegroundItem(new Point(i, j), "VerdantBushes", new Point(1, 2), true, true));
             return true;
         }
     }

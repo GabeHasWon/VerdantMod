@@ -5,6 +5,7 @@ using Terraria.GameContent.Generation;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
+using Verdant.Foreground;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
@@ -32,9 +33,13 @@ namespace Verdant.World
             if (apotheosisSkelDown)
                 apotheosisStats.Add("skelDown");
 
+            //List<ForegroundData> foregroundItems = ForegroundManager.Save();
+            List<ForegroundItem> foregroundItems = ForegroundManager.Save(); //WIP foreground stuff
+
             return new TagCompound
             {
                 ["apotheosisStats"] = apotheosisStats,
+                //["foregroundData"] = foregroundItems,
             };
         }
 
@@ -44,6 +49,16 @@ namespace Verdant.World
             if (stats.Contains("indexFin")) apotheosisDialogueIndex = 3;
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
+
+            //var foreground = tag.GetList<ForegroundItem>("foregroundData");
+            //if (foreground.Count > 0)
+            //{
+            //    foreach (var item in foreground)
+            //    {
+            //        var v = typeof(item.GetType());
+            //        ForegroundManager.AddItem(item);
+            //    }
+            //}
         }
 
         public override void NetSend(BinaryWriter writer)

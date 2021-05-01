@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Backgrounds.BGItem.Verdant;
+using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.World;
 
@@ -149,6 +150,15 @@ namespace Verdant
                 player.showItemIconText = "Catch";
                 player.showItemIcon = false;
             }
+        }
+
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (junk && player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+                junk = Main.rand.Next(7) < 2; //verdant is not as trashy
+            if (junk) return;
+            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
+                caughtType = ModContent.ItemType<Shellfish>();
         }
 
         public void FloorVisuals(Player p, int t) => FloorVisualEvent?.Invoke(p, t);

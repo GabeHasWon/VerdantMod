@@ -31,7 +31,7 @@ namespace Verdant.Items.Verdant.Equipables
             else if (total < 400) val = 1;
             else val = 2;
 
-            if (Main.rand.Next(80) < val * 2)
+            if (!hideVisual && Main.rand.Next(80) < val * 2)
             {
                 for (int i = 0; i < val; ++i)
                 {

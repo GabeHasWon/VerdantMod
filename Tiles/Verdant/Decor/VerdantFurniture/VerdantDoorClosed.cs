@@ -6,9 +6,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Tiles.Verdant.Decor.LushFurniture;
 using static Terraria.ModLoader.ModContent;
 
-namespace Verdant.Tiles.Verdant.Decor.LushFurniture
+namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
 	public class VerdantDoorClosed : ModTile
 	{
@@ -43,7 +44,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Lush Door");
+            name.SetDefault("Verdant Door");
             AddMapEntry(new Color(142, 62, 32), name);
 
             dustType = DustID.t_BorealWood;
