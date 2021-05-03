@@ -31,9 +31,9 @@ namespace Verdant.NPCs
         {
             if (npc.type == NPCID.Guide) //no one loves him but me </3
             {
-                if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown && Main.rand.NextBool(8))
+                if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown && Main.rand.NextBool(4))
                     chat = "I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?";
-                if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown && Main.rand.NextBool(8))
+                if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown && Main.rand.NextBool(4))
                     chat = "I hear another faint voice coming from the lush caves. Take a look there.";
             }
         }

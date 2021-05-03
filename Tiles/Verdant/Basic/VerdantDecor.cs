@@ -80,4 +80,18 @@ namespace Verdant.Tiles.Verdant.Basic
         }
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
     }
+
+    internal class VerdantDecor1x3 : ModTile
+    {
+        public override void SetDefaults()
+        {
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
+            TileObjectData.newTile.AnchorValidTiles = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+            TileObjectData.newTile.RandomStyleRange = 6;
+            TileObjectData.newTile.StyleHorizontal = true;
+            QuickTile.SetMulti(this, 1, 3, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
+            Main.tileCut[Type] = true;
+        }
+        public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+    }
 }

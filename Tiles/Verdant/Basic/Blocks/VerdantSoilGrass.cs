@@ -71,11 +71,18 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
             //decor 1x2
-            if (Main.rand.Next(11) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 2, 1, 2))
+            if (Main.rand.Next(7) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 2, 1, 2))
             {
                 WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor1x2>(), true, false, -1, Main.rand.Next(6));
                 if (Main.rand.Next(10) < 8)
                     ForegroundManager.AddItem(new VerdantBush(new Point(i, j - 2)));
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
+            }
+            //decor 1x3
+            if (Main.rand.Next(8) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 3, 1, 3))
+            {
+                WorldGen.PlaceTile(i, j - 3, TileType<VerdantDecor1x3>(), true, false, -1, Main.rand.Next(6));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
