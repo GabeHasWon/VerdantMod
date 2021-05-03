@@ -9,6 +9,7 @@ using Terraria.World.Generation;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Items.Verdant.Tools;
 using Verdant.Items.Verdant.Weapons;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic;
@@ -28,8 +29,8 @@ namespace Verdant.World
     ///Handles specific Verdant biome gen.
     public partial class VerdantWorld : ModWorld
     {
-        private static readonly int[] TileTypes = { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileID.LivingWood }; //List of tile types so I can change it easily
-        private static readonly int[] WallTypes = { WallType<VerdantLeafWall_Unsafe>(), WallID.MudUnsafe, WallID.MudUnsafe };
+        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileID.LivingWood }; } //List of tile types so I can change it easily
+        private static int[] WallTypes { get => new int[] { WallType<VerdantLeafWall_Unsafe>(), WallID.MudUnsafe, WallID.MudUnsafe }; }
 
         private const int MinRad = 70; //Minimum radius
         private const int MaxRad = 95; //Maximum radius
@@ -87,6 +88,7 @@ namespace Verdant.World
             p.Message = "Trimming plants...";
 
             StructureHelper.StructureHelper.GenerateStructure("World/Structures/Apotheosis", new Point16(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4), VerdantMod.Instance);
+
             for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
             {
                 for (int j = VerdantArea.Bottom; j > VerdantArea.Y; --j)
@@ -95,10 +97,10 @@ namespace Verdant.World
 
                     Tile t = Framing.GetTileSafely(i, j);
                     int[] vineAnchors = new int[] { TileType<VerdantVine>(), TileType<VerdantSoilGrass>(), TileType<VerdantLeaves>() };
-                    if (t.type == TileType<VerdantVine>() && !vineAnchors.Any(x => Framing.GetTileSafely(i, j - 1).type == x))
+                    if (t.type == TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).type))
                         KillTile(i, j);
-                    if (t.type == TileType<VerdantTree>() && !ActiveType(i, j - 1, TileType<VerdantTree>()) && !ActiveType(i - 1, j, TileType<VerdantTree>()) && !ActiveType(i + 1, j, TileType<VerdantTree>()))
-                        t.frameX = (short)((genRand.Next(6) == 0) ? 180 : 198);
+                    //if (t.type == TileType<VerdantTree>() && !ActiveType(i, j - 1, TileType<VerdantTree>()) && !ActiveType(i - 1, j, TileType<VerdantTree>()) && !ActiveType(i + 1, j, TileType<VerdantTree>()))
+                    //    t.frameX = (short)((genRand.Next(6) == 0) ? 180 : 198);
                 }
             }
         }
@@ -119,17 +121,25 @@ namespace Verdant.World
 
                     KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
 
-                    PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+                    if (!genRand.NextBool(6)) //NORMAL chests
                     {
-                        (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<VerdantFlowerBulb>(), Main.rand.Next(12, 22)),
-                        (ItemType<Lightbloom>(), 1)
-                    }, new (int, int)[] {
-                        (ItemID.IronskinPotion, Main.rand.Next(1, 3)), (ItemID.ThornsPotion, Main.rand.Next(1, 3)), (ItemID.ThrowingKnife, Main.rand.Next(3, 7)),
-                        (ItemType<PinkPetal>(), Main.rand.Next(3, 7)), (ItemType<RedPetal>(), Main.rand.Next(3, 7)), (ItemType<Lightbulb>(), Main.rand.Next(1, 3)),
-                        (ItemID.Dynamite, 1), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Bomb, Main.rand.Next(2, 4)),
-                        (ItemID.NightOwlPotion, Main.rand.Next(2, 4)), (ItemID.HealingPotion, Main.rand.Next(2, 4)), (ItemID.MoonglowSeeds, Main.rand.Next(2, 4)),
-                        (ItemID.DaybloomSeeds, Main.rand.Next(2, 4)), (ItemID.BlinkrootSeeds, Main.rand.Next(2, 4))
-                    }, true, Main.rand, Main.rand.Next(4, 7), 0);
+                        PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+                        {
+                            (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
+                        }, new (int, int)[] {
+                            (ItemID.IronskinPotion, Main.rand.Next(1, 3)), (ItemID.ThornsPotion, Main.rand.Next(1, 3)), (ItemID.ThrowingKnife, Main.rand.Next(3, 7)),
+                            (ItemType<PinkPetal>(), Main.rand.Next(3, 7)), (ItemType<RedPetal>(), Main.rand.Next(3, 7)), (ItemType<Lightbulb>(), Main.rand.Next(1, 3)),
+                            (ItemID.Dynamite, 1), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Bomb, Main.rand.Next(2, 4)),
+                            (ItemID.NightOwlPotion, Main.rand.Next(2, 4)), (ItemID.HealingPotion, Main.rand.Next(2, 4)), (ItemID.MoonglowSeeds, Main.rand.Next(2, 4)),
+                            (ItemID.DaybloomSeeds, Main.rand.Next(2, 4)), (ItemID.BlinkrootSeeds, Main.rand.Next(2, 4))
+                        }, true, Main.rand, Main.rand.Next(4, 7), 0);
+                    }
+                    else //WAND chest
+                    {
+                        PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0,
+                            (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)), 
+                            (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), Main.rand.Next(12, 22)));
+                    }
                 }
                 else
                 {
@@ -339,7 +349,7 @@ namespace Verdant.World
                     doPlace = AreaClear(i, j, 2, 2) && WalledSquare(i, j, 2, 2) && WalledSquareType(i, j, 2, 2, WallTypes[0]);
                     if (doPlace && genRand.Next(42) == 0)
                     {
-                        PlaceMultitile(new Point(i, j), genRand.Next(13) == 0 ? TileType<MountedLightbulb_2x2>() : TileType<Flower_2x2>(), genRand.Next(7));
+                        PlaceMultitile(new Point(i, j), genRand.Next(13) == 0 ? TileType<MountedLightbulb_2x2>() : TileType<Flower_2x2>(), genRand.Next(4));
                         continue;
                     }
 
@@ -347,7 +357,7 @@ namespace Verdant.World
                     doPlace = AreaClear(i, j, 3, 3) && WalledSquare(i, j, 3, 3) && WalledSquareType(i, j, 3, 3, WallTypes[0]);
                     if (doPlace && genRand.Next(68) == 0)
                     {
-                        PlaceMultitile(new Point(i, j), TileType<Flower_3x3>(), genRand.Next(7));
+                        PlaceMultitile(new Point(i, j), TileType<Flower_3x3>(), genRand.Next(2));
                         continue;
                     }
                 }

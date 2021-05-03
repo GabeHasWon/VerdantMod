@@ -48,8 +48,10 @@
 	TOOLS
 	- Verdant Fishing Rod
 
+	EQUIPABLES [ITEMS]
+	- Lightbloom : Might want equip texture
+
 	ENEMIES
-	- Ambler - Unspawnable
 	- Hostfly - NEEDS MULTIPLAYER
 	- Small Fly - NEEDS MULTIPLAYER
 
@@ -84,22 +86,23 @@
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BED, BOOKCASE, CLOCK, DRESSER, PIANO, CANDELABRA, LANTERN, SINK
-	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, DOOR, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
 	- Verdant/Marble Furniture : Not implemented / designed
 
 	CRITTERS [ITEMS]
 	- All Critter Items : Not implemented / designed
 		EXCLUDING: Flotiny & Flotie items
 
-	EQUIPABLES [ITEMS]
-	- Lightbloom : Needs cooler VFX / sound? Maybe even an equip texture
-
 	TOOLS
 	- Bouncebulb : Enemy bounce function
 	- Verdant Leaf Wand : Needs finishing
 
 	CRITTERS [NPC]
-	- Folifish : Does not spawn & needs variants
+	- Folifish : Needs polish
 
 	PROJECTILES
 	- Verdant Snail Minion : Needs AI changes & polish
+
+	SYSTEMS
+	- Foreground : Needs saving & loading, needs multiplayer compat
+	- Background : Needs multiplayer compat

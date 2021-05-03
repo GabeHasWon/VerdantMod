@@ -15,10 +15,7 @@ namespace Verdant.Foreground.Tiled
             height = size.Y;
 
             if (copyTileFrame)
-            {
-                Tile t = Framing.GetTileSafely(tilePosition.X, tilePosition.Y);
-                source = new Rectangle(t.frameX, t.frameY, 16, 16);
-            }
+                CopyTileFrame();
 
             drawLighted = lighted;
         }
@@ -42,6 +39,12 @@ namespace Verdant.Foreground.Tiled
                     Main.spriteBatch.Draw(tex, position - Main.screenPosition + (new Vector2(i, j) * 16), rect, col, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                 }
             }
+        }
+
+        public void CopyTileFrame()
+        {
+            Tile t = Framing.GetTileSafely(position);
+            source = new Rectangle(t.frameX, t.frameY, 16, 16);
         }
     }
 }

@@ -160,6 +160,25 @@ namespace Verdant.World
             }
         }
 
+        /// <summary>Places a chest with items in it.</summary>
+        /// <param name="x">X position.</param>
+        /// <param name="y">Y position.</param>
+        /// <param name="type">Tile ID of the chest.</param>
+        /// <param name="style">Style for the chest.</param>
+        /// <param name="items">Items, in order.</param>
+        public static void PlaceChest(int x, int y, int type, int style, params (int, int)[] items)
+        {
+            int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
+            if (ChestIndex != -1)
+            {
+                for (int i = 0; i < items.Length; ++i)
+                {
+                    Main.chest[ChestIndex].item[i].SetDefaults(items[i].Item1);
+                    Main.chest[ChestIndex].item[i].stack = items[i].Item2;
+                }
+            }
+        }
+
         public static Point[] GetBezier(double[] orderedPositions, int fidelity = 30)
         {
             const int POINTS_ON_CURVE = 100;

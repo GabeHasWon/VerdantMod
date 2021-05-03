@@ -34,7 +34,6 @@ namespace Verdant.World
                 apotheosisStats.Add("skelDown");
 
             //List<ForegroundData> foregroundItems = ForegroundManager.Save();
-            List<ForegroundItem> foregroundItems = ForegroundManager.Save(); //WIP foreground stuff
 
             return new TagCompound
             {
@@ -50,15 +49,8 @@ namespace Verdant.World
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
 
-            //var foreground = tag.GetList<ForegroundItem>("foregroundData");
-            //if (foreground.Count > 0)
-            //{
-            //    foreach (var item in foreground)
-            //    {
-            //        var v = typeof(item.GetType());
-            //        ForegroundManager.AddItem(item);
-            //    }
-            //}
+            //var foreground = tag.GetList<ForegroundData>("foregroundData");
+            //ForegroundManager.Load(foreground);
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -82,7 +74,8 @@ namespace Verdant.World
         {
             int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
 
-            tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
+            if (tasks.Count > 0)
+                tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
 
             if (VerdantIndex != -1)
                 tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", VerdantGeneration)); //Verdant biome gen

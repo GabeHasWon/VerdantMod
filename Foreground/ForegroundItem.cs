@@ -43,5 +43,7 @@ namespace Verdant.Foreground
             Texture2D tex = ForegroundManager.GetTexture(texPath);
             Main.spriteBatch.Draw(tex, position - Main.screenPosition, null, Color.White, 0f, tex.Size() / 2, scale, SpriteEffects.None, 0f);
         }
+
+        public override string ToString() => $"{GetType().Name} at {position} using {texPath}\nSIZE: {scale}, SAVE: {saveMe}, LIGHTED: {drawLighted}";
     }
 }

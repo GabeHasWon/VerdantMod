@@ -49,6 +49,9 @@ namespace Verdant.Backgrounds.BGItem
         {
             List<BaseBGItem> removeList = new List<BaseBGItem>();
             var order = bgItems.OrderBy(x => x.scale);
+
+            Rectangle screen = new Rectangle((int)Main.screenPosition.X - Main.offScreenRange, (int)Main.screenPosition.Y - Main.offScreenRange, Main.screenWidth + Main.offScreenRange, Main.screenHeight + Main.offScreenRange);
+
             foreach (var item in order)
             {
                 if (item.killMe)
@@ -59,8 +62,11 @@ namespace Verdant.Backgrounds.BGItem
                 if (doUpdate)
                     item.Behaviour();
                 Vector2 off = Lighting.lightMode > 1 ? Vector2.Zero : Vector2.One;
-                if (item.position.Y / 16f < Main.worldSurface)
-                    item.Draw(off);
+                if (screen.Contains(item.position.ToPoint()))
+                {
+                    if (item.position.Y / 16f < Main.worldSurface)
+                        item.Draw(off);
+                }
             }
 
             foreach (var item in removeList)
