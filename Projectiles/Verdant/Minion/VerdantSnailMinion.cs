@@ -49,7 +49,7 @@ namespace Verdant.Projectiles.Verdant.Minion
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (MovementState == 4)
-                projectile.velocity = -projectile.velocity.RotatedBy(Main.rand.Next(0, 16) * 0.005f) * 0.94f;
+                projectile.velocity = -projectile.velocity.RotatedByRandom(0.03f) * 0.94f;
             return false;
         }
 
@@ -185,7 +185,9 @@ namespace Verdant.Projectiles.Verdant.Minion
                 if (Timer > AnimSpeedMultHasty * 3)
                 {
                     if (Target != -2 && Main.npc[Target].active)
-                        projectile.velocity = Vector2.Normalize(Main.npc[Target].position - projectile.position) * 7;
+                        projectile.velocity += Vector2.Normalize(Main.npc[Target].position - projectile.position) * 0.35f;
+                    if (projectile.velocity.Length() > 7f)
+                        projectile.velocity = Vector2.Normalize(projectile.velocity) * 7f;
                     if (Timer >= AnimSpeedMultHasty * 20 || Target == -2 || !Main.npc[Target].active || projectile.velocity.Length() < 0.15f)
                     {
                         projectile.velocity.Y += 0.2f;
@@ -206,7 +208,7 @@ namespace Verdant.Projectiles.Verdant.Minion
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Slimed, 20);
-            projectile.velocity = projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1;
+            projectile.velocity = projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;
 
             //if (Timer > AnimSpeedMultHasty * 2 && MovementState == 4)
             //{
