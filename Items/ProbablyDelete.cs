@@ -12,6 +12,7 @@ using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.World;
 using Verdant.Walls.Verdant;
+using System.Collections.ObjectModel;
 
 namespace Verdant.Items
 {
@@ -22,7 +23,7 @@ namespace Verdant.Items
 			Tooltip.SetDefault("@ me if you see this LOL");
 		}
 
-		public override void SetDefaults() 
+        public override void SetDefaults() 
 		{
 			item.damage = 120;
 			item.melee = true;
@@ -37,14 +38,18 @@ namespace Verdant.Items
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
-            //item.createTile = TileType<Tiles.Verdant.Basic.VerdantDecor1x2>();
+            //item.createTile = TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantDoorClosed>();
+        }
+
+        public override void OnCraft(Recipe recipe)
+        {
         }
 
         public override bool UseItem(Player player)
         {
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
-            
+
             //int height = Main.rand.Next(9, 24);
             //GenHelper.GenBezierDirectWall(new double[] {
             //    i, j,
@@ -56,7 +61,7 @@ namespace Verdant.Items
             //    i + 30, j + height - 1,
             //    i + 60, j - 1,
             //}, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
-            Foreground.ForegroundManager.AddItem(new Foreground.Tiled.TiledForegroundItem(new Point(i, j), "VerdantBushes", new Point(1, 2), true, true));
+            //Foreground.ForegroundManager.AddItem(new Foreground.Tiled.TiledForegroundItem(new Point(i, j), "VerdantBushes", new Point(1, 2), true, true));
             return true;
         }
     }

@@ -107,7 +107,7 @@ namespace Verdant.Projectiles.Verdant.Minion
                     for (int i = 0; i < Main.npc.Length; ++i)
                     {
                         float dist = Vector2.Distance(Main.npc[i].position, projectile.position);
-                        if (Main.npc[i].active && !Main.npc[i].friendly && dist < 500 && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) &&
+                        if (Main.npc[i].CanBeChasedBy() && dist < 500 && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) &&
                             (hasTarget == -1 || (hasTarget != -1 && Vector2.Distance(Main.npc[hasTarget].position, projectile.position) < dist)))
                             hasTarget = i;
                     }
@@ -208,11 +208,11 @@ namespace Verdant.Projectiles.Verdant.Minion
             target.AddBuff(BuffID.Slimed, 20);
             projectile.velocity = projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1;
 
-            if (Timer > AnimSpeedMultHasty * 2 && MovementState == 4)
-            {
-                Target = -2;
-                Timer = AnimSpeedMultHasty * 4;
-            }
+            //if (Timer > AnimSpeedMultHasty * 2 && MovementState == 4)
+            //{
+            //    Target = -2;
+            //    Timer = AnimSpeedMultHasty * 4;
+            //}
         }
     }
 }

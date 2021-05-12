@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using On.Terraria;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Backgrounds.BGItem;
@@ -27,10 +25,7 @@ namespace Verdant
         {
             orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
             if (Terraria.Main.playerLoaded)
-            {
-                //new Vector2(Main.screenWidth - 4, Main.screenHeight - 4) / 2
                 Foreground.ForegroundManager.Run();
-            }
         }
     }
 }

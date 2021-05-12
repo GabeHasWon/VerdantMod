@@ -74,8 +74,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             if (Main.rand.Next(7) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 2, 1, 2))
             {
                 WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor1x2>(), true, false, -1, Main.rand.Next(6));
-                if (Main.rand.Next(10) < 8)
-                    ForegroundManager.AddItem(new VerdantBush(new Point(i, j - 2)));
+                //if (Main.rand.Next(10) < 8)
+                //    ForegroundManager.AddItem(new VerdantBush(new Point(i, j - 2)));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }

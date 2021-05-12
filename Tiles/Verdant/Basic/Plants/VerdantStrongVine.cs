@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -35,6 +36,14 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             bool validAbove = Helper.ActiveType(i, j - 1, TileType<VerdantSoilGrass>()) || Helper.ActiveType(i, j - 1, Type);
             bool validBelow = Helper.ActiveType(i, j + 1, TileType<VerdantSoilGrass>()) || Helper.ActiveType(i, j + 1, Type);
+
+            if (!validBelow) //Hanging table functionality
+            {
+                Tile below = Framing.GetTileSafely(i, j + 1);
+                if (below.active() && TileHelper.AttachStrongVine.Contains(below.type))
+                    validBelow = true;
+            }
+
             if (!validAbove && validBelow)
                 Framing.GetTileSafely(i, j).frameX = 36;
             else if (validAbove && !validBelow)

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria;
 using System;
 using Verdant.Items.Verdant.Materials;
+using Terraria.Localization;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -88,7 +89,12 @@ namespace Verdant.Tiles.Verdant.Decor
             if (speechType == 0 || speechType == 2)
                 CombatText.NewText(new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 60, 20), new Color(88, 188, 24), msg, true);
             if (speechType == 1 || speechType == 2)
-                Main.NewText("\"" + msg + "\"", new Color(88, 188, 24));
+            {
+                if (Main.netMode == NetmodeID.Server) //MP compat :)
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("\"" + msg + "\""), new Color(88, 188, 24));
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                    Main.NewText("\"" + msg + "\"", new Color(88, 188, 24));
+            }
         }
 
         public override void MouseOver(int i, int j)

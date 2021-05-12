@@ -21,7 +21,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
             QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
@@ -48,9 +47,9 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-                if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-                    World.GenHelper.KillRectangle(i, j, 3, 2);
+            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
+            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
+            //        World.GenHelper.KillRectangle(i, j, 3, 2);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -59,7 +58,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
+                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
             }
         }
     }
@@ -92,9 +91,9 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-                if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-                    World.GenHelper.KillRectangle(i, j, 3, 2);
+            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
+            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
+            //        World.GenHelper.KillRectangle(i, j, 3, 2);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -103,7 +102,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
+                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
             }
         }
     }
@@ -114,12 +113,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetDefaults()
         {
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.EmptyTile, TileObjectData.newTile.Width, 0);
+            //TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.None, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
             QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
@@ -146,9 +144,9 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-                if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-                    World.GenHelper.KillRectangle(i, j, 3, 2);
+            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
+            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
+            //        World.GenHelper.KillRectangle(i, j, 3, 2);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

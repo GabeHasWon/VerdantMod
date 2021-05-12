@@ -14,7 +14,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
         private float scaleVel = 0.05f;
         private float timer = 0;
 
-        public const int SpawnChance = 180;
+        public const int SpawnChance = 150;
 
         public FlotieBG(Vector2 pos) : base(pos, 0f, new Point(0, 0))
         {

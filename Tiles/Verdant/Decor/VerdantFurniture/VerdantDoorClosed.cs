@@ -5,13 +5,12 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.LushWood;
-using Verdant.Tiles.Verdant.Decor.LushFurniture;
+using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
-	public class VerdantDoorClosed : ModTile
+    public class VerdantDoorClosed : ModTile
 	{
 		public override void SetDefaults() {
 			Main.tileFrameImportant[Type] = true;
@@ -50,21 +49,21 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             dustType = DustID.t_BorealWood;
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.ClosedDoor };
-			openDoorID = TileType<LushDoorOpen>();
+			openDoorID = TileType<VerdantDoorOpen>();
 		}
 
         public override bool HasSmartInteract() => true;
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			Item.NewItem(i * 16, j * 16, 16, 48, ItemType<LushWoodDoorItem>());
+			Item.NewItem(i * 16, j * 16, 16, 48, ItemType<VerdantDoorItem>());
 		}
 
 		public override void MouseOver(int i, int j) {
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.showItemIcon = true;
-			player.showItemIcon2 = ItemType<LushWoodDoorItem>();
+			player.showItemIcon2 = ItemType<VerdantDoorItem>();
 		}
 	}
 }

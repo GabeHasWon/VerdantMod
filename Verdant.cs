@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -57,6 +58,7 @@ namespace Verdant
         {
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 Alpha *= 1.4f; //Cute little effect to make the water seem less clean
+
             orig(self, bg, Style, Alpha);
         }
 
