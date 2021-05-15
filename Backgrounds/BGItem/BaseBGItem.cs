@@ -20,7 +20,7 @@ namespace Verdant.Backgrounds.BGItem
         internal Color drawColor = Color.White;
         internal Rectangle source = new Rectangle(0, 0, 0, 0);
 
-        public List<BaseBGItem> bgItems = new List<BaseBGItem>();
+        public Vector2 RealPosition { get; private set; }
 
         internal Vector2 Center { get => position + (tex.Bounds.Size() / 2); }
 
@@ -34,6 +34,8 @@ namespace Verdant.Backgrounds.BGItem
             scale = sc;
 
             source = new Rectangle(0, 0, size.X, size.Y);
+
+            RealPosition = position;
         }
 
         public BaseBGItem(Texture2D t, Vector2 initPos, float sc)
@@ -43,34 +45,7 @@ namespace Verdant.Backgrounds.BGItem
             scale = sc;
 
             source = new Rectangle(0, 0, t.Width, t.Height);
-        }
-
-        public void RunAll(bool doUpdate)
-        {
-            List<BaseBGItem> removeList = new List<BaseBGItem>();
-            var order = bgItems.OrderBy(x => x.scale);
-
-            Rectangle screen = new Rectangle((int)Main.screenPosition.X - Main.offScreenRange, (int)Main.screenPosition.Y - Main.offScreenRange, Main.screenWidth + Main.offScreenRange, Main.screenHeight + Main.offScreenRange);
-
-            foreach (var item in order)
-            {
-                if (item.killMe)
-                {
-                    removeList.Add(item);
-                    continue;
-                }
-                if (doUpdate)
-                    item.Behaviour();
-                Vector2 off = Lighting.lightMode > 1 ? Vector2.Zero : Vector2.One;
-                if (screen.Contains(item.position.ToPoint()))
-                {
-                    if (item.position.Y / 16f < Main.worldSurface)
-                        item.Draw(off);
-                }
-            }
-
-            foreach (var item in removeList)
-                bgItems.Remove(item);
+            RealPosition = position;
         }
 
         internal virtual void Behaviour()
@@ -80,7 +55,8 @@ namespace Verdant.Backgrounds.BGItem
 
         internal virtual void Draw(Vector2 off)
         {
-            Main.spriteBatch.Draw(tex, position + off - Main.screenPosition, source, drawColor, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);
+            RealPosition = position + off;
+            Main.spriteBatch.Draw(tex, RealPosition - Main.screenPosition, source, drawColor, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);
         }
 
         internal Vector2 GetParallax()

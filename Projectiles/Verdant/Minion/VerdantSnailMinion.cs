@@ -12,12 +12,14 @@ namespace Verdant.Projectiles.Verdant.Minion
     {
         ref float MovementState => ref projectile.ai[0];
         ref float Timer => ref projectile.ai[1];
-        public int Target = -1;
+
+        private int _target = -1;
+        private int _skin = 0;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snale");
-            Main.projFrames[projectile.type] = 5;
+            Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
@@ -69,28 +71,29 @@ namespace Verdant.Projectiles.Verdant.Minion
                 projectile.spriteDirection = Main.rand.NextBool(2) ? -1 : 1;
                 MovementState = 1;
                 Timer--;
-                Target = -1;
+                _target = -1;
+                _skin = Main.rand.Next(2);
             }
             if (MovementState == 1) //Literally vibing too hard
             {
                 projectile.tileCollide = true;
                 if (Timer == AnimSpeedMult)
-                    projectile.frame = 1;
+                    SetFrame(1);
                 if (Timer == 2 * AnimSpeedMult)
                 {
-                    projectile.frame = 0;
+                    SetFrame(0);
                     projectile.velocity.X = 0.25f * projectile.spriteDirection;
                 }
                 if (Timer == 3 * AnimSpeedMult)
                 {
-                    projectile.frame = 2;
+                    SetFrame(2);
                     if (projectile.velocity.X == 0)
                         projectile.spriteDirection *= -1;
                 }
                 if (Timer == 4 * AnimSpeedMult)
                 {
                     projectile.velocity.X = 0f;
-                    projectile.frame = 0;
+                    SetFrame(0);
                     Timer = 0;
                 }
 
@@ -101,10 +104,10 @@ namespace Verdant.Projectiles.Verdant.Minion
                 }
 
                 // --------------------- GET TARGET ----------------------
-                if (Target == -1)
+                if (_target == -1)
                 {
                     int hasTarget = -1;
-                    for (int i = 0; i < Main.npc.Length; ++i)
+                    for (int i = 0; i < Main.npc.Length; ++i) //Find target
                     {
                         float dist = Vector2.Distance(Main.npc[i].position, projectile.position);
                         if (Main.npc[i].CanBeChasedBy() && dist < 500 && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) &&
@@ -112,19 +115,19 @@ namespace Verdant.Projectiles.Verdant.Minion
                             hasTarget = i;
                     }
 
-                    if (hasTarget != -1)
+                    if (hasTarget != -1) //Select target & switch states
                     {
-                        Target = hasTarget;
+                        _target = hasTarget;
                         MovementState = 4;
                         Timer = 0;
-                        projectile.frame = 0;
+                        SetFrame(0);
                         projectile.velocity *= 0f;
                     }
                 }
                 else
                 {
-                    if (Target < -1)
-                        Target++;
+                    if (_target < -1)
+                        _target++;
                 }
 
                 //Gravity
@@ -135,11 +138,11 @@ namespace Verdant.Projectiles.Verdant.Minion
                 projectile.tileCollide = false;
                 projectile.spriteDirection = p.position.X < projectile.position.X ? -1 : 1;
                 if (Timer == AnimSpeedMultHasty)
-                    projectile.frame = 2;
+                    SetFrame(2);
                 if (Timer == AnimSpeedMultHasty * 2)
-                    projectile.frame = 3;
+                    SetFrame(3);
                 if (Timer == AnimSpeedMultHasty * 3)
-                    projectile.frame = 4;
+                    SetFrame(4);
                 if (Timer > AnimSpeedMultHasty * 3)
                 {
                     float adjTimer = Timer - (AnimSpeedMultHasty * 3);
@@ -177,24 +180,24 @@ namespace Verdant.Projectiles.Verdant.Minion
                 projectile.tileCollide = true;
 
                 if (Timer == AnimSpeedMultHasty)
-                    projectile.frame = 2;
+                    SetFrame(2);
                 if (Timer == AnimSpeedMultHasty * 2)
-                    projectile.frame = 3;
+                    SetFrame(3);
                 if (Timer == AnimSpeedMultHasty * 3)
-                    projectile.frame = 4;
+                    SetFrame(4);
                 if (Timer > AnimSpeedMultHasty * 3)
                 {
-                    if (Target != -2 && Main.npc[Target].active)
-                        projectile.velocity += Vector2.Normalize(Main.npc[Target].position - projectile.position) * 0.35f;
+                    if (_target != -2 && Main.npc[_target].active)
+                        projectile.velocity += Vector2.Normalize(Main.npc[_target].position - projectile.position) * 0.35f;
                     if (projectile.velocity.Length() > 7f)
                         projectile.velocity = Vector2.Normalize(projectile.velocity) * 7f;
-                    if (Timer >= AnimSpeedMultHasty * 20 || Target == -2 || !Main.npc[Target].active || projectile.velocity.Length() < 0.15f)
+                    if (Timer >= AnimSpeedMultHasty * 20 || _target == -2 || !Main.npc[_target].active || projectile.velocity.Length() < 0.15f)
                     {
                         projectile.velocity.Y += 0.2f;
                         projectile.velocity.X *= 0.9999f;
                         if (Timer >= AnimSpeedMultHasty * 17)
                         {
-                            Target = -80;
+                            _target = -80;
                             MovementState = 3;
                             Timer = 0;
                         }
@@ -203,6 +206,11 @@ namespace Verdant.Projectiles.Verdant.Minion
                         projectile.rotation += 0.4f;
                 }
             }
+        }
+
+        private void SetFrame(int frame)
+        {
+            projectile.frame = frame + (_skin * 5);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -36,6 +36,11 @@ namespace Verdant.NPCs
                 if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown && Main.rand.NextBool(4))
                     chat = "I hear another faint voice coming from the lush caves. Take a look there.";
             }
+            else if (npc.type == NPCID.Dryad)
+            {
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                    chat = $"I love this overgrown land. It almost lets me forget about the {(WorldGen.crimson ? "crimson" : "corruption")}.";
+            }
         }
     }
 }

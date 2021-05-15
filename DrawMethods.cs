@@ -9,16 +9,14 @@ namespace Verdant
 {
     public partial class VerdantMod : Mod
     {
-        public BaseBGItem BGItemHandler;
-
         private void Main_DrawBackgroundBlackFill(Main.orig_DrawBackgroundBlackFill orig, Terraria.Main self)
         {
             orig(self);
 
             bool playerInv = Terraria.Main.hasFocus && (!Terraria.Main.autoPause || Terraria.Main.netMode != NetmodeID.SinglePlayer ||
                 (Terraria.Main.autoPause && !Terraria.Main.playerInventory && Terraria.Main.netMode == NetmodeID.SinglePlayer));
-            if (Terraria.Main.playerLoaded && BGItemHandler != null)
-                BGItemHandler.RunAll(playerInv);
+            if (Terraria.Main.playerLoaded && BackgroundItemHandler.Loaded)
+                BackgroundItemHandler.RunAll(playerInv);
         }
 
         private void Main_DrawPlayer(Main.orig_DrawPlayer orig, Terraria.Main self, Terraria.Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)

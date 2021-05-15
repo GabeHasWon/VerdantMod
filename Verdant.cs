@@ -31,17 +31,12 @@ namespace Verdant
             };
         }
 
-        public void AddBGItem(BaseBGItem item)
-        {
-            BGItemHandler.bgItems.Add(item);
-        }
-
         public override void Load()
         {
             Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.09f), EffectPriority.VeryHigh); //Verdant Green shader
             SkyManager.Instance["Verdant:Verdant"] = new VerdantSky();
 
-            BGItemHandler = new BaseBGItem(); //Main BGItem draw
+            BackgroundItemHandler.Load(); //Main BGItem draw
 
             OnHooks();
         }
@@ -77,11 +72,11 @@ namespace Verdant
         public override void Unload()
         {
             ForegroundManager.Unload();
+            BackgroundItemHandler.Unload();
             VerdantPlayer.Unload();
             UnHookOn();
 
             Instance = null;
-            BGItemHandler = null;
         }
 
         public override void AddRecipeGroups()

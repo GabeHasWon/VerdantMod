@@ -64,8 +64,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             if (!Main.tile[i, j + 1].active() && Main.rand.Next(7) == 0)
                 WorldGen.PlaceTile(i, j + 1, Type);
-            if (!Main.tile[i, j - 1].active() && Main.rand.Next(7) == 0)
-                WorldGen.PlaceTile(i, j - 1, Type);
+            //if (!Main.tile[i, j - 1].active() && Main.rand.Next(7) == 0)
+            //    WorldGen.PlaceTile(i, j - 1, Type);
 
             if (Framing.GetTileSafely(i, j).frameX != 0 && Framing.GetTileSafely(i, j).frameY < 36 && Main.rand.Next(2) == 0)
                 Framing.GetTileSafely(i, j).frameY = (short)((Main.rand.Next(2) * 18) + 36);
@@ -89,6 +89,9 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
                 if (!noItem) Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ItemType<PinkPetal>());
                 Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
             }
+
+            if (Main.tile[i, j + 1].type == Type)
+                WorldGen.KillTile(i, j + 1, fail, false, false);
         }
     }
 }

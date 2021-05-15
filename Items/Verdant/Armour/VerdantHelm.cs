@@ -44,8 +44,8 @@ namespace Verdant.Items.Verdant.Armour
             player.maxMinions++;
             player.minionDamage *= 1.04f;
             if (!player.controlDown)
-                player.maxFallSpeed *= 0.70f;
-            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.Next(68) == 0)
+                player.maxFallSpeed *= 0.69f; //LMAO
+            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.Next(74) == 0) //Spawn gores
             {
                 int random = Main.rand.Next(3);
                 int gore = mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling");
@@ -57,7 +57,7 @@ namespace Verdant.Items.Verdant.Armour
 
         private void OnRespawn(Player p)
         {
-            if (p.ArmourSetEquipped(ModContent.ItemType<VerdantHelm>(), ModContent.ItemType<VerdantChestplate>(), ModContent.ItemType<VerdantLeggings>()))
+            if (p.ArmourSetEquipped(ModContent.ItemType<VerdantHelm>(), ModContent.ItemType<VerdantChestplate>(), ModContent.ItemType<VerdantLeggings>())) //Heals when 
             {
                 if (p.statLifeMax2 < p.statLife + 50)
                 {
@@ -88,7 +88,7 @@ namespace Verdant.Items.Verdant.Armour
         public override void UpdateEquip(Player player)
 		{
             player.minionDamage *= 1.05f;
-            Lighting.AddLight(player.position + new Vector2(player.width / 2), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
+            Lighting.AddLight(player.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
         }
 
         public override void AddRecipes()
