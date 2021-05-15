@@ -15,8 +15,8 @@ namespace Verdant
 
             bool playerInv = Terraria.Main.hasFocus && (!Terraria.Main.autoPause || Terraria.Main.netMode != NetmodeID.SinglePlayer ||
                 (Terraria.Main.autoPause && !Terraria.Main.playerInventory && Terraria.Main.netMode == NetmodeID.SinglePlayer));
-            if (Terraria.Main.playerLoaded && BackgroundItemHandler.Loaded)
-                BackgroundItemHandler.RunAll(playerInv);
+            if (Terraria.Main.playerLoaded && BackgroundItemManager.Loaded)
+                BackgroundItemManager.RunAll(playerInv);
         }
 
         private void Main_DrawPlayer(Main.orig_DrawPlayer orig, Terraria.Main self, Terraria.Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)

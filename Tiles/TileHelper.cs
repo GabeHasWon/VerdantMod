@@ -117,9 +117,9 @@ namespace Verdant.Tiles
             return true;
         }
 
-        public static bool CanPlaceHangingTable(int i, int j, int length)
+        public static bool CanPlaceHangingTable(int i, int j)
         {
-            if (Helper.ActiveType(i, j - 1, TileType<VerdantStrongVine>()) && Helper.ActiveType(i, j - 1, TileType<VerdantStrongVine>()))
+            if (Helper.ActiveType(i, j - 1, TileType<VerdantStrongVine>()) && Helper.ActiveType(i + 2, j - 1, TileType<VerdantStrongVine>()))
                 return true;
             return false;
         }

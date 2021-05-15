@@ -4,9 +4,6 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
-using Terraria.Enums;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
@@ -16,7 +13,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetDefaults()
         {
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.EmptyTile, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
@@ -37,24 +33,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if (Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 18)
-            {
-                Vector2 p = (new Vector2(i, j) * 16);
-                Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f) * 11);
-            }
+                Lighting.AddLight(new Vector2(i, j) * 16, new Vector3(0.1f, 0.03f, 0.06f) * 11);
         }
 
-        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j, ChainLength);
-
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-            //        World.GenHelper.KillRectangle(i, j, 3, 2);
-        }
+        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Red>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Red>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -69,7 +55,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetDefaults()
         {
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.EmptyTile, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
@@ -87,18 +72,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
 
-        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j, ChainLength);
-
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-            //        World.GenHelper.KillRectangle(i, j, 3, 2);
-        }
+        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_RedLightless>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_RedLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -109,11 +87,8 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
     internal class VerdantHungTable_Pink : ModTile
     {
-        public const int ChainLength = 22;
-
         public override void SetDefaults()
         {
-            //TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.None, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
@@ -134,24 +109,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if (Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 18)
-            {
-                Vector2 p = (new Vector2(i, j) * 16);
-                Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f) * 11);
-            }
+                Lighting.AddLight(new Vector2(i, j) * 16, new Vector3(0.1f, 0.03f, 0.06f) * 11);
         }
 
-        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j, ChainLength);
-
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            //if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-            //    if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-            //        World.GenHelper.KillRectangle(i, j, 3, 2);
-        }
+        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j);
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Pink>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Pink>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -166,7 +131,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetDefaults()
         {
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.EmptyTile, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
 
@@ -184,18 +148,16 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
 
-        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j, ChainLength);
+        public override bool CanPlace(int i, int j) => TileHelper.CanPlaceHangingTable(i, j);
 
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        public override void PlaceInWorld(int i, int j, Item item)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
-                if (TileHelper.DrawChains(i, j, "Verdant/Tiles/Verdant/Decor/VerdantFurniture/VerdantHungTable_Chain", spriteBatch, ChainLength))
-                    World.GenHelper.KillRectangle(i, j, 3, 2);
+            WorldGen.TileFrame(i + 2, j - 1);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_PinkLightless>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_PinkLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));

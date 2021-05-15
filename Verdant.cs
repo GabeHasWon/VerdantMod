@@ -36,7 +36,7 @@ namespace Verdant
             Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.09f), EffectPriority.VeryHigh); //Verdant Green shader
             SkyManager.Instance["Verdant:Verdant"] = new VerdantSky();
 
-            BackgroundItemHandler.Load(); //Main BGItem draw
+            BackgroundItemManager.Load(); //Main BGItem draw
 
             OnHooks();
         }
@@ -72,7 +72,7 @@ namespace Verdant
         public override void Unload()
         {
             ForegroundManager.Unload();
-            BackgroundItemHandler.Unload();
+            BackgroundItemManager.Unload();
             VerdantPlayer.Unload();
             UnHookOn();
 

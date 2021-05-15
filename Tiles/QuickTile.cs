@@ -59,7 +59,7 @@ namespace Verdant.Tiles
         /// <param name="h">Height of the tile.</param>
         /// <param name="dust">Dust ID to give off.</param>
         /// <param name="sound">Sound ID.</param>
-        /// <param name="tallBottom">Not sure.</param>
+        /// <param name="tallBottom">A slightly taller bottom tile w/ CoordinateHeights..</param>
         /// <param name="color">Colour on the map.</param>
         /// <param name="lavaDeath">Does it die in lava?</param>
         /// <param name="topSolid">Is the top solid?</param>

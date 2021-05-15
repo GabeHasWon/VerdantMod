@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="Foreground\Textures\" />
     <Folder Include="Noise\" />
-    <Folder Include="Tiles\Verdant\Decor\Marble\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="NetEasy">

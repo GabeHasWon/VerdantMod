@@ -39,7 +39,7 @@ namespace Verdant.NPCs
             else if (npc.type == NPCID.Dryad)
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = $"I love this overgrown land. It almost lets me forget about the {(WorldGen.crimson ? "crimson" : "corruption")}.";
+                    chat = $"I love this overgrown land. It might even let me forget about this world's {(WorldGen.crimson ? "crimson" : "corruption")}.";
             }
         }
     }

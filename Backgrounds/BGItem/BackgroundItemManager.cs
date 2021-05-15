@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace Verdant.Backgrounds.BGItem
 {
-    public class BackgroundItemHandler
+    public class BackgroundItemManager
     {
         private static List<BaseBGItem> bgItems;
 
@@ -31,13 +28,14 @@ namespace Verdant.Backgrounds.BGItem
         public static void RunAll(bool doUpdate)
         {
             List<BaseBGItem> removeList = new List<BaseBGItem>();
-            var order = bgItems.OrderBy(x => x.scale);
+
+            var order = bgItems.OrderBy(x => x.scale); //For proper depth
 
             Rectangle screen = new Rectangle((int)Main.screenPosition.X - Main.offScreenRange, (int)Main.screenPosition.Y - Main.offScreenRange, Main.screenWidth + Main.offScreenRange, Main.screenHeight + Main.offScreenRange);
 
-            foreach (var item in order)
+            foreach (var item in order) //Draw everything
             {
-                if (item.killMe)
+                if (item.killMe) //Remove items that need to be removed
                 {
                     removeList.Add(item);
                     continue;
