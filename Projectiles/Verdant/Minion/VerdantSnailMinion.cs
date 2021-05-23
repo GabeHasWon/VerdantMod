@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Buffs.Minion;
 
 namespace Verdant.Projectiles.Verdant.Minion
 {
@@ -64,6 +65,10 @@ namespace Verdant.Projectiles.Verdant.Minion
             Player p = Main.player[projectile.owner];
             Timer++;
 
+            if (!p.HasBuff(ModContent.BuffType<SnailBuff>()))
+                projectile.active = false;
+
+            projectile.timeLeft = 20;
             projectile.friendly = MovementState == 4;
 
             if (MovementState == 0) //Spawn

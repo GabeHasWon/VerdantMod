@@ -47,6 +47,7 @@
 
 	TOOLS
 	- Verdant Fishing Rod
+	- Verdant Leaf Wand : Needs finishing
 
 	EQUIPABLES [ITEMS]
 	- Lightbloom : Might want equip texture
@@ -81,13 +82,14 @@
 	- Blight : Unfinished, but unobtainable
 
 	PROJECTILES
-	- Verdant Healing Minion : Needs VFX cleanup & retouches
+	- Verdant Healing Minion
+	- Verdant Snail Minion : Polish?
 
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BED, BOOKCASE, CLOCK, DRESSER, PIANO, CANDELABRA, LANTERN, SINK
-	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, DOOR, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
-	- Verdant/Marble Furniture : Not implemented / designed
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
+	- Verdant/Marble Furniture : Not implemented / designed | Might not happen?
 
 	CRITTERS [ITEMS]
 	- All Critter Items : Not implemented / designed
@@ -95,14 +97,18 @@
 
 	TOOLS
 	- Bouncebulb : Enemy bounce function
-	- Verdant Leaf Wand : Needs finishing
-
-	CRITTERS [NPC]
-	- Folifish : Needs polish
 
 	PROJECTILES
-	- Verdant Snail Minion : Needs AI changes & polish
+	- Verdant Wisp | Almost everything
+
+	TILES [PLANTS]
+	- Housprout | Everything
+	
+	CRITTERS [NPC]
+	- Folifish : Needs polish
 
 	SYSTEMS
 	- Foreground : Needs saving & loading, needs multiplayer compat
 	- Background : Needs multiplayer compat
+
+	- Little overgrown telltale structure on surface above Verdant

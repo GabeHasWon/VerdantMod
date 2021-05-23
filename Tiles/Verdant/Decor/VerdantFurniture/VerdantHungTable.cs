@@ -40,7 +40,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Red>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Red>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -76,7 +76,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_RedLightless>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_RedLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -116,7 +116,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_Pink>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Pink>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
@@ -157,7 +157,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantHungTableBlock_PinkLightless>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_PinkLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));

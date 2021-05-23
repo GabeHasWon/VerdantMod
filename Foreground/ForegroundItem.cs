@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ModLoader.IO;
 
 namespace Verdant.Foreground
 {
@@ -19,7 +20,8 @@ namespace Verdant.Foreground
         internal bool drawLighted = true;
 
         public bool killMe = false; //love this
-        public bool saveMe = true;
+
+        public virtual bool SaveMe => false;
 
         public readonly string texPath = "None";
 
@@ -44,6 +46,19 @@ namespace Verdant.Foreground
             Main.spriteBatch.Draw(tex, position - Main.screenPosition, null, Color.White, 0f, tex.Size() / 2, scale, SpriteEffects.None, 0f);
         }
 
-        public override string ToString() => $"{GetType().Name} at {position} using {texPath}\nSIZE: {scale}, SAVE: {saveMe}, LIGHTED: {drawLighted}";
+        /// <summary>Called when saving this ForegroundItem.</summary>
+        /// <returns>Value(s) to be saved.</returns>
+        public virtual TagCompound Save()
+        {
+            return null;
+        }
+
+        /// <summary>Called on world loading.</summary>
+        /// <param name="info"></param>
+        public virtual void Load(TagCompound info)
+        {
+        }
+
+        public override string ToString() => $"{GetType().Name} at {position} using {texPath}\nSIZE: {scale}, SAVE: {SaveMe}, LIGHTED: {drawLighted}";
     }
 }

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Buffs.Minion;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Projectiles.Verdant.Minion;
@@ -11,11 +12,16 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class VerdantSnailStaff : ModItem
     {
-        public override void SetDefaults() => QuickItem.SetMinion(this, 48, 48, ProjectileType<VerdantSnailMinion>(), 14, 10, ItemRarityID.Green);
+        public override void SetDefaults()
+        {
+            QuickItem.SetMinion(this, 48, 48, ProjectileType<VerdantSnailMinion>(), 14, 10, ItemRarityID.Green);
+            item.buffType = BuffType<SnailBuff>();
+            item.buffTime = 20;
+        }
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons slow, but determined snails.\nThese snails take less than a full minion slot to summon.");
+            Tooltip.SetDefault("Summons determined snails.\nThese snails take less than a full minion slot to summon.");
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
         }

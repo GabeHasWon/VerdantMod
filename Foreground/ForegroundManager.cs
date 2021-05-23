@@ -1,18 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.IO;
-using Terraria.ModLoader;
-using Verdant.Foreground.Tiled;
+using Terraria.ModLoader.IO;
 
 namespace Verdant.Foreground
 {
     public static class ForegroundManager
     {
         private static List<ForegroundItem> items = new List<ForegroundItem>();
-
-        public static List<ForegroundItem> loadClasses = new List<ForegroundItem>();
 
         public static void Run()
         {
@@ -33,16 +27,8 @@ namespace Verdant.Foreground
                 items.Remove(item);
         }
 
-        public static void Load(IList<ForegroundData> info)
+        public static void Load(TagCompound info)
         {
-            loadClasses.Add(new VerdantBush(Point.Zero));
-
-            foreach (var item in info)
-            {
-                ForegroundItem val = loadClasses[item.type];
-                val.position = item.position;
-                AddItem(val);
-            }
         }
 
         public static void Unload()
@@ -59,16 +45,21 @@ namespace Verdant.Foreground
         /// <param name="name">Name of the requested texture.</param>
         public static Texture2D GetTexture(string name) => VerdantMod.Instance.GetTexture("Foreground/Textures/" + name);
 
-        internal static List<ForegroundData> Save()
+        internal static TagCompound Save()
         {
-            List<ForegroundData> data = new List<ForegroundData>();
+            TagCompound compound = new TagCompound();
             foreach (var item in items)
             {
-                if (item.saveMe)
+                if (item.SaveMe)
                 {
+                    var value = item.Save();
+                    if (value == null)
+                        continue;
+
+                    compound.Add("fgInfo", value);
                 }
             }
-            return data;
+            return compound;
         }
     }
 }

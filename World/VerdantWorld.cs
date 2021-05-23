@@ -49,6 +49,7 @@ namespace Verdant.World
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
 
+            ForegroundManager.Load(tag);
             //var foreground = tag.GetList<ForegroundData>("foregroundData");
             //ForegroundManager.Load(foreground);
         }

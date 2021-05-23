@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Buffs.Minion
 {
@@ -9,7 +8,7 @@ namespace Verdant.Buffs.Minion
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Snail Minion");
-            Description.SetDefault("The grassy snail will fight for you");
+            Description.SetDefault("The grassy snails will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
