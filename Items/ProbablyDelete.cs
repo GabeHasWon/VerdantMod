@@ -38,7 +38,7 @@ namespace Verdant.Items
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
-            item.createTile = TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantPiano>();
+            item.createTile = TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantTable>();
         }
 
         public override void OnCraft(Recipe recipe)
