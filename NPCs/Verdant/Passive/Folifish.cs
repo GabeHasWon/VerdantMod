@@ -9,6 +9,12 @@ namespace Verdant.NPCs.Verdant.Passive
 {
     public class Folifish : ModNPC //yoo thanks to Nimta on discord for the name
     {
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[npc.type] = 1;
+            Main.npcCatchable[npc.type] = true;
+        }
+
         public override void SetDefaults()
         {
             npc.width = 50;
@@ -25,9 +31,7 @@ namespace Verdant.NPCs.Verdant.Passive
             aiType = NPCID.Goldfish;
             npc.dontCountMe = true;
 
-            Main.npcCatchable[npc.type] = true;
-            Main.npcFrameCount[npc.type] = 1;
-            npc.catchItem = (short)ModContent.ItemType<FlotieItem>();
+            npc.catchItem = (short)ModContent.ItemType<FolifishItem>();
         }
 
         public override bool PreAI()

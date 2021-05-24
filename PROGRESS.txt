@@ -52,6 +52,11 @@
 	EQUIPABLES [ITEMS]
 	- Lightbloom : Might want equip texture
 
+	CRITTERS [ITEMS]
+	- Flotie Item
+	- Flotiny Item
+	- Folifish Item
+
 	ENEMIES
 	- Hostfly - NEEDS MULTIPLAYER
 	- Small Fly - NEEDS MULTIPLAYER
@@ -91,10 +96,6 @@
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), WORKBENCH, CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHAIR, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
 	- Verdant/Marble Furniture : Not implemented / designed | Might not happen?
 
-	CRITTERS [ITEMS]
-	- All Critter Items : Not implemented / designed
-		EXCLUDING: Flotiny & Flotie items
-
 	TOOLS
 	- Bouncebulb : Enemy bounce function
 
@@ -105,7 +106,7 @@
 	- Housprout | Everything
 	
 	CRITTERS [NPC]
-	- Folifish : Needs polish
+	- Mossling | Decide on future
 
 	SYSTEMS
 	- Foreground : Needs saving & loading, needs multiplayer compat

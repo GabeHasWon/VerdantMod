@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +9,8 @@ namespace Verdant.NPCs.Verdant.Passive
 {
     public class Flotiny : ModNPC
     {
+        public override void SetStaticDefaults() => Main.npcCatchable[npc.type] = true;
+
         public override void SetDefaults()
         {
             npc.width = 22;
@@ -28,7 +26,6 @@ namespace Verdant.NPCs.Verdant.Passive
             npc.aiStyle = -1;
             npc.dontCountMe = true;
 
-            Main.npcCatchable[npc.type] = true;
             npc.catchItem = (short)ModContent.ItemType<FlotinyItem>();
         }
 
