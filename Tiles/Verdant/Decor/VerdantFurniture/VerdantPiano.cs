@@ -58,7 +58,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void MouseOver(int i, int j)
         {
             Main.LocalPlayer.showItemIconText = "Play";
-            Main.LocalPlayer.showItemIcon2 = -1;// ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushTableItem>();
+            Main.LocalPlayer.showItemIcon2 = -1;
             Main.LocalPlayer.noThrow = 2;
             Main.LocalPlayer.showItemIcon = true;
         }
