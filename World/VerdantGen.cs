@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -38,7 +39,7 @@ namespace Verdant.World
         public static Point VerdantCentre = new Point();
         public static Rectangle VerdantArea = new Rectangle(0, 0, 0, 0);
 
-        private List<GenCircle> VerdantCircles = new List<GenCircle>();
+        private readonly List<GenCircle> VerdantCircles = new List<GenCircle>();
 
         public void VerdantGeneration(GenerationProgress p)
         {
@@ -81,6 +82,18 @@ namespace Verdant.World
             AddFlowerStructures();
             p.Message = "Watering plants...";
             AddWater();
+
+            AddSurfaceVerdant();
+
+            for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i)
+                for (int j = VerdantArea.Top; j < VerdantArea.Bottom; ++j)
+                    Tile.SmoothSlope(i, j);
+        }
+
+        private void AddSurfaceVerdant()
+        {
+            int top = FindDown(new Vector2(VerdantCentre.X * 16, 200));
+            TileRunner(VerdantCentre.X, top, 6, 40, TileTypes[0], true, 0, 0, true, true);
         }
 
         public void VerdantCleanup(GenerationProgress p)

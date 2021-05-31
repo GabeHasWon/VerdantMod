@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,20 +13,33 @@ namespace Verdant.Items.Verdant.Tools
         public override bool Autoload(ref string name)
         {
             VerdantPlayer.ItemDrawLayerEvent += PlayerDraw;
-            return base.Autoload(ref name);
+            return mod.Properties.Autoload;
         }
 
-        public override void SetDefaults()
-        {
-            QuickItem.SetBlock(this, 38, 26, ModContent.TileType<Tiles.Verdant.Basic.Plants.Bouncebloom>(), true);
-        }
+        public override void SetDefaults() => QuickItem.SetBlock(this, 38, 26, ModContent.TileType<Tiles.Verdant.Basic.Plants.Bouncebloom>(), true);
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Bouncebloom", "Slow fall + protection from above");
 
         public override void HoldItem(Player player)
         {
             player.noFallDmg = true;
             player.fallStart = (int)player.position.Y / 16;
+
+            for (int i = 0; i < Main.maxNPCs; ++i)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && CheckNPCConditions(npc, player))
+                    npc.velocity.Y = -16 * npc.knockBackResist;
+            }
+
+            for (int i = 0; i < Main.maxPlayers; ++i)
+            {
+                Player p = Main.player[i];
+                if (p.active && p != player && !p.dead && p.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)))
+                    p.velocity.Y = -16;
+            }
         }
+
+        private bool CheckNPCConditions(NPC n, Player p) => n.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)) && !n.boss && n.width + n.height < 300 && n.knockBackResist > 0.05f;
 
         public override bool HoldItemFrame(Player player)
         {

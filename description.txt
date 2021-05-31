@@ -5,3 +5,8 @@ WHEN? World generation.
 HOW? This mod.
 WHY? It was a cool idea so I did it
 WHO? GabeHasWon
+
+--------------
+Special Thanks -
+Liz - SFX, feedback/design & The Plant
+Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Feedback/design

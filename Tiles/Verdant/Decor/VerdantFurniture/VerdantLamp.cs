@@ -8,29 +8,31 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Verdant.Tiles.Verdant.Decor.LushFurniture
+namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
-    internal class LushCandle : ModTile
+    internal class VerdantLamp : ModTile
     {
         public override void SetDefaults()
         {
+            // Main.tileFlame[Type] = true; This breaks it.
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileWaterDeath[Type] = true;
             Main.tileLavaDeath[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
             TileObjectData.newTile.WaterDeath = true;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
 
-            AddMapEntry(new Color(253, 221, 3), CreateMapEntryName());
+            AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.FloorLamp"));
         }
 
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
+            Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantLampItem>());
         }
 
         public override void HitWire(int i, int j)
@@ -51,10 +53,10 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0)
+            if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
             {
                 r = 1f;
-                g = 0.75f;
+                g = 0.4f;
                 b = 1f;
             }
         }
@@ -64,21 +66,34 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             if (!Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
                 Tile tile = Main.tile[i, j];
-                if (Main.rand.NextBool(40) && tile.frameX == 0 && tile.frameY / 18 % 3 == 0)
+                short frameX = tile.frameX;
+                short frameY = tile.frameY;
+                if (Main.rand.NextBool(40) && frameX == 0)
                 {
-                    int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, DustID.Fire, 0f, 0f, 100, default, 1f);
-                    if (Main.rand.Next(3) != 0)
-                        Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 0.3f;
-                    Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
+                    int style = frameY / 54;
+                    if (frameY / 18 % 3 == 0)
+                    {
+                        int dustChoice = -1;
+                        if (style == 0)
+                            dustChoice = DustID.Fire;
+                        
+                        if (dustChoice != -1)
+                        {
+                            int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, dustChoice, 0f, 0f, 100, default, 1f);
+                            if (Main.rand.Next(3) != 0)
+                                Main.dust[dust].noGravity = true;
+                            Main.dust[dust].velocity *= 0.3f;
+                            Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
+                        }
+                    }
                 }
             }
         }
 
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Framing.GetTileSafely(i, j).frameX != 0)
-                return;
+            if (Framing.GetTileSafely(i, j).frameX != 0 || Framing.GetTileSafely(i, j).frameY != 0)
+                return true;
 
             SpriteEffects effects = SpriteEffects.None;
             if (i % 2 == 1)
@@ -105,6 +120,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + shakeX, j * 16 - (int)Main.screenPosition.Y + offsetY + shakeY) + zero;
                 Main.spriteBatch.Draw(flameTexture, pos + new Vector2(-offsetX, 2), new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(100, 100, 100, 0), 0f, default, 1f, effects, 0f);
             }
+            return true;
         }
     }
 }

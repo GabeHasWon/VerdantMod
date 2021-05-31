@@ -7,7 +7,7 @@ namespace Verdant.Backgrounds
     {
         public override int ChooseFarTexture() => mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceFar");
 
-        //public override int ChooseMiddleTexture() => mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceMid");
+        public override int ChooseMiddleTexture() => mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceMid");
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {

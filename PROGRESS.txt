@@ -93,7 +93,7 @@
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BED, BOOKCASE, CLOCK, DRESSER, PIANO, CANDELABRA, LANTERN, SINK
-	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, CHEST, LAMP, LANTERN, SINK, NORMAL TABLE
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), CHANDELIER (LARGE), BATHTUB, BED, BOOKCASE, BED, CLOCK, DRESSER, PIANO, SOFA, CANDELABRA, CANDLE, LANTERN, SINK
 	- Verdant/Marble Furniture : Not implemented / designed | Might not happen?
 
 	TOOLS

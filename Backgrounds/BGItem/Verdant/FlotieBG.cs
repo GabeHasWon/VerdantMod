@@ -9,21 +9,21 @@ namespace Verdant.Backgrounds.BGItem.Verdant
     public class FlotieBG : BaseBGItem
     {
         private int scaleTimer = 0;
-        private int scaleDecay = 0;
-        private float scaleSpe = 1f;
-        private float scaleVel = 0.05f;
         private float timer = 0;
 
         public const int SpawnChance = 150;
+
+        private readonly int scaleDecay = 0;
+        private readonly float scaleSpd = 0f;
 
         public FlotieBG(Vector2 pos) : base(pos, 0f, new Point(0, 0))
         {
             tex = ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/Flotie");
             source = new Rectangle(0, 0, tex.Width, tex.Height);
 
-            scaleDecay = Main.rand.Next(1600, 2200);
-            parallaxScale = Main.rand.Next(500, 1001) * 0.001f;
-            scaleSpe = Main.rand.Next(720, 940) * 0.001f;
+            scaleDecay = Main.rand.Next(2500, 2800);
+            scaleSpd = Main.rand.NextFloat(0.002f, 0.005f);
+            parallaxScale = Main.rand.Next(550, 1001) * 0.001f;
 
             timer = Main.rand.Next(10000);
 
@@ -36,12 +36,9 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             velocity.X = (float)Math.Sin((timer++ * 2) * 0.004f) * 0.4f;
             velocity.Y = (float)Math.Sin(timer * 0.004f) * 0.4f;
 
-            //Scaling();
-            if (scaleTimer++ < 100)
-            {
-                scale += scaleVel;
-                scaleVel *= scaleSpe;
-            }
+            scaleTimer++;
+            if (scaleTimer++ < scaleDecay - 120 && scale < parallaxScale)
+                scale += scaleSpd;
             else if (scaleTimer > scaleDecay - 100)
                 scale *= 0.987f;
 
