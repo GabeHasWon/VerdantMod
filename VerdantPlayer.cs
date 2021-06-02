@@ -46,7 +46,7 @@ namespace Verdant
         public override void UpdateBiomeVisuals()
         {
             VerdantPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<VerdantPlayer>();
-            player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant);
+            player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant && !Main.dayTime);
         }
 
         public static void Unload()

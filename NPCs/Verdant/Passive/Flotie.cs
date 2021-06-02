@@ -13,6 +13,12 @@ namespace Verdant.NPCs.Verdant.Passive
 {
     public class Flotie : ModNPC
     {
+        public override void SetStaticDefaults()
+        {
+            Main.npcCatchable[npc.type] = true;
+            Main.npcFrameCount[npc.type] = 2;
+        }
+
         public override void SetDefaults()
         {
             npc.width = 36;
@@ -28,7 +34,6 @@ namespace Verdant.NPCs.Verdant.Passive
             npc.aiStyle = -1;
             npc.dontCountMe = true;
 
-            Main.npcCatchable[npc.type] = true;
             npc.catchItem = (short)ModContent.ItemType<FlotieItem>();
         }
 
@@ -47,6 +52,11 @@ namespace Verdant.NPCs.Verdant.Passive
             npc.rotation = npc.velocity.X * 0.4f;
             npc.velocity.Y = (float)(Math.Sin(npc.ai[0]++ * 0.02f * npc.ai[2]) * 0.6f);
             npc.velocity.X = (float)(Math.Sin(npc.ai[0]++ * 0.006f) * 0.15f) * npc.ai[3];
+
+            if (npc.velocity.Y < 0.01f)
+                npc.frame.Y = 0;
+            else
+                npc.frame.Y = 50;
 
             Lighting.AddLight(npc.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.4f);
         }
@@ -74,7 +84,7 @@ namespace Verdant.NPCs.Verdant.Passive
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.playerInTown)
+            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (spawnInfo.playerInTown || spawnInfo.playerSafe))
                 return 1.5f + (spawnInfo.water ? 0.4f : 0f);
             return (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? (spawnInfo.water ? 1f : 0.6f) : 0f;
         }
