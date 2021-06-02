@@ -40,9 +40,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             num = fail ? 1 : 3;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(i * 16, j * 16, 16, 32, ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());
-        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 16, 32, ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());
     }
 }

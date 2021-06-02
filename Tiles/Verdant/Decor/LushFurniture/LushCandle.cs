@@ -31,6 +31,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
+            if (!noItem)
+                Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushCandleItem>());
         }
 
         public override void HitWire(int i, int j)
@@ -39,12 +41,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             int topY = j - tile.frameY / 18 % 3;
             short frameAdjustment = (short)(tile.frameX > 0 ? -18 : 18);
             Main.tile[i, topY].frameX += frameAdjustment;
-            Main.tile[i, topY + 1].frameX += frameAdjustment;
-            Main.tile[i, topY + 2].frameX += frameAdjustment;
             Wiring.SkipWire(i, topY);
-            Wiring.SkipWire(i, topY + 1);
-            Wiring.SkipWire(i, topY + 2);
-            NetMessage.SendTileSquare(-1, i, topY + 1, 3, TileChangeType.None);
+            NetMessage.SendTileSquare(-1, i, topY + 1, 1, TileChangeType.None);
         }
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) => spriteEffects = i % 2 == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
