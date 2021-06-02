@@ -43,6 +43,7 @@ namespace Verdant.Tiles.Verdant.Decor
             AddMapEntry(new Color(100, 122, 111), name);
 
             dustType = 0;
+            soundStyle = SoundID.Grass;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };
             chestDrop = ItemType<VerdantYellowPetalChestBlock>();

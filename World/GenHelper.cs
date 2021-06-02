@@ -117,9 +117,17 @@ namespace Verdant.World
         /// <param name="r">Use Main.rand for in-game generation, use WorldGen.genRand for worldgen.</param>
         /// <param name="subItemLength">How many sub item stacks there are.</param>
         /// <param name="style">Style of the chest.</param>
-        public static void PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool stackFill = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0)
+        public static void PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool stackFill = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
         {
             r = r ?? Main.rand;
+
+            if (overRide)
+            {
+                KillTile(x, y, false, false, true);
+                KillTile(x + 1, y, false, false, true);
+                KillTile(x, y + 1, false, false, true);
+                KillTile(x + 1, y + 1, false, false, true);
+            }
 
             int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
             if (ChestIndex != -1)
@@ -166,8 +174,16 @@ namespace Verdant.World
         /// <param name="type">Tile ID of the chest.</param>
         /// <param name="style">Style for the chest.</param>
         /// <param name="items">Items, in order.</param>
-        public static void PlaceChest(int x, int y, int type, int style, params (int, int)[] items)
+        public static void PlaceChest(int x, int y, int type, int style, bool overRide, params (int, int)[] items)
         {
+            if (overRide)
+            {
+                KillTile(x, y, false, false, true);
+                KillTile(x + 1, y, false, false, true);
+                KillTile(x, y + 1, false, false, true);
+                KillTile(x + 1, y + 1, false, false, true);
+            }
+
             int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
             if (ChestIndex != -1)
             {

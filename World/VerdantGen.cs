@@ -58,7 +58,7 @@ namespace Verdant.World
                 if (UndergroundDesertLocation.Contains(VerdantCentre.X - 140, VerdantCentre.Y - 120) || UndergroundDesertLocation.Contains(VerdantCentre.X - 140, VerdantCentre.Y + 120)
                     || UndergroundDesertLocation.Contains(VerdantCentre.X + 140, VerdantCentre.Y - 120) || UndergroundDesertLocation.Contains(VerdantCentre.X + 140, VerdantCentre.Y + 120))
                     goto reset;
-                for (int i = VerdantCentre.X - 260; i < VerdantCentre.X + 260; ++i) //Assume width
+                for (int i = VerdantCentre.X - 270; i < VerdantCentre.X + 270; ++i) //Assume width
                 {
                     for (int j = VerdantCentre.Y - 130; j < VerdantCentre.Y + 130; ++j) //Assume height
                     {
@@ -75,6 +75,12 @@ namespace Verdant.World
             GenerateCircles();
             CleanForCaves();
             AddStone();
+
+            for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i) //Smooth out the biome!
+                for (int j = VerdantArea.Top; j < VerdantArea.Bottom; ++j)
+                    if (genRand.Next(3) <= 1)
+                        Tile.SmoothSlope(i, j);
+
             p.Message = "Growing vines...";
             Vines();
             p.Message = "Growing flowers...";
@@ -84,10 +90,6 @@ namespace Verdant.World
             AddWater();
 
             AddSurfaceVerdant();
-
-            for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i)
-                for (int j = VerdantArea.Top; j < VerdantArea.Bottom; ++j)
-                    Tile.SmoothSlope(i, j);
         }
 
         private void AddSurfaceVerdant()
@@ -145,11 +147,11 @@ namespace Verdant.World
                             (ItemID.Dynamite, 1), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Bomb, Main.rand.Next(2, 4)),
                             (ItemID.NightOwlPotion, Main.rand.Next(2, 4)), (ItemID.HealingPotion, Main.rand.Next(2, 4)), (ItemID.MoonglowSeeds, Main.rand.Next(2, 4)),
                             (ItemID.DaybloomSeeds, Main.rand.Next(2, 4)), (ItemID.BlinkrootSeeds, Main.rand.Next(2, 4))
-                        }, true, Main.rand, Main.rand.Next(4, 7), 0);
+                        }, true, Main.rand, Main.rand.Next(4, 7), 0, true);
                     }
                     else //WAND chest
                     {
-                        PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0,
+                        PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, true,
                             (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)), 
                             (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), Main.rand.Next(12, 22)));
                     }
@@ -317,7 +319,7 @@ namespace Verdant.World
                     if (ActiveType(i, j, TileType<VerdantSoilGrass>()))
                     {
                         //Vines
-                        if (!Framing.GetTileSafely(i, j + 1).active() && genRand.Next(5) <= 2)
+                        if (!Framing.GetTileSafely(i, j + 1).active() && !Framing.GetTileSafely(i, j + 1).bottomSlope() && genRand.Next(5) <= 2)
                         {
                             int length = genRand.Next(2, 14);
                             bool strong = genRand.Next(12) == 0;
@@ -330,7 +332,7 @@ namespace Verdant.World
                             continue;
                         }
                         //Decor 1x1
-                        if (!Framing.GetTileSafely(i, j - 1).active() && genRand.Next(3) >= 1)
+                        if (!Framing.GetTileSafely(i, j - 1).active() && !Framing.GetTileSafely(i, j + 1).topSlope() && genRand.Next(3) >= 1)
                         {
                             int type = !Main.rand.NextBool(1) ? TileType<VerdantDecor1x1>() : TileType<VerdantDecor1x1NoCut>();
                             PlaceTile(i, j - 1, type, true, false, -1, genRand.Next(7));

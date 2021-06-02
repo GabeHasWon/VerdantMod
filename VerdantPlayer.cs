@@ -92,8 +92,10 @@ namespace Verdant
             if (lValid || rValid)
             {
                 float newVel = -10f;
-                if (player.controlJump)
+                if (player.controlJump) //Bigger jump if jumping
                     newVel = -13.5f;
+                if (player.controlDown) //NO jump if holding down
+                    return;
                 player.velocity.Y = newVel;
 
                 int offsetX = 0;

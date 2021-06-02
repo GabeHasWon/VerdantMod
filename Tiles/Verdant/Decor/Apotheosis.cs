@@ -10,10 +10,7 @@ namespace Verdant.Tiles.Verdant.Decor
 {
     internal class Apotheosis : ModTile
     {
-        public override void SetDefaults()
-        {
-            QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
-        }
+        public override void SetDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
 
@@ -34,9 +31,9 @@ namespace Verdant.Tiles.Verdant.Decor
             }
         }
 
-        private string[] assurance = new[] { "Remember to breathe...", "Keep the plants alive...", "Return to me once you've slain the EVILBOSS...", "...", "There is nothing more to say.", "We have no more to add." };
-        private string[] boss3Assurance = new[] { "We no longer hear theEVENT, peace at last...", "The mind is calm now...", "Silence, finally..." };
-        private string[] skeleAssurance = new[] { "The poor man's freedom is obtained, thank you...", "We can still hear the screams..." };
+        private readonly string[] assurance = new[] { "Remember to breathe...", "Keep the plants alive...", "Return to me once you've slain the EVILBOSS...", "...", "There is nothing more to say.", "We have no more to add." };
+        private readonly string[] boss3Assurance = new[] { "We no longer hear theEVENT, peace at last...", "The mind is calm now...", "Silence, finally..." };
+        private readonly string[] skeleAssurance = new[] { "The poor man's freedom is obtained, thank you...", "We can still hear the screams..." };
 
         public override bool NewRightClick(int i, int j)
         {
@@ -87,7 +84,10 @@ namespace Verdant.Tiles.Verdant.Decor
         {
             int speechType = ModContent.GetInstance<VerdantServerConfig>().ApothTextSetting;
             if (speechType == 0 || speechType == 2)
-                CombatText.NewText(new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 60, 20), new Color(88, 188, 24), msg, true);
+            {
+                int c = CombatText.NewText(new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 60, 20), new Color(88, 188, 24), msg, true);
+                Main.combatText[c].lifeTime *= 3;
+            }
             if (speechType == 1 || speechType == 2)
             {
                 if (Main.netMode == NetmodeID.Server) //MP compat :)

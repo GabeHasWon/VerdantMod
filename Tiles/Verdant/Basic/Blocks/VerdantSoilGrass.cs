@@ -2,8 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Foreground;
-using Verdant.Foreground.Tiled;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using static Terraria.ModLoader.ModContent;
@@ -16,6 +14,12 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), ItemType<LushLeaf>(), "", true, false);
             QuickTile.MergeWith(Type, TileType<LushSoil>(), TileType<VerdantPinkPetal>(), TileType<VerdantRedPetal>(), TileID.LivingWood, TileID.Stone, TileID.Dirt, TileID.Grass);
+        }
+
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if ((!Framing.GetTileSafely(i, j + 1).active() || !Main.tileSolid[Framing.GetTileSafely(i, j + 1).type]) && Main.rand.NextBool(1980))
+                Gore.NewGorePerfect((new Vector2(i, j + 1) * 16) - new Vector2(0, 2), new Vector2(0, 0), mod.GetGoreSlot("Gores/Verdant/VerdantDroplet"), 1f);
         }
 
         public override void RandomUpdate(int i, int j)

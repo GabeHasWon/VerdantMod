@@ -42,6 +42,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             AddMapEntry(new Color(0, 141, 63), name, MapChestName);
 
             dustType = DustID.t_BorealWood;
+            soundStyle = SoundID.Dig;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };
             chest = "Lush Wood Chest";

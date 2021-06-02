@@ -23,7 +23,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
             scaleDecay = Main.rand.Next(2500, 2800);
             scaleSpd = Main.rand.NextFloat(0.002f, 0.005f);
-            parallaxScale = Main.rand.Next(550, 1001) * 0.001f;
+            parallaxScale = Main.rand.Next(550, 851) * 0.001f;
 
             timer = Main.rand.Next(10000);
 
