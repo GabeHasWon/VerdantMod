@@ -16,6 +16,7 @@ namespace Verdant
     class VerdantPlayer : ModPlayer
     {
         public bool ZoneVerdant;
+        public bool ZoneApotheosis;
 
         public delegate void FloorVisual(Player p, int type);
         public static event FloorVisual FloorVisualEvent;
@@ -41,6 +42,7 @@ namespace Verdant
         public override void UpdateBiomes()
         {
             ZoneVerdant = VerdantWorld.VerdantTiles > 50;
+            ZoneApotheosis = VerdantWorld.ApotheosisTiles > 2;
         }
 
         public override void UpdateBiomeVisuals()
@@ -129,7 +131,7 @@ namespace Verdant
 
         private void UpdateBGItems()
         {
-            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (player.Center.Y + (Main.screenHeight / 2f)) / 16f < Main.worldSurface) //Spawn BG items only when in the Verdant and above ground
             {
                 if (Main.rand.NextBool(FlotieBG.SpawnChance))
                 {
@@ -160,6 +162,7 @@ namespace Verdant
             if (junk && player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 junk = Main.rand.Next(7) < 2; //verdant is not as trashy
             if (junk) return;
+
             if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
                 caughtType = ModContent.ItemType<Shellfish>();
         }
@@ -188,6 +191,7 @@ namespace Verdant
         {
             VerdantPlayer modOther = other.GetModPlayer<VerdantPlayer>();
             modOther.ZoneVerdant = ZoneVerdant;
+            modOther.ZoneApotheosis = ZoneApotheosis;
         }
     }
 }

@@ -94,12 +94,14 @@ namespace Verdant.NPCs.Verdant.Enemy
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            //writer.Write(babies);
+            for (int i = 0; i < babies.Length; ++i)
+                writer.Write(babies[i]);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            //babies = reader.ReadInt32();
+            for (int i = 0; i < babies.Length; ++i)
+                babies[i] = reader.ReadInt32();
         }
 
         public override void FindFrame(int frameHeight)

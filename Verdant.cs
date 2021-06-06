@@ -106,6 +106,11 @@ namespace Verdant
                     priority = MusicPriority.BiomeLow;
                 }
             }
+            if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneApotheosis) //apotheosis melody
+            {
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/ApotheosisLullaby");
+                priority = MusicPriority.BiomeHigh;
+            }
         }
     }
 }

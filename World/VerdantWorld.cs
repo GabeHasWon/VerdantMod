@@ -8,6 +8,7 @@ using Terraria.World.Generation;
 using Verdant.Foreground;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
+using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.World
 {
@@ -17,6 +18,7 @@ namespace Verdant.World
         public static float WorldSize { get => Main.maxTilesX / 4200f; }
 
         public static int VerdantTiles;
+        public static int ApotheosisTiles;
         public static FastNoise genNoise;
 
         public static int apotheosisDialogueIndex = 0;
@@ -91,6 +93,7 @@ namespace Verdant.World
         public override void TileCountsAvailable(int[] tileCounts)
         {
             VerdantTiles = tileCounts[ModContent.TileType<VerdantSoilGrass>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
+            ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()];
         }
 
         public override void ResetNearbyTileEffects()

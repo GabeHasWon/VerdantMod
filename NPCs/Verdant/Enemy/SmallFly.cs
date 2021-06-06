@@ -92,8 +92,6 @@ namespace Verdant.NPCs.Verdant.Enemy
 
             if (npc.velocity.X > 0) npc.spriteDirection = 1;
             else npc.spriteDirection = -1;
-
-            npc.netUpdate = true;
         }
 
         public override void HitEffect(int hitDirection, double damage)
