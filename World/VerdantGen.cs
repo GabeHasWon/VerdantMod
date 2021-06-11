@@ -30,8 +30,8 @@ namespace Verdant.World
     ///Handles specific Verdant biome gen.
     public partial class VerdantWorld : ModWorld
     {
-        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileID.LivingWood }; } //List of tile types so I can change it easily
-        private static int[] WallTypes { get => new int[] { WallType<VerdantLeafWall_Unsafe>(), WallID.MudUnsafe, WallID.MudUnsafe }; }
+        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileID.LivingWood }; }
+        private static int[] WallTypes { get => new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<LushSoilWall_Unsafe>(), WallType<LushSoilWall_Unsafe>() }; }
 
         private const int MinRad = 70; //Minimum radius
         private const int MaxRad = 95; //Maximum radius

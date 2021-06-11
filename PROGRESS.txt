@@ -5,13 +5,14 @@
 	- npc.CollideY (true if ceiling or ground)
 
 [CONCEPTS]
-	- Marble/Verdant minibiomes? (Structures?)
 	- "Underground City" minibiomes (Granite/Marble)
 	- [Directional] Spring flower
 
 [FINISHED CONTENT] -------------------------------------------------
 	MISC
 	- Vines gen
+	- Caves [EXCEPT LIVING LUSH WOOD]
+	- Walls [EXCEPT LUSH SOIL WALLS]
 
 	BLOCKS [ITEMS]
 	- Verdant Armor Set
@@ -79,7 +80,7 @@
 	- Verdant Lillie
 	- Verdant Strong Vine
 	- Verdant Vine
-	- Bouncebloom : Might want touch ups
+	- Bouncebloom
 
 	TILES [GENERAL]
 	- Verdant Decor
@@ -110,6 +111,9 @@
 	- Unnamed Surface Night
 	- "Apotheosis Lullaby"
 	- Unnamed Underground
+
+	MINIBIOME
+	- Marble/Verdant minibiomes
 
 	SYSTEMS
 	- Foreground : Needs saving & loading, needs multiplayer compat
