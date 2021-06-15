@@ -1,36 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 using Terraria.World.Generation;
-using Verdant.Items.Verdant.Blocks;
-using Verdant.Items.Verdant.Equipables;
-using Verdant.Items.Verdant.Materials;
-using Verdant.Items.Verdant.Tools;
-using Verdant.Items.Verdant.Weapons;
 using Verdant.Noise;
+using Verdant.Walls.Verdant;
+using Verdant.Tiles.Verdant.Decor;
+using Verdant.Items.Verdant.Tools;
 using Verdant.Tiles.Verdant.Basic;
+using Verdant.Tiles.Verdant.Trees;
+using Verdant.Items.Verdant.Blocks;
+using Verdant.Tiles.Verdant.Mounted;
+using Verdant.Items.Verdant.Weapons;
+using Verdant.Items.Verdant.Materials;
+using Verdant.Items.Verdant.Equipables;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.Tiles.Verdant.Decor;
-using Verdant.Tiles.Verdant.Mounted;
-using Verdant.Tiles.Verdant.Trees;
-using Verdant.Walls.Verdant;
-using static Terraria.ModLoader.ModContent;
-using static Terraria.WorldGen;
 using static Verdant.Helper;
+using static Terraria.WorldGen;
 using static Verdant.World.GenHelper;
+using static Terraria.ModLoader.ModContent;
+using System;
 
 namespace Verdant.World
 {
     ///Handles specific Verdant biome gen.
     public partial class VerdantWorld : ModWorld
     {
-        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileID.LivingWood }; }
+        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileType<LivingLushWood>() }; }
         private static int[] WallTypes { get => new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<LushSoilWall_Unsafe>(), WallType<LushSoilWall_Unsafe>() }; }
 
         private const int MinRad = 70; //Minimum radius
@@ -49,15 +49,19 @@ namespace Verdant.World
             mod.Logger.Info("Noise Seed: " + genNoise.Seed);
 
             VerdantCentre = new Point(genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 1.5f)), genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.75f)));
+
+            int FluffX = (int)(220 * WorldSize);
+            int FluffY = (int)(130 * WorldSize);
+
             int total = 0;
             while (true) //Find valid position for biome
             {
             reset:
                 VerdantCentre = new Point(genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.20f)), genRand.Next((int)(Main.maxTilesY / 2.5f), (int)(Main.maxTilesY / 1.75f)));
                 total = 0;
-                if (UndergroundDesertLocation.Contains(VerdantCentre.X - 140, VerdantCentre.Y - 120) || UndergroundDesertLocation.Contains(VerdantCentre.X - 140, VerdantCentre.Y + 120)
-                    || UndergroundDesertLocation.Contains(VerdantCentre.X + 140, VerdantCentre.Y - 120) || UndergroundDesertLocation.Contains(VerdantCentre.X + 140, VerdantCentre.Y + 120))
-                    goto reset;
+                if (UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y - FluffY) || UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y + FluffY)
+                    || UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y - FluffY) || UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y + FluffY))
+                    continue;
                 for (int i = VerdantCentre.X - 270; i < VerdantCentre.X + 270; ++i) //Assume width
                 {
                     for (int j = VerdantCentre.Y - 130; j < VerdantCentre.Y + 130; ++j) //Assume height
@@ -126,7 +130,7 @@ namespace Verdant.World
             int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
             int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
 
-            for (int i = 0; i < 7 * WorldSize; ++i)
+            for (int i = 0; i < 8 * WorldSize; ++i)
             {
                 int index = Main.rand.Next(2);
                 Point16 pos = new Point16(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
@@ -142,18 +146,18 @@ namespace Verdant.World
                         {
                             (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
                         }, new (int, int)[] {
-                            (ItemID.IronskinPotion, Main.rand.Next(1, 3)), (ItemID.ThornsPotion, Main.rand.Next(1, 3)), (ItemID.ThrowingKnife, Main.rand.Next(3, 7)),
-                            (ItemType<PinkPetal>(), Main.rand.Next(3, 7)), (ItemType<RedPetal>(), Main.rand.Next(3, 7)), (ItemType<Lightbulb>(), Main.rand.Next(1, 3)),
-                            (ItemID.Dynamite, 1), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Glowstick, Main.rand.Next(3, 8)), (ItemID.Bomb, Main.rand.Next(2, 4)),
-                            (ItemID.NightOwlPotion, Main.rand.Next(2, 4)), (ItemID.HealingPotion, Main.rand.Next(2, 4)), (ItemID.MoonglowSeeds, Main.rand.Next(2, 4)),
-                            (ItemID.DaybloomSeeds, Main.rand.Next(2, 4)), (ItemID.BlinkrootSeeds, Main.rand.Next(2, 4))
-                        }, true, Main.rand, Main.rand.Next(4, 7), 0, true);
+                            (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
+                            (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
+                            (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
+                            (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
+                            (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
+                        }, true, genRand, genRand.Next(4, 7), 0, true);
                     }
                     else //WAND chest
                     {
                         PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, true,
                             (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)), 
-                            (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), Main.rand.Next(12, 22)));
+                            (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
                     }
                 }
                 else
@@ -381,6 +385,8 @@ namespace Verdant.World
 
         private void CleanForCaves()
         {
+            TunnelSpice();
+
             //Caves
             genNoise.Seed = _genRandSeed;
             genNoise.Frequency = 0.05f;
@@ -432,6 +438,43 @@ namespace Verdant.World
                     if (n < -0.68f && TileTypes.Any(x => x == t.type) && t.type != TileTypes[0] && t.active())
                         ReplaceTile(new Point(i, j), TileTypes[4]);
                 }
+            }
+        }
+
+        private void TunnelSpice()
+        {
+            int runners = 0;
+            while (runners < 20)
+            {
+                Point position = new Point(VerdantArea.X + genRand.Next(VerdantArea.Width), VerdantArea.Y + genRand.Next(VerdantArea.Height));
+
+                bool ver = false;
+                bool non = false;
+                for (int j = -8; j < 8; ++j)
+                {
+                    if (ver && non)
+                        break;
+                    for (int k = -8; k < 8; ++k)
+                    {
+                        if (Framing.GetTileSafely(position.X + j, position.Y + k).active())
+                        {
+                            if (TileTypes.Contains(Framing.GetTileSafely(position.X + j, position.Y + k).type))
+                                ver = true;
+                            else
+                                non = true;
+                        }
+                    }
+                }
+
+                if (!ver || !non)
+                {
+                    if (genRand.Next(9) == 0) runners++;
+                    continue;
+                }
+
+                Vector2 speed = new Vector2(0, genRand.NextFloat(2, 8)).RotatedByRandom(MathHelper.Pi);
+                TileRunner(position.X, position.Y, genRand.Next(45, 57) * WorldSize, (int)(genRand.Next(50, 89) * WorldSize), TileTypes[2], true, speed.X, speed.Y, false, true);
+                runners++;
             }
         }
 
