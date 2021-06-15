@@ -117,7 +117,7 @@ namespace Verdant.World
         /// <param name="r">Use Main.rand for in-game generation, use WorldGen.genRand for worldgen.</param>
         /// <param name="subItemLength">How many sub item stacks there are.</param>
         /// <param name="style">Style of the chest.</param>
-        public static void PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool stackFill = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
+        public static bool PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool stackFill = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
         {
             r = r ?? Main.rand;
 
@@ -165,7 +165,9 @@ namespace Verdant.World
                     Main.chest[ChestIndex].item[i + 1].SetDefaults(subItems[sub].Item1);
                     Main.chest[ChestIndex].item[i + 1].stack = subItems[sub].Item2;
                 }
+                return true;
             }
+            return false;
         }
 
         /// <summary>Places a chest with items in it.</summary>
@@ -174,7 +176,7 @@ namespace Verdant.World
         /// <param name="type">Tile ID of the chest.</param>
         /// <param name="style">Style for the chest.</param>
         /// <param name="items">Items, in order.</param>
-        public static void PlaceChest(int x, int y, int type, int style, bool overRide, params (int, int)[] items)
+        public static bool PlaceChest(int x, int y, int type, int style, bool overRide, params (int, int)[] items)
         {
             if (overRide)
             {
@@ -192,7 +194,9 @@ namespace Verdant.World
                     Main.chest[ChestIndex].item[i].SetDefaults(items[i].Item1);
                     Main.chest[ChestIndex].item[i].stack = items[i].Item2;
                 }
+                return true;
             }
+            return false;
         }
 
         public static Point[] GetBezier(double[] orderedPositions, int fidelity = 30)
