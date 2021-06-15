@@ -126,7 +126,7 @@ namespace Verdant.World
 
         private void AddFlowerStructures()
         {
-            Point[] offsets = new Point[2] { new Point(6, 6), new Point(7, 6) };
+            Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
             int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
             int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
 
@@ -139,11 +139,11 @@ namespace Verdant.World
                 {
                     StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
 
-                    KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
+                    //KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
 
                     if (!genRand.NextBool(6)) //NORMAL chests
                     {
-                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 2, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
                         {
                             (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
                         }, new (int, int)[] {
@@ -152,14 +152,14 @@ namespace Verdant.World
                             (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
                             (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
                             (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
-                        }, true, genRand, genRand.Next(4, 7), 0, true);
+                        }, true, genRand, genRand.Next(4, 7), 0, false);
 
                         if (!c)
                             mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest.");
                     }
                     else //WAND chest
                     {
-                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 0, TileType<VerdantYellowPetalChest>(), 0, true,
+                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, true,
                             (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)), 
                             (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
 

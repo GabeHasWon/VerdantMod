@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using static Terraria.WorldGen;
 using Verdant.Backgrounds.BGItem;
 using Microsoft.Xna.Framework;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -13,6 +14,13 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.World;
 using Verdant.Walls.Verdant;
 using System.Collections.ObjectModel;
+using Terraria.DataStructures;
+using Verdant.Tiles.Verdant.Decor;
+using Verdant.Items.Verdant.Equipables;
+using Verdant.Items.Verdant.Weapons;
+using Verdant.Items.Verdant.Materials;
+using Verdant.Items.Verdant.Tools;
+using Verdant.Items.Verdant.Blocks;
 
 namespace Verdant.Items
 {
@@ -49,19 +57,45 @@ namespace Verdant.Items
         {
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
+            Point16 pos = new Point16(i, j);
 
-            //int height = Main.rand.Next(9, 24);
-            //GenHelper.GenBezierDirectWall(new double[] {
-            //    i, j,
-            //    i + 30, j + height,
-            //    i + 60, j,
-            //}, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
-            //GenHelper.GenBezierDirectWall(new double[] {
-            //    i, j,
-            //    i + 30, j + height - 1,
-            //    i + 60, j - 1,
-            //}, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
-            //Foreground.ForegroundManager.AddItem(new Foreground.Tiled.TiledForegroundItem(new Point(i, j), "VerdantBushes", new Point(1, 2), true, true));
+            int index = Main.rand.Next(2);
+
+            Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
+            int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
+            int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+
+            StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
+
+            //GenHelper.KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
+
+            if (true) //NORMAL chests
+            {
+                //WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
+                bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+                {
+                            (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
+                }, new (int, int)[] {
+                            (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
+                            (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
+                            (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
+                            (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
+                            (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
+                }, true, genRand, genRand.Next(4, 7), 0, false);
+
+                if (!c)
+                    Main.NewText("Failed to place Verdant Yellow Petal Chest.");
+            }
+            else //WAND chest
+            {
+                WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
+                bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileType<VerdantYellowPetalChest>(), 0, true,
+                    (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)),
+                    (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
+
+                if (!c)
+                    Main.NewText("Failed to place Verdant Yellow Petal Chest. [WAND]");
+            }
             return true;
         }
     }
