@@ -152,15 +152,15 @@ namespace Verdant.World
                             (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
                             (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
                             (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
-                        }, true, genRand, genRand.Next(4, 7), 0, false);
+                        }, true, genRand, genRand.Next(4, 7), 0, true);
 
                         if (!c)
                             mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest.");
                     }
                     else //WAND chest
                     {
-                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, true,
-                            (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<LushLeafWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)), 
+                        bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
+                            (ItemType<LushLeafWand>(), 1), (ItemType<PinkPetalWand>(), 1), (ItemType<RedPetalWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)),
                             (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
 
                         if (!c)

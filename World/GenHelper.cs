@@ -125,8 +125,8 @@ namespace Verdant.World
             {
                 KillTile(x, y, false, false, true);
                 KillTile(x + 1, y, false, false, true);
-                KillTile(x, y + 1, false, false, true);
-                KillTile(x + 1, y + 1, false, false, true);
+                KillTile(x, y - 1, false, false, true);
+                KillTile(x + 1, y - 1, false, false, true);
             }
 
             int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);

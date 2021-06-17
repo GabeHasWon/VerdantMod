@@ -65,7 +65,7 @@ namespace Verdant.Tiles.Verdant.Trees
             for (int k = -2; k < 3; ++k) //Checks base
             {
                 extraPlaces[k + 2] = false;
-                if (Helper.SolidTopTile(i + k, j + 1) && !Framing.GetTileSafely(i + k, j).active())
+                if ((Helper.SolidTopTile(i + k, j + 1) || Helper.SolidTile(i + k, j + 1)) && !Framing.GetTileSafely(i + k, j).active())
                     extraPlaces[k + 2] = true;
             }
 

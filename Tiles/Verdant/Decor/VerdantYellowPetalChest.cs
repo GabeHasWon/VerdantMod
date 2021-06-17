@@ -25,6 +25,8 @@ namespace Verdant.Tiles.Verdant.Decor
             Main.tileValue[Type] = 500;
 
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Origin = new Point16(0, 1);
@@ -40,7 +42,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Yellow Petal Chest");
-            AddMapEntry(new Color(100, 122, 111), name);
+            AddMapEntry(new Color(224, 120, 0), name);
 
             dustType = 0;
             soundStyle = SoundID.Grass;
