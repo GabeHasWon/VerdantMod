@@ -1,12 +1,13 @@
-﻿# VerdantMod
+﻿## The Verdant Mod
 by GabeHasWon
 
 feel free to use & reference any code here as long as you don't straight up copy anything
-(and please credit :)
+(and please credit me when you do) :)
 
-# Credit
-GabeHasWon - Literally everything except The Plant
+## Credit
+GabeHasWon - Literally everything except The Plant & song compositions
 
-Liᴢ - The Plant & feedback
+Liz - SFX, song compositions, feedback/design & The Plant
 
-Santra, Cherry, Yuyutsu, Beave, Vladmier, Kiraa - feedback & input
+# Special Thanks -
+Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Feedback/design
