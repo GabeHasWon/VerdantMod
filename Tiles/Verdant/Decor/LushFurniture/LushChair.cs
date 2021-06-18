@@ -28,7 +28,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(new Color(200, 200, 200));
+            AddMapEntry(new Color(114, 69, 39));
 
             dustType = DustID.t_BorealWood;
             disableSmartCursor = true;

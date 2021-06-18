@@ -26,6 +26,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
 
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+
             AddMapEntry(new Color(253, 221, 3), CreateMapEntryName());
         }
 

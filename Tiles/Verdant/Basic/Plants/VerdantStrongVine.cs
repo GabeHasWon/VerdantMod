@@ -23,6 +23,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Main.tileBlockLight[Type] = false;
             Main.tileFrameImportant[Type] = true;
 
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
+
             drop = ItemType<VerdantStrongVineMaterial>();
             AddMapEntry(new Color(182, 224, 49));
             dustType = DustID.Grass;
