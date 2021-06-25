@@ -14,6 +14,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = true;
+            Main.tileSolidTop[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 18 };

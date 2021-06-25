@@ -5,7 +5,7 @@ using Terraria.GameContent.Generation;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-using Verdant.Foreground;
+using Verdant.Backgrounds.BGItem;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
@@ -35,12 +35,12 @@ namespace Verdant.World
             if (apotheosisSkelDown)
                 apotheosisStats.Add("skelDown");
 
-            //List<ForegroundData> foregroundItems = ForegroundManager.Save();
+            List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
             return new TagCompound
             {
                 ["apotheosisStats"] = apotheosisStats,
-                //["foregroundData"] = foregroundItems,
+                ["backgroundItems"] = backgroundItems
             };
         }
 
@@ -51,9 +51,7 @@ namespace Verdant.World
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
 
-            ForegroundManager.Load(tag);
-            //var foreground = tag.GetList<ForegroundData>("foregroundData");
-            //ForegroundManager.Load(foreground);
+            BackgroundItemManager.Load(tag.GetList<TagCompound>("backgroundItems"));
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -68,6 +66,7 @@ namespace Verdant.World
         public override void NetReceive(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
+
             if (flags[0]) apotheosisDialogueIndex = 3;
             apotheosisEvilDown = flags[1];
             apotheosisSkelDown = flags[1];
@@ -99,6 +98,7 @@ namespace Verdant.World
         public override void ResetNearbyTileEffects()
         {
             VerdantTiles = 0;
+            ApotheosisTiles = 0;
         }
     }
 }

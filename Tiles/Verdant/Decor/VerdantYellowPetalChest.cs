@@ -30,8 +30,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Origin = new Point16(0, 1);
-            TileObjectData.newTile.Height = 2;
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.newTile.HookCheck = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.AfterPlacement_Hook), -1, 0, false);
             TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock };
@@ -85,7 +84,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(3, 4));
+            //Main.PlaySound(new Terraria.Audio.LegacySoundStyle(3, 4));
             Item.NewItem(i * 16, j * 16, 32, 32, chestDrop);
             Chest.DestroyChest(i, j);
         }

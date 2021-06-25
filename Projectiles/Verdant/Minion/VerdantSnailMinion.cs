@@ -87,7 +87,7 @@ namespace Verdant.Projectiles.Verdant.Minion
                 if (Timer == 2 * AnimSpeedMult)
                 {
                     SetFrame(0);
-                    projectile.velocity.X = 0.25f * projectile.spriteDirection;
+                    projectile.velocity.X = 0.3f * projectile.spriteDirection;
                 }
                 if (Timer == 3 * AnimSpeedMult)
                 {
@@ -108,15 +108,14 @@ namespace Verdant.Projectiles.Verdant.Minion
                     Timer = 0;
                 }
 
-                // --------------------- GET TARGET ----------------------
-                if (_target == -1)
+                if (_target == -1) //Get target
                 {
                     int hasTarget = -1;
                     for (int i = 0; i < Main.npc.Length; ++i) //Find target
                     {
                         float dist = Vector2.Distance(Main.npc[i].position, projectile.position);
                         if (Main.npc[i].CanBeChasedBy() && dist < 500 && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) &&
-                            (hasTarget == -1 || (hasTarget != -1 && Vector2.Distance(Main.npc[hasTarget].position, projectile.position) < dist)))
+                            (hasTarget == -1 || (hasTarget != -1 && Vector2.Distance(Main.npc[hasTarget].Center, projectile.Center) < dist)))
                             hasTarget = i;
                     }
 
@@ -193,16 +192,16 @@ namespace Verdant.Projectiles.Verdant.Minion
                 if (Timer > AnimSpeedMultHasty * 3)
                 {
                     if (_target != -2 && Main.npc[_target].active)
-                        projectile.velocity += Vector2.Normalize(Main.npc[_target].position - projectile.position) * 0.35f;
+                        projectile.velocity += Vector2.Normalize(Main.npc[_target].Center - projectile.Center) * 0.4f;
                     if (projectile.velocity.Length() > 7f)
                         projectile.velocity = Vector2.Normalize(projectile.velocity) * 7f;
-                    if (Timer >= AnimSpeedMultHasty * 20 || _target == -2 || !Main.npc[_target].active || projectile.velocity.Length() < 0.15f)
+                    if (Timer >= AnimSpeedMultHasty * 36 || _target == -2 || !Main.npc[_target].active || projectile.velocity.Length() < 0.1f)
                     {
                         projectile.velocity.Y += 0.2f;
                         projectile.velocity.X *= 0.9999f;
-                        if (Timer >= AnimSpeedMultHasty * 17)
+                        if (Timer >= AnimSpeedMultHasty * 40)
                         {
-                            _target = -80;
+                            _target = -100; //Target cooldown
                             MovementState = 3;
                             Timer = 0;
                         }
@@ -222,12 +221,6 @@ namespace Verdant.Projectiles.Verdant.Minion
         {
             target.AddBuff(BuffID.Slimed, 20);
             projectile.velocity = projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;
-
-            //if (Timer > AnimSpeedMultHasty * 2 && MovementState == 4)
-            //{
-            //    Target = -2;
-            //    Timer = AnimSpeedMultHasty * 4;
-            //}
         }
     }
 }

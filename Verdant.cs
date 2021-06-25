@@ -1,16 +1,14 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Linq;
 using Terraria;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Backgrounds.BGItem;
 using Verdant.Foreground;
-using Verdant.Items.Verdant.Blocks.LushWood;
-using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.Tiles.Verdant.Trees;
+using Microsoft.Xna.Framework;
+using Terraria.Graphics.Effects;
+using Verdant.Backgrounds.BGItem;
 using Verdant.World.Biome.Verdant;
+using Verdant.Tiles.Verdant.Trees;
+using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant
 {
@@ -47,6 +45,16 @@ namespace Verdant
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
+            On.Terraria.Main.Update += Main_Update;
+        }
+
+        private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
+        {
+            bool playerInv = Main.hasFocus && (!Main.autoPause || Main.netMode != NetmodeID.SinglePlayer || (Main.autoPause && !Main.playerInventory && Main.netMode == NetmodeID.SinglePlayer));
+            if (Main.playerLoaded && BackgroundItemManager.Loaded && playerInv)
+                BackgroundItemManager.Update();
+
+            orig(self, gameTime);
         }
 
         private void Main_DrawWater(On.Terraria.Main.orig_DrawWater orig, Main self, bool bg, int Style, float Alpha)
@@ -91,6 +99,7 @@ namespace Verdant
             On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
             On.Terraria.Main.DrawWater -= Main_DrawWater;
             On.Terraria.Main.DrawPlayer -= Main_DrawPlayer;
+            On.Terraria.Main.Update -= Main_Update;
         }
 
         public override void UpdateMusic(ref int music, ref MusicPriority priority)

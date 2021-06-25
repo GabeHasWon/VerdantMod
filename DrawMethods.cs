@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using On.Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Backgrounds.BGItem;
 
@@ -13,16 +11,14 @@ namespace Verdant
         {
             orig(self);
 
-            bool playerInv = Terraria.Main.hasFocus && (!Terraria.Main.autoPause || Terraria.Main.netMode != NetmodeID.SinglePlayer ||
-                (Terraria.Main.autoPause && !Terraria.Main.playerInventory && Terraria.Main.netMode == NetmodeID.SinglePlayer));
-            if (Terraria.Main.playerLoaded && BackgroundItemManager.Loaded)
-                BackgroundItemManager.RunAll(playerInv);
+            if (Terraria.Main.playerLoaded && BackgroundItemManager.Loaded && !Terraria.Main.gameMenu)
+                BackgroundItemManager.Draw();
         }
 
         private void Main_DrawPlayer(Main.orig_DrawPlayer orig, Terraria.Main self, Terraria.Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
         {
             orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
-            if (Terraria.Main.playerLoaded)
+            if (Terraria.Main.playerLoaded && !Terraria.Main.gameMenu)
                 Foreground.ForegroundManager.Run();
         }
     }

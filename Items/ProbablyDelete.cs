@@ -57,44 +57,53 @@ namespace Verdant.Items
         {
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
-            Point16 pos = new Point16(i, j);
+            Tile t = Framing.GetTileSafely(i, j);
 
-            int index = Main.rand.Next(2);
+            //Main.NewText($"RightSlope: {t.rightSlope()}");
+            //Main.NewText($"LeftSlope: {t.leftSlope()}");
+            //Main.NewText($"TopSlope: {t.topSlope()}");
+            //Main.NewText($"BottomSlope: {t.bottomSlope()}");
+            //Main.NewText("---");
 
-            Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
-            int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
-            int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+            BackgroundItemManager.AddItem(new LushBushBG(Main.MouseWorld));
+            //Point16 pos = new Point16(i, j);
 
-            StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
+            //int index = Main.rand.Next(2);
 
-            //GenHelper.KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
+            //Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
+            //int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
+            //int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
 
-            if (false) //NORMAL chests
-            {
-                //WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
-                bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
-                {
-                            (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
-                }, new (int, int)[] {
-                            (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
-                            (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
-                            (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
-                            (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
-                            (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
-                }, true, genRand, genRand.Next(4, 7), 0, true);
+            //StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
 
-                if (!c)
-                    Main.NewText("Failed to place Verdant Yellow Petal Chest.");
-            }
-            else //WAND chest
-            {
-                bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
-                    (ItemType<LushLeafWand>(), 1), (ItemType<PinkPetalWand>(), 1), (ItemType<RedPetalWand>(), 1), (ItemType<LushLeaf>(), genRand.Next(20, 34)),
-                    (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<RedPetal>(), genRand.Next(15, 23)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
+            ////GenHelper.KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
 
-                if (!c)
-                    Main.NewText("Failed to place Verdant Yellow Petal Chest. [WAND]");
-            }
+            //if (false) //NORMAL chests
+            //{
+            //    //WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
+            //    bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+            //    {
+            //                (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
+            //    }, new (int, int)[] {
+            //                (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
+            //                (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
+            //                (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
+            //                (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
+            //                (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
+            //    }, true, genRand, genRand.Next(4, 7), 0, true);
+
+            //    if (!c)
+            //        Main.NewText("Failed to place Verdant Yellow Petal Chest.");
+            //}
+            //else //WAND chest
+            //{
+            //    bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
+            //        (ItemType<LushLeafWand>(), 1), (ItemType<PinkPetalWand>(), 1), (ItemType<RedPetalWand>(), 1), (ItemType<LushLeaf>(), genRand.Next(20, 34)),
+            //        (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<RedPetal>(), genRand.Next(15, 23)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
+
+            //    if (!c)
+            //        Main.NewText("Failed to place Verdant Yellow Petal Chest. [WAND]");
+            //}
             return true;
         }
     }

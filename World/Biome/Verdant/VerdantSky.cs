@@ -13,8 +13,8 @@ namespace Verdant.World.Biome.Verdant
 
         public override void Update(GameTime gameTime)
         {
-            if (isActive && _intensity < 0.2f) _intensity += 0.04f;
-            else if (!isActive && _intensity > 0f) _intensity -= 0.04f;
+            if (isActive && _intensity < 0.2f) _intensity += 0.002f;
+            else if (!isActive && _intensity > 0f) _intensity -= 0.002f;
         }
 
         public override Color OnTileColor(Color inColor) => new Color(Vector4.Lerp(new Vector4(0.24f, 0.39f, 0.24f, 1f), inColor.ToVector4(), 1f - _intensity));

@@ -94,9 +94,11 @@
 	- Verdant Snail Minion : Polish?
 
 [NEEDS FINISHING] -------------------------------------------------
+	- Little overgrown telltale structure on surface above Verdant
+
 	BLOCKS [ITEMS]
-	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BOOKCASE, DRESSER, PIANO, CANDELABRA, LANTERN, SINK
-	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), CHANDELIER (LARGE), BATHTUB, BED, BED, CLOCK, DRESSER, SOFA, CANDELABRA, LANTERN, SINK
+	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BOOKCASE, DRESSER, PIANO, CANDELABRA, SINK
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), BED, CLOCK, DRESSER, SOFA, CANDELABRA, LANTERN, SINK
 	- Verdant/Marble Furniture : Not implemented / designed | Might not happen?
 
 	PROJECTILES
@@ -119,4 +121,10 @@
 	- Foreground : Needs saving & loading, needs multiplayer compat
 	- Background : Needs multiplayer compat
 
-	- Little overgrown telltale structure on surface above Verdant
+	MARKETING
+	- Twitter.com account?
+	- Promotional images
+	- Logo
+	- Video editing (!!!)
+	- Trailer
+	- Short epic track for trailer

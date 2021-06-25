@@ -89,7 +89,6 @@ namespace Verdant.World
             Vines();
             p.Message = "Growing flowers...";
             AddPlants();
-            AddFlowerStructures();
             p.Message = "Watering plants...";
             AddWater();
 
@@ -105,6 +104,8 @@ namespace Verdant.World
         public void VerdantCleanup(GenerationProgress p)
         {
             p.Message = "Trimming plants...";
+
+            AddFlowerStructures();
 
             StructureHelper.StructureHelper.GenerateStructure("World/Structures/Apotheosis", new Point16(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4), VerdantMod.Instance);
 
@@ -127,7 +128,7 @@ namespace Verdant.World
         private void AddFlowerStructures()
         {
             Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
-            int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
+            int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileType<Apotheosis>() };
             int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
 
             for (int i = 0; i < 8 * WorldSize; ++i)
@@ -138,8 +139,6 @@ namespace Verdant.World
                 if (TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
                 {
                     StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
-
-                    //KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
 
                     if (!genRand.NextBool(6)) //NORMAL chests
                     {

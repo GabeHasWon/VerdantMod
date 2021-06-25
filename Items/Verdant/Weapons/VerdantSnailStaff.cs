@@ -14,13 +14,14 @@ namespace Verdant.Items.Verdant.Weapons
     {
         public override void SetDefaults()
         {
-            QuickItem.SetMinion(this, 48, 48, ProjectileType<VerdantSnailMinion>(), 14, 10, ItemRarityID.Green);
+            QuickItem.SetMinion(this, 48, 48, ProjectileType<VerdantSnailMinion>(), 12, 10, ItemRarityID.Green);
             item.buffType = BuffType<SnailBuff>();
             item.buffTime = 20;
         }
 
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Snail Staff");
             Tooltip.SetDefault("Summons determined snails.\nThese snails take less than a full minion slot to summon.");
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
