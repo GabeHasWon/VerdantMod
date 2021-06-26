@@ -11,6 +11,8 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushBushBG");
         }
 
+        public LushBushBG() { tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushBushBG"); }
+
         internal override void Behaviour()
         {
             base.Behaviour();
@@ -29,6 +31,11 @@ namespace Verdant.Backgrounds.BGItem.Verdant
         public override void Load(TagCompound tag)
         {
             position = tag.Get<Vector2>("Position");
+            DrawPosition = position;
+            scale = 1f;
+            source = new Rectangle(0, 0, 36, 43);
+
+            SaveMe = true;
         }
 
         internal override void Draw(Vector2 off)

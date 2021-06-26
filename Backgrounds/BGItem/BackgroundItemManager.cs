@@ -82,7 +82,7 @@ namespace Verdant.Backgrounds.BGItem
                     TagCompound value = item.Save();
                     if (value != null)
                     {
-                        value.Add("Name", value.GetType().FullName); //So I can get the type later
+                        value.Add("Name", item.GetType().FullName); //So I can get the type later
                         tags.Add(value);
                     }
                 }

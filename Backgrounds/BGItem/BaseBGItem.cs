@@ -28,9 +28,9 @@ namespace Verdant.Backgrounds.BGItem
         internal Rectangle source = new Rectangle(0, 0, 0, 0);
 
         /// <summary>If true, this background item will be saved and loaded, as per <see cref="Save()"/> and <see cref="Load(TagCompound)"/>.</summary>
-        public readonly bool SaveMe = false;
+        public bool SaveMe { get; protected set; }
         /// <summary>Used for draw position, so that stuff that is offscreen does not need to be drawn. Might not work, needs tweaking.</summary>
-        public Vector2 DrawPosition { get; private set; }
+        public Vector2 DrawPosition { get; protected set; }
 
         /// <summary>Center of the background item.</summary>
         internal Vector2 Center => position + (source.Size() / 2);
