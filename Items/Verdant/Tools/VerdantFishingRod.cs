@@ -14,7 +14,7 @@ namespace Verdant.Items.Verdant.Tools
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.FiberglassFishingPole);
-            item.fishingPole = 18;
+            item.fishingPole = 26;
             item.shootSpeed = 13f;
             item.shoot = ProjectileType<Projectiles.Verdant.Misc.VerdantBobber>();
         }

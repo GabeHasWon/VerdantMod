@@ -34,7 +34,7 @@ namespace Verdant.Items.Verdant.Tools
             for (int i = 0; i < Main.maxPlayers; ++i)
             {
                 Player p = Main.player[i];
-                if (p.active && p != player && !p.dead && p.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)))
+                if (p != player && p.active && !p.dead && p.Hitbox.Intersects(new Rectangle((int)player.Center.X - 24, (int)player.Center.Y - 30, 48, 24)))
                     p.velocity.Y = -16;
             }
         }

@@ -23,7 +23,6 @@ using static Verdant.Helper;
 using static Terraria.WorldGen;
 using static Verdant.World.GenHelper;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace Verdant.World
 {
@@ -82,8 +81,8 @@ namespace Verdant.World
 
             for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i) //Smooth out the biome!
                 for (int j = VerdantArea.Top; j < VerdantArea.Bottom; ++j)
-                    if (genRand.Next(3) <= 1)
-                        Tile.SmoothSlope(i, j);
+                    if (genRand.Next(7) <= 3)
+                        Tile.SmoothSlope(i, j, false);
 
             p.Message = "Growing vines...";
             Vines();
@@ -301,24 +300,23 @@ namespace Verdant.World
                 {
                     //trees
                     bool doPlace = true;
-                    for (int k = -1; k < 3; ++k)
+
+                    for (int k = -1; k < 2; ++k)
                     {
-                        if (Framing.GetTileSafely(i - k, j).active() || !ActiveType(i - k, j + 1, TileType<VerdantSoilGrass>()))
+                        bool anyConditions = !ActiveType(i + k, j, TileTypes[0]) ||
+                            !TileEmpty(i + k, j - 1);
+                        if (anyConditions)
                         {
                             doPlace = false;
                             break;
                         }
                     }
-                    for (int k = 1; k < 3; ++k)
-                    {
-                        if (Framing.GetTileSafely(i, j - k).active())
-                        {
-                            doPlace = false;
-                            break;
-                        }
-                    }
-                    if (doPlace && genRand.Next(12) > 0)
-                        VerdantTree.Spawn(i, j + 1, -1, genRand, 4, 12, false);
+
+                    if (!TileEmpty(i, j - 2))
+                        doPlace = false;
+                    
+                    if (doPlace && genRand.Next(20) > 0)
+                        VerdantTree.Spawn(i, j - 1, -1, genRand, 4, 12, false, -1, false);
                 }
             }
 

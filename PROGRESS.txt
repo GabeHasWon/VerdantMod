@@ -16,10 +16,10 @@
 
 	BLOCKS [ITEMS]
 	- Verdant Armor Set
-	- Lush Soil Block(*)
+	- Lush Soil Block(*) - needs resprite
 	- Verdant Chandelier [Small]
 	- Verdant Flower Bulb
-	- Verdant Hung Tables(*)
+	- Verdant Hung Tables
 	- Verdant Strong Vine Item
 	- Verdant Wood Block
 	- Verdant Wood Chest Block
@@ -37,13 +37,13 @@
 	MATERIALS
 	- Red Petal
 	- Pink Petal
-	- Yellow Bulb(*)
+	- Yellow Bulb(*) - look into design
 	- Lush Leaf
-	- Lightbulb(*)
+	- Lightbulb(*) - look into drawing weirdness
 
 	WEAPONS
 	- Bouncebulb Staff - Unobtainable
-	- Verdant Snail Staff(*)
+	- Verdant Snail Staff - polish & balance might be good
 	- Verdant Staff
 
 	TOOLS
@@ -60,19 +60,19 @@
 	- Folifish Item
 
 	ENEMIES
-	- Hostfly - NEEDS MULTIPLAYER
-	- Small Fly - NEEDS MULTIPLAYER
+	- Hostfly - needs mp testing
+	- Small Fly - needs mp testing
 
 	CRITTERS [NPC]
 	- Flotie
 	- Flotiny
-	- Mossling : Remove/don't remove?
+	- Mossling : Unspawnable
 
 	TILES [BLOCKS]
-	- Lush Soil
+	- Lush Soil - will require resprite along with tile
 	- Verdant Leaves
-	- Pink Petal Block
-	- Red Petal Block
+	- Pink Petal Block (RESPRITE)
+	- Red Petal Block (RESPRITE)
 	- Verdant Wood Block (NEEDS RESPRITE)
 
 	TILES [PLANTS]
@@ -84,7 +84,7 @@
 
 	TILES [GENERAL]
 	- Verdant Decor
-	- Verdant Tree : Needs branch edge casing
+	- Verdant Tree : Stress test
 
 	EQUIPABLES [ITEMS]
 	- Blight : Unfinished, but unobtainable
@@ -92,6 +92,9 @@
 	PROJECTILES
 	- Verdant Healing Minion
 	- Verdant Snail Minion : Polish?
+
+	MUSIC
+	- "Petals Fall"
 
 [NEEDS FINISHING] -------------------------------------------------
 	- Little overgrown telltale structure on surface above Verdant
@@ -108,14 +111,13 @@
 	- Housprout : Everything
 
 	MUSIC
-	- "Petals Fall"
 	- Unnamed Surface Day
 	- Unnamed Surface Night
 	- "Apotheosis Lullaby"
 	- Unnamed Underground
 
 	MINIBIOME
-	- Marble/Verdant minibiomes
+	- Marble/Verdant minibiomes - probably not going to happen on release
 
 	SYSTEMS
 	- Foreground : Needs saving & loading, needs multiplayer compat
