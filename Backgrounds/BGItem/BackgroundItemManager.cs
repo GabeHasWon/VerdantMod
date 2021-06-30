@@ -17,20 +17,6 @@ namespace Verdant.Backgrounds.BGItem
         /// <summary>True when this has been loaded and is usable.</summary>
         public static bool Loaded { get; private set; }
 
-        public static void Load()
-        {
-            bgItems = new List<BaseBGItem>();
-            organizedItems = bgItems.OrderBy(x => x.scale);
-            Loaded = true;
-        }
-
-        public static void Unload()
-        {
-            bgItems = null;
-            organizedItems = null;
-            Loaded = false;
-        }
-
         public static void AddItem(BaseBGItem item) => bgItems.Add(item);
 
         /// <summary></summary>
@@ -74,7 +60,7 @@ namespace Verdant.Backgrounds.BGItem
 
         public static List<TagCompound> Save()
         {
-            List<TagCompound> tags = new List<TagCompound>();
+            List<TagCompound> tags = new List<TagCompound>(); //Save the stuff
             foreach (var item in bgItems)
             {
                 if (item.SaveMe && !item.killMe)
@@ -87,11 +73,19 @@ namespace Verdant.Backgrounds.BGItem
                     }
                 }
             }
+
+            bgItems = null; //Clear it and unload
+            organizedItems = null;
+            Loaded = false;
             return tags;
         }
 
         public static void Load(IList<TagCompound> info)
         {
+            bgItems = new List<BaseBGItem>(); //Load
+            organizedItems = bgItems.OrderBy(x => x.scale);
+            Loaded = true;
+
             foreach (var item in info)
             {
                 string name = item.GetString("Name");

@@ -285,7 +285,7 @@ namespace Verdant.Tiles.Verdant.Trees
                 Texture2D tops = ModContent.GetTexture("Verdant/Tiles/Verdant/Trees/VerdantTreeTops");
                 col = Lighting.GetColor(i, j - 2);
                 int frame = t.frameY / 18;
-                float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.02f;
+                float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.015f;
                 spriteBatch.Draw(tops, Helper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 96), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
             }
             return false;

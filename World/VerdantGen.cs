@@ -23,6 +23,7 @@ using static Verdant.Helper;
 using static Terraria.WorldGen;
 using static Verdant.World.GenHelper;
 using static Terraria.ModLoader.ModContent;
+using System;
 
 namespace Verdant.World
 {
@@ -47,6 +48,9 @@ namespace Verdant.World
             mod.Logger.Info("World Seed: " + _genRandSeed);
             mod.Logger.Info("Noise Seed: " + genNoise.Seed);
 
+            Mod spirit = ModLoader.GetMod("SpiritMod");
+            Mod calamity = ModLoader.GetMod("Calamity");
+
             VerdantCentre = new Point(genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 1.5f)), genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.75f)));
 
             int FluffX = (int)(220 * WorldSize);
@@ -61,11 +65,17 @@ namespace Verdant.World
                 if (UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y - FluffY) || UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y + FluffY)
                     || UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y - FluffY) || UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y + FluffY))
                     continue;
-                for (int i = VerdantCentre.X - 270; i < VerdantCentre.X + 270; ++i) //Assume width
+                for (int i = VerdantCentre.X - (int)(FluffX * 1.2f); i < VerdantCentre.X + (FluffX * 1.2f); ++i) //Assume width
                 {
-                    for (int j = VerdantCentre.Y - 130; j < VerdantCentre.Y + 130; ++j) //Assume height
+                    for (int j = VerdantCentre.Y - 140; j < VerdantCentre.Y + 140; ++j) //Assume height
                     {
-                        int[] invalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick, TileID.IceBlock, TileID.SnowBlock };
+                        List<int> invalidTypes = new List<int>() { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick, TileID.IceBlock, TileID.SnowBlock }; //Vanilla blacklist
+
+                        if (spirit != null) //Spirit blacklist
+                            invalidTypes.Add(spirit.TileType("BriarGrass"));
+                        if (calamity != null) //Calamity blacklist
+                            invalidTypes.Add(calamity.TileType("Navystone"));
+
                         if ((Framing.GetTileSafely(i, j).active() && invalidTypes.Any(x => Framing.GetTileSafely(i, j).type == x)))
                             total++;
                         if (total > 50)
@@ -106,7 +116,7 @@ namespace Verdant.World
 
             AddFlowerStructures();
 
-            StructureHelper.StructureHelper.GenerateStructure("World/Structures/Apotheosis", new Point16(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4), VerdantMod.Instance);
+            PlaceApotheosis();
 
             for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
             {
@@ -118,10 +128,37 @@ namespace Verdant.World
                     int[] vineAnchors = new int[] { TileType<VerdantVine>(), TileType<VerdantSoilGrass>(), TileType<VerdantLeaves>() };
                     if (t.type == TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).type))
                         KillTile(i, j);
-                    //if (t.type == TileType<VerdantTree>() && !ActiveType(i, j - 1, TileType<VerdantTree>()) && !ActiveType(i - 1, j, TileType<VerdantTree>()) && !ActiveType(i + 1, j, TileType<VerdantTree>()))
-                    //    t.frameX = (short)((genRand.Next(6) == 0) ? 180 : 198);
                 }
             }
+        }
+
+        private void PlaceApotheosis()
+        {
+            int[] invalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
+            Point apothPos = new Point(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4);
+            int side = genRand.NextBool(2) ? -1 : 1;
+            bool triedOneSide = false;
+
+        redo:
+            for (int i = 0; i < 20; ++i)
+            {
+                for (int j = 0; j < 18; ++j)
+                {
+                    Tile t = Framing.GetTileSafely(apothPos.X + i, apothPos.Y + j);
+                    if (t.active() && invalidTypes.Contains(t.type))
+                    {
+                        apothPos.X += genRand.Next(20, 27) * side;
+                        if (!VerdantArea.Contains(apothPos) && !triedOneSide)
+                        {
+                            triedOneSide = true;
+                            apothPos = new Point(VerdantArea.Center.X - 30, VerdantArea.Center.Y - 4);
+                            side *= -1;
+                        }
+                        goto redo;
+                    }
+                }
+            }
+            StructureHelper.StructureHelper.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
         }
 
         private void AddFlowerStructures()
@@ -162,7 +199,7 @@ namespace Verdant.World
                             (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
 
                         if (!c)
-                            mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest. [WAND]");
+                            mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest (wand).");
                     }
                 }
                 else
@@ -298,7 +335,6 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees so they get all the spawns they need
                 {
-                    //trees
                     bool doPlace = true;
 
                     for (int k = -1; k < 2; ++k)
@@ -357,8 +393,7 @@ namespace Verdant.World
                         continue;
                     }
 
-                    //------ GROUNDED DECOR ------
-                    //decor 2x1
+                    //ground decor 2x1
                     doPlace = !Framing.GetTileSafely(i, j - 1).active() && Framing.GetTileSafely(i, j).type == TileType<VerdantSoilGrass>() &&
                         !Framing.GetTileSafely(i + 1, j - 1).active() && Framing.GetTileSafely(i + 1, j).type == TileType<VerdantSoilGrass>();
                     if (doPlace && genRand.Next(2) == 0)
@@ -367,7 +402,6 @@ namespace Verdant.World
                         continue;
                     }
 
-                    //------ WALL DECOR -------
                     //flower wall 2x2
                     doPlace = AreaClear(i, j, 2, 2) && WalledSquare(i, j, 2, 2) && WalledSquareType(i, j, 2, 2, WallTypes[0]);
                     if (doPlace && genRand.Next(42) == 0)
@@ -476,7 +510,7 @@ namespace Verdant.World
                     continue;
                 }
 
-                Vector2 speed = new Vector2(0, genRand.NextFloat(2, 8)).RotatedByRandom(MathHelper.Pi);
+                Vector2 speed = new Vector2(0, genRand.NextFloat(8, 12)).RotatedByRandom(MathHelper.Pi);
                 TileRunner(position.X, position.Y, genRand.Next(45, 57) * WorldSize, (int)(genRand.Next(50, 89) * WorldSize), TileTypes[2], true, speed.X, speed.Y, false, true);
                 runners++;
             }

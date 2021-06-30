@@ -65,7 +65,7 @@ namespace Verdant.Items
             //Main.NewText($"BottomSlope: {t.bottomSlope()}");
             //Main.NewText("---");
 
-            BackgroundItemManager.AddItem(new LushBushBG(Main.MouseWorld));
+            //BackgroundItemManager.AddItem(new LushBushBG(Main.MouseWorld));
             //Point16 pos = new Point16(i, j);
 
             //int index = Main.rand.Next(2);

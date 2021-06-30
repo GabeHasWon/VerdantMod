@@ -7,7 +7,7 @@ namespace Verdant.Waters
 {
 	public class VerdantWaterStyle : ModWaterStyle
 	{
-        public override bool ChooseWaterStyle() => VerdantWorld.VerdantTiles >= 50;// Main.bgStyle == mod.GetSurfaceBgStyleSlot("VerdabtSurfaceBgStyle");
+        public override bool ChooseWaterStyle() => VerdantWorld.VerdantTiles >= 50;
 
 		public override int ChooseWaterfallStyle() => mod.GetWaterfallStyleSlot("VerdantWaterfallStyle");
 
@@ -16,8 +16,8 @@ namespace Verdant.Waters
 		public override int GetDropletGore() => mod.GetGoreSlot("Gores/Verdant/VerdantDroplet");
 
 		public override void LightColorMultiplier(ref float r, ref float g, ref float b) {
-			r = 1f;
-			g = 1f;
+			r = 0.75f;
+			g = 0.87f;
 			b = 1f;
 		}
 

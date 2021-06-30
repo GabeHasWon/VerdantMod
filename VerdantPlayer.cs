@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -43,6 +44,13 @@ namespace Verdant
         {
             ZoneVerdant = VerdantWorld.VerdantTiles > 50;
             ZoneApotheosis = VerdantWorld.ApotheosisTiles > 2;
+        }
+
+        public override Texture2D GetMapBackgroundImage()
+        {
+            if (ZoneVerdant)
+                return mod.GetTexture("Backgrounds/VerdantMap");
+            return null;
         }
 
         public override void UpdateBiomeVisuals()

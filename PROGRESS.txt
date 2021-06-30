@@ -11,8 +11,12 @@
 [FINISHED CONTENT] -------------------------------------------------
 	MISC
 	- Vines gen
-	- Caves [EXCEPT LIVING LUSH WOOD]
-	- Walls [EXCEPT LUSH SOIL WALLS]
+	- Caves/biome shape
+	- Walls
+	- Apotheosis
+	- Position selection
+	- Mod compatible biome checks - Might need more research
+	- Flower Structures(*)
 
 	BLOCKS [ITEMS]
 	- Verdant Armor Set
