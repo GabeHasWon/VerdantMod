@@ -9,7 +9,7 @@ namespace Verdant.Foreground.Tiled
         int width = 0;
         int height = 0;
 
-        public TiledForegroundItem(Point tilePosition, string path, Point size, bool copyTileFrame, bool lighted = true) : base(tilePosition.ToVector2() * 16, new Vector2(0, 0), new Vector2(1), path)
+        public TiledForegroundItem(Point tilePosition, string path, Point size, bool copyTileFrame, bool lighted = true) : base(tilePosition.ToVector2() * 16, new Vector2(0, 0), 1f, path)
         {
             width = size.X;
             height = size.Y;
@@ -29,7 +29,6 @@ namespace Verdant.Foreground.Tiled
 
         public override void Draw()
         {
-            Texture2D tex = ForegroundManager.GetTexture(texPath);
             for (int i = 0; i < width; ++i)
             {
                 for (int j = 0; j < height; ++j)

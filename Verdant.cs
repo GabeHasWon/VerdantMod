@@ -39,11 +39,11 @@ namespace Verdant
 
         private void OnHooks()
         {
-            On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BGItem hook
+            On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
-            On.Terraria.Main.Update += Main_Update;
+            On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
         }
 
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)

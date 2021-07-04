@@ -8,6 +8,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Backgrounds.BGItem.Verdant;
+using Verdant.Foreground;
+using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.World;
@@ -151,6 +153,11 @@ namespace Verdant
                 {
                     Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 1.1f), (int)(Main.screenWidth * 1.1f)), Main.screenHeight * 0.52f);
                     BackgroundItemManager.AddItem(new LushLeafBG(pos));
+                }
+                if (Main.raining && Main.rand.NextBool(LushLeafFG.SpawnChance))
+                {
+                    Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 1.1f), (int)(Main.screenWidth * 1.1f)), Main.screenHeight * 0.52f);
+                    ForegroundManager.AddItem(new LushLeafFG(pos));
                 }
             }
         }

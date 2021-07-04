@@ -59,6 +59,8 @@ namespace Verdant.Items
             int j = Helper.MouseTile().Y;
             Tile t = Framing.GetTileSafely(i, j);
 
+            Foreground.ForegroundManager.AddItem(new Foreground.Parallax.LushLeafFG(Main.MouseWorld));
+
             //Main.NewText($"RightSlope: {t.rightSlope()}");
             //Main.NewText($"LeftSlope: {t.leftSlope()}");
             //Main.NewText($"TopSlope: {t.topSlope()}");

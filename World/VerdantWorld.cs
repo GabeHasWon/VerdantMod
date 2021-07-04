@@ -51,7 +51,9 @@ namespace Verdant.World
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
 
-            BackgroundItemManager.Load(tag.GetList<TagCompound>("backgroundItems"));
+            var bgItems = tag.GetList<TagCompound>("backgroundItems");
+            if (bgItems != null)
+                BackgroundItemManager.Load(bgItems);
         }
 
         public override void NetSend(BinaryWriter writer)

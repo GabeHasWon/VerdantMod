@@ -14,8 +14,8 @@ namespace Verdant.Backgrounds
         {
             textureSlots[0] = mod.GetBackgroundSlot("Backgrounds/VerdantUGB0");
             textureSlots[1] = mod.GetBackgroundSlot("Backgrounds/VerdantUGB1");
-            textureSlots[2] = mod.GetBackgroundSlot("Backgrounds/ExampleBiomeUG2");
-            textureSlots[3] = mod.GetBackgroundSlot("Backgrounds/ExampleBiomeUG3");
+            //textureSlots[2] = mod.GetBackgroundSlot("Backgrounds/ExampleBiomeUG2");
+            //textureSlots[3] = mod.GetBackgroundSlot("Backgrounds/ExampleBiomeUG3");
         }
     }
 }

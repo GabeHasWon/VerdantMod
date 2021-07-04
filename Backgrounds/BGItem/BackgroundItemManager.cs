@@ -19,8 +19,7 @@ namespace Verdant.Backgrounds.BGItem
 
         public static void AddItem(BaseBGItem item) => bgItems.Add(item);
 
-        /// <summary></summary>
-        /// <param name="doUpdate"></param>
+        /// <summary>Draws all background items.</summary>
         public static void Draw()
         {
             int range = Main.offScreenRange * 3;
@@ -99,7 +98,7 @@ namespace Verdant.Backgrounds.BGItem
                 catch (Exception e)
                 {
                     VerdantMod mod = VerdantMod.Instance;
-                    mod.Logger.Warn("Failed to load assembly type.\n", e);
+                    mod.Logger.Warn("Failed to load BGItem assembly type.\n", e);
                 }
             }
         }

@@ -92,7 +92,7 @@ namespace Verdant.Backgrounds.BGItem
         internal Vector2 GetParallax()
         {
             Vector2 pC = Main.LocalPlayer.Center + (Vector2.UnitY * Main.LocalPlayer.gfxOffY);
-            Vector2 offset = ((pC - position) * parallax);
+            Vector2 offset = (pC - position) * parallax;
             return offset;
         }
 

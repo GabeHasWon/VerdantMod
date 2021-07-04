@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Verdant.Foreground
@@ -13,9 +14,11 @@ namespace Verdant.Foreground
     public class ForegroundItem
     {
         public Vector2 position = new Vector2(0, 0);
+        internal Vector2 drawPosition = new Vector2();
         public Vector2 velocity = new Vector2(0, 0);
-        public Vector2 scale = new Vector2();
+        public float scale = 1f;
         public Rectangle source = new Rectangle();
+        public Color drawColor = Color.White;
 
         internal bool drawLighted = true;
 
@@ -23,16 +26,18 @@ namespace Verdant.Foreground
 
         public virtual bool SaveMe => false;
 
-        public readonly string texPath = "None";
+        public Vector2 Center => position + (source.Size() / 2f);
 
-        public ForegroundItem(Vector2 pos, Vector2 vel, Vector2 sc, string path)
+        public readonly Texture2D tex;
+
+        public ForegroundItem(Vector2 pos, Vector2 vel, float sc, string path)
         {
             position = pos;
             velocity = vel;
-            texPath = path;
+            tex = ModContent.GetTexture($"Verdant/Foreground/{path}");
             scale = sc;
 
-            ForegroundManager.AddItem(this);
+            source = new Rectangle(0, 0, tex.Width, tex.Height);
         }
 
         public virtual void Update()
@@ -42,8 +47,7 @@ namespace Verdant.Foreground
 
         public virtual void Draw()
         {
-            Texture2D tex = ForegroundManager.GetTexture(texPath);
-            Main.spriteBatch.Draw(tex, position - Main.screenPosition, null, Color.White, 0f, tex.Size() / 2, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(tex, drawPosition - Main.screenPosition, source, drawColor, 0f, tex.Size() / 2, scale, SpriteEffects.None, 0f);
         }
 
         /// <summary>Called when saving this ForegroundItem.</summary>
@@ -59,6 +63,6 @@ namespace Verdant.Foreground
         {
         }
 
-        public override string ToString() => $"{GetType().Name} at {position} using {texPath}\nSIZE: {scale}, SAVE: {SaveMe}, LIGHTED: {drawLighted}";
+        public override string ToString() => $"{GetType().Name} at {position}\nSIZE: {scale}, SAVE: {SaveMe}, LIGHTED: {drawLighted}";
     }
 }
