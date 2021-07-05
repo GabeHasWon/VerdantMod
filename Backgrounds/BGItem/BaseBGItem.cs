@@ -28,7 +28,7 @@ namespace Verdant.Backgrounds.BGItem
         internal Rectangle source = new Rectangle(0, 0, 0, 0);
 
         /// <summary>If true, this background item will be saved and loaded, as per <see cref="Save()"/> and <see cref="Load(TagCompound)"/>.</summary>
-        public bool SaveMe { get; protected set; }
+        public virtual bool SaveMe => false;
         /// <summary>Used for draw position, so that stuff that is offscreen does not need to be drawn. Might not work, needs tweaking.</summary>
         public Vector2 DrawPosition { get; protected set; }
 
@@ -37,9 +37,8 @@ namespace Verdant.Backgrounds.BGItem
 
         /// <summary>Default with only a save/don't save value.</summary>
         /// <param name="save">If this BGItem saves or not.</param>
-        public BaseBGItem(bool save = false)
+        public BaseBGItem()
         {
-            SaveMe = save;
         }
 
         /// <summary>Creates a BGItem with a position, scale and frame size, along with the save value.</summary>
@@ -47,7 +46,7 @@ namespace Verdant.Backgrounds.BGItem
         /// <param name="sc">Scale this BGItem is spawned with.</param>
         /// <param name="size">Frame size.</param>
         /// <param name="save">If this BGItem saves or not.</param>
-        public BaseBGItem(Vector2 initPos, float sc, Point size, bool save = false)
+        public BaseBGItem(Vector2 initPos, float sc, Point size)
         {
             position = initPos;
             scale = sc;
@@ -55,8 +54,6 @@ namespace Verdant.Backgrounds.BGItem
             source = new Rectangle(0, 0, size.X, size.Y);
 
             DrawPosition = position;
-
-            SaveMe = save;
         }
 
         /// <summary>Creates a BGItem with a texture, position and scale, along with the save value.</summary>
@@ -64,7 +61,7 @@ namespace Verdant.Backgrounds.BGItem
         /// <param name="initPos">Position this BGItem is spawned at.</param>
         /// <param name="sc">Scale this BGItem is spawned with.</param>
         /// <param name="save">If this BGItem saves or not.</param>
-        public BaseBGItem(Texture2D t, Vector2 initPos, float sc, bool save = false)
+        public BaseBGItem(Texture2D t, Vector2 initPos, float sc)
         {
             tex = t;
             position = initPos;
@@ -72,8 +69,6 @@ namespace Verdant.Backgrounds.BGItem
 
             source = new Rectangle(0, 0, t.Width, t.Height);
             DrawPosition = position;
-
-            SaveMe = save;
         }
 
         /// <summary>Equivalent to Update(). Adds velocity to position by default.</summary>

@@ -6,7 +6,9 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 {
     public class LushBushBG : BaseBGItem
     {
-        public LushBushBG(Vector2 pos) : base(pos, 1f, new Point(36, 43), true)
+        public override bool SaveMe => true;
+
+        public LushBushBG(Vector2 pos) : base(pos, 1f, new Point(36, 43))
         {
             tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushBushBG");
         }
@@ -34,8 +36,6 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             DrawPosition = position;
             scale = 1f;
             source = new Rectangle(0, 0, 36, 43);
-
-            SaveMe = true;
         }
 
         internal override void Draw(Vector2 off)
