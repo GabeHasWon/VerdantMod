@@ -156,7 +156,7 @@ namespace Verdant
                 }
                 if (Main.raining && Main.rand.NextBool(LushLeafFG.SpawnChance))
                 {
-                    Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 1.1f), (int)(Main.screenWidth * 1.1f)), Main.screenHeight * 0.52f);
+                    Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 2f), (int)(Main.screenWidth * 2f)), Main.screenHeight * 0.52f);
                     ForegroundManager.AddItem(new LushLeafFG(pos));
                 }
             }
