@@ -9,6 +9,7 @@ using Verdant.World.Biome.Verdant;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.World;
 
 namespace Verdant
 {
@@ -79,6 +80,7 @@ namespace Verdant
         {
             ForegroundManager.Unload();
             VerdantPlayer.Unload();
+            VerdantWorld.Unload();
             UnHookOn();
 
             Instance = null;

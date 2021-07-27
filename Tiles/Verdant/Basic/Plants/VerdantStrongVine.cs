@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,6 +21,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
             Main.tileFrameImportant[Type] = true;
+
+            TileID.Sets.HousingWalls[Type] = true;
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
 
@@ -66,8 +67,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             if (!Main.tile[i, j + 1].active() && Main.rand.Next(7) == 0)
                 WorldGen.PlaceTile(i, j + 1, Type);
-            //if (!Main.tile[i, j - 1].active() && Main.rand.Next(7) == 0)
-            //    WorldGen.PlaceTile(i, j - 1, Type);
 
             if (Framing.GetTileSafely(i, j).frameX != 0 && Framing.GetTileSafely(i, j).frameY < 36 && Main.rand.Next(2) == 0)
                 Framing.GetTileSafely(i, j).frameY = (short)((Main.rand.Next(2) * 18) + 36);

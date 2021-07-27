@@ -20,7 +20,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
             TileObjectData.newTile.WaterDeath = true;
-            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
 
@@ -49,7 +49,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 2;
+            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3.5f;
             if (Framing.GetTileSafely(i, j).frameX == 0)
             {
                 r = light.X;

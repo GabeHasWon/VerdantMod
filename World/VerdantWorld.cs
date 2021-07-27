@@ -37,6 +37,8 @@ namespace Verdant.World
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
+            genNoise = null; //Unload this so it's not taking up space
+
             return new TagCompound
             {
                 ["apotheosisStats"] = apotheosisStats,
@@ -101,6 +103,11 @@ namespace Verdant.World
         {
             VerdantTiles = 0;
             ApotheosisTiles = 0;
+        }
+
+        public static void Unload()
+        {
+            BackgroundItemManager.Unload();
         }
     }
 }

@@ -17,7 +17,16 @@ namespace Verdant.Backgrounds.BGItem
         /// <summary>True when this has been loaded and is usable.</summary>
         public static bool Loaded { get; private set; }
 
-        public static void AddItem(BaseBGItem item) => bgItems.Add(item);
+        public static void AddItem(BaseBGItem item)
+        {
+            if (item != null)
+                bgItems.Add(item);
+            else
+            {
+                VerdantMod mod = VerdantMod.Instance;
+                mod.Logger.Warn("Null BGItem add attempt. Report to mod devs.");
+            }
+        }
 
         /// <summary>Draws all background items.</summary>
         public static void Draw()
@@ -59,6 +68,8 @@ namespace Verdant.Backgrounds.BGItem
 
         public static List<TagCompound> Save()
         {
+            if (!Loaded) return null; //Somehow it's trying to save while not being loaded, abort 
+
             List<TagCompound> tags = new List<TagCompound>(); //Save the stuff
             foreach (var item in bgItems)
             {
@@ -72,11 +83,14 @@ namespace Verdant.Backgrounds.BGItem
                     }
                 }
             }
+            return tags;
+        }
 
+        public static void Unload()
+        {
             bgItems = null; //Clear it and unload
             organizedItems = null;
             Loaded = false;
-            return tags;
         }
 
         public static void Load(IList<TagCompound> info)

@@ -106,8 +106,8 @@ namespace Verdant.World
 
         private void AddSurfaceVerdant()
         {
-            int top = FindDown(new Vector2(VerdantCentre.X * 16, 200));
-            TileRunner(VerdantCentre.X, top, 6, 40, TileTypes[0], true, 0, 0, true, true);
+            int top = FindDown(new Vector2(VerdantArea.Center.X * 16, 200));
+            TileRunner(VerdantArea.Center.X, top, 6, 14, TileTypes[0], true, 0, 0, true, true);
         }
 
         public void VerdantCleanup(GenerationProgress p)
@@ -167,14 +167,19 @@ namespace Verdant.World
             int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileType<Apotheosis>() };
             int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
 
+            List<Vector2> positions = new List<Vector2>();
+
             for (int i = 0; i < 8 * WorldSize; ++i)
             {
                 int index = Main.rand.Next(2);
                 Point16 pos = new Point16(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
 
-                if (TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
+                bool notNear = !positions.Any(x => Vector2.Distance(x, pos.ToVector2()) < 20);
+
+                if (notNear && TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
                 {
                     StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
+                    positions.Add(pos.ToVector2());
 
                     if (!genRand.NextBool(6)) //NORMAL chests
                     {
@@ -339,8 +344,7 @@ namespace Verdant.World
 
                     for (int k = -1; k < 2; ++k)
                     {
-                        bool anyConditions = !ActiveType(i + k, j, TileTypes[0]) ||
-                            !TileEmpty(i + k, j - 1);
+                        bool anyConditions = !ActiveType(i + k, j, TileTypes[0]) || !TileEmpty(i + k, j - 1);
                         if (anyConditions)
                         {
                             doPlace = false;
@@ -351,7 +355,7 @@ namespace Verdant.World
                     if (!TileEmpty(i, j - 2))
                         doPlace = false;
                     
-                    if (doPlace && genRand.Next(20) > 0)
+                    if (doPlace && genRand.NextBool(30))
                         VerdantTree.Spawn(i, j - 1, -1, genRand, 4, 12, false, -1, false);
                 }
             }
