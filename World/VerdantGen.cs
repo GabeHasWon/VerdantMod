@@ -374,6 +374,7 @@ namespace Verdant.World
                             for (int l = 1; l < length; ++l)
                             {
                                 if (Framing.GetTileSafely(i, j + l + 1).active()) break;
+                                KillTile(i, j + l, false, false, true); //please
                                 PlaceTile(i, j + l, strong ? TileType<VerdantStrongVine>() : TileType<VerdantVine>(), true, false, -1);
                                 if (strong) Framing.GetTileSafely(i, j + l).frameY = (short)(Main.rand.Next(4) * 18);
                             }
