@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
+using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.NPCs.Verdant.Passive
 {
@@ -72,6 +73,14 @@ namespace Verdant.NPCs.Verdant.Passive
                 for (int i = 0; i < 12; ++i)
                     Dust.NewDust(npc.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }
+        }
+
+        public override void NPCLoot()
+        {
+            Item.NewItem(npc.getRect(), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
+            Item.NewItem(npc.getRect(), ModContent.ItemType<RedPetal>(), 1);
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Lightbulb>(), 1);
         }
 
         public override int SpawnNPC(int tileX, int tileY)

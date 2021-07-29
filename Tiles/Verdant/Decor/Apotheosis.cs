@@ -5,6 +5,7 @@ using Terraria;
 using System;
 using Verdant.Items.Verdant.Materials;
 using Terraria.Localization;
+using Verdant.Items.Verdant.Misc;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -57,6 +58,15 @@ namespace Verdant.Tiles.Verdant.Decor
 
                 Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8);
                 World.VerdantWorld.apotheosisSkelDown = true;
+                return true;
+            }
+
+            if (Main.hardMode && !World.VerdantWorld.apotheosisWallDown) //WoF boss text
+            {
+                Speak("We sense a powerful spiritual power released...bless you. Here...");
+
+                Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
+                World.VerdantWorld.apotheosisWallDown = true;
                 return true;
             }
 

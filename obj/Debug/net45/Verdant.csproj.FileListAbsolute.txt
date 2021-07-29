@@ -19,8 +19,6 @@ C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debu
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\System.ValueTuple.dll
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\TerrariaHooks.dll
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.exe
-C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.pdb
-C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.xml
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\MonoMod.Utils.xml
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\obj\Debug\net45\Verdant.csprojAssemblyReference.cache
@@ -32,3 +30,5 @@ C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\obj\Debu
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\obj\Debug\net45\Verdant.pdb
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\NetEasy_v0.1.7.dll
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\StructureHelper_v0.1.8.dll
+C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.pdb
+C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.xml

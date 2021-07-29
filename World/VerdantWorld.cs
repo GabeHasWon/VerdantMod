@@ -24,6 +24,7 @@ namespace Verdant.World
         public static int apotheosisDialogueIndex = 0;
         public static bool apotheosisEvilDown = false;
         public static bool apotheosisSkelDown = false;
+        public static bool apotheosisWallDown = false;
 
         public override TagCompound Save()
         {
@@ -34,6 +35,8 @@ namespace Verdant.World
                 apotheosisStats.Add("evilDown");
             if (apotheosisSkelDown)
                 apotheosisStats.Add("skelDown");
+            if (apotheosisWallDown)
+                apotheosisStats.Add("wallDown");
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
@@ -52,6 +55,7 @@ namespace Verdant.World
             if (stats.Contains("indexFin")) apotheosisDialogueIndex = 3;
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
+            apotheosisWallDown = stats.Contains("wallDown");
 
             var bgItems = tag.GetList<TagCompound>("backgroundItems");
             if (bgItems != null)
@@ -64,6 +68,7 @@ namespace Verdant.World
             flags[0] = apotheosisDialogueIndex >= 3;
             flags[1] = apotheosisEvilDown;
             flags[2] = apotheosisSkelDown;
+            flags[3] = apotheosisWallDown;
             writer.Write(flags);
         }
 
@@ -73,7 +78,8 @@ namespace Verdant.World
 
             if (flags[0]) apotheosisDialogueIndex = 3;
             apotheosisEvilDown = flags[1];
-            apotheosisSkelDown = flags[1];
+            apotheosisSkelDown = flags[2];
+            apotheosisWallDown = flags[3];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

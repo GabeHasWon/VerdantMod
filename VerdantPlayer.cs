@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Backgrounds.BGItem.Verdant;
 using Verdant.Foreground;
@@ -20,6 +21,8 @@ namespace Verdant
     {
         public bool ZoneVerdant;
         public bool ZoneApotheosis;
+
+        public bool heartOfGrowth = false;
 
         public delegate void FloorVisual(Player p, int type);
         public static event FloorVisual FloorVisualEvent;
@@ -40,6 +43,15 @@ namespace Verdant
 
         public override void ResetEffects()
         {
+            if (heartOfGrowth) //perm bonus
+                player.maxMinions += 2;
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            ModPacket packet = mod.GetPacket();
+            packet.Write(heartOfGrowth);
+            packet.Send(toWho, fromWho);
         }
 
         public override void UpdateBiomes()
@@ -59,6 +71,18 @@ namespace Verdant
         {
             VerdantPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<VerdantPlayer>();
             player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant && !Main.dayTime);
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound {
+				["heartOfGrowth"] = heartOfGrowth,
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            heartOfGrowth = tag.GetBool("heartOfGrowth");
         }
 
         public static void Unload()
