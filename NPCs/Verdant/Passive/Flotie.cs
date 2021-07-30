@@ -34,7 +34,6 @@ namespace Verdant.NPCs.Verdant.Passive
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
             npc.dontCountMe = true;
-
             npc.catchItem = (short)ModContent.ItemType<FlotieItem>();
         }
 

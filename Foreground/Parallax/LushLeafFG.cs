@@ -64,7 +64,8 @@ namespace Verdant.Foreground.Parallax
 
             drawPosition = position + ParallaxPosition();
             Color lightColour = Lighting.GetColor((int)(drawPosition.X / 16f), (int)(drawPosition.Y / 16f));
-            drawColor = Color.Lerp(lightColour, Main.bgColor, (parallax - (0.25f)) / 1.25f);
+            Color frontColour = (position.Y / 16f < Main.worldSurface) ? Main.bgColor : new Color(85, 85, 85);
+            drawColor = Color.Lerp(lightColour, frontColour, (parallax - (0.25f)) / 1.25f);
 
             base.Draw();
         }
