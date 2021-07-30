@@ -9,7 +9,14 @@ namespace Verdant.Foreground.Parallax
         private int timer = 0;
         private int offscreenTimer = 0;
 
-        public const int SpawnChance = 20;
+        public static int SpawnChance(Player p)
+        {
+            if (Main.raining && p.Center.Y / 16f < Main.worldSurface)
+                return 15;
+            if (p.Center.Y / 16f > Main.worldSurface)
+                return 20;
+            return -1;
+        }
 
         public LushLeafFG(Vector2 pos) : base(pos, Vector2.Zero, 1f, "Parallax/LushLeafFG")
         {
@@ -55,8 +62,9 @@ namespace Verdant.Foreground.Parallax
             else
                 source.Location = new Point(108, source.Location.Y);
 
-            drawColor = Main.bgColor;
             drawPosition = position + ParallaxPosition();
+            Color lightColour = Lighting.GetColor((int)(drawPosition.X / 16f), (int)(drawPosition.Y / 16f));
+            drawColor = Color.Lerp(lightColour, Main.bgColor, (parallax - (0.25f)) / 1.25f);
 
             base.Draw();
         }

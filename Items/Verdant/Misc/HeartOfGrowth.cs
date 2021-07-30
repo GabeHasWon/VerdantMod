@@ -34,7 +34,7 @@ namespace Verdant.Items.Verdant.Misc
 
             for (int i = 0; i < 14; ++i)
             {
-                float offset = (float)Math.Sin(i * 0.14f + 0.5f) * 30;
+                float offset = (float)Math.Sin(i * 0.4f) * 40;
 
                 float height = top.Y - (i * 15);
                 Vector2 pos = top - new Vector2(offset, i * 15);

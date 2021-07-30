@@ -6,6 +6,8 @@ using System;
 using Verdant.Items.Verdant.Materials;
 using Terraria.Localization;
 using Verdant.Items.Verdant.Misc;
+using Verdant.Foreground.Parallax;
+using Verdant.Foreground;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -29,6 +31,13 @@ namespace Verdant.Tiles.Verdant.Decor
                 if (World.VerdantWorld.apotheosisSkelDown) LightMult *= 1.6f;
                 Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * 2f * LightMult);
                 Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
+            }
+
+            if (Main.rand.NextBool(ApotheosisParticle.SpawnChance))
+            {
+                Vector2 pos = (new Vector2(i, j) * 16) - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 2f), (int)(Main.screenWidth * 2f)), 
+                    Main.rand.Next(-(int)(Main.screenHeight * 2f), (int)(Main.screenHeight * 2f)));
+                ForegroundManager.AddItem(new ApotheosisParticle(pos));
             }
         }
 

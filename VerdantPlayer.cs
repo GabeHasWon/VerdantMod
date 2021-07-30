@@ -165,20 +165,25 @@ namespace Verdant
 
         private void UpdateBGItems()
         {
-            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (player.Center.Y + (Main.screenHeight / 2f)) / 16f < Main.worldSurface) //Spawn BG items only when in the Verdant and above ground
+            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant) //Spawn BG items only when in the Verdant and above ground
             {
-                if (Main.rand.NextBool(FlotieBG.SpawnChance))
+                if (player.Center.Y + (Main.screenHeight / 2f) / 16f < Main.worldSurface) 
                 {
-                    Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 0.75f), (int)(Main.screenWidth * 0.75f)), 
-                        Main.rand.Next(-(int)(Main.screenWidth * 0.75f), (int)(Main.screenWidth * 0.75f)));
-                    BackgroundItemManager.AddItem(new FlotieBG(pos));
+                    if (Main.rand.NextBool(FlotieBG.SpawnChance))
+                    {
+                        Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 0.75f), (int)(Main.screenWidth * 0.75f)),
+                            Main.rand.Next(-(int)(Main.screenWidth * 0.75f), (int)(Main.screenWidth * 0.75f)));
+                        BackgroundItemManager.AddItem(new FlotieBG(pos));
+                    }
+                    if (Main.raining && Main.rand.NextBool(LushLeafBG.SpawnChance))
+                    {
+                        Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 1.1f), (int)(Main.screenWidth * 1.1f)), Main.screenHeight * 0.52f);
+                        BackgroundItemManager.AddItem(new LushLeafBG(pos));
+                    }
                 }
-                if (Main.raining && Main.rand.NextBool(LushLeafBG.SpawnChance))
-                {
-                    Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 1.1f), (int)(Main.screenWidth * 1.1f)), Main.screenHeight * 0.52f);
-                    BackgroundItemManager.AddItem(new LushLeafBG(pos));
-                }
-                if (Main.raining && Main.rand.NextBool(LushLeafFG.SpawnChance))
+
+                int leafFGChance = LushLeafFG.SpawnChance(player);
+                if (leafFGChance != -1 && Main.rand.NextBool(leafFGChance))
                 {
                     Vector2 pos = player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 2f), (int)(Main.screenWidth * 2f)), Main.screenHeight * 0.52f);
                     ForegroundManager.AddItem(new LushLeafFG(pos));
