@@ -99,6 +99,12 @@
 
 	MUSIC
 	- "Petals Fall"
+	- "Apotheosis Lullaby" (*)
+
+	MARKETING
+	- Twitter.com account?
+	- Promotional images
+	- Logo
 
 [NEEDS FINISHING] -------------------------------------------------
 	- Little overgrown telltale structure on surface above Verdant
@@ -106,31 +112,34 @@
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, BOOKCASE, DRESSER, PIANO, CANDELABRA, SINK
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), BED, CLOCK, DRESSER, SOFA, CANDELABRA, LANTERN, SINK
-	- Verdant/Marble Furniture : Not implemented / designed | Might not happen?
 
 	PROJECTILES
 	- Verdant Wisp : Almost everything
 
-	TILES [PLANTS]
-	- Housprout : Everything
-
 	MUSIC
 	- Unnamed Surface Day
 	- Unnamed Surface Night
-	- "Apotheosis Lullaby"
 	- Unnamed Underground
 
-	MINIBIOME
-	- Marble/Verdant minibiomes - probably not going to happen on release
-
 	SYSTEMS
-	- Foreground : Needs saving & loading, needs multiplayer compat
+	- Foreground : Needs multiplayer compat (I/O optional)
 	- Background : Needs multiplayer compat
 
 	MARKETING
-	- Twitter.com account?
 	- Promotional images
-	- Logo
-	- Video editing (!!!)
+
+[CUT/TO BE DONE LATER] --------------------------------------------
+	TILES [PLANTS]
+	- Housprout
+
+	GEN
+	- Verdant/Marble minibiomes
+
+	FURNITURE
+	- Verdant/Marble Furniture
+
+	MARKETING
+	- Twitter.com account
+	- Video editing
 	- Trailer
 	- Short epic track for trailer
