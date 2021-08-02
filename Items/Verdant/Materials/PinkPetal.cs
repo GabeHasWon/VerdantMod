@@ -18,7 +18,7 @@ namespace Verdant.Items.Verdant.Materials
             if (item.velocity.Y > 0.10f)
                 item.velocity.X = (float)-Math.Sin(updateCounter++ * 0.03f) * 1.7f * item.velocity.Y * (1 - (item.stack / 999f));
 
-            gravity = 0.02f;
+            gravity = 0.05f;
             maxFallSpeed = 1f;
         }
     }

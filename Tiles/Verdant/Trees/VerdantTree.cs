@@ -239,6 +239,9 @@ namespace Verdant.Tiles.Verdant.Trees
                         Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
                 }
             }
+
+            if (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126)
+                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -285,8 +288,8 @@ namespace Verdant.Tiles.Verdant.Trees
                 Texture2D tops = ModContent.GetTexture("Verdant/Tiles/Verdant/Trees/VerdantTreeTops");
                 col = Lighting.GetColor(i, j - 2);
                 int frame = t.frameY / 18;
-                float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.015f;
-                spriteBatch.Draw(tops, Helper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 96), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
+                float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.02f;
+                spriteBatch.Draw(tops, Helper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

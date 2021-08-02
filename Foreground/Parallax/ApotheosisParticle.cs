@@ -16,7 +16,7 @@ namespace Verdant.Foreground.Parallax
             scale = parallax + 0.85f;
             MaxLifeTimer = Main.rand.Next(500, 800);
 
-            source = new Rectangle(0, 0, 4, 4);
+            source = new Rectangle(Main.rand.Next(3) * 5, 0, 4, 4);
             velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 0.75f) * (parallax * 1.2f)).RotatedByRandom(MathHelper.Pi);
         }
 

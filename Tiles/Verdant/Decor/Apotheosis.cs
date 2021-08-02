@@ -35,7 +35,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
             if (Main.rand.NextBool(ApotheosisParticle.SpawnChance))
             {
-                Vector2 pos = (new Vector2(i, j) * 16) - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 2f), (int)(Main.screenWidth * 2f)), 
+                Vector2 pos = (new Vector2(i, j) * 16) - new Vector2(Main.rand.Next(-Main.screenWidth, Main.screenWidth), 
                     Main.rand.Next(-(int)(Main.screenHeight * 2f), (int)(Main.screenHeight * 2f)));
                 ForegroundManager.AddItem(new ApotheosisParticle(pos));
             }

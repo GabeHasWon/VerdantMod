@@ -16,9 +16,9 @@ namespace Verdant.Items.Verdant.Materials
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
             if (item.velocity.Y > 0.10f)
-                item.velocity.X = (float)-Math.Sin(updateCounter++ * 0.03f) * 1.7f * item.velocity.Y * (1 - (item.stack / 999f));
+                item.velocity.X = (float)-Math.Sin(updateCounter++ * 0.03f) * 1.3f * item.velocity.Y * (1 - (item.stack / 999f));
 
-            gravity = 0.01f;
+            gravity = 0.05f;
             maxFallSpeed = 0.9f;
         }
     }
