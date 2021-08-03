@@ -1,5 +1,5 @@
 ﻿using Terraria.ModLoader;
-using Verdant.Projectiles.Verdant.Misc;
+using Verdant.Projectiles.Misc;
 using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Weapons

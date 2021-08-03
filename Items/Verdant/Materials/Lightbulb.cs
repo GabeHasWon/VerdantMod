@@ -36,7 +36,7 @@ namespace Verdant.Items.Verdant.Materials
 
         public void PlayerDraw(PlayerDrawInfo info)
         {
-            if (info.drawPlayer.HeldItem.type == item.type)
+            if (info.drawPlayer.HeldItem.type == item.type && info.drawPlayer.itemAnimation <= 0)
             {
                 Texture2D t = ModContent.GetTexture("Verdant/Items/Verdant/Materials/Lightbulb");
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));

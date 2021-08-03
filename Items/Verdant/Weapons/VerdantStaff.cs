@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks;
-using Verdant.Projectiles.Verdant.Minion;
+using Verdant.Projectiles.Minion;
 using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Weapons
@@ -59,7 +58,7 @@ namespace Verdant.Items.Verdant.Weapons
                 for (int j = -3; j < 0; ++j)
                     if (Helper.SolidTile(Helper.MouseTile().X + i, Helper.MouseTile().Y + j))
                         return false;
-            return true;
+            return player.ownedProjectileCounts[ProjectileType<VerdantHealingMinion>()] > 0 || player.GetModPlayer<VerdantPlayer>().lastSlotsMinion < player.maxMinions;
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Verdant.Projectiles.Verdant.Magic
+namespace Verdant.Projectiles.Magic
 {
     class VerdantBounceBulb : ModProjectile
     {

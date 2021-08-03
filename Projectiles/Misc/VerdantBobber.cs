@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Verdant.Projectiles.Verdant.Misc
+namespace Verdant.Projectiles.Misc
 {
     public class VerdantBobber : ModProjectile
     {

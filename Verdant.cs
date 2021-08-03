@@ -5,11 +5,11 @@ using Verdant.Foreground;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Effects;
 using Verdant.Backgrounds.BGItem;
-using Verdant.World.Biome.Verdant;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.World;
+using Verdant.World.Biome;
 
 namespace Verdant
 {

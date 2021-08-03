@@ -24,6 +24,8 @@ namespace Verdant
 
         public bool heartOfGrowth = false;
 
+        public float lastSlotsMinion = 0;
+
         public delegate void FloorVisual(Player p, int type);
         public static event FloorVisual FloorVisualEvent;
 
@@ -119,6 +121,11 @@ namespace Verdant
 
             if (Main.hasFocus)
                 UpdateBGItems();
+        }
+
+        public override void PostUpdateMiscEffects()
+        {
+            lastSlotsMinion = player.slotsMinions;
         }
 
         private void TileFloor(Point left, Point right, int lType, int rType)

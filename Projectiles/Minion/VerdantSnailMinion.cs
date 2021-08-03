@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Buffs.Minion;
 
-namespace Verdant.Projectiles.Verdant.Minion
+namespace Verdant.Projectiles.Minion
 {
     class VerdantSnailMinion : ModProjectile
     {

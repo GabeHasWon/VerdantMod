@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Verdant.World.Biome.Verdant
+namespace Verdant.World.Biome
 {
     public class VerdantSky : CustomSky
     {
