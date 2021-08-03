@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blightlight");
-            Tooltip.SetDefault("An old growth that suffered inside of a chest\nSpreads glowing infection to nearby enemies");
+            Tooltip.SetDefault("WIP - WILL NOT BE FINISHED BEFORE RELEASE\nAn old growth that suffered inside of a chest\nSpreads glowing infection to nearby enemies");
         }
 
         public override void SetDefaults()

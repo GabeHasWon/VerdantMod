@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Armour
 	{
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Growthplate Chestpiece");
+            DisplayName.SetDefault("Growth Chestpiece");
             Tooltip.SetDefault("+7% minion damage\n+1 max minion");
         }
 

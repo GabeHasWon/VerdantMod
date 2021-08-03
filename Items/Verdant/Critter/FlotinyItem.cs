@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Critter
@@ -12,5 +13,6 @@ namespace Verdant.Items.Verdant.Critter
         }
 
         public override void SetDefaults() => QuickItem.SetCritter(this, 22, 26, ModContent.NPCType<NPCs.Verdant.Passive.Flotiny>(), 1, 8);
+        public override bool CanUseItem(Player player) => !Framing.GetTileSafely(Main.MouseWorld).active();
     }
 }

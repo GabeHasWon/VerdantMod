@@ -24,8 +24,6 @@ namespace Verdant.Projectiles.Minion
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-            //ProjectileID.Sets.TrailCacheLength[projectile.type] = 9;
-            //ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
         public override void SetDefaults()
@@ -77,7 +75,7 @@ namespace Verdant.Projectiles.Minion
                 MovementState = 1;
                 Timer--;
                 _target = -1;
-                _skin = Main.rand.Next(2);
+                _skin = Main.rand.Next(3);
             }
             if (MovementState == 1) //Literally vibing too hard
             {
@@ -210,12 +208,12 @@ namespace Verdant.Projectiles.Minion
                         projectile.rotation += 0.4f;
                 }
             }
+
+            if (_skin == 2)
+                Lighting.AddLight(projectile.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
         }
 
-        private void SetFrame(int frame)
-        {
-            projectile.frame = frame + (_skin * 5);
-        }
+        private void SetFrame(int frame) => projectile.frame = frame + (_skin * 5);
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {

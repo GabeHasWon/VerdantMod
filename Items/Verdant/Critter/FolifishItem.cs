@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Critter
 {
@@ -6,5 +7,6 @@ namespace Verdant.Items.Verdant.Critter
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Folifish");
         public override void SetDefaults() => QuickItem.SetCritter(this, 50, 34, ModContent.NPCType<NPCs.Verdant.Passive.Folifish>(), 1, 13);
+        public override bool CanUseItem(Player player) => !Framing.GetTileSafely(Main.MouseWorld).active();
     }
 }

@@ -96,7 +96,7 @@ namespace Verdant.Projectiles.Minion
             float scale = 1;
 
             //General function
-            Texture2D proj = ModContent.GetTexture("Verdant/Projectiles/Verdant/Minion/VerdantHealingMinion");
+            Texture2D proj = ModContent.GetTexture("Verdant/Projectiles/Minion/VerdantHealingMinion");
             if (State <= 1) //Normal minion
             {
                 scale *= State == 0 ? 1f : 1.2f; //Larger when stacked
@@ -114,10 +114,10 @@ namespace Verdant.Projectiles.Minion
 
         private void DrawCircle(SpriteBatch spriteBatch, Color lightColor, float scale, out Vector2 off)
         {
-            Texture2D circle = ModContent.GetTexture("Verdant/Projectiles/Verdant/Minion/VerdantHealingCircle");
+            Texture2D circle = ModContent.GetTexture("Verdant/Projectiles/Minion/VerdantHealingCircle");
             float sc = 1.9f - (float)(Math.Sin(timer * 0.03f) * 0.05f);
             off = new Vector2(0, (float)(Math.Sin(timer * 0.03f) * 6));
-            float alphaScale = ((sc - 1.78f) * 8);
+            float alphaScale = (sc - 1.78f) * 8;
             Color circleCol = projectile.GetAlpha(lightColor) * alphaScale;
             spriteBatch.Draw(circle, projectile.Center - Main.screenPosition - off, circle.Frame(), circleCol, timer * 0.006f, circle.Bounds.Center.ToVector2(), sc * scale, SpriteEffects.None, 1f);
             if (alphaScale > 0.95f)

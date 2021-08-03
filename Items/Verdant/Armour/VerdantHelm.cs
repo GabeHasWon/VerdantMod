@@ -88,7 +88,7 @@ namespace Verdant.Items.Verdant.Armour
         public override void UpdateEquip(Player player)
 		{
             player.minionDamage *= 1.05f;
-            Lighting.AddLight(player.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
+            Lighting.AddLight(player.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 7.5f);
         }
 
         public override void AddRecipes()

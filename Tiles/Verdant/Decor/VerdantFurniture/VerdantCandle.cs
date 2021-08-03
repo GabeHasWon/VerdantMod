@@ -31,7 +31,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (!noItem)
+            if (!fail && !noItem)
                 Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantCandleItem>());
         }
 
