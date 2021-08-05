@@ -26,6 +26,11 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
 
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+            TileObjectData.newTile.AnchorTop = new Terraria.DataStructures.AnchorData(AnchorType.SolidBottom | AnchorType.SolidTile | AnchorType.AlternateTile, 1, 0);
+            TileObjectData.addTile(Type);
+
             drop = ItemType<VerdantStrongVineMaterial>();
             AddMapEntry(new Color(182, 224, 49));
             dustType = DustID.Grass;

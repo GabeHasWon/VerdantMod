@@ -1,7 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,10 +17,11 @@ namespace Verdant.Projectiles.Minion
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snale");
-            Main.projFrames[projectile.type] = 10;
+            Main.projFrames[projectile.type] = 15;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
+            ProjectileID.Sets.Homing[projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -104,6 +102,16 @@ namespace Verdant.Projectiles.Minion
                 {
                     MovementState = 2;
                     Timer = 0;
+                }
+
+                if (p.HasMinionAttackTargetNPC) //Minion targetting!
+                {
+                    _target = p.MinionAttackTargetNPC;
+                    MovementState = 4;
+                    Timer = 0;
+                    SetFrame(0);
+                    projectile.velocity *= 0f;
+                    return;
                 }
 
                 if (_target == -1) //Get target

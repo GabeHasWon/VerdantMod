@@ -25,7 +25,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.newTile.Origin = new Point16(1, 1);
-            TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, TileType<VerdantSoilGrass>() };
+            TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 1);
             TileObjectData.addTile(Type);
 
@@ -37,10 +37,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(i * 16, j * 16, 32, 16, ItemType<Items.Verdant.Tools.BouncebloomItem>());
-        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 32, 16, ItemType<Items.Verdant.Tools.BouncebloomItem>());
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
