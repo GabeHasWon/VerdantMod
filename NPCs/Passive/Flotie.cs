@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
 using Verdant.Items.Verdant.Materials;
 
-namespace Verdant.NPCs.Verdant.Passive
+namespace Verdant.NPCs.Passive
 {
     public class Flotie : ModNPC
     {

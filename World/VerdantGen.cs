@@ -154,7 +154,7 @@ namespace Verdant.World
                             apothPos = new Point(VerdantArea.Center.X - 30, VerdantArea.Center.Y - 4);
                             side *= -1;
                         }
-                        goto redo;
+                        goto redo; //sorry but i had to
                     }
                 }
             }

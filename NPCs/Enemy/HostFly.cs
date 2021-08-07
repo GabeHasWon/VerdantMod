@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Verdant.NPCs.Verdant.Enemy
+namespace Verdant.NPCs.Enemy
 {
     public class HostFly : ModNPC
     {
@@ -30,6 +30,8 @@ namespace Verdant.NPCs.Verdant.Enemy
             npc.value = Item.buyPrice(0, 0, 3, 25);
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
+            npc.HitSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
+            npc.DeathSound = SoundID.NPCDeath4;
             Main.npcFrameCount[npc.type] = 4;
         }
 
@@ -137,6 +139,6 @@ namespace Verdant.NPCs.Verdant.Enemy
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) && !spawnInfo.playerInTown ? 0.1f : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && !spawnInfo.playerInTown ? 0.1f : 0f;
     }
 }

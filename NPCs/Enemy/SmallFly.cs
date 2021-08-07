@@ -1,19 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Critter;
-using Verdant.Packets;
 
-namespace Verdant.NPCs.Verdant.Enemy
+namespace Verdant.NPCs.Enemy
 {
     public class SmallFly : ModNPC
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Minifly");
-        }
+        private short distanceToHost = -1;
+            
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Minifly");
 
         public override void SetDefaults()
         {
@@ -28,7 +24,8 @@ namespace Verdant.NPCs.Verdant.Enemy
             npc.value = Item.buyPrice(0, 0, 0, 75);
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
-
+            npc.HitSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
+            npc.DeathSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -36,6 +33,9 @@ namespace Verdant.NPCs.Verdant.Enemy
         {
             npc.TargetClosest(true);
             Player target = Main.player[npc.target];
+
+            if (distanceToHost == -1)
+                distanceToHost = (short)Main.rand.Next(30, 110);
 
             if (npc.ai[0] == 0) //Alone
             {
@@ -80,7 +80,7 @@ namespace Verdant.NPCs.Verdant.Enemy
                 else
                 {
                     npc.velocity = npc.velocity.RotatedByRandom(0.45);
-                    if (Vector2.Distance(npc.Center, new Vector2(npc.ai[2], npc.ai[3])) > 80)
+                    if (Vector2.Distance(npc.Center, new Vector2(npc.ai[2], npc.ai[3])) > distanceToHost)
                         npc.velocity = Vector2.Normalize(new Vector2(npc.ai[2], npc.ai[3]) - npc.Center) * 4.5f;
                 }
 
@@ -105,6 +105,6 @@ namespace Verdant.NPCs.Verdant.Enemy
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) && !spawnInfo.playerInTown ? ((spawnInfo.water) ? 1.4f : 1f) : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) && !spawnInfo.playerInTown ? (spawnInfo.water ? 1.4f : 1f) : 0f;
     }
 }

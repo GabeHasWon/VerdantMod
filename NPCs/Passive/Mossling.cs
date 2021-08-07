@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
 
-namespace Verdant.NPCs.Verdant.Passive
+namespace Verdant.NPCs.Passive
 {
     public class Mossling : ModNPC
     {
@@ -120,14 +120,12 @@ namespace Verdant.NPCs.Verdant.Passive
                 }
             }
             else
-            {
                 ScaleY = (float)(0.25f * Math.Sin(Timer++ * 0.03f * ScaleSpeed)) + 1;
-            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D t = VerdantMod.Instance.GetTexture("NPCs/Verdant/Passive/Mossling");
+            Texture2D t = VerdantMod.Instance.GetTexture("NPCs/Passive/Mossling");
             Vector2 offset = new Vector2(0, 6);
             if      (BaseState == 2) offset = new Vector2(0, -12);
             else if (BaseState == 3) offset = new Vector2(-8, 0);

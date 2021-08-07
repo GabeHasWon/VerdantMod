@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Critter
             Tooltip.SetDefault("'Oh my god it's so tiny'");
         }
 
-        public override void SetDefaults() => QuickItem.SetCritter(this, 22, 26, ModContent.NPCType<NPCs.Verdant.Passive.Flotiny>(), 1, 8);
+        public override void SetDefaults() => QuickItem.SetCritter(this, 22, 26, ModContent.NPCType<NPCs.Passive.Flotiny>(), 1, 8);
         public override bool CanUseItem(Player player) => !Framing.GetTileSafely(Main.MouseWorld).active();
     }
 }

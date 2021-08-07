@@ -32,7 +32,7 @@ namespace Verdant
 
         public override void Load()
         {
-            Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.01f), EffectPriority.VeryHigh); //Verdant Green shader
+            //Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.01f), EffectPriority.VeryHigh); //Verdant Green shader
             SkyManager.Instance["Verdant:Verdant"] = new VerdantSky();
 
             OnHooks();

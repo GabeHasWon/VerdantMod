@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Trees
@@ -237,11 +238,16 @@ namespace Verdant.Tiles.Verdant.Trees
                     tot = Main.rand.Next(1, 4);
                     for (int k = 0; k < tot; ++k)
                         Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
+                    tot = Main.rand.Next(3, 8);
+                    for (int k = 0; k < tot; ++k)
+                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 5));
                 }
             }
 
+            if (Main.rand.NextBool(2) && (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126))
+                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-20, 20), Main.rand.Next(-10, 10)), ItemID.Acorn, Main.rand.Next(1, 4));
             if (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126)
-                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
+                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-20, 20), Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(5, 12));
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

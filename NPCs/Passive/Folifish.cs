@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
 
-namespace Verdant.NPCs.Verdant.Passive
+namespace Verdant.NPCs.Passive
 {
     public class Folifish : ModNPC //yoo thanks to Nimta on discord for the name
     {

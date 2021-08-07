@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
 
-namespace Verdant.NPCs.Verdant.Passive
+namespace Verdant.NPCs.Passive
 {
     public class Flotiny : ModNPC
     {

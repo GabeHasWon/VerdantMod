@@ -46,7 +46,7 @@ namespace Verdant
         public override void ResetEffects()
         {
             if (heartOfGrowth) //perm bonus
-                player.maxMinions += 2;
+                player.maxMinions++;
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
@@ -71,8 +71,8 @@ namespace Verdant
 
         public override void UpdateBiomeVisuals()
         {
-            VerdantPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<VerdantPlayer>();
-            player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant && !Main.dayTime);
+            //VerdantPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<VerdantPlayer>();
+            //player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant && !Main.dayTime);
         }
 
         public override TagCompound Save()
