@@ -93,6 +93,8 @@ namespace Verdant.Tiles
                 n.SetDefault(name);
                 t.AddMapEntry(color, n);
             }
+            else
+                t.AddMapEntry(color);
 
             t.dustType = dust;
             t.soundType = sound;

@@ -139,6 +139,6 @@ namespace Verdant.NPCs.Enemy
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && !spawnInfo.playerInTown ? 0.1f : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && !spawnInfo.playerInTown ? 0.3f : 0f;
     }
 }

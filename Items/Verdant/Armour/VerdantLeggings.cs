@@ -54,25 +54,50 @@ namespace Verdant.Items.Verdant.Armour
             m.AddRecipe();
         }
 
-        public void FloorVisuals(Player p, int type)
+        public void FloorVisuals(Player p, int type) //grows plants beneath the player
         {
-            //if (p.ArmourEquipped(item))
-            //{
-            //    Point t = p.TileCoordsBottomCentred(); //oh god why does this not work
+            if (p.ArmourEquipped(item))
+            {
+                Point t = p.TileCoordsBottomCentred();
+                Tile ground = Framing.GetTileSafely(t.X, t.Y);
 
-            //    if (!Framing.GetTileSafely(t.X, t.Y - 1).active() && Framing.GetTileSafely(t.X, t.Y - 1).type == ModContent.TileType<VerdantSoilGrass>())
-            //    {
-            //        WorldGen.PlaceTile(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true);
-            //        if (Main.netMode == NetmodeID.Server)
-            //            NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
-            //    }
-            //    if (!Framing.GetTileSafely(t.X + 1, t.Y - 1).active() && Framing.GetTileSafely(t.X + 1, t.Y - 1).type == ModContent.TileType<VerdantSoilGrass>())
-            //    {
-            //        WorldGen.PlaceTile(t.X + 1, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true);
-            //        if (Main.netMode == NetmodeID.Server)
-            //            NetMessage.SendTileSquare(-1, t.X + 1, t.Y - 1, 3, TileChangeType.None);
-            //    }
-            //}
+                if (!Framing.GetTileSafely(t.X, t.Y - 1).active() && !ground.topSlope())
+                {
+                    if (ground.type == ModContent.TileType<VerdantSoilGrass>())
+                    {
+                        int choice = Main.rand.Next(3);
+
+                        if (choice == 0)
+                            WorldGen.PlaceTile(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
+                        else if (choice == 1)
+                            WorldGen.PlaceTile(t.X, t.Y - 2, ModContent.TileType<VerdantDecor1x2>(), true, true, -1, Main.rand.Next(6));
+                        else if (choice == 2)
+                            WorldGen.PlaceTile(t.X, t.Y - 3, ModContent.TileType<VerdantDecor1x3>(), true, true, -1, Main.rand.Next(6));
+
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
+                    }
+                    else if (ground.type == TileID.Grass)
+                    {
+                        if (Main.rand.NextBool(3))
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.Plants2, true, true, -1, Main.rand.Next(45));
+                        else
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.Plants, true, true, -1, Main.rand.Next(45));
+
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
+                    }
+                    else if (ground.type == TileID.JungleGrass)
+                    {
+                        if (Main.rand.NextBool(3))
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.JunglePlants2, true, true, -1, Main.rand.Next(17));
+                        else
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.JunglePlants, true, true, -1, Main.rand.Next(23));
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
+                    }
+                }
+            }
         }
 	}
 }

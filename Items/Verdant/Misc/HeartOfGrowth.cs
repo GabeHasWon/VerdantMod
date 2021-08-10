@@ -27,6 +27,8 @@ namespace Verdant.Items.Verdant.Misc
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
+        public override bool CanUseItem(Player player) => !player.GetModPlayer<VerdantPlayer>().heartOfGrowth;
+
         public override bool UseItem(Player player)
         {
             player.GetModPlayer<VerdantPlayer>().heartOfGrowth = true;

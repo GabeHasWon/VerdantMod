@@ -13,6 +13,8 @@ namespace Verdant.Tiles.Verdant.Decor
 {
     internal class Apotheosis : ModTile
     {
+        private int _timer = 0;
+
         public override void SetDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
@@ -23,6 +25,8 @@ namespace Verdant.Tiles.Verdant.Decor
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
+            _timer++;
+
             if (Framing.GetTileSafely(i, j).frameX == 126 && Framing.GetTileSafely(i, j).frameY == 36)
             {
                 Vector2 p = (new Vector2(i, j) * 16);
@@ -51,70 +55,74 @@ namespace Verdant.Tiles.Verdant.Decor
             Point adjOff = new Point(Framing.GetTileSafely(adjPos.X, adjPos.Y).frameX / 18, Framing.GetTileSafely(adjPos.X, adjPos.Y).frameY / 18);
             Vector2 realPos = new Vector2((adjPos.X - adjOff.X) * 16, (adjPos.Y - adjOff.Y) * 16);
 
-            if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown) //BoC/EoW text
+            if (_timer > 3000)
             {
-                string msg = "Our gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
-                Speak(msg);
-
-                Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<RedPetal>(), 8); //temp ID
-                World.VerdantWorld.apotheosisEvilDown = true;
-                return true;
-            }
-
-            if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown) //Skeleton boss text
-            {
-                Speak("Our blessings for slaying the skeleton, take this...");
-
-                Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8);
-                World.VerdantWorld.apotheosisSkelDown = true;
-                return true;
-            }
-
-            if (Main.hardMode && !World.VerdantWorld.apotheosisWallDown) //WoF boss text
-            {
-                Speak("We sense a powerful spiritual power released...bless you. Here...");
-
-                Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
-                World.VerdantWorld.apotheosisWallDown = true;
-                return true;
-            }
-
-            if (World.VerdantWorld.apotheosisDialogueIndex < 3) //Boss text
-            {
-                string msg = assurance[World.VerdantWorld.apotheosisDialogueIndex++];
-                if (msg.Contains("EVILBOSS")) msg = msg.Replace("EVILBOSS", WorldGen.crimson ? "mind" : "devourer");
-                Speak(msg);
-            }
-            else
-            {
-                string msg = assurance[Main.rand.Next(3, 6)];
-                int r = Main.rand.Next(5);
-                if (World.VerdantWorld.apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
-                if (World.VerdantWorld.apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
-
-                Mod spiritMod = ModLoader.GetMod("SpiritMod");
-                if (r == 3 && spiritMod != null) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
+                if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown) //BoC/EoW text
                 {
-                    if ((bool)spiritMod.Call("downed", "Scarabeus"))
-                        msg = "The desert sands feel calmer now";
-                    if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
-                        msg = "Ah, I love the critters of the glowing sky. It seems you've met some as well.";
-                    if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
-                        msg = "The flowers feel more relaxed now. Thank you.";
-                    if ((bool)spiritMod.Call("downed", "Ancient Avian"))
-                        msg = "The skies are more now, spectactular.";
-                    if ((bool)spiritMod.Call("downed", "Starplate Raider"))
-                        msg = "We always had a soft spot for that glowing worm, but alas...";
+                    string msg = "Our gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
+                    Speak(msg);
+
+                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 2 * Main.ActivePlayersCount); //temp ID
+                    World.VerdantWorld.apotheosisEvilDown = true;
+                    return true;
                 }
 
-                if (r == 4)
+                if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown) //Skeleton boss text
                 {
-                    if (NPC.downedBoss1)
-                        msg = "We feel an evil presense finally resting...";
-                    if (NPC.downedSlimeKing)
-                        msg = "Ah, the King of Slimes has been slain, wonderful...";
+                    Speak("Our blessings for slaying the skeleton, take this...");
+
+                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * Main.ActivePlayersCount);
+                    World.VerdantWorld.apotheosisSkelDown = true;
+                    return true;
                 }
-                Speak(msg);
+
+                if (Main.hardMode && !World.VerdantWorld.apotheosisWallDown) //WoF boss text
+                {
+                    Speak("We sense a powerful spiritual power released...bless you. Here...");
+
+                    for (int v = 0; v < Main.ActivePlayersCount; ++v)
+                        Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
+                    World.VerdantWorld.apotheosisWallDown = true;
+                    return true;
+                }
+
+                if (World.VerdantWorld.apotheosisDialogueIndex < 3) //Boss text
+                {
+                    string msg = assurance[World.VerdantWorld.apotheosisDialogueIndex++];
+                    if (msg.Contains("EVILBOSS")) msg = msg.Replace("EVILBOSS", WorldGen.crimson ? "mind" : "devourer");
+                    Speak(msg);
+                }
+                else
+                {
+                    string msg = assurance[Main.rand.Next(3, 6)];
+                    int r = Main.rand.Next(5);
+                    if (World.VerdantWorld.apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
+                    if (World.VerdantWorld.apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
+
+                    Mod spiritMod = ModLoader.GetMod("SpiritMod");
+                    if (r == 3 && spiritMod != null) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
+                    {
+                        if ((bool)spiritMod.Call("downed", "Scarabeus"))
+                            msg = "The desert sands feel calmer now.";
+                        if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
+                            msg = "Ah, I love the critters of the glowing sky. It seems you've met some as well.";
+                        if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
+                            msg = "The flowers feel more relaxed now. Thank you.";
+                        if ((bool)spiritMod.Call("downed", "Ancient Avian"))
+                            msg = "The skies are more now, spectactular.";
+                        if ((bool)spiritMod.Call("downed", "Starplate Raider"))
+                            msg = "We always had a soft spot for that glowing worm, but alas...";
+                    }
+
+                    if (r == 4)
+                    {
+                        if (NPC.downedBoss1)
+                            msg = "We feel an evil presense finally resting...";
+                        if (NPC.downedSlimeKing)
+                            msg = "Ah, the King of Slimes has been slain, wonderful...";
+                    }
+                    Speak(msg);
+                }
             }
             return true;
         }
@@ -130,17 +138,17 @@ namespace Verdant.Tiles.Verdant.Decor
             if (speechType == 1 || speechType == 2)
             {
                 if (Main.netMode == NetmodeID.Server) //MP compat :)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("\"" + msg + "\""), new Color(88, 188, 24));
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Apotheosis: [c/509128:\"" + msg + "\"]"), Color.White);
                 else if (Main.netMode == NetmodeID.SinglePlayer)
-                    Main.NewText("\"" + msg + "\"", new Color(88, 188, 24));
+                    Main.NewText("The Apotheosis: [c/509128:\"" + msg + "\"]", Color.White);
             }
+            _timer = 0;
         }
 
         public override void MouseOver(int i, int j)
         {
-            Player p = Main.player[Main.myPlayer];
-            p.showItemIconText = "Speak";
-            p.showItemIcon = false;
+            Main.LocalPlayer.showItemIconText = "Speak";
+            Main.LocalPlayer.showItemIcon = false;
         }
     }
 }
