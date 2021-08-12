@@ -1,7 +1,7 @@
 displayName = Verdant
 author = GabeHasWon
 version = 0.1
-dllReferences = StructureHelper_v0.1.9, NetEasy_v0.1.7
+dllReferences = StructureHelper_v1.1.1, NetEasy_v0.1.7
 hideCode = false
 hideResources = false
 includeSource = true

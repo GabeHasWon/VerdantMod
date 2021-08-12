@@ -31,4 +31,4 @@ C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\obj\Debu
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\NetEasy_v0.1.7.dll
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.pdb
 C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\tModLoader.xml
-C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\StructureHelper_v0.1.9.dll
+C:\Users\GABE\Documents\My Games\Terraria\ModLoader\Mod Sources\Verdant\bin\Debug\net45\StructureHelper_v1.1.1.dll

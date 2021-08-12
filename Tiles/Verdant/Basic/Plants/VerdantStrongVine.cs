@@ -27,8 +27,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
-            TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type, TileType<VerdantSoilGrass>() };
-            TileObjectData.newTile.AnchorTop = new Terraria.DataStructures.AnchorData(AnchorType.SolidBottom | AnchorType.SolidTile | AnchorType.AlternateTile, 1, 0);
+            TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type, TileType<VerdantGrassLeaves>() };
+            TileObjectData.newTile.AnchorTop = new Terraria.DataStructures.AnchorData(AnchorType.SolidTile | AnchorType.AlternateTile, 1, 0);
             TileObjectData.addTile(Type);
 
             drop = ItemType<VerdantStrongVineMaterial>();
@@ -42,8 +42,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            bool validAbove = Helper.ActiveType(i, j - 1, TileType<VerdantSoilGrass>()) || Helper.ActiveType(i, j - 1, Type);
-            bool validBelow = Helper.ActiveType(i, j + 1, TileType<VerdantSoilGrass>()) || Helper.ActiveType(i, j + 1, Type);
+            bool validAbove = Helper.ActiveType(i, j - 1, TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j - 1, Type);
+            bool validBelow = Helper.ActiveType(i, j + 1, TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j + 1, Type);
 
             if (!validBelow) //Hanging table functionality
             {

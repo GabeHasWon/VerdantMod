@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Materials
 
         public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White, 999, false);
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Pink Petal", "'They're very soft'");
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantPinkPetalWallItem>(), 1));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantPinkPetalWallItem>(), 4));
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {

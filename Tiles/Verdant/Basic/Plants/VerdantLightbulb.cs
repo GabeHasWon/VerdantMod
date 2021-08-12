@@ -17,7 +17,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void SetDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
-            TileObjectData.newTile.AnchorValidTiles = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+            TileObjectData.newTile.AnchorValidTiles = new int[] { TileType<VerdantGrassLeaves>(), TileType<LushSoil>() };
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.StyleHorizontal = true;
 

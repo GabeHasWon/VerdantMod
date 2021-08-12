@@ -30,7 +30,7 @@ namespace Verdant.World
     ///Handles specific Verdant biome gen.
     public partial class VerdantWorld : ModWorld
     {
-        private static int[] TileTypes { get => new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileType<LivingLushWood>() }; }
+        private static int[] TileTypes { get => new int[] { TileType<VerdantGrassLeaves>(), TileType<LushSoil>(), TileID.ChlorophyteBrick, TileType<VerdantLightbulb>(), TileType<LivingLushWood>() }; }
         private static int[] WallTypes { get => new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<LushSoilWall_Unsafe>(), WallType<LushSoilWall_Unsafe>() }; }
 
         private const int MinRad = 70; //Minimum radius
@@ -125,7 +125,7 @@ namespace Verdant.World
                     Main.tile[i, j].lava(false);
 
                     Tile t = Framing.GetTileSafely(i, j);
-                    int[] vineAnchors = new int[] { TileType<VerdantVine>(), TileType<VerdantSoilGrass>(), TileType<VerdantLeaves>() };
+                    int[] vineAnchors = new int[] { TileType<VerdantVine>(), TileType<VerdantGrassLeaves>(), TileType<VerdantLeaves>() };
                     if (t.type == TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).type))
                         KillTile(i, j);
                 }
@@ -158,27 +158,27 @@ namespace Verdant.World
                     }
                 }
             }
-            StructureHelper.StructureHelper.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
+            StructureHelper.Generator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
         }
 
         private void AddFlowerStructures()
         {
-            Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
+            Point[] offsets = new Point[4] { new Point(4, 1), new Point(5, 1), new Point(3, 1), new Point(7, 0) }; //ruler in-game is ONE HIGHER on both planes
             int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileType<Apotheosis>() };
-            int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+            int[] valids = new int[] { TileType<VerdantGrassLeaves>(), TileType<LushSoil>() };
 
-            List<Vector2> positions = new List<Vector2>();
+            List<Vector2> positions = new List<Vector2>() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
 
             for (int i = 0; i < 8 * WorldSize; ++i)
             {
-                int index = Main.rand.Next(2);
+                int index = Main.rand.Next(offsets.Length);
                 Point16 pos = new Point16(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
 
                 bool notNear = !positions.Any(x => Vector2.Distance(x, pos.ToVector2()) < 20);
 
                 if (notNear && TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
                 {
-                    StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
+                    StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
                     positions.Add(pos.ToVector2());
 
                     if (!genRand.NextBool(6)) //NORMAL chests
@@ -261,7 +261,7 @@ namespace Verdant.World
                 }
                 Tile tile = Framing.GetTileSafely(rP.X, rP.Y);
 
-                if (tile.type == TileType<VerdantSoilGrass>() || tile.type == TileType<LushSoil>())
+                if (tile.type == TileType<VerdantGrassLeaves>() || tile.type == TileType<LushSoil>())
                 {
                     Point adjPos = rP.Add(adj);
                     Point end = adjPos.Add(adj);
@@ -344,7 +344,7 @@ namespace Verdant.World
 
                     for (int k = -1; k < 2; ++k)
                     {
-                        bool anyConditions = !ActiveType(i + k, j, TileTypes[0]) || !TileEmpty(i + k, j - 1);
+                        bool anyConditions = !ActiveTypeNoTopSlope(i + k, j, TileTypes[0]) || !TileEmpty(i + k, j - 1);
                         if (anyConditions)
                         {
                             doPlace = false;
@@ -364,7 +364,7 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
                 {
-                    if (ActiveType(i, j, TileType<VerdantSoilGrass>()))
+                    if (ActiveType(i, j, TileType<VerdantGrassLeaves>()))
                     {
                         //Vines
                         if (!Framing.GetTileSafely(i, j + 1).active() && !Framing.GetTileSafely(i, j + 1).bottomSlope() && genRand.Next(5) <= 2)
@@ -390,17 +390,16 @@ namespace Verdant.World
                     }
 
                     //lightbulb
-                    bool doPlace = AreaClear(i, j - 2, 2, 2) && ActiveType(i, j, TileType<VerdantSoilGrass>()) && ActiveType(i + 1, j, TileType<VerdantSoilGrass>());
+                    bool doPlace = AreaClear(i, j - 2, 2, 2) && ActiveTypeNoTopSlope(i, j, TileType<VerdantGrassLeaves>()) && ActiveTypeNoTopSlope(i + 1, j, TileType<VerdantGrassLeaves>());
                     if (doPlace && genRand.Next(11) == 0)
                     {
-                        //PlaceMultitile(new Point(i, j - 2), TileType<VerdantLightbulb>(), genRand.Next(3));
                         PlaceTile(i, j - 2, TileType<VerdantLightbulb>(), true, false, -1, genRand.Next(3));
                         continue;
                     }
 
                     //ground decor 2x1
-                    doPlace = !Framing.GetTileSafely(i, j - 1).active() && Framing.GetTileSafely(i, j).type == TileType<VerdantSoilGrass>() &&
-                        !Framing.GetTileSafely(i + 1, j - 1).active() && Framing.GetTileSafely(i + 1, j).type == TileType<VerdantSoilGrass>();
+                    doPlace = !Framing.GetTileSafely(i, j - 1).active() && Framing.GetTileSafely(i, j).type == TileType<VerdantGrassLeaves>() &&
+                        !Framing.GetTileSafely(i + 1, j - 1).active() && Framing.GetTileSafely(i + 1, j).type == TileType<VerdantGrassLeaves>();
                     if (doPlace && genRand.Next(2) == 0)
                     {
                         PlaceMultitile(new Point(i, j - 1), TileType<VerdantDecor2x1>(), genRand.Next(7));
@@ -530,7 +529,7 @@ namespace Verdant.World
                     if (ActiveType(i, j, TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).liquid < 155)
                         KillTile(i, j, false, false, true);
 
-                    if (ActiveType(i, j, TileType<VerdantTree>()) && !ActiveType(i, j + 1, TileType<VerdantTree>()) && !ActiveType(i, j + 1, TileType<VerdantSoilGrass>()))
+                    if (ActiveType(i, j, TileType<VerdantTree>()) && !ActiveType(i, j + 1, TileType<VerdantTree>()) && !ActiveType(i, j + 1, TileType<VerdantGrassLeaves>()))
                         KillTile(i, j, false, false, true);
                 }
             }
@@ -539,7 +538,7 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
                 {
-                    if (ActiveType(i, j, TileType<VerdantStrongVine>()) && !ActiveType(i, j - 1, TileType<VerdantStrongVine>()) && !ActiveType(i, j - 1, TileType<VerdantSoilGrass>()))
+                    if (ActiveType(i, j, TileType<VerdantStrongVine>()) && !ActiveType(i, j - 1, TileType<VerdantStrongVine>()) && !ActiveType(i, j - 1, TileType<VerdantGrassLeaves>()))
                         KillTile(i, j, false, false, true);
                 }
             }

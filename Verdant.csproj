@@ -22,7 +22,7 @@
       <HintPath>lib\NetEasy_v0.1.7.dll</HintPath>
     </Reference>
     <Reference Include="StructureHelper">
-      <HintPath>..\OldCrown\lib\StructureHelper_v0.1.9.dll</HintPath>
+      <HintPath>lib\StructureHelper_v1.1.1.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

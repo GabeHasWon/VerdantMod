@@ -25,7 +25,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.newTile.Origin = new Point16(1, 1);
-            TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
+            TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, TileType<VerdantGrassLeaves>(), TileType<LushSoil>() };
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 1);
             TileObjectData.addTile(Type);
 

@@ -101,7 +101,7 @@ namespace Verdant.World
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            VerdantTiles = tileCounts[ModContent.TileType<VerdantSoilGrass>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
+            VerdantTiles = tileCounts[ModContent.TileType<VerdantGrassLeaves>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
             ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()];
         }
 

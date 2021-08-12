@@ -56,16 +56,20 @@ namespace Verdant.Items.Verdant.Armour
 
         public void FloorVisuals(Player p, int type) //grows plants beneath the player
         {
-            if (p.ArmourEquipped(item))
+            if (p.ArmourEquipped(item) && System.Math.Abs(p.velocity.X) > 0.01f)
             {
                 Point t = p.TileCoordsBottomCentred();
                 Tile ground = Framing.GetTileSafely(t.X, t.Y);
 
                 if (!Framing.GetTileSafely(t.X, t.Y - 1).active() && !ground.topSlope())
                 {
-                    if (ground.type == ModContent.TileType<VerdantSoilGrass>())
+                    if (ground.type == ModContent.TileType<VerdantGrassLeaves>())
                     {
                         int choice = Main.rand.Next(3);
+                        bool[] valids = new bool[] { true, !Framing.GetTileSafely(t.X, t.Y - 2).active(), !Framing.GetTileSafely(t.X, t.Y - 1).active() && !Framing.GetTileSafely(t.X, t.Y - 2).active() };
+
+                        while (!valids[choice])
+                            choice = Main.rand.Next(3);
 
                         if (choice == 0)
                             WorldGen.PlaceTile(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
@@ -79,20 +83,33 @@ namespace Verdant.Items.Verdant.Armour
                     }
                     else if (ground.type == TileID.Grass)
                     {
-                        if (Main.rand.NextBool(3))
-                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.Plants2, true, true, -1, Main.rand.Next(45));
-                        else
+                        int choice = Main.rand.Next(2);
+                        bool[] valids = new bool[] { true, !Framing.GetTileSafely(t.X, t.Y - 2).active() };
+
+                        while (!valids[choice])
+                            choice = Main.rand.Next(2);
+
+                        if (choice == 0)
                             WorldGen.PlaceTile(t.X, t.Y - 1, TileID.Plants, true, true, -1, Main.rand.Next(45));
+                        else if (choice == 1)
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.Plants2, true, true, -1, Main.rand.Next(45));
 
                         if (Main.netMode == NetmodeID.Server)
                             NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
                     }
                     else if (ground.type == TileID.JungleGrass)
                     {
-                        if (Main.rand.NextBool(3))
-                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.JunglePlants2, true, true, -1, Main.rand.Next(17));
-                        else
+                        int choice = Main.rand.Next(2);
+                        bool[] valids = new bool[] { true, !Framing.GetTileSafely(t.X, t.Y - 2).active() };
+
+                        while (!valids[choice])
+                            choice = Main.rand.Next(2);
+
+                        if (choice == 0)
                             WorldGen.PlaceTile(t.X, t.Y - 1, TileID.JunglePlants, true, true, -1, Main.rand.Next(23));
+                        else if (choice == 1)
+                            WorldGen.PlaceTile(t.X, t.Y - 1, TileID.JunglePlants2, true, true, -1, Main.rand.Next(17));
+
                         if (Main.netMode == NetmodeID.Server)
                             NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
                     }

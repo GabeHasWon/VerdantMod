@@ -17,7 +17,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         public override void SetDefaults()
         {
             QuickTile.SetAll(this, 0, DustID.SomethingRed, SoundID.Grass, new Color(216, 54, 43), ItemType<RedPetal>(), "", true, false);
-            QuickTile.MergeWith(Type, TileType<LushSoil>(), TileType<VerdantSoilGrass>(), TileType<VerdantPinkPetal>(), TileID.LivingWood);
+            QuickTile.MergeWith(Type, TileType<LushSoil>(), TileType<VerdantGrassLeaves>(), TileType<VerdantPinkPetal>(), TileID.LivingWood);
         }
     }
 }

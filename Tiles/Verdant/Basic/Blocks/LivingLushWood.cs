@@ -10,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         public override void SetDefaults()
         {
             QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(89, 47, 33), ModContent.ItemType<Items.Verdant.Blocks.LushWood.VerdantWoodBlock>(), "", true, false);
-            QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantSoilGrass>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>());
+            QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>());
 
             Main.tileBrick[Type] = true;
         }

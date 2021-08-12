@@ -149,6 +149,7 @@ namespace Verdant
         public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).active() && (Main.tileSolidTop[Framing.GetTileSafely(i, j).type] || Main.tileSolid[Framing.GetTileSafely(i, j).type]);
         public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t;
         public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).active();
+        public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t && !Framing.GetTileSafely(i, j).topSlope();
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();
         public static Point MouseTile(Point offset) => ((Main.MouseWorld / 16f) + offset.ToVector2()).ToPoint();
