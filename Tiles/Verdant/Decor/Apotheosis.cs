@@ -149,6 +149,7 @@ namespace Verdant.Tiles.Verdant.Decor
         {
             Main.LocalPlayer.showItemIconText = "Speak";
             Main.LocalPlayer.showItemIcon = false;
+            Main.LocalPlayer.showItemIcon2 = -1;
         }
     }
 }

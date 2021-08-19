@@ -151,8 +151,50 @@ namespace Verdant.Tiles.Verdant.Trees
         {
             Tile t = Framing.GetTileSafely(i, j);
 
-            if (fail)
-                return;
+            if (Framing.GetTileSafely(i, j).frameX == 198) //gore stuff
+            {
+                int rnd = Main.rand.Next(8, 14);
+                if (fail)
+                    rnd = Main.rand.Next(2, 6);
+                for (int l = 0; l < rnd; ++l)
+                    Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                if (!fail)
+                {
+                    int tot = Main.rand.Next(6, 11);
+                    for (int k = 0; k < tot; ++k)
+                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<VerdantWoodBlock>(), Main.rand.Next(1, 5));
+                    tot = Main.rand.Next(1, 4);
+                    for (int k = 0; k < tot; ++k)
+                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
+                    tot = Main.rand.Next(3, 8);
+                    for (int k = 0; k < tot; ++k)
+                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 5));
+                }
+            }
+
+            if (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126)
+            {
+                int side = Framing.GetTileSafely(i, j).frameX == 108 ? -1 : 1;
+                if (!fail) //kill
+                {
+                    Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(3, 8));
+                    Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ItemID.Acorn, Main.rand.Next(1, 3));
+                    int rnd = Main.rand.Next(8, 14);
+                    for (int l = 0; l < rnd; ++l)
+                        Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                }
+                else
+                {
+                    int rnd = Main.rand.Next(1, 4);
+                    for (int l = 0; l < rnd; ++l)
+                        Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                    if (Main.rand.NextBool(8))
+                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
+                }
+            }
+
+            //if (fail)
+            //    return;
 
             //if you value your sanity don't bother reading this
 
@@ -222,32 +264,6 @@ namespace Verdant.Tiles.Verdant.Trees
                 else
                     WorldGen.KillTile(i - 1, j);
             }
-
-            if (Framing.GetTileSafely(i, j).frameX == 198) //gore stuff
-            {
-                int rnd = Main.rand.Next(8, 14);
-                if (fail)
-                    rnd = Main.rand.Next(2, 6);
-                for (int l = 0; l < rnd; ++l)
-                    Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
-                if (!fail)
-                {
-                    int tot = Main.rand.Next(6, 11);
-                    for (int k = 0; k < tot; ++k)
-                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<VerdantWoodBlock>(), Main.rand.Next(1, 5));
-                    tot = Main.rand.Next(1, 4);
-                    for (int k = 0; k < tot; ++k)
-                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
-                    tot = Main.rand.Next(3, 8);
-                    for (int k = 0; k < tot; ++k)
-                        Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 5));
-                }
-            }
-
-            if (Main.rand.NextBool(2) && (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126))
-                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-20, 20), Main.rand.Next(-10, 10)), ItemID.Acorn, Main.rand.Next(1, 4));
-            if (Framing.GetTileSafely(i, j).frameX == 108 || Framing.GetTileSafely(i, j).frameX == 126)
-                Item.NewItem((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-20, 20), Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(5, 12));
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
