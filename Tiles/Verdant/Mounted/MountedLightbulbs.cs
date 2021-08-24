@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -17,9 +15,11 @@ namespace Verdant.Tiles.Verdant.Mounted
     {
         public override void SetDefaults()
         {
-            Main.tileFrameImportant[Type] = true; //Does NOT need tile-based anchor
+            Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
             Main.tileNoAttach[Type] = true;
+
+            TileID.Sets.FramesOnKillWall[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.LavaDeath = true;

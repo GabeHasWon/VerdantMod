@@ -16,20 +16,24 @@ namespace Verdant.Tiles.Verdant.Mounted
     {
         public override void SetDefaults()
         {
-            Main.tileFrameImportant[Type] = true; //Does NOT need tile-based anchor
+            Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
             Main.tileNoAttach[Type] = true;
+
+            TileID.Sets.FramesOnKillWall[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.RandomStyleRange = 4;
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.StyleWrapLimit = 36;
+            //TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 2;
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
             TileObjectData.newTile.AnchorWall = true;
             TileObjectData.newTile.AnchorValidWalls = new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<VerdantLeafWall>(), WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
+            TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
+            TileObjectData.newTile.AnchorTop = AnchorData.Empty;
             TileObjectData.addTile(Type);
 
             dustType = DustID.Grass;
@@ -43,8 +47,8 @@ namespace Verdant.Tiles.Verdant.Mounted
             if (Main.rand.Next(3) == 0)
                 Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
 
-            if (frameX % 36 == 18) i--;
-            if (frameY % 36 == 18) j--;
+            if (frameX == 18) i--;
+            if (frameY == 18) j--;
 
             int l = Main.rand.Next(3, 6);
             for (int v = 0; v < l; ++v)
@@ -65,9 +69,11 @@ namespace Verdant.Tiles.Verdant.Mounted
     {
         public override void SetDefaults()
         {
-            Main.tileNoAttach[Type] = true; //Does NOT need tile-based anchor
+            Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
+
+            TileID.Sets.FramesOnKillWall[Type] = true; //Kill on wall kill
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.LavaDeath = true;
@@ -87,7 +93,7 @@ namespace Verdant.Tiles.Verdant.Mounted
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            int frame = frameX % 56 == 0 ? frameX / 56 : 0;
+            int frame = frameX % 54 == 0 ? frameX / 54 : 0;
             int r = Main.rand.Next(6, 10);
             if (frame == 0)
             {

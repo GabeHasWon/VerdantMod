@@ -9,6 +9,8 @@ using Terraria.ObjectData;
 using System;
 using Verdant.Bezier;
 using Terraria.Utilities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Verdant.World
 {
@@ -113,11 +115,11 @@ namespace Verdant.World
         /// <param name="type">Type if the chest.</param>
         /// <param name="mainItems">List of "main" items, like the main weapon or tool.</param>
         /// <param name="subItems">List of "sub" items - filler, basically - like potions, weak, stackable weapons, or materials.</param>
-        /// <param name="stackFill">If true, stacks an item of type A on pre-existing stack of A. Otherwise, do not repeat fill items.</param>
+        /// <param name="noTypeRepeat">If true, two stacks of the same item will not be placed in a chest..</param>
         /// <param name="r">Use Main.rand for in-game generation, use WorldGen.genRand for worldgen.</param>
         /// <param name="subItemLength">How many sub item stacks there are.</param>
         /// <param name="style">Style of the chest.</param>
-        public static bool PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool stackFill = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
+        public static bool PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool noTypeRepeat = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
         {
             r = r ?? Main.rand;
 
@@ -138,32 +140,26 @@ namespace Verdant.World
 
                 int reps = 0;
 
+                List<int> usedTypes = new List<int>();
+
                 for (int i = 0; i < subItemLength; ++i)
                 {
                 repeat:
                     if (reps > 50)
                     {
-                        VerdantMod.Instance.Logger.Info("WARNING: Attempted to repeat stack too often. Report to dev.");
+                        VerdantMod.Instance.Logger.Info("WARNING: Attempted to repeat item placement too often. Report to dev.");
                         break;  
                     }
 
                     int sub = r.Next(subItems.Length);
-                    for (int j = 1; j < Main.chest[ChestIndex].item.Length; ++j)
-                    {
-                        if (Main.chest[ChestIndex].item[j].type == subItems[sub].Item1)
-                        {
-                            if (stackFill)
-                            {
-                                Main.chest[ChestIndex].item[j].stack += subItems[sub].Item2;
-                                i++;
-                            }
-                            reps++;
-                            goto repeat; //imagine using goto LOL
-                        }
-                    }
+                    int itemType = subItems[sub].Item1;
+                    int itemStack = subItems[sub].Item2;
 
-                    Main.chest[ChestIndex].item[i + 1].SetDefaults(subItems[sub].Item1);
-                    Main.chest[ChestIndex].item[i + 1].stack = subItems[sub].Item2;
+                    if (noTypeRepeat && usedTypes.Contains(itemType))
+                        goto repeat;
+
+                    Main.chest[ChestIndex].item[i + 1].SetDefaults(itemType);
+                    Main.chest[ChestIndex].item[i + 1].stack = itemStack;
                 }
                 return true;
             }
