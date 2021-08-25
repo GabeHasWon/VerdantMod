@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -8,26 +7,26 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
-    internal class VerdantChandelierLarge : ModTile
+    internal class VerdantLantern : ModTile
     {
         public override void SetDefaults()
         {
-            // Main.tileFlame[Type] = true; This breaks it.
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileWaterDeath[Type] = true;
             Main.tileLavaDeath[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.WaterDeath = false;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidBottom | AnchorType.SolidTile, 1, 1);
+            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidBottom | AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
             TileObjectData.addTile(Type);
 
@@ -36,29 +35,27 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.FloorLamp"));
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierLargeItem>());
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<VerdantLanternItem>());
 
         public override void HitWire(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            int topX = i - tile.frameX / 18 % 3;
             int topY = j - tile.frameY / 18 % 3;
-            short frameAdjustment = (short)(Framing.GetTileSafely(topX, topY).frameX > 0 ? -54 : 54);
-            for (int k = 0; k < 3; ++k)
-            {
-                for (int b = 0; b < 3; ++b)
-                {
-                    Main.tile[topX + k, topY + b].frameX += frameAdjustment;
-                    Wiring.SkipWire(topX + k, topY + b);
-                }
-            }
+            short frameAdjustment = (short)(tile.frameX > 0 ? -18 : 18);
+            Main.tile[i, topY].frameX += frameAdjustment;
+            Main.tile[i, topY + 1].frameX += frameAdjustment;
+            Wiring.SkipWire(i, topY);
+            Wiring.SkipWire(i, topY + 1);
             NetMessage.SendTileSquare(-1, i, topY + 1, 2, TileChangeType.None);
         }
 
+        public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) => spriteEffects = i % 2 == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 2;
-            if (Framing.GetTileSafely(i, j).frameX < 54 && Framing.GetTileSafely(i, j).frameY >= 18)
+            Tile tile = Framing.GetTileSafely(i, j);
+            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3f;
+            if (tile.frameX == 0 && tile.frameY == 18)
             {
                 r = light.X;
                 g = light.Y;

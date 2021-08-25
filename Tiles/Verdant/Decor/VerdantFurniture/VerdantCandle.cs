@@ -19,8 +19,9 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileLavaDeath[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
-            TileObjectData.newTile.WaterDeath = true;
+            TileObjectData.newTile.WaterDeath = false;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
 

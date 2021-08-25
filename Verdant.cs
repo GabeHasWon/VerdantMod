@@ -43,8 +43,9 @@ namespace Verdant
             On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.DrawWater += Main_DrawWater;
-            On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
+            //On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
+            On.Terraria.Main.DrawGore += Main_DrawGore;
         }
 
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
@@ -97,7 +98,7 @@ namespace Verdant
             On.Terraria.Main.DrawBackgroundBlackFill -= Main_DrawBackgroundBlackFill; //do I have to unhook this? maybe. do I do it anyway? yes
             On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
             On.Terraria.Main.DrawWater -= Main_DrawWater;
-            On.Terraria.Main.DrawPlayer -= Main_DrawPlayer;
+            //On.Terraria.Main.DrawPlayer -= Main_DrawPlayer;
             On.Terraria.Main.Update -= Main_Update;
         }
 

@@ -15,7 +15,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
     {
         public override void SetDefaults()
         {
-            // Main.tileFlame[Type] = true; This breaks it.
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -59,7 +58,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             Tile tile = Main.tile[i, j];
             if (tile.frameX == 0 && tile.frameY == 18)
             {
-                // We can support different light colors for different styles here: switch (tile.frameY / 54)
                 r = 1f;
                 g = 0.75f;
                 b = 0.75f;
@@ -75,21 +73,13 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 short frameY = tile.frameY;
                 if (Main.rand.NextBool(40) && frameX == 0)
                 {
-                    int style = frameY / 54;
                     if (frameY == 18)
                     {
-                        int dustChoice = -1;
-                        if (style == 0)
-                            dustChoice = DustID.Fire; // A purple dust.
-                        // We can support different dust for different styles here
-                        if (dustChoice != -1)
-                        {
-                            int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, dustChoice, 0f, 0f, 100, default, 1f);
-                            if (Main.rand.Next(3) != 0)
-                                Main.dust[dust].noGravity = true;
-                            Main.dust[dust].velocity *= 0.3f;
-                            Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
-                        }
+                        int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, DustID.Fire, 0f, 0f, 100, default, 1f);
+                        if (Main.rand.Next(3) != 0)
+                            Main.dust[dust].noGravity = true;
+                        Main.dust[dust].velocity *= 0.3f;
+                        Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
                     }
                 }
             }
@@ -108,7 +98,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             if (Main.drawToScreen)
                 zero = Vector2.Zero;
 
-            Tile tile = Main.tile[i, j];
             int width = 16;
             int offsetY = 0;
             int height = 16;
