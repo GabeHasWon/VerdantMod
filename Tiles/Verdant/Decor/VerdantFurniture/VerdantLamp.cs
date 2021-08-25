@@ -54,11 +54,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
+            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3f;
             if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
             {
-                r = 1f;
-                g = 0.4f;
-                b = 1f;
+                r = light.X;
+                g = light.Y;
+                b = light.Z;
             }
         }
     }

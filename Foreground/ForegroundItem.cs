@@ -52,10 +52,7 @@ namespace Verdant.Foreground
 
         /// <summary>Called when saving this ForegroundItem.</summary>
         /// <returns>Value(s) to be saved.</returns>
-        public virtual TagCompound Save()
-        {
-            return null;
-        }
+        public virtual TagCompound Save() => null;
 
         /// <summary>Called on world loading.</summary>
         /// <param name="info"></param>
