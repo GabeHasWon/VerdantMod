@@ -41,8 +41,6 @@ namespace Verdant
         public delegate void PreUpdateDelegate(Player p);
         public static event PreUpdateDelegate PreUpdateEvent;
 
-        private bool _showCatchIcon = false;
-
         public override void ResetEffects()
         {
             if (heartOfGrowth) //perm bonus
@@ -99,11 +97,28 @@ namespace Verdant
         public override void OnRespawn(Player player)
         {
             OnRespawnEvent?.Invoke(player);
-            //player.hitTile.AddDamage(player.hitTile.HitObject(x, y, 1), 0, false); USEFUL?
         }
 
         public override void PreUpdate()
         {
+            if (ModContent.GetInstance<VerdantClientConfig>().ShowCatchText)
+            {
+                for (int i = 0; i < Main.maxNPCs; ++i)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.active && npc.catchItem >= 0 && npc.Hitbox.Contains(Main.MouseWorld.ToPoint()))
+                    {
+                        int length = npc.GivenOrTypeName.Length + (npc.lifeMax.ToString().Length * 2) + 5;
+                        string spaces = "";
+                        for (int j = 0; j < length; ++j)
+                            spaces += " ";
+                        player.showItemIconText = spaces + "(Catchable)";
+                        player.showItemIcon = false;
+                        player.showItemIcon2 = -1;
+                    }
+                }
+            }
+
             PreUpdateEvent?.Invoke(player);
 
             //bootleg floor effects
@@ -200,12 +215,6 @@ namespace Verdant
 
         public override void PostUpdate()
         {
-            //catch icon info
-            if (_showCatchIcon)
-            {
-                player.showItemIconText = "Catch";
-                player.showItemIcon = false;
-            }
         }
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)

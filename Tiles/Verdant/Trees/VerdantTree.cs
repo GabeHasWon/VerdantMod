@@ -235,7 +235,11 @@ namespace Verdant.Tiles.Verdant.Trees
             {
                 int nFrameX = Framing.GetTileSafely(i, j + 1).frameX;
                 if (nFrameX == 90) Framing.GetTileSafely(i, j + 1).frameX = 288;
-                if (nFrameX == 144) Framing.GetTileSafely(i, j + 1).frameX = 306;
+                if (t.frameX == 144) //right branch
+                {
+                    WorldGen.KillTile(i + 1, j, fail);
+                    Framing.GetTileSafely(i, j + 1).frameX = 306;
+                }
                 if (nFrameX == 162) Framing.GetTileSafely(i, j + 1).frameX = 324;
             }
             else if (t.frameX == 252)

@@ -59,7 +59,7 @@ namespace Verdant.Tiles.Verdant.Decor
             {
                 if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown) //BoC/EoW text
                 {
-                    string msg = "Our gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
+                    string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
                     Speak(msg);
 
                     Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 2 * Main.ActivePlayersCount); //temp ID
@@ -69,7 +69,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
                 if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown) //Skeleton boss text
                 {
-                    Speak("Our blessings for slaying the skeleton, take this...");
+                    Speak("Our blessings for slaying the skeleton, here...");
 
                     Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * Main.ActivePlayersCount);
                     World.VerdantWorld.apotheosisSkelDown = true;
@@ -90,17 +90,26 @@ namespace Verdant.Tiles.Verdant.Decor
                 {
                     string msg = assurance[World.VerdantWorld.apotheosisDialogueIndex++];
                     if (msg.Contains("EVILBOSS")) msg = msg.Replace("EVILBOSS", WorldGen.crimson ? "mind" : "devourer");
+
                     Speak(msg);
                 }
                 else
                 {
                     string msg = assurance[Main.rand.Next(3, 6)];
-                    int r = Main.rand.Next(5);
+                    int r = Main.rand.Next(9);
                     if (World.VerdantWorld.apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
                     if (World.VerdantWorld.apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
 
+                    if (r == 3)
+                    {
+                        if (NPC.downedBoss1)
+                            msg = "We feel an evil presense finally resting...";
+                        if (NPC.downedSlimeKing)
+                            msg = "Ah, the King of Slimes has been slain, wonderful...";
+                    }
+
                     Mod spiritMod = ModLoader.GetMod("SpiritMod");
-                    if (r == 3 && spiritMod != null) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
+                    if (r == 4 && spiritMod != null) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
                     {
                         if ((bool)spiritMod.Call("downed", "Scarabeus"))
                             msg = "The desert sands feel calmer now.";
@@ -109,18 +118,11 @@ namespace Verdant.Tiles.Verdant.Decor
                         if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
                             msg = "The flowers feel more relaxed now. Thank you.";
                         if ((bool)spiritMod.Call("downed", "Ancient Avian"))
-                            msg = "The skies are more now, spectactular.";
+                            msg = "The skies are more at peace now, spectactular.";
                         if ((bool)spiritMod.Call("downed", "Starplate Raider"))
                             msg = "We always had a soft spot for that glowing worm, but alas...";
                     }
 
-                    if (r == 4)
-                    {
-                        if (NPC.downedBoss1)
-                            msg = "We feel an evil presense finally resting...";
-                        if (NPC.downedSlimeKing)
-                            msg = "Ah, the King of Slimes has been slain, wonderful...";
-                    }
                     Speak(msg);
                 }
             }
@@ -137,10 +139,11 @@ namespace Verdant.Tiles.Verdant.Decor
             }
             if (speechType == 1 || speechType == 2)
             {
+                string chat = $"The Apotheosis: [c/509128:\"{msg}\"]";
                 if (Main.netMode == NetmodeID.Server) //MP compat :)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Apotheosis: [c/509128:\"" + msg + "\"]"), Color.White);
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(chat), Color.White);
                 else if (Main.netMode == NetmodeID.SinglePlayer)
-                    Main.NewText("The Apotheosis: [c/509128:\"" + msg + "\"]", Color.White);
+                    Main.NewText(chat, Color.White);
             }
             _timer = 0;
         }

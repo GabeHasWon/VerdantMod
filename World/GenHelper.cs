@@ -195,7 +195,7 @@ namespace Verdant.World
             return false;
         }
 
-        public static Point[] GetBezier(double[] orderedPositions, int fidelity = 30)
+        public static Point[] GetBezier(double[] orderedPositions)
         {
             const int POINTS_ON_CURVE = 100;
 
@@ -267,7 +267,7 @@ namespace Verdant.World
         /// <param name="width">X distance between the first point and the last point.</param>
         /// <param name="heightDifference">Y distance between the first point and the last point.</param>
         /// <param name="dip">How far down it dips.</param>
-        public static void GenBezier(int width, int heightDifference, int type = TileID.Grass, int dip = 15)
+        public static void GenBezier(int width, int type = TileID.Grass)
         {
             int height = Main.rand.Next(10, 20);
             int heightRand = Main.rand.Next(-7, 8);

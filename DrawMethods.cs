@@ -15,14 +15,7 @@ namespace Verdant
                 BackgroundItemManager.Draw();
         }
 
-        //private void Main_DrawPlayer(Main.orig_DrawPlayer orig, Terraria.Main self, Terraria.Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
-        //{
-        //    orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
-        //    if (shadow == 0 && Terraria.Main.playerLoaded && !Terraria.Main.gameMenu)
-        //        Foreground.ForegroundManager.Run();
-        //}
-
-        private void Main_DrawGore(On.Terraria.Main.orig_DrawGore orig, Terraria.Main self)
+        private void Main_DrawGore(Main.orig_DrawGore orig, Terraria.Main self)
         {
             orig(self);
             if (Terraria.Main.playerLoaded && !Terraria.Main.gameMenu)

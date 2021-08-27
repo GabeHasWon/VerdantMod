@@ -7,7 +7,7 @@ namespace Verdant.Foreground
 {
     public static class ForegroundManager
     {
-        private static List<ForegroundItem> items = new List<ForegroundItem>();
+        private static readonly List<ForegroundItem> items = new List<ForegroundItem>();
 
         public static void Run()
         {
@@ -28,9 +28,9 @@ namespace Verdant.Foreground
                 items.Remove(item);
         }
 
-        public static void Load(TagCompound info)
-        {
-        }
+        //public static void Load(TagCompound info)
+        //{
+        //}
 
         public static void Unload()
         {
