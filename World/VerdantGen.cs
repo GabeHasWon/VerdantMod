@@ -199,7 +199,7 @@ namespace Verdant.World
                     }
                     else //WAND chest
                     {
-                        bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
+                        bool c = PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
                             (ItemType<LushLeafWand>(), 1), (ItemType<PinkPetalWand>(), 1), (ItemType<RedPetalWand>(), 1), (ItemType<RedPetal>(), genRand.Next(19, 24)),
                             (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
 
@@ -250,7 +250,7 @@ namespace Verdant.World
 
         private void Vines()
         {
-            for (int i = 0; i < 130 * WorldSize; ++i)
+            for (int i = 0; i < 180 * WorldSize; ++i)
             {
                 Point rP = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
                 Point adj = GetRandomOpenAdjacent(rP.X, rP.Y);
@@ -261,47 +261,41 @@ namespace Verdant.World
                 }
                 Tile tile = Framing.GetTileSafely(rP.X, rP.Y);
 
-                if (tile.type == TileType<VerdantGrassLeaves>() || tile.type == TileType<LushSoil>())
+                if (tile.type == TileType<VerdantGrassLeaves>() || tile.type == TileType<LushSoil>() || tile.type == TileType<LivingLushWood>())
                 {
                     Point adjPos = rP.Add(adj);
                     Point end = adjPos.Add(adj);
+
                     while (true)
                     {
                         end = end.Add(adj);
                         if (Helper.SolidTile(end.X - adj.X, end.Y - adj.Y))
                             break;
                     }
-                    //end.Add(new Point(2, 1));
-                    int midPointY = ((adjPos.Y + end.Y) / 2) + Main.rand.Next(10, 20);
+                    
+                    int midPointY = ((adjPos.Y + end.Y) / 2) + genRand.Next(10, 20);
+                    int thickness = genRand.Next(1, 4);
 
                     if (genRand.Next(3) > 0)
                     {
-                        GenBezierDirectWall(new double[] {
-                            adjPos.X, adjPos.Y,
-                            ((adjPos.X + end.X) / 2), midPointY,
-                            end.X, end.Y,
-                        }, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
-                        GenBezierDirectWall(new double[] {
-                            adjPos.X, adjPos.Y - 1,
-                            ((adjPos.X + end.X) / 2), midPointY - 1,
-                            end.X, end.Y - 1,
-                        }, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
+                        for (int k = 0; k < thickness; ++k)
+                            GenBezierDirectWall(new double[] {
+                                adjPos.X, adjPos.Y - k,
+                                ((adjPos.X + end.X) / 2), midPointY - k,
+                                end.X, end.Y - k,
+                            }, 200, WallType<VerdantVineWall_Unsafe>(), true, 1);
                     }
                     else
                     {
-                        GenBezierDirect(new double[] {
-                            adjPos.X, adjPos.Y,
-                            ((adjPos.X + end.X) / 2), midPointY,
-                            end.X, end.Y,
-                        }, 200, TileType<VerdantLeaves>(), false, 1);
-                        GenBezierDirect(new double[] {
-                            adjPos.X, adjPos.Y - 1,
-                            ((adjPos.X + end.X) / 2), midPointY - 1,
-                            end.X, end.Y - 1,
-                        }, 200, TileType<VerdantLeaves>(), false, 1);
+                        for (int k = 0; k < thickness; ++k)
+                            GenBezierDirect(new double[] {
+                                adjPos.X, adjPos.Y - k,
+                                ((adjPos.X + end.X) / 2), midPointY - k,
+                                end.X, end.Y - k,
+                            }, 200, TileType<VerdantLeaves>(), false, 1);
                     }
                 }
-                else if (genRand.Next(2) == 0)
+                else if (genRand.Next(4) > 0)
                     i--;
             }
         }

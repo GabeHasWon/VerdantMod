@@ -101,7 +101,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 Main.spriteBatch.Draw(flameTexture, pos + new Vector2(-3, 2), new Rectangle(0, 0, 16, 16), new Color(100, 100, 100, 0), 0f, default, 1f, SpriteEffects.None, 0f);
             }
 
-            if (tile.frameX == 0 && tile.frameY == 0)
+            if (tile.frameX == 0 && tile.frameY == 0) //extra flame
             {
                 for (int c = 0; c < 7; c++)
                 {

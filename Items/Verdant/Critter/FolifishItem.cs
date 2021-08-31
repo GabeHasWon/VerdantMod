@@ -7,6 +7,6 @@ namespace Verdant.Items.Verdant.Critter
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Folifish");
         public override void SetDefaults() => QuickItem.SetCritter(this, 50, 34, ModContent.NPCType<NPCs.Passive.Folifish>(), 1, 13);
-        public override bool CanUseItem(Player player) => !Framing.GetTileSafely(Main.MouseWorld).active();
+        public override bool CanUseItem(Player player) => QuickItem.CanCritterSpawnCheck();
     }
 }

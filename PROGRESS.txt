@@ -113,9 +113,6 @@
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, PIANO, SINK
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), BED, CLOCK, DRESSER, CANDELABRA, SINK
 
-	PROJECTILES
-	- Verdant Wisp : Almost everything
-
 	MUSIC
 	- Unnamed Surface Day
 	- Unnamed Surface Night
@@ -137,6 +134,9 @@
 
 	FURNITURE
 	- Verdant/Marble Furniture
+
+	PROJECTILES
+	- Verdant Wisp : Almost everything
 
 	MARKETING
 	- Twitter.com account

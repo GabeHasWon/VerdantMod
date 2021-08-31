@@ -46,7 +46,9 @@ namespace Verdant.Items
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
-            //item.createTile = TileType<Apotheosis>();
+
+            item.createTile = TileType<DyeBulbs>();
+            item.placeStyle = 0;
         }
 
         public override void OnCraft(Recipe recipe)
@@ -58,7 +60,8 @@ namespace Verdant.Items
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
             Tile t = Framing.GetTileSafely(i, j);
-            Main.NewText(t.frameX + " " + t.frameY);
+            item.placeStyle = Main.rand.Next(2);
+            //Main.NewText(t.frameX + " " + t.frameY);
             //Tiles.Verdant.Trees.VerdantTree.Spawn(i, j, -1, Main.rand, 12, 19, true, -1, true);
 
             //Foreground.ForegroundManager.AddItem(new Foreground.Parallax.LushLeafFG(Main.MouseWorld));

@@ -46,13 +46,9 @@ namespace Verdant
         {
             List<Point> adjacents = new List<Point>();
             for (int l = -1; l < 1; ++l)
-            {
                 for (int k = -1; k < 1; ++k)
-                {
                     if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
                         adjacents.Add(new Point(l, k));
-                }
-            }
             if (adjacents.Count > 0)
                 return adjacents[genRand.Next(adjacents.Count)];
             return new Point(-2, -2);
@@ -82,32 +78,21 @@ namespace Verdant
         {
             int count = 0;
             for (int l = i; l < i + w; ++l)
-            {
                 for (int k = j; k < j + h; ++k)
-                {
                     if (Framing.GetTileSafely(l, k).active() && types.Any(x => x == Framing.GetTileSafely(l, k).type))
                         count++;
-                }
-            }
             return count;
         }
 
-        public static bool AreaClear(int i, int j, int w, int h)
-        {
-            return AnyTileRectangle(i, j, w, h) == 0;
-        }
+        public static bool AreaClear(int i, int j, int w, int h) => AnyTileRectangle(i, j, w, h) == 0;
 
         public static int WallRectangle(int i, int j, int w, int h)
         {
             int count = 0;
             for (int l = i; l < i + w; ++l)
-            {
                 for (int k = j; k < j + h; ++k)
-                {
                     if (Main.tile[l, k].wall != WallID.None)
                         count++;
-                }
-            }
             return count;
         }
 
@@ -120,28 +105,19 @@ namespace Verdant
         {
             int count = 0;
             for (int l = i; l < i + w; ++l)
-            {
                 for (int k = j; k < j + h; ++k)
-                {
                     if (Main.tile[l, k].wall != WallID.None && Main.tile[l, k].wall == type)
                         count++;
-                }
-            }
             return count;
         }
 
-        public static bool WalledSquareType(int i, int j, int w, int h, int type)
-        {
-            return WallRectangle(i, j, w, h) == w * h && WalledType(i, j, w, h, type) == w * h;
-        }
+        public static bool WalledSquareType(int i, int j, int w, int h, int type) => WallRectangle(i, j, w, h) == w * h && WalledType(i, j, w, h, type) == w * h;
 
         public static int FindDown(Vector2 worldPos)
         {
             Point tPos = (worldPos / 16).ToPoint();
             while (!Main.tile[tPos.X, tPos.Y].active() || !Main.tileSolid[Main.tile[tPos.X, tPos.Y].type])
-            {
                 tPos.Y++;
-            }
             return tPos.Y;
         }
 

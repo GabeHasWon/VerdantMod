@@ -56,7 +56,7 @@ namespace Verdant.World
         {
             TileObjectData data = TileObjectData.GetTileData(type, style); //Get data
 
-            if ((position.X + data.Width > Main.maxTilesX || position.X < 0) || (position.Y + data.Height > Main.maxTilesY || position.Y < 0)) return; //Check position
+            if (position.X + data.Width > Main.maxTilesX || position.X < 0 || position.Y + data.Height > Main.maxTilesY || position.Y < 0) return; //Check position
 
             int xVar = 0;
             int yVar = 0;
@@ -68,6 +68,7 @@ namespace Verdant.World
                 for (int y = 0; y < data.Height; y++) //Row
                 {
                     Tile tile = Framing.GetTileSafely(position.X + x, position.Y + y); //get the targeted tile
+
                     tile.type = (ushort)type; //set the type of the tile to our multitile
 
                     tile.frameX = (short)((x + (data.Width * xVar)) * (data.CoordinateWidth + data.CoordinatePadding)); //set the X frame appropriately
@@ -157,6 +158,8 @@ namespace Verdant.World
 
                     if (noTypeRepeat && usedTypes.Contains(itemType))
                         goto repeat;
+
+                    usedTypes.Add(itemType);
 
                     Main.chest[ChestIndex].item[i + 1].SetDefaults(itemType);
                     Main.chest[ChestIndex].item[i + 1].stack = itemStack;

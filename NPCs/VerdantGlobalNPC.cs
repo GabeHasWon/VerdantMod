@@ -16,7 +16,7 @@ namespace Verdant.NPCs
             if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
                 pool[NPCID.MotherSlime] = 0f; //no
-                pool[NPCID.CaveBat] = 0f; //on second thought, no
+                pool[NPCID.CaveBat] = 0f; //also no
                 int[] skeletons = new int[] { NPCID.Skeleton, NPCID.HeadacheSkeleton, NPCID.SkeletonAlien, NPCID.SkeletonAstonaut, NPCID.SkeletonTopHat, NPCID.MisassembledSkeleton, NPCID.PantlessSkeleton,
                     NPCID.BoneThrowingSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.BoneThrowingSkeleton3, NPCID.BoneThrowingSkeleton4 };
                 foreach (var i in skeletons) pool[i] = 0f; //stupid fr*cking skeletons
@@ -39,12 +39,12 @@ namespace Verdant.NPCs
             else if (npc.type == NPCID.Dryad) //loves the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = $"I love this overgrown land. The world is powerful here.";
+                    chat = "I love this overgrown land. The world is powerful here.";
             }
             else if (npc.type == NPCID.Stylist) //hates the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = $"The air is WAY too humid here, my hair's frizzing up so much.";
+                    chat = "The air is WAY too humid here, my hair's frizzing up so much.";
             }
             else if (npc.type == NPCID.WitchDoctor) //likes the verdant
             {
@@ -52,20 +52,22 @@ namespace Verdant.NPCs
                 {
                     int rand = Main.rand.Next(6);
                     if (rand == 0)
-                        chat = $"The energy in in the flowers here...it flows powerfully.";
+                        chat = "The energy in in the flowers here...it flows powerfully.";
                     else if (rand == 1)
-                        chat = $"I sense an ancient power within the leaves and vines.";
+                        chat = "I sense an ancient power within the leaves and vines.";
                 }
             }
             else if (npc.type == NPCID.DyeTrader) //loves the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = $"Now THIS is a sight! What beautiful colours these flowers have!";
+                    chat = "Now THIS is a sight! What beautiful colours these flowers have!";
             }
             else if (npc.type == NPCID.TaxCollector) //hates the verdant
             {
-                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = $"Bah! These leaves keep on getting in the house. Take them away for me!";
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
+                    chat = "Bah! These leaves keep on getting in the house. Clean them up for me!";
+                else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
+                    chat = "Those bright flowers are getting on my nerve! Keep your blasted glow out of my sight!";
             }
         }
 

@@ -17,7 +17,7 @@ namespace Verdant.Items
             i.Tooltip.SetDefault(tooltip);
         }
 
-        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true)
+        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White)
         {
             i.item.width = w;
             i.item.height = h;
@@ -30,6 +30,10 @@ namespace Verdant.Items
             i.item.maxStack = 999;
             i.item.useStyle = ItemUseStyleID.SwingThrow;
             i.item.consumable = consumable;
+            i.item.rare = rarity;
+
+            if (placeStyle != -1)
+                i.item.placeStyle = placeStyle;
         }
 
         public static void SetWall(ModItem i, int w, int h, int wall, bool consumable = true)
@@ -158,5 +162,17 @@ namespace Verdant.Items
             r.SetResult(item, resultStack);
             r.AddRecipe();
         }
+
+        public static void AddRecipe(int id, Mod mod, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
+        {
+            ModRecipe r = new ModRecipe(mod);
+            for (int i = 0; i < ingredients.Length; ++i)
+                r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);
+            if (tile != -1) r.AddTile(tile);
+            r.SetResult(id, resultStack);
+            r.AddRecipe();
+        }
+
+        public static bool CanCritterSpawnCheck() => !Framing.GetTileSafely(Main.MouseWorld).active() || !Main.tileSolid[Framing.GetTileSafely(Main.MouseWorld).type];
     }
 }
