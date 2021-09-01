@@ -9,6 +9,7 @@ namespace Verdant.Items.Verdant.Blocks
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cillo Lily", "'A wonderfully bright colour!'\nUsed to make Pink Dye");
         public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<Tiles.Verdant.Basic.Plants.DyeBulbs>(), true, 0, ItemRarityID.Blue);
         public override void AddRecipes() => QuickItem.AddRecipe(ItemID.PinkDye, mod, TileID.DyeVat, 1, (ModContent.ItemType<PinkDyeBulb>(), 1));
+        public override void ModifyTooltips(List<TooltipLine> tooltips) => tooltips.RemoveAll(x => x.mod == "Terraria" && x.Name == "Material");
     }
 
     public class RedDyeBulb : ModItem
