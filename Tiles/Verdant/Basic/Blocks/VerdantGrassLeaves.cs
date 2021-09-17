@@ -72,7 +72,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //decor 2x2
             if (Main.rand.Next(15) == 0 && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
             {
-                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor2x2>(), true, false, -1, Main.rand.Next(6));
+                WorldGen.PlaceTile(i, j - 2, TileType<VerdantDecor2x2>(), true, false, -1, Main.rand.Next(8));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }
@@ -86,7 +86,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //decor 1x3
             if (Main.rand.Next(8) == 0 && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 3, 1, 3))
             {
-                WorldGen.PlaceTile(i, j - 3, TileType<VerdantDecor1x3>(), true, false, -1, Main.rand.Next(6));
+                WorldGen.PlaceTile(i, j - 3, TileType<VerdantDecor1x3>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
             }

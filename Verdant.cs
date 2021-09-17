@@ -38,14 +38,32 @@ namespace Verdant
             OnHooks();
         }
 
+        public override void Unload()
+        {
+            ForegroundManager.Unload();
+            VerdantPlayer.Unload();
+            VerdantWorld.Unload();
+            UnHookOn();
+
+            Instance = null;
+        }
+
         private void OnHooks()
         {
             On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.DrawWater += Main_DrawWater;
-            //On.Terraria.Main.DrawPlayer += Main_DrawPlayer; //ForegroundItem hook
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
-            On.Terraria.Main.DrawGore += Main_DrawGore;
+            On.Terraria.Main.DrawGore += Main_DrawGore; //ForegroundItem hook
+        }
+
+        private void UnHookOn()
+        {
+            On.Terraria.Main.DrawBackgroundBlackFill -= Main_DrawBackgroundBlackFill; //do I have to unhook this? maybe. do I do it anyway? yes
+            On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
+            On.Terraria.Main.DrawWater -= Main_DrawWater;
+            On.Terraria.Main.Update -= Main_Update;
+            On.Terraria.Main.DrawGore -= Main_DrawGore; //ForegroundItem hook
         }
 
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
@@ -77,29 +95,10 @@ namespace Verdant
             return orig(i, y);
         }
 
-        public override void Unload()
-        {
-            ForegroundManager.Unload();
-            VerdantPlayer.Unload();
-            VerdantWorld.Unload();
-            UnHookOn();
-
-            Instance = null;
-        }
-
         public override void AddRecipeGroups()
         {
             RecipeGroup woodGrp = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Wood"]];
             woodGrp.ValidItems.Add(ModContent.ItemType<VerdantWoodBlock>());
-        }
-
-        private void UnHookOn()
-        {
-            On.Terraria.Main.DrawBackgroundBlackFill -= Main_DrawBackgroundBlackFill; //do I have to unhook this? maybe. do I do it anyway? yes
-            On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
-            On.Terraria.Main.DrawWater -= Main_DrawWater;
-            //On.Terraria.Main.DrawPlayer -= Main_DrawPlayer;
-            On.Terraria.Main.Update -= Main_Update;
         }
 
         public override void UpdateMusic(ref int music, ref MusicPriority priority)

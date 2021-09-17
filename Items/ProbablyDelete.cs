@@ -74,6 +74,7 @@ namespace Verdant.Items
 
             //BackgroundItemManager.AddItem(new LushBushBG(Main.MouseWorld));
             //Point16 pos = new Point16(i, j);
+            Point16 pos = Helper.MouseTile().ToVector2().ToPoint16();
 
             //int index = Main.rand.Next(2);
 
@@ -88,19 +89,19 @@ namespace Verdant.Items
             //if (false) //NORMAL chests
             //{
             //    //WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
-            //    bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), new (int, int)[]
-            //    {
-            //                (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
-            //    }, new (int, int)[] {
-            //                (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
-            //                (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
-            //                (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
-            //                (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
-            //                (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
-            //    }, true, genRand, genRand.Next(4, 7), 0, true);
+            bool c = GenHelper.PlaceChest(pos.X, pos.Y, TileType<VerdantYellowPetalChest>(), new (int, int)[]
+            {
+                            (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
+            }, new (int, int)[] {
+                            (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
+                            (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
+                            (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
+                            (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
+                            (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
+            }, true, null, genRand.Next(4, 7), 0, true);
 
-            //    if (!c)
-            //        Main.NewText("Failed to place Verdant Yellow Petal Chest.");
+            if (!c)
+                Main.NewText("Failed to place Verdant Yellow Petal Chest.");
             //}
             //else //WAND chest
             //{

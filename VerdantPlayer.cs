@@ -1,10 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Verdant.Backgrounds.BGItem;
@@ -67,12 +64,6 @@ namespace Verdant
             return null;
         }
 
-        public override void UpdateBiomeVisuals()
-        {
-            //VerdantPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<VerdantPlayer>();
-            //player.ManageSpecialBiomeVisuals("Verdant:Verdant", modPlayer.ZoneVerdant && !Main.dayTime);
-        }
-
         public override TagCompound Save()
         {
             return new TagCompound {
@@ -80,10 +71,7 @@ namespace Verdant
             };
         }
 
-        public override void Load(TagCompound tag)
-        {
-            heartOfGrowth = tag.GetBool("heartOfGrowth");
-        }
+        public override void Load(TagCompound tag) => heartOfGrowth = tag.GetBool("heartOfGrowth");
 
         public static void Unload()
         {
@@ -94,10 +82,7 @@ namespace Verdant
             PreUpdateEvent = null;
         }
 
-        public override void OnRespawn(Player player)
-        {
-            OnRespawnEvent?.Invoke(player);
-        }
+        public override void OnRespawn(Player player) => OnRespawnEvent?.Invoke(player);
 
         public override void PreUpdate()
         {
@@ -138,10 +123,7 @@ namespace Verdant
                 UpdateBGItems();
         }
 
-        public override void PostUpdateMiscEffects()
-        {
-            lastSlotsMinion = player.slotsMinions;
-        }
+        public override void PostUpdateMiscEffects() => lastSlotsMinion = player.slotsMinions;
 
         private void TileFloor(Point left, Point right, int lType, int rType)
         {
@@ -211,10 +193,6 @@ namespace Verdant
                     ForegroundManager.AddItem(new LushLeafFG(pos));
                 }
             }
-        }
-
-        public override void PostUpdate()
-        {
         }
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)

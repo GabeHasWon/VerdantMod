@@ -50,6 +50,7 @@ namespace Verdant.NPCs.Enemy
                     babies[i] = n;
                 }
                 npc.ai[0] = 1;
+                npc.netUpdate = true;   
             }
             else if (npc.ai[0] == 1)
             {
@@ -66,6 +67,7 @@ namespace Verdant.NPCs.Enemy
                     npc.ai[1] = 0;
                     npc.ai[2] = 0;
                     npc.ai[3] = 0;
+                    npc.netUpdate = true;
                 }
                 else //Idle
                 {
@@ -74,6 +76,7 @@ namespace Verdant.NPCs.Enemy
                     {
                         npc.ai[2] = npc.position.X + Main.rand.Next(70, 170) * (Main.rand.Next(2) == 0 ? -1 : 1);
                         npc.ai[3] = npc.position.Y + Main.rand.Next(70, 170) * (Main.rand.Next(2) == 0 ? -1 : 1);
+                        npc.netUpdate = true;
                     }
 
                     if (Vector2.Distance(npc.position, new Vector2(npc.ai[2], npc.ai[3])) < 20)
@@ -81,6 +84,7 @@ namespace Verdant.NPCs.Enemy
                         npc.ai[1] = 0;
                         npc.ai[2] = 0;
                         npc.ai[3] = 0;
+                        npc.netUpdate = true;
                     }
 
                     if (npc.ai[2] != 0) npc.velocity = Vector2.Normalize(new Vector2(npc.ai[2], npc.ai[3]) - npc.position) * 2.5f;
@@ -124,6 +128,8 @@ namespace Verdant.NPCs.Enemy
             {
                 Main.npc[babies[i]].ai[0] = 0;
                 Main.npc[babies[i]].ai[1] = 60;
+                Main.npc[babies[i]].netUpdate = true;
+                npc.netUpdate = true;
             }
             return true;
         }

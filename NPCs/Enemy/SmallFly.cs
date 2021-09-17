@@ -50,6 +50,7 @@ namespace Verdant.NPCs.Enemy
                         Vector2 offset = -Vector2.Normalize(target.position - npc.position) * (Main.rand.Next(120, 200));
                         npc.ai[2] = npc.position.X + offset.X;
                         npc.ai[3] = npc.position.Y + offset.Y;
+                        npc.netUpdate = true;
                     }
                 }
 

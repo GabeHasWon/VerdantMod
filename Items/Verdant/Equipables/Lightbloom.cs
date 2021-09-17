@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Verdant.Items.Verdant.Equipables
 {
@@ -35,8 +34,10 @@ namespace Verdant.Items.Verdant.Equipables
             {
                 for (int i = 0; i < val; ++i)
                 {
-                    Vector2 pos = player.Center + new Vector2(50, 0).RotatedByRandom(MathHelper.TwoPi);
-                    Dust d = Dust.NewDustPerfect(pos, 59, Vector2.Normalize(player.Center - pos) * 2.5f, 0, default, 0.12f);
+                    float magnitude = Main.rand.NextFloat(0.25f, 4);
+
+                    Vector2 pos = player.Center + new Vector2(50 * magnitude, 0).RotatedByRandom(MathHelper.TwoPi);
+                    Dust d = Dust.NewDustPerfect(pos, 59, Vector2.Normalize(player.Center - pos) * 2.5f * magnitude, 0, default, 0.12f);
                     d.fadeIn = 1.14f;
                     d.noLight = true;
                     d.noGravity = true;

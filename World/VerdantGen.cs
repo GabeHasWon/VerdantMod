@@ -300,34 +300,6 @@ namespace Verdant.World
             }
         }
 
-        private void GenerateCircles()
-        {
-            Point pos = new Point(VerdantCentre.X - (int)(140 * WorldSize), VerdantCentre.Y);
-
-            VerdantCircles.Clear();
-            for (int i = (int)(-3 * WorldSize); i < 4 * WorldSize; ++i)
-            {
-                bool smol = i < -2 || i > 2;
-                int r = (int)(genRand.Next(MinRad, MaxRad) * WorldSize * (smol ? 0.8f : 1f));
-                Point p = new Point(pos.X + (i * 75), pos.Y + genRand.Next(-50, 50));
-                VerdantCircles.Add(new GenCircle(r, p));
-            }
-
-            for (int i = 0; i < VerdantCircles.Count; ++i)
-            {
-                VerdantCircles[i].Gen();
-                if (VerdantArea.X == 0 || VerdantCircles[i].pos.X - VerdantCircles[i].rad < VerdantArea.X)
-                    VerdantArea.X = VerdantCircles[i].pos.X - VerdantCircles[i].rad - 10;
-                if (VerdantArea.Right == 0 || VerdantCircles[i].pos.X + VerdantCircles[i].rad > VerdantArea.Right)
-                    VerdantArea.Width = (VerdantCircles[i].pos.X + VerdantCircles[i].rad + 10) - VerdantArea.X;
-
-                if (VerdantArea.Y == 0 || VerdantCircles[i].pos.Y - VerdantCircles[i].rad < VerdantArea.Y)
-                    VerdantArea.Y = VerdantCircles[i].pos.Y - VerdantCircles[i].rad - 10;
-                if (VerdantArea.Bottom == 0 || VerdantCircles[i].pos.Y + VerdantCircles[i].rad > VerdantArea.Bottom)
-                    VerdantArea.Height = (VerdantCircles[i].pos.Y + VerdantCircles[i].rad + 10) - VerdantArea.Y;
-            }
-        }
-
         private void AddPlants()
         {
             for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
@@ -348,7 +320,7 @@ namespace Verdant.World
 
                     if (!TileEmpty(i, j - 2))
                         doPlace = false;
-                    
+
                     if (doPlace && genRand.NextBool(30))
                         VerdantTree.Spawn(i, j - 1, -1, genRand, 4, 12, false, -1, false);
                 }
@@ -416,6 +388,34 @@ namespace Verdant.World
                         continue;
                     }
                 }
+            }
+        }
+
+        private void GenerateCircles()
+        {
+            Point pos = new Point(VerdantCentre.X - (int)(140 * WorldSize), VerdantCentre.Y);
+
+            VerdantCircles.Clear();
+            for (int i = (int)(-3 * WorldSize); i < 4 * WorldSize; ++i)
+            {
+                bool smol = i < -2 || i > 2;
+                int r = (int)(genRand.Next(MinRad, MaxRad) * WorldSize * (smol ? 0.8f : 1f));
+                Point p = new Point(pos.X + (i * 75), pos.Y + genRand.Next(-50, 50));
+                VerdantCircles.Add(new GenCircle(r, p));
+            }
+
+            for (int i = 0; i < VerdantCircles.Count; ++i)
+            {
+                VerdantCircles[i].Gen();
+                if (VerdantArea.X == 0 || VerdantCircles[i].pos.X - VerdantCircles[i].rad < VerdantArea.X)
+                    VerdantArea.X = VerdantCircles[i].pos.X - VerdantCircles[i].rad - 10;
+                if (VerdantArea.Right == 0 || VerdantCircles[i].pos.X + VerdantCircles[i].rad > VerdantArea.Right)
+                    VerdantArea.Width = (VerdantCircles[i].pos.X + VerdantCircles[i].rad + 10) - VerdantArea.X;
+
+                if (VerdantArea.Y == 0 || VerdantCircles[i].pos.Y - VerdantCircles[i].rad < VerdantArea.Y)
+                    VerdantArea.Y = VerdantCircles[i].pos.Y - VerdantCircles[i].rad - 10;
+                if (VerdantArea.Bottom == 0 || VerdantCircles[i].pos.Y + VerdantCircles[i].rad > VerdantArea.Bottom)
+                    VerdantArea.Height = (VerdantCircles[i].pos.Y + VerdantCircles[i].rad + 10) - VerdantArea.Y;
             }
         }
 
