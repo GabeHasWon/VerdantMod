@@ -110,7 +110,7 @@ namespace Verdant
             Point left = player.TileCoordsBottomLeft();
             Point right = player.TileCoordsBottomRight();
 
-            if (player.velocity.Y >= 0 && (Helper.SolidTopTile(left.X, left.Y) || Helper.SolidTopTile(right.X, right.Y)))
+            if (player.whoAmI == Main.myPlayer && player.velocity.Y >= 0 && (Helper.SolidTopTile(left.X, left.Y) || Helper.SolidTopTile(right.X, right.Y)))
                 TileFloor(left, right, Framing.GetTileSafely(left.X, left.Y).type, Framing.GetTileSafely(right.X, right.Y).type);
 
             if (player.HeldItem.type == ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>())

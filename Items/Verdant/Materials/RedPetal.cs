@@ -25,7 +25,7 @@ namespace Verdant.Items.Verdant.Materials
                 item.velocity.X = (float)-Math.Sin(updateCounter++ * 0.03f) * 1.15f * item.velocity.Y * (1 - (item.stack / 999f));
 
             gravity = 0.09f;
-            maxFallSpeed = 0.10f;
+            maxFallSpeed = 0.8f;
         }
     }
 }

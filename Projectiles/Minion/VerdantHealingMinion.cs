@@ -81,9 +81,7 @@ namespace Verdant.Projectiles.Minion
             {
                 projectile.velocity = -Vector2.Normalize(projectile.position - goPosition) * 22;
                 if (Vector2.Distance(projectile.position, goPosition) < 120)
-                {
                     goPosition = -Vector2.One;
-                }
             }
 
             projectile.velocity *= 0.85f;
@@ -116,9 +114,11 @@ namespace Verdant.Projectiles.Minion
         {
             Texture2D circle = ModContent.GetTexture("Verdant/Projectiles/Minion/VerdantHealingCircle");
             float sc = 1.9f - (float)(Math.Sin(timer * 0.03f) * 0.05f);
-            off = new Vector2(0, (float)(Math.Sin(timer * 0.03f) * 6));
             float alphaScale = (sc - 1.78f) * 8;
             Color circleCol = projectile.GetAlpha(lightColor) * alphaScale;
+
+            off = new Vector2(0, (float)(Math.Sin(timer * 0.03f) * 6));
+
             spriteBatch.Draw(circle, projectile.Center - Main.screenPosition - off, circle.Frame(), circleCol, timer * 0.006f, circle.Bounds.Center.ToVector2(), sc * scale, SpriteEffects.None, 1f);
             if (alphaScale > 0.95f)
             {
