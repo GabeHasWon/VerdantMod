@@ -14,6 +14,7 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Effects\Screen\" />
     <Folder Include="Foreground\Textures\" />
     <Folder Include="Noise\" />
   </ItemGroup>

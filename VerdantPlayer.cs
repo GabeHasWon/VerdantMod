@@ -199,6 +199,7 @@ namespace Verdant
         {
             if (junk && player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 junk = Main.rand.Next(7) < 2; //verdant is not as trashy
+
             if (junk) return;
 
             if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))

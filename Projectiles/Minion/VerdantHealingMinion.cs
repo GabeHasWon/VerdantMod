@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,10 +24,7 @@ namespace Verdant.Projectiles.Minion
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
-        public override bool? CanCutTiles()
-        {
-            return false;
-        }
+        public override bool? CanCutTiles() => false;
 
         public override void SetDefaults()
         {
@@ -104,7 +102,7 @@ namespace Verdant.Projectiles.Minion
                 for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                 {
                     Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / projectile.oldPos.Length);
-                    spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition - off + new Vector2(24), proj.Frame(2, 1, projectile.frame), color, 0f, new Vector2(24), 1f * scale, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition - off + new Vector2(24), proj.Frame(2, 1, projectile.frame), color, 0f, new Vector2(24), scale, SpriteEffects.None, 1f);
                 }
             }
             return false;
@@ -112,7 +110,7 @@ namespace Verdant.Projectiles.Minion
 
         private void DrawCircle(SpriteBatch spriteBatch, Color lightColor, float scale, out Vector2 off)
         {
-            Texture2D circle = ModContent.GetTexture("Verdant/Projectiles/Minion/VerdantHealingCircle");
+            Texture2D circle = ModContent.GetTexture("Verdant/Projectiles/Minion/VerdantHealingCircle"); Sandstorm.TimeLeft = 1800;
             float sc = 1.9f - (float)(Math.Sin(timer * 0.03f) * 0.05f);
             float alphaScale = (sc - 1.78f) * 8;
             Color circleCol = projectile.GetAlpha(lightColor) * alphaScale;

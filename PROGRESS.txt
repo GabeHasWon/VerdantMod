@@ -110,7 +110,7 @@
 	- Little overgrown telltale structure on surface above Verdant
 
 	BLOCKS [ITEMS]
-	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, PIANO, SINK
+	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER, PIANO
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: PLATFORM(?), BED, CLOCK, DRESSER, CANDELABRA, SINK
 
 	MUSIC

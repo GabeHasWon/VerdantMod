@@ -21,9 +21,7 @@ namespace Verdant.Tiles
         {
             int[] requireGroundTypes = new int[] { TileType<VerdantTree>(), TileType<Apotheosis>() };
             if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
-            {
                 return false;
-            }
             return true;
         }
 
@@ -31,9 +29,7 @@ namespace Verdant.Tiles
         {
             int[] requireGroundTypes = new int[] { TileType<VerdantTree>(), TileType<Apotheosis>() };
             if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
-            {
                 return false;
-            }
             return true;
         }
 

@@ -65,7 +65,7 @@ namespace Verdant.NPCs
             else if (npc.type == NPCID.TaxCollector) //hates the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                    chat = "Bah! These leaves keep on getting in the house. Clean them up for me!";
+                    chat = "Bah! These leaves keep on getting in the house. Have someone clean them up for me!";
                 else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
                     chat = "Those bright flowers are getting on my nerve! Keep your blasted glow out of my sight!";
             }
