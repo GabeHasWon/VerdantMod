@@ -37,10 +37,6 @@ namespace Verdant.Items
             item.placeStyle = 0;
         }
 
-        public override void OnCraft(Recipe recipe)
-        {
-        }
-
         public override bool UseItem(Player player)
         {
             int i = Helper.MouseTile().X;
@@ -48,58 +44,6 @@ namespace Verdant.Items
             Tile t = Framing.GetTileSafely(i, j);
             item.placeStyle = Main.rand.Next(2);
 
-            new MarbleBiome().Place(new Point(i, j), structures);
-            //Main.NewText(t.frameX + " " + t.frameY);
-            //Tiles.Verdant.Trees.VerdantTree.Spawn(i, j, -1, Main.rand, 12, 19, true, -1, true);
-
-            //Foreground.ForegroundManager.AddItem(new Foreground.Parallax.LushLeafFG(Main.MouseWorld));
-
-            //Main.NewText($"RightSlope: {t.rightSlope()}");
-            //Main.NewText($"LeftSlope: {t.leftSlope()}");
-            //Main.NewText($"TopSlope: {t.topSlope()}");
-            //Main.NewText($"BottomSlope: {t.bottomSlope()}");
-            //Main.NewText("---");
-
-            //BackgroundItemManager.AddItem(new LushBushBG(Main.MouseWorld));
-            //Point16 pos = new Point16(i, j);
-            //Point16 pos = Helper.MouseTile().ToVector2().ToPoint16();
-
-            //int index = Main.rand.Next(2);
-
-            //Point[] offsets = new Point[2] { new Point(5, 5), new Point(6, 5) };
-            //int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick };
-            //int[] valids = new int[] { TileType<VerdantSoilGrass>(), TileType<LushSoil>() };
-
-            //StructureHelper.StructureHelper.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
-
-            ////GenHelper.KillRectangle(pos.X + offsets[index].X, pos.Y + offsets[index].Y, 2, 2);
-
-            //if (false) //NORMAL chests
-            //{
-            //    //WorldGen.PlaceTile(pos.X + offsets[index].X, pos.Y + offsets[index].Y, TileID.Meteorite);
-            //bool c = GenHelper.PlaceChest(pos.X, pos.Y, TileType<VerdantYellowPetalChest>(), new (int, int)[]
-            //{
-            //                (ItemType<VerdantStaff>(), 1), (ItemType<VerdantSnailStaff>(), 1), (ItemType<Lightbloom>(), 1)
-            //}, new (int, int)[] {
-            //                (ItemID.IronskinPotion, genRand.Next(1, 3)), (ItemID.ThornsPotion, genRand.Next(1, 3)), (ItemID.ThrowingKnife, genRand.Next(3, 7)),
-            //                (ItemType<PinkPetal>(), genRand.Next(3, 7)), (ItemType<RedPetal>(), genRand.Next(3, 7)), (ItemType<Lightbulb>(), genRand.Next(1, 3)),
-            //                (ItemID.Dynamite, 1), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Glowstick, genRand.Next(3, 8)), (ItemID.Bomb, genRand.Next(2, 4)),
-            //                (ItemID.NightOwlPotion, genRand.Next(2, 4)), (ItemID.HealingPotion, genRand.Next(2, 4)), (ItemID.MoonglowSeeds, genRand.Next(2, 4)),
-            //                (ItemID.DaybloomSeeds, genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, genRand.Next(2, 4))
-            //}, true, null, genRand.Next(4, 7), 0, true);
-
-            //if (!c)
-            //    Main.NewText("Failed to place Verdant Yellow Petal Chest.");
-            //}
-            //else //WAND chest
-            //{
-            //    bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, TileType<VerdantYellowPetalChest>(), 0, false,
-            //        (ItemType<LushLeafWand>(), 1), (ItemType<PinkPetalWand>(), 1), (ItemType<RedPetalWand>(), 1), (ItemType<LushLeaf>(), genRand.Next(20, 34)),
-            //        (ItemType<PinkPetal>(), genRand.Next(19, 24)), (ItemType<RedPetal>(), genRand.Next(15, 23)), (ItemType<VerdantFlowerBulb>(), genRand.Next(12, 22)));
-
-            //    if (!c)
-            //        Main.NewText("Failed to place Verdant Yellow Petal Chest. [WAND]");
-            //}
             return true;
         }
     }

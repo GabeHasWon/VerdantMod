@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Fishing
@@ -22,12 +21,11 @@ namespace Verdant.Items.Verdant.Fishing
         }
 
         public override bool IsQuestFish() => true;
-
         public override bool IsAnglerQuestAvailable() => true;
 
         public override void AnglerQuestChat(ref string description, ref string catchLocation)
         {
-            description = "Oh hey there minio- uh, I mean, friend. I've been hearing that there's this cool, like, shellfish in the growy caves. Go get me one!";
+            description = "Oh hey there minio- uh, I mean, friend. I've been hearing that there's this cool, like, shellfish in the growy caves. I want one. Go get me one!";
             catchLocation = "Caught in the Verdant.";
         }
     }

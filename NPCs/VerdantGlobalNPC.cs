@@ -34,7 +34,7 @@ namespace Verdant.NPCs
                 if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown && Main.rand.NextBool(4))
                     chat = "I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?";
                 if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown && Main.rand.NextBool(4))
-                    chat = "I hear another faint voice coming from the lush caves. Take a look there.";
+                    chat = "I hear another, stronger, voice coming from the lush caves. Take a look there.";
             }
             else if (npc.type == NPCID.Dryad) //loves the verdant
             {
@@ -59,15 +59,24 @@ namespace Verdant.NPCs
             }
             else if (npc.type == NPCID.DyeTrader) //loves the verdant
             {
-                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "Now THIS is a sight! What beautiful colours these flowers have!";
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+                {
+                    int rand = Main.rand.Next(6);
+                    if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && rand == 0)
+                        chat = "Now THIS is a sight! What beautiful colours these flowers have!";
+                    else if (rand == 1)
+                        chat = "The glow of these bulbs...spectacular....";
+                }
             }
             else if (npc.type == NPCID.TaxCollector) //hates the verdant
             {
-                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                    chat = "Bah! These leaves keep on getting in the house. Have someone clean them up for me!";
-                else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                    chat = "Those bright flowers are getting on my nerve! Keep your blasted glow out of my sight!";
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+                {
+                    if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
+                        chat = "Bah! These leaves keep on getting in the house. Have someone clean them up for me!";
+                    else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
+                        chat = "Those bright flowers are getting on my nerve! Keep your blasted glow out of my sight!";
+                }
             }
         }
 

@@ -10,6 +10,9 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.World;
 using Verdant.World.Biome;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
+using Verdant.Effects;
 
 namespace Verdant
 {
@@ -32,8 +35,14 @@ namespace Verdant
 
         public override void Load()
         {
-            //Filters.Scene["Verdant:Verdant"] = new Filter(new VerdantScreenShaderData("FilterMiniTower").UseColor(0.0f, 1f, 0.0f).UseOpacity(0.01f), EffectPriority.VeryHigh); //Verdant Green shader
             SkyManager.Instance["Verdant:Verdant"] = new VerdantSky();
+
+            if (!Main.dedServ)
+            {
+                Ref<Effect> filterRef = new Ref<Effect>(GetEffect("Effects/Screen/SteamEffect"));
+                Filters.Scene[EffectIDs.BiomeSteam] = new Filter(new ScreenShaderData(filterRef, "Steam"), EffectPriority.VeryHigh);
+                Filters.Scene[EffectIDs.BiomeSteam].Load();
+            }
 
             OnHooks();
         }
@@ -63,7 +72,7 @@ namespace Verdant
             On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
             On.Terraria.Main.DrawWater -= Main_DrawWater;
             On.Terraria.Main.Update -= Main_Update;
-            On.Terraria.Main.DrawGore -= Main_DrawGore; //ForegroundItem hook
+            On.Terraria.Main.DrawGore -= Main_DrawGore;
         }
 
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)

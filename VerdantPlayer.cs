@@ -2,10 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Backgrounds.BGItem.Verdant;
+using Verdant.Effects;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Fishing;
@@ -22,6 +24,9 @@ namespace Verdant
         public bool heartOfGrowth = false;
 
         public float lastSlotsMinion = 0;
+
+        private float _steamIntensity = 1f;
+        private float _steamProgress = 0f;
 
         public delegate void FloorVisual(Player p, int type);
         public static event FloorVisual FloorVisualEvent;
@@ -231,6 +236,39 @@ namespace Verdant
             VerdantPlayer modOther = other.GetModPlayer<VerdantPlayer>();
             modOther.ZoneVerdant = ZoneVerdant;
             modOther.ZoneApotheosis = ZoneApotheosis;
+        }
+
+        public override void UpdateBiomeVisuals()
+        {
+            if (!Filters.Scene[EffectIDs.BiomeSteam].Active)
+            {
+                if (ZoneVerdant && player.position.Y / 16f > Main.worldSurface)
+                {
+                    Filters.Scene.Activate(EffectIDs.BiomeSteam, Vector2.Zero); //idk why I need to use UseImage twice but it works so I aint gonna complain
+                    Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(mod.GetTexture("Effects/Screen/Steam"), 0);
+                    Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(mod.GetTexture("Effects/Screen/Steam"), 1);
+                    _steamIntensity = 1f;
+                }
+            }
+            else
+            {
+                bool validArea = ZoneVerdant && player.position.Y / 16f > Main.worldSurface;
+                float baseIntensity = validArea ? 0.9f : 1f;
+                _steamIntensity = MathHelper.Lerp(_steamIntensity, baseIntensity, 0.02f);
+
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseIntensity(_steamIntensity);
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseProgress(_steamProgress += 0.0055f);
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(Main.screenWidth, Main.screenHeight), 0);
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(512, 512), 1);
+
+                if (!validArea && _steamIntensity > 0.99f)
+                {
+                    Filters.Scene[EffectIDs.BiomeSteam].Deactivate();
+
+                    _steamProgress = 0;
+                    _steamIntensity = 1f;
+                }
+            }
         }
     }
 }
