@@ -253,7 +253,7 @@ namespace Verdant
             else
             {
                 bool validArea = ZoneVerdant && player.position.Y / 16f > Main.worldSurface;
-                float baseIntensity = validArea ? 0.9f : 1f;
+                float baseIntensity = validArea ? 0.94f : 1f;
                 _steamIntensity = MathHelper.Lerp(_steamIntensity, baseIntensity, 0.02f);
 
                 Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseIntensity(_steamIntensity);

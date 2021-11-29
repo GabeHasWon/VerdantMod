@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,12 +7,22 @@ namespace Verdant.Items
 {
     public class QuickItem
     {
-        public static void SetStatic(ModItem i, string name, string tooltip = "")
+        public static void SetStatic(ModItem i, string name, string tooltip = "", bool isStaff = false)
         {
             i.DisplayName.SetDefault(name);
             i.Tooltip.SetDefault(tooltip);
+
+            Item.staff[i.item.type] = true;
         }
 
+        /// <summary>Sets the defaults of an item to a basic item that places a block.</summary>
+        /// <param name="i">Item to set the defaults of.</param>
+        /// <param name="w">Width of the item.</param>
+        /// <param name="h">Height of the item.</param>
+        /// <param name="tile">Tile ID to place.</param>
+        /// <param name="consumable">If the item is consumable. Defaults to true.</param>
+        /// <param name="placeStyle">The placeStyle of the item. Defaults to -1, which skips setting it.</param>
+        /// <param name="rarity">Rarity of the item. Defaults to <see cref="ItemRarityID.White"/>.</param>
         public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White)
         {
             i.item.width = w;
@@ -36,6 +42,12 @@ namespace Verdant.Items
                 i.item.placeStyle = placeStyle;
         }
 
+        /// <summary>Sets the defaults of an item to a basic item that places a wall.</summary>
+        /// <param name="i">Item to set the defaults of.</param>
+        /// <param name="w">Width of the item.</param>
+        /// <param name="h">Height of the item.</param>
+        /// <param name="wall">Wall ID to place.</param>
+        /// <param name="consumable">If the item is consumable. Defaults to true.</param>
         public static void SetWall(ModItem i, int w, int h, int wall, bool consumable = true)
         {
             i.item.width = w;
@@ -64,7 +76,6 @@ namespace Verdant.Items
             i.item.rare = rarity;
             i.item.mana = mana;
 
-            Item.staff[i.item.type] = true;
             i.item.noMelee = true;
             i.item.useStyle = ItemUseStyleID.SwingThrow;
             i.item.magic = true;
@@ -153,8 +164,17 @@ namespace Verdant.Items
             i.item.rare = rarity;
         }
 
+        /// <summary>Adds a recipe to the mod given the following items and tiles.</summary>
+        /// <param name="item">Item to use as a result.</param>
+        /// <param name="mod">Mod to use to add to.</param>
+        /// <param name="tile">Tile to use for crafting. -1 means no tile is used. Defaults to -1.</param>
+        /// <param name="resultStack">Stack created with this crafting recipe. Defaults to 1.</param>
+        /// <param name="ingredients">Ingredients to use. Formatted as a (int, int) pair.</param>
         public static void AddRecipe(ModItem item, Mod mod, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
         {
+            if (ingredients.Length <= 0)
+                throw new ArgumentException("Ingredents array is empty.", "ingredients");
+
             ModRecipe r = new ModRecipe(mod);
             for (int i = 0; i < ingredients.Length; ++i)
                 r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);
@@ -163,8 +183,17 @@ namespace Verdant.Items
             r.AddRecipe();
         }
 
+        /// <summary>Adds a recipe to the mod given the following items and tiles.</summary>
+        /// <param name="id">Item ID to use as a result.</param>
+        /// <param name="mod">Mod to use to add to.</param>
+        /// <param name="tile">Tile to use for crafting. -1 means no tile is used. Defaults to -1.</param>
+        /// <param name="resultStack">Stack created with this crafting recipe. Defaults to 1.</param>
+        /// <param name="ingredients">Ingredients to use. Formatted as a (int, int) pair.</param>
         public static void AddRecipe(int id, Mod mod, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
         {
+            if (ingredients.Length <= 0)
+                throw new ArgumentException("Ingredents array is empty.", "ingredients");
+
             ModRecipe r = new ModRecipe(mod);
             for (int i = 0; i < ingredients.Length; ++i)
                 r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);

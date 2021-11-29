@@ -13,6 +13,9 @@ using Verdant.World.Biome;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Verdant.Effects;
+using MonoMod.Cil;
+using System.Reflection;
+using Terraria.Graphics;
 
 namespace Verdant
 {
@@ -64,6 +67,27 @@ namespace Verdant
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
             On.Terraria.Main.DrawGore += Main_DrawGore; //ForegroundItem hook
+
+            IL.Terraria.Main.Drawmoon
+        }
+
+        private void LiquidRenderer_InternalDraw(ILContext il)
+        {
+            var c = new ILCursor(il);
+
+            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(TileBatch), "tileBatch")))
+                return;
+
+            c.Index += 2; //Onto the callvirt arg, then after it
+
+            c.EmitDelegate<ModifyRenderWaterDelegate>(ModifyRenderWater);
+        }
+
+        private delegate void ModifyRenderWaterDelegate();
+
+        public void ModifyRenderWater()
+        {
+            Main.spriteBatch.Draw(Main.magicPixel, new Vector2(400), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
         }
 
         private void UnHookOn()

@@ -15,8 +15,8 @@ namespace Verdant.Items.Verdant.Weapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Healing Staff");
-            Tooltip.SetDefault("Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only handle summoning one at a time.");
+            QuickItem.SetStatic(this, "Lush Healing Staff",
+                "Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only handle summoning one at a time.\nUse again while its already out to move the flower.", true);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
