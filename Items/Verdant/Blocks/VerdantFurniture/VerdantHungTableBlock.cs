@@ -10,27 +10,27 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hanging Lush Table (Red)", "Can be hung when placed under two strong vines");
         public override void SetDefaults() => QuickItem.SetBlock(this, 42, 26, TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantHungTable_Red>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ItemType<RedPetal>(), 12), (ItemType<VerdantStrongVineMaterial>(), 8), (ItemType<Lightbulb>(), 1));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ItemType<RedPetal>(), 12), (ItemType<VerdantStrongVineMaterial>(), 8), (ItemType<Lightbulb>(), 1));
     }
 
     public class VerdantHungTableBlock_RedLightless : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hanging Lush Table (Red, No Bulb)", "Can be hung when placed under two strong vines");
         public override void SetDefaults() => QuickItem.SetBlock(this, 42, 26, TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantHungTable_RedLightless>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ItemType<RedPetal>(), 14), (ItemType<VerdantStrongVineMaterial>(), 8));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ItemType<RedPetal>(), 14), (ItemType<VerdantStrongVineMaterial>(), 8));
     }
 
     public class VerdantHungTableBlock_Pink : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hanging Lush Table (Pink)", "Can be hung when placed under two strong vines");
         public override void SetDefaults() => QuickItem.SetBlock(this, 42, 26, TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantHungTable_Pink>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ItemType<PinkPetal>(), 12), (ItemType<VerdantStrongVineMaterial>(), 8), (ItemType<Lightbulb>(), 1));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ItemType<PinkPetal>(), 12), (ItemType<VerdantStrongVineMaterial>(), 8), (ItemType<Lightbulb>(), 1));
     }
 
     public class VerdantHungTableBlock_PinkLightless : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hanging Lush Table (Pink, No Bulb)", "Can be hung when placed under two strong vines");
         public override void SetDefaults() => QuickItem.SetBlock(this, 42, 26, TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantHungTable_PinkLightless>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ItemType<PinkPetal>(), 14), (ItemType<VerdantStrongVineMaterial>(), 8));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ItemType<PinkPetal>(), 14), (ItemType<VerdantStrongVineMaterial>(), 8));
     }
 }

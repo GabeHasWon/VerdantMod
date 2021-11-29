@@ -9,6 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Verdant Sofa", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 48, 32, TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantSofa>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ItemType<LushLeaf>(), 10), (ItemType<RedPetal>(), 4));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ItemType<LushLeaf>(), 10), (ItemType<RedPetal>(), 4));
     }
 }
