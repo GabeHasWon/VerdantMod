@@ -43,7 +43,7 @@ namespace Verdant.Tiles.Verdant.Decor
             name.SetDefault("Yellow Petal Chest");
             AddMapEntry(new Color(224, 120, 0), name);
 
-            dustType = 0;
+            dustType = DustID.Dirt;
             soundStyle = SoundID.Grass;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };

@@ -220,14 +220,20 @@ namespace Verdant.World
             for (int i = 0; i < 60 * WorldSize; ++i) //Stones
             {
                 Point p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
+                while (!ActiveType(p.X, p.Y, TileType<LushSoil>()))
+                    p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
                 TileRunner(p.X, p.Y, genRand.NextFloat(7, 15), genRand.Next(5, 15), TileID.Stone, false, 0, 0, false, true);
             }
 
             for (int i = 0; i < 10 * WorldSize; ++i) //Ores
             {
                 Point p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
+                while (!ActiveType(p.X, p.Y, TileType<LushSoil>()))
+                    p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
                 TileRunner(p.X, p.Y, genRand.NextFloat(2, 8), genRand.Next(5, 15), TileID.Gold, false, 0, 0, false, true);
                 p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
+                while (!ActiveType(p.X, p.Y, TileType<LushSoil>()))
+                    p = new Point(genRand.Next(VerdantArea.X, VerdantArea.Right), genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
                 TileRunner(p.X, p.Y, genRand.NextFloat(2, 7), genRand.Next(5, 15), TileID.Platinum, false, 0, 0, false, true);
             }
         }

@@ -41,6 +41,7 @@ float4 main(float2 uv : TEXCOORD) : COLOR
 { 
     float4 inputTex = tex2D(uImage0, uv);
 
+    uv += uTargetPosition / uScreenResolution;
 	float sineVal = sin((uv.y - 0.05) * 5) * 2;
 	float2 offset = float2(uProgress, refract((0, sineVal), 1, sin(uv.y * .2) - 2.25 / 5) - (2 * uv.x));
     float2 noiseCoords = (uv * uImageSize1 - uSourceRect.xy) / uImageSize2;
@@ -49,10 +50,9 @@ float4 main(float2 uv : TEXCOORD) : COLOR
 	
 	noiseCoords *= Size; //number of times to tile ^ 2
 	offset *= Size;
-	noiseCoords = frac(noiseCoords + offset); //wraps texCoords to 0-1 range
+    noiseCoords = frac(noiseCoords + offset); //wraps texCoords to 0-1 range
   
-    //float2 realScreenPosition = (uScreenPosition * uImageSize1 - uSourceRect.xy) / uImageSize2;
-    float4 otherTex = tex2D(uImage1, noiseCoords + uScreenPosition); // texture
+    float4 otherTex = tex2D(uImage1, noiseCoords); // texture
 	return ((inputTex * uIntensity) + (otherTex * (1 - uIntensity))); // mix two images
 }
 

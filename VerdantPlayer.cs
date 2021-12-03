@@ -256,8 +256,9 @@ namespace Verdant
                 float baseIntensity = validArea ? 0.94f : 1f;
                 _steamIntensity = MathHelper.Lerp(_steamIntensity, baseIntensity, 0.02f);
 
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseTargetPosition(player.Center + (Vector2.UnitY * player.gfxOffY));
                 Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseIntensity(_steamIntensity);
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseProgress(_steamProgress += 0.0055f);
+                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseProgress(_steamProgress += 0.004f);
                 Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(Main.screenWidth, Main.screenHeight), 0);
                 Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(512, 512), 1);
 

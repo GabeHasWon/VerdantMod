@@ -16,6 +16,11 @@ using Verdant.Effects;
 using MonoMod.Cil;
 using System.Reflection;
 using Terraria.Graphics;
+using Mono.Cecil.Cil;
+using System;
+using MonoMod.RuntimeDetour.HookGen;
+using Mono.Cecil;
+using MonoMod.Utils;
 
 namespace Verdant
 {
@@ -48,6 +53,13 @@ namespace Verdant
             }
 
             OnHooks();
+            ILHooks();
+        }
+
+        private void ILHooks()
+        {
+            IL.Terraria.Main.DoDraw += Main_DoDraw;
+            IL.Terraria.WorldGen.generateWorld += WorldGen_generateWorld;
         }
 
         public override void Unload()
@@ -55,9 +67,16 @@ namespace Verdant
             ForegroundManager.Unload();
             VerdantPlayer.Unload();
             VerdantWorld.Unload();
-            UnHookOn();
+            UnhookOn();
+            UnhookIL();
 
             Instance = null;
+        }
+
+        private void UnhookIL()
+        {
+            IL.Terraria.Main.DoDraw -= Main_DoDraw;
+            IL.Terraria.WorldGen.generateWorld -= WorldGen_generateWorld;
         }
 
         private void OnHooks()
@@ -67,36 +86,107 @@ namespace Verdant
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
             On.Terraria.Main.DrawGore += Main_DrawGore; //ForegroundItem hook
-
-            IL.Terraria.Main.Drawmoon
         }
 
-        private void LiquidRenderer_InternalDraw(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(TileBatch), "tileBatch")))
-                return;
-
-            c.Index += 2; //Onto the callvirt arg, then after it
-
-            c.EmitDelegate<ModifyRenderWaterDelegate>(ModifyRenderWater);
-        }
-
-        private delegate void ModifyRenderWaterDelegate();
-
-        public void ModifyRenderWater()
-        {
-            Main.spriteBatch.Draw(Main.magicPixel, new Vector2(400), null, Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-        }
-
-        private void UnHookOn()
+        private void UnhookOn()
         {
             On.Terraria.Main.DrawBackgroundBlackFill -= Main_DrawBackgroundBlackFill; //do I have to unhook this? maybe. do I do it anyway? yes
             On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
             On.Terraria.Main.DrawWater -= Main_DrawWater;
             On.Terraria.Main.Update -= Main_Update;
             On.Terraria.Main.DrawGore -= Main_DrawGore;
+        }
+
+        private void WorldGen_generateWorld(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            if (!c.TryGotoNext(i => i.MatchLdstr("Beaches")))
+                return; //Go to "beaches" string
+
+            MethodReference oceanGen = null;
+            if (!c.TryGotoNext(i => i.MatchLdftn(out oceanGen))) //Go to the Beaches delegate
+                return;
+
+            HookEndpointManager.Modify(oceanGen.ResolveReflection(), new ILContext.Manipulator(ModifyOceanGen)); //Modify the Beaches pass IL
+        }
+
+        private void ModifyOceanGen(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+
+            if (!c.TryGotoNext(i => i.MatchStloc(11)))
+                return; //Go to stloc.s of num8 / num473
+
+            c.Index++; //Move ahead of it
+
+            c.Emit(OpCodes.Ldloc_S, (byte)8); //Get num6 (depth)
+            c.Emit(OpCodes.Ldc_I4, 200); //Slap a 50 in there
+            c.Emit(OpCodes.Add); //Combine the two
+            c.Emit(OpCodes.Stloc_S, (byte)8); //Set num6
+
+            //c.Emit(OpCodes.Ldloc_S, (byte)11); //Get num8 (sandDepth)
+            //c.Emit(OpCodes.Ldc_I4, 400); //Slap a 20 in there
+            //c.Emit(OpCodes.Add); //Combine the two
+            //c.Emit(OpCodes.Stloc_S, (byte)11); //Set num6 ... should be deeper now lol
+
+            if (!c.TryGotoNext(i => i.MatchLdcR4(0.75f)))
+                return; //Go to ldc.r4 of the if that gives .75f
+
+            c.Next.Operand = 8.3f; //Makes the ocean bottom thinner (more space for ocean)
+        }
+
+        private void Main_DoDraw(ILContext il)
+        {
+            var c = new ILCursor(il);
+
+            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "snowMoon")))
+                return; //Try and get to the ldsfld opcode of snowMoon
+
+            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "spriteBatch")))
+                return; //Try and get to the ldsfld opcode of spriteBatch, the one that draws frost moon
+
+            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "spriteBatch")))
+                return; //Try and get to the ldsfld opcode of spriteBatch, the one that draws generic moon
+
+            c.Index++; //Move in front of the spriteBatch ldsfld
+            ILLabel label = il.DefineLabel(); //Define return label
+
+            c.EmitDelegate<OverrideVanillaMoonDelegate>(OverrideVanillaMoon); //Check if we want to override the vanilla moon
+            c.Emit(OpCodes.Brfalse_S, label); //If we don't, skip to after the if
+
+            c.Emit(OpCodes.Ldloc, 8); //num23 (x)
+            c.Emit(OpCodes.Conv_R4); //Convert to float32
+
+            c.Emit(OpCodes.Ldloc, 9); //num24 (y)
+            c.Emit(OpCodes.Ldsfld, typeof(Main).GetField(nameof(Main.moonModY))); //Moon y offset
+            c.Emit(OpCodes.Add); //Combine num24 and offset
+            c.Emit(OpCodes.Conv_R4); //Convert to float32
+
+            c.Emit(OpCodes.Ldloc, 10); //white2 (col)
+            c.Emit(OpCodes.Ldloc, 12); //rotation2 (rot)
+            c.Emit(OpCodes.Ldloc, 11); //num25 (scale)
+            c.EmitDelegate<DrawMoonDelegate>(DrawMoon); //Now we have a DrawMoon hook!
+
+            c.MarkLabel(label);
+        }
+
+        private delegate bool OverrideVanillaMoonDelegate();
+        private delegate void DrawMoonDelegate(float x, float y, Color col, float rot, float scale);
+        private void DrawMoon(float x, float y, Color col, float rot, float scale)
+        {
+            Texture2D tex = GetTexture("NPCs/Passive/Flotiny");
+            col.A = 255;
+            Main.spriteBatch.Draw(tex, new Vector2(x, y + Main.moonModY), 
+                new Rectangle(0, 0, tex.Width, tex.Width), 
+                col, rot, new Vector2(tex.Width / 2, tex.Width / 2), scale * 3, SpriteEffects.None, 0f);
+        }
+
+        public bool OverrideVanillaMoon()
+        {
+            if (Main.LocalPlayer.HeldItem.type == ItemID.DirtBlock)
+                return true;
+            return false;
         }
 
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
@@ -141,10 +231,19 @@ namespace Verdant
 
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
-                if (Main.raining && Main.LocalPlayer.position.Y / 16 < Main.worldSurface) //raining music
+                if (Main.LocalPlayer.position.Y / 16 < Main.worldSurface) //petals fall
                 {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/PetalsFall");
-                    priority = MusicPriority.BiomeLow;
+                    if (Main.raining)
+                    {
+                        music = GetSoundSlot(SoundType.Music, "Sounds/Music/PetalsFall");
+                        priority = MusicPriority.BiomeLow;
+                    }
+                }
+
+                if (Main.LocalPlayer.position.Y / 16f > Main.worldSurface) //tear rain
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/TearRain");
+                    priority = MusicPriority.BiomeMedium;
                 }
             }
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneApotheosis) //apotheosis melody
