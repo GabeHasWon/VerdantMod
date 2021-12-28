@@ -176,7 +176,7 @@ namespace Verdant
         {
             if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant) //Spawn BG items only when in the Verdant and above ground
             {
-                if (player.Center.Y + (Main.screenHeight / 2f) / 16f < Main.worldSurface) 
+                if ((player.Center.Y + Main.screenHeight / 2f) / 16f < Main.worldSurface) 
                 {
                     if (Main.rand.NextBool(FlotieBG.SpawnChance))
                     {

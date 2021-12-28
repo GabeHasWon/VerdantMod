@@ -131,13 +131,13 @@ namespace Verdant.Tiles.Verdant.Decor
 
         private void Speak(string msg)
         {
-            int speechType = ModContent.GetInstance<VerdantServerConfig>().ApothTextSetting;
-            if (speechType == 0 || speechType == 2)
+            var speechType = ModContent.GetInstance<VerdantServerConfig>().ApothTextSetting;
+            if (speechType == VerdantServerConfig.ApotheosisInteraction.World || speechType == VerdantServerConfig.ApotheosisInteraction.Both)
             {
                 int c = CombatText.NewText(new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 60, 20), new Color(88, 188, 24), msg, true);
                 Main.combatText[c].lifeTime *= 2;
             }
-            if (speechType == 1 || speechType == 2)
+            if (speechType == VerdantServerConfig.ApotheosisInteraction.Chat || speechType == VerdantServerConfig.ApotheosisInteraction.Both)
             {
                 string chat = $"The Apotheosis: [c/509128:\"{msg}\"]";
                 if (Main.netMode == NetmodeID.Server) //MP compat :)

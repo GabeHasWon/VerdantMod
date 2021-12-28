@@ -47,6 +47,10 @@ namespace Verdant.NPCs.Enemy
                 for (int i = 0; i < babies.Length; ++i)
                 {
                     int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<SmallFly>(), 0, 1);
+
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
+
                     babies[i] = n;
                 }
                 npc.ai[0] = 1;
@@ -62,7 +66,7 @@ namespace Verdant.NPCs.Enemy
 
                 if (Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height) && !target.dead) //Go to player
                 {
-                    float extraSpeed = 1f + ((babies.Count(x => Main.npc[x].type == NPCType<HostFly>() && Main.npc[x].life > 1 && Main.npc[x].ai[0] == 1) / (float)babies.Length) * 5f);
+                    float extraSpeed = 1f + (babies.Count(x => Main.npc[x].type == NPCType<HostFly>() && Main.npc[x].life > 1 && Main.npc[x].ai[0] == 1) / (float)babies.Length * 5f);
                     npc.velocity = Vector2.Normalize(target.Center - npc.Center) * (Main.expertMode ? 2.4f : 1.6f) * extraSpeed;
                     npc.ai[1] = 0;
                     npc.ai[2] = 0;

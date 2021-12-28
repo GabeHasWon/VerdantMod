@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,20 +9,33 @@ namespace Verdant.Projectiles.Misc
 {
     class VerdantWisp : ModProjectile
     {
-        private int _flameFrame = 0; //flame frame hehe
+        public const int MaxDistance = 600;
 
-        ref float Rotation => ref projectile.ai[0];
+        public ref Player Owner => ref Main.player[projectile.owner];
+
+        private ref float PauseTimer => ref projectile.ai[0];
+
+        private Vector2 TargetPosition
+        {
+            get
+            {
+                if (Owner.DistanceSQ(Main.MouseWorld) < MaxDistance * MaxDistance)
+                    return Main.MouseWorld;
+                return Owner.Center + (Owner.DirectionTo(Main.MouseWorld) * MaxDistance);
+            }
+        }
+
+        private bool _rightChannel = false;
+        private float _rightScale = 0f;
+
+        private bool _killMe = false;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Wisp");
+            DisplayName.SetDefault("Memory");
+            Main.projFrames[projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-        }
-
-        public override bool? CanCutTiles()
-        {
-            return false;
         }
 
         public override void SetDefaults()
@@ -38,47 +50,84 @@ namespace Verdant.Projectiles.Misc
             projectile.magic = true;
         }
 
+        public override bool? CanCutTiles() => false;
+
         public override void AI()
         {
-            Lighting.AddLight(projectile.Center - new Vector2(0, 8), new Vector3(0.4f, 0.85f, 0.92f) * 1);
+            Owner.heldProj = projectile.whoAmI;
 
-            projectile.velocity *= 0.98f;
-            projectile.rotation = projectile.velocity.X * 0.04f;
+            if (Owner.whoAmI != Main.myPlayer)
+                return; //mp check (hopefully)
 
-            if (Main.rand.NextBool(9))
-            {
-                Dust d = Main.dust[Dust.NewDust(projectile.Center - new Vector2(2, 10), 4, 4, 59, 0, -6, 0, default, 1)]; //59 = BlueTorch
-                d.fadeIn = 1f;
-            }
-
-            if (projectile.frameCounter++ == 3)
-            {
-                projectile.frameCounter = 0;
-                _flameFrame++;
-                if (_flameFrame > 2)
-                    _flameFrame = 0;
-            }
-
-            Player p = Main.player[projectile.owner];
-            projectile.Center = p.Center + new Vector2(0, p.gfxOffY) + new Vector2(0, 80 + (80 * (float)(Math.Sin(projectile.timeLeft * 0.002f) * 0.8f))).RotatedBy(Rotation);
-            Rotation += 0.02f;
+            CheckAlive();
+            Animate();
+            if (!_killMe)
+                Movement();
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        private void CheckAlive()
         {
-            //General function
-            Texture2D proj = Main.projectileTexture[projectile.type];
-            for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
-            {
-                Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / projectile.oldPos.Length);
-                spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition + new Vector2(15, 19), new Rectangle(0, 0, 30, 38), color, projectile.rotation, new Vector2(15, 19), 1f, SpriteEffects.None, 1f);
+            if (!Owner.channel)
+                _killMe = true;
 
-                color = projectile.GetAlpha(Color.White) * ((float)(projectile.oldPos.Length - k) / projectile.oldPos.Length);
-                spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition + new Vector2(15, -6), new Rectangle(32 + (16 * _flameFrame), 0, 14, 36), color, projectile.rotation * 0.8f, new Vector2(7, 18), 1f, SpriteEffects.None, 1f);
-                spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition + new Vector2(15, -6), new Rectangle(32 + (16 * _flameFrame), 0, 14, 36), color * 0.9f, projectile.rotation * 0.8f, new Vector2(7, 18), 1.05f, SpriteEffects.None, 1f);
-                spriteBatch.Draw(proj, projectile.oldPos[k] - Main.screenPosition + new Vector2(9, 9), new Rectangle(42, 40, 26, 4), color, 0f, new Vector2(7, 18), 1f, SpriteEffects.None, 1f);
+            if (_killMe)
+            {
+                projectile.Center = Vector2.Lerp(projectile.Center, Owner.Center, 0.3f);
+
+                if (projectile.DistanceSQ(Owner.Center) < 10 * 10)
+                    projectile.Kill();
             }
-            return false;
+        }
+
+        private void Animate()
+        {
+            if (++projectile.frameCounter > 4)
+            {
+                if (++projectile.frame > 2)
+                    projectile.frame = 0;
+                projectile.frameCounter = 0;
+            }
+        }
+
+        private void Movement()
+        {
+            if (!_rightChannel && PauseTimer-- <= 0)
+                projectile.Center = Vector2.Lerp(projectile.Center, TargetPosition, 0.025f);
+
+            if (_rightChannel && Main.mouseRightRelease)
+                LetGo();
+            if (!_rightChannel && Main.mouseRight)
+                _rightChannel = true;
+        }
+
+        private void LetGo()
+        {
+            _rightChannel = false;
+
+            Projectile.NewProjectile(projectile.Center, projectile.DirectionTo(Main.MouseWorld) * 15, ProjectileID.Bullet, projectile.damage, 0f, projectile.owner);
+            PauseTimer = 20;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            if (_rightChannel)
+                DrawTarget(spriteBatch);
+        }
+
+        private void DrawTarget(SpriteBatch b)
+        {
+            Texture2D targetTex = mod.GetTexture("Projectiles/Misc/VerdantWispTargetting");
+            Vector2 initialDrawPos = projectile.Center - Main.screenPosition;
+            Vector2 direction = (Main.MouseWorld - projectile.Center) * 0.75f;
+
+            for (int i = 0; i < 8; ++i)
+            {
+                Vector2 offset = direction * i;
+                Rectangle src = new Rectangle(0, 0, 30, 30);
+
+
+                b.Draw(targetTex, initialDrawPos + offset, src, Color.White, 0f, targetTex.Size() / 2f, 1f, SpriteEffects.None, 0f);
+            }
         }
     }
 }

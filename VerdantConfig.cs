@@ -7,11 +7,17 @@ namespace Verdant
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [DefaultValue(0)]
-        [Range(0, 2)]
+        public enum ApotheosisInteraction
+        {
+            World = 0, 
+            Chat,
+            Both
+        }
+
+        [DefaultValue(ApotheosisInteraction.World)]
         [Label("Talk Interaction")]
-        [Tooltip("If 0, chat interaction will be done in-world only. If 1, it will be in chat only. If 2, it will be in both.")]
-        public int ApothTextSetting;
+        [Tooltip("Controls whether certain things talk using in-world text, the chatbox, or both.")]
+        public ApotheosisInteraction ApothTextSetting;
 
         [DefaultValue(0)]
         [Range(0, 2)]
