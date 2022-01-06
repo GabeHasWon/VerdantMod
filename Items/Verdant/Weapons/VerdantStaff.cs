@@ -16,14 +16,14 @@ namespace Verdant.Items.Verdant.Weapons
         public override void SetStaticDefaults()
         {
             QuickItem.SetStatic(this, "Lush Healing Staff",
-                "Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only handle summoning one at a time.\nUse again while its already out to move the flower.", true);
+                "Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only summon one at a time.\nUse again while its already out to move the flower.", true);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             if (Main.dedServ || Main.netMode == NetmodeID.MultiplayerClient)
             {
-                TooltipLine line = new TooltipLine(mod, "Verdant Staff", "Summoning multiple flowers will empower the original flower.");
+                TooltipLine line = new TooltipLine(mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
                 tooltips.Add(line);
             }
         }

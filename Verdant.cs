@@ -56,12 +56,6 @@ namespace Verdant
             ILHooks();
         }
 
-        private void ILHooks()
-        {
-            IL.Terraria.Main.DoDraw += Main_DoDraw;
-            IL.Terraria.WorldGen.generateWorld += WorldGen_generateWorld;
-        }
-
         public override void Unload()
         {
             ForegroundManager.Unload();
@@ -73,10 +67,14 @@ namespace Verdant
             Instance = null;
         }
 
+        private void ILHooks()
+        {
+            IL.Terraria.Main.DoDraw += Main_DoDraw;
+        }
+
         private void UnhookIL()
         {
             IL.Terraria.Main.DoDraw -= Main_DoDraw;
-            IL.Terraria.WorldGen.generateWorld -= WorldGen_generateWorld;
         }
 
         private void OnHooks()
@@ -95,45 +93,6 @@ namespace Verdant
             On.Terraria.Main.DrawWater -= Main_DrawWater;
             On.Terraria.Main.Update -= Main_Update;
             On.Terraria.Main.DrawGore -= Main_DrawGore;
-        }
-
-        private void WorldGen_generateWorld(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
-
-            if (!c.TryGotoNext(i => i.MatchLdstr("Beaches")))
-                return; //Go to "beaches" string
-
-            MethodReference oceanGen = null;
-            if (!c.TryGotoNext(i => i.MatchLdftn(out oceanGen))) //Go to the Beaches delegate
-                return;
-
-            HookEndpointManager.Modify(oceanGen.ResolveReflection(), new ILContext.Manipulator(ModifyOceanGen)); //Modify the Beaches pass IL
-        }
-
-        private void ModifyOceanGen(ILContext il)
-        {
-            ILCursor c = new ILCursor(il);
-
-            if (!c.TryGotoNext(i => i.MatchStloc(11)))
-                return; //Go to stloc.s of num8 / num473
-
-            c.Index++; //Move ahead of it
-
-            c.Emit(OpCodes.Ldloc_S, (byte)8); //Get num6 (depth)
-            c.Emit(OpCodes.Ldc_I4, 200); //Slap a 50 in there
-            c.Emit(OpCodes.Add); //Combine the two
-            c.Emit(OpCodes.Stloc_S, (byte)8); //Set num6
-
-            //c.Emit(OpCodes.Ldloc_S, (byte)11); //Get num8 (sandDepth)
-            //c.Emit(OpCodes.Ldc_I4, 400); //Slap a 20 in there
-            //c.Emit(OpCodes.Add); //Combine the two
-            //c.Emit(OpCodes.Stloc_S, (byte)11); //Set num6 ... should be deeper now lol
-
-            if (!c.TryGotoNext(i => i.MatchLdcR4(0.75f)))
-                return; //Go to ldc.r4 of the if that gives .75f
-
-            c.Next.Operand = 8.3f; //Makes the ocean bottom thinner (more space for ocean)
         }
 
         private void Main_DoDraw(ILContext il)
@@ -184,8 +143,6 @@ namespace Verdant
 
         public bool OverrideVanillaMoon()
         {
-            if (Main.LocalPlayer.HeldItem.type == ItemID.DirtBlock)
-                return true;
             return false;
         }
 

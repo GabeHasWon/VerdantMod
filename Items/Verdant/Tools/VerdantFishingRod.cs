@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Projectiles.Magic;
 using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Tools
@@ -21,7 +20,7 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Growth Fishing Rod");
+            DisplayName.SetDefault("Lush Fishing Rod");
             Tooltip.SetDefault("Gives off light when held");
         }
 
