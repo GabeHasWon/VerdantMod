@@ -61,7 +61,7 @@ namespace Verdant.Items.Verdant.Armour
                 Point t = p.TileCoordsBottomCentred();
                 Tile ground = Framing.GetTileSafely(t.X, t.Y);
 
-                if (!Framing.GetTileSafely(t.X, t.Y - 1).active() && !ground.topSlope())
+                if (!Framing.GetTileSafely(t.X, t.Y - 1).active() && !ground.topSlope() && !ground.halfBrick())
                 {
                     if (ground.type == ModContent.TileType<VerdantGrassLeaves>())
                     {
