@@ -2,15 +2,11 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using static Terraria.WorldGen;
-using static Terraria.ModLoader.ModContent;
-using Verdant.Tiles.Verdant.Basic;
 using Terraria.ObjectData;
-using System;
 using Verdant.Bezier;
 using Terraria.Utilities;
 using System.Collections.Generic;
-using System.Linq;
+using static Terraria.WorldGen;
 
 namespace Verdant.World
 {

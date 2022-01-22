@@ -84,7 +84,7 @@ namespace Verdant.World
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
+            int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Jungle Temple"));
 
             if (tasks.Count > 0)
                 tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
@@ -92,7 +92,7 @@ namespace Verdant.World
             if (VerdantIndex != -1)
                 tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", VerdantGeneration)); //Verdant biome gen
 
-            tasks.Add(new PassLegacy("Verdant Cleanup", VerdantCleanup));
+            tasks.Add(new PassLegacy("Verdant Cleanup", VerdantCleanup)); //And final cleanup
 
             apotheosisDialogueIndex = 0;
             apotheosisEvilDown = false;
