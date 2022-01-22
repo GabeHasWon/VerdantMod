@@ -8,16 +8,20 @@ namespace Verdant.NPCs.Enemy
     public class SmallFly : ModNPC
     {
         private short distanceToHost = -1;
-            
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Minifly");
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Lush Winglet");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
         public override void SetDefaults()
         {
             npc.width = 26;
             npc.height = 18;
-            npc.damage = 25;
-            npc.defense = 4;
-            npc.lifeMax = 25;
+            npc.damage = 0;
+            npc.defense = 0;
+            npc.lifeMax = 5;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.dontTakeDamage = false;
@@ -26,7 +30,6 @@ namespace Verdant.NPCs.Enemy
             npc.aiStyle = -1;
             npc.HitSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
             npc.DeathSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
-            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void AI()
@@ -66,10 +69,10 @@ namespace Verdant.NPCs.Enemy
                     npc.ai[3] = 0;
                 }
 
-                if (npc.frameCounter++ % 8 <= 3) npc.frame.Y = 20; //Animate
+                if (npc.frameCounter++ % 6 <= 2) npc.frame.Y = 20; //Animate
                 else npc.frame.Y = 0;
             }
-            else if (npc.ai[0] == 1) //With large fly
+            else if (npc.ai[0] == 1) //With host fly
             {
                 if (npc.ai[1] == 0)
                 {

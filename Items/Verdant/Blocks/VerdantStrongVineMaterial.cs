@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -22,8 +23,13 @@ namespace Verdant.Items.Verdant.Blocks
 
         public override bool UseItem(Player player)
         {
-            Point p = Main.MouseWorld.ToTileCoordinates();
-            WorldGen.PlaceTile(p.X, p.Y, TileType<VerdantStrongVine>(), false, false);
+            if (player.whoAmI == Main.myPlayer)
+            {
+                WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, TileType<VerdantStrongVine>(), false, false);
+
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+            }
             return true;
         }
 

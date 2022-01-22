@@ -31,7 +31,7 @@ namespace Verdant.Items
 			item.value = 10000;
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
-			item.autoReuse = false;
+			item.autoReuse = true;
 
             item.createTile = TileType<DyeBulbs>();
             item.placeStyle = 0;
@@ -42,9 +42,10 @@ namespace Verdant.Items
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
             Tile t = Framing.GetTileSafely(i, j);
-            item.placeStyle = Main.rand.Next(2);
-
-            return true;
+            for (int n = -10; n < 10; ++n)
+                for (int b = -10; b < 10; ++b)
+                    Framing.GetTileSafely(i + n, j + b).liquid = 255;
+            return false;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Verdant.NPCs.Enemy
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hostfly");
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void SetDefaults()
@@ -32,7 +33,6 @@ namespace Verdant.NPCs.Enemy
             npc.aiStyle = -1;
             npc.HitSound = new Terraria.Audio.LegacySoundStyle(SoundID.Critter, 0);
             npc.DeathSound = SoundID.NPCDeath4;
-            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void AI()
@@ -149,6 +149,6 @@ namespace Verdant.NPCs.Enemy
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && !spawnInfo.playerInTown ? 0.3f : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => 0f; //Temporarily(?) removed
     }
 }

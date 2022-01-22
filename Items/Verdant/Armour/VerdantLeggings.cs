@@ -17,7 +17,7 @@ namespace Verdant.Items.Verdant.Armour
         public override bool Autoload(ref string name)
         {
             VerdantPlayer.FloorVisualEvent += FloorVisuals;
-            return base.Autoload(ref name);
+            return mod.Properties.Autoload;
         }
 
         public override void SetStaticDefaults()
