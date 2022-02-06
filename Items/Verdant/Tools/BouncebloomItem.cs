@@ -54,7 +54,9 @@ namespace Verdant.Items.Verdant.Tools
                 Texture2D t = ModContent.GetTexture("Verdant/Items/Verdant/Tools/BouncebloomEquip");
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
                 Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
-                DrawData data = new DrawData(t, pos, null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+                SpriteEffects effect = info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+                DrawData data = new DrawData(t, pos, null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, effect, 0);
                 Main.playerDrawData.Add(data);
             }
         }
