@@ -24,8 +24,6 @@ namespace Verdant.Projectiles.Minion
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
 
-        public override bool? CanCutTiles() => false;
-
         public override void SetDefaults()
         {
             projectile.hostile = false;
@@ -35,10 +33,12 @@ namespace Verdant.Projectiles.Minion
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.damage = 5;
             projectile.minionSlots = 1f;
             projectile.minion = true;
         }
+
+        public override bool? CanCutTiles() => false;
+        public override bool MinionContactDamage() => false;
 
         public override void AI()
         {
@@ -77,7 +77,7 @@ namespace Verdant.Projectiles.Minion
 
             if (goPosition != -Vector2.One && Vector2.Distance(projectile.position, goPosition) >= 120)
             {
-                projectile.velocity = -Vector2.Normalize(projectile.position - goPosition) * 22;
+                projectile.velocity = -Vector2.Normalize(projectile.position - goPosition) * 40;
                 if (Vector2.Distance(projectile.position, goPosition) < 120)
                     goPosition = -Vector2.One;
             }

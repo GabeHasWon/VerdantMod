@@ -62,7 +62,7 @@ namespace Verdant.Tiles.Verdant.Decor
                     string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
                     Speak(msg);
 
-                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 2 * Main.ActivePlayersCount); //temp ID
+                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 3 * Main.ActivePlayersCount); //temp ID
                     World.VerdantWorld.apotheosisEvilDown = true;
                     return true;
                 }

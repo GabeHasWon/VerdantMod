@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Verdant.Backgrounds.BGItem
@@ -17,8 +18,11 @@ namespace Verdant.Backgrounds.BGItem
         /// <summary>True when this has been loaded and is usable.</summary>
         public static bool Loaded { get; private set; }
 
-        public static void AddItem(BaseBGItem item)
+        public static void AddItem(BaseBGItem item, bool forceSpawn = false)
         {
+            if (!ModContent.GetInstance<VerdantServerConfig>().BackgroundObjects && !forceSpawn) //Skip if option is turned off & it's not forced
+                return;
+
             if (item != null)
                 bgItems.Add(item);
             else

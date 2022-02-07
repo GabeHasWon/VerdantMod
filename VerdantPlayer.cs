@@ -240,7 +240,7 @@ namespace Verdant
 
         public override void UpdateBiomeVisuals()
         {
-            if (!Filters.Scene[EffectIDs.BiomeSteam].Active)
+            if (!Filters.Scene[EffectIDs.BiomeSteam].Active && ModContent.GetInstance<VerdantClientConfig>().EnableSteam)
             {
                 if (ZoneVerdant && player.position.Y / 16f > Main.worldSurface)
                 {

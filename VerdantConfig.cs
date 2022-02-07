@@ -22,7 +22,7 @@ namespace Verdant
         [DefaultValue(0)]
         [Range(0, 2)]
         [Label("Enable Background Objects")]
-        [Tooltip("")]
+        [Tooltip("Enables objects appearing in the surface background.")]
         public bool BackgroundObjects;
     }
 
@@ -34,5 +34,10 @@ namespace Verdant
         [Label("Show Catch Text")]
         [Tooltip("Displays text when hovering over an NPC that can be caught with a Bug Net.")]
         public bool ShowCatchText;
+
+        [DefaultValue(true)]
+        [Label("Enable Steam Effect")]
+        [Tooltip("Enables steam overlay when inside of the underground Verdant.")]
+        public bool EnableSteam;
     }
 }

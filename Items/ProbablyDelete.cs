@@ -33,7 +33,7 @@ namespace Verdant.Items
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 
-            item.createTile = TileType<DyeBulbs>();
+            item.createTile = TileType<VerdantLightbulb>();
             item.placeStyle = 0;
         }
 
@@ -42,9 +42,9 @@ namespace Verdant.Items
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;
             Tile t = Framing.GetTileSafely(i, j);
-            for (int n = -10; n < 10; ++n)
-                for (int b = -10; b < 10; ++b)
-                    Framing.GetTileSafely(i + n, j + b).liquid = 255;
+            //for (int n = -10; n < 10; ++n)
+            //    for (int b = -10; b < 10; ++b)
+            //        Framing.GetTileSafely(i + n, j + b).liquid = 255;
             return false;
         }
     }

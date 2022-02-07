@@ -158,7 +158,7 @@ namespace Verdant
         private void Main_DrawWater(On.Terraria.Main.orig_DrawWater orig, Main self, bool bg, int Style, float Alpha)
         {
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
-                Alpha *= 1.4f; //Cute little effect to make the water seem less clean
+                Alpha *= 1.1f; //Cute little effect to make the water seem less clean
 
             orig(self, bg, Style, Alpha);
         }
