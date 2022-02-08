@@ -252,7 +252,7 @@ namespace Verdant
             }
             else
             {
-                bool validArea = ZoneVerdant && player.position.Y / 16f > Main.worldSurface;
+                bool validArea = ZoneVerdant && player.position.Y / 16f > Main.worldSurface && ModContent.GetInstance<VerdantClientConfig>().EnableSteam;
                 float baseIntensity = validArea ? 0.94f : 1f;
                 _steamIntensity = MathHelper.Lerp(_steamIntensity, baseIntensity, 0.02f);
 
