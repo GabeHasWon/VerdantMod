@@ -17,6 +17,7 @@
 	- Position selection
 	- Mod compatible biome checks - Might need more research
 	- Flower Structures(*)
+	- Little overgrown telltale structure on surface above Verdant
 
 	BLOCKS [ITEMS]
 	- Verdant Armor Set
@@ -107,7 +108,6 @@
 	- Logo
 
 [NEEDS FINISHING] -------------------------------------------------
-	- Little overgrown telltale structure on surface above Verdant
 
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER

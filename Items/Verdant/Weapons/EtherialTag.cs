@@ -10,6 +10,8 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class EtherialTag : ModItem
     {
+        public override bool Autoload(ref string name) => false;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Etherial Leash");
