@@ -56,7 +56,7 @@ namespace Verdant.Items.Verdant.Tools
                 Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
                 SpriteEffects effect = info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-                DrawData data = new DrawData(t, pos, null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, effect, 0);
+                DrawData data = new DrawData(t, pos.Floor(), null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, effect, 0);
                 Main.playerDrawData.Add(data);
             }
         }

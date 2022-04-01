@@ -14,13 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Verdant.Effects;
 using MonoMod.Cil;
-using System.Reflection;
-using Terraria.Graphics;
 using Mono.Cecil.Cil;
-using System;
-using MonoMod.RuntimeDetour.HookGen;
-using Mono.Cecil;
-using MonoMod.Utils;
 
 namespace Verdant
 {
@@ -53,7 +47,7 @@ namespace Verdant
             }
 
             OnHooks();
-            ILHooks();
+            //ILHooks();
         }
 
         public override void Unload()
@@ -62,7 +56,7 @@ namespace Verdant
             VerdantPlayer.Unload();
             VerdantWorld.Unload();
             UnhookOn();
-            UnhookIL();
+            //UnhookIL();
 
             Instance = null;
         }

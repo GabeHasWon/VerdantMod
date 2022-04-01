@@ -78,7 +78,7 @@ namespace Verdant.Tiles.Verdant.Decor
 
                 if (Main.hardMode && !World.VerdantWorld.apotheosisWallDown) //WoF boss text
                 {
-                    Speak("We sense a powerful spiritual power released...bless you. Here...");
+                    Speak("We sense a powerful spirit released...take this.");
 
                     for (int v = 0; v < Main.ActivePlayersCount; ++v)
                         Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);

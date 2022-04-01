@@ -107,7 +107,10 @@ namespace Verdant.World
         private void AddSurfaceVerdant()
         {
             int top = FindDown(new Vector2(VerdantArea.Center.X * 16, 200));
-            TileRunner(VerdantArea.Center.X, top, 6, 14, TileTypes[0], true, 0, 0, true, true);
+            Point16 size = Point16.Zero;
+
+            if (StructureHelper.Generator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size)) 
+                StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", new Point16(VerdantArea.Center.X - (size.X / 2), top - size.Y + 12), VerdantMod.Instance);
         }
 
         public void VerdantCleanup(GenerationProgress p)
