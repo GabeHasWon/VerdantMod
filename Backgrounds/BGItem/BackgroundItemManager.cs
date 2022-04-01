@@ -53,6 +53,9 @@ namespace Verdant.Backgrounds.BGItem
 
         public static void Update()
         {
+            if (!Main.hasFocus || Main.gamePaused)
+                return;
+
             List<BaseBGItem> removeList = new List<BaseBGItem>();
 
             foreach (var item in organizedItems)

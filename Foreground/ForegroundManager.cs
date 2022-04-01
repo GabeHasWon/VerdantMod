@@ -17,6 +17,7 @@ namespace Verdant.Foreground
 
             foreach (var val in items)
             {
+                if (Main.hasFocus && !Main.gamePaused)
                 val.Update();
 
                 val.Draw();
