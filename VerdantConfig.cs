@@ -30,11 +30,6 @@ namespace Verdant
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
-        [DefaultValue(false)]
-        [Label("Show Catch Text")]
-        [Tooltip("Displays text when hovering over an NPC that can be caught with a Bug Net.")]
-        public bool ShowCatchText;
-
         [DefaultValue(true)]
         [Label("Enable Steam Effect")]
         [Tooltip("Enables steam overlay when inside of the underground Verdant.")]

@@ -91,24 +91,6 @@ namespace Verdant
 
         public override void PreUpdate()
         {
-            if (ModContent.GetInstance<VerdantClientConfig>().ShowCatchText)
-            {
-                for (int i = 0; i < Main.maxNPCs; ++i)
-                {
-                    NPC npc = Main.npc[i];
-                    if (npc.active && npc.catchItem >= 0 && npc.Hitbox.Contains(Main.MouseWorld.ToPoint()))
-                    {
-                        int length = npc.GivenOrTypeName.Length + (npc.lifeMax.ToString().Length * 2) + 5;
-                        string spaces = "";
-                        for (int j = 0; j < length; ++j)
-                            spaces += " ";
-                        player.showItemIconText = spaces + "(Catchable)";
-                        player.showItemIcon = false;
-                        player.showItemIcon2 = -1;
-                    }
-                }
-            }
-
             PreUpdateEvent?.Invoke(player);
 
             //bootleg floor effects
