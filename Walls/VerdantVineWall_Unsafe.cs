@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Verdant.Walls.Verdant
+namespace Verdant.Walls
 {
     public class VerdantVineWall_Unsafe : ModWall
     {
