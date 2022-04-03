@@ -114,16 +114,18 @@ namespace Verdant.Tiles.Verdant.Decor
                         if ((bool)spiritMod.Call("downed", "Scarabeus"))
                             msg = "The desert sands feel calmer now.";
                         if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
-                            msg = "Ah, I love the critters of the glowing sky. It seems you've met some as well.";
+                            msg = "Ah, I love the critters of the glowing sky.1It seems you've met some as well.";
                         if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
                             msg = "The flowers feel more relaxed now. Thank you.";
                         if ((bool)spiritMod.Call("downed", "Ancient Avian"))
                             msg = "The skies are more at peace now, spectactular.";
                         if ((bool)spiritMod.Call("downed", "Starplate Raider"))
-                            msg = "We always had a soft spot for that glowing worm, but alas...";
+                            msg = "We always had a soft spot for that glowing mechanism, but alas...";
                     }
 
-                    Speak(msg);
+                    string[] split = msg.Split('1');
+                    foreach (var item in split)
+                        Speak(msg);
                 }
             }
             return true;
