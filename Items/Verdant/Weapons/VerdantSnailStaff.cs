@@ -7,15 +7,14 @@ using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Projectiles.Minion;
 
-
 namespace Verdant.Items.Verdant.Weapons
 {
     class VerdantSnailStaff : ModItem
     {
         public override void SetDefaults()
         {
-            QuickItem.SetMinion(this, 48, 48, ProjectileType<VerdantSnailMinion>(), 12, 10, ItemRarityID.Green);
-            item.buffType = BuffType<SnailBuff>();
+            QuickItem.SetMinion(this, 48, 48, ModContent.ProjectileType<VerdantSnailMinion>(), 12, 10, ItemRarityID.Green);
+            item.buffType = ModContent.BuffType<SnailBuff>();
             item.buffTime = 20;
         }
 

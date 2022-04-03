@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class VerdantStaff : ModItem
     {
-        public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
+        public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
 
         public override void SetStaticDefaults()
         {
@@ -33,11 +33,11 @@ namespace Verdant.Items.Verdant.Weapons
             int y = Helper.FindDown(Main.MouseWorld) * 16;
             position = new Vector2(Main.MouseWorld.X, y - 70);
 
-            if (Main.projectile.Any(x => x.active && x.type == ProjectileType<VerdantHealingMinion>())) //we are good - adjust position
+            if (Main.projectile.Any(x => x.active && x.type == ModContent.ProjectileType<VerdantHealingMinion>())) //we are good - adjust position
             {
-                var adjList = Main.projectile.Where(x => x.type == ProjectileType<VerdantHealingMinion>() && x.modProjectile is VerdantHealingMinion);
+                var adjList = Main.projectile.Where(x => x.type == ModContent.ProjectileType<VerdantHealingMinion>() && x.modProjectile is VerdantHealingMinion);
 
-                if (player.HasBuff(BuffType<Buffs.Minion.HealingFlowerBuff>()))
+                if (player.HasBuff(ModContent.BuffType<Buffs.Minion.HealingFlowerBuff>()))
                 {
                     for (int l = 0; l < adjList.Count(); ++l)
                         (adjList.ElementAt(l).modProjectile as VerdantHealingMinion).goPosition = position - new Vector2(24, 24);
@@ -47,7 +47,7 @@ namespace Verdant.Items.Verdant.Weapons
                         adjList.ElementAt(l).ai[0]++;
                 return false;
             }
-            player.AddBuff(BuffType<Buffs.Minion.HealingFlowerBuff>(), 2000);
+            player.AddBuff(ModContent.BuffType<Buffs.Minion.HealingFlowerBuff>(), 2000);
             return true;
         }
 
@@ -57,7 +57,7 @@ namespace Verdant.Items.Verdant.Weapons
                 for (int j = -3; j < 0; ++j)
                     if (Helper.SolidTile(Helper.MouseTile().X + i, Helper.MouseTile().Y + j))
                         return false;
-            return player.ownedProjectileCounts[ProjectileType<VerdantHealingMinion>()] > 0 || player.GetModPlayer<VerdantPlayer>().lastSlotsMinion < player.maxMinions;
+            return player.ownedProjectileCounts[ModContent.ProjectileType<VerdantHealingMinion>()] > 0 || player.GetModPlayer<VerdantPlayer>().lastSlotsMinion < player.maxMinions;
         }
     }
 }

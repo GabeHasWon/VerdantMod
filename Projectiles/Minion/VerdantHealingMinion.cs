@@ -75,10 +75,10 @@ namespace Verdant.Projectiles.Minion
             if (projectile.frameCounter++ % 30 == 0)
                 projectile.frame = projectile.frame == 0 ? 1 : 0;
 
-            if (goPosition != -Vector2.One && Vector2.Distance(projectile.position, goPosition) >= 120)
+            if (goPosition != -Vector2.One)
             {
-                projectile.velocity = -Vector2.Normalize(projectile.position - goPosition) * 40;
-                if (Vector2.Distance(projectile.position, goPosition) < 120)
+                projectile.velocity = (goPosition - projectile.position) * 0.055f;
+                if (Vector2.Distance(projectile.position, goPosition) < 10)
                     goPosition = -Vector2.One;
             }
 
@@ -98,6 +98,9 @@ namespace Verdant.Projectiles.Minion
                 scale *= State == 0 ? 1f : 1.2f; //Larger when stacked
 
                 DrawCircle(spriteBatch, lightColor, scale, out Vector2 off);
+
+                if (goPosition != -Vector2.One) //Indicator for move position
+                    spriteBatch.Draw(proj, goPosition - Main.screenPosition - off + new Vector2(24), proj.Frame(2, 1, projectile.frame), Color.White * 0.2f, 0f, new Vector2(24), scale, SpriteEffects.None, 1f);
 
                 for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                 {

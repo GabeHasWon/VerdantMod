@@ -22,7 +22,7 @@ namespace Verdant.Walls
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = "Verdant/Walls/Verdant/VerdantPinkPetalWall_Unsafe";
+            texture = "Verdant/Walls/VerdantPinkPetalWall_Unsafe";
             return base.Autoload(ref name, ref texture);
         }
 
