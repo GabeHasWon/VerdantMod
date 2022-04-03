@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
-using static Terraria.ModLoader.ModContent;
+
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -26,7 +24,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
 
-            drop = ItemType<VerdantStrongVineMaterial>();
+            drop = ModContent.ItemType<VerdantStrongVineMaterial>();
             AddMapEntry(new Color(182, 224, 49));
             dustType = DustID.Grass;
             soundType = SoundID.Grass;
@@ -37,8 +35,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            bool validAbove = Helper.ActiveType(i, j - 1, TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j - 1, Type);
-            bool validBelow = Helper.ActiveType(i, j + 1, TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j + 1, Type);
+            bool validAbove = Helper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j - 1, Type);
+            bool validBelow = Helper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j + 1, Type);
 
             if (!validBelow) //Hanging table functionality
             {
@@ -82,12 +80,12 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             if ((Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 54 || Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 36))
             {
-                if (!noItem) Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ItemType<RedPetal>());
+                if (!noItem) Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<RedPetal>());
                 Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
             }
             if ((Framing.GetTileSafely(i, j).frameX == 36 && Framing.GetTileSafely(i, j).frameY == 36 || Framing.GetTileSafely(i, j).frameX == 36 && Framing.GetTileSafely(i, j).frameY == 54))
             {
-                if (!noItem) Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ItemType<PinkPetal>());
+                if (!noItem) Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
                 Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
             }
 

@@ -6,10 +6,8 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Trees;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -28,7 +26,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.newTile.CoordinatePadding = 2;
-			TileObjectData.newTile.AnchorValidTiles = new[] { TileType<LushSoil>(), TileType<VerdantGrassLeaves>() };
+			TileObjectData.newTile.AnchorValidTiles = new[] { ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>() };
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.DrawFlipHorizontal = true;
 			TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;

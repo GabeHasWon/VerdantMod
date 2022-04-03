@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Walls.Verdant;
-using static Terraria.ModLoader.ModContent;
+using Verdant.Walls;
 
 namespace Verdant.Tiles.Verdant.Mounted
 {
@@ -31,7 +29,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.Height = 2;
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
             TileObjectData.newTile.AnchorWall = true;
-            TileObjectData.newTile.AnchorValidWalls = new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<VerdantLeafWall>(), WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
+            TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
             TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
             TileObjectData.newTile.AnchorTop = AnchorData.Empty;
             TileObjectData.addTile(Type);
@@ -43,9 +41,9 @@ namespace Verdant.Tiles.Verdant.Mounted
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ItemType<RedPetal>() : ItemType<PinkPetal>(), Main.rand.Next(2, 5));
+            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
             if (Main.rand.Next(3) == 0)
-                Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
+                Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
 
             if (frameX == 18) i--;
             if (frameY == 18) j--;
@@ -83,7 +81,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.AnchorBottom = default;
             TileObjectData.newTile.AnchorTop = default;
             TileObjectData.newTile.AnchorWall = true;
-            TileObjectData.newTile.AnchorValidWalls = new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<VerdantLeafWall>(), WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
+            TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
             TileObjectData.addTile(Type);
 
             dustType = DustID.Grass;
@@ -97,13 +95,13 @@ namespace Verdant.Tiles.Verdant.Mounted
             int r = Main.rand.Next(6, 10);
             if (frame == 0)
             {
-                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ItemType<RedPetal>(), Main.rand.Next(3, 7));
+                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<RedPetal>(), Main.rand.Next(3, 7));
                 for (int v = 0; v < r; ++v)
                     Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
             }
             else
             {
-                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ItemType<PinkPetal>(), Main.rand.Next(3, 7));
+                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<PinkPetal>(), Main.rand.Next(3, 7));
                 for (int v = 0; v < r; ++v)
                     Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
             }

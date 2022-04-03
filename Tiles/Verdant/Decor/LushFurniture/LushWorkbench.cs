@@ -3,9 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -34,7 +31,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ItemType<Items.Verdant.Blocks.LushWood.LushWorkbenchItem>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWorkbenchItem>());
         }
     }
 }

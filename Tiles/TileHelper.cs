@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,6 +8,7 @@ using Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.ModLoader;
 
 namespace Verdant.Tiles
 {
@@ -16,7 +16,7 @@ namespace Verdant.Tiles
     {
         public static int[] AttachStrongVine
         {
-            get => new int[] { TileType<VerdantHungTable_Pink>(), TileType<VerdantHungTable_Red>(), TileType<VerdantHungTable_PinkLightless>(), TileType<VerdantHungTable_RedLightless>() };
+            get => new int[] { ModContent.TileType<VerdantHungTable_Pink>(), ModContent.TileType<VerdantHungTable_Red>(), ModContent.TileType<VerdantHungTable_PinkLightless>(), ModContent.TileType<VerdantHungTable_RedLightless>() };
         }
 
         public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
@@ -92,7 +92,7 @@ namespace Verdant.Tiles
         /// <returns></returns>
         public static bool DrawChains(int i, int j, string path, SpriteBatch b, int length)
         {
-            Texture2D chain = GetTexture(path);
+            Texture2D chain = ModContent.GetTexture(path);
 
             bool[] valids = new bool[2] { false, false };
             for (int k = j - 1; k > j - length; --k) //Woo chain drawing
@@ -119,7 +119,7 @@ namespace Verdant.Tiles
 
         public static bool CanPlaceHangingTable(int i, int j)
         {
-            if (Helper.ActiveType(i, j - 1, TileType<VerdantStrongVine>()) && Helper.ActiveType(i + 2, j - 1, TileType<VerdantStrongVine>()))
+            if (Helper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && Helper.ActiveType(i + 2, j - 1, ModContent.TileType<VerdantStrongVine>()))
                 return true;
             return false;
         }

@@ -128,7 +128,7 @@ namespace Verdant
         private delegate void DrawMoonDelegate(float x, float y, Color col, float rot, float scale);
         private void DrawMoon(float x, float y, Color col, float rot, float scale)
         {
-            Texture2D tex = GetTexture("NPCs/Passive/Flotiny");
+            Texture2D tex = ModContent.GetTexture("NPCs/Passive/Flotiny");
             col.A = 255;
             Main.spriteBatch.Draw(tex, new Vector2(x, y + Main.moonModY), 
                 new Rectangle(0, 0, tex.Width, tex.Width), 

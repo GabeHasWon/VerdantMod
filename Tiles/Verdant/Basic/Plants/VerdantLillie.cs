@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -65,7 +64,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (Framing.GetTileSafely(i, j).frameY >= 54 && !noItem)
-                Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ItemType<PinkPetal>());
+                Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
 
             if (Helper.ActiveType(i, j - 1, Type))
                 WorldGen.KillTile(i, j - 1, false, false, false);
@@ -74,7 +73,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile t = Framing.GetTileSafely(i, j);
-            Texture2D tile = GetTexture("Verdant/Tiles/Verdant/Basic/Plants/VerdantLillie");
+            Texture2D tile = ModContent.GetTexture("Verdant/Tiles/Verdant/Basic/Plants/VerdantLillie");
             Color col = Lighting.GetColor(i, j);
 
             float xOff = (float)Math.Sin((Main.time + (i*24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;

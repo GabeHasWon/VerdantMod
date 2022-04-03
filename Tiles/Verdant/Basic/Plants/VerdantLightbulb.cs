@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Items.Verdant.Materials;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -17,7 +16,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void SetDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
-            TileObjectData.newTile.AnchorValidTiles = new int[] { TileType<VerdantGrassLeaves>(), TileType<LushSoil>() };
+            TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.StyleHorizontal = true;
 
@@ -34,7 +33,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         { //CRASH ERROR: frameX/frameY == -1, StackOverFlowException
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Lightbulb>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Lightbulb>(), 1);
             for (int v = 0; v < 4; ++v)
                 Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(32)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
         }

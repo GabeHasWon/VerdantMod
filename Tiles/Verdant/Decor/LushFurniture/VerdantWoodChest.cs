@@ -8,7 +8,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.LushWood;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -46,7 +45,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };
             chest = "Lush Wood Chest";
-            chestDrop = ItemType<VerdantWoodChestBlock>();
+            chestDrop = ModContent.ItemType<VerdantWoodChestBlock>();
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].frameX / 36);
@@ -185,7 +184,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Lush Wood Chest";
                 if (player.showItemIconText == "Lush Wood Chest")
                 {
-                    player.showItemIcon2 = ItemType<VerdantWoodChestBlock>();
+                    player.showItemIcon2 = ModContent.ItemType<VerdantWoodChestBlock>();
                     player.showItemIconText = "";
                 }
             }

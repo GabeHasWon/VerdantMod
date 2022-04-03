@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Minion;
-using static Terraria.ModLoader.ModContent;
+
 
 namespace Verdant.Items.Verdant.Weapons
 {

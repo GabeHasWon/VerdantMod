@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
 using Verdant.Tiles.Verdant.Trees;
-using static Terraria.ModLoader.ModContent;
+
 
 namespace Verdant.Tiles
 {
@@ -19,7 +19,7 @@ namespace Verdant.Tiles
     {
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
-            int[] requireGroundTypes = new int[] { TileType<VerdantTree>(), TileType<Apotheosis>() };
+            int[] requireGroundTypes = new int[] { ModContent.TileType<VerdantTree>(), ModContent.TileType<Apotheosis>() };
             if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
                 return false;
             return true;
@@ -27,7 +27,7 @@ namespace Verdant.Tiles
 
         public override bool CanExplode(int i, int j, int type)
         {
-            int[] requireGroundTypes = new int[] { TileType<VerdantTree>(), TileType<Apotheosis>() };
+            int[] requireGroundTypes = new int[] { ModContent.TileType<VerdantTree>(), ModContent.TileType<Apotheosis>() };
             if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
                 return false;
             return true;
@@ -40,8 +40,8 @@ namespace Verdant.Tiles
 
         public override bool PreDraw(int i, int j, int type, SpriteBatch spriteBatch)
         {
-            DrawGrounding(i, j, spriteBatch, TileType<VerdantStrongVine>(), type, 2);
-            DrawGrounding(i, j, spriteBatch, TileType<VerdantVine>(), type, 0);
+            DrawGrounding(i, j, spriteBatch, ModContent.TileType<VerdantStrongVine>(), type, 2);
+            DrawGrounding(i, j, spriteBatch, ModContent.TileType<VerdantVine>(), type, 0);
             return true;
         }
 

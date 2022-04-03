@@ -7,7 +7,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -41,7 +40,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             adjTiles = new int[] { TileID.Dressers };
 
             dresser = "Lush Dresser";
-            dresserDrop = ItemType<Items.Verdant.Blocks.LushWood.LushDresserItem>();
+            dresserDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushDresserItem>();
         }
 
         public override bool HasSmartInteract() => true;

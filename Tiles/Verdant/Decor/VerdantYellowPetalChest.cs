@@ -8,7 +8,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -47,7 +46,7 @@ namespace Verdant.Tiles.Verdant.Decor
             soundStyle = SoundID.Grass;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };
-            chestDrop = ItemType<VerdantYellowPetalChestBlock>();
+            chestDrop = ModContent.ItemType<VerdantYellowPetalChestBlock>();
             chest = "Yellow Petal Chest";
         }
 
@@ -190,7 +189,7 @@ namespace Verdant.Tiles.Verdant.Decor
                 player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Corrosive Chest";
                 if (player.showItemIconText == "Corrosive Chest")
                 {
-                    player.showItemIcon2 = ItemType<VerdantYellowPetalChestBlock>();
+                    player.showItemIcon2 = ModContent.ItemType<VerdantYellowPetalChestBlock>();
                     player.showItemIconText = "";
                 }
             }

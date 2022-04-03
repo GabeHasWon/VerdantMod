@@ -1,12 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using Terraria.GameContent.Biomes;
-
-using static Terraria.ModLoader.ModContent;
-using static Terraria.WorldGen;
 
 namespace Verdant.Items
 {
@@ -33,7 +28,7 @@ namespace Verdant.Items
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 
-            item.createTile = TileType<VerdantLightbulb>();
+            item.createTile = ModContent.TileType<VerdantLightbulb>();
             item.placeStyle = 0;
         }
 

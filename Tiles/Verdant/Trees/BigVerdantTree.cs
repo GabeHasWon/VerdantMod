@@ -1,17 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.WorldGen;
-using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Utilities;
-using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Trees
 {
@@ -150,7 +143,7 @@ namespace Verdant.Tiles.Verdant.Trees
         /// <summary>Just makes it easier to place tiles with good framing.</summary>
         private static void Place(int x, int y, short frameX, short frameY)
         {
-            PlaceTile(x, y, TileType<BigVerdantTree>(), true, false, -1, 0);
+            WorldGen.PlaceTile(x, y, ModContent.TileType<BigVerdantTree>(), true, false, -1, 0);
             Framing.GetTileSafely(x, y).frameX = frameX;
             Framing.GetTileSafely(x, y).frameY = frameY;
         }
@@ -297,21 +290,21 @@ namespace Verdant.Tiles.Verdant.Trees
             
             if (Framing.GetTileSafely(i, j).frameX == 234) //Tops
             {
-                Texture2D tops = GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Tops"); //Texture --- For the below line, it draws by x = middle, y = bottom origin. Adjust at your own risk
+                Texture2D tops = ModContent.GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Tops"); //Texture --- For the below line, it draws by x = middle, y = bottom origin. Adjust at your own risk
                 spriteBatch.Draw(tops, TileCustomPosition(i, j), new Rectangle(0, 330 * frame, 360, 328), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(162, 328), 1f, SpriteEffects.None, 0f);
                 return true; //We still want to draw the connecting trunk
             }
 
             if (Framing.GetTileSafely(i, j).frameX == 270) //Branch (left)
             {
-                Texture2D tops = GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Branches"); //Texture --- For the below line, it draws by x = right side, y = middle origin. Adjust at your own risk
+                Texture2D tops = ModContent.GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Branches"); //Texture --- For the below line, it draws by x = right side, y = middle origin. Adjust at your own risk
                 spriteBatch.Draw(tops, TileCustomPosition(i, j), new Rectangle(0, 144 * frame, 144, 144), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(126, 68), 1f, SpriteEffects.None, 0f);
                 return false; //Do not draw the default branch under this
             }
 
             if (Framing.GetTileSafely(i, j).frameX == 288) //Branch (right)
             {
-                Texture2D tops = GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Branches"); //Texture --- For the below line, it draws by x = left side, y = middle origin. Adjust at your own risk
+                Texture2D tops = ModContent.GetTexture("Verdant/Tiles/Verdant/Trees/BigVerdantTree_Branches"); //Texture --- For the below line, it draws by x = left side, y = middle origin. Adjust at your own risk
                 spriteBatch.Draw(tops, TileCustomPosition(i, j), new Rectangle(146, 144 * frame, 144, 144), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 68), 1f, SpriteEffects.None, 0f);
             }
             return true;

@@ -5,11 +5,9 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Trees
 {

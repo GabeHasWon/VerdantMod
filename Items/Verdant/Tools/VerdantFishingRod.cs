@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Materials;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Tools
 {
@@ -15,7 +14,7 @@ namespace Verdant.Items.Verdant.Tools
             item.CloneDefaults(ItemID.FiberglassFishingPole);
             item.fishingPole = 26;
             item.shootSpeed = 13f;
-            item.shoot = ProjectileType<Projectiles.Misc.VerdantBobber>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
         }
 
         public override void SetStaticDefaults()
@@ -26,16 +25,16 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void HoldItem(Player player)
         {
-            if (player.ownedProjectileCounts[ProjectileType<Projectiles.Misc.VerdantBobber>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>()] > 0)
                 Lighting.AddLight(player.position + new Vector2(42 * player.direction, -6), new Vector3(0.1f, 0.03f, 0.06f) * 12);
         }
 
         public override void AddRecipes()
         {
             ModRecipe m = new ModRecipe(mod);
-            m.AddIngredient(ItemType<VerdantStrongVineMaterial>(), 16);
-            m.AddIngredient(ItemType<PinkPetal>(), 8);
-            m.AddIngredient(ItemType<Lightbulb>(), 8);
+            m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 16);
+            m.AddIngredient(ModContent.ItemType<PinkPetal>(), 8);
+            m.AddIngredient(ModContent.ItemType<Lightbulb>(), 8);
             m.AddTile(TileID.Anvils);
             m.SetResult(this);
             m.AddRecipe();

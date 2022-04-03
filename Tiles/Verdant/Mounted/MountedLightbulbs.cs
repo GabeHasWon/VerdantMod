@@ -6,8 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Walls.Verdant;
-using static Terraria.ModLoader.ModContent;
+using Verdant.Walls;
 
 namespace Verdant.Tiles.Verdant.Mounted
 {
@@ -29,7 +28,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.AnchorBottom = default;
             TileObjectData.newTile.AnchorTop = default;
             TileObjectData.newTile.AnchorWall = true;
-            TileObjectData.newTile.AnchorValidWalls = new int[] { WallType<VerdantLeafWall_Unsafe>(), WallType<VerdantLeafWall>(), WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
+            TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
             TileObjectData.addTile(Type);
 
             dustType = DustID.Grass;
@@ -40,10 +39,10 @@ namespace Verdant.Tiles.Verdant.Mounted
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ItemType<RedPetal>() : ItemType<PinkPetal>(), Main.rand.Next(2, 5));
+            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
             if (Main.rand.Next(3) == 0)
-                Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
-            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ItemType<Lightbulb>(), 1);
+                Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
+            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<Lightbulb>(), 1);
 
             if (frameX % 36 == 18) i--;
             if (frameY % 36 == 18) j--;

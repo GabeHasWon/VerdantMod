@@ -6,7 +6,7 @@ using Verdant.Buffs.Minion;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Projectiles.Minion;
-using static Terraria.ModLoader.ModContent;
+
 
 namespace Verdant.Items.Verdant.Weapons
 {
@@ -36,8 +36,8 @@ namespace Verdant.Items.Verdant.Weapons
         public override void AddRecipes()
         {
             ModRecipe m = new ModRecipe(mod);
-            m.AddIngredient(ItemType<VerdantStrongVineMaterial>(), 8);
-            m.AddIngredient(ItemType<VerdantWoodBlock>(), 10);
+            m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 8);
+            m.AddIngredient(ModContent.ItemType<VerdantWoodBlock>(), 10);
             m.AddTile(TileID.Anvils);
             m.SetResult(this);
             m.AddRecipe();

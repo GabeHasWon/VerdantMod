@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Tools
 {
@@ -19,8 +18,8 @@ namespace Verdant.Items.Verdant.Tools
             item.CloneDefaults(ItemID.LivingWoodWand); //probably dont need this lol
 
             item.Size = new Vector2(34, 34);
-            item.createTile = TileType<Tiles.Verdant.Basic.Blocks.VerdantRedPetal>(); //Place type
-            item.tileWand = ItemType<RedPetal>(); //"Ammo"
+            item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Blocks.VerdantRedPetal>(); //Place type
+            item.tileWand = ModContent.ItemType<RedPetal>(); //"Ammo"
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.rare = ItemRarityID.Red;
             item.useTurn = true;

@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -32,7 +31,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 64, 32, ItemType<Items.Verdant.Blocks.LushWood.LushBedItem>());
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 64, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushBedItem>());
 
         public override bool NewRightClick(int i, int j)
         {
@@ -62,7 +61,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ItemType<Items.Verdant.Blocks.LushWood.LushBedItem>();
+            player.showItemIcon2 = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushBedItem>();
         }
     }
 }

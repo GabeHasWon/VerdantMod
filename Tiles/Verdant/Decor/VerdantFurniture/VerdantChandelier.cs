@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
@@ -44,7 +43,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierBlock>(), 1);
+            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierBlock>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(32), Main.rand.Next(54));

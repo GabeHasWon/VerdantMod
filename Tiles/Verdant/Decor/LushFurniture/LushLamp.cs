@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
@@ -113,7 +112,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             int height = 16;
             int offsetX = i % 2 == 0 ? 3 : -3;
             TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height);
-            var flameTexture = Main.FlameTexture[0];// mod.GetTexture("Tiles/ExampleLamp_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
+            var flameTexture = Main.FlameTexture[0];// mod.ModContent.GetTexture("Tiles/ExampleLamp_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
 
             ulong seed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);
             // We can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -26,7 +25,6 @@ namespace Verdant.Projectiles.Misc
         }
 
         private bool _rightChannel = false;
-        private float _rightScale = 0f;
 
         private bool _killMe = false;
 

@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using static Terraria.ModLoader.ModContent;
 
 namespace Verdant.Items.Verdant.Blocks
 {
@@ -17,7 +16,7 @@ namespace Verdant.Items.Verdant.Blocks
         {
             Point p = Main.MouseWorld.ToTileCoordinates();
             bool c = !Framing.GetTileSafely(p.X, p.Y).active() || Main.tileCut[Framing.GetTileSafely(p.X, p.Y).type];
-            bool a = Helper.ActiveType(p.X, p.Y - 1, TileType<VerdantGrassLeaves>()) || Helper.ActiveType(p.X, p.Y - 1, TileType<VerdantStrongVine>());
+            bool a = Helper.ActiveType(p.X, p.Y - 1, ModContent.TileType<VerdantGrassLeaves>()) || Helper.ActiveType(p.X, p.Y - 1, ModContent.TileType<VerdantStrongVine>());
             return c && a;
         }
 
@@ -25,7 +24,7 @@ namespace Verdant.Items.Verdant.Blocks
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, TileType<VerdantStrongVine>(), false, false);
+                WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, ModContent.TileType<VerdantStrongVine>(), false, false);
 
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
