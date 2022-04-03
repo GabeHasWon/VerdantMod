@@ -410,7 +410,7 @@ namespace Verdant.World
             for (int i = 0; i < repeats; ++i)
             {
                 int x = (int)MathHelper.Lerp(VerdantArea.X + 50, VerdantArea.Right - 50,  i / repeats);
-                int y = VerdantArea.Center.Y;
+                int y = VerdantArea.Center.Y - WorldGen.genRand.Next(-20, 20);
 
                 VerdantCircles.Add(new GenCircle(50, new Point(x, y)));
             }

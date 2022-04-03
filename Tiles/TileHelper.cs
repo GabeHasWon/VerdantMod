@@ -14,6 +14,13 @@ namespace Verdant.Tiles
 {
     public static class TileHelper
     {
+        public static Vector2 TileOffset => Lighting.lightMode > 1 ? Vector2.Zero : Vector2.One * 12;
+
+        public static Vector2 TileCustomPosition(int i, int j, Vector2? off = null)
+        {
+            return ((new Vector2(i, j) + TileOffset) * 16) - Main.screenPosition - (off ?? new Vector2(0));
+        }
+
         public static int[] AttachStrongVine
         {
             get => new int[] { ModContent.TileType<VerdantHungTable_Pink>(), ModContent.TileType<VerdantHungTable_Red>(), ModContent.TileType<VerdantHungTable_PinkLightless>(), ModContent.TileType<VerdantHungTable_RedLightless>() };
@@ -107,9 +114,9 @@ namespace Verdant.Tiles
                 offset = 0f;
 
                 if (!valids[0])
-                    b.Draw(chain, Helper.TileCustomPosition(i, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
+                    b.Draw(chain, TileCustomPosition(i, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
                 if (!valids[1])
-                    b.Draw(chain, Helper.TileCustomPosition(i + 2, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i + 2, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
+                    b.Draw(chain, TileCustomPosition(i + 2, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i + 2, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
 
                 if (valids[0] && valids[1])
                     return false;

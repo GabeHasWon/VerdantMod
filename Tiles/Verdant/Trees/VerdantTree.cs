@@ -287,7 +287,7 @@ namespace Verdant.Tiles.Verdant.Trees
                 frameOff = -2;
             }
             if (t.frameX < 90 || t.frameX == 216 || t.frameX == 234 || t.frameX == 252 || t.frameX == 270) frameSizY = 18;
-            Vector2 pos = Helper.TileCustomPosition(i, j) - new Vector2((xOff * 2) - (frameOff / 2), 0);
+            Vector2 pos = TileHelper.TileCustomPosition(i, j) - new Vector2((xOff * 2) - (frameOff / 2), 0);
 
             if (Framing.GetTileSafely(i, j).frameX == 108) //Draw branches so it has to do less logic later
             {
@@ -313,7 +313,7 @@ namespace Verdant.Tiles.Verdant.Trees
                 col = Lighting.GetColor(i, j - 2);
                 int frame = t.frameY / 18;
                 float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.02f;
-                spriteBatch.Draw(tops, Helper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(tops, TileHelper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

@@ -76,14 +76,14 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Texture2D tile = ModContent.GetTexture("Verdant/Tiles/Verdant/Basic/Plants/VerdantLillie");
             Color col = Lighting.GetColor(i, j);
 
-            float xOff = (float)Math.Sin((Main.time + (i*24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;
+            float xOff = (float)Math.Sin((Main.GameUpdateCount + (i*24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;
             if (Framing.GetTileSafely(i, j + 1).type != Type)
                 xOff *= 0.25f;
             else if (Framing.GetTileSafely(i, j + 2).type != Type)
                 xOff *= 0.5f;
             else if (Framing.GetTileSafely(i, j + 3).type != Type)
                 xOff *= 0.75f;
-            spriteBatch.Draw(tile, Helper.TileCustomPosition(i, j) - new Vector2(xOff, 0), new Rectangle(t.frameX, t.frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j) - new Vector2(xOff, 0), new Rectangle(t.frameX, t.frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
             return false;
         }
     }

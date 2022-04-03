@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +37,17 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (!Main.tile[i, j - 1].active()) WorldGen.KillTile(i, j);
+            if (!Main.tile[i, j - 1].active())
+                WorldGen.KillTile(i, j);
+        }
+
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            Tile t = Framing.GetTileSafely(i, j);
+
+            float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.02f) * 1f;
+            spriteBatch.Draw(Main.tileTexture[Type], TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.frameX, t.frameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            return false;
         }
     }
 }

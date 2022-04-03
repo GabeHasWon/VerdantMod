@@ -46,7 +46,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
             int frameY = t.frameY;
 
-            spriteBatch.Draw(tile, Helper.TileCustomPosition(i, j), new Rectangle(t.frameX, frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j), new Rectangle(t.frameX, frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
             return false;
         }
 
