@@ -30,7 +30,7 @@ namespace Verdant.Projectiles.Misc
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Memory");
+            DisplayName.SetDefault("Wisp");
             Main.projFrames[projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;

@@ -45,5 +45,7 @@ namespace Verdant
             return false;
         }
         public static bool AccessoryEquipped(this Player player, Item item) => player.AccessoryEquipped(item.type);
+
+        public static Player Owner(this Projectile p) => Main.player[p.owner];
     }
 }

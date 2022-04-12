@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Dusts;
+using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Misc
 {
@@ -11,7 +12,7 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Heart of Growth");
-            Tooltip.SetDefault("Permenantly increases max minions by one.\n'A heart that beats everliving.'");
+            Tooltip.SetDefault("Permenantly increases max minions by one.\nCan only be used once.\n'A heart that beats everliving.'");
         }
 
         public override void SetDefaults()
@@ -19,40 +20,22 @@ namespace Verdant.Items.Verdant.Misc
             item.accessory = false;
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 50);
-            item.consumable = true;
+            item.consumable = false;
             item.width = 32;
             item.height = 28;
-
             item.useAnimation = item.useTime = 20;
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
-        public override bool CanUseItem(Player player) => !player.GetModPlayer<VerdantPlayer>().heartOfGrowth;
+        public override bool CanUseItem(Player player) => true;
+        //player.GetModPlayer<VerdantPlayer>().heartOfGrowth
 
         public override bool UseItem(Player player)
         {
             player.GetModPlayer<VerdantPlayer>().heartOfGrowth = true;
-            Vector2 top = new Vector2(player.Center.X, player.Bottom.Y + 30);
 
-            for (int i = 0; i < 14; ++i)
-            {
-                float offset = (float)Math.Sin(i * 0.4f) * 40;
-
-                float height = top.Y - (i * 15);
-                Vector2 pos = top - new Vector2(offset, i * 15);
-                Vector2 vel = Vector2.Normalize(pos - new Vector2(player.Center.X, height)) * (2.5f + (i / 24f));
-
-                Dust d = Dust.NewDustPerfect(pos, 59, vel, 0, default, 1.25f - (i / 24f));
-
-                pos = top + new Vector2(offset, -i * 15);
-                vel = Vector2.Normalize(pos - new Vector2(player.Center.X, height)) * (2.5f + (i / 24f));
-                Dust d2 = Dust.NewDustPerfect(pos, 59, vel, 0, default, 1.25f - (i / 24f));
-
-                d.fadeIn = i / 12f * 3;
-                d2.fadeIn = i / 12f * 3;
-                d.noGravity = true;
-                d2.noGravity = true;
-            }
+            for (int i = 0; i < 22; ++i)
+                Projectile.NewProjectile(player.Center, new Vector2(Main.rand.NextFloat(4, 12), 0).RotatedByRandom(MathHelper.TwoPi), ModContent.ProjectileType<HealingParticle>(), 0, 0, player.whoAmI, 0, 0);
             return true;
         }
     }

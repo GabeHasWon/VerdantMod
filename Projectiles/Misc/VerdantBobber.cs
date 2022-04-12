@@ -9,22 +9,18 @@ namespace Verdant.Projectiles.Misc
 {
     public class VerdantBobber : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Example Bobber");
-        }
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant Bobber");
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BobberWooden);
-            drawOriginOffsetY = 0; // adjusts the draw position
+            drawOriginOffsetY = 0;
         }
 
         public override bool PreDrawExtras(SpriteBatch spriteBatch)
         {
             Lighting.AddLight(projectile.Center, new Vector3(0.5f, 0.16f, 0.30f) * 3f);
 
-            //Change these two values in order to change the origin of where the line is being drawn
             int xPositionAdditive = 38;
             float yPositionAdditive = 33f;
 
@@ -52,6 +48,7 @@ namespace Verdant.Projectiles.Misc
             lineOrigin = player.RotatedRelativePoint(lineOrigin + new Vector2(8f), true) - new Vector2(8f);
             Vector2 playerToProjectile = projectile.Center - lineOrigin;
             bool canDraw = true;
+
             if (playerToProjectile.X == 0f && playerToProjectile.Y == 0f)
                 return false;
 
@@ -65,7 +62,8 @@ namespace Verdant.Projectiles.Misc
             {
                 float height = 12f;
                 float positionMagnitude = playerToProjectile.Length();
-                if (float.IsNaN(positionMagnitude) || float.IsNaN(positionMagnitude))
+
+                if (float.IsNaN(positionMagnitude))
                     break;
 
                 if (positionMagnitude < 20f)
@@ -73,26 +71,35 @@ namespace Verdant.Projectiles.Misc
                     height = positionMagnitude - 8f;
                     canDraw = false;
                 }
+
                 playerToProjectile *= 12f / positionMagnitude;
                 lineOrigin += playerToProjectile;
                 playerToProjectile.X = projectile.position.X + projectile.width * 0.5f - lineOrigin.X;
                 playerToProjectile.Y = projectile.position.Y + projectile.height * 0.1f - lineOrigin.Y;
+
                 if (positionMagnitude > 12f)
                 {
                     float positionInverseMultiplier = 0.3f;
                     float absVelocitySum = Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y);
+
                     if (absVelocitySum > 16f)
                         absVelocitySum = 16f;
+
                     absVelocitySum = 1f - absVelocitySum / 16f;
                     positionInverseMultiplier *= absVelocitySum;
                     absVelocitySum = positionMagnitude / 80f;
+
                     if (absVelocitySum > 1f)
                         absVelocitySum = 1f;
+
                     positionInverseMultiplier *= absVelocitySum;
+
                     if (positionInverseMultiplier < 0f)
                         positionInverseMultiplier = 0f;
+
                     absVelocitySum = 1f - projectile.localAI[0] / 100f;
                     positionInverseMultiplier *= absVelocitySum;
+
                     if (playerToProjectile.Y > 0f)
                     {
                         playerToProjectile.Y *= 1f + positionInverseMultiplier;
