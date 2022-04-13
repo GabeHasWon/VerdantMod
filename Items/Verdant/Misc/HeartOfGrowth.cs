@@ -20,15 +20,14 @@ namespace Verdant.Items.Verdant.Misc
             item.accessory = false;
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 50);
-            item.consumable = false;
+            item.consumable = true;
             item.width = 32;
             item.height = 28;
             item.useAnimation = item.useTime = 20;
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
-        public override bool CanUseItem(Player player) => true;
-        //player.GetModPlayer<VerdantPlayer>().heartOfGrowth
+        public override bool CanUseItem(Player player) => player.GetModPlayer<VerdantPlayer>().heartOfGrowth;
 
         public override bool UseItem(Player player)
         {

@@ -6,10 +6,11 @@ using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Drawing;
 
 namespace Verdant.Projectiles.Minion
 {
-    class VerdantHealingMinion : ModProjectile
+    class VerdantHealingMinion : ModProjectile, IDrawAdditive
     {
         ref float State => ref projectile.ai[0];
 
@@ -125,6 +126,19 @@ namespace Verdant.Projectiles.Minion
             {
                 spriteBatch.Draw(circle, projectile.Center - Main.screenPosition - off, circle.Frame(), projectile.GetAlpha(lightColor) * ((alphaScale - 0.95f) * 1.5f), timer * 0.006f, circle.Bounds.Center.ToVector2(), sc * scale * 1.04f, SpriteEffects.None, 1f);
                 spriteBatch.Draw(circle, projectile.Center - Main.screenPosition - off, circle.Frame(), projectile.GetAlpha(lightColor) * ((alphaScale - 0.95f) * 1.5f), timer * 0.006f, circle.Bounds.Center.ToVector2(), sc * scale * 0.96f, SpriteEffects.None, 1f);
+            }
+        }
+
+        public void DrawAdditive(AdditiveLayer layer)
+        {
+            if (layer == AdditiveLayer.AfterPlayer)
+            {
+                Texture2D tex = mod.GetTexture("Textures/Circle");
+                float rot = projectile.velocity.ToRotation();
+                Vector2 scale = new Vector2(1 + (projectile.velocity.Length() * 0.02f), 1) * 5f;
+                float sc = 0.9f - (float)(Math.Sin(timer * 0.03f) * 0.05f);
+
+                Main.spriteBatch.Draw(tex, projectile.Center - Main.screenPosition, null, new Color(0, 170, 62) * 0.45f, rot, tex.Size() / 2f, scale * sc, SpriteEffects.None, 1f);
             }
         }
     }
