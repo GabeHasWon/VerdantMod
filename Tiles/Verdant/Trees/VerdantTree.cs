@@ -51,7 +51,7 @@ namespace Verdant.Tiles.Verdant.Trees
             int height = r.Next(minSize, maxSize); //Height & trunk
             for (int k = 1; k < height; ++k)
             {
-                if (Helper.SolidTile(i, j - k))
+                if (TileHelper.SolidTile(i, j - k))
                 {
                     height = k - 2;
                     break;
@@ -64,7 +64,7 @@ namespace Verdant.Tiles.Verdant.Trees
             for (int k = -2; k < 3; ++k) //Checks base
             {
                 extraPlaces[k + 2] = false;
-                if ((Helper.SolidTopTile(i + k, j + 1) || Helper.SolidTile(i + k, j + 1)) && !Framing.GetTileSafely(i + k, j).active())
+                if ((TileHelper.SolidTopTile(i + k, j + 1) || TileHelper.SolidTile(i + k, j + 1)) && !Framing.GetTileSafely(i + k, j).active())
                     extraPlaces[k + 2] = true;
             }
 
@@ -197,12 +197,12 @@ namespace Verdant.Tiles.Verdant.Trees
             //if you value your sanity don't bother reading this
 
             int[] rootFrames = new int[] { 0, 18, 54, 72, 216, 234, 108, 126 };
-            if (Helper.ActiveType(i, j - 1, Type) && !rootFrames.Contains(t.frameX))
+            if (TileHelper.ActiveType(i, j - 1, Type) && !rootFrames.Contains(t.frameX))
                 WorldGen.KillTile(i, j - 1, fail, false, false);
 
-            if (t.frameX == 0 && Helper.ActiveType(i + 1, j, Type)) //Leftmost root
+            if (t.frameX == 0 && TileHelper.ActiveType(i + 1, j, Type)) //Leftmost root
                 Framing.GetTileSafely(i + 1, j).frameX = 216;
-            else if (t.frameX == 72 && Helper.ActiveType(i - 1, j, Type)) //Rightmost root
+            else if (t.frameX == 72 && TileHelper.ActiveType(i - 1, j, Type)) //Rightmost root
                 Framing.GetTileSafely(i - 1, j).frameX = 234;
             else if (t.frameX == 18 || t.frameX == 216) //Left root & cut left root
             {

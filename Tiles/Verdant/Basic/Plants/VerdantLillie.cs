@@ -15,7 +15,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Main.tileSolid[Type] = false;
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
-            Main.tileCut[Type] = true;
 
             AddMapEntry(new Color(21, 92, 19));
             dustType = DustID.Grass;
@@ -66,7 +65,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             if (Framing.GetTileSafely(i, j).frameY >= 54 && !noItem)
                 Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
 
-            if (Helper.ActiveType(i, j - 1, Type))
+            if (TileHelper.ActiveType(i, j - 1, Type))
                 WorldGen.KillTile(i, j - 1, false, false, false);
         }
 

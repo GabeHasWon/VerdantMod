@@ -7,6 +7,7 @@ using Verdant.Bezier;
 using Terraria.Utilities;
 using System.Collections.Generic;
 using static Terraria.WorldGen;
+using System.Linq;
 
 namespace Verdant.World
 {
@@ -292,6 +293,19 @@ namespace Verdant.World
                 SquareTileFrame(x, y, true);
             else
                 t.frameX = (short)(18 * style);
+        }
+
+        public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
+        {
+            for (int k = j; k > j - minHeight; k--)
+            {
+                Tile t = Framing.GetTileSafely(i, k);
+                if (ignoreTypes.Contains(t.type))
+                    continue;
+                if (t.active())
+                    return false;
+            }
+            return true;
         }
     }
 }

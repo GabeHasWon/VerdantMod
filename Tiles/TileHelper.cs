@@ -9,6 +9,8 @@ using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ModLoader;
+using System.Collections.Generic;
+using Terraria.Utilities;
 
 namespace Verdant.Tiles
 {
@@ -24,19 +26,6 @@ namespace Verdant.Tiles
         public static int[] AttachStrongVine
         {
             get => new int[] { ModContent.TileType<VerdantHungTable_Pink>(), ModContent.TileType<VerdantHungTable_Red>(), ModContent.TileType<VerdantHungTable_PinkLightless>(), ModContent.TileType<VerdantHungTable_RedLightless>() };
-        }
-
-        public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
-        {
-            for (int k = j; k > j - minHeight; k--)
-            {
-                Tile t = Framing.GetTileSafely(i, k);
-                if (ignoreTypes.Contains(t.type))
-                    continue;
-                if (t.active())
-                    return false;
-            }
-            return true;
         }
 
         public static void OpenDoorData(int type)
@@ -104,8 +93,8 @@ namespace Verdant.Tiles
             bool[] valids = new bool[2] { false, false };
             for (int k = j - 1; k > j - length; --k) //Woo chain drawing
             {
-                if (Helper.SolidTile(i, k + 1)) valids[0] = true;
-                if (Helper.SolidTile(i + 2, k + 1)) valids[1] = true;
+                if (SolidTile(i, k + 1)) valids[0] = true;
+                if (SolidTile(i + 2, k + 1)) valids[1] = true;
 
                 float offset = (float)Math.Sin((Main.time + (i * 24) + (k * 19)) * (0.02f * (!Lighting.NotRetro ? 0f : 1))) * 1.2f;
 
@@ -126,9 +115,47 @@ namespace Verdant.Tiles
 
         public static bool CanPlaceHangingTable(int i, int j)
         {
-            if (Helper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && Helper.ActiveType(i + 2, j - 1, ModContent.TileType<VerdantStrongVine>()))
+            if (ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && ActiveType(i + 2, j - 1, ModContent.TileType<VerdantStrongVine>()))
                 return true;
             return false;
         }
+
+        public static bool HasOpenAdjacent(int i, int j)
+        {
+            for (int l = -1; l < 1; ++l)
+                for (int k = -1; k < 1; ++k)
+                    if (new Point(i + l, j + k) != new Point(i, j) && !Framing.GetTileSafely(i + l, j + k).active())
+                        return true;
+            return false;
+        }
+
+        public static Point GetOpenAdjacent(int i, int j)
+        {
+            for (int l = -1; l < 1; ++l)
+                for (int k = -1; k < 1; ++k)
+                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
+                        return new Point(l, k);
+            return new Point(-2, -2);
+        }
+
+        public static Point GetRandomOpenAdjacent(int i, int j, UnifiedRandom rand = null)
+        {
+            rand = rand ?? WorldGen.genRand;
+
+            List<Point> adjacents = new List<Point>();
+            for (int l = -1; l < 1; ++l)
+                for (int k = -1; k < 1; ++k)
+                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
+                        adjacents.Add(new Point(l, k));
+            if (adjacents.Count > 0)
+                return adjacents[rand.Next(adjacents.Count)];
+            return new Point(-2, -2);
+        }
+
+        public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).active() && Main.tileSolid[Framing.GetTileSafely(i, j).type];
+        public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).active() && (Main.tileSolidTop[Framing.GetTileSafely(i, j).type] || Main.tileSolid[Framing.GetTileSafely(i, j).type]);
+        public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t;
+        public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).active();
+        public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t && !Framing.GetTileSafely(i, j).topSlope();
     }
 }

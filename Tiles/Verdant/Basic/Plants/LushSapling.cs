@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Trees;
+using Verdant.World;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -47,7 +48,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
 		public override void RandomUpdate(int i, int j) {
-            if (WorldGen.genRand.Next(12) == 0 && TileHelper.CanGrowVerdantTree(i, j, 8, Type))
+            if (WorldGen.genRand.Next(12) == 0 && GenHelper.CanGrowVerdantTree(i, j, 8, Type))
             {
                 bool isPlayerNear = WorldGen.PlayerLOS(i, j);
                 if (Framing.GetTileSafely(i, j).frameY == 0)

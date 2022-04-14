@@ -6,7 +6,7 @@ using Verdant.Items.Verdant.Blocks.Walls;
 
 namespace Verdant.Walls
 {
-    public class LushSoilWall_Unsafe : ModWall
+    public class LivingLushWoodWall_Unsafe : ModWall
     {
         public override void SetDefaults()
         {
@@ -19,11 +19,11 @@ namespace Verdant.Walls
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
     }
 
-    public class LushSoilWall : ModWall
+    public class LivingLushWoodWall : ModWall
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = "Verdant/Walls/LushSoilWall_Unsafe";
+            texture = "Verdant/Walls/LivingLushWoodWall_Unsafe";
             return base.Autoload(ref name, ref texture);
         }
 
@@ -31,7 +31,7 @@ namespace Verdant.Walls
         {
             Main.wallHouse[Type] = false;
             dustType = DustID.Grass;
-            drop = ModContent.ItemType<LushSoilWallItem>();
+            drop = ModContent.ItemType<LivingLushWoodWallItem>();
             AddMapEntry(new Color(50, 15, 15));
         }
 

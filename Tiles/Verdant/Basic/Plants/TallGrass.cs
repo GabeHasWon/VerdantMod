@@ -24,7 +24,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
             Tile t = Framing.GetTileSafely(i, j);
-            if (Helper.ActiveType(i, j + 1, Type) && Framing.GetTileSafely(i, j + 1).frameY > 0)
+            if (TileHelper.ActiveType(i, j + 1, Type) && Framing.GetTileSafely(i, j + 1).frameY > 0)
             {
                 t.frameX = Framing.GetTileSafely(i, j + 1).frameX;
                 t.frameY = (short)(Framing.GetTileSafely(i, j + 1).frameY - 18);
@@ -40,7 +40,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (Helper.ActiveType(i, j - 1, Type))
+            if (TileHelper.ActiveType(i, j - 1, Type))
                 WorldGen.KillTile(i, j - 1, false, false, true);
         }
 

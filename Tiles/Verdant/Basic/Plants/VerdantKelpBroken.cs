@@ -111,7 +111,7 @@
 //            if (Framing.GetTileSafely(i, j).frameY >= 54 && !noItem)
 //                Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
 
-//            if (Helper.ActiveType(i, j - 1, Type))
+//            if (TileHelper.ActiveType(i, j - 1, Type))
 //                WorldGen.KillTile(i, j - 1, false, false, false);
 //        }
 

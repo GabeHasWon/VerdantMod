@@ -11,6 +11,7 @@ using Verdant.Effects;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Fishing;
+using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.World;
 
@@ -97,7 +98,7 @@ namespace Verdant
             Point left = player.TileCoordsBottomLeft();
             Point right = player.TileCoordsBottomRight();
 
-            if (player.whoAmI == Main.myPlayer && player.velocity.Y >= 0 && (Helper.SolidTopTile(left.X, left.Y) || Helper.SolidTopTile(right.X, right.Y)))
+            if (player.whoAmI == Main.myPlayer && player.velocity.Y >= 0 && (TileHelper.SolidTopTile(left.X, left.Y) || TileHelper.SolidTopTile(right.X, right.Y)))
                 TileFloor(left, right, Framing.GetTileSafely(left.X, left.Y).type, Framing.GetTileSafely(right.X, right.Y).type);
 
             if (player.HeldItem.type == ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>())
@@ -114,8 +115,8 @@ namespace Verdant
 
         private void TileFloor(Point left, Point right, int lType, int rType)
         {
-            bool lValid = lType == ModContent.TileType<Bouncebloom>() && Helper.SolidTopTile(left.X, left.Y);
-            bool rValid = rType == ModContent.TileType<Bouncebloom>() && Helper.SolidTopTile(right.X, right.Y);
+            bool lValid = lType == ModContent.TileType<Bouncebloom>() && TileHelper.SolidTopTile(left.X, left.Y);
+            bool rValid = rType == ModContent.TileType<Bouncebloom>() && TileHelper.SolidTopTile(right.X, right.Y);
             if (lValid || rValid)
             {
                 float newVel = -10f;

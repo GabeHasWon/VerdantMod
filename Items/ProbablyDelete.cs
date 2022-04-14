@@ -27,7 +27,6 @@ namespace Verdant.Items
 			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-
             item.createTile = ModContent.TileType<VerdantLightbulb>();
             item.placeStyle = 0;
         }

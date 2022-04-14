@@ -9,44 +9,6 @@ namespace Verdant
 {
     public class Helper
     {
-        public static bool HasOpenAdjacent(int i, int j)
-        {
-            for (int l = -1; l < 1; ++l)
-            {
-                for (int k = -1; k < 1; ++k)
-                {
-                    if (new Point(i + l, j + k) != new Point(i, j) && !Framing.GetTileSafely(i + l, j + k).active())
-                        return true;
-                }
-            }
-            return false;
-        }
-
-        public static Point GetOpenAdjacent(int i, int j)
-        {
-            for (int l = -1; l < 1; ++l)
-            {
-                for (int k = -1; k < 1; ++k)
-                {
-                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
-                        return new Point(l, k);
-                }
-            }
-            return new Point(-2, -2);
-        }
-
-        public static Point GetRandomOpenAdjacent(int i, int j)
-        {
-            List<Point> adjacents = new List<Point>();
-            for (int l = -1; l < 1; ++l)
-                for (int k = -1; k < 1; ++k)
-                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
-                        adjacents.Add(new Point(l, k));
-            if (adjacents.Count > 0)
-                return adjacents[genRand.Next(adjacents.Count)];
-            return new Point(-2, -2);
-        }
-
         public static int AnyTileRectangle(int i, int j, int w, int h)
         {
             int count = 0;
@@ -89,10 +51,7 @@ namespace Verdant
             return count;
         }
 
-        public static bool WalledSquare(int i, int j, int w, int h)
-        {
-            return WallRectangle(i, j, w, h) == w * h;
-        }
+        public static bool WalledSquare(int i, int j, int w, int h) => WallRectangle(i, j, w, h) == w * h;
 
         public static int WalledType(int i, int j, int w, int h, int type)
         {
@@ -113,12 +72,6 @@ namespace Verdant
                 tPos.Y++;
             return tPos.Y;
         }
-
-        public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).active() && Main.tileSolid[Framing.GetTileSafely(i, j).type];
-        public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).active() && (Main.tileSolidTop[Framing.GetTileSafely(i, j).type] || Main.tileSolid[Framing.GetTileSafely(i, j).type]);
-        public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t;
-        public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).active();
-        public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t && !Framing.GetTileSafely(i, j).topSlope();
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();
         public static Point MouseTile(Point offset) => ((Main.MouseWorld / 16f) + offset.ToVector2()).ToPoint();

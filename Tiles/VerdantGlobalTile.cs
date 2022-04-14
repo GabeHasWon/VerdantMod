@@ -20,7 +20,7 @@ namespace Verdant.Tiles
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
             int[] requireGroundTypes = new int[] { ModContent.TileType<VerdantTree>(), ModContent.TileType<Apotheosis>() };
-            if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
+            if (j > 0 && requireGroundTypes.Any(x => TileHelper.ActiveType(i, j - 1, x)) && TileHelper.SolidTile(i, j))
                 return false;
             return true;
         }
@@ -28,7 +28,7 @@ namespace Verdant.Tiles
         public override bool CanExplode(int i, int j, int type)
         {
             int[] requireGroundTypes = new int[] { ModContent.TileType<VerdantTree>(), ModContent.TileType<Apotheosis>() };
-            if (j > 0 && requireGroundTypes.Any(x => Helper.ActiveType(i, j - 1, x)) && Helper.SolidTile(i, j))
+            if (j > 0 && requireGroundTypes.Any(x => TileHelper.ActiveType(i, j - 1, x)) && TileHelper.SolidTile(i, j))
                 return false;
             return true;
         }
@@ -49,9 +49,9 @@ namespace Verdant.Tiles
         {
             if (thisType != type)
             {
-                if ((groundType == 0 || groundType == 2) && Helper.ActiveType(i, j + 1, type)) //Up-hold
+                if ((groundType == 0 || groundType == 2) && TileHelper.ActiveType(i, j + 1, type)) //Up-hold
                     batch.Draw(Main.tileTexture[type], TileHelper.TileCustomPosition(i, j) + new Vector2(0, 8), new Rectangle(0, 8, 16, 8), Lighting.GetColor(i, j));
-                if ((groundType == 1 || groundType == 2) && Helper.ActiveType(i, j - 1, type)) //Grounding
+                if ((groundType == 1 || groundType == 2) && TileHelper.ActiveType(i, j - 1, type)) //Grounding
                     batch.Draw(Main.tileTexture[type], TileHelper.TileCustomPosition(i, j), new Rectangle(0, 0, 16, 8), Lighting.GetColor(i, j));
             }
         }

@@ -35,8 +35,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            bool validAbove = Helper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j - 1, Type);
-            bool validBelow = Helper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()) || Helper.ActiveType(i, j + 1, Type);
+            bool validAbove = TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j - 1, Type);
+            bool validBelow = TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j + 1, Type);
 
             if (!validBelow) //Hanging table functionality
             {
