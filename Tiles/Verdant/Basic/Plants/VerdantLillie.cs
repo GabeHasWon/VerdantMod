@@ -44,7 +44,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void RandomUpdate(int i, int j)
         {
-            if (!Framing.GetTileSafely(i, j - 1).active() && Main.rand.Next(4) == 0 && Framing.GetTileSafely(i, j).liquid > 155)
+            if (!Framing.GetTileSafely(i, j - 1).active() && Main.rand.Next(2) == 0 && Framing.GetTileSafely(i, j).liquid > 155)
                 WorldGen.PlaceTile(i, j - 1, Type, true, false);
 
             if (Framing.GetTileSafely(i, j).frameX != 0 && Framing.GetTileSafely(i, j).frameY < 54 && Main.rand.Next(1) == 0 && Framing.GetTileSafely(i, j).liquid < 155)

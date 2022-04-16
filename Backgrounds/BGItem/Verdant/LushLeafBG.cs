@@ -11,7 +11,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         public const int SpawnChance = 35;
 
-        public LushLeafBG(Vector2 pos) : base(pos, 1f, new Point(20, 22))
+        public LushLeafBG(Vector2 pos) : base(pos, Vector2.One, new Point(20, 22))
         {
             tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushLeaf");
 
@@ -23,17 +23,17 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             else
                 source.Y = Main.rand.NextBool() ? 0 : 69;
 
-            parallaxScale = Main.rand.Next(640, 801) * 0.001f;
-            scale = Main.rand.NextFloat(0.70f, 1.15f);
+            parallax = Main.rand.NextFloat(0.4f, 1f);
+            Scale = Main.rand.NextFloat(0.70f, 1.15f);
             timer = Main.rand.Next(10000);
         }
 
         internal override void Behaviour()
         {
             base.Behaviour();
-            float xVel = (float)Math.Sin(timer++ * 0.036) * 0.6f * scale;
+            float xVel = (float)Math.Sin(timer++ * 0.036) * 0.6f * Scale;
             velocity.X = xVel + Main.windSpeed;
-            velocity.Y = -Math.Abs(xVel) + scale;
+            velocity.Y = -Math.Abs(xVel) + Scale;
             rotation = velocity.X * 0.4f;
 
             if (!new Rectangle((int)Main.screenPosition.X - 60, (int)Main.screenPosition.Y - 60, Main.screenWidth + 120, Main.screenHeight + 120).Contains(Center.ToPoint()))
@@ -43,14 +43,12 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
             if (offscreenTimer > 900)
                 killMe = true;
-
-            BaseParallax(0.55f);
         }
 
         internal override void Draw(Vector2 off)
         {
             drawColor = Main.bgColor;
-            base.Draw(GetParallax());
+            base.Draw(Vector2.Zero);
         }
     }
 }

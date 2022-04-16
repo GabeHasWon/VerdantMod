@@ -7,21 +7,15 @@ namespace Verdant.Backgrounds.BGItem
 {
     public class BaseBGItem
     {
-        /// <summary>Texture used when drawing this background item.</summary>
         internal Texture2D tex;
-        /// <summary>Position in world coordinates.</summary>
         internal Vector2 position = new Vector2();
-        /// <summary>Velocity. Added to position per frame.</summary>
         internal Vector2 velocity = new Vector2();
-        /// <summary>Rotation in radians.</summary>
         internal float rotation = 0f;
-        internal float scale = 1f;
+        internal Vector2 scale = Vector2.One;
         /// <summary>If true, this background item will be removed next frame.</summary>
         internal bool killMe = false;
         /// <summary>Adjusts how quickly or slowly it moves according to parallax, and is used for layering.</summary>
         internal float parallax = 1f;
-        /// <summary>Multiplies parallax scroll speed by a value.</summary>
-        internal float parallaxScale = 1f;
         /// <summary>The colour to draw this like.</summary>
         internal Color drawColor = Color.White;
         /// <summary>SourceRectangle for different frames.</summary>
@@ -32,21 +26,25 @@ namespace Verdant.Backgrounds.BGItem
         /// <summary>Used for draw position, so that stuff that is offscreen does not need to be drawn. Might not work, needs tweaking.</summary>
         public Vector2 DrawPosition { get; protected set; }
 
+        public float Scale
+        {
+            get => scale.Length();
+            set => scale = new Vector2(value);
+        }
+
         /// <summary>Center of the background item.</summary>
         internal Vector2 Center => position + (source.Size() / 2);
 
         /// <summary>Default with only a save/don't save value.</summary>
-        /// <param name="save">If this BGItem saves or not.</param>
         public BaseBGItem()
         {
         }
 
-        /// <summary>Creates a BGItem with a position, scale and frame size, along with the save value.</summary>
+        /// <summary>Creates a BGItem with a position, scale and frame size.</summary>
         /// <param name="initPos">Position this BGItem is spawned at.</param>
         /// <param name="sc">Scale this BGItem is spawned with.</param>
         /// <param name="size">Frame size.</param>
-        /// <param name="save">If this BGItem saves or not.</param>
-        public BaseBGItem(Vector2 initPos, float sc, Point size)
+        public BaseBGItem(Vector2 initPos, Vector2 sc, Point size)
         {
             position = initPos;
             scale = sc;
@@ -56,12 +54,11 @@ namespace Verdant.Backgrounds.BGItem
             DrawPosition = position;
         }
 
-        /// <summary>Creates a BGItem with a texture, position and scale, along with the save value.</summary>
+        /// <summary>Creates a BGItem with a texture, position and scale.</summary>
         /// <param name="t">Texture this BGItem uses.</param>
         /// <param name="initPos">Position this BGItem is spawned at.</param>
         /// <param name="sc">Scale this BGItem is spawned with.</param>
-        /// <param name="save">If this BGItem saves or not.</param>
-        public BaseBGItem(Texture2D t, Vector2 initPos, float sc)
+        public BaseBGItem(Texture2D t, Vector2 initPos, Vector2 sc)
         {
             tex = t;
             position = initPos;
@@ -78,7 +75,7 @@ namespace Verdant.Backgrounds.BGItem
         /// <param name="off">Offset for drawing.</param>
         internal virtual void Draw(Vector2 off)
         {
-            DrawPosition = position + off;
+            DrawPosition = GetParallax();
             Main.spriteBatch.Draw(tex, DrawPosition - Main.screenPosition + off, source, drawColor, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);
         }
 
@@ -86,9 +83,9 @@ namespace Verdant.Backgrounds.BGItem
         /// <returns>Parallax value.</returns>
         internal Vector2 GetParallax()
         {
-            Vector2 pC = Main.LocalPlayer.Center + (Vector2.UnitY * Main.LocalPlayer.gfxOffY);
-            Vector2 offset = (pC - position) * parallax;
-            return offset;
+            Vector2 pC = Main.screenPosition + (new Vector2(Main.screenWidth, Main.screenHeight) / 2f) + (Vector2.UnitY * Main.LocalPlayer.gfxOffY);
+            Vector2 real = Vector2.Lerp(pC, position, parallax);
+            return real;
         }
 
         /// <summary>Saves the current BGItem.</summary>
@@ -98,14 +95,5 @@ namespace Verdant.Backgrounds.BGItem
         /// <summary>Loads info given a tag.</summary>
         /// <param name="tag">Info to use to load.</param>
         public virtual void Load(TagCompound tag) { }
-
-        /// <summary>Simple parallax.</summary>
-        /// <param name="mul">Offsets parallax by a multiplicative.</param>
-        internal void BaseParallax(float mul)
-        {
-            parallax = (0.8f - scale) * parallaxScale * mul;
-            if (parallax > 1) parallax = 1f;
-        }
-        internal void BaseParallax() => BaseParallax(1f);
     }
 }

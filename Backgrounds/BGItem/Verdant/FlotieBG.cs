@@ -16,14 +16,14 @@ namespace Verdant.Backgrounds.BGItem.Verdant
         private readonly int scaleDecay = 0;
         private readonly float scaleSpd = 0f;
 
-        public FlotieBG(Vector2 pos) : base(pos, 0f, new Point(0, 0))
+        public FlotieBG(Vector2 pos) : base(pos, Vector2.Zero, new Point(0, 0))
         {
             tex = ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/Flotie");
             source = new Rectangle(0, 0, tex.Width, tex.Height);
 
             scaleDecay = Main.rand.Next(2500, 2800);
             scaleSpd = Main.rand.NextFloat(0.002f, 0.005f);
-            parallaxScale = Main.rand.Next(550, 851) * 0.001f;
+            parallax = Main.rand.NextFloat(0.5f, 0.95f);
 
             timer = Main.rand.Next(10000);
 
@@ -37,24 +37,23 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             velocity.Y = (float)Math.Sin(timer * 0.004f) * 0.4f;
 
             scaleTimer++;
-            if (scaleTimer++ < scaleDecay - 120 && scale < parallaxScale)
-                scale += scaleSpd;
+            if (scaleTimer++ < scaleDecay - 120 && Scale < parallax)
+                Scale += scaleSpd;
             else if (scaleTimer > scaleDecay - 100)
                 scale *= 0.987f;
 
-            if (scaleTimer > scaleDecay && scale < 0.0001f)
+            if (scaleTimer > scaleDecay && Scale < 0.005f)
                 killMe = true;
 
             rotation = velocity.X * 0.4f;
-            BaseParallax();
         }
 
         internal override void Draw(Vector2 off)
         {
             drawColor = Color.Lerp(new Color(0.6f, 0.24f, 0.42f), Main.bgColor, (drawColor.R - 10) / 245f);
-            base.Draw(GetParallax());
+            base.Draw(Vector2.Zero);
             Color col = Color.Lerp(new Color(0.72f, 0.230f, 0.50f), Color.White, (drawColor.R - 10) / 245f);
-            Main.spriteBatch.Draw(tex, DrawPosition - Main.screenPosition + GetParallax(), new Rectangle(source.X, 90, 62, 23), col, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(tex, DrawPosition - Main.screenPosition, new Rectangle(source.X, 90, 62, 23), col, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);
         }
     }
 }

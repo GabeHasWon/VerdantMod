@@ -38,7 +38,7 @@ namespace Verdant.Backgrounds.BGItem
             int range = Main.offScreenRange * 3;
             Rectangle screen = new Rectangle((int)Main.screenPosition.X - range, (int)Main.screenPosition.Y - range, Main.screenWidth + (range * 2), Main.screenHeight + (range * 2));
 
-            organizedItems = bgItems.OrderBy(x => x.scale); //For proper depth
+            organizedItems = bgItems.OrderBy(x => x.parallax); //For proper depth
 
             foreach (var item in organizedItems) //Draw everything
             {

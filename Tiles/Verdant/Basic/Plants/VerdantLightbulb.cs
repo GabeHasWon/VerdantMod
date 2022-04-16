@@ -27,6 +27,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             Vector2 p = new Vector2(i, j) * 16;
             float LightMult = (float)((Math.Sin((Main.GameUpdateCount + i + j) * 0.02f) * 0.8) + 0.5);
+
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * LightMult);
             Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
         }
