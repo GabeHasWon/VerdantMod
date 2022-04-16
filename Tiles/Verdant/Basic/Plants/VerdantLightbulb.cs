@@ -26,13 +26,13 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void NearbyEffects(int i, int j, bool closer)
         {
             Vector2 p = new Vector2(i, j) * 16;
-            float LightMult = (float)((Math.Sin((Main.time + i + j) * 0.02f) * 0.8) + 0.5);
+            float LightMult = (float)((Math.Sin((Main.GameUpdateCount + i + j) * 0.02f) * 0.8) + 0.5);
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * LightMult);
             Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        { //CRASH ERROR: frameX/frameY == -1, StackOverFlowException
+        {
             Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Lightbulb>(), 1);
             for (int v = 0; v < 4; ++v)
                 Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(32)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);

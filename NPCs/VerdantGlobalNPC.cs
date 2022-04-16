@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Plants;
+using Verdant.World;
 
 namespace Verdant.NPCs
 {
@@ -31,9 +33,9 @@ namespace Verdant.NPCs
         {
             if (npc.type == NPCID.Guide) //no one loves him but me </3 - neutral on verdant
             {
-                if (NPC.downedBoss2 && !World.VerdantWorld.apotheosisEvilDown && Main.rand.NextBool(4))
+                if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown && Main.rand.NextBool(4))
                     chat = "I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?";
-                if (NPC.downedBoss3 && !World.VerdantWorld.apotheosisSkelDown && Main.rand.NextBool(4))
+                if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown && Main.rand.NextBool(4))
                     chat = "I hear another, stronger, voice coming from the lush caves. Take a look there.";
             }
             else if (npc.type == NPCID.Dryad) //loves the verdant
@@ -91,10 +93,10 @@ namespace Verdant.NPCs
         {
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
-                if (type == NPCID.DyeTrader) //sells pink/red dye
+                if (type == NPCID.Dryad)
                 {
-                    shop.item[nextSlot++].SetDefaults(ItemID.BrightPinkDye);
-                    shop.item[nextSlot++].SetDefaults(ItemID.BrightRedDye);
+                    if (ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown)
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());
                 }
             }
         }

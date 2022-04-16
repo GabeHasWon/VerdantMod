@@ -21,10 +21,10 @@ namespace Verdant.World
         public static int ApotheosisTiles;
         public static FastNoise genNoise;
 
-        public static int apotheosisDialogueIndex = 0;
-        public static bool apotheosisEvilDown = false;
-        public static bool apotheosisSkelDown = false;
-        public static bool apotheosisWallDown = false;
+        public int apotheosisDialogueIndex = 0;
+        public bool apotheosisEvilDown = false;
+        public bool apotheosisSkelDown = false;
+        public bool apotheosisWallDown = false;
 
         public override TagCompound Save()
         {

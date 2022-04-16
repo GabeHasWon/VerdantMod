@@ -2,7 +2,6 @@
 	- ADD MILLIONS OF HP WORM BOSS!!!
 		- PROJECTILE.NEWPROJECTILE - MUST REACH PROJ. CAP
 		- INFLICTS DEBUFF - REMOVES ALL MOVEMENT AND INCREASES DEFENSE TO SHORT.MAXVALUE FOR 5 MINUTES
-	- npc.CollideY (true if ceiling or ground)
 
 [CONCEPTS]
 	- "Underground City" minibiomes (Granite/Marble)
@@ -21,7 +20,7 @@
 
 	BLOCKS [ITEMS]
 	- Verdant Armor Set
-	- Lush Soil Block(*) - needs resprite
+	- Lush Soil Block
 	- Verdant Chandelier [Small]
 	- Verdant Flower Bulb
 	- Verdant Hung Tables
@@ -42,9 +41,9 @@
 	MATERIALS
 	- Red Petal
 	- Pink Petal
-	- Yellow Bulb(*) - look into design
+	- Yellow Bulb
 	- Lush Leaf
-	- Lightbulb(*) - look into drawing weirdness
+	- Lightbulb
 
 	WEAPONS
 	- Bouncebulb Staff - Unobtainable
@@ -121,9 +120,6 @@
 	- Foreground : Needs multiplayer compat (I/O optional)
 	- Background : Needs multiplayer compat
 
-	MARKETING
-	- Promotional images
-
 [CUT/TO BE DONE LATER] --------------------------------------------
 	TILES [PLANTS]
 	- Housprout
@@ -136,9 +132,3 @@
 
 	PROJECTILES
 	- Verdant Wisp : Almost everything
-
-	MARKETING
-	- Twitter.com account
-	- Video editing
-	- Trailer
-	- Short epic track for trailer
