@@ -1,7 +1,9 @@
-﻿using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class VerdantFlowerBulb : ModItem
     {

@@ -11,7 +11,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         public const int SpawnChance = 35;
 
-        public LushLeafBG(Vector2 pos) : base(pos, 1f, new Point(26, 22))
+        public LushLeafBG(Vector2 pos) : base(pos, 1f, new Point(20, 22))
         {
             tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushLeaf");
 
@@ -34,11 +34,12 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.6f * scale;
             velocity.X = xVel + Main.windSpeed;
             velocity.Y = -Math.Abs(xVel) + scale;
+            rotation = velocity.X * 0.4f;
 
             if (!new Rectangle((int)Main.screenPosition.X - 60, (int)Main.screenPosition.Y - 60, Main.screenWidth + 120, Main.screenHeight + 120).Contains(Center.ToPoint()))
                 offscreenTimer++;
             else
-                offscreenTimer = 0;
+                offscreenTimer = (int)MathHelper.Clamp(offscreenTimer - 1, 0, 900);
 
             if (offscreenTimer > 900)
                 killMe = true;
@@ -48,16 +49,6 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         internal override void Draw(Vector2 off)
         {
-            if (velocity.X < -0.8f * parallaxScale)
-                source.Location = new Point(0, source.Location.Y);
-            else if (velocity.X < -0.4f * parallaxScale)
-                source.Location = new Point(27, source.Location.Y);
-            else if (velocity.X < 0.4f * parallaxScale)
-                source.Location = new Point(54, source.Location.Y);
-            else if (velocity.X < 0.8f * parallaxScale)
-                source.Location = new Point(81, source.Location.Y);
-            else
-                source.Location = new Point(108, source.Location.Y);
             drawColor = Main.bgColor;
             base.Draw(GetParallax());
         }

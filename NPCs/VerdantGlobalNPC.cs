@@ -40,6 +40,8 @@ namespace Verdant.NPCs
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
                     chat = "I love this overgrown land. The world is powerful here.";
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                    chat = "I cannot believe I've never seen this place before...";
             }
             else if (npc.type == NPCID.Stylist) //hates the verdant
             {
@@ -54,7 +56,7 @@ namespace Verdant.NPCs
                     if (rand == 0)
                         chat = "The energy in in the flowers here...it flows powerfully.";
                     else if (rand == 1)
-                        chat = "I sense an ancient power within the leaves and vines.";
+                        chat = "I sense an ancient power within the leaves.";
                 }
             }
             else if (npc.type == NPCID.DyeTrader) //loves the verdant
@@ -65,7 +67,7 @@ namespace Verdant.NPCs
                     if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && rand == 0)
                         chat = "Now THIS is a sight! What beautiful colours these flowers have!";
                     else if (rand == 1)
-                        chat = "The glow of these bulbs...spectacular....";
+                        chat = "The glow of these bulbs...spectacular...";
                 }
             }
             else if (npc.type == NPCID.TaxCollector) //hates the verdant
@@ -75,8 +77,13 @@ namespace Verdant.NPCs
                     if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
                         chat = "Bah! These leaves keep on getting in the house. Have someone clean them up for me!";
                     else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                        chat = "Those bright flowers are getting on my nerve! Keep your blasted glow out of my sight!";
+                        chat = "Those bright flowers are getting on my nerve! Keep your blasted light out of my sight!";
                 }
+            }
+            else if (npc.type == NPCID.Painter) //likes the verdant
+            {
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                    chat = "These tones are gorgeous! What a wonderful reference!";
             }
         }
 

@@ -23,7 +23,7 @@ namespace Verdant.Foreground.Parallax
             parallax = Main.rand.Next(25, 150) * 0.01f;
             scale = parallax + 0.5f;
 
-            source = new Rectangle(0, 0, 26, 22);
+            source = new Rectangle(0, 0, 20, 22);
             int r = Main.rand.Next(30);
             if (r < 4)
                 source.Y = 23;
@@ -39,6 +39,7 @@ namespace Verdant.Foreground.Parallax
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.48f * scale;
             velocity.X = xVel + Main.windSpeed;
             velocity.Y = (-Math.Abs(xVel) + scale) * 0.4f;
+            rotation = velocity.X * -0.6f;
 
             if (!new Rectangle((int)Main.screenPosition.X - 60, (int)Main.screenPosition.Y - 60, Main.screenWidth + 120, Main.screenHeight + 120).Contains(drawPosition.ToPoint()))
                 offscreenTimer++;
@@ -51,17 +52,6 @@ namespace Verdant.Foreground.Parallax
 
         public override void Draw()
         {
-            if (velocity.X < -0.8f * scale)
-                source.Location = new Point(0, source.Location.Y);
-            else if (velocity.X < -0.4f * scale)
-                source.Location = new Point(27, source.Location.Y);
-            else if (velocity.X < 0.4f * scale)
-                source.Location = new Point(54, source.Location.Y);
-            else if (velocity.X < 0.8f * scale)
-                source.Location = new Point(81, source.Location.Y);
-            else
-                source.Location = new Point(108, source.Location.Y);
-
             drawPosition = position + ParallaxPosition();
             Color lightColour = Lighting.GetColor((int)(drawPosition.X / 16f), (int)(drawPosition.Y / 16f));
             Color frontColour = (position.Y / 16f < Main.worldSurface) ? Main.bgColor : new Color(85, 85, 85);

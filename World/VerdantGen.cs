@@ -12,7 +12,7 @@ using Verdant.Tiles.Verdant.Decor;
 using Verdant.Items.Verdant.Tools;
 using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Trees;
-using Verdant.Items.Verdant.Blocks;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Tiles.Verdant.Mounted;
 using Verdant.Items.Verdant.Weapons;
 using Verdant.Items.Verdant.Materials;

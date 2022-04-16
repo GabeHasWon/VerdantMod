@@ -14,6 +14,7 @@ namespace Verdant.Foreground
         public float scale = 1f;
         public Rectangle source = new Rectangle();
         public Color drawColor = Color.White;
+        public float rotation = 0f;
 
         internal bool drawLighted = true;
 
@@ -42,7 +43,7 @@ namespace Verdant.Foreground
 
         public virtual void Draw()
         {
-            Main.spriteBatch.Draw(tex, drawPosition - Main.screenPosition, source, drawColor, 0f, tex.Size() / 2, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(tex, drawPosition - Main.screenPosition, source, drawColor, rotation, tex.Size() / 2, scale, SpriteEffects.None, 0f);
         }
 
         /// <summary>Called when saving this ForegroundItem.</summary>

@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Walls;
 
