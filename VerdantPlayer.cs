@@ -110,7 +110,7 @@ namespace Verdant
             }
 
             if (Main.hasFocus)
-                UpdateBGItems();
+                AddForegroundOrBackground();
         }
 
         public override void PostUpdateMiscEffects() => lastSlotsMinion = player.slotsMinions;
@@ -157,7 +157,7 @@ namespace Verdant
             }
         }
 
-        private void UpdateBGItems()
+        private void AddForegroundOrBackground()
         {
             if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant) //Spawn BG items only when in the Verdant and above ground
             {

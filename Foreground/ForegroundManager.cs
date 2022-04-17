@@ -11,7 +11,6 @@ namespace Verdant.Foreground
 
         public static void Run()
         {
-            return;
             List<ForegroundItem> removals = new List<ForegroundItem>();
 
             //Rectangle screen = new Rectangle((int)Main.screenPosition.X - Main.offScreenRange, (int)Main.screenPosition.Y - Main.offScreenRange, Main.screenWidth + Main.offScreenRange, Main.screenHeight + Main.offScreenRange);
