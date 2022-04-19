@@ -78,6 +78,7 @@ namespace Verdant
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
             On.Terraria.Main.DrawGore += Main_DrawGore; //ForegroundItem hook
+            On.Terraria.Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
         }
 
         private void UnhookOn()

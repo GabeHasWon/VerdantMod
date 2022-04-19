@@ -38,10 +38,7 @@ namespace Verdant.Foreground
             items.Clear();
         }
 
-        public static void AddItem(ForegroundItem item)
-        {
-            items.Add(item);
-        }
+        public static void AddItem(ForegroundItem item) => items.Add(item);
 
         /// <summary>Shorthand for ModContent.ModContent.GetTexture("Verdant/Foreground/Textures/" + name).</summary>
         /// <param name="name">Name of the requested texture.</param>

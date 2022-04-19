@@ -9,18 +9,18 @@ namespace Verdant.Items.Verdant.Tools
 {
     class VerdantFishingRod : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Lush Fishing Rod");
+            Tooltip.SetDefault("Gives off light when held");
+        }
+
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.FiberglassFishingPole);
             item.fishingPole = 26;
             item.shootSpeed = 13f;
             item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
-        }
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Lush Fishing Rod");
-            Tooltip.SetDefault("Gives off light when held");
         }
 
         public override void HoldItem(Player player)
