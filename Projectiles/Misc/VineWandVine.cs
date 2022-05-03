@@ -9,6 +9,9 @@ namespace Verdant.Projectiles.Misc
         public int nextVine = -1;
         public int priorVine = -1;
 
+        public ref float Timer => ref projectile.ai[0];
+        public ref float VineIndex => ref projectile.ai[1];
+
         public Projectile NextVine => Main.projectile[nextVine];
         public Projectile PriorVine => Main.projectile[priorVine];
 
@@ -23,11 +26,11 @@ namespace Verdant.Projectiles.Misc
         {
             projectile.hostile = false;
             projectile.friendly = false;
-            projectile.width = 30;
-            projectile.height = 38;
+            projectile.width = 20;
+            projectile.height = 18;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 2;
+            projectile.timeLeft = 15 * 60;
         }
 
         public override void AI()
@@ -38,18 +41,26 @@ namespace Verdant.Projectiles.Misc
             if (p.whoAmI != Main.myPlayer)
                 return; //mp check (hopefully)
 
-            projectile.timeLeft++;
+            if (priorVine != -1 && !PriorVine.active)
+                priorVine = 1;
 
-            if (nextVine != -1)
-                projectile.rotation = projectile.AngleTo(NextVine.Center) - MathHelper.PiOver2;
+            if (nextVine != -1 && !NextVine.active)
+                nextVine = 1;
+
+            float rotOff = (float)System.Math.Sin((Timer++ + (VineIndex * 12)) * 0.05f) * 0.2f;
+            if (priorVine != -1)
+                projectile.rotation = projectile.AngleTo(PriorVine.Center) - MathHelper.PiOver2 + rotOff;
+            else if (nextVine != -1)
+                projectile.rotation = projectile.AngleTo(NextVine.Center) - MathHelper.PiOver2 + rotOff;
 
             Rectangle playerTop = new Rectangle((int)p.position.X, (int)p.position.Y, p.width, 2);
 
-            if (playerTop.Intersects(projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active)
+            if (playerTop.Intersects(projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(PulleyPosition(p), p.width, p.height) && projectile.timeLeft > 3)
             {
                 p.pulley = true;
                 p.pulleyDir = 1;
                 p.position = projectile.position;
+                p.fallStart = (int)(projectile.position.Y / 16f);
 
                 p.GetModPlayer<VinePulleyPlayer>().currentVine = projectile.whoAmI;
             }

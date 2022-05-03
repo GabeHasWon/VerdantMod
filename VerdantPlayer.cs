@@ -94,8 +94,6 @@ namespace Verdant
         {
             PreUpdateEvent?.Invoke(player);
 
-            //Main.maxRaining = 70 * 0.01f;
-
             //bootleg floor effects
             Point left = player.TileCoordsBottomLeft();
             Point right = player.TileCoordsBottomRight();

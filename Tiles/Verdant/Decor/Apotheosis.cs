@@ -9,6 +9,7 @@ using Verdant.Items.Verdant.Misc;
 using Verdant.Foreground.Parallax;
 using Verdant.Foreground;
 using Verdant.World;
+using Verdant.Items.Verdant.Tools;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -71,9 +72,10 @@ namespace Verdant.Tiles.Verdant.Decor
                 if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown) //Skeleton boss text
                 {
                     Speak("Our blessings for slaying the skeleton, here...");
-
-                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * Main.ActivePlayersCount);
                     ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown = true;
+
+                    for (int k = 0; k < Main.ActivePlayersCount; ++k)
+                        Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
                     return true;
                 }
 

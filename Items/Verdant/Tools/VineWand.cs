@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Tools
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Enchanted Vine");
-            Tooltip.SetDefault("Allows the user to build a vine");
+            Tooltip.SetDefault("Allows the user to build a vine\nThe vine works like a rope and in any open space");
         }
 
         public override void SetDefaults()
@@ -27,6 +27,16 @@ namespace Verdant.Items.Verdant.Tools
             item.shoot = ModContent.ProjectileType<VineWandProjectile>();
             item.noUseGraphic = true;
             item.noMelee = true;
+        }
+
+        public override bool CanUseItem(Player player) => player.GetModPlayer<VinePulleyPlayer>().vineResource > 1; //2 or more because a vine of length 1 is bad
+
+        public override void UpdateInventory(Player player)
+        {
+            item.stack = player.GetModPlayer<VinePulleyPlayer>().vineResource;
+
+            if (item.stack <= 1)
+                item.stack = 1;
         }
     }
 
@@ -88,25 +98,29 @@ namespace Verdant.Items.Verdant.Tools
 
                 Timer--;
 
-                if (Timer <= 0)
+                if (Timer <= 0 && p.GetModPlayer<VinePulleyPlayer>().vineResource > 0)
                 {
                     int lastInd = (int)LastVineIndex;
 
                     if (LastVineIndex == -1)
-                        LastVineIndex = Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, p.whoAmI, 0, 0);
+                        LastVineIndex = Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, projectile.owner);
                     else
                     {
                         Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                        LastVineIndex = Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, p.whoAmI, 0, 0);
+                        LastVineIndex = Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, projectile.owner);
                     }
 
                     if (lastInd != -1)
                     {
                         (Main.projectile[lastInd].modProjectile as VineWandVine).nextVine = (int)LastVineIndex;
                         (LastVine.modProjectile as VineWandVine).priorVine = lastInd;
+                        (LastVine.modProjectile as VineWandVine).VineIndex = p.GetModPlayer<VinePulleyPlayer>().VineCount();
                     }
 
                     Timer = 3;
+
+                    p.GetModPlayer<VinePulleyPlayer>().vineResource--;
+                    p.GetModPlayer<VinePulleyPlayer>().vineRegenCooldown = (15 * 60) + 240;
                 }
             }
         }
