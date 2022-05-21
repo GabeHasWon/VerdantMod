@@ -110,7 +110,7 @@
 
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER
-	- Verdant Furniture Set : Not implemented / designed | NEEDS: BED, CLOCK, DRESSER, CANDELABRA, SINK
+	- Verdant Furniture Set : Not implemented / designed | NEEDS: CLOCK, DRESSER, CANDELABRA, SINK
 
 	MUSIC
 	- Unnamed Surface Day

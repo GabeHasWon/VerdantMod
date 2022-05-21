@@ -12,13 +12,14 @@ As of writing this, the mod has the following:
 ...and more!
 
 ----Credit----
+--Developers--
+GabeHasWon - Literally everything except The Plant & parts of song compositions
+Liz - SFX, parts of song compositions, feedback/design & The Plant
 
-GabeHasWon - Literally everything except The Plant & song compositions
-Liz - SFX, song compositions, feedback/design & The Plant
-
-Special Thanks -
+--Beta Testers / Feedback --
 
 Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
+Aeterna - A payment of 750 schmeckles
 
 --Development--
 

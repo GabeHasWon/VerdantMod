@@ -80,13 +80,14 @@ namespace Verdant.Items.Verdant.Tools
 
             Player p = Main.player[projectile.owner];
             p.heldProj = projectile.whoAmI;
+            p.direction = System.Math.Sign(Main.MouseWorld.X - p.Center.X);
 
             if (p.whoAmI != Main.myPlayer)
                 return; //mp check (hopefully)
 
             projectile.timeLeft++;
-            projectile.rotation = Vector2.Normalize(p.MountedCenter - Main.MouseWorld).ToRotation() - MathHelper.Pi; //So it looks like the player is holding it properly
-            projectile.Center = p.Center - new Vector2(16, 0).RotatedBy(-projectile.rotation);
+            projectile.rotation = p.AngleFrom(Main.MouseWorld); //So it looks like the player is holding it properly
+            projectile.position = p.position - new Vector2(24, 0).RotatedBy(projectile.rotation);
             Helper.ArmsTowardsMouse(p);
 
             if (!p.channel)
