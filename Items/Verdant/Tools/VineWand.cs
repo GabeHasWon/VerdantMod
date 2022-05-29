@@ -87,7 +87,7 @@ namespace Verdant.Items.Verdant.Tools
 
             projectile.timeLeft++;
             projectile.rotation = p.AngleFrom(Main.MouseWorld); //So it looks like the player is holding it properly
-            projectile.position = p.position - new Vector2(24, 0).RotatedBy(projectile.rotation);
+            projectile.position = p.position - new Vector2(14, 0).RotatedBy(projectile.rotation);
             Helper.ArmsTowardsMouse(p);
 
             if (!p.channel)

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace Verdant.Projectiles.Misc
 {
@@ -30,7 +31,7 @@ namespace Verdant.Projectiles.Misc
             projectile.height = 18;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 15 * 60;
+            projectile.timeLeft = 5 * 60;
         }
 
         public override void AI()
@@ -84,6 +85,12 @@ namespace Verdant.Projectiles.Misc
             }
 
             return Vector2.Lerp(otherPos, projectile.Center, factor) - new Vector2(player.width / 2f, -4);
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 3; ++i)
+                Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Grass, 0, 0);
         }
     }
 }

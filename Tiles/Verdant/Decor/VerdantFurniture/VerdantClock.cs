@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Verdant.Tiles.Verdant.Decor.LushFurniture
+namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
-	public class LushClock : ModTile
+	public class VerdantClock : ModTile
 	{
 		public override void SetDefaults()
         {
@@ -64,6 +64,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushClockItem>());
+		public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantClockItem>());
 	}
 }
