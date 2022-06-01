@@ -11,7 +11,6 @@ namespace Verdant.NPCs.Passive
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 1;
             Main.npcCatchable[npc.type] = true;
         }
 
@@ -28,10 +27,10 @@ namespace Verdant.NPCs.Passive
             npc.dontTakeDamage = false;
             npc.value = 0f;
             npc.aiStyle = 16;
-            aiType = NPCID.Goldfish;
             npc.dontCountMe = true;
-
             npc.catchItem = (short)ModContent.ItemType<FolifishItem>();
+
+            aiType = NPCID.Goldfish;
         }
 
         public override bool PreAI()
@@ -74,5 +73,10 @@ namespace Verdant.NPCs.Passive
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.water) ? 1.5f : 0f) * (spawnInfo.playerInTown ? 1.75f : 1f);
+
+        public override void AI()
+        {
+            base.AI();
+        }
     }
 }

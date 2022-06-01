@@ -120,8 +120,8 @@ namespace Verdant.Projectiles.Minion
                     for (int i = 0; i < Main.npc.Length; ++i) //Find target
                     {
                         float dist = Vector2.Distance(Main.npc[i].position, projectile.position);
-                        if (Main.npc[i].CanBeChasedBy() && dist < 500 && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) &&
-                            (hasTarget == -1 || (hasTarget != -1 && Vector2.Distance(Main.npc[hasTarget].Center, projectile.Center) < dist)))
+                        bool line = Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height);
+                        if (Main.npc[i].CanBeChasedBy() && dist < 500 && line && (hasTarget == -1 || (hasTarget != -1 && projectile.Distance(Main.npc[hasTarget].Center) < dist)))
                             hasTarget = i;
                     }
 

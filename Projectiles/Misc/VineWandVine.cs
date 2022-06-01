@@ -31,7 +31,7 @@ namespace Verdant.Projectiles.Misc
             projectile.height = 18;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.timeLeft = 5 * 60;
+            projectile.timeLeft = 10 * 60;
         }
 
         public override void AI()

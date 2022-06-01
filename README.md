@@ -15,6 +15,7 @@ GabeHasWon - Literally everything except The Plant & song compositions
 Liz - SFX, song compositions, feedback/design & The Plant
 ### Special Thanks -
 Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
+/u/Nervous-General3220 - Zipvine name
 
 # Development
 I wanted to make this mod with the understanding that open source content is what helps a community grow, and so, this mod is open-source and under the GPLv3 liscense.

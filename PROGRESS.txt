@@ -1,6 +1,7 @@
 [FINAL RELEASE]
 	- Surface day / night track, if possible
-	- 
+	- Furniture
+	- Beta testing
 
 [NOTES] - DO NOT let this leak
 	- ADD MILLIONS OF HP WORM BOSS!!!
@@ -94,9 +95,6 @@
 	- Verdant Decor
 	- Verdant Tree : Stress test
 
-	EQUIPABLES [ITEMS]
-	- Blight : Unfinished, but unobtainable
-
 	PROJECTILES
 	- Verdant Healing Minion
 	- Verdant Snail Minion : Polish?
@@ -137,3 +135,6 @@
 
 	PROJECTILES
 	- Verdant Wisp : Almost everything
+
+	EQUIPABLES [ITEMS]
+	- Blight : Unfinished, but unobtainable

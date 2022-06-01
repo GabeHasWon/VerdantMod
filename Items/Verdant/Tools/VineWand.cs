@@ -10,7 +10,7 @@ namespace Verdant.Items.Verdant.Tools
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Enchanted Vine");
+            DisplayName.SetDefault("Zipvine");
             Tooltip.SetDefault("Allows the user to build a vine\nThe vine works like a rope and in any open space");
         }
 
