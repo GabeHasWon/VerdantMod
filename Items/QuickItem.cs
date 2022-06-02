@@ -120,7 +120,7 @@ namespace Verdant.Items
             i.item.consumable = true;
         }
 
-        public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false)
+        public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false, int value = 0)
         {
             i.item.width = w;
             i.item.height = h;
@@ -129,10 +129,9 @@ namespace Verdant.Items
             i.item.damage = 0;
             i.item.rare = rarity;
             i.item.maxStack = maxStack;
-
+            i.item.value = value;
             i.item.noMelee = false;
             i.item.useStyle = ItemUseStyleID.SwingThrow;
-
             i.item.autoReuse = true;
             i.item.consumable = consumable;
         }

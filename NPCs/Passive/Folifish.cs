@@ -73,10 +73,5 @@ namespace Verdant.NPCs.Passive
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.water) ? 1.5f : 0f) * (spawnInfo.playerInTown ? 1.75f : 1f);
-
-        public override void AI()
-        {
-            base.AI();
-        }
     }
 }

@@ -85,7 +85,7 @@ namespace Verdant.NPCs
             else if (npc.type == NPCID.Painter) //likes the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "These tones are gorgeous! What a wonderful reference!";
+                    chat = "These tones are gorgeous! What a wonderful landscape!";
             }
         }
 
