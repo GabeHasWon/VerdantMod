@@ -5,7 +5,7 @@ namespace Verdant.Buffs.Minion
 {
     public class SnailBuff : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snail Minion");
             Description.SetDefault("The grassy snails will fight for you");

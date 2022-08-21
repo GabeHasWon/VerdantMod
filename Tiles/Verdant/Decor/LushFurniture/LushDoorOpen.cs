@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,7 +9,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
 	public class LushDoorOpen : ModTile
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			Main.tileFrameImportant[Type] = true;
 			Main.tileSolid[Type] = false;
 			Main.tileLavaDeath[Type] = true;
@@ -24,24 +26,24 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             name.SetDefault("Lush Door");
             AddMapEntry(new Color(142, 62, 32), name);
 
-            dustType = DustID.t_BorealWood;
-			disableSmartCursor = true;
-			adjTiles = new int[] { TileID.OpenDoor };
-			closeDoorID = ModContent.TileType<LushDoorClosed>();
+            DustType = DustID.t_BorealWood;
+			TileID.Sets.DisableSmartCursor[Type] = true;
+			AdjTiles = new int[] { TileID.OpenDoor };
+			CloseDoorID = ModContent.TileType<LushDoorClosed>();
 		}
 
-        public override bool HasSmartInteract() => true;
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>());
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>());
 		}
 
 		public override void MouseOver(int i, int j) {
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
-			player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>();
+			player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>();
         }
 	}
 }

@@ -4,12 +4,13 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
 using Terraria.Enums;
+using Terraria.DataStructures;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
     public class VerdantChair : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -29,13 +30,13 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
             AddMapEntry(new Color(85, 188, 41));
 
-            dustType = DustID.Grass;
-            disableSmartCursor = true;
-            adjTiles = new int[] { TileID.Chairs };
+            DustType = DustID.Grass;
+            TileID.Sets.DisableSmartCursor[Type] = true;
+            AdjTiles = new int[] { TileID.Chairs };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChairItem>());
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChairItem>());
     }
 }

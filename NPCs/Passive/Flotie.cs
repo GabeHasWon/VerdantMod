@@ -12,85 +12,84 @@ namespace Verdant.NPCs.Passive
     {
         public override void SetStaticDefaults()
         {
-            Main.npcCatchable[npc.type] = true;
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcCatchable[NPC.type] = true;
+            Main.npcFrameCount[NPC.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 36;
-            npc.height = 48;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.dontTakeDamage = false;
-            npc.value = 0f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = -1;
-            npc.dontCountMe = true;
-            npc.catchItem = (short)ModContent.ItemType<FlotieItem>();
+            NPC.width = 36;
+            NPC.height = 48;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.dontTakeDamage = false;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = -1;
+            NPC.dontCountMe = true;
+            NPC.catchItem = (short)ModContent.ItemType<FlotieItem>();
         }
 
         public override void AI()
         {
-            npc.TargetClosest(true);
+            NPC.TargetClosest(true);
 
-            if (npc.ai[1] == 0)
+            if (NPC.ai[1] == 0)
             {
-                npc.ai[0] = Main.rand.Next(1, 50);
-                npc.ai[1] = 1;
-                npc.ai[2] = Main.rand.Next(70, 100) * 0.01f;
-                npc.ai[3] = Main.rand.Next(110, 161) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
+                NPC.ai[0] = Main.rand.Next(1, 50);
+                NPC.ai[1] = 1;
+                NPC.ai[2] = Main.rand.Next(70, 100) * 0.01f;
+                NPC.ai[3] = Main.rand.Next(110, 161) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
             }
 
-            npc.rotation = npc.velocity.X * 0.4f;
-            npc.velocity.Y = (float)(Math.Sin(npc.ai[0]++ * 0.02f * npc.ai[2]) * 0.6f);
-            npc.velocity.X = (float)(Math.Sin(npc.ai[0]++ * 0.006f) * 0.15f) * npc.ai[3];
+            NPC.rotation = NPC.velocity.X * 0.4f;
+            NPC.velocity.Y = (float)(Math.Sin(NPC.ai[0]++ * 0.02f * NPC.ai[2]) * 0.6f);
+            NPC.velocity.X = (float)(Math.Sin(NPC.ai[0]++ * 0.006f) * 0.15f) * NPC.ai[3];
 
-            if (npc.velocity.Y < 0.01f)
-                npc.frame.Y = 0;
+            if (NPC.velocity.Y < 0.01f)
+                NPC.frame.Y = 0;
             else
-                npc.frame.Y = 50;
+                NPC.frame.Y = 50;
 
-            Lighting.AddLight(npc.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.4f);
+            Lighting.AddLight(NPC.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.4f);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int i = 0; i < 6; ++i)
-                    Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height)), Vector2.Zero, mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height)), Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
                 for (int i = 0; i < 3; ++i)
-                    Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height)), Vector2.Zero, mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height)), Vector2.Zero, Mod.Find<ModGore>("RedPetalFalling").Type);
                 for (int i = 0; i < 12; ++i)
-                    Dust.NewDust(npc.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
+                    Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }
         }
 
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(npc.getRect(), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
-            Item.NewItem(npc.getRect(), ModContent.ItemType<RedPetal>(), 1);
-            if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Lightbulb>(), 1);
+            npcLoot.AddCommon<LushLeaf>(1, 1, 2);
+            npcLoot.AddCommon<RedPetal>();
+            npcLoot.AddCommon<Lightbulb>(10);
         }
 
         public override int SpawnNPC(int tileX, int tileY)
         {
             int rnd = Main.rand.Next(4);
             for (int i = 0; i < rnd; ++i)
-                NPC.NewNPC((tileX * 16) + Main.rand.Next(-80, 80), (tileY * 16) + Main.rand.Next(-140, 140), ModContent.NPCType<Flotiny>());
+                NPC.NewNPC(NPC.GetSource_NaturalSpawn(), (tileX * 16) + Main.rand.Next(-80, 80), (tileY * 16) + Main.rand.Next(-140, 140), ModContent.NPCType<Flotiny>());
             return base.SpawnNPC(tileX, tileY);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (spawnInfo.playerInTown || spawnInfo.playerSafe))
-                return 1.5f + (spawnInfo.water ? 0.4f : 0f);
-            return (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? (spawnInfo.water ? 1f : 0.6f) : 0f;
+            if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (spawnInfo.PlayerInTown || spawnInfo.PlayerSafe))
+                return 1.5f + (spawnInfo.Water ? 0.4f : 0f);
+            return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? (spawnInfo.Water ? 1f : 0.6f) : 0f;
         }
     }
 }

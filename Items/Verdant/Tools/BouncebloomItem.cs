@@ -8,10 +8,10 @@ namespace Verdant.Items.Verdant.Tools
 {
     class BouncebloomItem : ModItem
     {
-        public override bool Autoload(ref string name)
+        public override bool IsLoadingEnabled(Mod mod)
         {
             VerdantPlayer.ItemDrawLayerEvent += PlayerDraw;
-            return mod.Properties.Autoload;
+            return true;
         }
 
         public override void SetDefaults() => QuickItem.SetBlock(this, 38, 26, ModContent.TileType<Tiles.Verdant.Basic.Plants.Bouncebloom>(), true);
@@ -39,23 +39,19 @@ namespace Verdant.Items.Verdant.Tools
 
         private bool CheckNPCConditions(NPC n, Player p) => n.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)) && !n.boss && n.width + n.height < 300 && n.knockBackResist > 0.05f;
 
-        public override bool HoldItemFrame(Player player)
-        {
-            player.bodyFrame.Y = 56;
-            return true;
-        }
+        public override void HoldItemFrame(Player player) => player.bodyFrame.Y = 56;
 
-        public void PlayerDraw(PlayerDrawInfo info)
+        public void PlayerDraw(PlayerDrawSet info)
         {
-            if (info.drawPlayer.HeldItem.type == item.type)
+            if (info.drawPlayer.HeldItem.type == Item.type)
             {
-                Texture2D t = ModContent.GetTexture("Verdant/Items/Verdant/Tools/BouncebloomEquip");
+                Texture2D t = Mod.Assets.Request<Texture2D>("Verdant/Items/Verdant/Tools/BouncebloomEquip").Value;
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
                 Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
                 SpriteEffects effect = info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
                 DrawData data = new DrawData(t, pos.Floor(), null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, effect, 0);
-                Main.playerDrawData.Add(data);
+                info.DrawDataCache.Add(data);
             }
         }
     }

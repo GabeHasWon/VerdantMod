@@ -29,7 +29,7 @@ namespace Verdant
             for (int i = 0; i < Main.maxProjectiles; ++i)
             {
                 Projectile p = Main.projectile[i];
-                if (p.active && p.modProjectile is Drawing.IDrawAdditive additive)
+                if (p.active && p.ModProjectile is Drawing.IDrawAdditive additive)
                     additive.DrawAdditive(Drawing.AdditiveLayer.AfterPlayer);
             }
 

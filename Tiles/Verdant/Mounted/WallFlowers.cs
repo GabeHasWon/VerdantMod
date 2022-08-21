@@ -12,7 +12,7 @@ namespace Verdant.Tiles.Verdant.Mounted
 {
     class Flower_2x2 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
@@ -34,16 +34,16 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.AnchorTop = AnchorData.Empty;
             TileObjectData.addTile(Type);
 
-            dustType = DustID.Grass;
-            disableSmartCursor = true;
+            DustType = DustID.Grass;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(193, 50, 109));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
-            if (Main.rand.Next(3) == 0)
-                Item.NewItem(new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
+            if (Main.rand.NextBool(3))
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
 
             if (frameX == 18) i--;
             if (frameY == 18) j--;
@@ -51,21 +51,21 @@ namespace Verdant.Tiles.Verdant.Mounted
             int l = Main.rand.Next(3, 6);
             for (int v = 0; v < l; ++v)
             {
-                int t = (frameX > 18) ? mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling") : mod.GetGoreSlot("Gores/Verdant/RedPetalFalling");
-                Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(32), Main.rand.Next(32)), new Vector2(0), t, 1);
+                int t = (frameX > 18) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(32), Main.rand.Next(32)), new Vector2(0), t, 1);
             }
         }
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.rand.Next(700) == 0)
-                Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, mod.GetGoreSlot((Framing.GetTileSafely(i, j).frameX <= 19) ? "Gores/Verdant/RedPetalFalling" : "Gores/Verdant/PinkPetalFalling"));
+            if (Main.rand.NextBool(700))
+                Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "Gores/Verdant/RedPetalFalling" : "Gores/Verdant/PinkPetalFalling").Type);
         }
     }
 
     class Flower_3x3 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -84,8 +84,8 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
             TileObjectData.addTile(Type);
 
-            dustType = DustID.Grass;
-            disableSmartCursor = true;
+            DustType = DustID.Grass;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(193, 50, 109));
         }
 
@@ -95,23 +95,23 @@ namespace Verdant.Tiles.Verdant.Mounted
             int r = Main.rand.Next(6, 10);
             if (frame == 0)
             {
-                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<RedPetal>(), Main.rand.Next(3, 7));
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<RedPetal>(), Main.rand.Next(3, 7));
                 for (int v = 0; v < r; ++v)
-                    Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
             else
             {
-                Item.NewItem(new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<PinkPetal>(), Main.rand.Next(3, 7));
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<PinkPetal>(), Main.rand.Next(3, 7));
                 for (int v = 0; v < r; ++v)
-                    Gore.NewGore(new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
         }
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            int frame = Framing.GetTileSafely(i, j).frameX % 56 == 0 ? Framing.GetTileSafely(i, j).frameX / 56 : 0;
-            if (Main.rand.Next(800) == 0)
-                Gore.NewGore((new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, mod.GetGoreSlot((frame == 0) ? "Gores/Verdant/RedPetalFalling" : "Gores/Verdant/PinkPetalFalling"));
+            int frame = Framing.GetTileSafely(i, j).TileFrameX % 56 == 0 ? Framing.GetTileSafely(i, j).TileFrameX / 56 : 0;
+            if (Main.rand.NextBool(800))
+                Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((frame == 0) ? "RedPetalFalling" : "PinkPetalFalling").Type);
         }
     }
 }

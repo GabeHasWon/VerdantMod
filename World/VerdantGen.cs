@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using Verdant.Noise;
 using Verdant.Walls;
 using Verdant.Tiles.Verdant.Decor;
@@ -20,11 +20,12 @@ using Verdant.Items.Verdant.Equipables;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles;
+using Terraria.IO;
 
 namespace Verdant.World
 {
     ///Handles specific Verdant biome gen.
-    public partial class VerdantWorld : ModWorld
+    public partial class VerdantWorld : ModSystem
     {
         private static int[] TileTypes { get => new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.ChlorophyteBrick, ModContent.TileType<VerdantLightbulb>(), ModContent.TileType<LivingLushWood>() }; }
         private static int[] WallTypes { get => new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<LushSoilWall_Unsafe>(), ModContent.WallType<LushSoilWall_Unsafe>() }; }
@@ -37,12 +38,12 @@ namespace Verdant.World
 
         private readonly List<GenCircle> VerdantCircles = new List<GenCircle>();
 
-        public void VerdantGeneration(GenerationProgress p)
+        public void VerdantGeneration(GenerationProgress p, GameConfiguration config)
         {
             p.Message = "Growing plants...";
 
-            mod.Logger.Info("World Seed: " + WorldGen._genRandSeed);
-            mod.Logger.Info("Noise Seed: " + genNoise.Seed);
+            Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed);
+            Mod.Logger.Info("Noise Seed: " + genNoise.Seed);
 
             Mod spirit = ModLoader.GetMod("SpiritMod");
             Mod calamity = ModLoader.GetMod("Calamity");
@@ -68,11 +69,11 @@ namespace Verdant.World
                         List<int> invalidTypes = new List<int>() { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick, TileID.IceBlock, TileID.SnowBlock }; //Vanilla blacklist
 
                         if (spirit != null) //Spirit blacklist
-                            invalidTypes.Add(spirit.TileType("BriarGrass"));
+                            invalidTypes.Add(spirit.Find<ModTile>("BriarGrass").Type);
                         if (calamity != null) //Calamity blacklist
-                            invalidTypes.Add(calamity.TileType("Navystone"));
+                            invalidTypes.Add(calamity.Find<ModTile>("Navystone").Type);
 
-                        if ((Framing.GetTileSafely(i, j).active() && invalidTypes.Any(x => Framing.GetTileSafely(i, j).type == x)))
+                        if ((Framing.GetTileSafely(i, j).HasTile && invalidTypes.Any(x => Framing.GetTileSafely(i, j).TileType == x)))
                             total++;
                         if (total > 50)
                             goto reset;
@@ -109,7 +110,7 @@ namespace Verdant.World
                 StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", new Point16(VerdantArea.Center.X - (size.X / 2), top - size.Y + 12), VerdantMod.Instance);
         }
 
-        public void VerdantCleanup(GenerationProgress p)
+        public void VerdantCleanup(GenerationProgress p, GameConfiguration config)
         {
             p.Message = "Trimming plants...";
 
@@ -121,11 +122,12 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Bottom; j > VerdantArea.Y; --j)
                 {
-                    Main.tile[i, j].lava(false);
+                    Tile tile = Main.tile[i, j];
+                    tile.LiquidType = LiquidID.Water;
 
                     Tile t = Framing.GetTileSafely(i, j);
                     int[] vineAnchors = new int[] { ModContent.TileType<VerdantVine>(), ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantLeaves>() };
-                    if (t.type == ModContent.TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).type))
+                    if (t.TileType == ModContent.TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).TileType))
                         WorldGen.KillTile(i, j);
                 }
             }
@@ -144,7 +146,7 @@ namespace Verdant.World
                 for (int j = 0; j < 18; ++j)
                 {
                     Tile t = Framing.GetTileSafely(apothPos.X + i, apothPos.Y + j);
-                    if (t.active() && invalidTypes.Contains(t.type))
+                    if (t.HasTile && invalidTypes.Contains(t.TileType))
                     {
                         apothPos.X += WorldGen.genRand.Next(20, 27) * side;
                         if (!VerdantArea.Contains(apothPos) && !triedOneSide)
@@ -177,7 +179,7 @@ namespace Verdant.World
 
                 if (notNear && Helper.TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && Helper.TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && Helper.NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
                 {
-                    StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, mod, index);
+                    StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, Mod, index);
                     positions.Add(pos.ToVector2());
 
                     if (!WorldGen.genRand.NextBool(6)) //NORMAL chests
@@ -194,7 +196,7 @@ namespace Verdant.World
                         }, true, WorldGen.genRand, WorldGen.genRand.Next(4, 7), 0, true);
 
                         if (!c)
-                            mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest.");
+                            Mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest.");
                     }
                     else //WAND chest
                     {
@@ -203,7 +205,7 @@ namespace Verdant.World
                             (ModContent.ItemType<PinkPetal>(), WorldGen.genRand.Next(19, 24)), (ModContent.ItemType<VerdantFlowerBulb>(), WorldGen.genRand.Next(12, 22)));
 
                         if (!c)
-                            mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest (wand).");
+                            Mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest (wand).");
                     }
                 }
                 else
@@ -246,8 +248,9 @@ namespace Verdant.World
                 {
                     for (int k = -14; k < 14; ++k)
                     {
-                        Main.tile[p.X + j, p.Y + k].liquid = 255;
-                        Main.tile[p.X + j, p.Y + k].liquidType(0);
+                        Tile tile = Main.tile[p.X + j, p.Y + k];
+                        tile.LiquidAmount = 255;
+                        tile.LiquidType = 0;
                     }
                 }
             }
@@ -266,7 +269,7 @@ namespace Verdant.World
                 }
                 Tile tile = Framing.GetTileSafely(rP.X, rP.Y);
 
-                if (tile.type == ModContent.TileType<VerdantGrassLeaves>() || tile.type == ModContent.TileType<LushSoil>() || tile.type == ModContent.TileType<LivingLushWood>())
+                if (tile.TileType == ModContent.TileType<VerdantGrassLeaves>() || tile.TileType == ModContent.TileType<LushSoil>() || tile.TileType == ModContent.TileType<LivingLushWood>())
                 {
                     Point adjPos = rP.Add(adj);
                     Point end = adjPos.Add(adj);
@@ -338,22 +341,22 @@ namespace Verdant.World
                     if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
                     {
                         //Vines
-                        if (!Framing.GetTileSafely(i, j + 1).active() && !Framing.GetTileSafely(i, j + 1).bottomSlope() && WorldGen.genRand.Next(5) <= 2)
+                        if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i, j + 1).BottomSlope && WorldGen.genRand.Next(5) <= 2)
                         {
                             int length = WorldGen.genRand.Next(2, 22);
-                            bool strong = WorldGen.genRand.Next(10) == 0;
+                            bool strong = WorldGen.genRand.NextBool(10);
 
                             for (int l = 1; l < length; ++l)
                             {
-                                if (Framing.GetTileSafely(i, j + l + 1).active())
+                                if (Framing.GetTileSafely(i, j + l + 1).HasTile)
                                     break;
 
                                 WorldGen.KillTile(i, j + l, false, false, true); //please
                                 WorldGen.PlaceTile(i, j + l, strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>(), true, true);
-                                Framing.GetTileSafely(i, j + l).type = (ushort)(strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>());
+                                Framing.GetTileSafely(i, j + l).TileType = (ushort)(strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>());
 
                                 if (strong)
-                                    Framing.GetTileSafely(i, j + l).frameY = (short)(Main.rand.Next(4) * 18);
+                                    Framing.GetTileSafely(i, j + l).TileFrameY = (short)(Main.rand.Next(4) * 18);
                             }
                             continue;
                         }
@@ -361,13 +364,13 @@ namespace Verdant.World
 
                     //lightbulb
                     bool doPlace = Helper.AreaClear(i, j - 2, 2, 2) && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
-                    if (doPlace && WorldGen.genRand.Next(11) == 0)
+                    if (doPlace && WorldGen.genRand.NextBool(11))
                     {
                         WorldGen.PlaceTile(i, j - 2, ModContent.TileType<VerdantLightbulb>(), true, false, -1, WorldGen.genRand.Next(3));
                         continue;
                     }
 
-                    if (!Framing.GetTileSafely(i, j - 1).active() && !TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
+                    if (!Framing.GetTileSafely(i, j - 1).HasTile && !TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
                     {
                         int type = !Main.rand.NextBool(1) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
                         WorldGen.PlaceTile(i, j - 1, type, true, false, -1, WorldGen.genRand.Next(7));
@@ -375,9 +378,9 @@ namespace Verdant.World
                     }
 
                     //ground decor 2x1
-                    doPlace = !Framing.GetTileSafely(i, j - 1).active() && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) &&
-                        !Framing.GetTileSafely(i + 1, j - 1).active() && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
-                    if (doPlace && WorldGen.genRand.Next(2) == 0)
+                    doPlace = !Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) &&
+                        !Framing.GetTileSafely(i + 1, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
+                    if (doPlace && WorldGen.genRand.NextBool(2))
                     {
                         GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<VerdantDecor2x1>(), WorldGen.genRand.Next(7));
                         continue;
@@ -385,15 +388,15 @@ namespace Verdant.World
 
                     //flower wall 2x2
                     doPlace = Helper.AreaClear(i, j, 2, 2) && Helper.WalledSquare(i, j, 2, 2) && Helper.WalledSquareType(i, j, 2, 2, WallTypes[0]);
-                    if (doPlace && WorldGen.genRand.Next(42) == 0)
+                    if (doPlace && WorldGen.genRand.NextBool(42))
                     {
-                        GenHelper.PlaceMultitile(new Point(i, j), WorldGen.genRand.Next(13) == 0 ? ModContent.TileType<MountedLightbulb_2x2>() : ModContent.TileType<Flower_2x2>(), WorldGen.genRand.Next(4));
+                        GenHelper.PlaceMultitile(new Point(i, j), WorldGen.genRand.NextBool(13)? ModContent.TileType<MountedLightbulb_2x2>() : ModContent.TileType<Flower_2x2>(), WorldGen.genRand.Next(4));
                         continue;
                     }
 
                     //flower wall 3x3
                     doPlace = Helper.AreaClear(i, j, 3, 3) && Helper.WalledSquare(i, j, 3, 3) && Helper.WalledSquareType(i, j, 3, 3, WallTypes[0]);
-                    if (doPlace && WorldGen.genRand.Next(68) == 0)
+                    if (doPlace && WorldGen.genRand.NextBool(68))
                     {
                         GenHelper.PlaceMultitile(new Point(i, j), ModContent.TileType<Flower_3x3>(), WorldGen.genRand.Next(2));
                         continue;
@@ -441,7 +444,7 @@ namespace Verdant.World
                     if (j > Main.maxTilesY - 2) break;
 
                     Tile t = Framing.GetTileSafely(i, j);
-                    if (t.active() && t.type == TileTypes[2])
+                    if (t.HasTile && t.TileType == TileTypes[2])
                     {
                         float n = genNoise.GetNoise(i, j);
                         t.ClearTile();
@@ -469,10 +472,10 @@ namespace Verdant.World
                 {
                     Tile t = Framing.GetTileSafely(i, j);
                     float n = genNoise.GetNoise(i, j);
-                    if (t.wall == WallTypes[0] && n < -0.36f)
+                    if (t.WallType == WallTypes[0] && n < -0.36f)
                         GenHelper.ReplaceWall(new Point(i, j), WallTypes[2]);
 
-                    if (n < -0.68f && TileTypes.Any(x => x == t.type) && t.type != TileTypes[0] && t.active())
+                    if (n < -0.68f && TileTypes.Any(x => x == t.TileType) && t.TileType != TileTypes[0] && t.HasTile)
                         GenHelper.ReplaceTile(new Point(i, j), TileTypes[4]);
                 }
             }
@@ -493,9 +496,9 @@ namespace Verdant.World
                         break;
                     for (int k = -8; k < 8; ++k)
                     {
-                        if (Framing.GetTileSafely(position.X + j, position.Y + k).active())
+                        if (Framing.GetTileSafely(position.X + j, position.Y + k).HasTile)
                         {
-                            if (TileTypes.Contains(Framing.GetTileSafely(position.X + j, position.Y + k).type))
+                            if (TileTypes.Contains(Framing.GetTileSafely(position.X + j, position.Y + k).TileType))
                                 ver = true;
                             else
                                 non = true;
@@ -505,7 +508,7 @@ namespace Verdant.World
 
                 if (!ver || !non)
                 {
-                    if (WorldGen.genRand.Next(9) == 0) runners++;
+                    if (WorldGen.genRand.NextBool(9)) runners++;
                     continue;
                 }
 
@@ -521,7 +524,7 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Bottom; j > VerdantArea.Y; --j)
                 {
-                    if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).liquid < 155)
+                    if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).LiquidAmount < 155)
                         WorldGen.KillTile(i, j, false, false, true);
 
                     if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()))
@@ -565,9 +568,9 @@ namespace Verdant.World
                         Point nPos = new Point(pos.X + i, pos.Y + j);
                         float dist = Vector2.Distance(nPos.ToVector2(), pos.ToVector2());
                         Tile tile = Framing.GetTileSafely(nPos.X, nPos.Y);
-                        if (tile.type == TileTypes[2])
+                        if (tile.TileType == TileTypes[2])
                             continue;
-                        if ((nPos == pos || dist < rad + 12) && tile.type != TileTypes[2])
+                        if ((nPos == pos || dist < rad + 12) && tile.TileType != TileTypes[2])
                         {
                             if (dist < rad)
                             {
@@ -579,15 +582,15 @@ namespace Verdant.World
                             {
                                 int off = (int)dist - (rad + 12);
                                 float chance = off / 12f;
-                                if (WorldGen.genRand.Next(99) * 0.01f < chance && tile.active() && tile.type != TileTypes[2])
-                                    tile.type = (ushort)TileTypes[1];
+                                if (WorldGen.genRand.Next(99) * 0.01f < chance && tile.HasTile && tile.TileType != TileTypes[2])
+                                    tile.TileType = (ushort)TileTypes[1];
                             }
                         }
                         else
                         {
                             if (changeRad)
                             {
-                                rad += WorldGen.genRand.Next(2) == 0 ? -1 : 1;
+                                rad += WorldGen.genRand.NextBool(2)? -1 : 1;
                                 changeRad = false;
                             }
                             if (rad < MinRad * WorldSize)

@@ -3,17 +3,12 @@ using Terraria.ModLoader;
 
 namespace Verdant.Backgrounds
 {
-    public class VerdantUGBackground : ModUgBgStyle
+    public class VerdantUGBackground : ModUndergroundBackgroundStyle
     {
-        public override bool ChooseBgStyle()
-        {
-            return Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant;
-        }
-
         public override void FillTextureArray(int[] textureSlots)
         {
             for (int i = 0; i < 6; ++i)
-                textureSlots[i] = mod.GetBackgroundSlot("Backgrounds/VerdantUG" + i);
+                textureSlots[i] = BackgroundTextureLoader.GetBackgroundSlot(Mod, "Backgrounds/VerdantUG" + i);
         }
     }
 }

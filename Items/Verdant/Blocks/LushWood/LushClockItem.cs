@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Blocks.LushWood
@@ -9,12 +10,11 @@ namespace Verdant.Items.Verdant.Blocks.LushWood
         public override void SetDefaults() => QuickItem.SetBlock(this, 24, 48, ModContent.TileType<Tiles.Verdant.Decor.LushFurniture.LushClock>());
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
+            Recipe r = CreateRecipe(1);
             r.AddIngredient(ModContent.ItemType<VerdantWoodBlock>(), 10);
             r.AddRecipeGroup("IronBar", 3);
             r.AddIngredient(ItemID.Glass, 6);
-            r.SetResult(this, 1);
-            r.AddRecipe();
+            r.Register();
         }
     }
 }

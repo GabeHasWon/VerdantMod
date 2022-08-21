@@ -8,11 +8,11 @@ namespace Verdant.Walls
 {
     public class LushWoodWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            dustType = DustID.t_BorealWood;
-            drop = ModContent.ItemType<LushWoodWallItem>();
+            DustType = DustID.t_BorealWood;
+            ItemDrop = ModContent.ItemType<LushWoodWallItem>();
             AddMapEntry(new Color(56, 42, 27));
         }
 

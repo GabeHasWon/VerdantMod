@@ -3,9 +3,9 @@ using Terraria.ModLoader;
 
 namespace Verdant.Backgrounds
 {
-    public class VerdantSurfaceBgStyle : ModSurfaceBgStyle
+    public class VerdantSurfaceBgStyle : ModSurfaceBackgroundStyle
     {
-        public override int ChooseFarTexture() => mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceFar");
+        public override int ChooseFarTexture() => BackgroundTextureLoader.GetBackgroundSlot(Mod, "Backgrounds/VerdantSurfaceFar");
 
         public override int ChooseMiddleTexture() => -1;// mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceMid");
 
@@ -13,10 +13,8 @@ namespace Verdant.Backgrounds
         {
             //scale *= .76f;
             b -= 250;
-            return mod.GetBackgroundSlot("Backgrounds/VerdantSurfaceClose");
+            return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Backgrounds/VerdantSurfaceClose");
         }
-
-        public override bool ChooseBgStyle() => !Main.gameMenu && Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant;
 
         // Use this to keep far Backgrounds like the mountains.
         public override void ModifyFarFades(float[] fades, float transitionSpeed)

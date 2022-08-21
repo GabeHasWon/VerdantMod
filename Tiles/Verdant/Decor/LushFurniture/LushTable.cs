@@ -3,12 +3,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
+using Terraria.DataStructures;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     internal class LushTable : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -23,15 +24,15 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
             AddMapEntry(new Color(165, 108, 58));
 
-            disableSmartCursor = true;
-            adjTiles = new int[] { TileID.Tables };
+            TileID.Sets.DisableSmartCursor[Type] = true;
+            AdjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushTableItem>());
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushTableItem>());
         }
     }
 }

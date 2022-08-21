@@ -12,12 +12,12 @@ namespace Verdant.Items.Verdant.Fishing
 
         public override void SetDefaults()
         {
-            item.width = 44;
-            item.height = 44;
-            item.maxStack = 1;
-            item.questItem = true;
-            item.uniqueStack = true;
-            item.rare = ItemRarityID.Quest;
+            Item.width = 44;
+            Item.height = 44;
+            Item.maxStack = 1;
+            Item.questItem = true;
+            Item.uniqueStack = true;
+            Item.rare = ItemRarityID.Quest;
         }
 
         public override bool IsQuestFish() => true;

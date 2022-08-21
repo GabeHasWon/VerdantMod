@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -18,12 +20,12 @@ namespace Verdant.Tiles
         /// <param name="mapColor">Colour on the minimap.</param>
         /// <param name="drop">Item that the tile drops.</param>
         /// <param name="mapName">Name on the map.</param>
-        public static void Set(ModTile t, int minPick, int dustType, int soundType, Color mapColor, int drop, string mapName = "")
+        public static void Set(ModTile t, int minPick, int dustType, SoundStyle soundType, Color mapColor, int drop, string mapName = "")
         {
-            t.minPick = minPick;
-            t.dustType = dustType;
-            t.soundType = soundType;
-            t.drop = drop;
+            t.MinPick = minPick;
+            t.DustType = dustType;
+            t.HitSound = soundType;
+            t.ItemDrop = drop;
 
             ModTranslation name = t.CreateMapEntryName();
             name.SetDefault(mapName);
@@ -47,7 +49,7 @@ namespace Verdant.Tiles
         }
 
         /// <summary>Does Set and SetProperties in one method.</summary>
-        public static void SetAll(ModTile t, int minPick, int dust, int sound, Color mapColour, int drop = 0, string mapName = "", bool solid = true, bool mergeDirt = true, bool lighted = true, bool blockLight = true)
+        public static void SetAll(ModTile t, int minPick, int dust, SoundStyle sound, Color mapColour, int drop = 0, string mapName = "", bool solid = true, bool mergeDirt = true, bool lighted = true, bool blockLight = true)
         {
             Set(t, minPick, dust, sound, mapColour, drop, mapName);
             SetProperties(t, solid, mergeDirt, lighted, blockLight);
@@ -65,7 +67,7 @@ namespace Verdant.Tiles
         /// <param name="topSolid">Is the top solid?</param>
         /// <param name="solid">Is the tile solid?</param>
         /// <param name="name">Name on the map.</param>
-        public static void SetMulti(ModTile t, int w, int h, int dust, int sound, bool tallBottom, Color color, bool lavaDeath = false, bool topSolid = false, bool solid = false, string name = "")
+        public static void SetMulti(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, bool topSolid = false, bool solid = false, string name = "")
         {
             Main.tileLavaDeath[t.Type] = lavaDeath;
             Main.tileFrameImportant[t.Type] = true;
@@ -96,9 +98,10 @@ namespace Verdant.Tiles
             else
                 t.AddMapEntry(color);
 
-            t.dustType = dust;
-            t.soundType = sound;
-            t.disableSmartCursor = true;
+            t.DustType = dust;
+            t.HitSound = sound;
+
+            TileID.Sets.DisableSmartCursor[t.Type] = true;
         }
 
         public static void MergeWith(int self, params int[] types)

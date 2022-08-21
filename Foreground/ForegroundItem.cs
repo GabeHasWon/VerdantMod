@@ -30,7 +30,7 @@ namespace Verdant.Foreground
         {
             position = pos;
             velocity = vel;
-            tex = ModContent.GetTexture($"Verdant/Foreground/{path}");
+            tex = ModContent.Request<Texture2D>($"Verdant/Foreground/{path}").Value;
             scale = sc;
 
             source = new Rectangle(0, 0, tex.Width, tex.Height);

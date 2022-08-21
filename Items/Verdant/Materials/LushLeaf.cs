@@ -11,10 +11,10 @@ namespace Verdant.Items.Verdant.Materials
 
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, mod, -1, 1, (ModContent.ItemType<VerdantLeafWallItem>(), 4));
+            QuickItem.AddRecipe(this, Mod, -1, 1, (ModContent.ItemType<VerdantLeafWallItem>(), 4));
 
-            QuickItem.AddRecipe(ItemID.BrightGreenDye, mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.SilverDye, 1));
-            QuickItem.AddRecipe(ItemID.GreenandBlackDye, mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.BlackDye, 1));
+            QuickItem.AddRecipe(ItemID.BrightGreenDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.SilverDye, 1));
+            QuickItem.AddRecipe(ItemID.GreenandBlackDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.BlackDye, 1));
         }
     }
 }

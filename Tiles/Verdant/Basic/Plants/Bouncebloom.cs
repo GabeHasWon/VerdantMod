@@ -14,7 +14,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
     {
         private int frameCounter = 0;
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -30,23 +30,23 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
             AddMapEntry(new Color(165, 108, 58));
 
-            disableSmartCursor = true;
-            dustType = DustID.Grass;
+            TileID.Sets.DisableSmartCursor[Type] = true;
+            DustType = DustID.Grass;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>());
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>());
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile t = Framing.GetTileSafely(i, j);
-            Texture2D tile = ModContent.GetTexture("Verdant/Tiles/Verdant/Basic/Plants/Bouncebloom");
+            Texture2D tile = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Basic/Plants/Bouncebloom").Value;
             Color col = Lighting.GetColor(i, j);
 
-            int frameY = t.frameY;
+            int frameY = t.TileFrameY;
 
-            spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j), new Rectangle(t.frameX, frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j), new Rectangle(t.TileFrameX, frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -55,8 +55,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
         {
             Tile t = Framing.GetTileSafely(i, j);
-            if (t.frameY >= 38 && frameCounter % 6 == 0)
-                t.frameY -= 38;
+            if (t.TileFrameY >= 38 && frameCounter % 6 == 0)
+                t.TileFrameY -= 38;
         }
     }
 }

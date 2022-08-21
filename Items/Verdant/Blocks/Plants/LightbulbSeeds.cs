@@ -11,9 +11,9 @@ namespace Verdant.Items.Verdant.Blocks.Plants
         public override void SetDefaults()
         {
             QuickItem.SetBlock(this, 22, 28, ModContent.TileType<Tiles.Verdant.Basic.Plants.VerdantLightbulb>());
-            item.value = Item.buyPrice(0, 0, 0, 50);
+            Item.value = Item.buyPrice(0, 0, 0, 50);
         }
 
-        public override void Update(ref float gravity, ref float maxFallSpeed) => Lighting.AddLight(item.Center, new Vector3(0.25f, 0.09f, 0.18f));
+        public override void Update(ref float gravity, ref float maxFallSpeed) => Lighting.AddLight(Item.Center, new Vector3(0.25f, 0.09f, 0.18f));
     }
 }

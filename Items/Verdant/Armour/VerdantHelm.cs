@@ -13,11 +13,10 @@ namespace Verdant.Items.Verdant.Armour
     [AutoloadEquip(EquipType.Head)]
     public class VerdantHelm : ModItem
 	{
-        public override bool Autoload(ref string name)
+        public override void Load()
         {
             VerdantPlayer.OnRespawnEvent += OnRespawn;
             VerdantPlayer.HitByNPCEvent += OnHit;
-            return base.Autoload(ref name);
         }
 
         public override void SetStaticDefaults()
@@ -28,11 +27,11 @@ namespace Verdant.Items.Verdant.Armour
 
         public override void SetDefaults()
 		{
-			item.width = 30;
-			item.height = 20;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.defense = 5;
+			Item.width = 30;
+			Item.height = 20;
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+			Item.defense = 5;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerdantChestplate>() && legs.type == ModContent.ItemType<VerdantLeggings>();
@@ -42,16 +41,16 @@ namespace Verdant.Items.Verdant.Armour
             player.setBonus = $"+4% minion damage\n+1 max minion\nReduces fall speed - Hold DOWN to fall faster\nUpon respawning, heals you for 50 health";
 
             player.maxMinions++;
-            player.minionDamage *= 1.04f;
+            player.GetDamage(DamageClass.Summon) *= 1.04f;
             if (!player.controlDown)
                 player.maxFallSpeed *= 0.69f; //LMAO
-            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.Next(74) == 0) //Spawn gores
+            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.NextBool(74)) //Spawn gores
             {
                 int random = Main.rand.Next(3);
-                int gore = mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling");
-                if (random == 0) gore = mod.GetGoreSlot("Gores/Verdant/RedPetalFalling");
-                if (random == 1) gore = mod.GetGoreSlot("Gores/Verdant/LushLeaf");
-                Gore.NewGore(player.Center + new Vector2(0), new Vector2(0), gore, 1f);
+                int gore = Mod.Find<ModGore>("Gores/Verdant/PinkPetalFalling").Type;
+                if (random == 0) gore = Mod.Find<ModGore>("Gores/Verdant/RedPetalFalling").Type;
+                if (random == 1) gore = Mod.Find<ModGore>("Gores/Verdant/LushLeaf").Type;
+                Gore.NewGore(player.GetSource_Accessory(Item), player.Center + new Vector2(0), new Vector2(0), gore, 1f);
             }
         }
 
@@ -79,29 +78,28 @@ namespace Verdant.Items.Verdant.Armour
                 int r = Main.rand.Next(1, 3);
                 for (int i = 0; i < r; ++i)
                 {
-                    int d = Main.rand.Next(2) == 0 ? mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling") : mod.GetGoreSlot("Gores/Verdant/RedPetalFalling");
-                    Gore.NewGore(p.position + new Vector2(Main.rand.Next(p.width), Main.rand.Next(p.height)), Vector2.Zero, d, 1f);
+                    int d = Main.rand.Next(2) == 0 ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
+                    Gore.NewGore(p.GetSource_OnHurt(npc), p.position + new Vector2(Main.rand.Next(p.width), Main.rand.Next(p.height)), Vector2.Zero, d, 1f);
                 }
             }
         }
 
         public override void UpdateEquip(Player player)
 		{
-            player.minionDamage *= 1.05f;
+            player.GetDamage(DamageClass.Summon) *= 1.05f;
             Lighting.AddLight(player.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 7.5f);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe m = new ModRecipe(mod);
+            Recipe m = CreateRecipe();
             m.AddIngredient(ModContent.ItemType<RedPetal>(), 12);
             m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 2);
             m.AddIngredient(ModContent.ItemType<Materials.LushLeaf>(), 10);
             m.AddIngredient(ModContent.ItemType<Lightbulb>(), 1);
             m.AddIngredient(ModContent.ItemType<YellowBulb>(), 2);
             m.AddTile(TileID.Anvils);
-            m.SetResult(this);
-            m.AddRecipe();
+            m.Register();
         }
     }
 }

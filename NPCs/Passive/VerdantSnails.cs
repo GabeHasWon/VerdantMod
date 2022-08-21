@@ -12,43 +12,43 @@ namespace Verdant.NPCs.Passive
         {
             DisplayName.SetDefault("Leafy Snail");
 
-            Main.npcCatchable[npc.type] = true;
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Snail];
+            Main.npcCatchable[NPC.type] = true;
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
         }
 
         public override void SetDefaults()
         {
-            npc.CloneDefaults(NPCID.Snail);
-            npc.width = 22;
-            npc.height = 18;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.value = 0f;
-            npc.knockBackResist = 0f;
-            npc.dontCountMe = true;
-            npc.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+            NPC.CloneDefaults(NPCID.Snail);
+            NPC.width = 22;
+            NPC.height = 18;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0f;
+            NPC.dontCountMe = true;
+            NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
 
-            animationType = NPCID.Snail;
-            drawOffsetY = 2;
+            AnimationType = NPCID.Snail;
+            DrawOffsetY = 2;
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int i = 0; i < 3; ++i)
-                    Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height)), Vector2.Zero, mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height)), Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
                 for (int i = 0; i < 4; ++i)
-                    Dust.NewDust(npc.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
+                    Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.playerInTown)
+            if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.PlayerInTown)
                 return 2f;
-            return (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? 0.8f : 0f;
+            return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? 0.8f : 0f;
         }
     }
 
@@ -58,26 +58,26 @@ namespace Verdant.NPCs.Passive
         {
             DisplayName.SetDefault("Lightbulb Snail");
 
-            Main.npcCatchable[npc.type] = true;
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Snail];
+            Main.npcCatchable[NPC.type] = true;
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
         }
 
         public override void SetDefaults()
         {
-            npc.CloneDefaults(NPCID.Snail);
-            npc.width = 20;
-            npc.height = 16;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.value = 0f;
-            npc.knockBackResist = 0f;
-            npc.dontCountMe = true;
-            npc.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+            NPC.CloneDefaults(NPCID.Snail);
+            NPC.width = 20;
+            NPC.height = 16;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0f;
+            NPC.dontCountMe = true;
+            NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
 
-            animationType = NPCID.Snail;
+            AnimationType = NPCID.Snail;
         }
 
-        public override void AI() => Lighting.AddLight(npc.Center, Color.HotPink.ToVector3() * 0.4f);
+        public override void AI() => Lighting.AddLight(NPC.Center, Color.HotPink.ToVector3() * 0.4f);
     }
 }

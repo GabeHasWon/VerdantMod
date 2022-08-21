@@ -7,9 +7,9 @@ namespace Verdant.Projectiles.Misc
 {
     class YellowPetalFloaterProj : ModProjectile
     {
-        public bool BouncedUpon { get => projectile.ai[0] != 0; set => projectile.ai[0] = !value ? 0 : 1; }
+        public bool BouncedUpon { get => Projectile.ai[0] != 0; set => Projectile.ai[0] = !value ? 0 : 1; }
 
-        public ref float Timer => ref projectile.ai[1];
+        public ref float Timer => ref Projectile.ai[1];
 
         public override void SetStaticDefaults()
         {
@@ -18,27 +18,27 @@ namespace Verdant.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            projectile.hostile = false;
-            projectile.friendly = false;
-            projectile.width = 58;
-            projectile.height = 38;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.ignoreWater = true;
-            projectile.timeLeft = 25;
+            Projectile.hostile = false;
+            Projectile.friendly = false;
+            Projectile.width = 58;
+            Projectile.height = 38;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 25;
         }
 
         public override void AI()
         {
-            projectile.velocity *= 0.9f;
+            Projectile.velocity *= 0.9f;
             Timer++;
-            projectile.rotation = (float)Math.Sin(Timer * 0.02f) * 0.2f;
+            Projectile.rotation = (float)Math.Sin(Timer * 0.02f) * 0.2f;
 
-            if (projectile.timeLeft >= 15)
+            if (Projectile.timeLeft >= 15)
                 return;
 
-            Rectangle top = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, 8);
-            projectile.timeLeft++;
+            Rectangle top = new Rectangle((int)Projectile.position.X, (int)Projectile.position.Y, Projectile.width, 8);
+            Projectile.timeLeft++;
 
             if (!BouncedUpon)
             {
@@ -53,7 +53,7 @@ namespace Verdant.Projectiles.Misc
                             p.velocity.Y = -14;
                             BouncedUpon = true;
                             Timer = 0;
-                            projectile.scale = 0.5f;
+                            Projectile.scale = 0.5f;
                             break;
                         }
                     }
@@ -61,12 +61,12 @@ namespace Verdant.Projectiles.Misc
             }
             else
             {
-                projectile.rotation *= 0.9f;
+                Projectile.rotation *= 0.9f;
 
                 if (Timer > 60)
                 {
                     BouncedUpon = false;
-                    projectile.scale = 1f;
+                    Projectile.scale = 1f;
                     Timer = 0;
                 }
             }

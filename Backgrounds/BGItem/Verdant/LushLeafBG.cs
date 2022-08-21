@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 namespace Verdant.Backgrounds.BGItem.Verdant
@@ -13,7 +14,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         public LushLeafBG(Vector2 pos) : base(pos, Vector2.One, new Point(20, 22))
         {
-            tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushLeaf");
+            tex = Terraria.ModLoader.ModContent.Request<Texture2D>("Verdant/Backgrounds/BGItem/Verdant/LushLeaf").Value;
 
             int r = Main.rand.Next(30);
             if (r < 4)
@@ -32,7 +33,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
         {
             base.Behaviour();
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.6f * Scale;
-            velocity.X = xVel + Main.windSpeed;
+            velocity.X = xVel + Main.windSpeedCurrent * 15;
             velocity.Y = -Math.Abs(xVel) + Scale;
             rotation = velocity.X * 0.4f;
 
@@ -47,7 +48,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         internal override void Draw(Vector2 off)
         {
-            drawColor = Main.bgColor;
+            drawColor = Main.ColorOfTheSkies;
             base.Draw(Vector2.Zero);
         }
     }

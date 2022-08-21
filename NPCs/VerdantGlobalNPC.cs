@@ -15,7 +15,7 @@ namespace Verdant.NPCs
     {
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+            if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
                 pool[NPCID.MotherSlime] = 0f; //no
                 pool[NPCID.CaveBat] = 0f; //also no

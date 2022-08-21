@@ -11,8 +11,8 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
 
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<PinkPetal>(), 3), (ItemID.IronBar, 3), (ItemID.Glass, 3));
-            QuickItem.AddRecipe(this, mod, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<PinkPetal>(), 3), (ItemID.LeadBar, 3), (ItemID.Glass, 3));
+            QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<PinkPetal>(), 3), (ItemID.IronBar, 3), (ItemID.Glass, 3));
+            QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<PinkPetal>(), 3), (ItemID.LeadBar, 3), (ItemID.Glass, 3));
         }
     }
 }

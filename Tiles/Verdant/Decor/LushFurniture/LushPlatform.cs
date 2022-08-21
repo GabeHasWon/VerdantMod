@@ -8,7 +8,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
 	public class LushPlatform : ModTile
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
 			Main.tileSolidTop[Type] = true;
@@ -32,10 +32,10 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			AddMapEntry(new Color(145, 104, 51));
 
-			dustType = DustID.t_BorealWood;
-			drop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPlatformItem>();
-			disableSmartCursor = true;
-			adjTiles = new int[] { TileID.Platforms };
+			DustType = DustID.t_BorealWood;
+			ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPlatformItem>();
+			TileID.Sets.DisableSmartCursor[Type] = true;
+			AdjTiles = new int[] { TileID.Platforms };
 		}
 
 		public override void PostSetDefaults() {

@@ -7,6 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Verdant Table", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 40, 28, ModContent.TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantTable>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, Terraria.ID.TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 6), (ModContent.ItemType<VerdantStrongVineMaterial>(), 3), (ModContent.ItemType<PinkPetal>(), 6));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, Terraria.ID.TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 6), (ModContent.ItemType<VerdantStrongVineMaterial>(), 3), (ModContent.ItemType<PinkPetal>(), 6));
     }
 }

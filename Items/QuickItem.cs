@@ -12,7 +12,7 @@ namespace Verdant.Items
             i.DisplayName.SetDefault(name);
             i.Tooltip.SetDefault(tooltip);
 
-            Item.staff[i.item.type] = true;
+            Item.staff[i.Item.type] = true;
         }
 
         /// <summary>Sets the defaults of an item to a basic item that places a block.</summary>
@@ -25,21 +25,21 @@ namespace Verdant.Items
         /// <param name="rarity">Rarity of the item. Defaults to <see cref="ItemRarityID.White"/>.</param>
         public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.createTile = tile;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.createTile = tile;
 
-            i.item.useTurn = true;
-            i.item.autoReuse = true;
-            i.item.useAnimation = 15;
-            i.item.useTime = 10;
-            i.item.maxStack = 999;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
-            i.item.consumable = consumable;
-            i.item.rare = rarity;
+            i.Item.useTurn = true;
+            i.Item.autoReuse = true;
+            i.Item.useAnimation = 15;
+            i.Item.useTime = 10;
+            i.Item.maxStack = 999;
+            i.Item.useStyle = ItemUseStyleID.Swing;
+            i.Item.consumable = consumable;
+            i.Item.rare = rarity;
 
             if (placeStyle != -1)
-                i.item.placeStyle = placeStyle;
+                i.Item.placeStyle = placeStyle;
         }
 
         /// <summary>Sets the defaults of an item to a basic item that places a wall.</summary>
@@ -50,117 +50,117 @@ namespace Verdant.Items
         /// <param name="consumable">If the item is consumable. Defaults to true.</param>
         public static void SetWall(ModItem i, int w, int h, int wall, bool consumable = true)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.createWall = wall;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.createWall = wall;
 
-            i.item.useTurn = true;
-            i.item.autoReuse = true;
-            i.item.useAnimation = 15;
-            i.item.useTime = 10;
-            i.item.maxStack = 999;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
-            i.item.consumable = consumable;
+            i.Item.useTurn = true;
+            i.Item.autoReuse = true;
+            i.Item.useAnimation = 15;
+            i.Item.useTime = 10;
+            i.Item.maxStack = 999;
+            i.Item.useStyle = ItemUseStyleID.Swing;
+            i.Item.consumable = consumable;
         }
 
         public static void SetStaff(ModItem i, int w, int h, int shoot, int use, int damage, int mana, float speed = 5f, float kB = 2f, int rarity = 1)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.useAnimation = use;
-            i.item.useTime = use;
-            i.item.shootSpeed = speed;
-            i.item.knockBack = kB;
-            i.item.damage = damage;
-            i.item.shoot = shoot;
-            i.item.rare = rarity;
-            i.item.mana = mana;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.useAnimation = use;
+            i.Item.useTime = use;
+            i.Item.shootSpeed = speed;
+            i.Item.knockBack = kB;
+            i.Item.damage = damage;
+            i.Item.shoot = shoot;
+            i.Item.rare = rarity;
+            i.Item.mana = mana;
 
-            i.item.noMelee = true;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
-            i.item.magic = true;
+            i.Item.noMelee = true;
+            i.Item.useStyle = ItemUseStyleID.Swing;
+            i.Item.DamageType = DamageClass.Magic;
         }
 
         public static void SetMinion(ModItem i, int w, int h, int shoot, int damage, int mana, int rarity = 1)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.useAnimation = 16;
-            i.item.useTime = 16;
-            i.item.shootSpeed = 0f;
-            i.item.knockBack = 1f;
-            i.item.damage = damage;
-            i.item.shoot = shoot;
-            i.item.rare = rarity;
-            i.item.mana = mana;
-            i.item.UseSound = SoundID.Item44;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.useAnimation = 16;
+            i.Item.useTime = 16;
+            i.Item.shootSpeed = 0f;
+            i.Item.knockBack = 1f;
+            i.Item.damage = damage;
+            i.Item.shoot = shoot;
+            i.Item.rare = rarity;
+            i.Item.mana = mana;
+            i.Item.UseSound = SoundID.Item44;
 
-            i.item.noMelee = true;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
-            i.item.summon = true;
+            i.Item.noMelee = true;
+            i.Item.useStyle = ItemUseStyleID.Swing;
+            i.Item.DamageType = DamageClass.Summon;
         }
 
         public static void SetCritter(ModItem i, int w, int h, int npcType, int rarity = 0, int b = 5)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.useAnimation = 16;
-            i.item.useTime = 16;
-            i.item.damage = 0;
-            i.item.rare = rarity;
-            i.item.maxStack = 999;
-            i.item.noUseGraphic = true;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.useAnimation = 16;
+            i.Item.useTime = 16;
+            i.Item.damage = 0;
+            i.Item.rare = rarity;
+            i.Item.maxStack = 999;
+            i.Item.noUseGraphic = true;
 
-            i.item.noMelee = false;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
+            i.Item.noMelee = false;
+            i.Item.useStyle = ItemUseStyleID.Swing;
 
-            i.item.bait = b;
-            i.item.makeNPC = (short)npcType;
-            i.item.autoReuse = true;
-            i.item.consumable = true;
+            i.Item.bait = b;
+            i.Item.makeNPC = (short)npcType;
+            i.Item.autoReuse = true;
+            i.Item.consumable = true;
         }
 
         public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false, int value = 0)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.useAnimation = 16;
-            i.item.useTime = 16;
-            i.item.damage = 0;
-            i.item.rare = rarity;
-            i.item.maxStack = maxStack;
-            i.item.value = value;
-            i.item.noMelee = false;
-            i.item.useStyle = ItemUseStyleID.SwingThrow;
-            i.item.autoReuse = true;
-            i.item.consumable = consumable;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.useAnimation = 16;
+            i.Item.useTime = 16;
+            i.Item.damage = 0;
+            i.Item.rare = rarity;
+            i.Item.maxStack = maxStack;
+            i.Item.value = value;
+            i.Item.noMelee = false;
+            i.Item.useStyle = ItemUseStyleID.Swing;
+            i.Item.autoReuse = true;
+            i.Item.consumable = consumable;
         }
 
         public static void SetFishingRod(ModItem i, int w, int h, int fish, int shoot, float shootSpeed, int rarity = 0)
         {
-            i.item.width = w;
-            i.item.height = h;
-            i.item.useAnimation = 16;
-            i.item.useTime = 16;
-            i.item.damage = 0;
-            i.item.knockBack = 0f;
-            i.item.rare = rarity;
-            i.item.maxStack = 1;
-            i.item.shootSpeed = shootSpeed;
-            i.item.shoot = shoot;
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.useAnimation = 16;
+            i.Item.useTime = 16;
+            i.Item.damage = 0;
+            i.Item.knockBack = 0f;
+            i.Item.rare = rarity;
+            i.Item.maxStack = 1;
+            i.Item.shootSpeed = shootSpeed;
+            i.Item.shoot = shoot;
 
-            i.item.noMelee = true;
-            i.item.fishingPole = fish;
-            i.item.autoReuse = true;
-            i.item.consumable = false;
+            i.Item.noMelee = true;
+            i.Item.fishingPole = fish;
+            i.Item.autoReuse = true;
+            i.Item.consumable = false;
         }
 
         public static void SetLightPet(ModItem i, int w, int h, int rarity = 0)
         {
-            i.item.CloneDefaults(ItemID.ShadowOrb);
-            i.item.width = w;
-            i.item.height = h;
-            i.item.rare = rarity;
+            i.Item.CloneDefaults(ItemID.ShadowOrb);
+            i.Item.width = w;
+            i.Item.height = h;
+            i.Item.rare = rarity;
         }
 
         /// <summary>Adds a recipe to the mod given the following items and tiles.</summary>
@@ -174,12 +174,11 @@ namespace Verdant.Items
             if (ingredients.Length <= 0)
                 throw new ArgumentException("Ingredents array is empty.", "ingredients");
 
-            ModRecipe r = new ModRecipe(mod);
+            Recipe r = Recipe.Create(item.Type, resultStack);
             for (int i = 0; i < ingredients.Length; ++i)
                 r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);
             if (tile != -1) r.AddTile(tile);
-            r.SetResult(item, resultStack);
-            r.AddRecipe();
+            r.Register();
         }
 
         /// <summary>Adds a recipe to the mod given the following items and tiles.</summary>
@@ -193,14 +192,13 @@ namespace Verdant.Items
             if (ingredients.Length <= 0)
                 throw new ArgumentException("Ingredents array is empty.", "ingredients");
 
-            ModRecipe r = new ModRecipe(mod);
+            Recipe r = Recipe.Create(id, resultStack);
             for (int i = 0; i < ingredients.Length; ++i)
                 r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);
             if (tile != -1) r.AddTile(tile);
-            r.SetResult(id, resultStack);
-            r.AddRecipe();
+            r.Register();
         }
 
-        public static bool CanCritterSpawnCheck() => !Framing.GetTileSafely(Main.MouseWorld).active() || !Main.tileSolid[Framing.GetTileSafely(Main.MouseWorld).type];
+        public static bool CanCritterSpawnCheck() => !Framing.GetTileSafely(Main.MouseWorld).HasTile || !Main.tileSolid[Framing.GetTileSafely(Main.MouseWorld).TileType];
     }
 }

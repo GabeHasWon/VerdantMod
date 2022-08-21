@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader.IO;
 
@@ -10,10 +11,10 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         public LushBushBG(Vector2 pos) : base(pos, Vector2.One, new Point(36, 43))
         {
-            tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushBushBG");
+            tex = Terraria.ModLoader.ModContent.Request<Texture2D>("Verdant/Backgrounds/BGItem/Verdant/LushBushBG").Value;
         }
 
-        public LushBushBG() { tex = Terraria.ModLoader.ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/LushBushBG"); }
+        public LushBushBG() { tex = Terraria.ModLoader.ModContent.Request<Texture2D>("Verdant/Backgrounds/BGItem/Verdant/LushBushBG").Value; }
 
         internal override void Behaviour() => base.Behaviour();
 
@@ -36,7 +37,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         internal override void Draw(Vector2 off)
         {
-            drawColor = Main.bgColor;
+            drawColor = Main.ColorOfTheSkies;
             base.Draw(Vector2.Zero);
         }
     }

@@ -8,11 +8,11 @@ namespace Verdant.Walls
 {
     public class LivingLushWoodWall_Unsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
-            dustType = DustID.Grass;
-            drop = ItemID.None;
+            DustType = DustID.Grass;
+            ItemDrop = ItemID.None;
             AddMapEntry(new Color(50, 15, 15));
         }
 
@@ -21,17 +21,13 @@ namespace Verdant.Walls
 
     public class LivingLushWoodWall : ModWall
     {
-        public override bool Autoload(ref string name, ref string texture)
-        {
-            texture = "Verdant/Walls/LivingLushWoodWall_Unsafe";
-            return base.Autoload(ref name, ref texture);
-        }
+        public override string Texture => "Verdant/Walls/LivingLushWoodWall_Unsafe";
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
-            dustType = DustID.Grass;
-            drop = ModContent.ItemType<LivingLushWoodWallItem>();
+            DustType = DustID.Grass;
+            ItemDrop = ModContent.ItemType<LivingLushWoodWallItem>();
             AddMapEntry(new Color(50, 15, 15));
         }
 

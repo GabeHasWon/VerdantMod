@@ -10,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
     internal class VerdantChandelier : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom, 2, 0);
             TileObjectData.newTile.LavaDeath = true;
@@ -32,7 +32,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 18)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 0 && Framing.GetTileSafely(i, j).TileFrameY == 18)
             {
                 Vector2 p = (new Vector2(i, j) * 16);
                 Lighting.AddLight(p + new Vector2(16, 16), new Vector3(0.1f, 0.03f, 0.06f) * 14);
@@ -43,11 +43,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierBlock>(), 1);
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierBlock>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(32), Main.rand.Next(54));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"), 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
         }
     }

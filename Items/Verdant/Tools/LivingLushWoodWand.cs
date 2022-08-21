@@ -16,17 +16,17 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.LivingWoodWand);
+            Item.CloneDefaults(ItemID.LivingWoodWand);
 
-            item.Size = new Vector2(36, 28);
-            item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Blocks.LivingLushWood>(); //Place type
-            item.tileWand = ModContent.ItemType<VerdantWoodBlock>(); //"Ammo"
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useTurn = true;
-            item.useAnimation = 15;
-            item.useTime = 15;
-            item.autoReuse = true;
-            item.rare = ItemRarityID.Green;
+            Item.Size = new Vector2(36, 28);
+            Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Blocks.LivingLushWood>(); //Place type
+            Item.tileWand = ModContent.ItemType<VerdantWoodBlock>(); //"Ammo"
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTurn = true;
+            Item.useAnimation = 15;
+            Item.useTime = 15;
+            Item.autoReuse = true;
+            Item.rare = ItemRarityID.Green;
         }
     }
 }

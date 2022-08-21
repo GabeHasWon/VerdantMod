@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public const int ChainLength = 22;
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -25,14 +25,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileTable[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
-            adjTiles = new int[] { TileID.Tables };
+            AdjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 18)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 18)
                 Lighting.AddLight(new Vector2(i, j) * 16, new Vector3(0.1f, 0.03f, 0.06f) * 11);
         }
 
@@ -40,11 +40,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Red>(), 1);
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Red>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
         }
     }
@@ -53,7 +53,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public const int ChainLength = 22;
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -67,7 +67,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileTable[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
-            adjTiles = new int[] { TileID.Tables };
+            AdjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
@@ -76,18 +76,18 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_RedLightless>(), 1);
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_RedLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
         }
     }
 
     internal class VerdantHungTable_Pink : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -101,14 +101,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileTable[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
-            adjTiles = new int[] { TileID.Tables };
+            AdjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Framing.GetTileSafely(i, j).frameX == 18 && Framing.GetTileSafely(i, j).frameY == 18)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 18)
                 Lighting.AddLight(new Vector2(i, j) * 16, new Vector3(0.1f, 0.03f, 0.06f) * 11);
         }
 
@@ -116,11 +116,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Pink>(), 1);
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Pink>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
         }
     }
@@ -129,7 +129,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public const int ChainLength = 22;
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -143,7 +143,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             Main.tileTable[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
-            adjTiles = new int[] { TileID.Tables };
+            AdjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
@@ -157,11 +157,11 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_PinkLightless>(), 1);
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_PinkLightless>(), 1);
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? mod.GetGoreSlot("Gores/Verdant/LushLeaf") : mod.GetGoreSlot("Gores/Verdant/PinkPetalFalling"), 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
         }
     }

@@ -15,10 +15,10 @@ namespace Verdant.Items.Verdant.Equipables
 
         public override void SetDefaults()
         {
-            item.defense = 1;
-            item.accessory = true;
-            item.rare = ItemRarityID.Green;
-            item.value = Item.sellPrice(silver: 3);
+            Item.defense = 1;
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(silver: 3);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

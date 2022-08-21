@@ -8,7 +8,7 @@ namespace Verdant.Projectiles.Misc
 {
     class HealingParticle : ModProjectile, IDrawAdditive
     {
-        public ref float Timer => ref projectile.ai[0];
+        public ref float Timer => ref Projectile.ai[0];
 
         private Color drawCol = Color.Green;
 
@@ -16,14 +16,14 @@ namespace Verdant.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            projectile.hostile = false;
-            projectile.friendly = false;
-            projectile.width = 30;
-            projectile.height = 38;
-            projectile.tileCollide = false;
-            projectile.ignoreWater = true;
-            projectile.timeLeft = 2000;
-            projectile.scale = Main.rand.NextFloat(0.1f, 0.6f);
+            Projectile.hostile = false;
+            Projectile.friendly = false;
+            Projectile.width = 30;
+            Projectile.height = 38;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 2000;
+            Projectile.scale = Main.rand.NextFloat(0.1f, 0.6f);
 
             drawCol = new Color(Main.rand.NextFloat(0.2f), Main.rand.NextFloat(0.25f, 0.9f), Main.rand.NextFloat(0.2f));
         }
@@ -33,28 +33,28 @@ namespace Verdant.Projectiles.Misc
             Timer++;
 
             if (Timer < 120)
-                projectile.velocity *= 0.97f;
+                Projectile.velocity *= 0.97f;
             else
             {
-                projectile.velocity = projectile.DirectionTo(projectile.Owner().Center) * MathHelper.Clamp((Timer - 120) / 2.5f, 0f, 30f);
+                Projectile.velocity = Projectile.DirectionTo(Projectile.Owner().Center) * MathHelper.Clamp((Timer - 120) / 2.5f, 0f, 30f);
 
-                if (projectile.DistanceSQ(projectile.Owner().Center) < 20 * 20)
-                    projectile.Kill();
+                if (Projectile.DistanceSQ(Projectile.Owner().Center) < 20 * 20)
+                    Projectile.Kill();
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => false;
+        public override bool PreDraw(ref Color lightColor) => false;
 
         public void DrawAdditive(AdditiveLayer layer)
         {
             if (layer != AdditiveLayer.AfterPlayer)
                 return;
 
-            Texture2D tex = mod.GetTexture("Textures/Circle");
-            float rot = projectile.velocity.ToRotation();
-            Vector2 scale = new Vector2(1 + (projectile.velocity.Length() * 0.075f), 1) * projectile.scale;
+            Texture2D tex = Mod.GetTexture("Textures/Circle");
+            float rot = Projectile.velocity.ToRotation();
+            Vector2 scale = new Vector2(1 + (Projectile.velocity.Length() * 0.075f), 1) * Projectile.scale;
 
-            Main.spriteBatch.Draw(tex, projectile.Center - Main.screenPosition, null, drawCol * 0.8f, rot, tex.Size() / 2f, scale, SpriteEffects.None, 1f);
+            Main.spriteBatch.Draw(tex, Projectile.Center - Main.screenPosition, null, drawCol * 0.8f, rot, tex.Size() / 2f, scale, SpriteEffects.None, 1f);
         }
     }
 }

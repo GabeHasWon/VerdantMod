@@ -23,7 +23,7 @@ namespace Verdant.Foreground.Tiled
         public override void Update()
         {
             Tile t = Framing.GetTileSafely((int)(position.X / 16), (int)(position.Y / 16));
-            if (!t.active())
+            if (!t.HasTile)
                 killMe = true;
         }
 
@@ -43,7 +43,7 @@ namespace Verdant.Foreground.Tiled
         public void CopyTileFrame()
         {
             Tile t = Framing.GetTileSafely(position);
-            source = new Rectangle(t.frameX, t.frameY, 16, 16);
+            source = new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16);
         }
     }
 }

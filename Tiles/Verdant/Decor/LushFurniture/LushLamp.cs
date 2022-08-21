@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -11,7 +13,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     internal class LushLamp : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             // Main.tileFlame[Type] = true; This breaks it.
             Main.tileLighted[Type] = true;
@@ -33,17 +35,17 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushLampItem>());
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushLampItem>());
         }
 
         public override void HitWire(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            int topY = j - tile.frameY / 18 % 3;
-            short frameAdjustment = (short)(tile.frameX > 0 ? -18 : 18);
-            Main.tile[i, topY].frameX += frameAdjustment;
-            Main.tile[i, topY + 1].frameX += frameAdjustment;
-            Main.tile[i, topY + 2].frameX += frameAdjustment;
+            int topY = j - tile.TileFrameY / 18 % 3;
+            short frameAdjustment = (short)(tile.TileFrameX > 0 ? -18 : 18);
+            Main.tile[i, topY].TileFrameX += frameAdjustment;
+            Main.tile[i, topY + 1].TileFrameX += frameAdjustment;
+            Main.tile[i, topY + 2].TileFrameX += frameAdjustment;
             Wiring.SkipWire(i, topY);
             Wiring.SkipWire(i, topY + 1);
             Wiring.SkipWire(i, topY + 2);
@@ -55,7 +57,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.frameX == 0 && tile.frameY == 0)
+            if (tile.TileFrameX == 0 && tile.TileFrameY == 0)
             {
                 // We can support different light colors for different styles here: switch (tile.frameY / 54)
                 r = 1f;
@@ -64,13 +66,13 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             }
         }
 
-        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
         {
             if (!Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
                 Tile tile = Main.tile[i, j];
-                short frameX = tile.frameX;
-                short frameY = tile.frameY;
+                short frameX = tile.TileFrameX;
+                short frameY = tile.TileFrameY;
                 if (Main.rand.NextBool(40) && frameX == 0)
                 {
                     int style = frameY / 54;
@@ -78,7 +80,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                     {
                         int dustChoice = -1;
                         if (style == 0)
-                            dustChoice = DustID.Fire; // A purple dust.
+                            dustChoice = DustID.Torch; // A purple dust.
                         // We can support different dust for different styles here
                         if (dustChoice != -1)
                         {
@@ -95,7 +97,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Framing.GetTileSafely(i, j).frameX != 0 || Framing.GetTileSafely(i, j).frameY != 0)
+            if (Framing.GetTileSafely(i, j).TileFrameX != 0 || Framing.GetTileSafely(i, j).TileFrameY != 0)
                 return;
 
             SpriteEffects effects = SpriteEffects.None;
@@ -112,7 +114,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             int height = 16;
             int offsetX = i % 2 == 0 ? 3 : -3;
             TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height);
-            var flameTexture = Main.FlameTexture[0];// mod.ModContent.GetTexture("Tiles/ExampleLamp_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
+            var flameTexture = TextureAssets.Flames[0].Value;// mod.ModContent.Request<Texture2D>("Tiles/ExampleLamp_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
 
             ulong seed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);
             // We can support different flames for different styles here: int style = Main.tile[j, i].frameY / 54;
@@ -121,7 +123,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 float shakeX = Utils.RandomInt(ref seed, -10, 11) * 0.15f;
                 float shakeY = Utils.RandomInt(ref seed, -10, 1) * 0.35f;
                 Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + shakeX, j * 16 - (int)Main.screenPosition.Y + offsetY + shakeY) + zero;
-                Main.spriteBatch.Draw(flameTexture, pos + new Vector2(-offsetX, 2), new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(100, 100, 100, 0), 0f, default, 1f, effects, 0f);
+                Main.spriteBatch.Draw(flameTexture, pos + new Vector2(-offsetX, 2), new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16), new Color(100, 100, 100, 0), 0f, default, 1f, effects, 0f);
             }
         }
     }

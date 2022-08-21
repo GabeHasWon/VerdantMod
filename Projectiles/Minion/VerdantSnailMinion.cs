@@ -8,8 +8,8 @@ namespace Verdant.Projectiles.Minion
 {
     class VerdantSnailMinion : ModProjectile
     {
-        ref float MovementState => ref projectile.ai[0];
-        ref float Timer => ref projectile.ai[1];
+        ref float MovementState => ref Projectile.ai[0];
+        ref float Timer => ref Projectile.ai[1];
 
         private int _target = -1;
         private int _skin = 0;
@@ -17,28 +17,28 @@ namespace Verdant.Projectiles.Minion
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snale");
-            Main.projFrames[projectile.type] = 15;
-            Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-            ProjectileID.Sets.Homing[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 15;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.OneEyedPirate);
-            projectile.aiStyle = -1;
-            projectile.width = 30;
-            projectile.height = 22;
-            projectile.tileCollide = true;
-            projectile.ignoreWater = false;
-            projectile.minionSlots = 0.75f;
-            projectile.minion = true;
-            projectile.hostile = false;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
+            Projectile.CloneDefaults(ProjectileID.OneEyedPirate);
+            Projectile.aiStyle = -1;
+            Projectile.width = 30;
+            Projectile.height = 22;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = false;
+            Projectile.minionSlots = 0.75f;
+            Projectile.minion = true;
+            Projectile.hostile = false;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
 
-            aiType = 0;
+            AIType = 0;
         }
 
         public override bool MinionContactDamage() => true;
@@ -48,7 +48,7 @@ namespace Verdant.Projectiles.Minion
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (MovementState == 4)
-                projectile.velocity = -projectile.velocity.RotatedByRandom(0.03f) * 0.94f;
+                Projectile.velocity = -Projectile.velocity.RotatedByRandom(0.03f) * 0.94f;
             return false;
         }
 
@@ -58,18 +58,18 @@ namespace Verdant.Projectiles.Minion
 
         public override void AI()
         {
-            Player p = Main.player[projectile.owner];
+            Player p = Main.player[Projectile.owner];
             Timer++;
 
             if (!p.HasBuff(ModContent.BuffType<SnailBuff>()))
-                projectile.active = false;
+                Projectile.active = false;
 
-            projectile.timeLeft = 20;
-            projectile.friendly = MovementState == 4;
+            Projectile.timeLeft = 20;
+            Projectile.friendly = MovementState == 4;
 
             if (MovementState == 0) //Spawn
             {
-                projectile.spriteDirection = Main.rand.NextBool(2) ? -1 : 1;
+                Projectile.spriteDirection = Main.rand.NextBool(2) ? -1 : 1;
                 MovementState = 1;
                 Timer--;
                 _target = -1;
@@ -77,28 +77,28 @@ namespace Verdant.Projectiles.Minion
             }
             if (MovementState == 1) //Literally vibing too hard
             {
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
                 if (Timer == AnimSpeedMult)
                     SetFrame(1);
                 if (Timer == 2 * AnimSpeedMult)
                 {
                     SetFrame(0);
-                    projectile.velocity.X = 0.3f * projectile.spriteDirection;
+                    Projectile.velocity.X = 0.3f * Projectile.spriteDirection;
                 }
                 if (Timer == 3 * AnimSpeedMult)
                 {
                     SetFrame(2);
-                    if (projectile.velocity.X == 0)
-                        projectile.spriteDirection *= -1;
+                    if (Projectile.velocity.X == 0)
+                        Projectile.spriteDirection *= -1;
                 }
                 if (Timer == 4 * AnimSpeedMult)
                 {
-                    projectile.velocity.X = 0f;
+                    Projectile.velocity.X = 0f;
                     SetFrame(0);
                     Timer = 0;
                 }
 
-                if (Vector2.Distance(p.position, projectile.position) > DistanceUntilReturn)
+                if (Vector2.Distance(p.position, Projectile.position) > DistanceUntilReturn)
                 {
                     MovementState = 2;
                     Timer = 0;
@@ -110,7 +110,7 @@ namespace Verdant.Projectiles.Minion
                     MovementState = 4;
                     Timer = 0;
                     SetFrame(0);
-                    projectile.velocity *= 0f;
+                    Projectile.velocity *= 0f;
                     return;
                 }
 
@@ -119,9 +119,9 @@ namespace Verdant.Projectiles.Minion
                     int hasTarget = -1;
                     for (int i = 0; i < Main.npc.Length; ++i) //Find target
                     {
-                        float dist = Vector2.Distance(Main.npc[i].position, projectile.position);
-                        bool line = Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height);
-                        if (Main.npc[i].CanBeChasedBy() && dist < 500 && line && (hasTarget == -1 || (hasTarget != -1 && projectile.Distance(Main.npc[hasTarget].Center) < dist)))
+                        float dist = Vector2.Distance(Main.npc[i].position, Projectile.position);
+                        bool line = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height);
+                        if (Main.npc[i].CanBeChasedBy() && dist < 500 && line && (hasTarget == -1 || (hasTarget != -1 && Projectile.Distance(Main.npc[hasTarget].Center) < dist)))
                             hasTarget = i;
                     }
 
@@ -131,7 +131,7 @@ namespace Verdant.Projectiles.Minion
                         MovementState = 4;
                         Timer = 0;
                         SetFrame(0);
-                        projectile.velocity *= 0f;
+                        Projectile.velocity *= 0f;
                     }
                 }
                 else
@@ -141,12 +141,12 @@ namespace Verdant.Projectiles.Minion
                 }
 
                 //Gravity
-                projectile.velocity.Y += 0.2f;
+                Projectile.velocity.Y += 0.2f;
             }
             else if (MovementState == 2) //Catch up to player
             {
-                projectile.tileCollide = false;
-                projectile.spriteDirection = p.position.X < projectile.position.X ? -1 : 1;
+                Projectile.tileCollide = false;
+                Projectile.spriteDirection = p.position.X < Projectile.position.X ? -1 : 1;
                 if (Timer == AnimSpeedMultHasty)
                     SetFrame(2);
                 if (Timer == AnimSpeedMultHasty * 2)
@@ -159,10 +159,10 @@ namespace Verdant.Projectiles.Minion
                     float mult = 1f;
                     if (adjTimer <= 60)
                         mult = adjTimer / 60f;
-                    projectile.velocity = Vector2.Normalize(p.position - projectile.position) * 7 * mult;
-                    projectile.rotation += 0.4f * mult;
+                    Projectile.velocity = Vector2.Normalize(p.position - Projectile.position) * 7 * mult;
+                    Projectile.rotation += 0.4f * mult;
 
-                    if (Vector2.Distance(p.position, projectile.position) < DistanceUntilReturn * 0.6f)
+                    if (Vector2.Distance(p.position, Projectile.position) < DistanceUntilReturn * 0.6f)
                     {
                         MovementState = 3;
                         Timer = 0;
@@ -171,23 +171,23 @@ namespace Verdant.Projectiles.Minion
             }
             else if (MovementState == 3) //Deccelerate
             {
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
                 float mult = 1 - (Timer / 240f);
-                projectile.velocity.X *= mult;
-                projectile.velocity.Y += 0.2f;
-                projectile.rotation += 0.4f * mult;
+                Projectile.velocity.X *= mult;
+                Projectile.velocity.Y += 0.2f;
+                Projectile.rotation += 0.4f * mult;
 
                 if (Timer > 60)
                 {
                     Timer = 0;
                     MovementState = 1;
-                    projectile.rotation = 0;
-                    projectile.spriteDirection = Main.rand.NextBool(2) ? -1 : 1;
+                    Projectile.rotation = 0;
+                    Projectile.spriteDirection = Main.rand.NextBool(2) ? -1 : 1;
                 }
             }
             else if (MovementState == 4) //ENEMY DETECTED
             {
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
 
                 if (Timer == AnimSpeedMultHasty)
                     SetFrame(2);
@@ -198,13 +198,13 @@ namespace Verdant.Projectiles.Minion
                 if (Timer > AnimSpeedMultHasty * 3)
                 {
                     if (_target != -2 && Main.npc[_target].active)
-                        projectile.velocity += Vector2.Normalize(Main.npc[_target].Center - projectile.Center) * 0.4f;
-                    if (projectile.velocity.Length() > 7f)
-                        projectile.velocity = Vector2.Normalize(projectile.velocity) * 7f;
-                    if (Timer >= AnimSpeedMultHasty * 36 || _target == -2 || !Main.npc[_target].active || projectile.velocity.Length() < 0.1f)
+                        Projectile.velocity += Vector2.Normalize(Main.npc[_target].Center - Projectile.Center) * 0.4f;
+                    if (Projectile.velocity.Length() > 7f)
+                        Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 7f;
+                    if (Timer >= AnimSpeedMultHasty * 36 || _target == -2 || !Main.npc[_target].active || Projectile.velocity.Length() < 0.1f)
                     {
-                        projectile.velocity.Y += 0.2f;
-                        projectile.velocity.X *= 0.9999f;
+                        Projectile.velocity.Y += 0.2f;
+                        Projectile.velocity.X *= 0.9999f;
                         if (Timer >= AnimSpeedMultHasty * 40)
                         {
                             _target = -100; //Target cooldown
@@ -213,20 +213,20 @@ namespace Verdant.Projectiles.Minion
                         }
                     }
                     else
-                        projectile.rotation += 0.4f;
+                        Projectile.rotation += 0.4f;
                 }
             }
 
             if (_skin == 2)
-                Lighting.AddLight(projectile.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
+                Lighting.AddLight(Projectile.Center - new Vector2(0, 10), new Vector3(0.1f, 0.03f, 0.06f) * 6f);
         }
 
-        private void SetFrame(int frame) => projectile.frame = frame + (_skin * 5);
+        private void SetFrame(int frame) => Projectile.frame = frame + (_skin * 5);
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Slimed, 20);
-            projectile.velocity = projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;
+            Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;
         }
     }
 }

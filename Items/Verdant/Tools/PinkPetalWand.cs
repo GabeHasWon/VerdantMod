@@ -15,17 +15,17 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.LivingWoodWand);
+            Item.CloneDefaults(ItemID.LivingWoodWand);
 
-            item.Size = new Vector2(34, 34);
-            item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Blocks.VerdantPinkPetal>(); //Place type
-            item.tileWand = ModContent.ItemType<PinkPetal>(); //"Ammo"
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.rare = ItemRarityID.Pink;
-            item.useTurn = true;
-            item.useAnimation = 15;
-            item.useTime = 15;
-            item.autoReuse = true;
+            Item.Size = new Vector2(34, 34);
+            Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Blocks.VerdantPinkPetal>(); //Place type
+            Item.tileWand = ModContent.ItemType<PinkPetal>(); //"Ammo"
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.rare = ItemRarityID.Pink;
+            Item.useTurn = true;
+            Item.useAnimation = 15;
+            Item.useTime = 15;
+            Item.autoReuse = true;
         }
     }
 }

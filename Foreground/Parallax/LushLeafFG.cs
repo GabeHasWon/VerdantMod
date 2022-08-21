@@ -37,7 +37,7 @@ namespace Verdant.Foreground.Parallax
         {
             base.Update();
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.48f * scale;
-            velocity.X = xVel + Main.windSpeed;
+            velocity.X = xVel + Main.windSpeedCurrent * 15;
             velocity.Y = (-Math.Abs(xVel) + scale) * 0.4f;
             rotation = velocity.X * -0.6f;
 
@@ -54,7 +54,7 @@ namespace Verdant.Foreground.Parallax
         {
             drawPosition = position + ParallaxPosition();
             Color lightColour = Lighting.GetColor((int)(drawPosition.X / 16f), (int)(drawPosition.Y / 16f));
-            Color frontColour = (position.Y / 16f < Main.worldSurface) ? Main.bgColor : new Color(85, 85, 85);
+            Color frontColour = (position.Y / 16f < Main.worldSurface) ? Main.ColorOfTheSkies : new Color(85, 85, 85);
             drawColor = Color.Lerp(lightColour, frontColour, (parallax - (0.25f)) / 1.25f);
 
             base.Draw();

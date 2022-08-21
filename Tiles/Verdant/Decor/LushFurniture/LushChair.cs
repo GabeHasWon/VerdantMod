@@ -4,12 +4,13 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
 using Terraria.Enums;
+using Terraria.DataStructures;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     public class LushChair : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -29,9 +30,9 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
             AddMapEntry(new Color(114, 69, 39));
 
-            dustType = DustID.t_BorealWood;
-            disableSmartCursor = true;
-            adjTiles = new int[] { TileID.Chairs };
+            DustType = DustID.t_BorealWood;
+            TileID.Sets.DisableSmartCursor[Type] = true;
+            AdjTiles = new int[] { TileID.Chairs };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -39,6 +40,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             num = fail ? 1 : 3;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());
     }
 }

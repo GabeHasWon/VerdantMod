@@ -16,19 +16,19 @@ namespace Verdant.Items.Verdant.Blocks
         public override bool CanUseItem(Player player)
         {
             Point p = Main.MouseWorld.ToTileCoordinates();
-            bool c = !Framing.GetTileSafely(p.X, p.Y).active() || Main.tileCut[Framing.GetTileSafely(p.X, p.Y).type];
+            bool c = !Framing.GetTileSafely(p.X, p.Y).HasTile || Main.tileCut[Framing.GetTileSafely(p.X, p.Y).TileType];
             bool a = TileHelper.ActiveType(p.X, p.Y - 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(p.X, p.Y - 1, ModContent.TileType<VerdantStrongVine>());
             return c && a;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
         {
             if (player.whoAmI == Main.myPlayer)
             {
                 WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, ModContent.TileType<VerdantStrongVine>(), false, false);
 
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
             }
             return true;
         }
@@ -37,10 +37,10 @@ namespace Verdant.Items.Verdant.Blocks
         {
             if (CanUseItem(player))
             {
-                player.showItemIconText = "";
-                player.showItemIcon2 = item.type;
+                player.cursorItemIconText = "";
+                player.cursorItemIconID = Item.type;
                 player.noThrow = 2;
-                player.showItemIcon = true;
+                player.cursorItemIconEnabled = true;
             }
         }
     }

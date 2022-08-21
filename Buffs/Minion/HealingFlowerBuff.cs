@@ -5,7 +5,7 @@ namespace Verdant.Buffs.Minion
 {
     public class HealingFlowerBuff : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Healing Flower");
             Description.SetDefault("The flower's aura will heal you");

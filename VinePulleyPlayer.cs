@@ -18,7 +18,7 @@ namespace Verdant
         public int vineRegenCooldown = 0;
 
         public Projectile CurrentVine => Main.projectile[currentVine];
-        public VineWandVine CurrentVineMod => Main.projectile[currentVine].modProjectile as VineWandVine;
+        public VineWandVine CurrentVineMod => Main.projectile[currentVine].ModProjectile as VineWandVine;
 
         public override void ResetEffects()
         {
@@ -26,7 +26,7 @@ namespace Verdant
                 vineResource++;
         }
 
-        public int VineCount() => Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.type == ModContent.ProjectileType<VineWandVine>()).Count();
+        public int VineCount() => Main.projectile.Where(x => x.active && x.owner == Player.whoAmI && x.type == ModContent.ProjectileType<VineWandVine>()).Count();
 
         public override void PreUpdateMovement()
         {
@@ -42,26 +42,26 @@ namespace Verdant
                     return;
                 }
 
-                player.position = CurrentVineMod.PulleyPosition(player);
-                player.velocity = Vector2.Zero;
-                player.pulley = true;
-                player.ChangeDir(1);
+                Player.position = CurrentVineMod.PulleyPosition(Player);
+                Player.velocity = Vector2.Zero;
+                Player.pulley = true;
+                Player.ChangeDir(1);
 
-                if (player.controlJump)
+                if (Player.controlJump)
                 {
-                    player.pulley = false;
-                    player.pulleyFrame = (int)(Main.GameUpdateCount / 4) % 2;
-                    player.velocity.Y -= 6;
+                    Player.pulley = false;
+                    Player.pulleyFrame = (int)(Main.GameUpdateCount / 4) % 2;
+                    Player.velocity.Y -= 6;
 
                     currentVine = -1;
                     vineTimer = 0;
                     return;
                 }
-                else if (player.controlUp && CurrentVineMod.nextVine != -1)
+                else if (Player.controlUp && CurrentVineMod.nextVine != -1)
                 {
                     vineOffset -= ClimbSpeed;
 
-                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(player), player.width, player.height))
+                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(Player), Player.width, Player.height))
                         vineOffset += ClimbSpeed;
 
                     if (vineOffset < 0 && vineTimer < 0)
@@ -71,11 +71,11 @@ namespace Verdant
                         vineOffset = 1;
                     }
                 }
-                else if (player.controlDown && CurrentVineMod.priorVine != -1)
+                else if (Player.controlDown && CurrentVineMod.priorVine != -1)
                 {
                     vineOffset += ClimbSpeed;
 
-                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(player), player.width, player.height))
+                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(Player), Player.width, Player.height))
                         vineOffset -= ClimbSpeed;
 
                     if (vineOffset > 1 && vineTimer < 0)

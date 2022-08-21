@@ -12,16 +12,16 @@ namespace Verdant.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            projectile.hostile = false;
-            projectile.friendly = true;
-            projectile.width = 14;
-            projectile.height = 14;
-            projectile.penetrate = 1;
-            projectile.timeLeft = MaxTimeLeft;
-            projectile.tileCollide = true;
-            projectile.ignoreWater = false;
-            projectile.damage = 1;
-            projectile.aiStyle = 0;
+            Projectile.hostile = false;
+            Projectile.friendly = true;
+            Projectile.width = 14;
+            Projectile.height = 14;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = MaxTimeLeft;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = false;
+            Projectile.damage = 1;
+            Projectile.aiStyle = 0;
         }
 
         public override bool CanHitPlayer(Player target) => true;
@@ -29,32 +29,32 @@ namespace Verdant.Projectiles.Magic
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             //target.velocity.Y = -16f;
-            projectile.Kill();
+            Projectile.Kill();
         }
 
         public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
         {
             damage = 0;
             crit = false;
-            projectile.Kill();
+            Projectile.Kill();
         }
 
         public override void AI()
         {
             //projectile.velocity.Y -= 0.2f;
-            if (projectile.ai[1] == 0)
+            if (Projectile.ai[1] == 0)
             {
-                projectile.ai[1] = Main.rand.Next(2) + 1;
-                if (projectile.ai[1] == 1) projectile.velocity = projectile.velocity.RotatedBy(MathHelper.PiOver4);
-                if (projectile.ai[1] == 2) projectile.velocity = projectile.velocity.RotatedBy(-MathHelper.PiOver4);
+                Projectile.ai[1] = Main.rand.Next(2) + 1;
+                if (Projectile.ai[1] == 1) Projectile.velocity = Projectile.velocity.RotatedBy(MathHelper.PiOver4);
+                if (Projectile.ai[1] == 2) Projectile.velocity = Projectile.velocity.RotatedBy(-MathHelper.PiOver4);
             }
-            if (projectile.ai[1] == 1)
-                projectile.velocity = projectile.velocity.RotatedBy(Math.Sin(-0.8f) * 0.02f);
+            if (Projectile.ai[1] == 1)
+                Projectile.velocity = Projectile.velocity.RotatedBy(Math.Sin(-0.8f) * 0.02f);
             else
-                projectile.velocity = projectile.velocity.RotatedBy(Math.Sin(0.8f) * 0.02f);
+                Projectile.velocity = Projectile.velocity.RotatedBy(Math.Sin(0.8f) * 0.02f);
 
-            if (projectile.timeLeft < MaxTimeLeft - 10)
-                projectile.hostile = true;
+            if (Projectile.timeLeft < MaxTimeLeft - 10)
+                Projectile.hostile = true;
         }
     }
 }

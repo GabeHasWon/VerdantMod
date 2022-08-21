@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Minion;
@@ -23,24 +24,24 @@ namespace Verdant.Items.Verdant.Weapons
         {
             if (Main.dedServ || Main.netMode == NetmodeID.MultiplayerClient)
             {
-                TooltipLine line = new TooltipLine(mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
+                TooltipLine line = new TooltipLine(Mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
                 tooltips.Add(line);
             }
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int y = Helper.FindDown(Main.MouseWorld) * 16;
             position = new Vector2(Main.MouseWorld.X, y - 70);
 
             if (Main.projectile.Any(x => x.active && x.type == ModContent.ProjectileType<VerdantHealingMinion>())) //we are good - adjust position
             {
-                var adjList = Main.projectile.Where(x => x.type == ModContent.ProjectileType<VerdantHealingMinion>() && x.modProjectile is VerdantHealingMinion);
+                var adjList = Main.projectile.Where(x => x.type == ModContent.ProjectileType<VerdantHealingMinion>() && x.ModProjectile is VerdantHealingMinion);
 
                 if (player.HasBuff(ModContent.BuffType<Buffs.Minion.HealingFlowerBuff>()))
                 {
                     for (int l = 0; l < adjList.Count(); ++l)
-                        (adjList.ElementAt(l).modProjectile as VerdantHealingMinion).goPosition = position - new Vector2(24, 24);
+                        (adjList.ElementAt(l).ModProjectile as VerdantHealingMinion).goPosition = position - new Vector2(24, 24);
                 }
                 else
                     for (int l = 0; l < adjList.Count(); ++l)

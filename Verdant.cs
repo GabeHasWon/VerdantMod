@@ -25,14 +25,6 @@ namespace Verdant
         public VerdantMod() 
         {
             Instance = this;
-
-            Properties = new ModProperties()
-            {
-                Autoload = true,
-                AutoloadGores = true,
-                AutoloadSounds = true,
-                AutoloadBackgrounds = true,
-            };
         }
 
         public override void Load()
@@ -41,7 +33,7 @@ namespace Verdant
 
             if (!Main.dedServ)
             {
-                Ref<Effect> filterRef = new Ref<Effect>(GetEffect("Effects/Screen/SteamEffect"));
+                Ref<Effect> filterRef = new Ref<Effect>(Assets.Request<Effect>("Effects/Screen/SteamEffect", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
                 Filters.Scene[EffectIDs.BiomeSteam] = new Filter(new ScreenShaderData(filterRef, "Steam"), EffectPriority.VeryHigh);
                 Filters.Scene[EffectIDs.BiomeSteam].Load();
             }
@@ -53,8 +45,6 @@ namespace Verdant
         public override void Unload()
         {
             ForegroundManager.Unload();
-            VerdantPlayer.Unload();
-            VerdantWorld.Unload();
             UnhookOn();
             //UnhookIL();
 
@@ -129,7 +119,7 @@ namespace Verdant
         private delegate void DrawMoonDelegate(float x, float y, Color col, float rot, float scale);
         private void DrawMoon(float x, float y, Color col, float rot, float scale)
         {
-            Texture2D tex = ModContent.GetTexture("NPCs/Passive/Flotiny");
+            Texture2D tex = Assets.Request<Texture2D>("NPCs/Passive/Flotiny", ReLogic.Content.AssetRequestMode.AsyncLoad).Value;
             col.A = 255;
             Main.spriteBatch.Draw(tex, new Vector2(x, y + Main.moonModY), 
                 new Rectangle(0, 0, tex.Width, tex.Width), 
@@ -144,7 +134,7 @@ namespace Verdant
         private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
         {
             bool playerInv = Main.hasFocus && (!Main.autoPause || Main.netMode != NetmodeID.SinglePlayer || (Main.autoPause && !Main.playerInventory && Main.netMode == NetmodeID.SinglePlayer));
-            if (Main.playerLoaded && BackgroundItemManager.Loaded && playerInv)
+            if (Main.PlayerLoaded && BackgroundItemManager.Loaded && playerInv)
                 BackgroundItemManager.Update();
 
             orig(self, gameTime);
@@ -160,50 +150,20 @@ namespace Verdant
 
         private bool WorldGen_GrowTree(On.Terraria.WorldGen.orig_GrowTree orig, int i, int y)
         {
-            if (Framing.GetTileSafely(i, y).type == (ushort)ModContent.TileType<LushSapling>())
+            if (Framing.GetTileSafely(i, y).TileType == (ushort)ModContent.TileType<LushSapling>())
             {
                 bool leaves = !WorldGen.gen && WorldGen.PlayerLOS(i, y);
-                if (Framing.GetTileSafely(i, y).frameY == 0 && Framing.GetTileSafely(i, y + 1).type == (ushort)ModContent.TileType<LushSapling>())
+                if (Framing.GetTileSafely(i, y).TileFrameY == 0 && Framing.GetTileSafely(i, y + 1).TileType == (ushort)ModContent.TileType<LushSapling>())
                     y++;
                 return VerdantTree.Spawn(i, y, -1, WorldGen.gen ? WorldGen.genRand : Main.rand, 8, 34, leaves, -1, true);
             }
             return orig(i, y);
         }
 
-        public override void AddRecipeGroups()
+        public override void AddRecipeGroups()/* tModPorter Note: Removed. Use ModSystem.AddRecipeGroups */
         {
             RecipeGroup woodGrp = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Wood"]];
             woodGrp.ValidItems.Add(ModContent.ItemType<VerdantWoodBlock>());
-        }
-
-        public override void UpdateMusic(ref int music, ref MusicPriority priority)
-        {
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active)
-                return;
-
-            if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
-            {
-                if (Main.LocalPlayer.position.Y / 16 < Main.worldSurface) //petals fall
-                {
-                    if (Main.raining)
-                    {
-                        music = GetSoundSlot(SoundType.Music, "Sounds/Music/PetalsFall");
-                        priority = MusicPriority.BiomeLow;
-                    }
-                }
-
-                if (Main.LocalPlayer.position.Y / 16f > Main.worldSurface) //tear rain
-                {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/TearRain");
-                    priority = MusicPriority.BiomeMedium;
-                }
-            }
-
-            if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneApotheosis) //apotheosis melody
-            {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/ApotheosisLullaby");
-                priority = MusicPriority.BiomeHigh;
-            }
         }
     }
 }

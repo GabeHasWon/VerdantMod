@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
@@ -11,67 +12,67 @@ namespace Verdant.NPCs.Passive
     {
         public override void SetStaticDefaults()
         {
-            Main.npcCatchable[npc.type] = true;
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 50;
-            npc.height = 34;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.knockBackResist = 0f;
-            npc.noGravity = true;
-            npc.noTileCollide = false;
-            npc.dontTakeDamage = false;
-            npc.value = 0f;
-            npc.aiStyle = 16;
-            npc.dontCountMe = true;
-            npc.catchItem = (short)ModContent.ItemType<FolifishItem>();
+            NPC.width = 50;
+            NPC.height = 34;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.knockBackResist = 0f;
+            NPC.noGravity = true;
+            NPC.noTileCollide = false;
+            NPC.dontTakeDamage = false;
+            NPC.value = 0f;
+            NPC.aiStyle = 16;
+            NPC.dontCountMe = true;
+            NPC.catchItem = (short)ModContent.ItemType<FolifishItem>();
 
-            aiType = NPCID.Goldfish;
+            AIType = NPCID.Goldfish;
         }
 
         public override bool PreAI()
         {
-            if (npc.ai[1] == 0)
-                npc.ai[1] = Main.rand.Next(3) + 1;
+            if (NPC.ai[1] == 0)
+                NPC.ai[1] = Main.rand.Next(3) + 1;
 
-            if (npc.wet && Main.rand.Next(1000) <= 8)
-                Dust.NewDustPerfect(npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height)), 34, new Vector2(Main.rand.NextFloat(-0.08f, 0.08f), Main.rand.NextFloat(-0.2f, -0.02f)));
+            if (NPC.wet && Main.rand.Next(1000) <= 8)
+                Dust.NewDustPerfect(NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height)), 34, new Vector2(Main.rand.NextFloat(-0.08f, 0.08f), Main.rand.NextFloat(-0.2f, -0.02f)));
 
-            if (npc.velocity.X > 0) npc.spriteDirection = 1;
-            else npc.spriteDirection = -1;
+            if (NPC.velocity.X > 0) NPC.spriteDirection = 1;
+            else NPC.spriteDirection = -1;
 
-            Lighting.AddLight(npc.Center - new Vector2(20 * npc.spriteDirection, 10), new Vector3(0.5f, 0.16f, 0.30f) * 2.4f);
+            Lighting.AddLight(NPC.Center - new Vector2(20 * NPC.spriteDirection, 10), new Vector3(0.5f, 0.16f, 0.30f) * 2.4f);
             return true;
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int i = 0; i < 6; ++i)
-                    Gore.NewGore(npc.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
                 for (int i = 0; i < 3; ++i)
-                    Gore.NewGore(npc.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), mod.GetGoreSlot("Gores/Verdant/RedPetalFalling"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("RedPetalFalling").Type);
                 for (int i = 0; i < 12; ++i)
-                    Dust.NewDust(npc.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
+                    Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Color col = Lighting.GetColor((int)(npc.position.X / 16), (int)(npc.position.Y / 16), drawColor);
-            Vector2 pos = npc.position - Main.screenPosition + (npc.Size / 2) + new Vector2(0, 6);
+            Color col = Lighting.GetColor((int)(NPC.position.X / 16), (int)(NPC.position.Y / 16), drawColor);
+            Vector2 pos = NPC.position - Main.screenPosition + (NPC.Size / 2) + new Vector2(0, 6);
             SpriteEffects dir = SpriteEffects.None;
-            if (npc.spriteDirection == 1)
+            if (NPC.spriteDirection == 1)
                 dir = SpriteEffects.FlipHorizontally;
-            spriteBatch.Draw(Main.npcTexture[npc.type], pos, Main.npcTexture[npc.type].Frame(3, 1, (int)npc.ai[1] - 1, 0), col, 0f, new Vector2(24), 1f, dir, 1f);
+            spriteBatch.Draw(TextureAssets.Npc[NPC.type].Value, pos, TextureAssets.Npc[NPC.type].Value.Frame(3, 1, (int)NPC.ai[1] - 1, 0), col, 0f, new Vector2(24), 1f, dir, 1f);
             return false;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.water) ? 1.5f : 0f) * (spawnInfo.playerInTown ? 1.75f : 1f);
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.Water) ? 1.5f : 0f) * (spawnInfo.PlayerInTown ? 1.75f : 1f);
     }
 }

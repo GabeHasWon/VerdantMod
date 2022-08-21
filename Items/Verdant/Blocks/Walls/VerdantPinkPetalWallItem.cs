@@ -9,6 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.Walls
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Pink Petal Wall", "");
         public override void SetDefaults() => QuickItem.SetWall(this, 16, 16, ModContent.WallType<VerdantPinkPetalWall>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, mod, TileID.WorkBenches, 1, (ModContent.ItemType<PinkPetal>(), 4));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.WorkBenches, 1, (ModContent.ItemType<PinkPetal>(), 4));
     }
 }

@@ -40,9 +40,9 @@ namespace Verdant.Foreground
 
         public static void AddItem(ForegroundItem item) => items.Add(item);
 
-        /// <summary>Shorthand for ModContent.ModContent.GetTexture("Verdant/Foreground/Textures/" + name).</summary>
+        /// <summary>Shorthand for ModContent.ModContent.Request<Texture2D>("Verdant/Foreground/Textures/" + name).</summary>
         /// <param name="name">Name of the requested texture.</param>
-        public static Texture2D GetTexture(string name) => VerdantMod.Instance.GetTexture("Foreground/Textures/" + name);
+        public static Texture2D GetTexture(string name) => VerdantMod.Instance.Assets.Request<Texture2D>("Foreground/Textures/" + name).Value;
 
         internal static TagCompound Save()
         {

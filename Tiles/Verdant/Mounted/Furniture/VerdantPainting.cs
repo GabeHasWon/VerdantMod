@@ -2,17 +2,18 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace Verdant.Tiles.Verdant.Mounted.Furniture
 {
 	public class VerdantPainting : ModTile
 	{
-        public override bool Autoload(ref string name, ref string texture)
+        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */
         {
             return false;
         }
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
@@ -27,8 +28,8 @@ namespace Verdant.Tiles.Verdant.Mounted.Furniture
 			TileObjectData.newTile.AnchorWall = true;
 			TileObjectData.addTile(Type);
 
-			disableSmartCursor = true;
-			dustType -= 1;
+			TileID.Sets.DisableSmartCursor[Type] = true;
+			DustType -= 1;
 
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Painting");

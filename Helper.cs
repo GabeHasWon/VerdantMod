@@ -15,7 +15,7 @@ namespace Verdant
             int count = 0;
             for (int l = i; l < i + w; ++l)
                 for (int k = j; k < j + h; ++k)
-                    if (Framing.GetTileSafely(l, k).active())
+                    if (Framing.GetTileSafely(l, k).HasTile)
                         count++;
             return count;
         }
@@ -25,7 +25,7 @@ namespace Verdant
             int count = 0;
             for (int l = i; l < i + w; ++l)
                 for (int k = j; k < j + h; ++k)
-                    if (!Framing.GetTileSafely(l, k).active())
+                    if (!Framing.GetTileSafely(l, k).HasTile)
                         count++;
             return count;
         }
@@ -35,7 +35,7 @@ namespace Verdant
             int count = 0;
             for (int l = i; l < i + w; ++l)
                 for (int k = j; k < j + h; ++k)
-                    if (Framing.GetTileSafely(l, k).active() && types.Any(x => x == Framing.GetTileSafely(l, k).type))
+                    if (Framing.GetTileSafely(l, k).HasTile && types.Any(x => x == Framing.GetTileSafely(l, k).TileType))
                         count++;
             return count;
         }
@@ -47,7 +47,7 @@ namespace Verdant
             int count = 0;
             for (int l = i; l < i + w; ++l)
                 for (int k = j; k < j + h; ++k)
-                    if (Main.tile[l, k].wall != WallID.None)
+                    if (Main.tile[l, k].WallType != WallID.None)
                         count++;
             return count;
         }
@@ -59,7 +59,7 @@ namespace Verdant
             int count = 0;
             for (int l = i; l < i + w; ++l)
                 for (int k = j; k < j + h; ++k)
-                    if (Main.tile[l, k].wall != WallID.None && Main.tile[l, k].wall == type)
+                    if (Main.tile[l, k].WallType != WallID.None && Main.tile[l, k].WallType == type)
                         count++;
             return count;
         }
@@ -69,7 +69,7 @@ namespace Verdant
         public static int FindDown(Vector2 worldPos)
         {
             Point tPos = (worldPos / 16).ToPoint();
-            while (!Main.tile[tPos.X, tPos.Y].active() || !Main.tileSolid[Main.tile[tPos.X, tPos.Y].type])
+            while (!Main.tile[tPos.X, tPos.Y].HasTile || !Main.tileSolid[Main.tile[tPos.X, tPos.Y].TileType])
                 tPos.Y++;
             return tPos.Y;
         }

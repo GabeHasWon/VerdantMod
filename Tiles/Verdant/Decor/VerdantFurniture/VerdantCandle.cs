@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
     internal class VerdantCandle : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -33,15 +34,15 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (!fail && !noItem)
-                Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantCandleItem>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantCandleItem>());
         }
 
         public override void HitWire(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            int topY = j - tile.frameY / 18 % 3;
-            short frameAdjustment = (short)(tile.frameX > 0 ? -18 : 18);
-            Main.tile[i, topY].frameX += frameAdjustment;
+            int topY = j - tile.TileFrameY / 18 % 3;
+            short frameAdjustment = (short)(tile.TileFrameX > 0 ? -18 : 18);
+            Main.tile[i, topY].TileFrameX += frameAdjustment;
             Wiring.SkipWire(i, topY);
             NetMessage.SendTileSquare(-1, i, topY + 1, 1, TileChangeType.None);
         }
@@ -51,7 +52,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3f;
-            if (Framing.GetTileSafely(i, j).frameX == 0)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 0)
             {
                 r = light.X;
                 g = light.Y;

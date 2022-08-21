@@ -17,10 +17,10 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.FiberglassFishingPole);
-            item.fishingPole = 26;
-            item.shootSpeed = 13f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
+            Item.CloneDefaults(ItemID.FiberglassFishingPole);
+            Item.fishingPole = 26;
+            Item.shootSpeed = 13f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
         }
 
         public override void HoldItem(Player player)
@@ -31,13 +31,12 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void AddRecipes()
         {
-            ModRecipe m = new ModRecipe(mod);
+            Recipe m = CreateRecipe();
             m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 16);
             m.AddIngredient(ModContent.ItemType<PinkPetal>(), 8);
             m.AddIngredient(ModContent.ItemType<Lightbulb>(), 8);
             m.AddTile(TileID.Anvils);
-            m.SetResult(this);
-            m.AddRecipe();
+            m.Register();
         }
     }
 }

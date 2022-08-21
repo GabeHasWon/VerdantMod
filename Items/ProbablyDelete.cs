@@ -14,24 +14,24 @@ namespace Verdant.Items
 
         public override void SetDefaults() 
 		{
-			item.damage = 120;
-			item.melee = true;
-			item.width = 40;
-			item.height = 40;
-			item.useTime = 2;
-			item.useAnimation = 2;
-            item.maxStack = 50;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.knockBack = 6;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item1;
-			item.autoReuse = true;
-            item.createTile = ModContent.TileType<VerdantLightbulb>();
-            item.placeStyle = 0;
+			Item.damage = 120;
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.width = 40;
+			Item.height = 40;
+			Item.useTime = 2;
+			Item.useAnimation = 2;
+            Item.maxStack = 50;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.knockBack = 6;
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item1;
+			Item.autoReuse = true;
+            Item.createTile = ModContent.TileType<VerdantLightbulb>();
+            Item.placeStyle = 0;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
         {
             int i = Helper.MouseTile().X;
             int j = Helper.MouseTile().Y;

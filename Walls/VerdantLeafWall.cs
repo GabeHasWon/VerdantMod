@@ -8,11 +8,11 @@ namespace Verdant.Walls
 {
     public class VerdantLeafWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            dustType = DustID.Grass;
-            drop = ModContent.ItemType<VerdantLeafWallItem>();
+            DustType = DustID.Grass;
+            ItemDrop = ModContent.ItemType<VerdantLeafWallItem>();
             AddMapEntry(new Color(20, 82, 39));
         }
 

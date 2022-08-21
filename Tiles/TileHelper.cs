@@ -16,7 +16,7 @@ namespace Verdant.Tiles
 {
     public static class TileHelper
     {
-        public static Vector2 TileOffset => Lighting.lightMode > 1 ? Vector2.Zero : Vector2.One * 12;
+        public static Vector2 TileOffset => Lighting.LegacyEngine.Mode > 1 ? Vector2.Zero : Vector2.One * 12;
 
         public static Vector2 TileCustomPosition(int i, int j, Vector2? off = null)
         {
@@ -71,10 +71,10 @@ namespace Verdant.Tiles
             TileObjectData.addTile(type);
         }
 
-        public static bool ValidTop(Tile tile) => tile.active() && (Main.tileSolid[tile.type] || Main.tileSolidTop[tile.type]) && !tile.bottomSlope() && !tile.topSlope() && !tile.halfBrick() && !tile.topSlope();
+        public static bool ValidTop(Tile tile) => tile.HasTile && (Main.tileSolid[tile.TileType] || Main.tileSolidTop[tile.TileType]) && !tile.BottomSlope && !tile.TopSlope && !tile.IsHalfBlock && !tile.TopSlope;
         public static bool ValidTop(int i, int j) => ValidTop(Framing.GetTileSafely(i, j));
 
-        public static bool ValidBottom(Tile tile) => !tile.bottomSlope();
+        public static bool ValidBottom(Tile tile) => !tile.BottomSlope;
         public static bool ValidBottom(int i, int j) => ValidBottom(Framing.GetTileSafely(i, j));
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Verdant.Tiles
         /// <returns></returns>
         public static bool DrawChains(int i, int j, string path, SpriteBatch b, int length)
         {
-            Texture2D chain = ModContent.GetTexture(path);
+            Texture2D chain = ModContent.Request<Texture2D>(path).Value;
 
             bool[] valids = new bool[2] { false, false };
             for (int k = j - 1; k > j - length; --k) //Woo chain drawing
@@ -124,7 +124,7 @@ namespace Verdant.Tiles
         {
             for (int l = -1; l < 1; ++l)
                 for (int k = -1; k < 1; ++k)
-                    if (new Point(i + l, j + k) != new Point(i, j) && !Framing.GetTileSafely(i + l, j + k).active())
+                    if (new Point(i + l, j + k) != new Point(i, j) && !Framing.GetTileSafely(i + l, j + k).HasTile)
                         return true;
             return false;
         }
@@ -133,7 +133,7 @@ namespace Verdant.Tiles
         {
             for (int l = -1; l < 1; ++l)
                 for (int k = -1; k < 1; ++k)
-                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
+                    if (!Framing.GetTileSafely(i + l, j + k).HasTile && new Point(i + l, j + k) != new Point(i, j))
                         return new Point(l, k);
             return new Point(-2, -2);
         }
@@ -145,17 +145,17 @@ namespace Verdant.Tiles
             List<Point> adjacents = new List<Point>();
             for (int l = -1; l < 1; ++l)
                 for (int k = -1; k < 1; ++k)
-                    if (!Framing.GetTileSafely(i + l, j + k).active() && new Point(i + l, j + k) != new Point(i, j))
+                    if (!Framing.GetTileSafely(i + l, j + k).HasTile && new Point(i + l, j + k) != new Point(i, j))
                         adjacents.Add(new Point(l, k));
             if (adjacents.Count > 0)
                 return adjacents[rand.Next(adjacents.Count)];
             return new Point(-2, -2);
         }
 
-        public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).active() && Main.tileSolid[Framing.GetTileSafely(i, j).type];
-        public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).active() && (Main.tileSolidTop[Framing.GetTileSafely(i, j).type] || Main.tileSolid[Framing.GetTileSafely(i, j).type]);
-        public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t;
-        public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).active();
-        public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).active() && Framing.GetTileSafely(i, j).type == t && !Framing.GetTileSafely(i, j).topSlope();
+        public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).HasTile && Main.tileSolid[Framing.GetTileSafely(i, j).TileType];
+        public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).HasTile && (Main.tileSolidTop[Framing.GetTileSafely(i, j).TileType] || Main.tileSolid[Framing.GetTileSafely(i, j).TileType]);
+        public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t;
+        public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).HasTile;
+        public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t && !Framing.GetTileSafely(i, j).TopSlope;
     }
 }

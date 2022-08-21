@@ -7,11 +7,11 @@ namespace Verdant.Walls
 {
     public class VerdantLeafWall_Unsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
-            dustType = DustID.Grass;
-            drop = 0;
+            DustType = DustID.Grass;
+            ItemDrop = 0;
             AddMapEntry(new Color(20, 82, 39));
         }
 

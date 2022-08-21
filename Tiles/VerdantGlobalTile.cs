@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -50,9 +51,9 @@ namespace Verdant.Tiles
             if (thisType != type)
             {
                 if ((groundType == 0 || groundType == 2) && TileHelper.ActiveType(i, j + 1, type)) //Up-hold
-                    batch.Draw(Main.tileTexture[type], TileHelper.TileCustomPosition(i, j) + new Vector2(0, 8), new Rectangle(0, 8, 16, 8), Lighting.GetColor(i, j));
+                    batch.Draw(TextureAssets.Tile[type].Value, TileHelper.TileCustomPosition(i, j) + new Vector2(0, 8), new Rectangle(0, 8, 16, 8), Lighting.GetColor(i, j));
                 if ((groundType == 1 || groundType == 2) && TileHelper.ActiveType(i, j - 1, type)) //Grounding
-                    batch.Draw(Main.tileTexture[type], TileHelper.TileCustomPosition(i, j), new Rectangle(0, 0, 16, 8), Lighting.GetColor(i, j));
+                    batch.Draw(TextureAssets.Tile[type].Value, TileHelper.TileCustomPosition(i, j), new Rectangle(0, 0, 16, 8), Lighting.GetColor(i, j));
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         public FlotieBG(Vector2 pos) : base(pos, Vector2.Zero, new Point(0, 0))
         {
-            tex = ModContent.GetTexture("Verdant/Backgrounds/BGItem/Verdant/Flotie");
+            tex = ModContent.Request<Texture2D>("Verdant/Backgrounds/BGItem/Verdant/Flotie").Value;
             source = new Rectangle(0, 0, tex.Width, tex.Height);
 
             scaleDecay = Main.rand.Next(2500, 2800);
@@ -50,7 +50,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
 
         internal override void Draw(Vector2 off)
         {
-            drawColor = Color.Lerp(new Color(0.6f, 0.24f, 0.42f), Main.bgColor, (drawColor.R - 10) / 245f);
+            drawColor = Color.Lerp(new Color(0.6f, 0.24f, 0.42f), Main.ColorOfTheSkies, (drawColor.R - 10) / 245f);
             base.Draw(Vector2.Zero);
             Color col = Color.Lerp(new Color(0.72f, 0.230f, 0.50f), Color.White, (drawColor.R - 10) / 245f);
             Main.spriteBatch.Draw(tex, DrawPosition - Main.screenPosition, new Rectangle(source.X, 90, 62, 23), col, rotation, tex.Bounds.Center.ToVector2(), scale, SpriteEffects.None, 0f);

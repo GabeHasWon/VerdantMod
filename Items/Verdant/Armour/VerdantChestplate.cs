@@ -18,29 +18,28 @@ namespace Verdant.Items.Verdant.Armour
 
         public override void SetDefaults()
 		{
-			item.width = 28;
-			item.height = 22;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-            item.defense = 6;
+			Item.width = 28;
+			Item.height = 22;
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+            Item.defense = 6;
         }
 
         public override void UpdateEquip(Player player)
         {
-			player.minionDamage *= 1.07f;
+			player.GetDamage(DamageClass.Summon) *= 1.07f;
             player.maxMinions++;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe m = new ModRecipe(mod);
+            Recipe m = CreateRecipe();
             m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 6);
             m.AddIngredient(ModContent.ItemType<PinkPetal>(), 14);
             m.AddIngredient(ModContent.ItemType<LushLeaf>(), 20);
             m.AddIngredient(ModContent.ItemType<YellowBulb>(), 2);
             m.AddTile(TileID.Anvils);
-            m.SetResult(this);
-            m.AddRecipe();
+            m.Register();
         }
     }
 }

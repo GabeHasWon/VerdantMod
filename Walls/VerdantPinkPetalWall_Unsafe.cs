@@ -7,11 +7,11 @@ namespace Verdant.Walls
 {
     public class VerdantPinkPetalWall_Unsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
-            dustType = DustID.Grass;
-            drop = 0;
+            DustType = DustID.Grass;
+            ItemDrop = 0;
             AddMapEntry(new Color(112, 0, 59));
         }
 
@@ -20,17 +20,17 @@ namespace Verdant.Walls
 
     public class VerdantPinkPetalWall : ModWall
     {
-        public override bool Autoload(ref string name, ref string texture)
+        public override bool IsLoadingEnabled(Mod mod)
         {
             texture = "Verdant/Walls/VerdantPinkPetalWall_Unsafe";
-            return base.Autoload(ref name, ref texture);
+            return base.IsLoadingEnabled(ref name, ref texture);
         }
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
-            dustType = DustID.Grass;
-            drop = ModContent.ItemType<Items.Verdant.Blocks.Walls.VerdantPinkPetalWallItem>();
+            DustType = DustID.Grass;
+            ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Walls.VerdantPinkPetalWallItem>();
             AddMapEntry(new Color(112, 0, 59));
         }
 

@@ -9,61 +9,61 @@ namespace Verdant.NPCs.Passive
 {
     public class Flotiny : ModNPC
     {
-        public override void SetStaticDefaults() => Main.npcCatchable[npc.type] = true;
+        public override void SetStaticDefaults() => Main.npcCatchable[NPC.type] = true;
 
         public override void SetDefaults()
         {
-            npc.width = 22;
-            npc.height = 26;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.dontTakeDamage = false;
-            npc.value = 0f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = -1;
-            npc.dontCountMe = true;
+            NPC.width = 22;
+            NPC.height = 26;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.dontTakeDamage = false;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = -1;
+            NPC.dontCountMe = true;
 
-            npc.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+            NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
         }
 
         public override void AI()
         {
-            npc.TargetClosest(true);
+            NPC.TargetClosest(true);
 
-            if (npc.ai[1] == 0)
+            if (NPC.ai[1] == 0)
             {
-                npc.ai[0] = Main.rand.Next(50);
-                npc.ai[1] = 1;
-                npc.ai[2] = Main.rand.Next(90, 131) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
-                npc.ai[3] = Main.rand.Next(100, 121) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
+                NPC.ai[0] = Main.rand.Next(50);
+                NPC.ai[1] = 1;
+                NPC.ai[2] = Main.rand.Next(90, 131) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
+                NPC.ai[3] = Main.rand.Next(100, 121) * 0.01f * (Main.rand.NextBool() ? -1 : 1);
             }
 
-            npc.rotation = npc.velocity.X * 0.25f;
-            npc.velocity.Y = (float)(Math.Sin(npc.ai[0]++ * 0.02f) * 0.4f) * npc.ai[2];
-            npc.velocity.X = (float)(Math.Sin(npc.ai[0]++ * 0.006f) * 0.05f);
+            NPC.rotation = NPC.velocity.X * 0.25f;
+            NPC.velocity.Y = (float)(Math.Sin(NPC.ai[0]++ * 0.02f) * 0.4f) * NPC.ai[2];
+            NPC.velocity.X = (float)(Math.Sin(NPC.ai[0]++ * 0.006f) * 0.05f);
 
-            Lighting.AddLight(npc.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.0f);
+            Lighting.AddLight(NPC.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.0f);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int i = 0; i < 3; ++i)
-                    Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height)), Vector2.Zero, mod.GetGoreSlot("Gores/Verdant/LushLeaf"));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height)), Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
                 for (int i = 0; i < 4; ++i)
-                    Dust.NewDust(npc.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
+                    Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.playerInTown)
-                return 2f + (spawnInfo.water ? 1f : 0f);
-            return (spawnInfo.player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? ((spawnInfo.water) ? 1.2f : 0.8f) : 0f;
+            if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.PlayerInTown)
+                return 2f + (spawnInfo.Water ? 1f : 0f);
+            return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? ((spawnInfo.Water) ? 1.2f : 0.8f) : 0f;
         }
     }
 }

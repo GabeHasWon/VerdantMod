@@ -14,7 +14,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 {
 	public class LushSapling : ModTile
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
 			Main.tileLavaDeath[Type] = true;
@@ -40,9 +40,9 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 			name.SetDefault("Sapling");
 			AddMapEntry(new Color(200, 200, 200), name);
 
-			sapling = true;
-            dustType = DustID.Grass;
-			adjTiles = new int[] { TileID.Saplings };
+			sapling/* tModPorter Note: Removed. Use TileID.Sets.TreeSapling and TileID.Sets.CommonSapling instead */ = true;
+            DustType = DustID.Grass;
+			AdjTiles = new int[] { TileID.Saplings };
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
@@ -51,7 +51,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             if (WorldGen.genRand.Next(12) == 0 && GenHelper.CanGrowVerdantTree(i, j, 8, Type))
             {
                 bool isPlayerNear = WorldGen.PlayerLOS(i, j);
-                if (Framing.GetTileSafely(i, j).frameY == 0)
+                if (Framing.GetTileSafely(i, j).TileFrameY == 0)
                     j++;
                 VerdantTree.Spawn(i, j, -1, null, 8, 34, isPlayerNear, -1, true);
             }

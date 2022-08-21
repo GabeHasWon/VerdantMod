@@ -118,7 +118,7 @@
 //        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
 //        {
 //            Tile t = Framing.GetTileSafely(i, j);
-//            Texture2D tile = ModContent.GetTexture("Verdant/Tiles/Verdant/Basic/Plants/VerdantKelp");
+//            Texture2D tile = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Basic/Plants/VerdantKelp");
 //            Color col = Lighting.GetColor(i, j);
 
 //            float xOff = (float)Math.Sin((Main.time + (i*24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;

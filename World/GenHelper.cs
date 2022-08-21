@@ -37,7 +37,7 @@ namespace Verdant.World
 
         public static void GenLine(Vector2 p, Vector2 rot, Vector2 o, int lW, int hW, int targetType = TileID.Dirt, int type = TileID.Dirt)
         {
-            while (!Framing.GetTileSafely((int)p.X, (int)p.Y).active() || !Main.tileSolid[Framing.GetTileSafely((int)p.X, (int)p.Y).type] || Framing.GetTileSafely((int)p.X, (int)p.Y).type == targetType)
+            while (!Framing.GetTileSafely((int)p.X, (int)p.Y).HasTile || !Main.tileSolid[Framing.GetTileSafely((int)p.X, (int)p.Y).TileType] || Framing.GetTileSafely((int)p.X, (int)p.Y).TileType == targetType)
             {
                 for (int j = lW; j < hW; ++j)
                 {
@@ -66,14 +66,14 @@ namespace Verdant.World
                 {
                     Tile tile = Framing.GetTileSafely(position.X + x, position.Y + y); //get the targeted tile
 
-                    tile.type = (ushort)type; //set the type of the tile to our multitile
+                    tile.TileType = (ushort)type; //set the type of the tile to our multitile
 
-                    tile.frameX = (short)((x + (data.Width * xVar)) * (data.CoordinateWidth + data.CoordinatePadding)); //set the X frame appropriately
+                    tile.TileFrameX = (short)((x + (data.Width * xVar)) * (data.CoordinateWidth + data.CoordinatePadding)); //set the X frame appropriately
                     if (data.CoordinateHeights[y] != 18)
-                        tile.frameY = (short)((y + (data.Height * yVar)) * (data.CoordinateHeights[y] + data.CoordinatePadding)); //set the Y frame appropriately
+                        tile.TileFrameY = (short)((y + (data.Height * yVar)) * (data.CoordinateHeights[y] + data.CoordinatePadding)); //set the Y frame appropriately
                     else
-                        tile.frameY = (short)((y + (data.Height * yVar)) * (data.CoordinateHeights[y])); //set the Y frame appropriately
-                    tile.active(true); //activate the tile
+                        tile.TileFrameY = (short)((y + (data.Height * yVar)) * (data.CoordinateHeights[y])); //set the Y frame appropriately
+                    tile.HasTile = true; //activate the tile
                 }
             }
         }
@@ -225,7 +225,7 @@ namespace Verdant.World
                 {
                     if (overRide)
                         ReplaceTile((int)p[i + 1], (int)p[i] - j, t, false, true);
-                    else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).active())
+                    else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
                         PlaceTile((int)p[i + 1], (int)p[i] - j, t, true, false);
                 }
             }
@@ -246,7 +246,7 @@ namespace Verdant.World
                 {
                     if (overRide)
                         ReplaceWall((int)p[i + 1], (int)p[i] - j, t, true);
-                    else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).active())
+                    else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
                         PlaceWall((int)p[i + 1], (int)p[i] - j, t, true);
                 }
             }
@@ -287,12 +287,12 @@ namespace Verdant.World
         public static void Place(int x, int y, int type, int style = -1)
         {
             Tile t = Framing.GetTileSafely(x, y);
-            t.type = (ushort)type;
-            t.active(true);
+            t.TileType = (ushort)type;
+            t.HasTile = true;
             if (style == -1)
                 SquareTileFrame(x, y, true);
             else
-                t.frameX = (short)(18 * style);
+                t.TileFrameX = (short)(18 * style);
         }
 
         public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
@@ -300,9 +300,9 @@ namespace Verdant.World
             for (int k = j; k > j - minHeight; k--)
             {
                 Tile t = Framing.GetTileSafely(i, k);
-                if (ignoreTypes.Contains(t.type))
+                if (ignoreTypes.Contains(t.TileType))
                     continue;
-                if (t.active())
+                if (t.HasTile)
                     return false;
             }
             return true;

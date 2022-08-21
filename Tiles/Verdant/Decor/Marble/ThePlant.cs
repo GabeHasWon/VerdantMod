@@ -9,7 +9,7 @@ namespace Verdant.Tiles.Verdant.Decor.Marble
 {
     class ThePlant : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
             TileObjectData.newTile.StyleHorizontal = true;

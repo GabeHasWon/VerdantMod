@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,19 +14,19 @@ namespace Verdant.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BobberWooden);
-            drawOriginOffsetY = 0;
+            Projectile.CloneDefaults(ProjectileID.BobberWooden);
+            DrawOriginOffsetY = 0;
         }
 
-        public override bool PreDrawExtras(SpriteBatch spriteBatch)
+        public override bool PreDrawExtras()
         {
-            Lighting.AddLight(projectile.Center, new Vector3(0.5f, 0.16f, 0.30f) * 3f);
+            Lighting.AddLight(Projectile.Center, new Vector3(0.5f, 0.16f, 0.30f) * 3f);
 
             int xPositionAdditive = 38;
             float yPositionAdditive = 33f;
 
-            Player player = Main.player[projectile.owner];
-            if (!projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
+            Player player = Main.player[Projectile.owner];
+            if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
 
             Vector2 lineOrigin = player.MountedCenter;
@@ -46,7 +47,7 @@ namespace Verdant.Projectiles.Misc
                 lineOrigin.Y -= 12f;
 
             lineOrigin = player.RotatedRelativePoint(lineOrigin + new Vector2(8f), true) - new Vector2(8f);
-            Vector2 playerToProjectile = projectile.Center - lineOrigin;
+            Vector2 playerToProjectile = Projectile.Center - lineOrigin;
             bool canDraw = true;
 
             if (playerToProjectile.X == 0f && playerToProjectile.Y == 0f)
@@ -56,7 +57,7 @@ namespace Verdant.Projectiles.Misc
             playerToProjectileMagnitude = 12f / playerToProjectileMagnitude;
             playerToProjectile *= playerToProjectileMagnitude;
             lineOrigin -= playerToProjectile;
-            playerToProjectile = projectile.Center - lineOrigin;
+            playerToProjectile = Projectile.Center - lineOrigin;
 
             while (canDraw)
             {
@@ -74,13 +75,13 @@ namespace Verdant.Projectiles.Misc
 
                 playerToProjectile *= 12f / positionMagnitude;
                 lineOrigin += playerToProjectile;
-                playerToProjectile.X = projectile.position.X + projectile.width * 0.5f - lineOrigin.X;
-                playerToProjectile.Y = projectile.position.Y + projectile.height * 0.1f - lineOrigin.Y;
+                playerToProjectile.X = Projectile.position.X + Projectile.width * 0.5f - lineOrigin.X;
+                playerToProjectile.Y = Projectile.position.Y + Projectile.height * 0.1f - lineOrigin.Y;
 
                 if (positionMagnitude > 12f)
                 {
                     float positionInverseMultiplier = 0.3f;
-                    float absVelocitySum = Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y);
+                    float absVelocitySum = Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y);
 
                     if (absVelocitySum > 16f)
                         absVelocitySum = 16f;
@@ -97,7 +98,7 @@ namespace Verdant.Projectiles.Misc
                     if (positionInverseMultiplier < 0f)
                         positionInverseMultiplier = 0f;
 
-                    absVelocitySum = 1f - projectile.localAI[0] / 100f;
+                    absVelocitySum = 1f - Projectile.localAI[0] / 100f;
                     positionInverseMultiplier *= absVelocitySum;
 
                     if (playerToProjectile.Y > 0f)
@@ -107,7 +108,7 @@ namespace Verdant.Projectiles.Misc
                     }
                     else
                     {
-                        absVelocitySum = Math.Abs(projectile.velocity.X) / 3f;
+                        absVelocitySum = Math.Abs(Projectile.velocity.X) / 3f;
                         if (absVelocitySum > 1f)
                             absVelocitySum = 1f;
                         absVelocitySum -= 0.5f;
@@ -121,7 +122,7 @@ namespace Verdant.Projectiles.Misc
 
                 Color lineColor = Lighting.GetColor((int)lineOrigin.X / 16, (int)(lineOrigin.Y / 16f), Color.White);
                 float rotation = playerToProjectile.ToRotation() - MathHelper.PiOver2;
-                Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(lineOrigin.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)height), lineColor, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(TextureAssets.FishingLine.Value, new Vector2(lineOrigin.X - Main.screenPosition.X + TextureAssets.FishingLine.Value.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + TextureAssets.FishingLine.Value.Height * 0.5f), new Rectangle(0, 0, TextureAssets.FishingLine.Value.Width, (int)height), lineColor, rotation, new Vector2(TextureAssets.FishingLine.Value.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

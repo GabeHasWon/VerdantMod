@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Terraria.Chat;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
@@ -10,6 +11,8 @@ using Verdant.Foreground.Parallax;
 using Verdant.Foreground;
 using Verdant.World;
 using Verdant.Items.Verdant.Tools;
+using Terraria.DataStructures;
+using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Decor
 {
@@ -17,7 +20,7 @@ namespace Verdant.Tiles.Verdant.Decor
     {
         private int _timer = 0;
 
-        public override void SetDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+        public override void SetStaticDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
 
@@ -29,7 +32,7 @@ namespace Verdant.Tiles.Verdant.Decor
         {
             _timer++;
 
-            if (Framing.GetTileSafely(i, j).frameX == 126 && Framing.GetTileSafely(i, j).frameY == 36)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 126 && Framing.GetTileSafely(i, j).TileFrameY == 36)
             {
                 Vector2 p = (new Vector2(i, j) * 16);
                 float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7);
@@ -51,11 +54,13 @@ namespace Verdant.Tiles.Verdant.Decor
         private readonly string[] boss3Assurance = new[] { "We no longer hear theEVENT, peace at last...", "The mind is calm now...", "Silence, finally..." };
         private readonly string[] skeleAssurance = new[] { "The poor man's freedom is obtained, thank you.", "We can still hear some screams..." };
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Point adjPos = (Main.MouseWorld / 16f).ToPoint();
-            Point adjOff = new Point(Framing.GetTileSafely(adjPos.X, adjPos.Y).frameX / 18, Framing.GetTileSafely(adjPos.X, adjPos.Y).frameY / 18);
+            Point adjOff = new Point(Framing.GetTileSafely(adjPos.X, adjPos.Y).TileFrameX / 18, Framing.GetTileSafely(adjPos.X, adjPos.Y).TileFrameY / 18);
             Vector2 realPos = new Vector2((adjPos.X - adjOff.X) * 16, (adjPos.Y - adjOff.Y) * 16);
+
+            int playerCount = Main.player.Where(x => x.active).Count();
 
             if (_timer > 3000)
             {
@@ -64,7 +69,7 @@ namespace Verdant.Tiles.Verdant.Decor
                     string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
                     Speak(msg);
 
-                    Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * Main.ActivePlayersCount); //temp ID
+                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
                     ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown = true;
                     return true;
                 }
@@ -74,8 +79,8 @@ namespace Verdant.Tiles.Verdant.Decor
                     Speak("Our blessings for slaying the skeleton, here...");
                     ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown = true;
 
-                    for (int k = 0; k < Main.ActivePlayersCount; ++k)
-                        Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
+                    for (int k = 0; k < playerCount; ++k)
+                        Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
                     return true;
                 }
 
@@ -83,8 +88,8 @@ namespace Verdant.Tiles.Verdant.Decor
                 {
                     Speak("We sense a powerful spirit released...take this.");
 
-                    for (int v = 0; v < Main.ActivePlayersCount; ++v)
-                        Item.NewItem(new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
+                    for (int v = 0; v < playerCount; ++v)
+                        Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
                     ModContent.GetInstance<VerdantWorld>().apotheosisWallDown = true;
                     return true;
                 }
@@ -146,7 +151,7 @@ namespace Verdant.Tiles.Verdant.Decor
             {
                 string chat = $"The Apotheosis: [c/509128:\"{msg}\"]";
                 if (Main.netMode == NetmodeID.Server) //MP compat :)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(chat), Color.White);
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(chat), Color.White);
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText(chat, Color.White);
             }
@@ -155,9 +160,9 @@ namespace Verdant.Tiles.Verdant.Decor
 
         public override void MouseOver(int i, int j)
         {
-            Main.LocalPlayer.showItemIconText = "Speak";
-            Main.LocalPlayer.showItemIcon = false;
-            Main.LocalPlayer.showItemIcon2 = -1;
+            Main.LocalPlayer.cursorItemIconText = "Speak";
+            Main.LocalPlayer.cursorItemIconEnabled = false;
+            Main.LocalPlayer.cursorItemIconID = -1;
         }
     }
 }

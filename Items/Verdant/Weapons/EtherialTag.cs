@@ -10,46 +10,45 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class EtherialTag : ModItem
     {
-        public override bool Autoload(ref string name) => false;
+        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */ => false;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Etherial Leash");
             Tooltip.SetDefault("Controls a memory lost long ago\nRight click to direct flames towards enemies");
-            ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
-            ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+            ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.damage = 10;
-            item.width = 20;
-            item.height = 46;
-            item.useTime = 20;
-            item.useAnimation = 20;
-            item.knockBack = 1;
-            item.crit = 8;
-            item.shootSpeed = 0f;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Blue;
-            item.shoot = ModContent.ProjectileType<VerdantWisp>();
-            item.value = Item.sellPrice(0, 0, 20, 0);
-            item.channel = true;
-            item.noMelee = true;
-            item.useTurn = false;
-            item.noUseGraphic = true;
-            item.autoReuse = false;
-            item.summon = true;
+            Item.damage = 10;
+            Item.width = 20;
+            Item.height = 46;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.knockBack = 1;
+            Item.crit = 8;
+            Item.shootSpeed = 0f;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.rare = ItemRarityID.Blue;
+            Item.shoot = ModContent.ProjectileType<VerdantWisp>();
+            Item.value = Item.sellPrice(0, 0, 20, 0);
+            Item.channel = true;
+            Item.noMelee = true;
+            Item.useTurn = false;
+            Item.noUseGraphic = true;
+            Item.autoReuse = false;
+            Item.DamageType = DamageClass.Summon;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe m = new ModRecipe(mod);
+            Recipe m = CreateRecipe();
             m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 8);
             m.AddIngredient(ModContent.ItemType<VerdantWoodBlock>(), 10);
             m.AddTile(TileID.Anvils);
-            m.SetResult(this);
-            m.AddRecipe();
+            m.Register();
         }
     }
 }

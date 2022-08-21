@@ -12,7 +12,7 @@ namespace Verdant.Tiles.Verdant.Basic
 {
     internal class VerdantDecor1x1 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
@@ -28,7 +28,7 @@ namespace Verdant.Tiles.Verdant.Basic
 
     internal class VerdantDecor1x1NoCut : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
@@ -44,7 +44,7 @@ namespace Verdant.Tiles.Verdant.Basic
 
     internal class VerdantDecor2x1 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
@@ -56,7 +56,7 @@ namespace Verdant.Tiles.Verdant.Basic
 
     internal class VerdantDecor2x2 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
@@ -68,7 +68,7 @@ namespace Verdant.Tiles.Verdant.Basic
 
     internal class VerdantDecor1x2 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
@@ -82,7 +82,7 @@ namespace Verdant.Tiles.Verdant.Basic
 
     internal class VerdantDecor1x3 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };

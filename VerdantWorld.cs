@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Generation;
+using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -12,8 +14,7 @@ using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.World
 {
-    ///General use content for the mod.
-    public partial class VerdantWorld : ModWorld
+    public partial class VerdantWorld : ModSystem
     {
         public static float WorldSize { get => Main.maxTilesX / 4200f; }
 
@@ -26,7 +27,7 @@ namespace Verdant.World
         public bool apotheosisSkelDown = false;
         public bool apotheosisWallDown = false;
 
-        public override TagCompound Save()
+        public override void SaveWorldData(TagCompound tag)
         {
             var apotheosisStats = new List<string>();
             if (apotheosisDialogueIndex >= 3)
@@ -42,14 +43,11 @@ namespace Verdant.World
 
             genNoise = null; //Unload this so it's not taking up space
 
-            return new TagCompound
-            {
-                ["apotheosisStats"] = apotheosisStats,
-                ["backgroundItems"] = backgroundItems
-            };
+            tag.Add("apotheosisStats", apotheosisStats);
+            tag.Add("backgroundItems", backgroundItems);
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadWorldData(TagCompound tag)
         {
             var stats = tag.GetList<string>("apotheosisStats");
             if (stats.Contains("indexFin")) apotheosisDialogueIndex = 3;
@@ -87,7 +85,7 @@ namespace Verdant.World
             int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Jungle Temple"));
 
             if (tasks.Count > 0)
-                tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
+                tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p, GameConfiguration config) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
 
             if (VerdantIndex != -1)
                 tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", VerdantGeneration)); //Verdant biome gen
@@ -99,7 +97,7 @@ namespace Verdant.World
             apotheosisSkelDown = false;
         }
 
-        public override void TileCountsAvailable(int[] tileCounts)
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             VerdantTiles = tileCounts[ModContent.TileType<VerdantGrassLeaves>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
             ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()];
@@ -111,7 +109,7 @@ namespace Verdant.World
             ApotheosisTiles = 0;
         }
 
-        public static void Unload()
+        public override void Unload()
         {
             BackgroundItemManager.Unload();
         }

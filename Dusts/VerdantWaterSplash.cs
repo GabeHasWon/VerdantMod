@@ -5,7 +5,7 @@ namespace Verdant.Dusts
 {
     public class VerdantWaterSplash : ModDust
     {
-        public override void SetDefaults() => updateType = 33;
+        public override void SetStaticDefaults() => UpdateType = 33;
 
         public override void OnSpawn(Dust dust)
         {
