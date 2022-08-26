@@ -6,7 +6,7 @@ using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class VerdantStrongVineMaterial : ModItem
     {

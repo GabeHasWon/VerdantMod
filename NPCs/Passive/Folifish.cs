@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
@@ -32,6 +33,14 @@ namespace Verdant.NPCs.Passive
             NPC.catchItem = (short)ModContent.ItemType<FolifishItem>();
 
             AIType = NPCID.Goldfish;
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                new FlavorTextBestiaryInfoElement("A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy."),
+            });
         }
 
         public override bool PreAI()
@@ -64,8 +73,11 @@ namespace Verdant.NPCs.Passive
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Color col = Lighting.GetColor((int)(NPC.position.X / 16), (int)(NPC.position.Y / 16), drawColor);
-            Vector2 pos = NPC.position - Main.screenPosition + (NPC.Size / 2) + new Vector2(0, 6);
+            if (NPC.IsABestiaryIconDummy && NPC.ai[1] == 0)
+                NPC.ai[1] = Main.rand.Next(3) + 1;
+
+            Color col = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor((int)(NPC.position.X / 16), (int)(NPC.position.Y / 16), drawColor);
+            Vector2 pos = NPC.position - screenPos + (NPC.Size / 2) + new Vector2(0, 6);
             SpriteEffects dir = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
                 dir = SpriteEffects.FlipHorizontally;

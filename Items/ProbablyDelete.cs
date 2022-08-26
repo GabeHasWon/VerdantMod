@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.World;
 
 namespace Verdant.Items
 {
@@ -33,13 +34,9 @@ namespace Verdant.Items
 
         public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
         {
-            int i = Helper.MouseTile().X;
-            int j = Helper.MouseTile().Y;
-            Tile t = Framing.GetTileSafely(i, j);
-            //for (int n = -10; n < 10; ++n)
-            //    for (int b = -10; b < 10; ++b)
-            //        Framing.GetTileSafely(i + n, j + b).liquid = 255;
-            return false;
+			var j = Main.MouseWorld.ToTileCoordinates();
+			WorldGen.GrowTree(j.X, j.Y);
+			return true;
         }
     }
 }

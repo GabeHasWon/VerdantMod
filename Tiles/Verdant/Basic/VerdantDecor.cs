@@ -20,6 +20,9 @@ namespace Verdant.Tiles.Verdant.Basic
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
             Main.tileCut[Type] = true;
+
+            Terraria.GameContent.Metadata.TileMaterials.SetForTileId(Type, Terraria.GameContent.Metadata.TileMaterials._materialsByName["Plant"]);
+            TileID.Sets.SwaysInWindBasic[Type] = true;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
@@ -51,6 +54,9 @@ namespace Verdant.Tiles.Verdant.Basic
             TileObjectData.newTile.RandomStyleRange = 6;
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 2, 1, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
+
+            Terraria.GameContent.Metadata.TileMaterials.SetForTileId(Type, Terraria.GameContent.Metadata.TileMaterials._materialsByName["Plant"]);
+            TileID.Sets.SwaysInWindBasic[Type] = true;
         }
     }
 

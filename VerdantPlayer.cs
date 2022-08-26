@@ -27,9 +27,6 @@ namespace Verdant
 
         public float lastSlotsMinion = 0;
 
-        private float _steamIntensity = 1f;
-        private float _steamProgress = 0f;
-
         public delegate void FloorVisual(Player p, int type);
         public static event FloorVisual FloorVisualEvent;
 
@@ -171,39 +168,5 @@ namespace Verdant
         public override void OnHitByNPC(NPC npc, int damage, bool crit) => HitByNPCEvent?.Invoke(Player, npc, damage, crit);
 
         public void InvokeDrawLayer(PlayerDrawSet set) => ItemDrawLayerEvent?.Invoke(set);
-
-        public void UpdateBiomeVisuals() //NEEDSUPDATING
-        {
-            if (!Filters.Scene[EffectIDs.BiomeSteam].Active && ModContent.GetInstance<VerdantClientConfig>().EnableSteam)
-            {
-                if (ZoneVerdant && Player.position.Y / 16f > Main.worldSurface)
-                {
-                    Filters.Scene.Activate(EffectIDs.BiomeSteam, Vector2.Zero); //idk why I need to use UseImage twice but it works so I aint gonna complain
-                    Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam", ReLogic.Content.AssetRequestMode.AsyncLoad).Value, 0);
-                    Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam", ReLogic.Content.AssetRequestMode.AsyncLoad).Value, 1);
-                    _steamIntensity = 1f;
-                }
-            }
-            else
-            {
-                bool validArea = ZoneVerdant && Player.position.Y / 16f > Main.worldSurface && ModContent.GetInstance<VerdantClientConfig>().EnableSteam;
-                float baseIntensity = validArea ? 0.94f : 1f;
-                _steamIntensity = MathHelper.Lerp(_steamIntensity, baseIntensity, 0.02f);
-
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseTargetPosition(Player.Center + (Vector2.UnitY * Player.gfxOffY));
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseIntensity(_steamIntensity);
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseProgress(_steamProgress += 0.004f);
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(Main.screenWidth, Main.screenHeight), 0);
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(512, 512), 1);
-
-                if (!validArea && _steamIntensity > 0.99f)
-                {
-                    Filters.Scene[EffectIDs.BiomeSteam].Deactivate();
-
-                    _steamProgress = 0;
-                    _steamIntensity = 1f;
-                }
-            }
-        }
     }
 }

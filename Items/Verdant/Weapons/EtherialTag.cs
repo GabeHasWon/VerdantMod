@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Weapons

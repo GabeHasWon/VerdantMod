@@ -85,7 +85,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                         if (dustChoice != -1)
                         {
                             int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, dustChoice, 0f, 0f, 100, default(Color), 1f);
-                            if (Main.rand.Next(3) != 0)
+                            if (!Main.rand.NextBool(3))
                                 Main.dust[dust].noGravity = true;
                             Main.dust[dust].velocity *= 0.3f;
                             Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
@@ -104,16 +104,13 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             if (i % 2 == 1)
                 effects = SpriteEffects.FlipHorizontally;
 
-            Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
-            if (Main.drawToScreen)
-                zero = Vector2.Zero;
-
+            Vector2 zero = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
             Tile tile = Main.tile[i, j];
             int width = 16;
             int offsetY = 0;
             int height = 16;
             int offsetX = i % 2 == 0 ? 3 : -3;
-            TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height);
+            TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref tile.TileFrameX, ref tile.TileFrameY);
             var flameTexture = TextureAssets.Flames[0].Value;// mod.ModContent.Request<Texture2D>("Tiles/ExampleLamp_Flame"); // We could also reuse Main.FlameTexture[] textures, but using our own texture is nice.
 
             ulong seed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);

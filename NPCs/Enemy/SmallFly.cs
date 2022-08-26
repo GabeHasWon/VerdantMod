@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,6 +31,14 @@ namespace Verdant.NPCs.Enemy
             NPC.aiStyle = -1;
             NPC.HitSound = SoundID.Critter;
             NPC.DeathSound = SoundID.Critter;
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                new FlavorTextBestiaryInfoElement("A tiny creature made of leaf, petal and flesh. Skittish and harmless."),
+            });
         }
 
         public override void AI()

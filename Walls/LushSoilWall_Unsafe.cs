@@ -21,11 +21,7 @@ namespace Verdant.Walls
 
     public class LushSoilWall : ModWall
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            texture = "Verdant/Walls/LushSoilWall_Unsafe";
-            return base.IsLoadingEnabled(ref name, ref texture);
-        }
+        public override string Texture => "Verdant/Walls/LushSoilWall_Unsafe";
 
         public override void SetStaticDefaults()
         {

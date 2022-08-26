@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Gores.Verdant;
-using Verdant.Items.Verdant.Blocks;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Armour
@@ -47,9 +47,9 @@ namespace Verdant.Items.Verdant.Armour
             if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.NextBool(74)) //Spawn gores
             {
                 int random = Main.rand.Next(3);
-                int gore = Mod.Find<ModGore>("Gores/Verdant/PinkPetalFalling").Type;
-                if (random == 0) gore = Mod.Find<ModGore>("Gores/Verdant/RedPetalFalling").Type;
-                if (random == 1) gore = Mod.Find<ModGore>("Gores/Verdant/LushLeaf").Type;
+                int gore = Mod.Find<ModGore>("PinkPetalFalling").Type;
+                if (random == 0) gore = Mod.Find<ModGore>("RedPetalFalling").Type;
+                if (random == 1) gore = Mod.Find<ModGore>("LushLeaf").Type;
                 Gore.NewGore(player.GetSource_Accessory(Item), player.Center + new Vector2(0), new Vector2(0), gore, 1f);
             }
         }
@@ -78,7 +78,7 @@ namespace Verdant.Items.Verdant.Armour
                 int r = Main.rand.Next(1, 3);
                 for (int i = 0; i < r; ++i)
                 {
-                    int d = Main.rand.Next(2) == 0 ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
+                    int d = Main.rand.NextBool(2) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
                     Gore.NewGore(p.GetSource_OnHurt(npc), p.position + new Vector2(Main.rand.Next(p.width), Main.rand.Next(p.height)), Vector2.Zero, d, 1f);
                 }
             }

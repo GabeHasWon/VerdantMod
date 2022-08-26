@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class HousproutItem : ModItem
     {

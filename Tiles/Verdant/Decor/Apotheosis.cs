@@ -9,7 +9,6 @@ using Terraria.Localization;
 using Verdant.Items.Verdant.Misc;
 using Verdant.Foreground.Parallax;
 using Verdant.Foreground;
-using Verdant.World;
 using Verdant.Items.Verdant.Tools;
 using Terraria.DataStructures;
 using System.Linq;
@@ -36,8 +35,8 @@ namespace Verdant.Tiles.Verdant.Decor
             {
                 Vector2 p = (new Vector2(i, j) * 16);
                 float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7);
-                if (ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown) LightMult *= 1.3f;
-                if (ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown) LightMult *= 1.6f;
+                if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) LightMult *= 1.3f;
+                if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) LightMult *= 1.6f;
                 Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * 2f * LightMult);
                 Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
             }
@@ -64,39 +63,39 @@ namespace Verdant.Tiles.Verdant.Decor
 
             if (_timer > 3000)
             {
-                if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown) //BoC/EoW text
+                if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
                 {
                     string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
                     Speak(msg);
 
                     Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
-                    ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown = true;
+                    ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
                     return true;
                 }
 
-                if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown) //Skeleton boss text
+                if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
                 {
                     Speak("Our blessings for slaying the skeleton, here...");
-                    ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown = true;
+                    ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
 
                     for (int k = 0; k < playerCount; ++k)
                         Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
                     return true;
                 }
 
-                if (Main.hardMode && !ModContent.GetInstance<VerdantWorld>().apotheosisWallDown) //WoF boss text
+                if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
                 {
                     Speak("We sense a powerful spirit released...take this.");
 
                     for (int v = 0; v < playerCount; ++v)
                         Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
-                    ModContent.GetInstance<VerdantWorld>().apotheosisWallDown = true;
+                    ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
                     return true;
                 }
 
-                if (ModContent.GetInstance<VerdantWorld>().apotheosisDialogueIndex < 3) //Boss text
+                if (ModContent.GetInstance<VerdantSystem>().apotheosisDialogueIndex < 3) //Boss text
                 {
-                    string msg = assurance[ModContent.GetInstance<VerdantWorld>().apotheosisDialogueIndex++];
+                    string msg = assurance[ModContent.GetInstance<VerdantSystem>().apotheosisDialogueIndex++];
                     if (msg.Contains("EVILBOSS")) msg = msg.Replace("EVILBOSS", WorldGen.crimson ? "mind" : "devourer");
 
                     Speak(msg);
@@ -105,8 +104,8 @@ namespace Verdant.Tiles.Verdant.Decor
                 {
                     string msg = assurance[Main.rand.Next(3, 6)];
                     int r = Main.rand.Next(9);
-                    if (ModContent.GetInstance<VerdantWorld>().apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
-                    if (ModContent.GetInstance<VerdantWorld>().apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
+                    if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
+                    if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
 
                     if (r == 3)
                     {

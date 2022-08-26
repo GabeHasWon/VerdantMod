@@ -27,7 +27,7 @@ namespace Verdant.Items.Verdant.Materials
         {
             if (info.drawPlayer.HeldItem.type == Item.type && info.drawPlayer.itemAnimation <= 0)
             {
-                Texture2D t = Mod.Assets.Request<Texture2D>("Verdant/Items/Verdant/Materials/Lightbulb").Value;
+                Texture2D t = Mod.Assets.Request<Texture2D>("Items/Verdant/Materials/Lightbulb").Value;
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
                 Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
                 DrawData data = new DrawData(t, pos.Floor(), null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);

@@ -4,8 +4,8 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Buffs.Minion;
-using Verdant.Items.Verdant.Blocks;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Projectiles.Minion;
 
 namespace Verdant.Items.Verdant.Weapons

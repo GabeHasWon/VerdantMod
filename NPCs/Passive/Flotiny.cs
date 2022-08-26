@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
@@ -25,8 +26,15 @@ namespace Verdant.NPCs.Passive
             NPC.knockBackResist = 0f;
             NPC.aiStyle = -1;
             NPC.dontCountMe = true;
-
             NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+			SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                new FlavorTextBestiaryInfoElement("A tiny floating creature. Despite its clear flight, or at least hovering, it makes no sound and doesn't move apart from gentle swaying."),
+            });
         }
 
         public override void AI()

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,7 @@ namespace Verdant.NPCs.Enemy
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hostfly");
+            DisplayName.SetDefault("Hostess Winglet");
             Main.npcFrameCount[NPC.type] = 4;
         }
 
@@ -32,6 +33,14 @@ namespace Verdant.NPCs.Enemy
             NPC.aiStyle = -1;
             NPC.HitSound = SoundID.Critter;
             NPC.DeathSound = SoundID.NPCDeath4;
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                new FlavorTextBestiaryInfoElement("The matriarch of a small fly colony, angry that its children are being attacked. Seems to be extinct naturally, despite the commonality of the Lush Winglet."),
+            });
         }
 
         public override void AI()
@@ -77,8 +86,8 @@ namespace Verdant.NPCs.Enemy
                     NPC.ai[1]++;
                     if (NPC.ai[1] == 110)
                     {
-                        NPC.ai[2] = NPC.position.X + Main.rand.Next(70, 170) * (Main.rand.Next(2) == 0 ? -1 : 1);
-                        NPC.ai[3] = NPC.position.Y + Main.rand.Next(70, 170) * (Main.rand.Next(2) == 0 ? -1 : 1);
+                        NPC.ai[2] = NPC.position.X + Main.rand.Next(70, 170) * (Main.rand.NextBool(2) ? -1 : 1);
+                        NPC.ai[3] = NPC.position.Y + Main.rand.Next(70, 170) * (Main.rand.NextBool(2) ? -1 : 1);
                         NPC.netUpdate = true;
                     }
 
@@ -142,7 +151,7 @@ namespace Verdant.NPCs.Enemy
             if (NPC.life <= 0)
             {
                 for (int i = 0; i < 9; ++i)
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3)), Main.rand.Next(3) != 0 ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3)), !Main.rand.NextBool(3) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type);
                 for (int i = 0; i < 12; ++i)
                     Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
             }

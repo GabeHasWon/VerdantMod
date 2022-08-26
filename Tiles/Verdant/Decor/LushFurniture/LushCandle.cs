@@ -68,7 +68,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 if (Main.rand.NextBool(40) && tile.TileFrameX == 0 && tile.TileFrameY / 18 % 3 == 0)
                 {
                     int dust = Dust.NewDust(new Vector2(i * 16 + 4, j * 16 + 2), 4, 4, DustID.Torch, 0f, 0f, 100, default, 1f);
-                    if (Main.rand.Next(3) != 0)
+                    if (!Main.rand.NextBool(3))
                         Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0.3f;
                     Main.dust[dust].velocity.Y = Main.dust[dust].velocity.Y - 1.5f;
@@ -94,7 +94,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             int offsetY = 0;
             int height = 16;
             int offsetX = i % 2 == 0 ? 3 : -3;
-            TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height);
+            TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref tile.TileFrameX, ref tile.TileFrameY);
             var flameTexture = TextureAssets.Flames[0].Value;
 
             ulong seed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);

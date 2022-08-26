@@ -74,7 +74,8 @@ namespace Verdant.Tiles.Verdant.Trees
 
             if (!extraPlaces[2]) return false;
 
-            extraPlaces = new bool[5] { false, false, true, false, false };
+            if (j > Main.worldSurface) //Base only exists on surface
+                extraPlaces = new bool[5] { false, false, true, false, false };
 
             for (int k = -2; k < 3; ++k) //Places base
             {
@@ -142,13 +143,19 @@ namespace Verdant.Tiles.Verdant.Trees
             if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i - 1, j).HasTile && !Framing.GetTileSafely(i + 1, j).HasTile)
                 WorldGen.KillTile(i, j, false, false, false);
 
-            if (Framing.GetTileSafely(i, j).TileFrameX == 198 && Main.rand.Next(50) == 0)
+            if (Framing.GetTileSafely(i, j).TileFrameX == 198 && Main.rand.NextBool(50))
                 Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             Tile t = Framing.GetTileSafely(i, j);
+
+            if (fail)
+            {
+                (int x, int y) = (i, j);
+                ClimbToTop(ref x, ref y);
+            }
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 198) //gore stuff
             {
@@ -269,6 +276,11 @@ namespace Verdant.Tiles.Verdant.Trees
             }
         }
 
+        private void ClimbToTop(ref int x, ref int y)
+        {
+            //while (Main.tile[x, y].HasTile && Main.tile[x, y])
+        }
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile t = Framing.GetTileSafely(i, j);
@@ -288,7 +300,9 @@ namespace Verdant.Tiles.Verdant.Trees
                 frameOff = -2;
             }
             if (t.TileFrameX < 90 || t.TileFrameX == 216 || t.TileFrameX == 234 || t.TileFrameX == 252 || t.TileFrameX == 270) frameSizY = 18;
-            Vector2 pos = TileHelper.TileCustomPosition(i, j) - new Vector2((xOff * 2) - (frameOff / 2), 0);
+
+            Vector2 offset =  new Vector2((xOff * 2) - (frameOff / 2), 0);
+            Vector2 pos = TileHelper.TileCustomPosition(i, j) - offset;
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 108) //Draw branches so it has to do less logic later
             {
@@ -311,10 +325,11 @@ namespace Verdant.Tiles.Verdant.Trees
             if (Framing.GetTileSafely(i, j).TileFrameX == 198)
             {
                 Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeTops").Value;
-                col = Lighting.GetColor(i, j - 2);
                 int frame = t.TileFrameY / 18;
-                float rot = (float)Math.Sin((Main.time * 0.03f) + (i * 25)) * 0.02f;
-                spriteBatch.Draw(tops, TileHelper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
+
+                TileSwaySystem.DrawTreeSway(i - 1, j - 1, tops, new Rectangle(98 * frame, 0, 96, 108), TileHelper.TileOffset.ToWorldCoordinates(), new Vector2(40, 96));
+
+                //spriteBatch.Draw(tops, TileHelper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

@@ -1,0 +1,7 @@
+﻿Mods: {
+	Verdant: {
+		MapObject: {
+			VerdantPylon: Verdant Pylon
+		}
+	}
+}

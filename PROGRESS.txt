@@ -110,14 +110,9 @@
 	- Logo
 
 [NEEDS FINISHING] -------------------------------------------------
-
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: DRESSER, SINK
-
-	MUSIC
-	- Unnamed Surface Day
-	- Unnamed Surface Night
 
 	SYSTEMS
 	- Foreground : Needs multiplayer compat (I/O optional)
@@ -137,4 +132,8 @@
 	- Verdant Wisp : Almost everything
 
 	EQUIPABLES [ITEMS]
-	- Blight : Unfinished, but unobtainable
+	- Blight : Unfinished and unobtainable
+
+	MUSIC
+	- Unnamed Surface Day
+	- Unnamed Surface Night

@@ -65,7 +65,7 @@ namespace Verdant.Tiles.Verdant.Mounted
 
             if (Main.rand.NextBool(700))
             {
-                int type = Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "Gores/Verdant/RedPetalFalling" : "Gores/Verdant/PinkPetalFalling").Type;
+                int type = Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "RedPetalFalling" : "PinkPetalFalling").Type;
                 Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, type);
             }
         }

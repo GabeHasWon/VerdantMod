@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Verdant.World;
 
 namespace Verdant.Scenes
 {
@@ -8,7 +7,7 @@ namespace Verdant.Scenes
     {
 		public override int Music => MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ApotheosisLullaby");
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
-        public override bool IsSceneEffectActive(Player player) => VerdantWorld.ApotheosisTiles > 2;
+        public override bool IsSceneEffectActive(Player player) => VerdantSystem.NearApotheosis;
 
         public override void SpecialVisuals(Player player, bool isActive)
         {

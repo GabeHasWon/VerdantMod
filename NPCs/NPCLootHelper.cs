@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.NPCs
 {
+	/// <summary>LITERALLY stolen from Spirit. tell GabeHasWon he SUCKS</summary>
 	public static class NPCLootHelper
 	{
 		public static void Add(this NPCLoot loot, params IItemDropRule[] rules)

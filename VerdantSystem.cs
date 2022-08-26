@@ -8,18 +8,22 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using Verdant.Backgrounds.BGItem;
+using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
+using Verdant.World;
 
-namespace Verdant.World
+namespace Verdant
 {
-    public partial class VerdantWorld : ModSystem
+    public class VerdantSystem : ModSystem
     {
-        public static float WorldSize { get => Main.maxTilesX / 4200f; }
+        private int VerdantTiles;
+        private int ApotheosisTiles;
 
-        public static int VerdantTiles;
-        public static int ApotheosisTiles;
+        public static bool InVerdant => ModContent.GetInstance<VerdantSystem>().VerdantTiles > 40;
+        public static bool NearApotheosis => ModContent.GetInstance<VerdantSystem>().ApotheosisTiles > 2;
+
         public static FastNoise genNoise;
 
         public int apotheosisDialogueIndex = 0;
@@ -83,14 +87,15 @@ namespace Verdant.World
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Jungle Temple"));
+            VerdantGenSystem genSystem = ModContent.GetInstance<VerdantGenSystem>();
 
             if (tasks.Count > 0)
                 tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p, GameConfiguration config) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
 
             if (VerdantIndex != -1)
-                tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", VerdantGeneration)); //Verdant biome gen
+                tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration)); //Verdant biome gen
 
-            tasks.Add(new PassLegacy("Verdant Cleanup", VerdantCleanup)); //And final cleanup
+            tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
 
             apotheosisDialogueIndex = 0;
             apotheosisEvilDown = false;
@@ -112,6 +117,12 @@ namespace Verdant.World
         public override void Unload()
         {
             BackgroundItemManager.Unload();
+        }
+
+        public override void AddRecipeGroups()
+        {
+            RecipeGroup woodGrp = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Wood"]];
+            woodGrp.ValidItems.Add(ModContent.ItemType<VerdantWoodBlock>());
         }
     }
 }

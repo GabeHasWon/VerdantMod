@@ -45,7 +45,7 @@ namespace Verdant.Items.Verdant.Tools
         {
             if (info.drawPlayer.HeldItem.type == Item.type)
             {
-                Texture2D t = Mod.Assets.Request<Texture2D>("Verdant/Items/Verdant/Tools/BouncebloomEquip").Value;
+                Texture2D t = Mod.Assets.Request<Texture2D>("Items/Verdant/Tools/BouncebloomEquip").Value;
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
                 Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
                 SpriteEffects effect = info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

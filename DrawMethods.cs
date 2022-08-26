@@ -12,7 +12,7 @@ namespace Verdant
         {
             orig(self);
 
-            if (Main.playerLoaded && BackgroundItemManager.Loaded && !Main.gameMenu)
+            if (Main.PlayerLoaded && BackgroundItemManager.Loaded && !Main.gameMenu)
                 BackgroundItemManager.Draw();
         }
 
@@ -20,11 +20,11 @@ namespace Verdant
         {
             orig(self);
 
-            if (Main.playerLoaded && !Main.gameMenu)
+            if (Main.PlayerLoaded && !Main.gameMenu)
                 Foreground.ForegroundManager.Run();
 
             Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
             for (int i = 0; i < Main.maxProjectiles; ++i)
             {
@@ -34,7 +34,7 @@ namespace Verdant
             }
 
             Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
         }
     }
 }

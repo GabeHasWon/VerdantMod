@@ -95,7 +95,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 }
                 else
                 {
-                    player.flyingPigChest = -1;
+                    player.CloseSign();
                     int chestInd = Chest.FindChest(left, top);
                     if (chestInd != -1)
                     {

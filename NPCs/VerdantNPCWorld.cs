@@ -7,12 +7,9 @@ namespace Verdant.NPCs
     {
         public bool yellowPetalDialogue = false;
 
-        public override void SaveWorldData(TagCompound tag)/* tModPorter Suggestion: Edit tag parameter instead of returning new TagCompound */
+        public override void SaveWorldData(TagCompound tag)
         {
-            return new TagCompound()
-            {
-                { "petal", yellowPetalDialogue }
-            };
+            tag.Add("petal", yellowPetalDialogue);
         }
 
         public override void LoadWorldData(TagCompound tag)

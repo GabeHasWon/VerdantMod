@@ -20,11 +20,7 @@ namespace Verdant.Walls
 
     public class VerdantRedPetalWall : ModWall
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            texture = "Verdant/Walls/VerdantRedPetalWall_Unsafe";
-            return base.IsLoadingEnabled(ref name, ref texture);
-        }
+        public override string Texture => "Verdant/Walls/VerdantRedPetalWall_Unsafe";
 
         public override void SetStaticDefaults()
         {

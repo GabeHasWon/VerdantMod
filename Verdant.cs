@@ -7,14 +7,13 @@ using Terraria.Graphics.Effects;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.Items.Verdant.Blocks.LushWood;
-using Verdant.World;
 using Verdant.World.Biome;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Verdant.Effects;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
+using Verdant.Tiles.Verdant;
 
 namespace Verdant
 {
@@ -40,6 +39,11 @@ namespace Verdant
 
             OnHooks();
             //ILHooks();
+        }
+
+        public override void PostSetupContent()
+        {
+            Flowers.Load(this);
         }
 
         public override void Unload()
@@ -155,15 +159,12 @@ namespace Verdant
                 bool leaves = !WorldGen.gen && WorldGen.PlayerLOS(i, y);
                 if (Framing.GetTileSafely(i, y).TileFrameY == 0 && Framing.GetTileSafely(i, y + 1).TileType == (ushort)ModContent.TileType<LushSapling>())
                     y++;
-                return VerdantTree.Spawn(i, y, -1, WorldGen.gen ? WorldGen.genRand : Main.rand, 8, 34, leaves, -1, true);
+
+                int minSize = y > Main.worldSurface ? 5 : 24;
+                int maxSize = y > Main.worldSurface ? 20 : 42;
+                return VerdantTree.Spawn(i, y, -1, WorldGen.gen ? WorldGen.genRand : Main.rand, minSize, maxSize, leaves, -1, true);
             }
             return orig(i, y);
-        }
-
-        public override void AddRecipeGroups()/* tModPorter Note: Removed. Use ModSystem.AddRecipeGroups */
-        {
-            RecipeGroup woodGrp = RecipeGroup.recipeGroups[RecipeGroup.recipeGroupIDs["Wood"]];
-            woodGrp.ValidItems.Add(ModContent.ItemType<VerdantWoodBlock>());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             int reps = Main.rand.Next(2, 4);
             for (int k = 0; k < reps; ++k)
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, Vector2.Zero, Mod.Find<ModGore>("Gores/Verdant/LushLeaf").Type);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
         }
     }
 }

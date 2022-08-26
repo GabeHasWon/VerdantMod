@@ -21,7 +21,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if ((!Framing.GetTileSafely(i, j + 1).HasTile || !Main.tileSolid[Framing.GetTileSafely(i, j + 1).TileType]) && Main.rand.NextBool(1945))
-                Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), (new Vector2(i, j + 1) * 16) - new Vector2(0, 2), new Vector2(0, 0), Mod.Find<ModGore>("VerdantDroplet").Type, 1f);
+                Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), (new Vector2(i, j + 1) * 16) - new Vector2(0, 2), new Vector2(0, 0), ModContent.GoreType<Gores.Verdant.VerdantDroplet>(), 1f);
         }
 
         public override void RandomUpdate(int i, int j)

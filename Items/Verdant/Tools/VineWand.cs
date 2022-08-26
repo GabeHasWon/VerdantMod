@@ -104,11 +104,11 @@ namespace Verdant.Items.Verdant.Tools
                     int lastInd = (int)LastVineIndex;
 
                     if (LastVineIndex == -1)
-                        LastVineIndex = Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                        LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
                     else
                     {
                         Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                        LastVineIndex = Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                        LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
                     }
 
                     if (lastInd != -1)

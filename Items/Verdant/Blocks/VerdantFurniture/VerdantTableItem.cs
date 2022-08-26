@@ -1,4 +1,5 @@
 ﻿using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Blocks.VerdantFurniture

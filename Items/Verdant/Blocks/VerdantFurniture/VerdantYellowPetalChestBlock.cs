@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Decor;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
 {
     public class VerdantYellowPetalChestBlock : ModItem
     {

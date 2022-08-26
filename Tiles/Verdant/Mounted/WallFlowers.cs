@@ -59,7 +59,7 @@ namespace Verdant.Tiles.Verdant.Mounted
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if (Main.rand.NextBool(700))
-                Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "Gores/Verdant/RedPetalFalling" : "Gores/Verdant/PinkPetalFalling").Type);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "RedPetalFalling" : "PinkPetalFalling").Type);
         }
     }
 

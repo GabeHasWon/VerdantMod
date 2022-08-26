@@ -37,7 +37,7 @@ namespace Verdant.Foreground.Parallax
         {
             base.Update();
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.48f * scale;
-            velocity.X = xVel + Main.windSpeedCurrent * 15;
+            velocity.X = xVel + (position.Y < Main.worldSurface * 16 ? Main.windSpeedCurrent * 15 : 0);
             velocity.Y = (-Math.Abs(xVel) + scale) * 0.4f;
             rotation = velocity.X * -0.6f;
 
