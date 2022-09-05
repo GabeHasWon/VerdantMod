@@ -56,7 +56,7 @@ namespace Verdant.Projectiles.Misc
 
             Rectangle playerTop = new Rectangle((int)p.position.X, (int)p.position.Y, p.width, 2);
 
-            if (playerTop.Intersects(Projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(PulleyPosition(p), p.width, p.height) && Projectile.timeLeft > 3)
+            if (playerTop.Intersects(Projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(p.position, p.width, p.height) && Projectile.timeLeft > 3)
             {
                 p.pulley = true;
                 p.pulleyDir = 1;
@@ -67,24 +67,18 @@ namespace Verdant.Projectiles.Misc
             }
         }
 
-        public Vector2 PulleyPosition(Player player)
+        public void PulleyVelocity(Player player)
         {
             float vineOff = player.GetModPlayer<VinePulleyPlayer>().vineOffset;
-            float factor = 0;
-            Vector2 otherPos = Projectile.Center;
+            Vector2 otherPos = player.Center;
 
             if (nextVine != -1 && vineOff <= 0.5f)
-            {
                 otherPos = Vector2.Lerp(NextVine.Center, Projectile.Center, 0.5f);
-                factor = vineOff * 2f; 
-            }
             else if (priorVine != -1 && vineOff > 0.5f)
-            {
                 otherPos = Vector2.Lerp(PriorVine.Center, Projectile.Center, 0.5f);
-                factor = 1 - ((vineOff - 0.5f) * 2f);
-            }
 
-            return Vector2.Lerp(otherPos, Projectile.Center, factor) - new Vector2(player.width / 2f, -4);
+            if (otherPos != player.Center && ((player.controlUp && nextVine != -1) || (player.controlDown && priorVine != -1)))
+                player.velocity = player.DirectionTo(otherPos) * 4.5f;
         }
 
         public override void Kill(int timeLeft)

@@ -8,7 +8,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Food;
 using Verdant.Items.Verdant.Materials;
+using Verdant.NPCs.Passive;
 
 namespace Verdant.Tiles.Verdant.Trees
 {
@@ -23,7 +25,12 @@ namespace Verdant.Tiles.Verdant.Trees
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = (fail ? 1 : 3);
 
-        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) => false;
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            resetFrame = false;
+            noBreak = true;
+            return false;
+        }
 
         /// <summary>Spawns a Lush Wood tree or adjacent type.</summary>
         /// <param name="i">X coordinate in-world.</param>
@@ -143,7 +150,7 @@ namespace Verdant.Tiles.Verdant.Trees
             if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i - 1, j).HasTile && !Framing.GetTileSafely(i + 1, j).HasTile)
                 WorldGen.KillTile(i, j, false, false, false);
 
-            if (Framing.GetTileSafely(i, j).TileFrameX == 198 && Main.rand.NextBool(50))
+            if (Framing.GetTileSafely(i, j).TileFrameX == 198 && Main.rand.NextBool(120))
                 Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
         }
 
@@ -151,11 +158,11 @@ namespace Verdant.Tiles.Verdant.Trees
         {
             Tile t = Framing.GetTileSafely(i, j);
 
-            if (fail)
-            {
-                (int x, int y) = (i, j);
-                ClimbToTop(ref x, ref y);
-            }
+            //if (fail)
+            //{
+            //    (int x, int y) = (i, j);
+            //    ClimbToTop(ref x, ref y);
+            //}
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 198) //gore stuff
             {
@@ -199,8 +206,8 @@ namespace Verdant.Tiles.Verdant.Trees
                 }
             }
 
-            //if (fail)
-            //    return;
+            if (fail)
+                return;
 
             //if you value your sanity don't bother reading this
 
@@ -278,7 +285,42 @@ namespace Verdant.Tiles.Verdant.Trees
 
         private void ClimbToTop(ref int x, ref int y)
         {
-            //while (Main.tile[x, y].HasTile && Main.tile[x, y])
+            while (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == Type)
+            {
+                y--;
+            }
+
+            if (Main.tile[x, y].TileFrameX == 198 && Wiring.CheckMech(x, y, 60 * 60))
+            {
+                WeightedRandom<int> random = new WeightedRandom<int>(Main.rand);
+
+                random.Add(0, 1);
+                random.Add(1, 0.2f);
+                random.Add(2, 0.75f);
+
+                int rand = random;
+                if (rand == 1)
+                {
+                    int type = Main.rand.NextBool() ? ModContent.ItemType<Dropberry>() : ModContent.ItemType<BowlFruit>();
+                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
+                }
+                else if (rand == 2)
+                {
+                    int reps = Main.rand.Next(3, 6);
+
+                    WeightedRandom<int> npcType = new(Main.rand);
+                    npcType.Add(ModContent.NPCType<Flotie>(), 0.9f);
+                    npcType.Add(ModContent.NPCType<Flotiny>(), 1.2f);
+                    npcType.Add(ModContent.NPCType<VerdantBulbSnail>(), 1f);
+                    npcType.Add(ModContent.NPCType<VerdantRedGrassSnail>(), 1f);
+
+                    for (int i = 0; i < reps; ++i)
+                        NPC.NewNPC(new EntitySource_TileInteraction(Main.LocalPlayer, x, y), x * 16, y * 16, npcType);
+                }
+
+                for (int i = 0; i < 20; ++i)
+                    Gore.NewGore(new EntitySource_TileUpdate(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+            }
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -301,7 +343,7 @@ namespace Verdant.Tiles.Verdant.Trees
             }
             if (t.TileFrameX < 90 || t.TileFrameX == 216 || t.TileFrameX == 234 || t.TileFrameX == 252 || t.TileFrameX == 270) frameSizY = 18;
 
-            Vector2 offset =  new Vector2((xOff * 2) - (frameOff / 2), 0);
+            Vector2 offset =  new((xOff * 2) - (frameOff / 2), 0);
             Vector2 pos = TileHelper.TileCustomPosition(i, j) - offset;
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 108) //Draw branches so it has to do less logic later
@@ -328,8 +370,6 @@ namespace Verdant.Tiles.Verdant.Trees
                 int frame = t.TileFrameY / 18;
 
                 TileSwaySystem.DrawTreeSway(i - 1, j - 1, tops, new Rectangle(98 * frame, 0, 96, 108), TileHelper.TileOffset.ToWorldCoordinates(), new Vector2(40, 96));
-
-                //spriteBatch.Draw(tops, TileHelper.TileCustomPosition(i, j), new Rectangle(98 * frame, 0, 96, 108), new Color(col.R, col.G, col.B, 255), rot, new Vector2(40, 96), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

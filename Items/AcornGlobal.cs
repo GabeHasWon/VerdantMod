@@ -7,26 +7,16 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items
 {
-    class VerdantGlobalItem : GlobalItem
+    class AcornGlobal : GlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemID.Acorn;
-
-        public override void HoldItem(Item item, Player player)
-        {
-            Point p = Main.MouseWorld.ToTileCoordinates();
-            Tile tile = Main.tile[p.X, p.Y + 1];
-
-            if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>())
-            {
-            }
-        }
 
         public override bool? UseItem(Item item, Player player)
         {
             Point p = Main.MouseWorld.ToTileCoordinates();
             Tile tile = Main.tile[p.X, p.Y + 1];
 
-            if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>())
+            if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>() && !WorldGen.SolidTile(p.X, p.Y) && !WorldGen.SolidTile(p.X, p.Y - 1) && Main.tile[p.X, p.Y].TileType != ModContent.TileType<LushSapling>())
             {
                 WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<LushSapling>());
                 return true;

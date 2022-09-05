@@ -42,10 +42,13 @@ namespace Verdant
                     return;
                 }
 
-                Player.position = CurrentVineMod.PulleyPosition(Player);
                 Player.velocity = Vector2.Zero;
+                CurrentVineMod.PulleyVelocity(Player);
                 Player.pulley = true;
                 Player.ChangeDir(1);
+
+                if (!Player.controlDown && !Player.controlUp)
+                    Player.velocity *= 0.9f;
 
                 if (Player.controlJump)
                 {
@@ -59,9 +62,9 @@ namespace Verdant
                 }
                 else if (Player.controlUp && CurrentVineMod.nextVine != -1)
                 {
-                    vineOffset -= ClimbSpeed;
+                    vineOffset -= Player.velocity.Length();
 
-                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(Player), Player.width, Player.height))
+                    if (Collision.SolidCollision(Player.position, Player.width, Player.height))
                         vineOffset += ClimbSpeed;
 
                     if (vineOffset < 0 && vineTimer < 0)
@@ -73,9 +76,9 @@ namespace Verdant
                 }
                 else if (Player.controlDown && CurrentVineMod.priorVine != -1)
                 {
-                    vineOffset += ClimbSpeed;
+                    vineOffset += Player.velocity.Length();
 
-                    if (Collision.SolidCollision(CurrentVineMod.PulleyPosition(Player), Player.width, Player.height))
+                    if (Collision.SolidCollision(Player.position, Player.width, Player.height))
                         vineOffset -= ClimbSpeed;
 
                     if (vineOffset > 1 && vineTimer < 0)
