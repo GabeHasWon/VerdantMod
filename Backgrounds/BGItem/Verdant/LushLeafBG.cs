@@ -35,7 +35,7 @@ namespace Verdant.Backgrounds.BGItem.Verdant
             float xVel = (float)Math.Sin(timer++ * 0.036) * 0.6f * Scale;
             velocity.X = xVel + (position.Y < Main.worldSurface * 16 ? Main.windSpeedCurrent * 15 : 0);
             velocity.Y = -Math.Abs(xVel) + Scale;
-            rotation = velocity.X * 0.4f;
+            rotation = -velocity.X * 0.3f;
 
             if (!new Rectangle((int)Main.screenPosition.X - 60, (int)Main.screenPosition.Y - 60, Main.screenWidth + 120, Main.screenHeight + 120).Contains(Center.ToPoint()))
                 offscreenTimer++;

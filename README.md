@@ -14,7 +14,7 @@ As of writing this, the mod has the following:
 GabeHasWon - Literally everything except The Plant & song compositions
 Liz - SFX, song compositions, feedback/design & The Plant
 ### Special Thanks -
-Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
+Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
 /u/Nervous-General3220 - Zipvine name
 
 # Development

@@ -9,8 +9,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
-    [Flower("16, 13")]
-    class DyeBulbs : ModTile
+    class DyeBulbs : ModTile, IFlowerTile
     {
         public override void SetStaticDefaults()
         {
@@ -29,5 +28,9 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             else
                 Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, new Vector2(32, 32), ModContent.ItemType<Items.Verdant.Blocks.Plants.RedDyeBulb>(), 1);
         }
+
+        public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 13) };
+        public bool IsFlower(int i, int j) => true;
+        public Vector2[] OffsetAt(int i, int j) => GetOffsets();
     }
 }

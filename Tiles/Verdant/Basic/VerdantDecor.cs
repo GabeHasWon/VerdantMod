@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Verdant.Tiles.Verdant.Basic
 {
-    internal class VerdantDecor1x1 : ModTile
+    internal class VerdantDecor1x1 : ModTile, IFlowerTile
     {
         public override void SetStaticDefaults()
         {
@@ -27,6 +27,19 @@ namespace Verdant.Tiles.Verdant.Basic
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+        public Vector2[] GetOffsets() => new Vector2[] { new Vector2(12, 6), new Vector2(8, 10) };
+        public bool IsFlower(int i, int j) => Main.tile[i, j].TileFrameX != 18 && Main.tile[i, j].TileFrameX != 36;
+
+        public Vector2[] OffsetAt(int i, int j)
+        {
+            var offsets = GetOffsets();
+            Tile tile = Main.tile[i, j];
+
+            if (tile.TileFrameX == 0)
+                return new[] { offsets[0] };
+            return new[] { offsets[1] };
+        }
     }
 
     internal class VerdantDecor1x1NoCut : ModTile
@@ -45,7 +58,7 @@ namespace Verdant.Tiles.Verdant.Basic
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
     }
 
-    internal class VerdantDecor2x1 : ModTile
+    internal class VerdantDecor2x1 : ModTile, IFlowerTile
     {
         public override void SetStaticDefaults()
         {
@@ -58,9 +71,13 @@ namespace Verdant.Tiles.Verdant.Basic
             Terraria.GameContent.Metadata.TileMaterials.SetForTileId(Type, Terraria.GameContent.Metadata.TileMaterials._materialsByName["Plant"]);
             TileID.Sets.SwaysInWindBasic[Type] = true;
         }
+
+        public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 8) };
+        public bool IsFlower(int i, int j) => true;
+        public Vector2[] OffsetAt(int i, int j) => GetOffsets();
     }
 
-    internal class VerdantDecor2x2 : ModTile
+    internal class VerdantDecor2x2 : ModTile, IFlowerTile
     {
         public override void SetStaticDefaults()
         {
@@ -70,6 +87,16 @@ namespace Verdant.Tiles.Verdant.Basic
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
         }
+
+        public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 16), new Vector2(7, 10), new Vector2(30, 12), new Vector2(3, 23) };
+
+        public bool IsFlower(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            return tile.TileFrameX == 180 || tile.TileFrameX == 144;
+        }
+
+        public Vector2[] OffsetAt(int i, int j) => GetOffsets();
     }
 
     internal class VerdantDecor1x2 : ModTile

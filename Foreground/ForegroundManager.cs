@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Verdant.Foreground
@@ -33,12 +34,15 @@ namespace Verdant.Foreground
         //{
         //}
 
-        public static void Unload()
-        {
-            items.Clear();
-        }
+        public static void Unload() => items.Clear();
 
-        public static void AddItem(ForegroundItem item) => items.Add(item);
+        public static void AddItem(ForegroundItem item)
+        {
+            if (!ModContent.GetInstance<VerdantServerConfig>().BackgroundObjects) //Skip if option is turned off
+                return;
+
+            items.Add(item);
+        }
 
         /// <summary>Shorthand for ModContent.ModContent.Request<Texture2D>("Verdant/Foreground/Textures/" + name).</summary>
         /// <param name="name">Name of the requested texture.</param>

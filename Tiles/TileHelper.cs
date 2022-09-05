@@ -152,6 +152,20 @@ namespace Verdant.Tiles
             return new Point(-2, -2);
         }
 
+        public static Point GetTopLeft(Point j)
+        {
+            var tile = Main.tile[j.X, j.Y];
+            TileObjectData data = TileObjectData.GetTileData(tile);
+
+            if (data is null)
+                return new Point(-1, -1);
+
+            (int x, int y) = (j.X, j.Y);
+            x -= (int)(tile.TileFrameX / 18f) % data.Width;
+            y -= (int)(tile.TileFrameY / 18f) % data.Height;
+            return new Point(x, y);
+        }
+
         public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).HasTile && Main.tileSolid[Framing.GetTileSafely(i, j).TileType];
         public static bool SolidTopTile(int i, int j) => Framing.GetTileSafely(i, j).HasTile && (Main.tileSolidTop[Framing.GetTileSafely(i, j).TileType] || Main.tileSolid[Framing.GetTileSafely(i, j).TileType]);
         public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t;
