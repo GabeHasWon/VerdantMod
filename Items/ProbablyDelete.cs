@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Walls;
 
 namespace Verdant.Items;
 
@@ -25,15 +26,16 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = false;
-		Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Beehive>();
+		Item.autoReuse = true;
+		//Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Beehive>();
+		//Item.createWall = ModContent.WallType<VerdantVineWall_Unsafe>();
 		Item.placeStyle = 0;
 	}
 
 	public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
 	{
 		var j = Main.MouseWorld.ToTileCoordinates();
-		WorldGen.GrowTree(j.X, j.Y);
-		return true;
+        WorldGen.GrowTree(j.X, j.Y);
+        return true;
 	}
 }

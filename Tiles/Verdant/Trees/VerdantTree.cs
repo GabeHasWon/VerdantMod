@@ -66,7 +66,8 @@ namespace Verdant.Tiles.Verdant.Trees
                 }
             }
 
-            if (height < 4 || height < minSize) return false;
+            if (height < 4 || height < minSize) 
+                return false;
 
             bool[] extraPlaces = new bool[5];
             for (int k = -2; k < 3; ++k) //Checks base
@@ -99,9 +100,12 @@ namespace Verdant.Tiles.Verdant.Trees
                 if (!extraPlaces[3] && k == 1)
                     Framing.GetTileSafely(i + k, j).TileFrameX = 234;
 
-                if (!extraPlaces[1] && !extraPlaces[3] && k == 0) Framing.GetTileSafely(i + k, j).TileFrameX = 90;
-                if (extraPlaces[1] && !extraPlaces[3] && k == 0) Framing.GetTileSafely(i + k, j).TileFrameX = 252;
-                if (!extraPlaces[1] && extraPlaces[3] && k == 0) Framing.GetTileSafely(i + k, j).TileFrameX = 270;
+                if (!extraPlaces[1] && !extraPlaces[3] && k == 0) 
+                    Framing.GetTileSafely(i + k, j).TileFrameX = 90;
+                if (extraPlaces[1] && !extraPlaces[3] && k == 0) 
+                    Framing.GetTileSafely(i + k, j).TileFrameX = 252;
+                if (!extraPlaces[1] && extraPlaces[3] && k == 0) 
+                    Framing.GetTileSafely(i + k, j).TileFrameX = 270;
             }
 
             for (int k = 1; k < height; ++k)
@@ -112,8 +116,10 @@ namespace Verdant.Tiles.Verdant.Trees
 
                 if (k == height - 1)
                 {
-                    if (r.NextBool(12)) Framing.GetTileSafely(i, j - k).TileFrameX = 180;
-                    else Framing.GetTileSafely(i, j - k).TileFrameX = 198;
+                    if (r.NextBool(12)) 
+                        Framing.GetTileSafely(i, j - k).TileFrameX = 180;
+                    else 
+                        Framing.GetTileSafely(i, j - k).TileFrameX = 198;
                 }
                 else if (r.NextBool(4))
                 {
@@ -123,12 +129,14 @@ namespace Verdant.Tiles.Verdant.Trees
                         WorldGen.PlaceTile(i - 1, j - k, type, true);
                         Framing.GetTileSafely(i, j - k).TileFrameX = 162;
                         Framing.GetTileSafely(i - 1, j - k).TileFrameX = 108;
+                        Framing.GetTileSafely(i - 1, j - k).TileFrameY = (short)(r.Next(3) * 18);
                     }
                     else if (side == 1 && !Framing.GetTileSafely(i + 1, j - k).HasTile)
                     {
                         WorldGen.PlaceTile(i + 1, j - k, type, true);
                         Framing.GetTileSafely(i, j - k).TileFrameX = 144;
                         Framing.GetTileSafely(i + 1, j - k).TileFrameX = 126;
+                        Framing.GetTileSafely(i + 1, j - k).TileFrameY = (short)(r.Next(3) * 18);
                     }
                 }
 
@@ -158,11 +166,11 @@ namespace Verdant.Tiles.Verdant.Trees
         {
             Tile t = Framing.GetTileSafely(i, j);
 
-            //if (fail)
-            //{
-            //    (int x, int y) = (i, j);
-            //    ClimbToTop(ref x, ref y);
-            //}
+            if (fail)
+            {
+                (int x, int y) = (i, j);
+                ClimbToTop(ref x, ref y);
+            }
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 198) //gore stuff
             {
@@ -286,17 +294,24 @@ namespace Verdant.Tiles.Verdant.Trees
         private void ClimbToTop(ref int x, ref int y)
         {
             while (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == Type)
-            {
                 y--;
-            }
+            y++;
 
-            if (Main.tile[x, y].TileFrameX == 198 && Wiring.CheckMech(x, y, 60 * 60))
+            if (Main.tile[x, y].TileFrameX == 198)
             {
+                for (int k = 0; k < WorldGen.numTreeShakes; k++)
+                    if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
+                        return;
+
+                WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
+                WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
+                WorldGen.numTreeShakes++;
+
                 WeightedRandom<int> random = new WeightedRandom<int>(Main.rand);
 
                 random.Add(0, 1);
-                random.Add(1, 0.2f);
-                random.Add(2, 0.75f);
+                random.Add(1, 0.7f);
+                random.Add(2, 0.85f);
 
                 int rand = random;
                 if (rand == 1)

@@ -160,9 +160,8 @@ namespace Verdant
                 if (Framing.GetTileSafely(i, y).TileFrameY == 0 && Framing.GetTileSafely(i, y + 1).TileType == (ushort)ModContent.TileType<LushSapling>())
                     y++;
 
-                int minSize = y > Main.worldSurface ? 5 : 24;
                 int maxSize = y > Main.worldSurface ? 20 : 42;
-                return VerdantTree.Spawn(i, y, -1, WorldGen.gen ? WorldGen.genRand : Main.rand, minSize, maxSize, leaves, -1, true);
+                return VerdantTree.Spawn(i, y, -1, WorldGen.gen ? WorldGen.genRand : Main.rand, 4, maxSize, leaves, -1, true);
             }
             return orig(i, y);
         }

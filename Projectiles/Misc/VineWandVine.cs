@@ -16,6 +16,8 @@ namespace Verdant.Projectiles.Misc
         public Projectile NextVine => Main.projectile[nextVine];
         public Projectile PriorVine => Main.projectile[priorVine];
 
+        public bool perm = false;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vine");
@@ -54,7 +56,7 @@ namespace Verdant.Projectiles.Misc
             else if (nextVine != -1)
                 Projectile.rotation = Projectile.AngleTo(NextVine.Center) - MathHelper.PiOver2 + rotOff;
 
-            Rectangle playerTop = new Rectangle((int)p.position.X, (int)p.position.Y, p.width, 2);
+            Rectangle playerTop = new((int)p.position.X, (int)p.position.Y, p.width, 2);
 
             if (playerTop.Intersects(Projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(p.position, p.width, p.height) && Projectile.timeLeft > 3)
             {
@@ -65,6 +67,14 @@ namespace Verdant.Projectiles.Misc
 
                 p.GetModPlayer<VinePulleyPlayer>().currentVine = Projectile.whoAmI;
             }
+
+            if (perm)
+                Projectile.timeLeft = 10;
+
+            bool invalidNext = nextVine == -1 || !NextVine.active;
+            bool invalidPrior = priorVine == -1 || !PriorVine.active;
+            if (invalidNext && invalidPrior)
+                Projectile.Kill();
         }
 
         public void PulleyVelocity(Player player)

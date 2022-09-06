@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
@@ -10,6 +12,7 @@ using Terraria.WorldBuilding;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Noise;
+using Verdant.Projectiles.Misc;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
 using Verdant.World;
@@ -49,6 +52,32 @@ namespace Verdant
 
             tag.Add("apotheosisStats", apotheosisStats);
             tag.Add("backgroundItems", backgroundItems);
+
+            SaveVines(tag);
+        }
+
+        private void SaveVines(TagCompound tag)
+        {
+            var vines = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is VineWandVine);
+            var positions = new List<Vector2>();
+            var continueSet = new List<bool>();
+
+            for (int i = 0; i < vines.Count(); ++i)
+            {
+                Projectile item = vines.ElementAt(i);
+                positions.Add(item.position);
+
+                if (i > 0)
+                {
+                    var vine = item.ModProjectile as VineWandVine;
+                    continueSet.Add(item.whoAmI == (vines.ElementAt(i - 1).ModProjectile as VineWandVine).nextVine);
+                }
+                else
+                    continueSet.Add(false);
+            }
+
+            tag.Add("permVinePositions", positions);
+            tag.Add("permVineContinuity", continueSet);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -62,6 +91,29 @@ namespace Verdant
             var bgItems = tag.GetList<TagCompound>("backgroundItems");
             if (bgItems != null)
                 BackgroundItemManager.Load(bgItems);
+
+            SpawnPermVines(tag.GetList<Vector2>("permVinePositions"), tag.GetList<bool>("permVineContinuity"));
+        }
+
+        private void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
+        {
+            int lastVine = 0;
+
+            for (int i = 0; i < positions.Count; ++i)
+            {
+                int proj = Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), positions[i], Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0f, Main.LocalPlayer.whoAmI);
+                Projectile projectile = Main.projectile[proj];
+                VineWandVine vine = projectile.ModProjectile as VineWandVine;
+                vine.perm = true;
+
+                if (continuity[i])
+                {
+                    vine.priorVine = lastVine;
+                    (Main.projectile[lastVine].ModProjectile as VineWandVine).nextVine = proj;
+                }
+
+                lastVine = proj;
+            }
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -114,10 +166,7 @@ namespace Verdant
             ApotheosisTiles = 0;
         }
 
-        public override void Unload()
-        {
-            BackgroundItemManager.Unload();
-        }
+        public override void Unload() => BackgroundItemManager.Unload();
 
         public override void AddRecipeGroups()
         {

@@ -1,17 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Tools;
 
-class VineWand : ModItem
+class PermVineWand : ModItem
 {
+    public override string Texture => base.Texture.Replace("Perm", "");
+
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Zipvine");
-        Tooltip.SetDefault("Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\nThese vines last 10 seconds");
+        DisplayName.SetDefault("Zipvine (Permanant)");
+        Tooltip.SetDefault($"Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\nThese vines use [i:{ModContent.ItemType<LushLeaf>()}] to build, and drop them on being destroyed.");
     }
 
     public override void SetDefaults()
@@ -24,24 +28,15 @@ class VineWand : ModItem
         Item.autoReuse = false;
         Item.rare = ItemRarityID.Green;
         Item.channel = true;
-        Item.shoot = ModContent.ProjectileType<VineWandProjectile>();
+        Item.shoot = ModContent.ProjectileType<PermVineWandProjectile>();
         Item.noUseGraphic = true;
         Item.noMelee = true;
         Item.maxStack = 1;
-    }
-
-    public override bool CanUseItem(Player player) => player.GetModPlayer<VinePulleyPlayer>().vineResource > 1; //2 or more because a vine of length 1 is bad
-
-    public override void UpdateInventory(Player player)
-    {
-        Item.stack = player.GetModPlayer<VinePulleyPlayer>().vineResource;
-
-        if (Item.stack <= 1)
-            Item.stack = 1;
+        Item.tileWand = ModContent.ItemType<LushLeaf>();
     }
 }
 
-public class VineWandProjectile : ModProjectile
+public class PermVineWandProjectile : ModProjectile
 {
     public override string Texture => "Verdant/Items/Verdant/Tools/VineWand";
 
@@ -68,7 +63,7 @@ public class VineWandProjectile : ModProjectile
         DrawHeldProjInFrontOfHeldItemAndArms = true;
     }
 
-    public override bool? CanDamage()/* tModPorter Suggestion: Return null instead of true */ => false;
+    public override bool? CanDamage() => false;
 
     public override void AI()
     {
@@ -91,6 +86,14 @@ public class VineWandProjectile : ModProjectile
         Projectile.position = p.position - new Vector2(14, 0).RotatedBy(Projectile.rotation);
         Helper.ArmsTowardsMouse(p);
 
+        if (Main.mouseRight)
+        {
+            var proj = Main.projectile.Take(Main.maxProjectiles).FirstOrDefault(x => x.active && x.type == ModContent.ProjectileType<VineWandVine>() && x.DistanceSQ(Main.MouseWorld) < 18 * 18);
+            if (proj != null)
+                proj.Kill();
+            return;
+        }
+
         if (!p.channel)
             Projectile.Kill();
         else
@@ -100,7 +103,7 @@ public class VineWandProjectile : ModProjectile
 
             Timer--;
 
-            if (Timer <= 0 && p.GetModPlayer<VinePulleyPlayer>().vineResource > 0)
+            if (Timer <= 0)
             {
                 int lastInd = (int)LastVineIndex;
 
@@ -117,12 +120,10 @@ public class VineWandProjectile : ModProjectile
                     (Main.projectile[lastInd].ModProjectile as VineWandVine).nextVine = (int)LastVineIndex;
                     (LastVine.ModProjectile as VineWandVine).priorVine = lastInd;
                     (LastVine.ModProjectile as VineWandVine).VineIndex = p.GetModPlayer<VinePulleyPlayer>().VineCount();
+                    (LastVine.ModProjectile as VineWandVine).perm = true;
                 }
 
                 Timer = 3;
-
-                p.GetModPlayer<VinePulleyPlayer>().vineResource--;
-                p.GetModPlayer<VinePulleyPlayer>().vineRegenCooldown = (15 * 60) + 240;
             }
         }
     }

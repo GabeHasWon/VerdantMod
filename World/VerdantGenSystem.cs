@@ -93,18 +93,22 @@ namespace Verdant.World
             AddPlants();
             p.Message = "Watering plants...";
             AddWater();
-
+            p.Message = "Adding signs...";
             AddSurfaceVerdant();
         }
 
         private void AddSurfaceVerdant()
         {
+            int offset = 0;
         retry:
-            int top = Helper.FindDown(new Vector2(VerdantArea.Center.X * 16, 200));
+            int top = Helper.FindDown(new Vector2((VerdantArea.Center.X + (WorldGen.genRand.NextBool() ? -offset : offset)) * 16, 200));
             Point16 size = Point16.Zero;
 
             if (top <= Main.worldSurface * 0.36f)
+            {
+                offset += offset + WorldGen.genRand.Next(10, 20);
                 goto retry;
+            }
 
             if (StructureHelper.Generator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size)) 
                 StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", new Point16(VerdantArea.Center.X - (size.X / 2), top - size.Y + 12), VerdantMod.Instance);
