@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -34,6 +35,8 @@ class PermVineWand : ModItem
         Item.maxStack = 1;
         Item.tileWand = ModContent.ItemType<LushLeaf>();
     }
+
+    public override bool AltFunctionUse(Player player) => true;
 }
 
 public class PermVineWandProjectile : ModProjectile
@@ -90,7 +93,10 @@ public class PermVineWandProjectile : ModProjectile
         {
             var proj = Main.projectile.Take(Main.maxProjectiles).FirstOrDefault(x => x.active && x.type == ModContent.ProjectileType<VineWandVine>() && x.DistanceSQ(Main.MouseWorld) < 18 * 18);
             if (proj != null)
+            {
                 proj.Kill();
+                Main.player[Projectile.owner].QuickSpawnItem(Projectile.GetSource_FromAI(), ModContent.ItemType<LushLeaf>());
+            }
             return;
         }
 
@@ -124,6 +130,25 @@ public class PermVineWandProjectile : ModProjectile
                 }
 
                 Timer = 3;
+
+                ConsumeTileWand(Main.player[Projectile.owner]);
+            }
+        }
+    }
+
+    private static void ConsumeTileWand(Player player)
+    {
+        for (int i = 0; i < player.inventory.Length; ++i)
+        {
+            Item item = player.inventory[i];
+
+            if (!item.IsAir && item.type == ModContent.ItemType<LushLeaf>())
+            {
+                item.stack--;
+
+                if (item.stack <= 0)
+                    item.TurnToAir();
+                break;
             }
         }
     }

@@ -58,11 +58,11 @@ namespace Verdant
             var clouds = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is YellowPetalFloaterProj);
             var positions = new List<Vector2>();
             foreach (var item in clouds)
-                positions.Add(item.position);
+                positions.Add(item.Center);
             tag.Add("cloudPositions", positions);
         }
 
-        private void SaveVines(TagCompound tag)
+        private static void SaveVines(TagCompound tag)
         {
             var vines = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is VineWandVine);
             var positions = new List<Vector2>();
@@ -108,7 +108,7 @@ namespace Verdant
             }
         }
 
-        private void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
+        private static void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
         {
             int lastVine = 0;
 

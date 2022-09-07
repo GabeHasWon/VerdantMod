@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using System;
 
 namespace Verdant.Projectiles.Misc
 {
@@ -44,13 +45,16 @@ namespace Verdant.Projectiles.Misc
             if (p.whoAmI != Main.myPlayer)
                 return; //mp check (hopefully)
 
-            if (priorVine != -1 && !PriorVine.active)
-                priorVine = 1;
+            if (priorVine != -1 && InvalidVine(true))
+                priorVine = -1;
 
-            if (nextVine != -1 && !NextVine.active)
-                nextVine = 1;
+            if (nextVine != -1 && InvalidVine(false))
+                nextVine = -1;
 
-            float rotOff = (float)System.Math.Sin((Timer++ + (VineIndex * 12)) * 0.05f) * 0.2f;
+            int dir = (Projectile.whoAmI % 2) + (Projectile.whoAmI % 8) + (Projectile.whoAmI % 3); //"randomize" direction
+            Projectile.spriteDirection = (dir % 2 == 0) ? -1 : 1;
+
+            float rotOff = (float)Math.Sin((Timer++ + (VineIndex * 12)) * 0.05f) * 0.2f;
             if (priorVine != -1)
                 Projectile.rotation = Projectile.AngleTo(PriorVine.Center) - MathHelper.PiOver2 + rotOff;
             else if (nextVine != -1)
@@ -71,10 +75,16 @@ namespace Verdant.Projectiles.Misc
             if (perm)
                 Projectile.timeLeft = 10;
 
-            bool invalidNext = nextVine == -1 || !NextVine.active;
-            bool invalidPrior = priorVine == -1 || !PriorVine.active;
+            bool invalidNext = nextVine == -1 || InvalidVine(false);
+            bool invalidPrior = priorVine == -1 || InvalidVine(true);
             if (invalidNext && invalidPrior)
                 Projectile.Kill();
+        }
+
+        private bool InvalidVine(bool prior)
+        {
+            Projectile vine = prior ? PriorVine : NextVine;
+            return !vine.active || vine.ModProjectile is not VineWandVine modVine || (prior ? modVine.nextVine : modVine.priorVine) != Projectile.whoAmI;
         }
 
         public void PulleyVelocity(Player player)

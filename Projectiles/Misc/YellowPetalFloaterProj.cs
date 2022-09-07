@@ -60,6 +60,7 @@ namespace Verdant.Projectiles.Misc
 
                             p.velocity.Y = -14;
                             p.velocity.X *= 1.2f;
+                            p.fallStart = (int)(Projectile.position.Y / 16f);
 
                             BouncedUpon = true;
                             Timer = 0;

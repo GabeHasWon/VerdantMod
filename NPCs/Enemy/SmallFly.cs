@@ -26,7 +26,7 @@ namespace Verdant.NPCs.Enemy
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.dontTakeDamage = false;
-            NPC.value = Item.buyPrice(0, 0, 0, 75);
+            NPC.value = 0;
             NPC.knockBackResist = 0f;
             NPC.aiStyle = -1;
             NPC.HitSound = SoundID.Critter;
