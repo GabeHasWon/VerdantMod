@@ -21,6 +21,8 @@ namespace Verdant.Tiles.Verdant.Trees
             QuickTile.SetAll(this, 0, DustID.t_BorealWood, SoundID.Dig, new Color(142, 62, 32), ModContent.ItemType<VerdantWoodBlock>(), "Tree", false, false, false, false);
             Main.tileFrameImportant[Type] = true;
             Main.tileAxe[Type] = true;
+
+            TileID.Sets.IsATreeTrunk[Type] = true;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = (fail ? 1 : 3);

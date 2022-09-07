@@ -36,12 +36,13 @@ namespace Verdant
 
             if (currentVine != -1)
             {
-                if (!CurrentVine.active || CurrentVine.timeLeft < 5)
+                if (!CurrentVine.active || CurrentVine.timeLeft < 5 || Player.dead)
                 {
                     currentVine = -1;
                     return;
                 }
 
+                Player.fallStart = (int)(CurrentVine.position.Y / 16f);
                 Player.velocity = Vector2.Zero;
                 CurrentVineMod.PulleyVelocity(Player);
                 Player.pulley = true;

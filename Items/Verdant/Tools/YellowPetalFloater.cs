@@ -27,7 +27,10 @@ namespace Verdant.Items.Verdant.Tools
                     return false;
                 }
             }
-            return true;
+
+            int proj = Projectile.NewProjectile(source, position, velocity, type, 0, 0f, player.whoAmI);
+            (Main.projectile[proj].ModProjectile as YellowPetalFloaterProj).anchor = position;
+            return false;
         }
     }
 }

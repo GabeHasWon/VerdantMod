@@ -54,6 +54,12 @@ namespace Verdant
             tag.Add("backgroundItems", backgroundItems);
 
             SaveVines(tag);
+
+            var clouds = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is YellowPetalFloaterProj);
+            var positions = new List<Vector2>();
+            foreach (var item in clouds)
+                positions.Add(item.position);
+            tag.Add("cloudPositions", positions);
         }
 
         private void SaveVines(TagCompound tag)
@@ -93,6 +99,13 @@ namespace Verdant
                 BackgroundItemManager.Load(bgItems);
 
             SpawnPermVines(tag.GetList<Vector2>("permVinePositions"), tag.GetList<bool>("permVineContinuity"));
+
+            var clouds = tag.GetList<Vector2>("cloudPositions");
+            foreach (var item in clouds)
+            {
+                int proj = Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), item, Vector2.Zero, ModContent.ProjectileType<YellowPetalFloaterProj>(), 0, 0f, Main.LocalPlayer.whoAmI);
+                (Main.projectile[proj].ModProjectile as YellowPetalFloaterProj).anchor = item;
+            }
         }
 
         private void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
