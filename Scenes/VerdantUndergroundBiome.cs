@@ -23,7 +23,7 @@ namespace Verdant.Scenes
 		public override string BestiaryIcon => base.BestiaryIcon;
 		public override string BackgroundPath => MapBackground;
 		public override Color? BackgroundColor => base.BackgroundColor;
-		public override string MapBackground => "SpiritMod/Backgrounds/VerdantMap";
+		public override string MapBackground => "Verdant/Backgrounds/VerdantMap";
 
 		public override bool IsBiomeActive(Player player)
 		{

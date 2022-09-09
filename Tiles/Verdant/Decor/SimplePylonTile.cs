@@ -27,7 +27,7 @@ namespace Verdant.Tiles.Verdant.Decor
 		public override void Load()
 		{
 			crystalTexture = ModContent.Request<Texture2D>(Texture + "_Crystal");
-			highlightTexture = ModContent.Request<Texture2D>("SpiritMod/Tiles/Furniture/Pylons/PylonHighlight");
+			highlightTexture = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Decor/PylonHighlight");
 			mapIcon = ModContent.Request<Texture2D>(Texture + "_MapIcon");
 		}
 

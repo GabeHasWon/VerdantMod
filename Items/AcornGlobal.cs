@@ -16,10 +16,15 @@ namespace Verdant.Items
             Point p = Main.MouseWorld.ToTileCoordinates();
             Tile tile = Main.tile[p.X, p.Y + 1];
 
-            if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>() && !WorldGen.SolidTile(p.X, p.Y) && !WorldGen.SolidTile(p.X, p.Y - 1) && Main.tile[p.X, p.Y].TileType != ModContent.TileType<LushSapling>())
+            if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>() && Main.tile[p.X, p.Y].TileType != ModContent.TileType<LushSapling>())
             {
-                WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<LushSapling>());
-                return true;
+                Tile top = Main.tile[p.X, p.Y - 1];
+                Tile bot = Main.tile[p.X, p.Y];
+                if ((!top.HasTile || Main.tileCut[top.TileType]) && (!bot.HasTile || Main.tileCut[bot.TileType]))
+                {
+                    WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<LushSapling>());
+                    return true;
+                }
             }
             return null;
         }

@@ -21,6 +21,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles;
 using Terraria.IO;
+using System;
 
 namespace Verdant.World
 {
@@ -56,7 +57,8 @@ namespace Verdant.World
                 VerdantCentre = new Point(WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.20f)), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.5f), (int)(Main.maxTilesY / 1.75f)));
                 total = 0;
                 if (WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y - FluffY) || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X - FluffX, VerdantCentre.Y + FluffY)
-                    || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y - FluffY) || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y + FluffY))
+                    || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y - FluffY) || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre.X + FluffX, VerdantCentre.Y + FluffY)
+                    || WorldGen.UndergroundDesertLocation.Contains(VerdantCentre))
                     continue;
                 for (int i = VerdantCentre.X - (int)(FluffX * 1.2f); i < VerdantCentre.X + (FluffX * 1.2f); ++i) //Assume width
                 {
@@ -93,8 +95,74 @@ namespace Verdant.World
             AddPlants();
             p.Message = "Watering plants...";
             AddWater();
-            p.Message = "Adding signs...";
+            AddWaterfalls();
+            p.Message = "Growing surface...";
             AddSurfaceVerdant();
+        }
+
+        private void AddWaterfalls()
+        {
+            for (int i = 0; i < 50 * WorldSize; ++i)
+            {
+                int x = Main.rand.Next(VerdantArea.Left, VerdantArea.Right);
+                int y = Main.rand.Next(VerdantArea.Top, VerdantArea.Bottom);
+                Tile tile = Main.tile[x, y];
+
+                if (!WorldGen.SolidTile(tile))
+                    DigFall(x, y, 2);
+                else
+                    --i;
+            }
+        }
+
+        private static void DigFall(int x, int y, int minHeight)
+        {
+            bool CanPlaceAt(int i, int j, int dir) => WorldGen.SolidTile(i, j) && WorldGen.SolidTile(i + dir, j) && WorldGen.SolidTile(i + dir + dir, j - 1);
+
+            void PlaceAt(int i, int j, int dir)
+            {
+                Tile liquidTile = Main.tile[i + dir, j - 1];
+                liquidTile.ClearTile();
+                liquidTile.LiquidAmount = 255;
+                liquidTile.LiquidType = LiquidID.Water;
+
+                Tile halfTile = Main.tile[i, j - 1];
+                halfTile.IsHalfBlock = true;
+
+                if (halfTile.TileType == TileID.Silt || liquidTile.TileType == TileID.Sand)
+                    liquidTile.TileType = TileID.Stone;
+
+                Tile silt = Main.tile[i + dir + dir, j - 1];
+                if (silt.TileType == TileID.Silt || silt.TileType == TileID.Sand)
+                    silt.TileType = TileID.Stone;
+
+                silt = Main.tile[i + dir, j];
+                if (silt.TileType == TileID.Silt || silt.TileType == TileID.Sand)
+                    silt.TileType = TileID.Stone;
+
+                int adjY = 0;
+                while (Main.tile[i - dir, j - 1 + adjY].HasTile)
+                    Main.tile[i - dir, j - 1 + adjY++].ClearTile();
+            }
+
+            const int MaxHeight = 16;
+
+            for (int j = y; j > y - MaxHeight; --j)
+            {
+                if (Math.Abs(j - y) < minHeight)
+                    continue;
+
+                if (CanPlaceAt(x, j, -1))
+                {
+                    PlaceAt(x, j, -1);
+                    return;
+                }
+                else if (CanPlaceAt(x, j, 1))
+                {
+                    PlaceAt(x, j, 1);
+                    return;
+                }
+            }
         }
 
         private void AddSurfaceVerdant()
@@ -423,6 +491,10 @@ namespace Verdant.World
             float repeats = 8 * WorldSize;
 
             VerdantArea = new Rectangle(VerdantCentre.X - (int)(3 * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantCentre.Y - 100, (int)(8 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
+            VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
+            VerdantArea.Width += 80;
+            VerdantArea.Height += 80;
+
             VerdantCircles.Clear();
             for (int i = 0; i < repeats; ++i)
             {
@@ -438,6 +510,8 @@ namespace Verdant.World
 
         private void CleanForCaves()
         {
+            const float Buffer = 3f;
+
             TunnelSpice();
 
             //Caves
@@ -446,12 +520,12 @@ namespace Verdant.World
             VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.CubicFractal; //Sets noise to proper type
             VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
 
-            for (int i = VerdantCentre.X - Main.maxTilesX / 6; i < VerdantCentre.X + Main.maxTilesX / 6; ++i)
+            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + Main.maxTilesX / Buffer; ++i)
             {
                 if (i < 2) i = 2;
                 if (i > Main.maxTilesX - 2) break;
 
-                for (int j = VerdantCentre.Y - Main.maxTilesY / 6; j < VerdantCentre.Y + Main.maxTilesY / 6; ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + Main.maxTilesY / Buffer; ++j)
                 {
                     if (j < 2) j = 2;
                     if (j > Main.maxTilesY - 2) break;
@@ -479,16 +553,16 @@ namespace Verdant.World
             VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
             VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
 
-            for (int i = VerdantCentre.X - Main.maxTilesX / 6; i < VerdantCentre.X + Main.maxTilesX / 6; ++i)
+            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + Main.maxTilesX / Buffer; ++i)
             {
-                for (int j = VerdantCentre.Y - Main.maxTilesY / 6; j < VerdantCentre.Y + Main.maxTilesY / 6; ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + Main.maxTilesY / Buffer; ++j)
                 {
                     Tile t = Framing.GetTileSafely(i, j);
                     float n = VerdantSystem.genNoise.GetNoise(i, j);
-                    if (t.WallType == WallTypes[0] && n < -0.36f)
+                    if (t.WallType == WallTypes[0] && n < -0.4f)
                         GenHelper.ReplaceWall(new Point(i, j), WallTypes[2]);
 
-                    if (n < -0.68f && TileTypes.Any(x => x == t.TileType) && t.TileType != TileTypes[0] && t.HasTile)
+                    if (n < -0.72f && TileTypes.Any(x => x == t.TileType) && t.TileType != TileTypes[0] && t.HasTile)
                         GenHelper.ReplaceTile(new Point(i, j), TileTypes[4]);
                 }
             }
@@ -586,17 +660,21 @@ namespace Verdant.World
 
                         if (dist < rad && tile.TileType != TileTypes[2])
                         {
-                            tile.ClearEverything();
-
                             if (rad - dist < MaxDitherDistance)
                             {
                                 float chance = (rad - dist) / MaxDitherDistance;
 
                                 if (WorldGen.genRand.NextFloat() <= chance && Main.tile[nPos.X, nPos.Y].HasTile)
+                                {
+                                    tile.ClearEverything();
                                     WorldGen.PlaceTile(nPos.X, nPos.Y, TileTypes[2], true);
+                                }
                             }
                             else
+                            {
+                                tile.ClearEverything();
                                 WorldGen.PlaceTile(nPos.X, nPos.Y, TileTypes[2], true);
+                            }
                         }
                     }
                 }

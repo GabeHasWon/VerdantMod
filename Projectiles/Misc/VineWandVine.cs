@@ -51,7 +51,7 @@ namespace Verdant.Projectiles.Misc
             if (nextVine != -1 && InvalidVine(false))
                 nextVine = -1;
 
-            int dir = (Projectile.whoAmI % 2) + (Projectile.whoAmI % 8) + (Projectile.whoAmI % 3); //"randomize" direction
+            int dir = (Projectile.whoAmI % 2) + (Projectile.whoAmI % 9) + (Projectile.whoAmI % 3); //"randomize" direction
             Projectile.spriteDirection = (dir % 2 == 0) ? -1 : 1;
 
             float rotOff = (float)Math.Sin((Timer++ + (VineIndex * 12)) * 0.05f) * 0.2f;
@@ -89,16 +89,15 @@ namespace Verdant.Projectiles.Misc
 
         public void PulleyVelocity(Player player)
         {
-            float vineOff = player.GetModPlayer<VinePulleyPlayer>().vineOffset;
-            Vector2 otherPos = player.Center;
+            if (player.controlDown && player.controlUp)
+                return;
 
-            if (nextVine != -1 && vineOff <= 0.5f)
-                otherPos = Vector2.Lerp(NextVine.Center, Projectile.Center, 0.5f);
-            else if (priorVine != -1 && vineOff > 0.5f)
-                otherPos = Vector2.Lerp(PriorVine.Center, Projectile.Center, 0.5f);
+            const float Speed = 4.75f;
 
-            if (otherPos != player.Center && ((player.controlUp && nextVine != -1) || (player.controlDown && priorVine != -1)))
-                player.velocity = player.DirectionTo(otherPos) * 4.5f;
+            if (nextVine != -1 && player.controlUp)
+                player.velocity = player.DirectionTo(NextVine.Center) * Speed;
+            if (priorVine != -1 && player.controlDown)
+                player.velocity = player.DirectionTo(PriorVine.Center) * Speed;
         }
 
         public override void Kill(int timeLeft)

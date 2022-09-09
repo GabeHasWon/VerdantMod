@@ -104,19 +104,10 @@
 	- "Apotheosis Lullaby" (*)
 	- "Tear Rain"
 
-	MARKETING
-	- Twitter.com account?
-	- Promotional images
-	- Logo
-
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: DRESSER, SINK
-
-	SYSTEMS
-	- Foreground : Needs multiplayer compat (I/O optional)
-	- Background : Needs multiplayer compat
 
 [CUT/TO BE DONE LATER] --------------------------------------------
 	TILES [PLANTS]
@@ -137,3 +128,7 @@
 	MUSIC
 	- Unnamed Surface Day
 	- Unnamed Surface Night
+
+	SYSTEMS - Are these even necessary?
+	- Foreground : Needs multiplayer compat (I/O optional)
+	- Background : Needs multiplayer compat

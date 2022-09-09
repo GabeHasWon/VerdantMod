@@ -15,7 +15,7 @@ namespace Verdant.Items.Verdant.Tools
         }
 
         public override void SetDefaults() => QuickItem.SetBlock(this, 38, 26, ModContent.TileType<Tiles.Verdant.Basic.Plants.Bouncebloom>(), true);
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Bouncebloom", "Slow fall + protection from above");
+        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Bouncebloom", "Slows fall\nHold DOWN to fall faster\nLight enemies above you will bounce on the flower");
 
         public override void HoldItem(Player player)
         {
@@ -37,13 +37,14 @@ namespace Verdant.Items.Verdant.Tools
             }
         }
 
-        private bool CheckNPCConditions(NPC n, Player p) => n.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)) && !n.boss && n.width + n.height < 300 && n.knockBackResist > 0.05f;
+        private bool CheckNPCConditions(NPC n, Player p) => n.Hitbox.Intersects(new Rectangle((int)p.Center.X - 24, (int)p.Center.Y - 30, 48, 24)) && !n.boss && n.width + n.height < 300 
+            && n.knockBackResist > 0.05f && n.velocity.Y > 0 && n.life > 5;
 
         public override void HoldItemFrame(Player player) => player.bodyFrame.Y = 56;
 
         public void PlayerDraw(PlayerDrawSet info)
         {
-            if (info.drawPlayer.HeldItem.type == Item.type)
+            if (info.drawPlayer.HeldItem.type == Item.type && !info.drawPlayer.dead)
             {
                 Texture2D t = Mod.Assets.Request<Texture2D>("Items/Verdant/Tools/BouncebloomEquip").Value;
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
