@@ -28,15 +28,15 @@ public class ProbablyDelete : ModItem
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
-		//Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Beehive>();
-		//Item.createWall = ModContent.WallType<VerdantVineWall_Unsafe>();
-		Item.placeStyle = 0;
+        Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Beehive>();
+        //Item.createWall = ModContent.WallType<VerdantVineWall_Unsafe>();
+        Item.placeStyle = 0;
 	}
 
 	public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
 	{
 		var j = Main.MouseWorld.ToTileCoordinates();
-		BigVerdantTree.Spawn(j.X, j.Y, 20, Main.rand);
+		//BigVerdantTree.Spawn(j.X, j.Y, 20, Main.rand);
         //WorldGen.GrowTree(j.X, j.Y);
         return true;
 	}

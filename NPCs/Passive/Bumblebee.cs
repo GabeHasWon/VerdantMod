@@ -22,7 +22,6 @@ namespace Verdant.NPCs.Passive
         public ref float Timer => ref NPC.ai[2];
         public ref float WaitTimer => ref NPC.ai[3];
 
-        private Vector2 nextPosition = Vector2.Zero;
         private Vector2 flowerOffset = Vector2.Zero;
         private int honeyCount = 0;
 
@@ -72,12 +71,15 @@ namespace Verdant.NPCs.Passive
                 if (honeyCount >= MaxHoney && flower is not null) //Beehive check
                 {
                     Point hive = flower.Value;
-                    NPC.velocity = NPC.DirectionTo(hive.ToWorldCoordinates() + new Vector2(16)) * 2f;
+                    Vector2 destination = hive.ToWorldCoordinates() + new Vector2(16);
+
+                    NPC.velocity = NPC.DirectionTo(destination) * 2f;
                     NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
-                    if (Vector2.Distance(hive.ToWorldCoordinates(), NPC.Center) < 3f)
+                    if (Vector2.DistanceSquared(destination, NPC.Center) < 9f)
                     {
                         Beehive.IncreaseFrame(hive);
+                        BeehiveSystem.Remove(hive);
                         NPC.active = false;
 
                         for (int i = 0; i < 3; ++i)
@@ -172,7 +174,7 @@ namespace Verdant.NPCs.Passive
                         Point tL = TileHelper.GetTopLeft(new Point(i, j));
                         bool validTile = Flowers.FlowerIDs.ContainsKey(t.TileType) && IsFlowerValid(tL.X, tL.Y, flower ?? Point.Zero);
                         if (honeyCount >= MaxHoney)
-                            validTile = t.TileType == ModContent.TileType<Beehive>();
+                            validTile = t.TileType == ModContent.TileType<Beehive>() && t.TileFrameX < Beehive.FrameHeight * 2;
 
                         if (validTile)
                         {

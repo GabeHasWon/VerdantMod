@@ -20,6 +20,9 @@ public class BackgroundItemManager
 
     public static void AddItem(BaseBGItem item, bool forceSpawn = false)
     {
+        if (bgItems is null)
+            bgItems = new List<BaseBGItem>();
+
         if (!ModContent.GetInstance<VerdantServerConfig>().BackgroundObjects && !forceSpawn) //Skip if option is turned off & it's not forced
             return;
 
