@@ -9,7 +9,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class VerdantLillie : ModTile
+internal class VerdantLillie : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
@@ -86,4 +86,8 @@ internal class VerdantLillie : ModTile
         spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j) - new Vector2(xOff, 0), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         return false;
     }
+
+    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(8) };
+    public bool IsFlower(int i, int j) => Main.tile[i, j].TileFrameY >= 18 * 3;
+    public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 }

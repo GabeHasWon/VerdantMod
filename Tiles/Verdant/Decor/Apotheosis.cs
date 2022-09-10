@@ -68,7 +68,8 @@ internal class Apotheosis : ModTile
                 string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
                 Speak(msg);
 
-                Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
+                for (int k = 0; k < playerCount; ++k)
+                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
                 ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
                 return true;
             }
@@ -77,9 +78,7 @@ internal class Apotheosis : ModTile
             {
                 Speak("Our blessings for slaying the skeleton, here...");
                 ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
-
-                for (int k = 0; k < playerCount; ++k)
-                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
+                Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
                 return true;
             }
 

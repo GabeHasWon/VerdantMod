@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Trees
 {
     class BigVerdantTree : ModTile
     {
-        private  int LeafType => ModContent.GetInstance<VerdantMod>().Find<ModGore>("LushLeaf").Type; //Set this to whatever custom type you want. If not a constant, do it in SetDefaults
+        private static int LeafType => ModContent.GetInstance<VerdantMod>().Find<ModGore>("LushLeaf").Type; //Set this to whatever custom type you want. If not a constant, do it in SetDefaults
         /// <summary>X/Y are equal to the width & height (respectively), in tiles, the top is - then, the width and height are the width/height in pixels
         /// Note: The tops are draw by the origin of the middle-bottom of the trunk, so generally, you'd want to use TreeTopSize.X / 2 for the left side (and same for the right side)</summary>
         private readonly Rectangle TreeTopSize = new Rectangle(24, 20, 360, 320);

@@ -38,7 +38,6 @@ namespace Verdant
             }
 
             OnHooks();
-            //ILHooks();
         }
 
         public override void PostSetupContent()
@@ -50,19 +49,8 @@ namespace Verdant
         {
             ForegroundManager.Unload();
             UnhookOn();
-            //UnhookIL();
 
             Instance = null;
-        }
-
-        private void ILHooks()
-        {
-            IL.Terraria.Main.DoDraw += Main_DoDraw;
-        }
-
-        private void UnhookIL()
-        {
-            IL.Terraria.Main.DoDraw -= Main_DoDraw;
         }
 
         private void OnHooks()
@@ -82,41 +70,6 @@ namespace Verdant
             On.Terraria.Main.DrawWater -= Main_DrawWater;
             On.Terraria.Main.Update -= Main_Update;
             On.Terraria.Main.DrawGore -= Main_DrawGore;
-        }
-
-        private void Main_DoDraw(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "snowMoon")))
-                return; //Try and get to the ldsfld opcode of snowMoon
-
-            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "spriteBatch")))
-                return; //Try and get to the ldsfld opcode of spriteBatch, the one that draws frost moon
-
-            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(Main), "spriteBatch")))
-                return; //Try and get to the ldsfld opcode of spriteBatch, the one that draws generic moon
-
-            c.Index++; //Move in front of the spriteBatch ldsfld
-            ILLabel label = il.DefineLabel(); //Define return label
-
-            c.EmitDelegate<OverrideVanillaMoonDelegate>(OverrideVanillaMoon); //Check if we want to override the vanilla moon
-            c.Emit(OpCodes.Brfalse_S, label); //If we don't, skip to after the if
-
-            c.Emit(OpCodes.Ldloc, 8); //num23 (x)
-            c.Emit(OpCodes.Conv_R4); //Convert to float32
-
-            c.Emit(OpCodes.Ldloc, 9); //num24 (y)
-            c.Emit(OpCodes.Ldsfld, typeof(Main).GetField(nameof(Main.moonModY))); //Moon y offset
-            c.Emit(OpCodes.Add); //Combine num24 and offset
-            c.Emit(OpCodes.Conv_R4); //Convert to float32
-
-            c.Emit(OpCodes.Ldloc, 10); //white2 (col)
-            c.Emit(OpCodes.Ldloc, 12); //rotation2 (rot)
-            c.Emit(OpCodes.Ldloc, 11); //num25 (scale)
-            c.EmitDelegate<DrawMoonDelegate>(DrawMoon); //Now we have a DrawMoon hook!
-
-            c.MarkLabel(label);
         }
 
         private delegate bool OverrideVanillaMoonDelegate();
