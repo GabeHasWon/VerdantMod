@@ -161,6 +161,7 @@ namespace Verdant.NPCs.Passive
             {
                 for (int j = center.Y - MaxDist; j < center.Y + MaxDist; ++j)
                 {
+
                     if (Main.tile[i, j].HasTile)
                     {
                         Tile t = Main.tile[i, j];
@@ -172,9 +173,11 @@ namespace Verdant.NPCs.Passive
                         }
 
                         Point tL = TileHelper.GetTopLeft(new Point(i, j));
-                        bool validTile = Flowers.FlowerIDs.ContainsKey(t.TileType) && IsFlowerValid(tL.X, tL.Y, flower ?? Point.Zero);
+                        bool validTile;
                         if (honeyCount >= MaxHoney)
-                            validTile = t.TileType == ModContent.TileType<Beehive>() && t.TileFrameX < Beehive.FrameHeight * 2;
+                            validTile = t.TileType == ModContent.TileType<Beehive>() && t.TileFrameX < Beehive.FrameHeight * 2 && Vector2.DistanceSquared((flower ?? Point.Zero).ToWorldCoordinates(), NPC.Center) > Vector2.DistanceSquared(new Vector2(i, j) * 16, NPC.Center);
+                        else
+                            validTile = Flowers.FlowerIDs.ContainsKey(t.TileType) && IsFlowerValid(tL.X, tL.Y, flower ?? Point.Zero);
 
                         if (validTile)
                         {

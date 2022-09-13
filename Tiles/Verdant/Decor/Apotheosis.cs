@@ -63,13 +63,23 @@ internal class Apotheosis : ModTile
 
         if (_timer > 3000)
         {
+            if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //BoC/EoW text
+            {
+                Speak("The eye is felled. Thank you. Come back to me whenever you best other foes...");
+
+                for (int k = 0; k < playerCount; ++k)
+                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
+                ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
+                return true;
+            }
+
             if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
             {
-                string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + ", here...";
+                string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "mind" : "devourer") + "...";
                 Speak(msg);
 
                 for (int k = 0; k < playerCount; ++k)
-                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<VineWand>(), 1);
+                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<PermVineWand>(), 1);
                 ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
                 return true;
             }
@@ -78,7 +88,7 @@ internal class Apotheosis : ModTile
             {
                 Speak("Our blessings for slaying the skeleton, here...");
                 ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
-                Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
+                Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
                 return true;
             }
 
@@ -87,7 +97,7 @@ internal class Apotheosis : ModTile
                 Speak("We sense a powerful spirit released...take this.");
 
                 for (int v = 0; v < playerCount; ++v)
-                    Item.NewItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
+                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
                 ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
                 return true;
             }
@@ -108,10 +118,10 @@ internal class Apotheosis : ModTile
 
                 if (r == 3)
                 {
-                    if (NPC.downedBoss1)
-                        msg = "We feel an evil presense finally resting...";
                     if (NPC.downedSlimeKing)
                         msg = "Ah, the King of Slimes has been slain, wonderful...";
+                    if (NPC.downedQueenBee)
+                        msg = "The tyrannical Queen has fallen.\nHopefully you're having a better experience here.";
                 }
 
                 Mod spiritMod = ModLoader.GetMod("SpiritMod");
@@ -120,16 +130,16 @@ internal class Apotheosis : ModTile
                     if ((bool)spiritMod.Call("downed", "Scarabeus"))
                         msg = "The desert sands feel calmer now.";
                     if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
-                        msg = "Ah, I love the critters of the glowing sky.1It seems you've met some as well.";
+                        msg = "Ah, I love the critters of the glowing sky.\nIt seems you've met some as well.";
                     if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
                         msg = "The flowers feel more relaxed now. Thank you.";
                     if ((bool)spiritMod.Call("downed", "Ancient Avian"))
                         msg = "The skies are more at peace now, well done.";
                     if ((bool)spiritMod.Call("downed", "Starplate Raider"))
-                        msg = "We always had a soft spot for that glowing mechanism, but alas...";
+                        msg = "We always had a soft spot for that glowing mech, but alas...";
                 }
 
-                string[] split = msg.Split('1');
+                string[] split = msg.Split("\n");
                 foreach (var item in split)
                     Speak(msg);
             }

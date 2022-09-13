@@ -19,6 +19,7 @@ class VerdantPlayer : ModPlayer
     public bool ZoneApotheosis;
 
     public bool heartOfGrowth = false;
+    public bool expertPlantGuide = false;
 
     public float lastSlotsMinion = 0;
 
@@ -43,10 +44,11 @@ class VerdantPlayer : ModPlayer
 
         if (heartOfGrowth) //perm bonus
             Player.maxMinions++;
+
+        expertPlantGuide = false;
     }
 
     public override void SaveData(TagCompound tag) => tag.Add("heartOfGrowth", heartOfGrowth);
-
     public override void LoadData(TagCompound tag) => heartOfGrowth = tag.GetBool("heartOfGrowth");
 
     public override void Unload()
@@ -81,7 +83,7 @@ class VerdantPlayer : ModPlayer
             AddForegroundOrBackground();
     }
 
-    public override void PostUpdateMiscEffects() => lastSlotsMinion = Player.slotsMinions;
+    public override void PostUpdateMiscEffects() => lastSlotsMinion = Player.slotsMinions; 
 
     private void TileFloor(Point left, Point right, int lType, int rType)
     {

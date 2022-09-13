@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
@@ -28,7 +30,21 @@ internal class VerdantVine : ModTile, IFlowerTile
     public override void RandomUpdate(int i, int j)
     {
         if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(10))
-            WorldGen.PlaceTile(i, j + 1, Type, true, false);
+            TileHelper.SyncedPlace(i, j + 1, Type, true);
+    }
+
+    public override bool Drop(int i, int j)
+    {
+        int plr = Player.FindClosest(new Vector2(i, j) * 16, 16, 16);
+
+        if (plr == -1)
+            return false;
+
+        Player player = Main.player[plr];
+
+        if (player.active && !player.dead && player.GetModPlayer<VerdantPlayer>().expertPlantGuide)
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, ModContent.ItemType<VineRopeItem>());
+        return false;
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

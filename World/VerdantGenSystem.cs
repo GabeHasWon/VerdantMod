@@ -254,11 +254,11 @@ namespace Verdant.World
                     StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, Mod, index);
                     positions.Add(pos.ToVector2());
 
-                    if (!WorldGen.genRand.NextBool(6)) //NORMAL chests
+                    if (!WorldGen.genRand.NextBool(4)) //NORMAL chests
                     {
                         bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, ModContent.TileType<VerdantYellowPetalChest>(), new (int, int)[]
                         {
-                            (ModContent.ItemType<VerdantStaff>(), 1), (ModContent.ItemType<Lightbloom>(), 1)
+                            (ModContent.ItemType<VerdantStaff>(), 1), (ModContent.ItemType<Lightbloom>(), 1), (ModContent.ItemType<ExpertPlantGuide>(), 1), (ModContent.ItemType<Halfsprout>(), WorldGen.genRand.Next(20, 31))
                         }, new (int, int)[] {
                             (ItemID.IronskinPotion, WorldGen.genRand.Next(1, 3)), (ItemID.ThornsPotion, WorldGen.genRand.Next(1, 3)), (ItemID.ThrowingKnife, WorldGen.genRand.Next(3, 7)),
                             (ModContent.ItemType<PinkPetal>(), WorldGen.genRand.Next(3, 7)), (ModContent.ItemType<RedPetal>(), WorldGen.genRand.Next(3, 7)), (ModContent.ItemType<Lightbulb>(), WorldGen.genRand.Next(1, 3)),

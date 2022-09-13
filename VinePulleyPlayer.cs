@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
@@ -46,7 +47,15 @@ namespace Verdant
                 Player.velocity = Vector2.Zero;
                 CurrentVineMod.PulleyVelocity(Player);
                 Player.pulley = true;
-                Player.ChangeDir(1);
+
+                if (Player.velocity.X != 0)
+                {
+                    Player.ChangeDir(Math.Sign(Player.velocity.X));
+                    Player.pulleyFrameCounter++;
+
+                    if (Player.pulleyFrameCounter % 10 == 0)
+                        Player.pulleyFrame = Player.pulleyFrame == 0 ? 1 : 0;
+                }
 
                 if (!Player.controlDown && !Player.controlUp)
                     Player.velocity *= 0.9f;

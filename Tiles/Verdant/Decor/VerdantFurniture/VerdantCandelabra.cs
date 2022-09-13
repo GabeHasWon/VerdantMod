@@ -49,12 +49,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
-            if (tile.TileFrameX <= 18 && tile.TileFrameY == 0)
+            Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3f;
+            if (Framing.GetTileSafely(i, j).TileFrameX == 0)
             {
-                r = 0.3f;
-                g = 0.09f;
-                b = 0.18f;
+                r = light.X;
+                g = light.Y;
+                b = light.Z;
             }
         }
     }

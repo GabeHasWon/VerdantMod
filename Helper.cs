@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using static Terraria.WorldGen;
 
@@ -96,6 +97,20 @@ namespace Verdant
                 p.bodyFrame.Y = FrameSize * 4;
             else if (WithinAngle(MathHelper.PiOver2 * 3))
                 p.bodyFrame.Y = FrameSize * 3;
+        }
+
+        public static int SyncItem(IEntitySource source, Vector2 pos, int type, int stack = 1)
+        {
+            int newItem = Item.NewItem(source, pos, type, stack); // Create a new item in the world.
+            if (Main.netMode == NetmodeID.MultiplayerClient && newItem >= 0)
+                NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
+            return newItem;
+        }
+
+        public static int SyncItem(IEntitySource source, Rectangle spawnRect, int type, int stack = 1)
+        {
+            Vector2 adjPos = spawnRect.Location.ToVector2() + new Vector2(Main.rand.Next(spawnRect.Width), Main.rand.Next(spawnRect.Height));
+            return SyncItem(source, adjPos, type, stack);
         }
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();

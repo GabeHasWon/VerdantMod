@@ -22,18 +22,21 @@ namespace Verdant.Items.Verdant.Weapons
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (Main.dedServ || Main.netMode == NetmodeID.MultiplayerClient)
+            if (Main.dedServ || Main.netMode != NetmodeID.SinglePlayer)
             {
-                TooltipLine line = new TooltipLine(Mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
+                TooltipLine line = new(Mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
                 tooltips.Add(line);
             }
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             int y = Helper.FindDown(Main.MouseWorld) * 16;
             position = new Vector2(Main.MouseWorld.X, y - 70);
+        }
 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
             if (Main.projectile.Any(x => x.active && x.type == ModContent.ProjectileType<VerdantHealingMinion>())) //we are good - adjust position
             {
                 var adjList = Main.projectile.Where(x => x.type == ModContent.ProjectileType<VerdantHealingMinion>() && x.ModProjectile is VerdantHealingMinion);
@@ -58,7 +61,7 @@ namespace Verdant.Items.Verdant.Weapons
                 for (int j = -3; j < 0; ++j)
                     if (TileHelper.SolidTile(Helper.MouseTile().X + i, Helper.MouseTile().Y + j))
                         return false;
-            return player.ownedProjectileCounts[ModContent.ProjectileType<VerdantHealingMinion>()] > 0 || player.GetModPlayer<VerdantPlayer>().lastSlotsMinion < player.maxMinions;
+            return true;
         }
     }
 }

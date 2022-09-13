@@ -31,12 +31,12 @@ namespace Verdant.Items.Verdant.Tools
 
         public override void AddRecipes()
         {
-            Recipe m = CreateRecipe();
-            m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 16);
-            m.AddIngredient(ModContent.ItemType<PinkPetal>(), 8);
-            m.AddIngredient(ModContent.ItemType<Lightbulb>(), 8);
-            m.AddTile(TileID.Anvils);
-            m.Register();
+            CreateRecipe().
+                AddIngredient<VerdantStrongVineMaterial>(16).
+                AddIngredient<PinkPetal>(8).
+                AddIngredient<Lightbulb>(4).
+                AddTile(TileID.Anvils).
+                Register();
         }
     }
 }

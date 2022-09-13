@@ -51,6 +51,11 @@ namespace Verdant.Projectiles.Misc
             if (nextVine != -1 && InvalidVine(false))
                 nextVine = -1;
 
+            if (priorVine != -1 && nextVine != -1)
+                Projectile.frame = 1;
+            else
+                Projectile.frame = 0;
+
             int dir = (Projectile.whoAmI % 2) + (Projectile.whoAmI % 9) + (Projectile.whoAmI % 3); //"randomize" direction
             Projectile.spriteDirection = (dir % 2 == 0) ? -1 : 1;
 
@@ -95,9 +100,12 @@ namespace Verdant.Projectiles.Misc
             const float Speed = 4.75f;
 
             if (nextVine != -1 && player.controlUp)
-                player.velocity = player.DirectionTo(NextVine.Center) * Speed;
+                player.velocity = player.DirectionTo(NextVine.Center + new Vector2(0, 30)) * Speed;
             if (priorVine != -1 && player.controlDown)
-                player.velocity = player.DirectionTo(PriorVine.Center) * Speed;
+                player.velocity = player.DirectionTo(PriorVine.Center + new Vector2(0, 30)) * Speed;
+
+            if (player.velocity.HasNaNs())
+                player.velocity = Vector2.Zero;
         }
 
         public override void Kill(int timeLeft)

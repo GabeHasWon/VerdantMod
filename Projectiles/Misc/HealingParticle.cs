@@ -23,7 +23,7 @@ namespace Verdant.Projectiles.Misc
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 2000;
-            Projectile.scale = Main.rand.NextFloat(0.1f, 0.6f);
+            Projectile.scale = Main.rand.NextFloat(0.1f, 0.3f);
 
             drawCol = new Color(Main.rand.NextFloat(0.2f), Main.rand.NextFloat(0.25f, 0.9f), Main.rand.NextFloat(0.2f));
         }

@@ -1,14 +1,15 @@
 ----The Verdant Mod----
 by GabeHasWon
 
-A mod dedicated to cultivating the Verdant - a lush underground cave system with plants and trees about.
+A mod dedicated to cultivating the Verdant - a lush underground cave system with plants and trees (and critters!) about.
 
 As of writing this, the mod has the following:
-	- 66 new items
-	- 59 new tiles
-	- 9 new walls
-	- 6 new NPCs
-	- 2 brand new tracks
+	- 85 new items
+	- 70 new tiles
+	- 12 new walls
+	- 9 new NPCs
+	- 3 brand new music tracks
+	- A new foreground and background system that gives more life to the biome
 ...and more!
 
 ----Credit----
@@ -18,7 +19,7 @@ Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback --
 
-Santra, Cherryversai, Beave, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
+Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
 Aeterna - A payment of 750 schmeckles
 
 --Development--

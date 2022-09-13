@@ -10,6 +10,8 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using Verdant.Backgrounds.BGItem;
+using Verdant.Foreground;
+using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Noise;
 using Verdant.Projectiles.Misc;
@@ -24,12 +26,15 @@ namespace Verdant
         private int VerdantTiles;
         private int ApotheosisTiles;
 
+        public List<Projectile> Vines = new List<Projectile>();
+
         public static bool InVerdant => ModContent.GetInstance<VerdantSystem>().VerdantTiles > 40;
         public static bool NearApotheosis => ModContent.GetInstance<VerdantSystem>().ApotheosisTiles > 2;
 
         public static FastNoise genNoise;
 
         public int apotheosisDialogueIndex = 0;
+        public bool apotheosisEyeDown = false;
         public bool apotheosisEvilDown = false;
         public bool apotheosisSkelDown = false;
         public bool apotheosisWallDown = false;
@@ -39,6 +44,8 @@ namespace Verdant
             var apotheosisStats = new List<string>();
             if (apotheosisDialogueIndex >= 3)
                 apotheosisStats.Add("indexFin");
+            if (apotheosisEvilDown)
+                apotheosisStats.Add("eocDown");
             if (apotheosisEvilDown)
                 apotheosisStats.Add("evilDown");
             if (apotheosisSkelDown)
@@ -55,28 +62,34 @@ namespace Verdant
 
             SaveVines(tag);
 
-            var clouds = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is YellowPetalFloaterProj);
+            var clouds = ForegroundManager.Items.Where(x => x is CloudbloomEntity);
             var positions = new List<Vector2>();
             foreach (var item in clouds)
                 positions.Add(item.Center);
             tag.Add("cloudPositions", positions);
         }
 
+        public override void OnWorldUnload()
+        {
+            ForegroundManager.Unload();
+            BackgroundItemManager.Unload();
+        }
+
         private static void SaveVines(TagCompound tag)
         {
-            var vines = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is VineWandVine);
+            var vines = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is VineWandVine vine && (vine.nextVine > -1 || vine.priorVine > -1));
             var positions = new List<Vector2>();
             var continueSet = new List<bool>();
 
             for (int i = 0; i < vines.Count(); ++i)
             {
                 Projectile item = vines.ElementAt(i);
-                positions.Add(item.position);
+                positions.Add(item.Center);
 
-                if (i > 0)
+                if (i > 0 && i < vines.Count() - 2)
                 {
                     var vine = item.ModProjectile as VineWandVine;
-                    continueSet.Add(item.whoAmI == (vines.ElementAt(i - 1).ModProjectile as VineWandVine).nextVine);
+                    continueSet.Add(item.whoAmI == (vines.ElementAt(i - 1).ModProjectile as VineWandVine).nextVine && item.whoAmI == (vines.ElementAt(i + 1).ModProjectile as VineWandVine).priorVine);
                 }
                 else
                     continueSet.Add(false);
@@ -90,6 +103,7 @@ namespace Verdant
         {
             var stats = tag.GetList<string>("apotheosisStats");
             if (stats.Contains("indexFin")) apotheosisDialogueIndex = 3;
+            apotheosisEyeDown = stats.Contains("eocDown");
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
             apotheosisWallDown = stats.Contains("wallDown");
@@ -102,17 +116,14 @@ namespace Verdant
 
             var clouds = tag.GetList<Vector2>("cloudPositions");
             foreach (var item in clouds)
-            {
-                int proj = Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), item, Vector2.Zero, ModContent.ProjectileType<YellowPetalFloaterProj>(), 0, 0f, Main.LocalPlayer.whoAmI);
-                (Main.projectile[proj].ModProjectile as YellowPetalFloaterProj).anchor = item;
-            }
+                ForegroundManager.AddItem(new CloudbloomEntity(item));
         }
 
         private static void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
         {
             int lastVine = 0;
 
-            for (int i = 0; i < positions.Count; ++i)
+            for (int i = positions.Count - 1; i >= 0; i--)
             {
                 int proj = Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), positions[i], Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0f, Main.LocalPlayer.whoAmI);
                 Projectile projectile = Main.projectile[proj];
@@ -124,6 +135,9 @@ namespace Verdant
                     vine.priorVine = lastVine;
                     (Main.projectile[lastVine].ModProjectile as VineWandVine).nextVine = proj;
                 }
+
+                //if (i == 0)
+                //    vine.priorVine = lastVine;
 
                 lastVine = proj;
             }

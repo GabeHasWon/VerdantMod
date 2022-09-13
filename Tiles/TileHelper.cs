@@ -11,6 +11,7 @@ using Terraria.Enums;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.Utilities;
+using Terraria.ID;
 
 namespace Verdant.Tiles
 {
@@ -158,12 +159,32 @@ namespace Verdant.Tiles
             TileObjectData data = TileObjectData.GetTileData(tile);
 
             if (data is null)
-                return new Point(-1, -1);
+                return j;
 
             (int x, int y) = (j.X, j.Y);
             x -= (int)(tile.TileFrameX / 18f) % data.Width;
             y -= (int)(tile.TileFrameY / 18f) % data.Height;
             return new Point(x, y);
+        }
+
+        public static bool SyncedPlace(int i, int j, int type, bool mute = false)
+        {
+            bool success = WorldGen.PlaceTile(i, j, type, mute);
+
+            if (!success)
+                return false;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j, 0f, 0, 0, 0);
+            return true;
+        }
+
+        public static void SyncedKill(int i, int j)
+        {
+            WorldGen.KillTile(i, j);
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j, 0f, 0, 0, 0);
         }
 
         public static bool SolidTile(int i, int j) => Framing.GetTileSafely(i, j).HasTile && Main.tileSolid[Framing.GetTileSafely(i, j).TileType];

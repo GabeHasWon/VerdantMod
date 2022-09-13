@@ -23,7 +23,7 @@ public class BackgroundItemManager
         if (bgItems is null)
             bgItems = new List<BaseBGItem>();
 
-        if (!ModContent.GetInstance<VerdantServerConfig>().BackgroundObjects && !forceSpawn) //Skip if option is turned off & it's not forced
+        if (!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forceSpawn) //Skip if option is turned off & it's not forced
             return;
 
         if (item != null)

@@ -8,7 +8,6 @@ using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
-
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
     internal class VerdantStrongVine : ModTile
@@ -20,8 +19,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
             Main.tileFrameImportant[Type] = true;
-
-            TileID.Sets.HousingWalls[Type] = true;
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
 
@@ -65,7 +62,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void RandomUpdate(int i, int j)
         {
             if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(7))
-                WorldGen.PlaceTile(i, j + 1, Type);
+                TileHelper.SyncedPlace(i, j + 1, Type);
 
             if (Framing.GetTileSafely(i, j).TileFrameX != 0 && Framing.GetTileSafely(i, j).TileFrameY < 36 && Main.rand.NextBool(2))
                 Framing.GetTileSafely(i, j).TileFrameY = (short)((Main.rand.Next(2) * 18) + 36);

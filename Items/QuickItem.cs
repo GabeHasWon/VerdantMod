@@ -31,8 +31,7 @@ namespace Verdant.Items
 
             i.Item.useTurn = true;
             i.Item.autoReuse = true;
-            i.Item.useAnimation = 15;
-            i.Item.useTime = 10;
+            i.Item.useAnimation = i.Item.useTime = 15;
             i.Item.maxStack = 999;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.consumable = consumable;
