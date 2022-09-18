@@ -9,6 +9,7 @@ using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles;
+using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant;
@@ -124,6 +125,16 @@ class VerdantPlayer : ModPlayer
                     }
                 }
             }
+        }
+    }
+
+    public override void PreUpdateMovement()
+    {
+        if (Player.velocity.Y > Player.gravity && Collision.SolidCollision(Player.BottomLeft + Player.velocity, Player.width, 6) && !Collision.SolidCollision(Player.BottomLeft, Player.width, 6))
+        {
+            Point tPos = new Point((int)(Player.Center.X / 16f), Helper.FindDown(Player.Bottom));
+            if (Player.GetFloorTileType(tPos.X, tPos.Y) == ModContent.TileType<VerdantGrassLeaves>())
+                VerdantGrassLeaves.ImpactEffects(Player);
         }
     }
 

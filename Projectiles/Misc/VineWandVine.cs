@@ -74,7 +74,7 @@ namespace Verdant.Projectiles.Misc
                 p.position = Projectile.position;
                 p.fallStart = (int)(Projectile.position.Y / 16f);
 
-                p.GetModPlayer<VinePulleyPlayer>().currentVine = Projectile.whoAmI;
+                //p.GetModPlayer<VinePulleyPlayer>().CurrentVine = Projectile.whoAmI;
             }
 
             if (perm)

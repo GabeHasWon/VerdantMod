@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -10,7 +12,15 @@ namespace Verdant.NPCs.Passive
 {
     public class Flotiny : ModNPC
     {
-        public override void SetStaticDefaults() => Main.npcCatchable[NPC.type] = true;
+        static Asset<Texture2D> glowTexture;
+
+        public override void SetStaticDefaults()
+        {
+            Main.npcCatchable[NPC.type] = true;
+            Main.npcFrameCount[NPC.type] = 2;
+
+            glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
+        }
 
         public override void SetDefaults()
         {
@@ -33,7 +43,7 @@ namespace Verdant.NPCs.Passive
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("A tiny floating creature. Despite its clear flight, or at least hovering, it makes no sound and doesn't move apart from gentle swaying."),
+                new FlavorTextBestiaryInfoElement("A tiny floating creature. Despite levitating, it makes no sound and doesn't move apart from gentle swaying, as if in a breeze."),
             });
         }
 
@@ -56,6 +66,14 @@ namespace Verdant.NPCs.Passive
             Lighting.AddLight(NPC.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.0f);
         }
 
+        public override void FindFrame(int frameHeight)
+        {
+            if (NPC.frameCounter == 0)
+                NPC.frameCounter = Main.rand.Next(2) + 1;
+
+            NPC.frame.Y = frameHeight * (int)(NPC.frameCounter - 1);
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)
@@ -72,6 +90,16 @@ namespace Verdant.NPCs.Passive
             if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.PlayerInTown)
                 return 2f + (spawnInfo.Water ? 1f : 0f);
             return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? ((spawnInfo.Water) ? 1.2f : 0.8f) : 0f;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Color color = GetAlpha(Color.White) ?? Color.White;
+
+            if (NPC.IsABestiaryIconDummy)
+                color = Color.White;
+
+            Main.EntitySpriteDraw(glowTexture.Value, NPC.Center - screenPos + new Vector2(0, 3), NPC.frame, color, NPC.rotation, NPC.frame.Size() / 2f, 1f, SpriteEffects.None, 0);
         }
     }
 }

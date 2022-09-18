@@ -74,7 +74,6 @@ namespace Verdant.Items
             i.Item.shoot = shoot;
             i.Item.rare = rarity;
             i.Item.mana = mana;
-
             i.Item.noMelee = true;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.DamageType = DamageClass.Magic;
@@ -92,11 +91,10 @@ namespace Verdant.Items
             i.Item.shoot = shoot;
             i.Item.rare = rarity;
             i.Item.mana = mana;
-            i.Item.UseSound = SoundID.Item44;
-
             i.Item.noMelee = true;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.DamageType = DamageClass.Summon;
+            i.Item.UseSound = SoundID.Item44;
         }
 
         public static void SetCritter(ModItem i, int w, int h, int npcType, int rarity = 0, int b = 5)
@@ -109,10 +107,8 @@ namespace Verdant.Items
             i.Item.rare = rarity;
             i.Item.maxStack = 999;
             i.Item.noUseGraphic = true;
-
             i.Item.noMelee = false;
             i.Item.useStyle = ItemUseStyleID.Swing;
-
             i.Item.bait = b;
             i.Item.makeNPC = (short)npcType;
             i.Item.autoReuse = true;
@@ -147,7 +143,6 @@ namespace Verdant.Items
             i.Item.maxStack = 1;
             i.Item.shootSpeed = shootSpeed;
             i.Item.shoot = shoot;
-
             i.Item.noMelee = true;
             i.Item.fishingPole = fish;
             i.Item.autoReuse = true;
@@ -171,12 +166,14 @@ namespace Verdant.Items
         public static void AddRecipe(ModItem item, Mod mod, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
         {
             if (ingredients.Length <= 0)
-                throw new ArgumentException("Ingredents array is empty.", "ingredients");
+                throw new ArgumentException("Ingredents array is empty.", nameof(ingredients));
 
             Recipe r = Recipe.Create(item.Type, resultStack);
             for (int i = 0; i < ingredients.Length; ++i)
                 r.AddIngredient(ingredients[i].Item1, ingredients[i].Item2);
-            if (tile != -1) r.AddTile(tile);
+
+            if (tile != -1) 
+                r.AddTile(tile);
             r.Register();
         }
 

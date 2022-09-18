@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
+using Verdant.Foreground;
+using Verdant.Foreground.Parallax;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant
@@ -11,15 +13,13 @@ namespace Verdant
     {
         public const int MaxVineResource = 80;
 
-        public int currentVine = -1;
         public int vineTimer = 0;
         public float vineOffset = 0;
 
         public int vineResource = 0;
         public int vineRegenCooldown = 0;
 
-        public Projectile CurrentVine => Main.projectile[currentVine];
-        public VineWandVine CurrentVineMod => Main.projectile[currentVine].ModProjectile as VineWandVine;
+        public EnchantedVine CurrentVine = null;
 
         public override void ResetEffects()
         {
@@ -35,17 +35,17 @@ namespace Verdant
 
             vineTimer--;
 
-            if (currentVine != -1)
+            if (CurrentVine is not null)
             {
-                if (!CurrentVine.active || CurrentVine.timeLeft < 5 || Player.dead)
+                if (CurrentVine.lifeTimer < 5 || Player.dead)
                 {
-                    currentVine = -1;
+                    CurrentVine = null;
                     return;
                 }
 
                 Player.fallStart = (int)(CurrentVine.position.Y / 16f);
                 Player.velocity = Vector2.Zero;
-                CurrentVineMod.PulleyVelocity(Player);
+                CurrentVine.PulleyVelocity(Player);
                 Player.pulley = true;
 
                 if (Player.velocity.X != 0)
@@ -66,11 +66,11 @@ namespace Verdant
                     Player.pulleyFrame = (int)(Main.GameUpdateCount / 4) % 2;
                     Player.velocity.Y -= 6;
 
-                    currentVine = -1;
+                    CurrentVine = null;
                     vineTimer = 0;
                     return;
                 }
-                else if (Player.controlUp && CurrentVineMod.nextVine != -1)
+                else if (Player.controlUp && !CurrentVine.InvalidVine(false))
                 {
                     vineOffset -= Player.velocity.Length();
 
@@ -79,12 +79,12 @@ namespace Verdant
 
                     if (vineOffset < 0 && vineTimer < 0)
                     {
-                        currentVine = CurrentVineMod.nextVine;
+                        CurrentVine = CurrentVine.NextVine;
                         vineTimer = 2;
                         vineOffset = 1;
                     }
                 }
-                else if (Player.controlDown && CurrentVineMod.priorVine != -1)
+                else if (Player.controlDown && !CurrentVine.InvalidVine(true))
                 {
                     vineOffset += Player.velocity.Length();
 
@@ -93,7 +93,7 @@ namespace Verdant
 
                     if (vineOffset > 1 && vineTimer < 0)
                     {
-                        currentVine = CurrentVineMod.priorVine;
+                        CurrentVine = CurrentVine.PriorVine;
                         vineTimer = 2;
                         vineOffset = 0;
                     }
@@ -103,9 +103,9 @@ namespace Verdant
 
         public static void Player_QuickMount(On.Terraria.Player.orig_QuickMount orig, Player self)
         {
-            if (self.GetModPlayer<VinePulleyPlayer>().currentVine != -1)
+            if (self.GetModPlayer<VinePulleyPlayer>().CurrentVine != null)
             {
-                self.GetModPlayer<VinePulleyPlayer>().currentVine = -1;
+                self.GetModPlayer<VinePulleyPlayer>().CurrentVine = null;
                 self.GetModPlayer<VinePulleyPlayer>().vineTimer = 0;
             }
 

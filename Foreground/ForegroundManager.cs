@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,12 +37,13 @@ public static class ForegroundManager
 
     public static void Unload() => Items.Clear();
 
-    public static void AddItem(ForegroundItem item)
+    public static int AddItem(ForegroundItem item, bool forced = false)
     {
-        if (!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects) //Skip if option is turned off
-            return;
+        if (!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forced) //Skip if option is turned off
+            return -1;
 
         Items.Add(item);
+        return Items.IndexOf(item);
     }
 
     /// <summary>Shorthand for ModContent.ModContent.Request<Texture2D>("Verdant/Foreground/Textures/" + name).</summary>

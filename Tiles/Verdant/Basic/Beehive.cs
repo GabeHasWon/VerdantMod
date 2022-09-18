@@ -92,7 +92,7 @@ class Beehive : ModTile
 
 public class BeehiveSystem : ModSystem
 {
-    public Dictionary<Point, int> BeehiveCounts = new Dictionary<Point, int>();
+    public Dictionary<Point, int> BeehiveCounts = new();
 
     public static void Add(Point point)
     {

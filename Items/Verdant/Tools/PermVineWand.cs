@@ -4,6 +4,8 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Foreground;
+using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Misc;
 
@@ -46,7 +48,7 @@ public class PermVineWandProjectile : ModProjectile
     public ref float Timer => ref Projectile.ai[0];
     public ref float LastVineIndex => ref Projectile.ai[1];
 
-    public Projectile LastVine => Main.projectile[(int)LastVineIndex];
+    public EnchantedVine LastVine => ForegroundManager.Items[(int)LastVineIndex] as EnchantedVine;
 
     private bool _init = false;
 
@@ -79,7 +81,7 @@ public class PermVineWandProjectile : ModProjectile
 
         Player p = Main.player[Projectile.owner];
         p.heldProj = Projectile.whoAmI;
-        p.direction = System.Math.Sign(Main.MouseWorld.X - p.Center.X);
+        p.direction = Math.Sign(Main.MouseWorld.X - p.Center.X);
 
         if (p.whoAmI != Main.myPlayer)
             return; //mp check (hopefully)
@@ -91,10 +93,10 @@ public class PermVineWandProjectile : ModProjectile
 
         if (Main.mouseRight)
         {
-            var proj = Main.projectile.Take(Main.maxProjectiles).FirstOrDefault(x => x.active && x.type == ModContent.ProjectileType<VineWandVine>() && x.DistanceSQ(Main.MouseWorld) < 18 * 18);
-            if (proj != null)
+            var vine = ForegroundManager.Items.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18);
+            if (vine != null)
             {
-                proj.Kill();
+                vine.killMe = true;
                 Main.player[Projectile.owner].QuickSpawnItem(Projectile.GetSource_FromAI(), ModContent.ItemType<LushLeaf>());
             }
             return;
@@ -114,19 +116,18 @@ public class PermVineWandProjectile : ModProjectile
                 int lastInd = (int)LastVineIndex;
 
                 if (LastVineIndex == -1)
-                    LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true);
                 else
                 {
                     Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                    LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true);
                 }
 
                 if (lastInd != -1)
                 {
-                    (Main.projectile[lastInd].ModProjectile as VineWandVine).nextVine = (int)LastVineIndex;
-                    (LastVine.ModProjectile as VineWandVine).priorVine = lastInd;
-                    (LastVine.ModProjectile as VineWandVine).VineIndex = p.GetModPlayer<VinePulleyPlayer>().VineCount();
-                    (LastVine.ModProjectile as VineWandVine).perm = true;
+                    (ForegroundManager.Items[lastInd] as EnchantedVine).NextVine = LastVine;
+                    LastVine.PriorVine = ForegroundManager.Items[lastInd] as EnchantedVine;
+                    LastVine.perm = true;
                 }
 
                 Timer = 3;

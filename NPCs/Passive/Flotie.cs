@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -11,10 +13,14 @@ namespace Verdant.NPCs.Passive
 {
     public class Flotie : ModNPC
     {
+        static Asset<Texture2D> glowTexture;
+
         public override void SetStaticDefaults()
         {
             Main.npcCatchable[NPC.type] = true;
-            Main.npcFrameCount[NPC.type] = 2;
+            Main.npcFrameCount[NPC.type] = 4;
+
+            glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
         }
 
         public override void SetDefaults()
@@ -58,12 +64,20 @@ namespace Verdant.NPCs.Passive
             NPC.velocity.Y = (float)(Math.Sin(NPC.ai[0]++ * 0.02f * NPC.ai[2]) * 0.6f);
             NPC.velocity.X = (float)(Math.Sin(NPC.ai[0]++ * 0.006f) * 0.15f) * NPC.ai[3];
 
-            if (NPC.velocity.Y < 0.01f)
-                NPC.frame.Y = 0;
-            else
-                NPC.frame.Y = 50;
-
             Lighting.AddLight(NPC.position, new Vector3(0.5f, 0.16f, 0.30f) * 1.4f);
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (NPC.frameCounter == 0)
+                NPC.frameCounter = (Main.rand.Next(2) * 2) + 1;
+
+            int frame = (int)NPC.frameCounter - 1;
+
+            if (NPC.velocity.Y < 0.01f)
+                NPC.frame.Y = frame * 50;
+            else
+                NPC.frame.Y = (frame + 1) * 50;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -99,6 +113,16 @@ namespace Verdant.NPCs.Passive
             if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && (spawnInfo.PlayerInTown || spawnInfo.PlayerSafe))
                 return 1.5f + (spawnInfo.Water ? 0.4f : 0f);
             return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? (spawnInfo.Water ? 1f : 0.6f) : 0f;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Color color = GetAlpha(Color.White) ?? Color.White;
+
+            if (NPC.IsABestiaryIconDummy)
+                color = Color.White;
+
+            Main.EntitySpriteDraw(glowTexture.Value, NPC.Center - screenPos + new Vector2(0, 3), NPC.frame, color, NPC.rotation, NPC.frame.Size() / 2f, 1f, SpriteEffects.None, 0);
         }
     }
 }

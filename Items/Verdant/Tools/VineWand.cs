@@ -2,6 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Foreground;
+using Verdant.Foreground.Parallax;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Tools;
@@ -48,7 +50,7 @@ public class VineWandProjectile : ModProjectile
     public ref float Timer => ref Projectile.ai[0];
     public ref float LastVineIndex => ref Projectile.ai[1];
 
-    public Projectile LastVine => Main.projectile[(int)LastVineIndex];
+    public EnchantedVine LastVine => ForegroundManager.Items[(int)LastVineIndex] as EnchantedVine;
 
     private bool _init = false;
 
@@ -105,18 +107,17 @@ public class VineWandProjectile : ModProjectile
                 int lastInd = (int)LastVineIndex;
 
                 if (LastVineIndex == -1)
-                    LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true);
                 else
                 {
                     Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                    LastVineIndex = Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos, Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0, 0, 0, Projectile.owner);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true);
                 }
 
                 if (lastInd != -1)
                 {
-                    (Main.projectile[lastInd].ModProjectile as VineWandVine).nextVine = (int)LastVineIndex;
-                    (LastVine.ModProjectile as VineWandVine).priorVine = lastInd;
-                    (LastVine.ModProjectile as VineWandVine).VineIndex = p.GetModPlayer<VinePulleyPlayer>().VineCount();
+                    (ForegroundManager.Items[lastInd] as EnchantedVine).NextVine = LastVine;
+                    LastVine.PriorVine = ForegroundManager.Items[lastInd] as EnchantedVine;
                 }
 
                 Timer = 3;

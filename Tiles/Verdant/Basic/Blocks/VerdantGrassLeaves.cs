@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -89,6 +90,17 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 3, ModContent.TileType<VerdantDecor1x3>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
+            }
+        }
+
+        internal static void ImpactEffects(Player player)
+        {
+            float repeats = player.velocity.Y / 1.2f;
+
+            for (int i = 0; i < repeats; ++i)
+            {
+                var vel = new Vector2(Main.rand.NextFloat(-0.75f, 0.75f) + (player.velocity.X * 0.2f), -Main.rand.NextFloat(player.velocity.Y * 0.6f, player.velocity.Y * 1.1f) * 0.22f).RotatedByRandom(0.8f);
+                Dust.NewDustPerfect(player.BottomLeft + new Vector2(Main.rand.Next(player.width), 0), DustID.GrassBlades, vel, 0, Color.Lime);
             }
         }
     }
