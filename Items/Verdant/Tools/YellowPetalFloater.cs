@@ -29,7 +29,7 @@ namespace Verdant.Items.Verdant.Tools
                 }
             }   
             
-            ForegroundManager.AddItem(new CloudbloomEntity(Main.MouseWorld));
+            ForegroundManager.AddItem(new CloudbloomEntity(Main.MouseWorld), true, true);
             return false;
         }
     }

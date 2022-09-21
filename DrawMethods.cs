@@ -15,26 +15,5 @@ namespace Verdant
             if (Main.PlayerLoaded && BackgroundItemManager.Loaded && !Main.gameMenu)
                 BackgroundItemManager.Draw();
         }
-
-        private void Main_DrawGore(On.Terraria.Main.orig_DrawGore orig, Main self)
-        {
-            orig(self);
-
-            if (Main.PlayerLoaded && !Main.gameMenu)
-                Foreground.ForegroundManager.Run();
-
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-
-            for (int i = 0; i < Main.maxProjectiles; ++i)
-            {
-                Projectile p = Main.projectile[i];
-                if (p.active && p.ModProjectile is Drawing.IDrawAdditive additive)
-                    additive.DrawAdditive(Drawing.AdditiveLayer.AfterPlayer);
-            }
-
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-        }
     }
 }

@@ -9,10 +9,9 @@ namespace Verdant.Items.Verdant.Materials
 {
     class Lightbulb : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
+        public override void Load()
         {
             VerdantPlayer.ItemDrawLayerEvent += PlayerDraw;
-            return true;
         }
 
         public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White);
@@ -29,8 +28,7 @@ namespace Verdant.Items.Verdant.Materials
             {
                 Texture2D t = Mod.Assets.Request<Texture2D>("Items/Verdant/Materials/Lightbulb").Value;
                 Vector2 pos = PlayerHelper.PlayerDrawPositionOffset(info.drawPlayer, new Vector2(0, -52));
-                Color col = Lighting.GetColor((int)(info.drawPlayer.position.X / 16f), (int)(info.drawPlayer.position.Y / 16f));
-                DrawData data = new DrawData(t, pos.Floor(), null, col, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+                DrawData data = new DrawData(t, pos.Floor(), null, Color.White, 0f, new Vector2(t.Width / 2f, t.Height / 2f), 1f, info.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
                 info.DrawDataCache.Add(data);
             }
         }

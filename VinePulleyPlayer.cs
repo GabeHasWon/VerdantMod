@@ -37,7 +37,7 @@ namespace Verdant
 
             if (CurrentVine is not null)
             {
-                if (CurrentVine.lifeTimer < 5 || Player.dead)
+                if (CurrentVine.lifeTimer < 5 || CurrentVine.killMe || Player.dead)
                 {
                     CurrentVine = null;
                     return;

@@ -100,7 +100,7 @@ namespace Verdant.World
             AddSurfaceVerdant();
         }
 
-        private void AddWaterfalls()
+        private static void AddWaterfalls()
         {
             for (int i = 0; i < 50 * WorldSize; ++i)
             {
@@ -165,7 +165,7 @@ namespace Verdant.World
             }
         }
 
-        private void AddSurfaceVerdant()
+        private static void AddSurfaceVerdant()
         {
             int offset = 0;
         retry:
@@ -187,7 +187,6 @@ namespace Verdant.World
             p.Message = "Trimming plants...";
 
             AddFlowerStructures();
-
             PlaceApotheosis();
 
             for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
@@ -236,7 +235,7 @@ namespace Verdant.World
 
         private void AddFlowerStructures()
         {
-            Point[] offsets = new Point[3] { new Point(4, 1), new Point(5, 1), new Point(3, 1) }; //ruler in-game is ONE HIGHER on both planes
+            Point[] offsets = new Point[3] { new Point(7, -1), new Point(3, 0), new Point(3, 0) }; //ruler in-game is ONE HIGHER on both planes
             int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, ModContent.TileType<Apotheosis>() };
             int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
 
@@ -254,9 +253,12 @@ namespace Verdant.World
                     StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, Mod, index);
                     positions.Add(pos.ToVector2());
 
+                    int x = pos.X + offsets[index].X;
+                    int y = pos.Y + offsets[index].Y + 2;
+
                     if (!WorldGen.genRand.NextBool(4)) //NORMAL chests
                     {
-                        bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, ModContent.TileType<VerdantYellowPetalChest>(), new (int, int)[]
+                        bool c = GenHelper.PlaceChest(x, y, ModContent.TileType<VerdantYellowPetalChest>(), new (int, int)[]
                         {
                             (ModContent.ItemType<VerdantStaff>(), 1), (ModContent.ItemType<Lightbloom>(), 1), (ModContent.ItemType<ExpertPlantGuide>(), 1), (ModContent.ItemType<Halfsprout>(), WorldGen.genRand.Next(20, 31))
                         }, new (int, int)[] {
@@ -265,15 +267,15 @@ namespace Verdant.World
                             (ItemID.Dynamite, 1), (ItemID.Glowstick, WorldGen.genRand.Next(3, 8)), (ItemID.Glowstick, WorldGen.genRand.Next(3, 8)), (ItemID.Bomb, WorldGen.genRand.Next(2, 4)),
                             (ItemID.NightOwlPotion, WorldGen.genRand.Next(2, 4)), (ItemID.HealingPotion, WorldGen.genRand.Next(2, 4)), (ItemID.MoonglowSeeds, WorldGen.genRand.Next(2, 4)),
                             (ItemID.DaybloomSeeds, WorldGen.genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, WorldGen.genRand.Next(2, 4))
-                        }, true, WorldGen.genRand, WorldGen.genRand.Next(4, 7), 0, true);
+                        }, false, WorldGen.genRand, WorldGen.genRand.Next(6, 9), 0, false);
 
                         if (!c)
                             Mod.Logger.Warn("Failed to place Verdant Yellow Petal Chest.");
                     }
                     else //WAND chest
                     {
-                        bool c = GenHelper.PlaceChest(pos.X + offsets[index].X, pos.Y + offsets[index].Y + 1, ModContent.TileType<VerdantYellowPetalChest>(), 0, false,
-                            (ModContent.ItemType<LushLeafWand>(), 1), (ModContent.ItemType<PinkPetalWand>(), 1), (ModContent.ItemType<RedPetalWand>(), 1), (ModContent.ItemType<RedPetal>(), WorldGen.genRand.Next(19, 24)),
+                        bool c = GenHelper.PlaceChest(x, y, ModContent.TileType<VerdantYellowPetalChest>(), 0, false,
+                            Helper.ItemStack<LushLeafWand>(), Helper.ItemStack<PinkPetalWand>(), Helper.ItemStack<RedPetalWand>(), Helper.ItemStack<RedPetal>(WorldGen.genRand.Next(19, 24)),
                             (ModContent.ItemType<PinkPetal>(), WorldGen.genRand.Next(19, 24)), (ModContent.ItemType<VerdantFlowerBulb>(), WorldGen.genRand.Next(12, 22)));
 
                         if (!c)
@@ -520,15 +522,19 @@ namespace Verdant.World
             VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.CubicFractal; //Sets noise to proper type
             VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
 
-            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + Main.maxTilesX / Buffer; ++i)
+            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + (int)(Main.maxTilesX / Buffer); ++i)
             {
-                if (i < 2) i = 2;
-                if (i > Main.maxTilesX - 2) break;
+                if (i < 2) 
+                    i = 2;
+                if (i > Main.maxTilesX - 2) 
+                    break;
 
-                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + Main.maxTilesY / Buffer; ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + (int)(Main.maxTilesY / Buffer); ++j)
                 {
-                    if (j < 2) j = 2;
-                    if (j > Main.maxTilesY - 2) break;
+                    if (j < 2) 
+                        j = 2;
+                    if (j > Main.maxTilesY - 2) 
+                        break;
 
                     Tile t = Framing.GetTileSafely(i, j);
                     if (t.HasTile && t.TileType == TileTypes[2])
@@ -536,12 +542,17 @@ namespace Verdant.World
                         float n = VerdantSystem.genNoise.GetNoise(i, j);
                         t.ClearTile();
                         if (n < -0.67f) { }
-                        else if (n < -0.57f) WorldGen.PlaceTile(i, j, TileTypes[0]);
-                        else WorldGen.PlaceTile(i, j, TileTypes[1]);
+                        else if (n < -0.57f) 
+                            WorldGen.PlaceTile(i, j, TileTypes[0]);
+                        else 
+                            WorldGen.PlaceTile(i, j, TileTypes[1]);
 
-                        if (n < -0.85f) WorldGen.KillWall(i, j, false);
-                        else if (n < -0.52f) WorldGen.PlaceWall(i, j, WallTypes[0]);
-                        else WorldGen.PlaceWall(i, j, WallTypes[1]);
+                        if (n < -0.85f) 
+                            WorldGen.KillWall(i, j, false);
+                        else if (n < -0.52f) 
+                            WorldGen.PlaceWall(i, j, WallTypes[0]);
+                        else 
+                            WorldGen.PlaceWall(i, j, WallTypes[1]);
                     }
                 }
             }
@@ -553,9 +564,9 @@ namespace Verdant.World
             VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
             VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
 
-            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + Main.maxTilesX / Buffer; ++i)
+            for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + (int)(Main.maxTilesX / Buffer); ++i)
             {
-                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + Main.maxTilesY / Buffer; ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + (int)(Main.maxTilesY / Buffer); ++j)
                 {
                     Tile t = Framing.GetTileSafely(i, j);
                     float n = VerdantSystem.genNoise.GetNoise(i, j);
@@ -658,7 +669,7 @@ namespace Verdant.World
                         if (tile.TileType == TileTypes[2])
                             continue;
 
-                        if (dist < rad && tile.TileType != TileTypes[2])
+                        if (dist < rad)
                         {
                             if (rad - dist < MaxDitherDistance)
                             {

@@ -107,11 +107,11 @@ public class VineWandProjectile : ModProjectile
                 int lastInd = (int)LastVineIndex;
 
                 if (LastVineIndex == -1)
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true, true);
                 else
                 {
                     Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true);
+                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true, true);
                 }
 
                 if (lastInd != -1)

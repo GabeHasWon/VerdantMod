@@ -18,7 +18,7 @@ class Beehive : ModTile
     public override void SetStaticDefaults()
     {
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass };
+        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, TileID.Hive };
         TileObjectData.newTile.StyleHorizontal = true;
 
         QuickTile.SetMulti(this, 2, 2, DustID.Bee, SoundID.Dig, true, new Color(232, 167, 74), false, false, false, "Beehive");
@@ -80,7 +80,7 @@ class Beehive : ModTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (Main.rand.NextBool(3) && BeehiveSystem.TryGet(i, j, out int count) && count < 3)
+        if (Main.rand.NextBool(1) && BeehiveSystem.TryGet(i, j, out int count) && count < 3)
         {
             NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16, j * 16, ModContent.NPCType<Bumblebee>());
             BeehiveSystem.Add(i, j);

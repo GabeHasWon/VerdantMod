@@ -48,28 +48,18 @@ namespace Verdant
         public override void Unload()
         {
             ForegroundManager.Unload();
-            UnhookOn();
 
             Instance = null;
         }
 
         private void OnHooks()
         {
+            ForegroundManager.Hooks();
             On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
-            On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
-            On.Terraria.Main.DrawGore += Main_DrawGore; //ForegroundItem hook
+            On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
-        }
-
-        private void UnhookOn()
-        {
-            On.Terraria.Main.DrawBackgroundBlackFill -= Main_DrawBackgroundBlackFill; //do I have to unhook this? maybe. do I do it anyway? yes
-            On.Terraria.WorldGen.GrowTree -= WorldGen_GrowTree;
-            On.Terraria.Main.DrawWater -= Main_DrawWater;
-            On.Terraria.Main.Update -= Main_Update;
-            On.Terraria.Main.DrawGore -= Main_DrawGore;
         }
 
         private delegate bool OverrideVanillaMoonDelegate();

@@ -38,7 +38,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
         public override bool RightClick(int i, int j)
         {
             int rand = Main.rand.Next(2);
-            SoundEngine.PlaySound(new SoundStyle(rand == 0 ? "Sounds/Arpiano" : "Sounds/SoftMelodyPiano") with { PitchVariance = 0.05f }, new Vector2(i, j) * 16);
+            SoundEngine.PlaySound(new SoundStyle(rand == 0 ? "Verdant/Sounds/Arpiano" : "Verdant/Sounds/SoftMelodyPiano") with { PitchVariance = 0.05f, Volume = 0.8f }, new Vector2(i, j) * 16);
             return true;
         }
 

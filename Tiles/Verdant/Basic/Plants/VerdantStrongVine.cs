@@ -2,8 +2,10 @@
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -21,9 +23,15 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             Main.tileFrameImportant[Type] = true;
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
+            AddMapEntry(new Color(182, 224, 49));
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile | AnchorType.SolidTile | AnchorType.SolidWithTop, 1, 0);
+            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.AlternateTile | AnchorType.SolidTile | AnchorType.SolidBottom, 1, 0);
+            TileObjectData.addTile(Type);
 
             ItemDrop = ModContent.ItemType<VerdantStrongVineMaterial>();
-            AddMapEntry(new Color(182, 224, 49));
             DustType = DustID.Grass;
             HitSound = SoundID.Grass;
             MinPick = 20;
@@ -76,14 +84,17 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if ((Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 54 || Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 36))
+            if (Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 54 || Framing.GetTileSafely(i, j).TileFrameX == 18 && Framing.GetTileSafely(i, j).TileFrameY == 36)
             {
-                if (!noItem) Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<RedPetal>());
+                if (!noItem) 
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<RedPetal>());
                 Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
-            if ((Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 36 || Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 54))
+
+            if (Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 36 || Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 54)
             {
-                if (!noItem) Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
+                if (!noItem) 
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
                 Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
 

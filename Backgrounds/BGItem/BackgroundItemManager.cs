@@ -59,26 +59,16 @@ public class BackgroundItemManager
         if (!Main.hasFocus || Main.gamePaused)
             return;
 
-        List<BaseBGItem> removeList = new List<BaseBGItem>();
-
         foreach (var item in organizedItems)
-        {
-            if (item.killMe) //Remove items that need to be removed
-            {
-                removeList.Add(item);
-                continue;
-            }
-
             item.Behaviour();
-        }
 
-        foreach (var item in removeList)
-            bgItems.Remove(item);
+        bgItems.RemoveAll(x => x.killMe);
     }
 
     public static List<TagCompound> Save()
     {
-        if (!Loaded) return null; //Somehow it's trying to save while not being loaded, abort 
+        if (!Loaded) 
+            return null; //Somehow it's trying to save while not being loaded, abort 
 
         List<TagCompound> tags = new List<TagCompound>(); //Save the stuff
         foreach (var item in bgItems)

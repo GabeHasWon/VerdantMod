@@ -2,21 +2,15 @@
 //Copyright(c) 2017 Jordan Peck
 
 using System;
-using DECIMAL = System.Single;//using FN_DECIMAL = System.Double;
 
 namespace Verdant.Noise
 {
     public partial class FastNoise
     {
-        public DECIMAL GetValue(DECIMAL x, DECIMAL y)
-        {
-            return SingleValue(Seed, x * Frequency, y * Frequency);
-        }
-        public DECIMAL GetValue(DECIMAL x, DECIMAL y, DECIMAL z)
-        {
-            return SingleValue(Seed, x * Frequency, y * Frequency, z * Frequency);
-        }
-        public DECIMAL GetValueFractal(DECIMAL x, DECIMAL y)
+        public float GetValue(float x, float y) => SingleValue(Seed, x * Frequency, y * Frequency);
+        public float GetValue(float x, float y, float z) => SingleValue(Seed, x * Frequency, y * Frequency, z * Frequency);
+
+        public float GetValueFractal(float x, float y)
         {
             x *= Frequency;
             y *= Frequency;
@@ -33,7 +27,8 @@ namespace Verdant.Noise
                     return 0;
             };
         }
-        public DECIMAL GetValueFractal(DECIMAL x, DECIMAL y, DECIMAL z)
+
+        public float GetValueFractal(float x, float y, float z)
         {
             x *= Frequency;
             y *= Frequency;
@@ -52,14 +47,14 @@ namespace Verdant.Noise
             };
         }
 
-        private DECIMAL SingleValue(int seed, DECIMAL x, DECIMAL y)
+        private float SingleValue(int seed, float x, float y)
         {
             int x0 = FastFloor(x);
             int y0 = FastFloor(y);
             int x1 = x0 + 1;
             int y1 = y0 + 1;
 
-            DECIMAL xs, ys;
+            float xs, ys;
             switch (InterpolationMethod)
             {
                 default:
@@ -77,12 +72,13 @@ namespace Verdant.Noise
                     break;
             }
 
-            DECIMAL xf0 = Lerp(ValCoord2D(seed, x0, y0), ValCoord2D(seed, x1, y0), xs);
-            DECIMAL xf1 = Lerp(ValCoord2D(seed, x0, y1), ValCoord2D(seed, x1, y1), xs);
+            float xf0 = Lerp(ValCoord2D(seed, x0, y0), ValCoord2D(seed, x1, y0), xs);
+            float xf1 = Lerp(ValCoord2D(seed, x0, y1), ValCoord2D(seed, x1, y1), xs);
 
             return Lerp(xf0, xf1, ys);
         }
-        private DECIMAL SingleValue(int seed, DECIMAL x, DECIMAL y, DECIMAL z)
+
+        private float SingleValue(int seed, float x, float y, float z)
         {
             int x0 = FastFloor(x);
             int y0 = FastFloor(y);
@@ -91,7 +87,7 @@ namespace Verdant.Noise
             int y1 = y0 + 1;
             int z1 = z0 + 1;
 
-            DECIMAL xs, ys, zs;
+            float xs, ys, zs;
             switch (InterpolationMethod)
             {
                 default:
@@ -112,21 +108,22 @@ namespace Verdant.Noise
                     break;
             }
 
-            DECIMAL xf00 = Lerp(ValCoord3D(seed, x0, y0, z0), ValCoord3D(seed, x1, y0, z0), xs);
-            DECIMAL xf10 = Lerp(ValCoord3D(seed, x0, y1, z0), ValCoord3D(seed, x1, y1, z0), xs);
-            DECIMAL xf01 = Lerp(ValCoord3D(seed, x0, y0, z1), ValCoord3D(seed, x1, y0, z1), xs);
-            DECIMAL xf11 = Lerp(ValCoord3D(seed, x0, y1, z1), ValCoord3D(seed, x1, y1, z1), xs);
+            float xf00 = Lerp(ValCoord3D(seed, x0, y0, z0), ValCoord3D(seed, x1, y0, z0), xs);
+            float xf10 = Lerp(ValCoord3D(seed, x0, y1, z0), ValCoord3D(seed, x1, y1, z0), xs);
+            float xf01 = Lerp(ValCoord3D(seed, x0, y0, z1), ValCoord3D(seed, x1, y0, z1), xs);
+            float xf11 = Lerp(ValCoord3D(seed, x0, y1, z1), ValCoord3D(seed, x1, y1, z1), xs);
 
-            DECIMAL yf0 = Lerp(xf00, xf10, ys);
-            DECIMAL yf1 = Lerp(xf01, xf11, ys);
+            float yf0 = Lerp(xf00, xf10, ys);
+            float yf1 = Lerp(xf01, xf11, ys);
 
             return Lerp(yf0, yf1, zs);
         }
-        private DECIMAL SingleValueFractalBillow(DECIMAL x, DECIMAL y)
+
+        private float SingleValueFractalBillow(float x, float y)
         {
             int seed = Seed;
-            DECIMAL sum = Math.Abs(SingleValue(seed, x, y)) * 2 - 1;
-            DECIMAL amp = 1;
+            float sum = Math.Abs(SingleValue(seed, x, y)) * 2 - 1;
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {
@@ -138,11 +135,12 @@ namespace Verdant.Noise
 
             return sum * fractalBounding;
         }
-        private DECIMAL SingleValueFractalBillow(DECIMAL x, DECIMAL y, DECIMAL z)
+
+        private float SingleValueFractalBillow(float x, float y, float z)
         {
             int seed = Seed;
-            DECIMAL sum = Math.Abs(SingleValue(seed, x, y, z)) * 2 - 1;
-            DECIMAL amp = 1;
+            float sum = Math.Abs(SingleValue(seed, x, y, z)) * 2 - 1;
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {
@@ -156,11 +154,12 @@ namespace Verdant.Noise
 
             return sum * fractalBounding;
         }
-        private DECIMAL SingleValueFractalFBM(DECIMAL x, DECIMAL y)
+
+        private float SingleValueFractalFBM(float x, float y)
         {
             int seed = Seed;
-            DECIMAL sum = SingleValue(seed, x, y);
-            DECIMAL amp = 1;
+            float sum = SingleValue(seed, x, y);
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {
@@ -173,11 +172,12 @@ namespace Verdant.Noise
 
             return sum * fractalBounding;
         }
-        private DECIMAL SingleValueFractalFBM(DECIMAL x, DECIMAL y, DECIMAL z)
+
+        private float SingleValueFractalFBM(float x, float y, float z)
         {
             int seed = Seed;
-            DECIMAL sum = SingleValue(seed, x, y, z);
-            DECIMAL amp = 1;
+            float sum = SingleValue(seed, x, y, z);
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {
@@ -191,11 +191,12 @@ namespace Verdant.Noise
 
             return sum * fractalBounding;
         }
-        private DECIMAL SingleValueFractalRigidMulti(DECIMAL x, DECIMAL y)
+
+        private float SingleValueFractalRigidMulti(float x, float y)
         {
             int seed = Seed;
-            DECIMAL sum = 1 - Math.Abs(SingleValue(seed, x, y));
-            DECIMAL amp = 1;
+            float sum = 1 - Math.Abs(SingleValue(seed, x, y));
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {
@@ -208,11 +209,12 @@ namespace Verdant.Noise
 
             return sum;
         }
-        private DECIMAL SingleValueFractalRigidMulti(DECIMAL x, DECIMAL y, DECIMAL z)
+
+        private float SingleValueFractalRigidMulti(float x, float y, float z)
         {
             int seed = Seed;
-            DECIMAL sum = 1 - Math.Abs(SingleValue(seed, x, y, z));
-            DECIMAL amp = 1;
+            float sum = 1 - Math.Abs(SingleValue(seed, x, y, z));
+            float amp = 1;
 
             for (int i = 1; i < octaves; i++)
             {

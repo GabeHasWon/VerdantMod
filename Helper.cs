@@ -5,6 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.WorldGen;
 
 namespace Verdant
@@ -112,6 +113,8 @@ namespace Verdant
             Vector2 adjPos = spawnRect.Location.ToVector2() + new Vector2(Main.rand.Next(spawnRect.Width), Main.rand.Next(spawnRect.Height));
             return SyncItem(source, adjPos, type, stack);
         }
+
+        public static (int, int) ItemStack<T>(int stack = 1) where T : ModItem => (ModContent.ItemType<T>(), stack);
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();
         public static Point MouseTile(Point offset) => ((Main.MouseWorld / 16f) + offset.ToVector2()).ToPoint();

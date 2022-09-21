@@ -107,6 +107,63 @@ namespace Verdant.World
         public static void BasicBox(Point pos, int width, int height, int type, int wallType) => BasicBox(pos.X, pos.Y, width, height, type, wallType);
         public static void BasicBox(int x, int y, Point size, int type, int wallType) => BasicBox(x, y, size.X, size.Y, type, wallType);
 
+        public static bool FillChest(int x, int y, (int, int)[] mainItems, (int, int)[] subItems, bool noTypeRepeat = true, UnifiedRandom r = null, int subItemLength = 6)
+        {
+            r ??= Main.rand;
+
+            int ChestIndex = Chest.FindChest(x, y);
+            if (ChestIndex != -1)
+            {
+                int main = r.Next(mainItems.Length);
+                Main.chest[ChestIndex].item[0].SetDefaults(mainItems[main].Item1);
+                Main.chest[ChestIndex].item[0].stack = mainItems[main].Item2;
+
+                int reps = 0;
+
+                List<int> usedTypes = new List<int>();
+
+                for (int i = 0; i < subItemLength; ++i)
+                {
+                repeat:
+                    if (reps > 50)
+                    {
+                        VerdantMod.Instance.Logger.Info("WARNING: Attempted to repeat item placement too often. Report to dev.");
+                        break;
+                    }
+
+                    int sub = r.Next(subItems.Length);
+                    int itemType = subItems[sub].Item1;
+                    int itemStack = subItems[sub].Item2;
+
+                    if (noTypeRepeat && usedTypes.Contains(itemType))
+                    {
+                        reps++;
+                        goto repeat;
+                    }
+
+                    usedTypes.Add(itemType);
+
+                    Main.chest[ChestIndex].item[i + 1].SetDefaults(itemType);
+                    Main.chest[ChestIndex].item[i + 1].stack = itemStack;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public static void FillChestDirect(int x, int y, params (int, int)[] items)
+        {
+            int ChestIndex = Chest.FindChest(x, y);
+            if (ChestIndex != -1)
+            {
+                for (int i = 0; i < items.Length; ++i)
+                {
+                    Main.chest[ChestIndex].item[i].SetDefaults(items[i].Item1);
+                    Main.chest[ChestIndex].item[i].stack = items[i].Item2;
+                }
+            }
+        }
+
         /// <summary>Places a chest with items in it.</summary>
         /// <param name="x">X position.</param>
         /// <param name="y">Y position.</param>
@@ -119,14 +176,14 @@ namespace Verdant.World
         /// <param name="style">Style of the chest.</param>
         public static bool PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, bool noTypeRepeat = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
         {
-            r = r ?? Main.rand;
+            r ??= Main.rand;
 
             if (overRide)
             {
                 KillTile(x, y, false, false, true);
                 KillTile(x + 1, y, false, false, true);
-                KillTile(x, y - 1, false, false, true);
-                KillTile(x + 1, y - 1, false, false, true);
+                KillTile(x, y + 1, false, false, true);
+                KillTile(x + 1, y + 1, false, false, true);
             }
 
             int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
@@ -154,7 +211,10 @@ namespace Verdant.World
                     int itemStack = subItems[sub].Item2;
 
                     if (noTypeRepeat && usedTypes.Contains(itemType))
+                    {
+                        reps++;
                         goto repeat;
+                    }
 
                     usedTypes.Add(itemType);
 

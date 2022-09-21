@@ -116,7 +116,7 @@ namespace Verdant
 
             var clouds = tag.GetList<Vector2>("cloudPositions");
             foreach (var item in clouds)
-                ForegroundManager.AddItem(new CloudbloomEntity(item));
+                ForegroundManager.AddItem(new CloudbloomEntity(item), true, false);
         }
 
         private static void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
