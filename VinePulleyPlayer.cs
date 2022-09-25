@@ -43,10 +43,11 @@ namespace Verdant
                     return;
                 }
 
-                Player.fallStart = (int)(CurrentVine.position.Y / 16f);
                 Player.velocity = Vector2.Zero;
                 CurrentVine.PulleyVelocity(Player);
+                Player.fallStart = (int)(CurrentVine.position.Y / 16f);
                 Player.pulley = true;
+                Player.pulleyDir = 0;
 
                 if (Player.velocity.X != 0)
                 {

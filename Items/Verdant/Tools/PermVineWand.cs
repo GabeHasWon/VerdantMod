@@ -46,9 +46,8 @@ public class PermVineWandProjectile : ModProjectile
     public override string Texture => "Verdant/Items/Verdant/Tools/VineWand";
 
     public ref float Timer => ref Projectile.ai[0];
-    public ref float LastVineIndex => ref Projectile.ai[1];
 
-    public EnchantedVine LastVine => ForegroundManager.Items[(int)LastVineIndex] as EnchantedVine;
+    public EnchantedVine LastVine = null;
 
     private bool _init = false;
 
@@ -75,7 +74,7 @@ public class PermVineWandProjectile : ModProjectile
         if (!_init)
         {
             Timer = 1;
-            LastVineIndex = -1;
+            LastVine = null;
             _init = true;
         }
 
@@ -93,8 +92,8 @@ public class PermVineWandProjectile : ModProjectile
 
         if (Main.mouseRight)
         {
-            var vine = ForegroundManager.Items.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18);
-            if (vine != null)
+            var vine = ForegroundManager.Items.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) as EnchantedVine;
+            if (vine != null && vine.perm)
             {
                 vine.killMe = true;
                 Main.player[Projectile.owner].QuickSpawnItem(Projectile.GetSource_FromAI(), ModContent.ItemType<LushLeaf>());
@@ -113,26 +112,9 @@ public class PermVineWandProjectile : ModProjectile
 
             if (Timer <= 0)
             {
-                int lastInd = (int)LastVineIndex;
-
-                if (LastVineIndex == -1)
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true, true);
-                else
-                {
-                    Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true, true);
-                }
-
-                if (lastInd != -1)
-                {
-                    (ForegroundManager.Items[lastInd] as EnchantedVine).NextVine = LastVine;
-                    LastVine.PriorVine = ForegroundManager.Items[lastInd] as EnchantedVine;
-                    LastVine.perm = true;
-                }
-
-                Timer = 3;
-
+                LastVine = VineWandCommon.BuildVine(Projectile.owner, LastVine);
                 ConsumeTileWand(Main.player[Projectile.owner]);
+                Timer = 3;
             }
         }
     }

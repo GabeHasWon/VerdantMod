@@ -26,12 +26,13 @@ namespace Verdant.Foreground.Parallax
         {
             this.owner = owner;
 
+            lifeTimer = 10 * 60;
             WhoAmI = ForegroundManager.Items.Where(x => x is EnchantedVine).Count();
             source = new Rectangle(0, 0, 58, 38);
             velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 0.75f) * (parallax * 1.2f)).RotatedByRandom(MathHelper.Pi);
             parallax = 1f;
 
-            Hitbox = new Rectangle((int)position.X, (int)position.Y, 20, 18);
+            Hitbox = new Rectangle((int)Center.X - 4, (int)Center.Y, 10, 10);
         }
 
         public override void Update()
@@ -41,15 +42,21 @@ namespace Verdant.Foreground.Parallax
             if (p.whoAmI != Main.myPlayer)
                 return; //mp check (hopefully)
 
+            if (PriorVine is not null && InvalidVine(true))
+                PriorVine = null;
+
+            if (NextVine is not null && InvalidVine(false))
+                NextVine = null;
+
             if (!InvalidVine(true) && !InvalidVine(false))
                 frame = 1;
             else
                 frame = 0;
 
-            float rotOff = (float)Math.Sin((lifeTimer++ + (WhoAmI * 12)) * 0.05f) * 0.2f;
-            if (PriorVine != null)
+            float rotOff = (float)Math.Sin((lifeTimer-- + (WhoAmI * 12)) * 0.05f) * 0.2f;
+            if (!InvalidVine(true))
                 rotation = Vector2.Normalize(PriorVine.Center - Center).ToRotation() - MathHelper.PiOver2 + rotOff;
-            else if (NextVine != null)
+            else if (!InvalidVine(false))
                 rotation = Vector2.Normalize(NextVine.Center - Center).ToRotation() - MathHelper.PiOver2 + rotOff;
 
             Rectangle playerTop = new((int)p.position.X, (int)p.position.Y, p.width, 2);
@@ -58,14 +65,16 @@ namespace Verdant.Foreground.Parallax
             {
                 p.pulley = true;
                 p.pulleyDir = 1;
-                p.position = position;
+                p.position = Center;
                 p.fallStart = (int)(position.Y / 16f);
-
                 p.GetModPlayer<VinePulleyPlayer>().CurrentVine = this;
             }
 
             if (perm)
                 lifeTimer = 10;
+
+            if (lifeTimer < 0)
+                Kill();
 
             //bool invalidNext = nextVine == -1 || InvalidVine(false);
             //bool invalidPrior = priorVine == -1 || InvalidVine(true);
@@ -76,7 +85,7 @@ namespace Verdant.Foreground.Parallax
         private void Kill()
         {
             for (int i = 0; i < 3; ++i)
-                Dust.NewDust(position, Hitbox.Width, Hitbox.Height, DustID.Grass, 0, 0);
+                Dust.NewDust(Center + Hitbox.Size() / 3f, Hitbox.Width / 2, Hitbox.Height / 2, DustID.Grass, 0, 0);
             killMe = true;
         }
 

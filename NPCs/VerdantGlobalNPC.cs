@@ -1,13 +1,21 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Plants;
+using Verdant.Scenes;
 
 namespace Verdant.NPCs
 {
     class VerdantGlobalNPC : GlobalNPC
     {
+        public override void SetStaticDefaults()
+        {
+            NPCHappiness.Get(NPCID.Dryad).SetBiomeAffection<VerdantBiome>(AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.TaxCollector).SetBiomeAffection<VerdantBiome>(AffectionLevel.Dislike);
+        }
+
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant)

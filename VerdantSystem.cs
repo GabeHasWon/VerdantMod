@@ -13,6 +13,7 @@ using Verdant.Backgrounds.BGItem;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Tools;
 using Verdant.Noise;
 using Verdant.Projectiles.Misc;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -77,26 +78,20 @@ namespace Verdant
 
         private static void SaveVines(TagCompound tag)
         {
-            var vines = Main.projectile.Take(Main.maxProjectiles).Where(x => x.active && x.ModProjectile is VineWandVine vine && (vine.nextVine > -1 || vine.priorVine > -1));
+            var vines = ForegroundManager.Items.Where(x => !x.killMe && x is EnchantedVine vine && vine.perm);
             var positions = new List<Vector2>();
             var continueSet = new List<bool>();
 
             for (int i = 0; i < vines.Count(); ++i)
             {
-                Projectile item = vines.ElementAt(i);
+                var item = vines.ElementAt(i) as EnchantedVine;
                 positions.Add(item.Center);
 
-                if (i > 0 && i < vines.Count() - 2)
-                {
-                    var vine = item.ModProjectile as VineWandVine;
-                    continueSet.Add(item.whoAmI == (vines.ElementAt(i - 1).ModProjectile as VineWandVine).nextVine && item.whoAmI == (vines.ElementAt(i + 1).ModProjectile as VineWandVine).priorVine);
-                }
-                else
-                    continueSet.Add(false);
+                if (i > 0 && i < vines.Count() - 2 && item != (vines.ElementAt(i + 1) as EnchantedVine).PriorVine)
+                    positions.Add(Vector2.Zero);
             }
 
             tag.Add("permVinePositions", positions);
-            tag.Add("permVineContinuity", continueSet);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -112,35 +107,43 @@ namespace Verdant
             if (bgItems != null)
                 BackgroundItemManager.Load(bgItems);
 
-            SpawnPermVines(tag.GetList<Vector2>("permVinePositions"), tag.GetList<bool>("permVineContinuity"));
+            SpawnPermVines(tag.GetList<Vector2>("permVinePositions"));
 
             var clouds = tag.GetList<Vector2>("cloudPositions");
             foreach (var item in clouds)
-                ForegroundManager.AddItem(new CloudbloomEntity(item), true, false);
+                ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
         }
 
-        private static void SpawnPermVines(IList<Vector2> positions, IList<bool> continuity)
+        private static void SpawnPermVines(IList<Vector2> positions)
         {
-            int lastVine = 0;
-
-            for (int i = positions.Count - 1; i >= 0; i--)
+            List<List<Vector2>> Vines = new()
             {
-                int proj = Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), positions[i], Vector2.Zero, ModContent.ProjectileType<VineWandVine>(), 0, 0f, Main.LocalPlayer.whoAmI);
-                Projectile projectile = Main.projectile[proj];
-                VineWandVine vine = projectile.ModProjectile as VineWandVine;
-                vine.perm = true;
+                new List<Vector2>()
+            };
 
-                if (continuity[i])
+            int currentSet = 0;
+
+            for (int i = 0; i < positions.Count; ++i)
+            {
+                if (positions[i] == Vector2.Zero /*i > 0 && !continuity[i - 1]*/)
                 {
-                    vine.priorVine = lastVine;
-                    (Main.projectile[lastVine].ModProjectile as VineWandVine).nextVine = proj;
+                    currentSet++;
+                    Vines.Add(new List<Vector2>());
+                    continue;
                 }
 
-                //if (i == 0)
-                //    vine.priorVine = lastVine;
-
-                lastVine = proj;
+                Vines[currentSet].Add(positions[i]);
             }
+
+            foreach (var item in Vines)
+                BuildVine(item);
+        }
+
+        private static void BuildVine(List<Vector2> item)
+        {
+            EnchantedVine lastVine = null;
+            for (int i = 0; i < item.Count; i++)
+                lastVine = VineWandCommon.BuildVine(Main.myPlayer, lastVine, true, item[i]);
         }
 
         public override void NetSend(BinaryWriter writer)

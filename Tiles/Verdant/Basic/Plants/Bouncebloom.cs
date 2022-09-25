@@ -24,8 +24,9 @@ internal class Bouncebloom : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
         TileObjectData.newTile.Origin = new Point16(1, 1);
-        TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 1);
+        TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantStrongVine>() };
+        TileObjectData.newTile.AnchorAlternateTiles = new[] { ModContent.TileType<VerdantStrongVine>() };
+        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.AlternateTile, 1, 1);
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(165, 108, 58));

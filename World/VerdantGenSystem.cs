@@ -529,7 +529,7 @@ namespace Verdant.World
                 if (i > Main.maxTilesX - 2) 
                     break;
 
-                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + (int)(Main.maxTilesY / Buffer); ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / (Buffer * 3)); j < VerdantCentre.Y + (int)(Main.maxTilesY / (Buffer * 3)); ++j)
                 {
                     if (j < 2) 
                         j = 2;
@@ -566,7 +566,7 @@ namespace Verdant.World
 
             for (int i = VerdantCentre.X - (int)(Main.maxTilesX / Buffer); i < VerdantCentre.X + (int)(Main.maxTilesX / Buffer); ++i)
             {
-                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / Buffer); j < VerdantCentre.Y + (int)(Main.maxTilesY / Buffer); ++j)
+                for (int j = VerdantCentre.Y - (int)(Main.maxTilesY / (Buffer * 2)); j < VerdantCentre.Y + (int)(Main.maxTilesY / (Buffer * 2)); ++j)
                 {
                     Tile t = Framing.GetTileSafely(i, j);
                     float n = VerdantSystem.genNoise.GetNoise(i, j);

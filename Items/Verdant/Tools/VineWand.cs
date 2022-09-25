@@ -2,9 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
-using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -48,9 +46,8 @@ public class VineWandProjectile : ModProjectile
     public override string Texture => "Verdant/Items/Verdant/Tools/VineWand";
 
     public ref float Timer => ref Projectile.ai[0];
-    public ref float LastVineIndex => ref Projectile.ai[1];
 
-    public EnchantedVine LastVine => ForegroundManager.Items[(int)LastVineIndex] as EnchantedVine;
+    public EnchantedVine LastVine = null;
 
     private bool _init = false;
 
@@ -77,7 +74,7 @@ public class VineWandProjectile : ModProjectile
         if (!_init)
         {
             Timer = 1;
-            LastVineIndex = -1;
+            LastVine = null;
             _init = true;
         }
 
@@ -104,21 +101,7 @@ public class VineWandProjectile : ModProjectile
 
             if (Timer <= 0 && p.GetModPlayer<VinePulleyPlayer>().vineResource > 0)
             {
-                int lastInd = (int)LastVineIndex;
-
-                if (LastVineIndex == -1)
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(Main.MouseWorld, Projectile.owner), true, true);
-                else
-                {
-                    Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                    LastVineIndex = ForegroundManager.AddItem(new EnchantedVine(pos, Projectile.owner), true, true);
-                }
-
-                if (lastInd != -1)
-                {
-                    (ForegroundManager.Items[lastInd] as EnchantedVine).NextVine = LastVine;
-                    LastVine.PriorVine = ForegroundManager.Items[lastInd] as EnchantedVine;
-                }
+                LastVine = VineWandCommon.BuildVine(Projectile.owner, LastVine, false);
 
                 Timer = 3;
 

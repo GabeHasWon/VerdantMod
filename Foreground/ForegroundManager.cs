@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -20,11 +21,9 @@ public static class ForegroundManager
 
     private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
     {
-        foreach (var val in Items)
-        {
-            if (SpecialDrawIndices.Contains(Items.IndexOf(val)))
-                val.Draw();
-        }
+        foreach (var val in SpecialDrawIndices)
+            if (val >= 0 && val < Items.Count)
+            Items[val].Draw();
 
         orig(self, behindTiles);
     }
@@ -58,12 +57,12 @@ public static class ForegroundManager
 
     public static void Draw()
     {
-        //Rectangle screen = new Rectangle((int)Main.screenPosition.X - Main.offScreenRange, (int)Main.screenPosition.Y - Main.offScreenRange, Main.screenWidth + Main.offScreenRange, Main.screenHeight + Main.offScreenRange);
+        Rectangle screen = new((int)Main.screenPosition.X - Main.screenWidth, (int)Main.screenPosition.Y - Main.screenHeight, Main.screenWidth  * 3, Main.screenHeight * 3);
 
         foreach (var val in Items)
         {
             if (!SpecialDrawIndices.Contains(Items.IndexOf(val)))
-            val.Draw();
+                val.Draw();
         }
     }
 
@@ -107,6 +106,8 @@ public static class ForegroundManager
             SpecialDrawIndices.Add(index);
         return index;
     }
+
+    public static ForegroundItem AddItemDirect(ForegroundItem item, bool forced = false, bool playerLayer = false) => Items[AddItem(item, forced, playerLayer)];
 
     /// <summary>Shorthand for ModContent.ModContent.Request<Texture2D>("Verdant/Foreground/Textures/" + name).</summary>
     /// <param name="name">Name of the requested texture.</param>

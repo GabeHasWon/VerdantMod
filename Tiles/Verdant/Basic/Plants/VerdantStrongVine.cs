@@ -16,20 +16,12 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
     {
         public override void SetStaticDefaults()
         {
-            Main.tileAxe[Type] = true;
             Main.tileSolid[Type] = false;
+            Main.tileCut[Type] = false;
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
             Main.tileFrameImportant[Type] = true;
-
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor); //this seems like a good idea
-            AddMapEntry(new Color(182, 224, 49));
-
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
-            TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
-            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile | AnchorType.SolidTile | AnchorType.SolidWithTop, 1, 0);
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.AlternateTile | AnchorType.SolidTile | AnchorType.SolidBottom, 1, 0);
-            TileObjectData.addTile(Type);
+            Main.tileAxe[Type] = true;
 
             ItemDrop = ModContent.ItemType<VerdantStrongVineMaterial>();
             DustType = DustID.Grass;
@@ -41,7 +33,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            bool validAbove = TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j - 1, Type);
+            bool validAbove = TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j - 1, ModContent.TileType<Bouncebloom>()) || TileHelper.ActiveType(i, j - 1, Type);
             bool validBelow = TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j + 1, Type);
 
             if (!validBelow) //Hanging table functionality
