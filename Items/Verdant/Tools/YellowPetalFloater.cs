@@ -20,7 +20,7 @@ namespace Verdant.Items.Verdant.Tools
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            foreach (var item in ForegroundManager.Items)
+            foreach (var item in ForegroundManager.PlayerLayerItems)
             {
                 if (item is CloudbloomEntity && Vector2.DistanceSquared(item.Center, Main.MouseWorld) < 40 * 40)
                 {

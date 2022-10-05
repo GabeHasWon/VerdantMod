@@ -12,6 +12,8 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class VerdantSnailStaff : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snail Staff");

@@ -10,7 +10,7 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class EtherialTag : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */ => false;
+        public override bool IsLoadingEnabled(Mod mod) => false;
 
         public override void SetStaticDefaults()
         {

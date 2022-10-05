@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles
 {
+	/// <summary>Ported from my own implementation in SpiritMod of the same name</summary>
 	internal class TileSwaySystem : ModSystem
 	{
 		public double TreeWindCounter { get; private set; }

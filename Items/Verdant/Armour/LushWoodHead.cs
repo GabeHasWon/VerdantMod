@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,11 +23,14 @@ public class LushWoodHead : ModItem
         Item.defense = 2;
     }
 
-    public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerdantChestplate>() && legs.type == ModContent.ItemType<VerdantLeggings>();
+    public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<LushWoodBody>() && legs.type == ModContent.ItemType<LushWoodLegs>();
+    public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 1;
 
-    public override void UpdateEquip(Player player)
+    public override void UpdateArmorSet(Player player)
     {
+        player.setBonus = "+1 flat summon damage\n+1 defense";
         player.GetDamage(DamageClass.Summon).Flat += 1;
+        player.statDefense += 1;
     }
 
     public override void AddRecipes()

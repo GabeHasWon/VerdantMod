@@ -29,6 +29,12 @@ namespace Verdant.Foreground.Parallax
             base.Update();
 
             velocity *= 0.9f;
+            
+            if (Vector2.DistanceSquared(Center, anchor) < 2 * 2)
+                velocity *= 0.96f;
+            else
+                velocity += (Center == anchor) ? Vector2.Zero : Vector2.Normalize(anchor - Center) * 0.5f;
+
             bounceTimer++;
             rotation = (float)Math.Sin(rotTimer++ * 0.05f) * 0.28f;
 
@@ -52,13 +58,9 @@ namespace Verdant.Foreground.Parallax
             }
             else
             {
-                velocity += (Center == anchor) ? Vector2.Zero : Vector2.Normalize(anchor - Center) * 0.5f;
                 scale = (bounceTimer / 60f) * 0.25f + 0.75f;
 
-                if (Vector2.DistanceSquared(Center, anchor) < 2 * 2)
-                    velocity *= 0.98f;
-
-                if (bounceTimer > 60)
+                if (bounceTimer > 20)
                     BouncedUpon = false;
             }
         }
@@ -84,7 +86,11 @@ namespace Verdant.Foreground.Parallax
             else //Fall through
             {
                 velocity = new Vector2(p.velocity.X * 0.2f, 4 + p.velocity.Y * 0.5f) * 0.25f;
-                p.velocity.Y *= 0.5f;
+
+                if (p.velocity.Y < 1f)
+                    p.velocity.Y = 0.5f;
+                else
+                    p.velocity.Y *= 0.5f;
                 p.fallStart = (int)(position.Y / 16f);
 
                 for (int j = 0; j < 14; ++j)

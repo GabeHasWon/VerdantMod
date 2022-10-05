@@ -63,7 +63,7 @@ namespace Verdant
 
             SaveVines(tag);
 
-            var clouds = ForegroundManager.Items.Where(x => x is CloudbloomEntity);
+            var clouds = ForegroundManager.PlayerLayerItems.Where(x => x is CloudbloomEntity);
             var positions = new List<Vector2>();
             foreach (var item in clouds)
                 positions.Add(item.Center);

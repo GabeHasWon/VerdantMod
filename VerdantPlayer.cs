@@ -95,9 +95,12 @@ class VerdantPlayer : ModPlayer
             float newVel = -10f;
             if (Player.controlJump) //Bigger jump if jumping
                 newVel = -13.5f;
+
             if (Player.controlDown) //NO jump if holding down
                 return;
+
             Player.velocity.Y = newVel;
+            Player.fallStart = (int)(Player.Center.Y / 16f);
 
             int offsetX = 0;
             int offsetY = 0;

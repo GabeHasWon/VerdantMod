@@ -87,15 +87,15 @@ public class PermVineWandProjectile : ModProjectile
 
         Projectile.timeLeft++;
         Projectile.rotation = p.AngleFrom(Main.MouseWorld); //So it looks like the player is holding it properly
-        Projectile.position = p.position - new Vector2(14, 0).RotatedBy(Projectile.rotation);
+        Projectile.position = p.position - new Vector2(10, 0).RotatedBy(Projectile.rotation);
         Helper.ArmsTowardsMouse(p);
 
         if (Main.mouseRight)
         {
-            var vine = ForegroundManager.Items.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) as EnchantedVine;
+            var vine = ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) as EnchantedVine;
             if (vine != null && vine.perm)
             {
-                vine.killMe = true;
+                vine.Kill();
                 Main.player[Projectile.owner].QuickSpawnItem(Projectile.GetSource_FromAI(), ModContent.ItemType<LushLeaf>());
             }
             return;

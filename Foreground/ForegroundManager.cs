@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -10,23 +11,35 @@ namespace Verdant.Foreground;
 public static class ForegroundManager
 {
     public static readonly List<ForegroundItem> Items = new List<ForegroundItem>();
-    public static readonly List<int> SpecialDrawIndices = new();
+    public static readonly List<ForegroundItem> PlayerLayerItems = new();
 
     internal static void Hooks()
     {
         On.Terraria.Main.DrawGore += DrawForeground;
-        On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
+        On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
         Main.OnTickForThirdPartySoftwareOnly += UpdateHook;
     }
 
-    private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+    private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
     {
-        foreach (var val in SpecialDrawIndices)
-            if (val >= 0 && val < Items.Count)
-            Items[val].Draw();
+        orig(self);
 
-        orig(self, behindTiles);
+        Main.spriteBatch.Begin(0, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, (Effect)null, Main.Transform);
+
+        foreach (var val in PlayerLayerItems)
+            val.Draw();
+
+        Main.spriteBatch.End();
     }
+
+    //private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+    //{
+    //    foreach (var val in SpecialDrawIndices)
+    //        if (val >= 0 && val < Items.Count)
+    //            Items[val].Draw();
+
+    //    orig(self, behindTiles);
+    //}
 
     private static void UpdateHook()
     {
@@ -57,57 +70,65 @@ public static class ForegroundManager
 
     public static void Draw()
     {
-        Rectangle screen = new((int)Main.screenPosition.X - Main.screenWidth, (int)Main.screenPosition.Y - Main.screenHeight, Main.screenWidth  * 3, Main.screenHeight * 3);
+        Rectangle screen = new((int)Main.screenPosition.X - Main.screenWidth, (int)Main.screenPosition.Y - Main.screenHeight, Main.screenWidth * 3, Main.screenHeight * 3);
 
         foreach (var val in Items)
-        {
-            if (!SpecialDrawIndices.Contains(Items.IndexOf(val)))
-                val.Draw();
-        }
+            val.Draw();
     }
 
     public static void Update()
     {
-        List<ForegroundItem> removals = new List<ForegroundItem>();
+        UpdateSet(PlayerLayerItems);
+        UpdateSet(Items);
+    }
 
-        foreach (var val in Items)
+    private static void UpdateSet(List<ForegroundItem> set)
+    {
+        List<ForegroundItem> removals = new();
+
+        foreach (var val in set)
         {
             if (Main.hasFocus && !Main.gamePaused)
                 val.Update();
 
             if (val.killMe)
-            {
                 removals.Add(val);
-
-                if (SpecialDrawIndices.Contains(Items.IndexOf(val)))
-                    SpecialDrawIndices.Remove(Items.IndexOf(val));
-            }
         }
 
         foreach (var item in removals)
-            Items.Remove(item);
+            set.Remove(item);
     }
 
-    //public static void Load(TagCompound info)
-    //{
-    //}
-
-    public static void Unload() => Items.Clear();
+    public static void Unload()
+    {
+        Items.Clear();
+        PlayerLayerItems.Clear();
+    }
 
     public static int AddItem(ForegroundItem item, bool forced = false, bool playerLayer = false)
     {
         if (!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forced) //Skip if option is turned off
             return -1;
 
-        Items.Add(item);
-        int index = Items.IndexOf(item);
-
         if (playerLayer)
-            SpecialDrawIndices.Add(index);
-        return index;
+        {
+            PlayerLayerItems.Add(item);
+            return PlayerLayerItems.IndexOf(item);
+        }
+        else
+        {
+            Items.Add(item);
+            return Items.IndexOf(item);
+        }
     }
 
-    public static ForegroundItem AddItemDirect(ForegroundItem item, bool forced = false, bool playerLayer = false) => Items[AddItem(item, forced, playerLayer)];
+    public static ForegroundItem AddItemDirect(ForegroundItem item, bool forced = false, bool playerLayer = false)
+    {
+        if (!playerLayer)
+            return Items[AddItem(item, forced, playerLayer)];
+        else
+            return PlayerLayerItems[AddItem(item, forced, playerLayer)];
+    }
 
     /// <summary>Shorthand for ModContent.ModContent.Request<Texture2D>("Verdant/Foreground/Textures/" + name).</summary>
     /// <param name="name">Name of the requested texture.</param>

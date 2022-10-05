@@ -50,8 +50,10 @@ namespace Verdant.Foreground.Parallax
 
             if (!InvalidVine(true) && !InvalidVine(false))
                 frame = 1;
-            else
+            else if (!InvalidVine(true) || !InvalidVine(false))
                 frame = 0;
+            else
+                frame = 2;
 
             float rotOff = (float)Math.Sin((lifeTimer-- + (WhoAmI * 12)) * 0.05f) * 0.2f;
             if (!InvalidVine(true))
@@ -75,14 +77,9 @@ namespace Verdant.Foreground.Parallax
 
             if (lifeTimer < 0)
                 Kill();
-
-            //bool invalidNext = nextVine == -1 || InvalidVine(false);
-            //bool invalidPrior = priorVine == -1 || InvalidVine(true);
-            //if (invalidNext && invalidPrior && ForegroundManager.Items.Where(x => x is EnchantedVine).Count() <= 1)
-            //    Kill();
         }
 
-        private void Kill()
+        public void Kill()
         {
             for (int i = 0; i < 3; ++i)
                 Dust.NewDust(Center + Hitbox.Size() / 3f, Hitbox.Width / 2, Hitbox.Height / 2, DustID.Grass, 0, 0);

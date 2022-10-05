@@ -1,16 +1,14 @@
 ----The Verdant Mod----
 by GabeHasWon
 
-A mod dedicated to cultivating the Verdant - a lush underground cave system with plants and trees (and critters!) about.
-
-As of writing this, the mod has the following:
-	- 85 new items
-	- 70 new tiles
-	- 12 new walls
-	- 9 new NPCs
-	- 3 brand new music tracks
-	- A new foreground and background system that gives more life to the biome
-...and more!
+This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
+It has the following basic content:
+    - 92 new items
+    - 70 new tiles
+    - 12 new walls
+    - 9 new NPCs
+    - 3 brand new music tracks
+    - A new foreground and background system that gives more life to the biome
 
 ----Credit----
 --Developers--
