@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.Graphics.Effects;
@@ -10,9 +11,6 @@ namespace Verdant.Scenes;
 
 internal class VerdantBiome : ModBiome
 {
-    private float _steamOpacity = 0f;
-    private float _steamProgress = 0f;
-
     public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant");
     public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
     public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.Find<ModSurfaceBackgroundStyle>("Verdant/VerdantSurfaceBgStyle");
@@ -22,14 +20,8 @@ internal class VerdantBiome : ModBiome
 
     private int GetMusic()
     {
-        if (Main.LocalPlayer.position.Y / 16 < Main.worldSurface) //petals fall
-        {
-            if (Main.raining)
-                return MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall");
-        }
-
-        if (Main.LocalPlayer.position.Y / 16f > Main.worldSurface) //tear rain
-            return MusicLoader.GetMusicSlot(Mod, "Sounds/Music/TearRain");
+        if (Main.raining)
+            return MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall");
         return -1;
     }
 
@@ -46,38 +38,4 @@ internal class VerdantBiome : ModBiome
 
     public override void OnEnter(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = true;
     public override void OnLeave(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = false;
-
-    public override void SpecialVisuals(Player player, bool isActive)
-    {
-        if (!Filters.Scene[EffectIDs.BiomeSteam].Active && ModContent.GetInstance<VerdantClientConfig>().EnableSteam)
-        {
-            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant && player.position.Y / 16f > Main.worldSurface)
-            {
-                Filters.Scene.Activate(EffectIDs.BiomeSteam, Vector2.Zero); //idk why I need to use UseImage twice but it works so I aint gonna complain
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam").Value, 0);
-                Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam").Value, 1);
-                _steamOpacity = 0.99f;
-            }
-        }
-        else
-        {
-            bool validArea = player.GetModPlayer<VerdantPlayer>().ZoneVerdant && player.position.Y / 16f > Main.worldSurface && ModContent.GetInstance<VerdantClientConfig>().EnableSteam;
-            float opacity = validArea ? 0.94f : 1f;
-
-            _steamOpacity = MathHelper.Lerp(_steamOpacity, opacity, 0.02f);
-
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseTargetPosition(Main.screenPosition + (Vector2.UnitY * player.gfxOffY));
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseIntensity(_steamOpacity);
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseProgress(_steamProgress += 0.004f);
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(Main.screenWidth, Main.screenHeight), 0);
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(512, 512), 1);
-            Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseOpacity(1f);
-
-            if (!validArea && _steamOpacity > 0.99f)
-            {
-                Filters.Scene[EffectIDs.BiomeSteam].Deactivate();
-                _steamProgress = 0;
-            }
-        }
-    }
 }

@@ -124,8 +124,7 @@ internal class Apotheosis : ModTile
                         msg = "The tyrannical Queen has fallen.\nHopefully you're having a better experience here.";
                 }
 
-                Mod spiritMod = ModLoader.GetMod("SpiritMod");
-                if (r == 4 && spiritMod != null) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
+                if (r == 4 && ModLoader.TryGetMod("SpiritMod", out Mod spiritMod)) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
                 {
                     if ((bool)spiritMod.Call("downed", "Scarabeus"))
                         msg = "The desert sands feel calmer now.";

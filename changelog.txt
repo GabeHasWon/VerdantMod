@@ -1,0 +1,3 @@
+- Fixed VerdantBiome and VerdantUndergroundBiome usage
+- Fixed music issue, Tear Rain plays now
+- Increased Pink/Red Petal droprates from passionflower bulbs
