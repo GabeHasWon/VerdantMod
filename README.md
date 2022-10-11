@@ -20,4 +20,7 @@ Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
 # Development
 I wanted to make this mod with the understanding that open source content is what helps a community grow, and so, this mod is open-source and under the GPLv3 liscense.
 As such, anyone can use any code or asset from this mod freely in their own projects - all I ask is a credit in your mod's description or Github repository.
-Once I get the Discord properly set up, you will be able to ask development related questions in the appropriate channel as well - stay tuned.
+While all code is free to use, please do not use any of the assets - apart from specifically sound effects. Feel free to use those, though also do credit me for those.
+
+Naturally, don't use this GitHub to peek at future updates. 
+If you have to do look into it yourself, keep it private - I'd like to show everything off in a finished state when possible!
