@@ -14,9 +14,9 @@ public abstract class FoodItem : ModItem
 
 	public sealed override void SetStaticDefaults()
 	{
-		ItemID.Sets.IsFood[Type] = true;
+        ItemID.Sets.IsFood[Type] = true;
 
-		StaticDefaults();
+        StaticDefaults();
 	}
 
 	public override sealed void SetDefaults()

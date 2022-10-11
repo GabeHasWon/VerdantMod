@@ -7,6 +7,7 @@ using Terraria.Enums;
 using Terraria;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent.Metadata;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
@@ -21,12 +22,80 @@ internal class VerdantDecor1x1 : ModTile, IFlowerTile
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
         Main.tileCut[Type] = true;
 
-        Terraria.GameContent.Metadata.TileMaterials.SetForTileId(Type, Terraria.GameContent.Metadata.TileMaterials._materialsByName["Plant"]);
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
         TileID.Sets.SwaysInWindBasic[Type] = true;
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(12, 6), new Vector2(8, 10) };
+    public bool IsFlower(int i, int j) => Main.tile[i, j].TileFrameX != 18 && Main.tile[i, j].TileFrameX != 36;
+
+    public Vector2[] OffsetAt(int i, int j)
+    {
+        var offsets = GetOffsets();
+        Tile tile = Main.tile[i, j];
+
+        if (tile.TileFrameX == 0)
+            return new[] { offsets[0] };
+        return new[] { offsets[1] };
+    }
+}
+
+internal class Decor1x1Right : ModTile, IFlowerTile
+{
+    public override void SetStaticDefaults()
+    {
+        TileObjectData.newTile.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
+        TileObjectData.newTile.RandomStyleRange = 7;
+        TileObjectData.newTile.StyleHorizontal = true;
+        QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
+
+        Main.tileCut[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileNoFail[Type] = true;
+
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+        TileID.Sets.SwaysInWindBasic[Type] = true;
+    }
+
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+    public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (j % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipVertically;
+
+    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(12, 6), new Vector2(8, 10) };
+    public bool IsFlower(int i, int j) => Main.tile[i, j].TileFrameX != 18 && Main.tile[i, j].TileFrameX != 36;
+
+    public Vector2[] OffsetAt(int i, int j)
+    {
+        var offsets = GetOffsets();
+        Tile tile = Main.tile[i, j];
+
+        if (tile.TileFrameX == 0)
+            return new[] { offsets[0] };
+        return new[] { offsets[1] };
+    }
+}
+
+internal class Decor1x1Left : ModTile, IFlowerTile
+{
+    public override void SetStaticDefaults()
+    {
+        TileObjectData.newTile.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
+        TileObjectData.newTile.RandomStyleRange = 7;
+        TileObjectData.newTile.StyleHorizontal = true;
+        QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
+
+        Main.tileCut[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileNoFail[Type] = true;
+
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+        TileID.Sets.SwaysInWindBasic[Type] = true;
+    }
+
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+    public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (j % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipVertically;
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(12, 6), new Vector2(8, 10) };
     public bool IsFlower(int i, int j) => Main.tile[i, j].TileFrameX != 18 && Main.tile[i, j].TileFrameX != 36;
@@ -68,7 +137,7 @@ internal class VerdantDecor2x1 : ModTile, IFlowerTile
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 2, 1, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
 
-        Terraria.GameContent.Metadata.TileMaterials.SetForTileId(Type, Terraria.GameContent.Metadata.TileMaterials._materialsByName["Plant"]);
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
         TileID.Sets.SwaysInWindBasic[Type] = true;
     }
 

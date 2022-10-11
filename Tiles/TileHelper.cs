@@ -17,11 +17,11 @@ namespace Verdant.Tiles
 {
     public static class TileHelper
     {
-        public static Vector2 TileOffset => Lighting.LegacyEngine.Mode > 1 ? Vector2.Zero : Vector2.One * 12;
+        public static Vector2 TileOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);//Lighting.LegacyEngine.Mode > 1 ? Vector2.Zero : Vector2.One * 12;
 
         public static Vector2 TileCustomPosition(int i, int j, Vector2? off = null)
         {
-            return ((new Vector2(i, j) + TileOffset) * 16) - Main.screenPosition - (off ?? new Vector2(0));
+            return (new Vector2(i, j)  * 16) - Main.screenPosition - (off ?? new Vector2(0)) + TileOffset;
         }
 
         public static int[] AttachStrongVine
@@ -77,6 +77,12 @@ namespace Verdant.Tiles
 
         public static bool ValidBottom(Tile tile) => !tile.BottomSlope;
         public static bool ValidBottom(int i, int j) => ValidBottom(Framing.GetTileSafely(i, j));
+
+        public static bool ValidLeft(Tile tile) => !tile.LeftSlope;
+        public static bool ValidLeft(int i, int j) => ValidLeft(Framing.GetTileSafely(i, j));
+
+        public static bool ValidRight(Tile tile) => !tile.RightSlope;
+        public static bool ValidRight(int i, int j) => ValidRight(Framing.GetTileSafely(i, j));
 
         /// <summary>
         /// Don't use the bool return value for anything.
@@ -192,5 +198,6 @@ namespace Verdant.Tiles
         public static bool ActiveType(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t;
         public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).HasTile;
         public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t && !Framing.GetTileSafely(i, j).TopSlope;
+        public static bool ActiveTypeNoBottomSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t && !Framing.GetTileSafely(i, j).BottomSlope;
     }
 }

@@ -83,7 +83,6 @@ namespace Verdant.Tiles
             if (tallBottom)
                 TileObjectData.newTile.CoordinateHeights[h - 1] = 18;
 
-            TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.Origin = new Point16(0, 0);

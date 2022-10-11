@@ -29,10 +29,9 @@ namespace Verdant
         [Tooltip("Enables steam overlay when inside of the underground Verdant.")]
         public bool EnableSteam;
 
-        [DefaultValue(0)]
-        [Range(0, 2)]
+        [DefaultValue(true)]
         [Label("Enable Foreground/Background Objects")]
-        [Tooltip("Enables objects appearing in the surface background.")]
+        [Tooltip("Enables decoration objects appearing in the surface background or foreground everywhere.")]
         public bool BackgroundObjects;
     }
 }

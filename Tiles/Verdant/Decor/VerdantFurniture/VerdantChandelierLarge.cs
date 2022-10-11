@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -15,7 +13,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public override void SetStaticDefaults()
         {
-            // Main.tileFlame[Type] = true; This breaks it.
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;

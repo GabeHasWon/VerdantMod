@@ -22,6 +22,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
 			TileID.Sets.CommonSapling[Type] = true;
 
+			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
 			TileObjectData.newTile.Width = 1;
 			TileObjectData.newTile.Height = 2;
 			TileObjectData.newTile.Origin = new Point16(0, 1);

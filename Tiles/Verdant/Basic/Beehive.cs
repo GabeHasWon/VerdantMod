@@ -14,14 +14,15 @@ namespace Verdant.Tiles.Verdant.Basic;
 class Beehive : ModTile
 {
     public const int FrameHeight = 38;
+    public const int MaxFrame = 4;
 
     public override void SetStaticDefaults()
     {
-        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, TileID.Hive };
-        TileObjectData.newTile.StyleHorizontal = true;
 
-        QuickTile.SetMulti(this, 2, 2, DustID.Bee, SoundID.Dig, true, new Color(232, 167, 74), false, false, false, "Beehive");
+        QuickTile.SetMulti(this, 2, 2, DustID.Bee, SoundID.Dig, true, new Color(232, 167, 74), true, false, false, "Beehive");
     }
 
     public override void HitWire(int i, int j)
@@ -31,10 +32,21 @@ class Beehive : ModTile
         if (t.TileFrameY < FrameHeight)
             return;
 
-        if (t.TileFrameY < FrameHeight * 2 && false)
+        if (t.TileFrameY < FrameHeight * 2)
             WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 128);
-        else
+        else if (t.TileFrameY < FrameHeight * 3)
             WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+        else if (t.TileFrameY < FrameHeight * 4)
+        {
+            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Verdant.Food.HoneyNuggets>(), Main.rand.Next(2) + 1);
+        }
+        else
+        {
+            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Verdant.Food.HoneyNuggets>(), Main.rand.Next(2) + 2);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Hive, Main.rand.Next(2) + 1);
+        }
 
         Point tL = TileHelper.GetTopLeft(new Point(i, j));
         ResetFrame(tL);
@@ -65,7 +77,7 @@ class Beehive : ModTile
 
     internal static void IncreaseFrame(Point tL)
     {
-        if (Main.tile[tL.X, tL.Y].TileFrameY >= FrameHeight * 2)
+        if (Main.tile[tL.X, tL.Y].TileFrameY >= FrameHeight * MaxFrame)
             return;
 
         for (int i = tL.X; i < tL.X + 2; ++i)

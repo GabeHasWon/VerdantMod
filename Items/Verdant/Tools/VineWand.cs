@@ -10,7 +10,7 @@ class VineWand : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Zipvine");
+        DisplayName.SetDefault("Zipvine (Temporary)");
         Tooltip.SetDefault("Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\nThese vines last 10 seconds");
     }
 
@@ -24,7 +24,6 @@ class VineWand : ModItem
         Item.autoReuse = false;
         Item.rare = ItemRarityID.Green;
         Item.channel = true;
-        Item.shoot = ModContent.ProjectileType<VineWandProjectile>();
         Item.noUseGraphic = true;
         Item.noMelee = true;
         Item.maxStack = 1;
@@ -34,6 +33,9 @@ class VineWand : ModItem
 
     public override void UpdateInventory(Player player)
     {
+        Item.SetDefaults(ModContent.ItemType<PermVineWand>());
+        return;
+
         Item.stack = player.GetModPlayer<VinePulleyPlayer>().vineResource;
 
         if (Item.stack <= 1)

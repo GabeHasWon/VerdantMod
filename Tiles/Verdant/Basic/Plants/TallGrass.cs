@@ -7,6 +7,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 {
     internal class TallGrass : ModTile
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
+
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = false;
@@ -34,7 +36,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void RandomUpdate(int i, int j)
         {
-            if (!Main.tile[i, j - 1].HasTile && Main.rand.Next(10) == 0)
+            if (!Main.tile[i, j - 1].HasTile && Main.rand.NextBool(10))
                 WorldGen.PlaceTile(i, j - 1, Type, true, false);
         }
 

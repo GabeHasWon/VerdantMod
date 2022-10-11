@@ -19,16 +19,16 @@ namespace Verdant.Items.Verdant.Misc
             Item.accessory = false;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(gold: 50);
-            Item.consumable = true;
+            Item.consumable = false;
             Item.width = 32;
             Item.height = 28;
             Item.useAnimation = Item.useTime = 20;
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
-        public override bool CanUseItem(Player player) => player.GetModPlayer<VerdantPlayer>().heartOfGrowth;
+        public override bool CanUseItem(Player player) => !player.GetModPlayer<VerdantPlayer>().heartOfGrowth;
 
-        public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
+        public override bool? UseItem(Player player)
         {
             player.GetModPlayer<VerdantPlayer>().heartOfGrowth = true;
 

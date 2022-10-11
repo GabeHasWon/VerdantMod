@@ -415,6 +415,14 @@ namespace Verdant.World
                         continue;
                     }
 
+                    //weeping bud
+                    doPlace = Helper.AreaClear(i - 1, j + 1, 3, 2) && TileHelper.ActiveTypeNoBottomSlope(i, j, ModContent.TileType<VerdantGrassLeaves>());
+                    if (doPlace && WorldGen.genRand.NextBool(32))
+                    {
+                        WorldGen.PlaceTile(i, j + 1, ModContent.TileType<WaterPlant>(), true, true);
+                        continue;
+                    }
+
                     //beehive
                     doPlace = Helper.AreaClear(i, j - 2, 2, 2) && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
                     if (doPlace && WorldGen.genRand.NextBool(40))
@@ -423,6 +431,7 @@ namespace Verdant.World
                         continue;
                     }
 
+                    //decor 1x1
                     if (!Framing.GetTileSafely(i, j - 1).HasTile && !TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
                     {
                         int type = !Main.rand.NextBool(1) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
@@ -488,6 +497,7 @@ namespace Verdant.World
             TunnelSpice();
 
             //Caves
+            VerdantSystem.genNoise = new FastNoise(WorldGen._genRandSeed);
             VerdantSystem.genNoise.Seed = WorldGen._genRandSeed;
             VerdantSystem.genNoise.Frequency = 0.05f;
             VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.CubicFractal; //Sets noise to proper type

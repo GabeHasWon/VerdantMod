@@ -1,3 +1,10 @@
-- Fixed VerdantBiome and VerdantUndergroundBiome usage
-- Fixed music issue, Tear Rain plays now
-- Increased Pink/Red Petal droprates from passionflower bulbs
+**Additions**
+- Added Yellow Sprout, an accessory from Passionflower Bulbs that increase healing and mana potions' effectiveness
+
+**Bugfixes / Edits**
+- Fixed Heart of Growth unusability issue
+- Made Heart of Growth unconsumable for multiplayer reasons
+- Elaborated on the use for the BackgroundObjects config
+- Removed Zipvine (Temporary), now all zipvines are permanant
+- Passionflower bulb now uses ModifyItemLoot
+- Fixed major tile drawing bug that happened somehow

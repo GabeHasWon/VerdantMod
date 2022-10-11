@@ -1,7 +1,8 @@
 displayName = Verdant
 author = GabeHasWon
-version = 0.1.0.2
+version = 0.1.1.1
 dllReferences = StructureHelper
 hideCode = false
 hideResources = false
 includeSource = true
+homepage = https://discord.gg/FAnwxtM2vc

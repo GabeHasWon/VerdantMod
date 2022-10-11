@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+﻿using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Equipables;
@@ -16,31 +14,18 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 22, ItemRarityID.Lime, 1);
         public override bool CanRightClick() => true;
 
-        public override void RightClick(Player player)
+        public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var mainLoot = new (int, int)[]
-            {
-                (ModContent.ItemType<VerdantStaff>(), 1), (ModContent.ItemType<Lightbloom>(), 1), (ModContent.ItemType<ExpertPlantGuide>(), 1), (ModContent.ItemType<Halfsprout>(), WorldGen.genRand.Next(20, 31))
-            };
+            var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 4, 20, 31);
+            halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>()));
 
-            var subLoot = new (int, int)[] 
-            {
-                (ItemID.IronskinPotion, WorldGen.genRand.Next(1, 3)), (ItemID.ThornsPotion, WorldGen.genRand.Next(1, 3)), (ItemID.ThrowingKnife, WorldGen.genRand.Next(3, 7)),
-                (ModContent.ItemType<PinkPetal>(), WorldGen.genRand.Next(9, 14)), (ModContent.ItemType<RedPetal>(), WorldGen.genRand.Next(9, 14)), (ModContent.ItemType<Lightbulb>(), WorldGen.genRand.Next(1, 3)),
-                (ItemID.Dynamite, 1), (ItemID.Glowstick, WorldGen.genRand.Next(3, 8)), (ItemID.Glowstick, WorldGen.genRand.Next(3, 8)), (ItemID.Bomb, WorldGen.genRand.Next(2, 4)),
-                (ItemID.NightOwlPotion, WorldGen.genRand.Next(2, 4)), (ItemID.HealingPotion, WorldGen.genRand.Next(2, 4)), (ItemID.MoonglowSeeds, WorldGen.genRand.Next(2, 4)),
-                (ItemID.DaybloomSeeds, WorldGen.genRand.Next(2, 4)), (ItemID.BlinkrootSeeds, WorldGen.genRand.Next(2, 4))
-            };
+            itemLoot.Add(halfSproutRule);
 
-            (int mainType, int mainStack) = Main.rand.Next(mainLoot);
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), mainType, mainStack);
+            int[] itemIDArray = new int[] { ItemID.IronskinPotion, ItemID.ThornsPotion, ItemID.ThrowingKnife, ModContent.ItemType<PinkPetal>(), ModContent.ItemType<RedPetal>(), ModContent.ItemType<Lightbulb>(),
+                ItemID.Dynamite, ItemID.Glowstick, ItemID.Bomb, ItemID.NightOwlPotion, ItemID.HealingPotion, ItemID.MoonglowSeeds, ItemID.DaybloomSeeds, ItemID.BlinkrootSeeds };
+            (int, int)[] itemStackArray = new (int, int)[] { (1, 3), (1, 3), (3, 7), (9, 14), (9, 14), (1, 3), (1, 1), (3, 8), (2, 4), (2, 4), (2, 4), (2, 4), (2, 4), (2, 4) };
 
-            int subReps = Main.rand.Next(6, 9);
-            for (int i = 0; i < subReps; ++i)
-            {
-                (int subType, int subStack) = Main.rand.Next(subLoot);
-                player.QuickSpawnItem(player.GetSource_OpenItem(Type), subType, subStack);
-            }
+            itemLoot.Add(new LootPoolDrop(itemStackArray, 7, 1, 1, itemIDArray));
         }
     }
 }

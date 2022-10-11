@@ -3,7 +3,7 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 92 new items
+    - 95 new items
     - 70 new tiles
     - 12 new walls
     - 9 new NPCs
@@ -19,9 +19,26 @@ Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
 Aeterna - A payment of 750 schmeckles
+/u/Nervous-General3220 - Zipvine name
+
+----Socials / Links----
+These are various links to me/my projects/the Mod's discord. 
+If you have something to say, be it a bug ro report, balance to comment on, or a complaint about the lack of snails, do report it to the Discord.
+For those in-game looking at this, all of these links can be found in the homepage, which is the Discord.
+
+Discord: https://discord.gg/FAnwxtM2vc
+Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#post-2572017
+
+My Twitter: https://twitter.com/GabeHasWon
+My Patreon: https://www.patreon.com/gabehaswon
+My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
 --Development--
 
 I wanted to make this mod with the understanding that open source content is very important to modding, and so, this mod is open-source and under the GPLv3 liscense.
 As such, anyone can use any code or asset from this mod freely in their own projects - all I ask is a credit in your mod's description or Github repository.
-Once I get the Discord properly set up, you will be able to ask development related questions in the appropriate channel as well - stay tuned.
+
+GitHub: https://github.com/GabeHasWon/VerdantMod
+
+While all code is free to use, please do not use any of the assets - apart from specifically sound effects. Feel free to use them, though also do credit me for those.
+Thank you, and have fun modding!

@@ -16,12 +16,18 @@ class LootPlant : ModTile
 
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<VerdantPinkPetal>(), 
             ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, TileID.Hive };
         TileObjectData.newTile.StyleHorizontal = true;
 
-        QuickTile.SetMulti(this, 2, 2, DustID.OrangeStainedGlass, SoundID.Grass, true, new Color(232, 167, 74), false, false, false, "Yellow Bulb");
+        QuickTile.SetMulti(this, 2, 2, DustID.OrangeStainedGlass, SoundID.Grass, true, new Color(232, 167, 74), false, false, false, "Passionflower");
+    }
+
+    public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+    {
+        return Main.tile[i, j].TileFrameY >= FrameHeight;
     }
 
     public override bool RightClick(int i, int j)
@@ -52,5 +58,14 @@ class LootPlant : ModTile
                 t.TileFrameY += FrameHeight;
             }
         }
+    }
+
+    public override void MouseOver(int i, int j)
+    {
+        Player player = Main.LocalPlayer;
+
+        player.noThrow = 2;
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = ModContent.ItemType<PassionflowerBulb>();
     }
 }
