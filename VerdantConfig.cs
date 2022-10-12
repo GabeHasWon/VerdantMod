@@ -36,7 +36,7 @@ namespace Verdant
 
         [DefaultValue(true)]
         [Label("Enable Custom Waterfalls")]
-        [Tooltip("Enables waterfalls appearing from new places, such as the Weeping Bud.")]
+        [Tooltip("Enables waterfalls appearing from tiles, such as the Weeping Bud.")]
         [ReloadRequired]
         public bool Waterfalls;
     }

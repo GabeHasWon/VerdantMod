@@ -20,11 +20,8 @@ internal class Apotheosis : ModTile
     private int _timer = 0;
 
     public override void SetStaticDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
-
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
-
     public override bool CanExplode(int i, int j) => false;
-
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
     public override void NearbyEffects(int i, int j, bool closer)
