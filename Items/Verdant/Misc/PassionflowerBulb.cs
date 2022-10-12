@@ -18,7 +18,7 @@ namespace Verdant.Items.Verdant.Misc
         {
             var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 4, 20, 31);
             halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>()));
-
+            
             itemLoot.Add(halfSproutRule);
 
             int[] itemIDArray = new int[] { ItemID.IronskinPotion, ItemID.ThornsPotion, ItemID.ThrowingKnife, ModContent.ItemType<PinkPetal>(), ModContent.ItemType<RedPetal>(), ModContent.ItemType<Lightbulb>(),

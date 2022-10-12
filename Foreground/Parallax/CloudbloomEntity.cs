@@ -48,6 +48,7 @@ namespace Verdant.Foreground.Parallax
                 for (int i = 0; i < Main.maxPlayers; ++i)
                 {
                     Player p = Main.player[i];
+                    
                     if (p.active && !p.dead)
                     {
                         Rectangle pBottom = new((int)p.position.X, (int)p.Bottom.Y, p.width, 4);

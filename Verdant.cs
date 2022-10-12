@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Verdant.Effects;
 using Verdant.Tiles.Verdant;
+using System;
 
 namespace Verdant
 {
@@ -46,8 +47,15 @@ namespace Verdant
         public override void Unload()
         {
             ForegroundManager.Unload();
+            UnMonoModChanges();
 
             Instance = null;
+        }
+
+        private void UnMonoModChanges()
+        {
+            //if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
+            //    IL.Terraria.WaterfallManager.FindWaterfalls -= WaterfallManager_FindWaterfalls;
         }
 
         private void MonoModChanges()
@@ -59,7 +67,8 @@ namespace Verdant
             On.Terraria.Main.DrawWater += Main_DrawWater;
             On.Terraria.Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
 
-            IL.Terraria.WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;
+            if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
+                IL.Terraria.WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;
         }
     }
 }

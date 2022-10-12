@@ -146,6 +146,8 @@ namespace Verdant
                 lastVine = VineWandCommon.BuildVine(Main.myPlayer, lastVine, true, item[i]);
         }
 
+        public override void PostAddRecipes() => SacrificeAutoloader.Load(Mod);
+
         public override void NetSend(BinaryWriter writer)
         {
             var flags = new BitsByte();

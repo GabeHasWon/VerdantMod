@@ -212,8 +212,10 @@ namespace Verdant.NPCs.Passive
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)
-                for (int i = 0; i < 2; ++i)
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+            {
+                Vector2 vel = new Vector2(Main.rand.NextFloat(1, 3), 0).RotatedByRandom(MathHelper.TwoPi);
+                Dust.NewDust(NPC.Center, 1, 1, DustID.Honey2, vel.X, vel.Y);
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.raining) ? 2f : 0f) * (spawnInfo.PlayerInTown ? 1.75f : 0f);

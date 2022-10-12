@@ -33,5 +33,11 @@ namespace Verdant
         [Label("Enable Foreground/Background Objects")]
         [Tooltip("Enables decoration objects appearing in the surface background or foreground everywhere.")]
         public bool BackgroundObjects;
+
+        [DefaultValue(true)]
+        [Label("Enable Custom Waterfalls")]
+        [Tooltip("Enables waterfalls appearing from new places, such as the Weeping Bud.")]
+        [ReloadRequired]
+        public bool Waterfalls;
     }
 }

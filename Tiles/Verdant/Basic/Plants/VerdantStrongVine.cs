@@ -80,14 +80,18 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             {
                 if (!noItem) 
                     Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<RedPetal>());
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);
+
+                if (Main.netMode != NetmodeID.Server)
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 36 || Framing.GetTileSafely(i, j).TileFrameX == 36 && Framing.GetTileSafely(i, j).TileFrameY == 54)
             {
                 if (!noItem) 
                     Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<PinkPetal>());
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+
+                if (Main.netMode != NetmodeID.Server)
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
             }
 
             if (Main.tile[i, j + 1].TileType == Type)

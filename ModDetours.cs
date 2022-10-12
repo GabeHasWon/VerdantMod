@@ -53,7 +53,7 @@ namespace Verdant
 
         private void WaterfallManager_FindWaterfalls(ILContext il)
         {
-            ILCursor c = new ILCursor(il);
+            ILCursor c = new(il);
 
             if (!c.TryGotoNext(MoveType.After, x => x.MatchCall<Tile>("active")))
                 return;
@@ -70,13 +70,13 @@ namespace Verdant
             c.EmitDelegate(AddWaterFlowersFalls); //Call the adjustment method (which also sets currentMax)
         }
 
-        private void AddWaterFlowersFalls(int i, int j, WaterfallManager.WaterfallData[] data, ref int currentMax, int qualityMax)
+        private static void AddWaterFlowersFalls(int i, int j, WaterfallManager.WaterfallData[] data, ref int currentMax, int qualityMax)
         {
-            if (currentMax >= qualityMax)
+            if (currentMax >= qualityMax || data is null)
                 return;
 
             Tile currentTile = Main.tile[i, j];
-            if (currentTile.TileType == ModContent.TileType<WaterPlant>() && currentTile.TileFrameX == 18 && currentTile.TileFrameY == 18)
+            if (currentTile.HasTile && currentTile.TileType == ModContent.TileType<WaterPlant>() && currentTile.TileFrameX == 18 && currentTile.TileFrameY == 18)
             {
                 data[currentMax].x = i;
                 data[currentMax].y = j;
@@ -88,7 +88,6 @@ namespace Verdant
                 data[currentMax].type = 6;
                 currentMax++;
             }
-            return;
         }
     }
 }

@@ -48,11 +48,14 @@ namespace Verdant.Tiles.Verdant.Mounted
             if (frameX % 36 == 18) i--;
             if (frameY % 36 == 18) j--;
 
-            int l = Main.rand.Next(3, 6);
-            for (int v = 0; v < l; ++v)
+            if (Main.netMode != NetmodeID.Server)
             {
-                int t = (frameX > 18) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(32), Main.rand.Next(32)), new Vector2(0), t, 1);
+                int l = Main.rand.Next(3, 6);
+                for (int v = 0; v < l; ++v)
+                {
+                    int t = (frameX > 18) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(32), Main.rand.Next(32)), new Vector2(0), t, 1);
+                }
             }
         }
 
@@ -63,7 +66,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * LightMult);
             Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
 
-            if (Main.rand.NextBool(700))
+            if (Main.rand.NextBool(700) && Main.netMode != NetmodeID.Server)
             {
                 int type = Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "RedPetalFalling" : "PinkPetalFalling").Type;
                 Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, type);

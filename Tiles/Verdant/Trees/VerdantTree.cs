@@ -142,7 +142,7 @@ namespace Verdant.Tiles.Verdant.Trees
                     }
                 }
 
-                if (leaves)
+                if (leaves && Main.netMode != NetmodeID.Server)
                 {
                     if (r.Next(4) <= 1)
                     {
@@ -186,8 +186,10 @@ namespace Verdant.Tiles.Verdant.Trees
                 Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(3, 8));
                 Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ItemID.Acorn, Main.rand.Next(1, 3));
                 int rnd = Main.rand.Next(8, 14);
-                for (int l = 0; l < rnd; ++l)
-                    Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+
+                if (Main.netMode != NetmodeID.Server)
+                    for (int l = 0; l < rnd; ++l)
+                        Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
             }
             return true;
         }
@@ -207,8 +209,10 @@ namespace Verdant.Tiles.Verdant.Trees
                 int rnd = Main.rand.Next(8, 14);
                 if (fail)
                     rnd = Main.rand.Next(2, 6);
-                for (int l = 0; l < rnd; ++l)
-                    Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+
+                if (Main.netMode != NetmodeID.Server)
+                    for (int l = 0; l < rnd; ++l)
+                        Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
             }
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 108 || Framing.GetTileSafely(i, j).TileFrameX == 126)
@@ -216,9 +220,13 @@ namespace Verdant.Tiles.Verdant.Trees
                 int side = Framing.GetTileSafely(i, j).TileFrameX == 108 ? -1 : 1;
                 if (fail) //gore
                 {
-                    int rnd = Main.rand.Next(1, 4);
-                    for (int l = 0; l < rnd; ++l)
-                        Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        int rnd = Main.rand.Next(1, 4);
+                        for (int l = 0; l < rnd; ++l)
+                            Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                    }
+
                     if (Main.rand.NextBool(8))
                         Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
                 }
@@ -343,8 +351,9 @@ namespace Verdant.Tiles.Verdant.Trees
                         NPC.NewNPC(new EntitySource_TileInteraction(Main.LocalPlayer, x, y), x * 16, y * 16, npcType);
                 }
 
-                for (int i = 0; i < 20; ++i)
-                    Gore.NewGore(new EntitySource_TileUpdate(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                if (Main.netMode != NetmodeID.Server)
+                    for (int i = 0; i < 20; ++i)
+                        Gore.NewGore(new EntitySource_TileUpdate(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
             }
         }
 

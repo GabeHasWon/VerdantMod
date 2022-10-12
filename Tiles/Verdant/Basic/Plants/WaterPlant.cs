@@ -37,10 +37,13 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.Plants.WaterPlantItem>(), 1);
 
-            for (int v = 0; v < 4; ++v)
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                for (int v = 0; v < 4; ++v)
+                {
+                    Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                }
             }
         }
     }

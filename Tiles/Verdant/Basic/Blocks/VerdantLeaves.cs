@@ -20,8 +20,10 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             int reps = Main.rand.Next(2, 4);
-            for (int k = 0; k < reps; ++k)
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
+
+            if (Main.netMode != NetmodeID.Server)
+                for (int k = 0; k < reps; ++k)
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, Vector2.Zero, Mod.Find<ModGore>("LushLeaf").Type);
         }
     }
 }

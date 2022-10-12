@@ -41,10 +41,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Red>(), 1);
-            for (int v = 0; v < 4; ++v)
+
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                for (int v = 0; v < 4; ++v)
+                {
+                    Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                }
             }
         }
     }
@@ -77,10 +81,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_RedLightless>(), 1);
-            for (int v = 0; v < 4; ++v)
+
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                for (int v = 0; v < 4; ++v)
+                {
+                    Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                }
             }
         }
     }
@@ -117,10 +125,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_Pink>(), 1);
-            for (int v = 0; v < 4; ++v)
+
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                for (int v = 0; v < 4; ++v)
+                {
+                    Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                }
             }
         }
     }
@@ -158,10 +170,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantHungTableBlock_PinkLightless>(), 1);
-            for (int v = 0; v < 4; ++v)
+
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                for (int v = 0; v < 4; ++v)
+                {
+                    Vector2 off = new Vector2(Main.rand.Next(54), Main.rand.Next(32));
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+                }
             }
         }
     }

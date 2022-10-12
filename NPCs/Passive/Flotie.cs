@@ -50,8 +50,6 @@ namespace Verdant.NPCs.Passive
 
         public override void AI()
         {
-            NPC.TargetClosest(true);
-
             if (NPC.ai[1] == 0)
             {
                 NPC.ai[0] = Main.rand.Next(1, 50);
