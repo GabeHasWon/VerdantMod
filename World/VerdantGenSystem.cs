@@ -165,12 +165,16 @@ namespace Verdant.World
             }
         }
 
-        private static void AddSurfaceVerdant()
+        public static void AddSurfaceVerdant()
         {
             int offset = 0;
         retry:
-            int top = Helper.FindDown(new Vector2((VerdantArea.Center.X + (WorldGen.genRand.NextBool() ? -offset : offset)) * 16, 200));
+            int x = (VerdantArea.Center.X + (WorldGen.genRand.NextBool() ? -offset : offset));
+            int top = Helper.FindDown(new Vector2(x, 200) * 16);
             Point16 size = Point16.Zero;
+
+            if (!StructureHelper.Generator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size))
+                return;
 
             if (top <= Main.worldSurface * 0.36f)
             {
@@ -178,8 +182,26 @@ namespace Verdant.World
                 goto retry;
             }
 
-            if (StructureHelper.Generator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size)) 
-                StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", new Point16(VerdantArea.Center.X - (size.X / 2), top - size.Y + 12), VerdantMod.Instance);
+            Point16 spawnPos = new(x, top - size.Y + 12);
+
+            if (Helper.TileRectangle(spawnPos.X, spawnPos.Y, size.X, size.Y, TileID.Cloud, TileID.RainCloud) > 0)
+            {
+                offset += offset + WorldGen.genRand.Next(10, 20);
+                goto retry;
+            }
+
+            int tryRepeats = 0;
+            while (tryRepeats < 20 && Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y + tryRepeats++, size.X, size.Y + 36) < 20)
+            {
+            }
+            
+            if (tryRepeats >= 20)
+            {
+                offset += offset + WorldGen.genRand.Next(10, 20);
+                goto retry;
+            }
+
+            StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", spawnPos + new Point16(0, tryRepeats), VerdantMod.Instance);
         }
 
         public void VerdantCleanup(GenerationProgress p, GameConfiguration config)

@@ -1,2 +1,8 @@
-- Fixed IL delegate issue, waterfalls are back now
-- So is the Waterfalls config, turns off custom waterfalls when off
+- Added Lush Wood Sword
+- Added Lush Wood Bow
+- Added Lush Wood Hammer
+
+- Fixed Lush Wood Chests being craftable by hand
+- Made Lightbulbs unable to be swung by themselves
+- Added checks to un-grab Zipvines if the player teleports away or is otherwise too far to reach
+- Significantly improved surface verdant tree placement code

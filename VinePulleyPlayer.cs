@@ -37,7 +37,7 @@ namespace Verdant
 
             if (CurrentVine is not null)
             {
-                if (CurrentVine.lifeTimer < 5 || CurrentVine.killMe || Player.dead)
+                if (CurrentVine.lifeTimer < 5 || CurrentVine.killMe || Player.dead || Player.DistanceSQ(CurrentVine.Center) > 80 * 80)
                 {
                     CurrentVine = null;
                     return;
@@ -111,6 +111,17 @@ namespace Verdant
             }
 
             orig(self);
+        }
+
+        public static void Player_Teleport(On.Terraria.Player.orig_Teleport orig, Player self, Vector2 newPos, int Style, int extraInfo)
+        {
+            if (self.GetModPlayer<VinePulleyPlayer>().CurrentVine != null)
+            {
+                self.GetModPlayer<VinePulleyPlayer>().CurrentVine = null;
+                self.GetModPlayer<VinePulleyPlayer>().vineTimer = 0;
+            }
+
+            orig(self, newPos, Style, extraInfo);
         }
     }
 }

@@ -65,7 +65,9 @@ namespace Verdant
             On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
             On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
             On.Terraria.Main.DrawWater += Main_DrawWater;
+
             On.Terraria.Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
+            On.Terraria.Player.Teleport += VinePulleyPlayer.Player_Teleport;
 
             if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
                 IL.Terraria.WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;

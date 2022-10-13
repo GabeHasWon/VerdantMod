@@ -116,7 +116,7 @@ namespace Verdant.Items
             i.Item.consumable = true;
         }
 
-        public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false, int value = 0)
+        public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false, int value = 0, bool noUseGraphic = false)
         {
             i.Item.width = w;
             i.Item.height = h;
@@ -126,7 +126,8 @@ namespace Verdant.Items
             i.Item.rare = rarity;
             i.Item.maxStack = maxStack;
             i.Item.value = value;
-            i.Item.noMelee = false;
+            i.Item.noMelee = true;
+            i.Item.noUseGraphic = noUseGraphic;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.autoReuse = true;
             i.Item.consumable = consumable;

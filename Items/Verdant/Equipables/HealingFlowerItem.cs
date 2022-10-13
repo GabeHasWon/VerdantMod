@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Yellow Sprout");
-            Tooltip.SetDefault("Increases healing from potions by 20%\nIncreases mana healing from potions by 33%\nProvides a tiny bit of light\n'You are followed by the strength of willpower'");
+            Tooltip.SetDefault("Increases healing from potions by 20%\nIncreases mana healing from potions by 30%\nProvides a tiny bit of light\n'You are followed by the strength of willpower'");
         }
 
         public override void SetDefaults()
@@ -45,7 +45,7 @@ namespace Verdant.Items.Verdant.Equipables
         public override void GetHealMana(Item item, bool quickHeal, ref int healValue)
         {
             if (hasHealFlower)
-                healValue = (int)(healValue * 1.3333f);
+                healValue = (int)(healValue * 1.3f);
         }
     }
 }
