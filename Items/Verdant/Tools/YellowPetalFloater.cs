@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Tools
 {
     class YellowPetalFloater : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit");
+        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it");
         public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ProjectileID.GolemFist, 9, 0, 24, 0, 0, ItemRarityID.Green);
         public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<YellowBulb>(), 1), (ModContent.ItemType<LushLeaf>(), 3), (ItemID.Cloud, 10));
 

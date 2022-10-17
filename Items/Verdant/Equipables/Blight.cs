@@ -6,6 +6,8 @@ namespace Verdant.Items.Verdant.Equipables
 {
     class Blight : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blightlight");

@@ -35,10 +35,6 @@ My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
 --Development--
 
-I wanted to make this mod with the understanding that open source content is very important to modding, and so, this mod is open-source and under the GPLv3 liscense.
-As such, anyone can use any code or asset from this mod freely in their own projects - all I ask is a credit in your mod's description or Github repository.
-
+Rather than clog up this description, for your development needs & interests, check the GitHub!
+It's also linked in the Discord for those in-game.
 GitHub: https://github.com/GabeHasWon/VerdantMod
-
-While all code is free to use, please do not use any of the assets - apart from specifically sound effects. Feel free to use them, though also do credit me for those.
-Thank you, and have fun modding!

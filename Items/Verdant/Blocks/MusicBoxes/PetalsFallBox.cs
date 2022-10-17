@@ -26,6 +26,7 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = 100000;
 			Item.accessory = true;
+			Item.canBePlacedInVanityRegardlessOfConditions = true;
 		}
 	}
 }

@@ -45,6 +45,9 @@ public class BackgroundItemManager
 
         foreach (var item in organizedItems) //Draw everything
         {
+            if (item is null)
+                continue;
+
             Vector2 off = Lighting.LegacyEngine.Mode > 1 ? Vector2.Zero : Vector2.One;
             if (screen.Contains((item.DrawPosition).ToPoint()))
             {
@@ -60,9 +63,9 @@ public class BackgroundItemManager
             return;
 
         foreach (var item in organizedItems)
-            item.Behaviour();
+            item?.Behaviour();
 
-        bgItems.RemoveAll(x => x.killMe);
+        bgItems.RemoveAll(x => x.killMe || x is null);
     }
 
     public static List<TagCompound> Save()
@@ -73,7 +76,7 @@ public class BackgroundItemManager
         List<TagCompound> tags = new List<TagCompound>(); //Save the stuff
         foreach (var item in bgItems)
         {
-            if (item.SaveMe && !item.killMe)
+            if (item is not null && item.SaveMe && !item.killMe)
             {
                 TagCompound value = item.Save();
                 if (value != null)

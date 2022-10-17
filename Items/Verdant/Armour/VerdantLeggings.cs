@@ -21,7 +21,7 @@ namespace Verdant.Items.Verdant.Armour
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Growth Leggings");
-            Tooltip.SetDefault("Increased regen\n+1 max minion");
+            Tooltip.SetDefault("Increased regen\n+1 max minion\nGrows plants under you as you walk");
         }
 
         public override void SetDefaults()

@@ -12,6 +12,7 @@ using Verdant.Foreground;
 using Verdant.Items.Verdant.Tools;
 using Terraria.DataStructures;
 using System.Linq;
+using Verdant.Items.Verdant.Equipables;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -60,7 +61,7 @@ internal class Apotheosis : ModTile
 
         if (_timer > 3000)
         {
-            if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //BoC/EoW text
+            if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
             {
                 Speak("The eye is felled. Thank you. Come back to me whenever you best other foes...");
 
@@ -76,7 +77,7 @@ internal class Apotheosis : ModTile
                 Speak(msg);
 
                 for (int k = 0; k < playerCount; ++k)
-                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<PermVineWand>(), 1);
+                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<SproutInABoot>(), 1);
                 ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
                 return true;
             }

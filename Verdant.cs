@@ -72,5 +72,40 @@ namespace Verdant
             if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
                 IL.Terraria.WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;
         }
+
+        public override object Call(params object[] args)
+        {
+            if (args[0] is not string message)
+                throw new ArgumentException("[Verdant] First argument of Call must be a string! Check the GitHub for more info.");
+
+            message = message.ToLower();
+
+            if (message == "InVerdant")
+            {
+                if (args.Length == 1)
+                    return VerdantSystem.InVerdant;
+                else
+                {
+                    if (args[1] is Player player)
+                        return player.GetModPlayer<VerdantPlayer>().ZoneVerdant;
+
+                    throw new ArgumentException("[Verdant] Second argument of InVerdant must be a Player!");
+                }
+            }
+            else if (message == "NearApotheosis")
+            {
+                if (args.Length == 1)
+                    return VerdantSystem.NearApotheosis;
+                else
+                {
+                    if (args[1] is Player player)
+                        return player.GetModPlayer<VerdantPlayer>().ZoneApotheosis;
+
+                    throw new ArgumentException("[Verdant] Second argument of ZoneApotheosis must be a Player!");
+                }
+            }
+
+            throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis");
+        }
     }
 }

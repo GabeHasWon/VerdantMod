@@ -268,7 +268,7 @@ namespace Verdant.World
                 int index = Main.rand.Next(offsets.Length);
                 Point16 pos = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
 
-                bool notNear = !positions.Any(x => Vector2.Distance(x, pos.ToVector2()) < 20);
+                bool notNear = !positions.Any(x => Vector2.DistanceSquared(x, pos.ToVector2()) < 20 * 20);
 
                 if (notNear && Helper.TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && Helper.TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && Helper.NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
                 {

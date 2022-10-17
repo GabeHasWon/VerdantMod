@@ -42,14 +42,20 @@ namespace Verdant.Items.Verdant.Armour
 
             player.maxMinions++;
             player.GetDamage(DamageClass.Summon) *= 1.04f;
+
             if (!player.controlDown)
                 player.maxFallSpeed *= 0.69f; //LMAO
+
             if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.NextBool(74)) //Spawn gores
             {
                 int random = Main.rand.Next(3);
                 int gore = Mod.Find<ModGore>("PinkPetalFalling").Type;
-                if (random == 0) gore = Mod.Find<ModGore>("RedPetalFalling").Type;
-                if (random == 1) gore = Mod.Find<ModGore>("LushLeaf").Type;
+
+                if (random == 0) 
+                    gore = Mod.Find<ModGore>("RedPetalFalling").Type;
+                if (random == 1) 
+                    gore = Mod.Find<ModGore>("LushLeaf").Type;
+
                 Gore.NewGore(player.GetSource_Accessory(Item), player.Center + new Vector2(0), new Vector2(0), gore, 1f);
             }
         }

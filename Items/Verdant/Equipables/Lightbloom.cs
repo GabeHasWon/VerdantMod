@@ -15,7 +15,6 @@ namespace Verdant.Items.Verdant.Equipables
 
         public override void SetDefaults()
         {
-            Item.defense = 1;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 3);
@@ -24,11 +23,13 @@ namespace Verdant.Items.Verdant.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             Color col = Lighting.GetColor((int)(player.MountedCenter.X / 16f), (int)(player.MountedCenter.Y / 16f));
-            int val;
+            int val = 2;
             int total = col.R + col.G + col.B;
-            if (total < 200) val = 0;
-            else if (total < 400) val = 1;
-            else val = 2;
+
+            if (total < 200) 
+                val = 0;
+            else if (total < 400) 
+                val = 1;
 
             if (!hideVisual && Main.rand.Next(80) < val * 2)
             {

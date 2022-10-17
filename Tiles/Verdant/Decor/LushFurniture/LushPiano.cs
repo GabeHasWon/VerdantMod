@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -30,10 +31,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) => offsetY = 2;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			//Terraria.Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Blocks.Furniture.Reach.ReachPiano>());
-		}
+		public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPianoItem>());
 
         public override bool RightClick(int i, int j)
         {

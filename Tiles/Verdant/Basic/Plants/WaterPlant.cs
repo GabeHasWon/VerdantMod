@@ -28,6 +28,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
             TileObjectData.addTile(Type);
 
+            TileID.Sets.CountsAsWaterSource[Type] = true;
+
             AddMapEntry(new Color(76, 198, 255));
         }
 

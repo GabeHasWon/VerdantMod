@@ -7,6 +7,8 @@ using Verdant.Backgrounds.BGItem;
 using Verdant.Backgrounds.BGItem.Verdant;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
+using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -21,6 +23,7 @@ class VerdantPlayer : ModPlayer
 
     public bool heartOfGrowth = false;
     public bool expertPlantGuide = false;
+    public bool sproutBoots = false;
 
     public float lastSlotsMinion = 0;
 
@@ -46,6 +49,7 @@ class VerdantPlayer : ModPlayer
         if (heartOfGrowth) //perm bonus
             Player.maxMinions++;
 
+        sproutBoots = true;
         expertPlantGuide = false;
     }
 
@@ -82,6 +86,19 @@ class VerdantPlayer : ModPlayer
 
         if (Main.hasFocus)
             AddForegroundOrBackground();
+    }
+
+    public override void PostUpdate()
+    {
+        if (sproutBoots && Player.armor[2].ModItem is SproutInABoot sprout)
+        {
+            int water = sprout.GetWater();
+
+            if (water <= SproutInABoot.MaxWater * 0.66667f && water > SproutInABoot.MaxWater * 0.33333f)
+                Player.legs = EquipLoader.GetEquipSlot(Mod, nameof(SproutInABoot) + "_Legs_2", EquipType.Legs);
+            else if (water <= SproutInABoot.MaxWater * 0.33333f)
+                Player.legs = EquipLoader.GetEquipSlot(Mod, nameof(SproutInABoot) + "_Legs_3", EquipType.Legs);
+        }
     }
 
     public override void PostUpdateMiscEffects() => lastSlotsMinion = Player.slotsMinions; 
@@ -133,7 +150,7 @@ class VerdantPlayer : ModPlayer
 
     public override void PreUpdateMovement()
     {
-        if (Player.velocity.Y > Player.gravity * 6 && Collision.SolidCollision(Player.BottomLeft + Player.velocity, Player.width, 6) && !Collision.SolidCollision(Player.BottomLeft, Player.width, 6))
+        if (Player.velocity.Y > Player.gravity * 6 && Collision.SolidCollision(Player.BottomLeft + Player.velocity + new Vector2(2, 0), Player.width - 4, 6) && !Collision.SolidCollision(Player.BottomLeft, Player.width, 6))
         {
             Point tPos = new Point((int)(Player.Center.X / 16f), Helper.FindDown(Player.Bottom));
             if (Player.GetFloorTileType(tPos.X, tPos.Y) == ModContent.TileType<VerdantGrassLeaves>())
@@ -171,12 +188,14 @@ class VerdantPlayer : ModPlayer
 
     public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
     {
+        if (Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && attempt.crate && Main.rand.NextBool(Player.cratePotion ? 3 : 4))
+            itemDrop = ModContent.ItemType<LushWoodCrateItem>();
+
         if (Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && attempt.questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
             itemDrop = ModContent.ItemType<Shellfish>();
     }
 
     public void FloorVisuals(Player p, int t) => FloorVisualEvent?.Invoke(p, t);
     public override void OnHitByNPC(NPC npc, int damage, bool crit) => HitByNPCEvent?.Invoke(Player, npc, damage, crit);
-
     public void InvokeDrawLayer(PlayerDrawSet set) => ItemDrawLayerEvent?.Invoke(set);
 }

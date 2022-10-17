@@ -1,8 +1,20 @@
-- Added Lush Wood Sword
-- Added Lush Wood Bow
-- Added Lush Wood Hammer
+**Additions**
+- Added Sprout in a Boot item
+- Added Verdant Platforms
+- Added Lush Wood Crates
+- Added Mod.Call implementation for checking if a player is in the Verdant or nearby the Apotheosis
 
-- Fixed Lush Wood Chests being craftable by hand
-- Made Lightbulbs unable to be swung by themselves
-- Added checks to un-grab Zipvines if the player teleports away or is otherwise too far to reach
-- Significantly improved surface verdant tree placement code
+**Bugfixes**
+- Removed defense bonus from Lightbloom
+- Updated Lush Platform item sprite
+- Updated Living Lush Wood Wall sprite
+- Added null check for bgitems
+- Allowed all music boxes to be placed in vanity slots
+- Added Cloudsprout removal to the item's description
+- Added extra check to leaf floor dust fall effect
+- Disabled Blightlight
+- Made Weeping Buds count as a water source for crafting purposes
+- Added plant growth to Verdant Legging tooltip
+- Clarified Lush Platform to Lush Wood Platform
+- Added recipe for Yellow Petal Chest
+- Fixed the piano not dropping any item
