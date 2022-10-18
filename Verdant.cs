@@ -80,7 +80,7 @@ namespace Verdant
 
             message = message.ToLower();
 
-            if (message == "InVerdant")
+            if (message == "inverdant")
             {
                 if (args.Length == 1)
                     return VerdantSystem.InVerdant;
@@ -92,7 +92,7 @@ namespace Verdant
                     throw new ArgumentException("[Verdant] Second argument of InVerdant must be a Player!");
                 }
             }
-            else if (message == "NearApotheosis")
+            else if (message == "nearapotheosis")
             {
                 if (args.Length == 1)
                     return VerdantSystem.NearApotheosis;

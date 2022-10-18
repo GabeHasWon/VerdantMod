@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -23,7 +24,7 @@ public class BackgroundItemManager
         if (bgItems is null)
             bgItems = new List<BaseBGItem>();
 
-        if (!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forceSpawn) //Skip if option is turned off & it's not forced
+        if ((!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forceSpawn) || Main.netMode == NetmodeID.Server) //Skip if option is turned off & it's not forced
             return;
 
         if (item != null)
@@ -38,6 +39,9 @@ public class BackgroundItemManager
     /// <summary>Draws all background items.</summary>
     public static void Draw()
     {
+        if (Main.netMode == NetmodeID.Server)
+            return;
+
         int range = Main.offScreenRange * 3;
         Rectangle screen = new Rectangle((int)Main.screenPosition.X - range, (int)Main.screenPosition.Y - range, Main.screenWidth + (range * 2), Main.screenHeight + (range * 2));
 
@@ -59,11 +63,15 @@ public class BackgroundItemManager
 
     public static void Update()
     {
-        if (!Main.hasFocus || Main.gamePaused)
+        if (Main.netMode == NetmodeID.Server)
+            return;
+
+        if (!Main.hasFocus || Main.gamePaused || organizedItems is null)
             return;
 
         foreach (var item in organizedItems)
-            item?.Behaviour();
+            if (item is not null)
+                item.Behaviour();
 
         bgItems.RemoveAll(x => x.killMe || x is null);
     }

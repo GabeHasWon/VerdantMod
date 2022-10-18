@@ -39,7 +39,7 @@ internal class Apotheosis : ModTile
             Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
         }
 
-        if (Main.rand.NextBool(ApotheosisParticle.SpawnChance) && !Main.gamePaused && Main.hasFocus)
+        if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(ApotheosisParticle.SpawnChance) && !Main.gamePaused && Main.hasFocus)
         {
             Vector2 pos = (new Vector2(i, j) * 16) - new Vector2(Main.rand.Next(-Main.screenWidth, Main.screenWidth), 
                 Main.rand.Next(-(int)(Main.screenHeight * 2f), (int)(Main.screenHeight * 2f)));

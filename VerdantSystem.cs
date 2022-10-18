@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.Generation;
+using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -103,15 +104,18 @@ namespace Verdant
             apotheosisSkelDown = stats.Contains("skelDown");
             apotheosisWallDown = stats.Contains("wallDown");
 
-            var bgItems = tag.GetList<TagCompound>("backgroundItems");
-            if (bgItems != null)
-                BackgroundItemManager.Load(bgItems);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                var bgItems = tag.GetList<TagCompound>("backgroundItems");
+                if (bgItems != null)
+                    BackgroundItemManager.Load(bgItems);
 
-            SpawnPermVines(tag.GetList<Vector2>("permVinePositions"));
+                SpawnPermVines(tag.GetList<Vector2>("permVinePositions"));
 
-            var clouds = tag.GetList<Vector2>("cloudPositions");
-            foreach (var item in clouds)
-                ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
+                var clouds = tag.GetList<Vector2>("cloudPositions");
+                foreach (var item in clouds)
+                    ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
+            }
         }
 
         private static void SpawnPermVines(IList<Vector2> positions)

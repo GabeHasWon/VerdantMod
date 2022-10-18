@@ -64,7 +64,7 @@ namespace Verdant.Items.Verdant.Equipables
             Point t = player.TileCoordsBottomCentred();
             Tile ground = Framing.GetTileSafely(t.X, t.Y);
 
-            if (ground.HasTile)
+            if (ground.HasTile && (!ground.TopSlope || (player.velocity.X < 0 && ground.RightSlope) || (player.velocity.X > 0 && ground.LeftSlope)))
             {
                 if (player.velocity.X > 0)
                     TryPlacePlatform(t.X + 1, t.Y, player);

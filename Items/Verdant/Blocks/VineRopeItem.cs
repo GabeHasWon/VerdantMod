@@ -12,15 +12,18 @@ namespace Verdant.Items.Verdant.Blocks
 
         public override void SetDefaults()
         {
-            QuickItem.SetBlock(this, 16, 16, ModContent.TileType<VineRope>(), true);
-            Item.useAnimation = Item.useTime = 6;
+            QuickItem.SetBlock(this, 16, 16, ModContent.TileType<VineRopeTile>(), true);
+            Item.useAnimation = Item.useTime = 8;
             Item.tileBoost = 3;
         }
 
         public override bool? UseItem(Player player)
         {
-            Tile tile = Main.tile[Main.MouseWorld.ToTileCoordinates()];
-            if (tile.HasTile && tile.TileType != Item.createTile)
+            static bool Valid(int x, int y) => Main.tile[x, y].HasTile && !Main.tileCut[Main.tile[x, y].TileType];
+
+            var m = Main.MouseWorld.ToTileCoordinates();
+            Tile tile = Main.tile[m];
+            if (tile.HasTile && tile.TileType != Item.createTile || (!Valid(m.X, m.Y - 1) && !Valid(m.X, m.Y + 1)))
                 return false;
 
             if (!tile.HasTile)

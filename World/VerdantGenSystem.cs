@@ -262,6 +262,7 @@ namespace Verdant.World
             int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
 
             List<Vector2> positions = new List<Vector2>() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
+            int attempts = 0;
 
             for (int i = 0; i < 9 * WorldSize; ++i)
             {
@@ -278,6 +279,9 @@ namespace Verdant.World
                 else
                 {
                     i--;
+
+                    if (attempts++ > 500)
+                        return;
                     continue;
                 }
             }
