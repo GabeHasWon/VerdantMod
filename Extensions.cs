@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 namespace Verdant
@@ -47,5 +50,12 @@ namespace Verdant
         public static bool AccessoryEquipped(this Player player, Item item) => player.AccessoryEquipped(item.type);
 
         public static Player Owner(this Projectile p) => Main.player[p.owner];
+
+        public static IEnumerable<T> Distinct<T, U>(this IEnumerable<T> seq, Func<T, U> getKey)
+        {
+            return  from item in seq
+                    group item by getKey(item) into gp
+                    select gp.First();
+        }
     }
 }

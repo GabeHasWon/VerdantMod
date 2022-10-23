@@ -81,28 +81,13 @@ namespace Verdant
             message = message.ToLower();
 
             if (message == "inverdant")
-            {
-                if (args.Length == 1)
-                    return VerdantSystem.InVerdant;
-                else
-                {
-                    if (args[1] is Player player)
-                        return player.GetModPlayer<VerdantPlayer>().ZoneVerdant;
-
-                    throw new ArgumentException("[Verdant] Second argument of InVerdant must be a Player!");
-                }
-            }
+                return CallMethods.InVerdant(args);
             else if (message == "nearapotheosis")
+                return CallMethods.NearApotheosis(args);
+            else if (message == "setverdantarea")
             {
-                if (args.Length == 1)
-                    return VerdantSystem.NearApotheosis;
-                else
-                {
-                    if (args[1] is Player player)
-                        return player.GetModPlayer<VerdantPlayer>().ZoneApotheosis;
-
-                    throw new ArgumentException("[Verdant] Second argument of ZoneApotheosis must be a Player!");
-                }
+                CallMethods.SetVerdantArea(args);
+                return null;
             }
 
             throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis");

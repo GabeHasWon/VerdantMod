@@ -15,6 +15,8 @@ namespace Verdant.NPCs.Passive
         ref float Timer => ref NPC.ai[2];
         ref float ScaleSpeed => ref NPC.ai[3];
 
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Mossling [Deprecated]");
+
         public override void SetDefaults()
         {
             NPC.width = 18;

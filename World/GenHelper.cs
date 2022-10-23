@@ -28,12 +28,13 @@ namespace Verdant.World
         public static void ReplaceTile(Point p, int t, bool item = false, bool mute = true, int style = 0) => ReplaceTile(p.X, p.Y, t, item, mute, style);
         public static void ReplaceTile(Point16 p, int t, bool item = false, bool mute = true, int style = 0) => ReplaceTile(p.X, p.Y, t, item, mute, style);
 
-        public static void ReplaceWall(Point p, int t, bool mute = true)
+        public static void ReplaceWall(Point16 p, int t, bool mute = true)
         {
             KillWall(p.X, p.Y, false);
             PlaceWall(p.X, p.Y, t, mute);
         }
         public static void ReplaceWall(int x, int y, int t, bool mute = true) => ReplaceWall(new Point(x, y), t, mute);
+        public static void ReplaceWall(Point p, int t, bool mute = true) => ReplaceWall(new Point16(p.X, p.Y), t, mute);
 
         public static void GenLine(Vector2 p, Vector2 rot, Vector2 o, int lW, int hW, int targetType = TileID.Dirt, int type = TileID.Dirt)
         {

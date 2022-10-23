@@ -1,6 +1,6 @@
 displayName = Verdant
 author = GabeHasWon
-version = 0.1.2.2
+version = 0.1.2.4
 dllReferences = StructureHelper
 hideCode = false
 hideResources = false

@@ -1,5 +1,4 @@
-- Improved Sprout in Boots ground detection
-- Made Vine Rope have more sprites
-	NOTE: This update unloads all existing Lush Vine Ropes as I had to circumvent a crash error. Apologies.
-- Should've fixed multiplayer
-- Added more bgitemmanager checks
+- Forced the Verdant to spawn a way from spawn (the center of the world)
+- Slightly lowered the acceptable overlap for the biome
+- Fixed mistake in mod.call implementation
+- Fixed verdant platform sprite issue

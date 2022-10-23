@@ -14,7 +14,7 @@ namespace Verdant.NPCs.Enemy
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hostess Winglet");
+            DisplayName.SetDefault("Hostess Winglet [Removed]");
             Main.npcFrameCount[NPC.type] = 4;
         }
 
@@ -56,7 +56,7 @@ namespace Verdant.NPCs.Enemy
                 {
                     int n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<SmallFly>(), 0, 1);
 
-                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
 
                     babies[i] = n;

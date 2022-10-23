@@ -22,7 +22,7 @@ I wanted to make this mod with the understanding that open source content is wha
 As such, anyone can use any code or asset from this mod freely in their own projects - all I ask is a credit in your mod's description or Github repository.
 While all code is free to use, please do not use any of the assets - apart from specifically sound effects. Feel free to use them, though do credit me for those.
 
-Naturally, don't use this GitHub to peek at future updates. 
+Naturally, please don't use this GitHub to peek at future updates. 
 If you have to do look into it yourself, keep it private - I'd like to show everything off in a finished state when possible!
 
 ## Mod.Call
@@ -31,16 +31,29 @@ The two Calls are as follows:
 
 #### "InVerdant"
 ##### Two overloads
-verdant.Call("InVerdant")
+("InVerdant")
 Returns true if the local player is currently in the Verdant biome.
 
-verdant.Call("InVerdant", player)
+("InVerdant", Player player)
 Returns true if the given player is currently in the Verdant biome.
 
 #### "NearApotheosis"
 ##### Two overloads
-verdant.Call("NearApotheosis")
+("NearApotheosis")
 Returns true if the local player is currently near the Apotheosis.
 
-verdant.Call("NearApotheosis", player)
+("NearApotheosis", Player player)
 Returns true if the given player is currently near the Apotheosis.
+
+#### "SetVerdantArea"
+##### Three overloads
+This function does nothing outside of active world generation.
+
+("SetVerdantArea", Rectangle rect)
+Sets VerdantGenSystem.VerdantArea to the supplied rectangle.
+
+("SetVerdantArea", Point position, Point size)
+Sets VerdantGenSystem.VerdantArea to a rectangle of the given position and size.
+
+("SetVerdantArea", int x, int y, int width, int height)
+Sets VerdantGenSystem.VerdantArea to a rectangle of the given x, y, width and height.

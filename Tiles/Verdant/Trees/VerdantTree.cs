@@ -377,7 +377,7 @@ namespace Verdant.Tiles.Verdant.Trees
             }
             if (t.TileFrameX < 90 || t.TileFrameX == 216 || t.TileFrameX == 234 || t.TileFrameX == 252 || t.TileFrameX == 270) frameSizY = 18;
 
-            Vector2 offset =  new((xOff * 2) - (frameOff / 2), 0);
+            Vector2 offset = new((xOff * 2) - (frameOff / 2), 0);
             Vector2 pos = TileHelper.TileCustomPosition(i, j, -offset);
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 108) //Draw branches
@@ -403,7 +403,7 @@ namespace Verdant.Tiles.Verdant.Trees
                 Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeTops").Value;
                 int frame = t.TileFrameY / 18;
 
-                TileSwaySystem.DrawTreeSway(i, j, tops, new Rectangle(98 * frame, 0, 96, 108), Vector2.Zero, new Vector2(40, 96));
+                TileSwaySystem.DrawTreeSway(i, j, tops, new Rectangle(98 * frame, 0, 96, 108), offset, new Vector2(40, 96));
             }
             return false;
         }

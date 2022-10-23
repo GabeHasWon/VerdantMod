@@ -28,7 +28,7 @@ namespace Verdant.NPCs.Passive
             NPC.value = 0f;
             NPC.knockBackResist = 0f;
             NPC.dontCountMe = true;
-            NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+            NPC.catchItem = (short)ModContent.ItemType<RedGrassSnail>();
 
             AnimationType = NPCID.Snail;
             DrawOffsetY = 2;
@@ -82,7 +82,7 @@ namespace Verdant.NPCs.Passive
             NPC.value = 0f;
             NPC.knockBackResist = 0f;
             NPC.dontCountMe = true;
-            NPC.catchItem = (short)ModContent.ItemType<FlotinyItem>();
+            NPC.catchItem = (short)ModContent.ItemType<BulbSnail>();
 
             AnimationType = NPCID.Snail;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
