@@ -387,39 +387,7 @@ namespace Verdant.World
 
         private static void AddPlants()
         {
-            for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
-            {
-                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees & puffs so they get all the spawns they need
-                {
-                    //Trees
-                    bool doPlace = true;
-
-                    for (int k = -1; k < 2; ++k)
-                    {
-                        bool anyConditions = !TileHelper.ActiveTypeNoTopSlope(i + k, j, TileTypes[0]) || !WorldGen.TileEmpty(i + k, j - 1);
-                        if (anyConditions)
-                        {
-                            doPlace = false;
-                            break;
-                        }
-                    }
-
-                    if (!WorldGen.TileEmpty(i, j - 2))
-                        doPlace = false;
-
-                    if (doPlace && WorldGen.genRand.NextBool(24))
-                        VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, 12, false, -1, false);
-
-                    //Puffs
-                    doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) && 
-                        TileHelper.ActiveTypeNoTopSlope(i + 1, j + 3, ModContent.TileType<VerdantGrassLeaves>());
-                    if (doPlace && WorldGen.genRand.NextBool(60))
-                    {
-                        WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
-                        continue;
-                    }
-                }
-            }
+            LoopTrees();
 
             for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
             {
@@ -435,7 +403,6 @@ namespace Verdant.World
                             int length = WorldGen.genRand.Next(2, 22);
                             bool strong = WorldGen.genRand.NextBool(10);
 
-                            bool vinePuff = VerdantGrassLeaves.CheckPuff(i, j, 2 * WorldSize);
                             int type = strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>();
                             if (puff)
                                 type = ModContent.TileType<PuffVine>();
@@ -499,6 +466,43 @@ namespace Verdant.World
                     if (doPlace && WorldGen.genRand.NextBool(68))
                     {
                         GenHelper.PlaceMultitile(new Point(i, j), ModContent.TileType<Flower_3x3>(), WorldGen.genRand.Next(2));
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private static void LoopTrees()
+        {
+            for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
+            {
+                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees & puffs so they get all the spawns they need
+                {
+                    //Trees
+                    bool doPlace = true;
+
+                    for (int k = -1; k < 2; ++k)
+                    {
+                        bool anyConditions = !TileHelper.ActiveTypeNoTopSlope(i + k, j, TileTypes[0]) || !WorldGen.TileEmpty(i + k, j - 1);
+                        if (anyConditions)
+                        {
+                            doPlace = false;
+                            break;
+                        }
+                    }
+
+                    if (!WorldGen.TileEmpty(i, j - 2))
+                        doPlace = false;
+
+                    if (doPlace && WorldGen.genRand.NextBool(24))
+                        VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, 12, false, -1, false);
+
+                    //Puffs
+                    doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) &&
+                        TileHelper.ActiveTypeNoTopSlope(i + 1, j + 3, ModContent.TileType<VerdantGrassLeaves>());
+                    if (doPlace && WorldGen.genRand.NextBool(60))
+                    {
+                        WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
                         continue;
                     }
                 }

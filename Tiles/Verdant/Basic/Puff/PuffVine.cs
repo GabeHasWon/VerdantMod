@@ -58,7 +58,7 @@ internal class PuffVine : ModTile
         if (!Main.tile[i, j - 1].HasTile)
             WorldGen.KillTile(i, j);
 
-        if (Main.rand.NextBool(500))
+        if (Main.rand.NextBool(480))
         {
             int dust = Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<PuffDust>(), Scale: Main.rand.NextFloat(0.5f, 0.9f));
             Main.dust[dust].rotation = Main.rand.NextFloat(MathHelper.Pi);
