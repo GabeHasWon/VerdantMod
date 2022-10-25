@@ -1,4 +1,16 @@
-- Forced the Verdant to spawn a way from spawn (the center of the world)
-- Slightly lowered the acceptable overlap for the biome
-- Fixed mistake in mod.call implementation
-- Fixed verdant platform sprite issue
+ADDITIONS
+- Added Pink Puff & related decor tiles
+- Added Puff microbiome world gen
+- Added unobtainable Red Petal Block and Pink Petal Block items
+- New sprite for Living Lush Wood block
+- Added right click functionality for all tile wands that allows you to switch between them easily
+
+CHANGES
+- Adjusted sprite for Living Lush Wood Wall, Verdant Vine
+- Adjusted Passionflower Bulb loot pool
+- Actually added the tile wands to the loot pool
+- Minor internal reorganization
+- Fixed potential world freeze/softlock if unlucky
+- Adjusted Verdant spawn parameters
+- Fixed missing world gen verdant decor
+- Fixed dumb null check mistake

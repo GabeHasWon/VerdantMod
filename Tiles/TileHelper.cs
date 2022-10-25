@@ -173,9 +173,9 @@ namespace Verdant.Tiles
             return new Point(x, y);
         }
 
-        public static bool SyncedPlace(int i, int j, int type, bool mute = false)
+        public static bool SyncedPlace(int i, int j, int type, bool mute = false, bool forced = false, int plr = -1, int style = 0)
         {
-            bool success = WorldGen.PlaceTile(i, j, type, mute);
+            bool success = WorldGen.PlaceTile(i, j, type, mute, forced, plr, style);
 
             if (!success)
                 return false;

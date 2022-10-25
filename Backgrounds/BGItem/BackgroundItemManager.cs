@@ -79,7 +79,7 @@ public class BackgroundItemManager
             if (item is not null)
                 item.Behaviour();
 
-        bgItems.RemoveAll(x => x.killMe || x is null);
+        bgItems.RemoveAll(x => x is null || x.killMe);
     }
 
     public static List<TagCompound> Save()

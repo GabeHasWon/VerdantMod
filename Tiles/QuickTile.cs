@@ -67,7 +67,7 @@ namespace Verdant.Tiles
         /// <param name="topSolid">Is the top solid?</param>
         /// <param name="solid">Is the tile solid?</param>
         /// <param name="name">Name on the map.</param>
-        public static void SetMulti(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, bool topSolid = false, bool solid = false, string name = "")
+        public static void SetMulti(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, bool topSolid = false, bool solid = false, string name = "", Point16? origin = null)
         {
             Main.tileLavaDeath[t.Type] = lavaDeath;
             Main.tileFrameImportant[t.Type] = true;
@@ -85,7 +85,7 @@ namespace Verdant.Tiles
 
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
-            TileObjectData.newTile.Origin = new Point16(0, 0);
+            TileObjectData.newTile.Origin = origin ?? new Point16(0, 0);
             TileObjectData.addTile(t.Type);
 
             if (name != "")

@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.Unobtainable
 {
     public class VerdantGrassBlock : ModItem
     {

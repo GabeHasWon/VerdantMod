@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.Tiles.Verdant.Basic.Puff;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -29,14 +30,38 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             Tile self = Framing.GetTileSafely(i, j);
 
+            bool puff = CheckPuff(i, j);
+            if (!puff)
+                NormalGrowth(i, j);
+            else
+                PuffGrowth(i, j);
+
             //vine
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
             {
-                WorldGen.PlaceTile(i, j + 1, ModContent.TileType<VerdantVine>(), true, false);
+                WorldGen.PlaceTile(i, j + 1, puff ? ModContent.TileType<PuffVine>() : ModContent.TileType<VerdantVine>(), true, false);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
                 return;
             }
+        }
+
+        internal static bool CheckPuff(int i, int j, float sizeMul = 1f)
+        {
+            int width = (int)(10 * sizeMul);
+            int height = (int)(8 * sizeMul);
+
+            for (int x = i - width; x < i + width; ++x)
+                for (int y = j - height; y < j + height; ++y)
+                    if (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<BigPuff>())
+                        return true;
+
+            return false;
+        }
+
+        private static void NormalGrowth(int i, int j)
+        {
+            Tile self = Framing.GetTileSafely(i, j);
 
             //decor 1x1
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(5))
@@ -134,6 +159,20 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<DyeBulbs>(), true, false, -1, Main.rand.Next(2));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
+                return;
+            }
+        }
+
+        private static void PuffGrowth(int i, int j)
+        {
+            Tile self = Framing.GetTileSafely(i, j);
+
+            //decor 1x1
+            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(3))
+            {
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<PuffDecor1x1>(), true, false, -1, Main.rand.Next(7));
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
                 return;
             }
         }

@@ -17,6 +17,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles;
 using Terraria.IO;
 using System;
+using Verdant.Tiles.Verdant.Basic.Puff;
 
 namespace Verdant.World
 {
@@ -41,10 +42,10 @@ namespace Verdant.World
 
             static int GetCenterX()
             {
-                int x = WorldGen.genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 1.5f));
+                int x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.25f));
 
-                while (Math.Abs(x - (Main.maxTilesX / 2)) < 200)
-                    x = WorldGen.genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 1.5f));
+                while (Math.Abs(x - (Main.maxTilesX / 2)) < 80)
+                    x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.25f));
                 return x;
             }
 
@@ -388,8 +389,9 @@ namespace Verdant.World
         {
             for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
             {
-                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees so they get all the spawns they need
+                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees & puffs so they get all the spawns they need
                 {
+                    //Trees
                     bool doPlace = true;
 
                     for (int k = -1; k < 2; ++k)
@@ -405,8 +407,17 @@ namespace Verdant.World
                     if (!WorldGen.TileEmpty(i, j - 2))
                         doPlace = false;
 
-                    if (doPlace && WorldGen.genRand.NextBool(30))
-                        VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 4, 12, false, -1, false);
+                    if (doPlace && WorldGen.genRand.NextBool(24))
+                        VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, 12, false, -1, false);
+
+                    //Puffs
+                    doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) && 
+                        TileHelper.ActiveTypeNoTopSlope(i + 1, j + 3, ModContent.TileType<VerdantGrassLeaves>());
+                    if (doPlace && WorldGen.genRand.NextBool(60))
+                    {
+                        WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
+                        continue;
+                    }
                 }
             }
 
@@ -414,6 +425,8 @@ namespace Verdant.World
             {
                 for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
                 {
+                    bool puff = VerdantGrassLeaves.CheckPuff(i, j, 1.25f);
+
                     if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
                     {
                         //Vines
@@ -422,14 +435,19 @@ namespace Verdant.World
                             int length = WorldGen.genRand.Next(2, 22);
                             bool strong = WorldGen.genRand.NextBool(10);
 
+                            bool vinePuff = VerdantGrassLeaves.CheckPuff(i, j, 2 * WorldSize);
+                            int type = strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>();
+                            if (puff)
+                                type = ModContent.TileType<PuffVine>();
+
                             for (int l = 1; l < length; ++l)
                             {
                                 if (Framing.GetTileSafely(i, j + l + 1).HasTile)
                                     break;
 
-                                WorldGen.KillTile(i, j + l, false, false, true); //please
-                                WorldGen.PlaceTile(i, j + l, strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>(), true, true);
-                                Framing.GetTileSafely(i, j + l).TileType = (ushort)(strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>());
+                                WorldGen.KillTile(i, j + l, false, false, true);
+                                WorldGen.PlaceTile(i, j + l, type, true, true);
+                                Framing.GetTileSafely(i, j + l).TileType = (ushort)type;
 
                                 if (strong)
                                     Framing.GetTileSafely(i, j + l).TileFrameY = (short)(Main.rand.Next(4) * 18);
@@ -462,22 +480,10 @@ namespace Verdant.World
                         continue;
                     }
 
-                    //decor 1x1
-                    if (!Framing.GetTileSafely(i, j - 1).HasTile && !TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
-                    {
-                        int type = !Main.rand.NextBool(1) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
-                        WorldGen.PlaceTile(i, j - 1, type, true, false, -1, WorldGen.genRand.Next(7));
+                    if (puff && PuffDecor(i, j))
                         continue;
-                    }
-
-                    //ground decor 2x1
-                    doPlace = !Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) &&
-                        !Framing.GetTileSafely(i + 1, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
-                    if (doPlace && WorldGen.genRand.NextBool(2))
-                    {
-                        GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<VerdantDecor2x1>(), WorldGen.genRand.Next(7));
+                    else if (!puff && NormalDecor(i, j))
                         continue;
-                    }
 
                     //flower wall 2x2
                     doPlace = Helper.AreaClear(i, j, 2, 2) && Helper.WalledSquare(i, j, 2, 2) && Helper.WalledSquareType(i, j, 2, 2, WallTypes[0]);
@@ -497,6 +503,46 @@ namespace Verdant.World
                     }
                 }
             }
+        }
+
+        private static bool NormalDecor(int i, int j)
+        {
+            //decor 1x1
+            if (!Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
+            {
+                int type = Main.rand.NextBool(2) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
+                WorldGen.PlaceTile(i, j - 1, type, true, true, style: WorldGen.genRand.Next(7));
+                return true;
+            }
+
+            //ground decor 2x1
+            bool doPlace = !Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) &&
+                !Framing.GetTileSafely(i + 1, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
+            if (doPlace && WorldGen.genRand.NextBool(2))
+            {
+                GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<VerdantDecor2x1>(), WorldGen.genRand.Next(7));
+                return true;
+            }
+
+            ////saplings
+            //doPlace = !Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && !Framing.GetTileSafely(i, j - 2).HasTile;
+            //if (doPlace && WorldGen.genRand.NextBool(8))
+            //{
+            //    GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<LushSapling>(), WorldGen.genRand.Next(7));
+            //    return true;
+            //}
+            return false;
+        }
+
+        private static bool PuffDecor(int i, int j)
+        {
+            //decor 1x1
+            if (!Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(8) >= 1)
+            {
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<PuffDecor1x1>(), true, false, -1, WorldGen.genRand.Next(7));
+                return true;
+            }
+            return false;
         }
 
         private void GenerateCircles()

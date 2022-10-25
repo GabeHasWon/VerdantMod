@@ -23,15 +23,19 @@ Aeterna - A payment of 750 schmeckles
 
 ----Socials / Links----
 These are various links to me/my projects/the Mod's discord. 
-If you have something to say, be it a bug ro report, balance to comment on, or a complaint about the lack of snails, do report it to the Discord.
+If you have something to say, be it a bug or a report, balance to comment on, or a complaint about the lack of snails, do report it to the Discord.
 For those in-game looking at this, all of these links can be found in the homepage, which is the Discord.
 
 Discord: https://discord.gg/FAnwxtM2vc
 Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#post-2572017
 
 My Twitter: https://twitter.com/GabeHasWon
-My Patreon: https://www.patreon.com/gabehaswon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
+
+If you'd be so generous, joining the Patreon would help me out a ton. 
+As a hobbyist developer, I spend most of my free time making stuff like this mod.
+If any of you could chip in, I'd appreciate it greatly! I'd also be able to speed up development on all of my projects.
+https://www.patreon.com/gabehaswon
 
 --Development--
 

@@ -4,8 +4,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
+using Verdant.Tiles.Verdant.Basic.Puff;
 
 namespace Verdant.Items.Verdant.Armour
 {
@@ -68,15 +70,21 @@ namespace Verdant.Items.Verdant.Armour
                         while (!valids[choice])
                             choice = Main.rand.Next(3);
 
-                        if (choice == 0)
-                            WorldGen.PlaceTile(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
-                        else if (choice == 1)
-                            WorldGen.PlaceTile(t.X, t.Y - 2, ModContent.TileType<VerdantDecor1x2>(), true, true, -1, Main.rand.Next(6));
-                        else if (choice == 2)
-                            WorldGen.PlaceTile(t.X, t.Y - 3, ModContent.TileType<VerdantDecor1x3>(), true, true, -1, Main.rand.Next(6));
+                        if (VerdantGrassLeaves.CheckPuff(t.X, t.Y)) //Force puff decor
+                            choice = -1;
 
-                        if (Main.netMode == NetmodeID.Server)
-                            NetMessage.SendTileSquare(-1, t.X, t.Y - 1, 3, TileChangeType.None);
+                        if (choice == -1)
+                        {
+                            TileHelper.SyncedPlace(t.X, t.Y - 1, ModContent.TileType<PuffDecor1x1>(), style: Main.rand.Next(7));
+                            return;
+                        }
+
+                        if (choice == 0)
+                            TileHelper.SyncedPlace(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
+                        else if (choice == 1)
+                            TileHelper.SyncedPlace(t.X, t.Y - 2, ModContent.TileType<VerdantDecor1x2>(), true, true, -1, Main.rand.Next(6));
+                        else if (choice == 2)
+                            TileHelper.SyncedPlace(t.X, t.Y - 3, ModContent.TileType<VerdantDecor1x3>(), true, true, -1, Main.rand.Next(6));
                     }
                     else if (ground.TileType == TileID.Grass)
                     {
