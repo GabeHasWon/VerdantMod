@@ -12,7 +12,7 @@ namespace Verdant.Projectiles.Minion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Flower");
+            DisplayName.SetDefault("Yellow Sprout");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -42,14 +42,15 @@ namespace Verdant.Projectiles.Minion
         {
             const float XMod = 0.02f;
 
-            if (!Main.player[Projectile.owner].GetModPlayer<HealingFlowerPlayer>().hasHealFlower)
+            Player plr = Main.player[Projectile.owner];
+            if (plr.dead || !plr.GetModPlayer<HealingFlowerPlayer>().hasHealFlower)
                 Projectile.Kill();
 
             float xOff = (float)Math.Sin(Projectile.ai[0]++ * XMod);
             Player player = Main.player[Projectile.owner];
             
             Projectile.Center = player.Center + new Vector2(0, player.gfxOffY);
-            Projectile.position.X += xOff * 45f;
+            Projectile.position.X += xOff * 42f;
             Projectile.position.Y += (float)Math.Sin(Projectile.ai[1]++ * 0.06f) * 8f;
             Projectile.rotation = xOff * 0.2f;
 

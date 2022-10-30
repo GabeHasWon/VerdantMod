@@ -9,6 +9,7 @@ It has the following basic content:
     - 9 new NPCs
     - 3 brand new music tracks
     - A new foreground and background system that gives more life to the biome
+    - A sort of quest system by the statue in the center of the biome, the Apotheosis
 
 ----Credit----
 --Developers--

@@ -6,7 +6,7 @@ namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => false;
+    public override bool IsLoadingEnabled(Mod mod) => true;
 
     public override void SetStaticDefaults()
 	{
@@ -36,7 +36,8 @@ public class ProbablyDelete : ModItem
     public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
     {
         var j = Main.MouseWorld.ToTileCoordinates16();
-		Item.placeStyle = Main.rand.Next(7);
+        ModContent.GetInstance<Tiles.TileEntities.Puff.Pickipuff>().Place(j.X, j.Y);
+        //ModContent.GetInstance<Tiles.TileEntities.Puff.Pickipuff>().Kill(j.X, j.Y);
         return true;
     }
 }

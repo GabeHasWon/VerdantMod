@@ -389,9 +389,9 @@ namespace Verdant.World
         {
             LoopTrees();
 
-            for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
+            for (int i = 100; i < Main.maxTilesX - 100; ++i)
             {
-                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
+                for (int j = 100; j < Main.maxTilesY - 100; ++j)
                 {
                     bool puff = VerdantGrassLeaves.CheckPuff(i, j, 1.25f);
 
@@ -527,14 +527,6 @@ namespace Verdant.World
                 GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<VerdantDecor2x1>(), WorldGen.genRand.Next(7));
                 return true;
             }
-
-            ////saplings
-            //doPlace = !Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && !Framing.GetTileSafely(i, j - 2).HasTile;
-            //if (doPlace && WorldGen.genRand.NextBool(8))
-            //{
-            //    GenHelper.PlaceMultitile(new Point(i, j - 1), ModContent.TileType<LushSapling>(), WorldGen.genRand.Next(7));
-            //    return true;
-            //}
             return false;
         }
 

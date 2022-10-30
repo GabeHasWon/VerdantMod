@@ -49,7 +49,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         internal static bool CheckPuff(int i, int j, float sizeMul = 1f)
         {
             int width = (int)(10 * sizeMul);
-            int height = (int)(8 * sizeMul);
+            int height = (int)(14 * sizeMul);
 
             for (int x = i - width; x < i + width; ++x)
                 for (int y = j - height; y < j + height; ++y)

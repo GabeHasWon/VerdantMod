@@ -20,7 +20,7 @@ internal class PuffVine : ModTile
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
         ItemDrop = 0;
-        AddMapEntry(new Color(24, 135, 28));
+        AddMapEntry(new Color(55, 145, 26));
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
     }
@@ -59,17 +59,14 @@ internal class PuffVine : ModTile
             WorldGen.KillTile(i, j);
 
         if (Main.rand.NextBool(480))
-        {
-            int dust = Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<PuffDust>(), Scale: Main.rand.NextFloat(0.5f, 0.9f));
-            Main.dust[dust].rotation = Main.rand.NextFloat(MathHelper.Pi);
-        }
+            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<PuffDust>(), Scale: Main.rand.NextFloat(0.5f, 0.9f));
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile t = Framing.GetTileSafely(i, j);
 
-        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.02f) * 1f;
+        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.04f);
         spriteBatch.Draw(TextureAssets.Tile[Type].Value, TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }

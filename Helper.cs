@@ -114,6 +114,7 @@ namespace Verdant
             return SyncItem(source, adjPos, type, stack);
         }
 
+        public static bool OnScreen(Rectangle rect) => rect.Intersects(new Rectangle(0, 0, Main.screenWidth, Main.screenHeight));
         public static (int, int) ItemStack<T>(int stack = 1) where T : ModItem => (ModContent.ItemType<T>(), stack);
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();

@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,17 +10,17 @@ namespace Verdant.Dusts
 		public override void OnSpawn(Dust dust)
 		{
 			dust.velocity = Microsoft.Xna.Framework.Vector2.Zero;
-			dust.noGravity = true; // Makes the dust have no gravity.
-			dust.noLight = true; // Makes the dust emit no light.
-			dust.scale *= 1.5f; // Multiplies the dust's initial scale by 1.5.
+			dust.noGravity = true;
+			dust.noLight = true;
+			dust.scale *= 1.5f;
 			dust.alpha = 250;
+			dust.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
 		}
 
 		public override bool Update(Dust dust)
 		{
 			dust.position += dust.velocity;
 			dust.rotation += 0.04f;
-
 			dust.velocity.X = (float)Math.Sin(dust.rotation) * 0.8f;
 			dust.velocity.Y += 0.005f;
 

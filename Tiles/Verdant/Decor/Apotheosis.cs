@@ -118,7 +118,7 @@ internal class Apotheosis : ModTile
                     if (NPC.downedSlimeKing)
                         msg = "Ah, the King of Slimes has been slain, wonderful...";
                     if (NPC.downedQueenBee)
-                        msg = "The tyrannical Queen has fallen.\nHopefully you're having a better experience here.";
+                        msg = "The tyrannical Queen has fallen.\nHopefully you're having a better experience with our bees.";
                 }
 
                 if (r == 4 && ModLoader.TryGetMod("SpiritMod", out Mod spiritMod)) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project

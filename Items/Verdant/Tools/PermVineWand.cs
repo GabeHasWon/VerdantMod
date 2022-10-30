@@ -7,14 +7,11 @@ using Terraria.ModLoader;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Tools;
 
 class PermVineWand : ModItem
 {
-    public override string Texture => base.Texture.Replace("Perm", "");
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Zipvine (Permanant)");
@@ -43,7 +40,7 @@ class PermVineWand : ModItem
 
 public class PermVineWandProjectile : ModProjectile
 {
-    public override string Texture => "Verdant/Items/Verdant/Tools/VineWand";
+    public override string Texture => "Verdant/Items/Verdant/Tools/PermVineWand";
 
     public ref float Timer => ref Projectile.ai[0];
 

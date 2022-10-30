@@ -63,12 +63,25 @@ namespace Verdant
             tag.Add("backgroundItems", backgroundItems);
 
             SaveVines(tag);
+            SaveClouds(tag);
+        }
 
+        private void SaveClouds(TagCompound tag)
+        {
             var clouds = ForegroundManager.PlayerLayerItems.Where(x => x is CloudbloomEntity);
             var positions = new List<Vector2>();
+            var puffPositions = new List<Vector2>();
+
             foreach (var item in clouds)
-                positions.Add(item.Center);
+            {
+                if ((item as CloudbloomEntity).puff)
+                    puffPositions.Add(item.Center);
+                else
+                    positions.Add(item.Center);
+            }
+
             tag.Add("cloudPositions", positions);
+            tag.Add("puffPositions", puffPositions);
         }
 
         public override void OnWorldUnload()
@@ -115,6 +128,10 @@ namespace Verdant
                 var clouds = tag.GetList<Vector2>("cloudPositions");
                 foreach (var item in clouds)
                     ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
+
+                var puffs = tag.GetList<Vector2>("puffPositions");
+                foreach (var item in puffs)
+                    ForegroundManager.AddItem(new CloudbloomEntity(item, true), true, true);
             }
         }
 

@@ -69,7 +69,7 @@ namespace Verdant.Items.Verdant.Equipables
                 if (player.velocity.X > 0)
                     TryPlacePlatform(t.X + 1, t.Y, player);
                 else
-                    TryPlacePlatform(t.X - 1, t.Y, player);
+                    TryPlacePlatform(t.X - 1, t.Y, player); 
             }
         }
 

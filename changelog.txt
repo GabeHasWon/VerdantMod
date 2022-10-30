@@ -1,16 +1,23 @@
 ADDITIONS
-- Added Pink Puff & related decor tiles
-- Added Puff microbiome world gen
-- Added unobtainable Red Petal Block and Pink Petal Block items
-- New sprite for Living Lush Wood block
-- Added right click functionality for all tile wands that allows you to switch between them easily
+- Added Pickipuff, an interactible plant in the Puff microbiome
+- Added Puff material, obtainable from Pickipuffs
+- Added Puff variant of the Cloudsprout
+- Added Lush Shiv, replaces Throwing Knife
 
 CHANGES
-- Adjusted sprite for Living Lush Wood Wall, Verdant Vine
-- Adjusted Passionflower Bulb loot pool
-- Actually added the tile wands to the loot pool
-- Minor internal reorganization
-- Fixed potential world freeze/softlock if unlucky
-- Adjusted Verdant spawn parameters
-- Fixed missing world gen verdant decor
-- Fixed dumb null check mistake
+- Fixed Yellow Sprout display name
+- Fixed Yellow Sprout persisting after player death
+- Made Living Lush Wood merge with other tiles
+- Added new sprite for Passionflower Bulb
+- Adjusted lush weapon set sprites to use new palette
+- Made the Verdant biome high priority as to override all other biomes
+	This might also fix compatibility issue with Calamity Mod Music, but it's untested
+- Redid the item sprite for Cloudsprout, smaller and better now
+- Removed old temporary Vine Wand
+- Fixed inconsistent Cloudsprout item size and hitbox
+- Fixed Verdant Biome priority issue
+- Added backend for drawable tile entities
+- Added extra merge option for Living Lush Wood
+- Adjusted size of Puff microbiome
+- Adjusted Apotheosis dialogue
+- Heavily modified world generation
