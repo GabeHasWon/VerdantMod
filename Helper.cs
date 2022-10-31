@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.WorldGen;
 
 namespace Verdant
 {
@@ -70,10 +68,29 @@ namespace Verdant
 
         public static int FindDown(Vector2 worldPos)
         {
-            Point tPos = (worldPos / 16).ToPoint();
+            Point tPos = worldPos.ToTileCoordinates();
             while (!Main.tile[tPos.X, tPos.Y].HasTile || !Main.tileSolid[Main.tile[tPos.X, tPos.Y].TileType])
                 tPos.Y++;
             return tPos.Y;
+        }
+
+        public static int FindUp(Point tilePos)
+        {
+            while (!WorldGen.SolidTile(tilePos))
+                tilePos.Y--;
+            return tilePos.Y;
+        }
+
+        public static int FindUpWithType(Point tilePos, params int[] validTileTypes)
+        {
+            while (!WorldGen.SolidTile(tilePos) || !validTileTypes.Contains(Main.tile[tilePos.X, tilePos.Y].TileType))
+            {
+                tilePos.Y--;
+
+                if (tilePos.Y <= -1)
+                    return -1;
+            }
+            return tilePos.Y;
         }
 
         public static void ArmsTowardsMouse(Player p = null, Vector2? targetLoc = null)

@@ -389,9 +389,9 @@ namespace Verdant.World
         {
             LoopTrees();
 
-            for (int i = 100; i < Main.maxTilesX - 100; ++i)
+            for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
             {
-                for (int j = 100; j < Main.maxTilesY - 100; ++j)
+                for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
                 {
                     bool puff = VerdantGrassLeaves.CheckPuff(i, j, 1.25f);
 
@@ -503,7 +503,16 @@ namespace Verdant.World
                     if (doPlace && WorldGen.genRand.NextBool(60))
                     {
                         WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
-                        continue;
+
+                        int pickipuffs = WorldGen.genRand.Next(1, 4);
+                        for (int k = 0; k < pickipuffs; ++k)
+                        {
+                            int x = i - WorldGen.genRand.Next(-10, 11);
+                            int y = Helper.FindUpWithType(new Point(x, j), ModContent.TileType<VerdantGrassLeaves>());
+
+                            if (y != -1)
+                                ModContent.GetInstance<Tiles.TileEntities.Puff.Pickipuff>().Place(x, y);
+                        }
                     }
                 }
             }
@@ -556,7 +565,7 @@ namespace Verdant.World
                 int x = (int)MathHelper.Lerp(VerdantArea.X + 50, VerdantArea.Right - 50,  i / repeats);
                 int y = VerdantArea.Center.Y - WorldGen.genRand.Next(-20, 20);
 
-                VerdantCircles.Add(new GenCircle((int)(WorldGen.genRand.Next(50, 80) * WorldSize), new Point(x, y)));
+                VerdantCircles.Add(new GenCircle((int)(WorldGen.genRand.Next(50, 80) * WorldSize), new Point16(x, y)));
             }
 
             for (int i = 0; i < VerdantCircles.Count; ++i)
@@ -566,8 +575,6 @@ namespace Verdant.World
         private void CleanForCaves()
         {
             const float Buffer = 3f;
-
-            //TunnelSpice();
 
             //Caves
             VerdantSystem.genNoise = new FastNoise(WorldGen._genRandSeed);
@@ -588,6 +595,8 @@ namespace Verdant.World
                 aggregateTiles.AddRange(item.tiles);
 
             aggregateTiles = aggregateTiles.Distinct().ToList();
+
+            GetVerdantArea(aggregateTiles);
 
             foreach (var point in aggregateTiles)
             {
@@ -626,6 +635,31 @@ namespace Verdant.World
             }
         }
 
+        private void GetVerdantArea(List<Point16> aggregateTiles)
+        {
+            int left = Main.maxTilesX;
+            int right = 0;
+            int top = Main.maxTilesY;
+            int bottom = 0;
+
+            foreach (var point in aggregateTiles)
+            {
+                if (point.X < left)
+                    left = point.X;
+
+                if (point.X > right)
+                    right = point.X;
+
+                if (point.Y < top)
+                    top = point.Y;
+
+                if (point.Y > bottom)
+                    bottom = point.Y;
+            }
+
+            VerdantArea = new Rectangle(left, top, right - left, bottom - top);
+        }
+
         public override void PostWorldGen() //Final cleanup
         {
             for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
@@ -646,55 +680,6 @@ namespace Verdant.World
                 {
                     if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()))
                         WorldGen.KillTile(i, j, false, false, true);
-                }
-            }
-        }
-
-        /// <summary>Simple struct for genning the base shape of the Verdant.</summary>
-        internal struct GenCircle
-        {
-            public int rad;
-            public Point pos;
-            public List<Point16> tiles;
-
-            public GenCircle(int r, Point p)
-            {
-                rad = r;
-                pos = p;
-
-                tiles = new List<Point16>();
-            }
-
-            public override string ToString() => rad + " + " + pos;
-
-            public void Gen()
-            {
-                const float MaxDitherDistance = 8f;
-
-                for (int i = -rad; i < rad; ++i)
-                {
-                    for (int j = -rad; j < rad; ++j)
-                    {
-                        Point16 nPos = new Point16(pos.X + i, pos.Y + j);
-                        float dist = Vector2.Distance(nPos.ToVector2(), pos.ToVector2());
-                        Tile tile = Framing.GetTileSafely(nPos.X, nPos.Y);
-
-                        if (tile.TileType == TileTypes[2])
-                            continue;
-
-                        if (dist < rad)
-                        {
-                            if (rad - dist < MaxDitherDistance)
-                            {
-                                float chance = (rad - dist) / MaxDitherDistance;
-
-                                if (WorldGen.genRand.NextFloat() <= chance && Main.tile[nPos.X, nPos.Y].HasTile)
-                                    tiles.Add(nPos);
-                            }
-                            else
-                                tiles.Add(nPos);
-                        }
-                    }
                 }
             }
         }

@@ -40,6 +40,7 @@ namespace Verdant
         public bool apotheosisEvilDown = false;
         public bool apotheosisSkelDown = false;
         public bool apotheosisWallDown = false;
+        public bool microcosmUsed = false;
 
         public override void SaveWorldData(TagCompound tag)
         {
@@ -54,6 +55,8 @@ namespace Verdant
                 apotheosisStats.Add("skelDown");
             if (apotheosisWallDown)
                 apotheosisStats.Add("wallDown");
+            if (apotheosisWallDown)
+                apotheosisStats.Add("microcosm");
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
@@ -116,6 +119,7 @@ namespace Verdant
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
             apotheosisWallDown = stats.Contains("wallDown");
+            microcosmUsed = stats.Contains("microcosm");
 
             if (Main.netMode != NetmodeID.Server)
             {

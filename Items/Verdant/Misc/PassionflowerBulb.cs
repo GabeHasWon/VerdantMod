@@ -16,7 +16,7 @@ namespace Verdant.Items.Verdant.Misc
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 4, 20, 31);
+            var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 6, 20, 31);
             halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>(), ModContent.ItemType<LushLeafWand>()));
             
             itemLoot.Add(halfSproutRule);

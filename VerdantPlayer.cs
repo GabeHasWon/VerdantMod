@@ -7,7 +7,6 @@ using Verdant.Backgrounds.BGItem;
 using Verdant.Backgrounds.BGItem.Verdant;
 using Verdant.Foreground;
 using Verdant.Foreground.Parallax;
-using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles;

@@ -6,7 +6,7 @@ using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Tools;
 using Verdant.Items.Verdant.Weapons;
 
-namespace Verdant.Items.Verdant.Blocks.LushWood
+namespace Verdant.Items.Verdant.Fishing
 {
     public class LushWoodCrateItem : ModItem
     {
@@ -16,8 +16,8 @@ namespace Verdant.Items.Verdant.Blocks.LushWood
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 4, 20, 31);
-            halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>()));
+            var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 5, 20, 31);
+            halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>(), ModContent.ItemType<LushLeafWand>()));
 
             itemLoot.Add(halfSproutRule);
 

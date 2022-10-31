@@ -16,18 +16,29 @@ namespace Verdant.Tiles.TileEntities.Puff
 {
     internal class Pickipuff : DrawableTE
     {
+        private float RealFactor
+        {
+            get
+            {
+                double sine = Math.Sin(timer * 0.008f * (length / 300d));
+                float val = targetFactor + (float)(-Math.Pow(sine, 2) * (0.02 * (length / 80d)));
+                val = MathHelper.Clamp(val, 0, 1);
+                return val;
+            }
+        }
+
         private Vector2 PuffLocation
         {
             get
             {
-                float len = targetFactor * length;
+                float len = RealFactor * length;
                 if (len < 10)
                     len = 10;
                 return World + new Vector2(6, len);
             }
         }
 
-        private Rectangle PuffHitbox => new Rectangle((int)PuffLocation.X, (int)PuffLocation.Y, 18, 20);
+        private Rectangle PuffHitbox => new((int)PuffLocation.X, (int)PuffLocation.Y, 18, 20);
 
         private const int Harvested = 4;
         private const int FullyFrightened = 3;
@@ -40,6 +51,7 @@ namespace Verdant.Tiles.TileEntities.Puff
         private float factorTime = 0;
         private int puffState = 0;
         private int length = 0;
+        private int timer = 0;
 
         protected override Point Size => new Point(18, (int)(targetFactor * length) + 22);
 
@@ -81,6 +93,8 @@ namespace Verdant.Tiles.TileEntities.Puff
 
         public override void Update()
         {
+            timer++;
+
             if (length == 0)
             {
                 length = Main.rand.Next(26, 34) * 10;
@@ -211,7 +225,7 @@ namespace Verdant.Tiles.TileEntities.Puff
             int vines = length / 10;
             for (int i = 0; i < vines; ++i)
             {
-                float pointOnVine = (float)(i / (float)vines) * length * targetFactor;
+                float pointOnVine = (float)(i / (float)vines) * length * RealFactor;
                 var drawPos = basePos + new Vector2(0, pointOnVine);
                 spriteBatch.Draw(vine, drawPos, new Rectangle(0, (i % 4) * 10, 18, 10), Lighting.GetColor((drawPos + Main.screenPosition).ToTileCoordinates()), 0f, Vector2.Zero, new Vector2(1f, 1f), SpriteEffects.None, 0f);
             }

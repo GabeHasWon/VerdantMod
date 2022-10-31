@@ -17,7 +17,7 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetDefaults()
         {
             Item.accessory = false;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 50);
             Item.consumable = false;
             Item.width = 32;
