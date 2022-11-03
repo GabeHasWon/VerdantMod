@@ -11,6 +11,7 @@ namespace Verdant.Walls
         public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
+
             DustType = DustID.Grass;
             ItemDrop = ItemID.None;
             AddMapEntry(new Color(50, 15, 15));
@@ -25,7 +26,8 @@ namespace Verdant.Walls
 
         public override void SetStaticDefaults()
         {
-            Main.wallHouse[Type] = false;
+            Main.wallHouse[Type] = true;
+
             DustType = DustID.Grass;
             ItemDrop = ModContent.ItemType<LivingLushWoodWallItem>();
             AddMapEntry(new Color(50, 15, 15));

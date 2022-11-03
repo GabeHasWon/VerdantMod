@@ -13,7 +13,7 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Microcosm");
-            Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere");
+            Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This replaces tiles, use it in a space you don't care about\nCan only be used once per world");
         }
 
         public override void SetDefaults()
@@ -27,14 +27,14 @@ namespace Verdant.Items.Verdant.Misc
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
-        public override bool CanUseItem(Player player) => !ModContent.GetInstance<VerdantSystem>().microcosmUsed;
+        public override bool CanUseItem(Player player) => true;//!ModContent.GetInstance<VerdantSystem>().microcosmUsed;
 
         public override bool? UseItem(Player player)
         {
-            //ModContent.GetInstance<VerdantSystem>().microcosmUsed = true;
+            ModContent.GetInstance<VerdantSystem>().microcosmUsed = true;
 
             var gen = ModContent.GetInstance<RealtimeGen>();
-            gen.CurrentAction = new(MicroVerdantGen.MicroVerdant(), 1);
+            gen.CurrentAction = new(MicroVerdantGen.MicroVerdant(), 12f);
             return true;
         }
     }

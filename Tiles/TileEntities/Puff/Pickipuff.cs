@@ -101,7 +101,8 @@ namespace Verdant.Tiles.TileEntities.Puff
                 NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID, Position.X, Position.Y);
             }
 
-            if (!Main.tile[Position.X, Position.Y].HasTile)
+            Tile anchor = Main.tile[Position.X, Position.Y];
+            if (!anchor.HasTile || anchor.TileType != ModContent.TileType<VerdantGrassLeaves>())
             {
                 Kill(Position.X, Position.Y);
                 NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID, Position.X, Position.Y);

@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Verdant.World.RealtimeGeneration
 {
     internal class RealtimeAction
     {
-        readonly int TickRate = 0;
-        readonly Queue<(Point, TileAction.TileActionDelegate)> TileActions = new();
+        readonly float TickRate = 0;
+        readonly Queue<RealtimeStep> TileActions = new();
 
-        private int _timer = 0;
+        private float _timer = 0;
+        private float _surpassedValues = 0;
 
-        public RealtimeAction(Queue<(Point, TileAction.TileActionDelegate)> tileActions, int tickRate)
+        public RealtimeAction(Queue<RealtimeStep> tileActions, float tickRate)
         {
             TileActions = tileActions;
             TickRate = tickRate;
@@ -18,12 +20,25 @@ namespace Verdant.World.RealtimeGeneration
 
         public void Play()
         {
-            _timer++;
+            _surpassedValues = (float)Math.Floor(_timer);
+            _timer += TickRate;
 
-            if (_timer == TickRate && TileActions.Count > 0)
+            if (TileActions.Count <= 0)
+                return;
+
+            int repeats = (int)(Math.Floor(_timer) - _surpassedValues);
+            for (int i = 0; i < repeats; ++i)
             {
-                (var position, var action) = TileActions.Dequeue();
-                action.Invoke(position.X, position.Y);
+                if (TileActions.Count <= 0)
+                    return;
+
+                var step = TileActions.Dequeue();
+                bool success = false;
+                step.Invoke(step.Position.X, step.Position.Y, ref success);
+                
+                if (!success)
+                    i--;
+
                 _timer = 0;
             }
         }

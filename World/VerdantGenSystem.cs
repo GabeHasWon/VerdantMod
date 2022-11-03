@@ -400,7 +400,7 @@ namespace Verdant.World
                         //Vines
                         if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i, j + 1).BottomSlope && WorldGen.genRand.Next(5) <= 2)
                         {
-                            int length = WorldGen.genRand.Next(2, 22);
+                            int length = WorldGen.genRand.Next(4, 20);
                             bool strong = WorldGen.genRand.NextBool(10);
 
                             int type = strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>();
@@ -569,7 +569,7 @@ namespace Verdant.World
             }
 
             for (int i = 0; i < VerdantCircles.Count; ++i)
-                VerdantCircles[i].Gen();
+                VerdantCircles[i].FindTiles();
         }
 
         private void CleanForCaves()

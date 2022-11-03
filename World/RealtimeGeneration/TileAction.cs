@@ -5,11 +5,11 @@ namespace Verdant.World.RealtimeGeneration
 {
     internal class TileAction
     {
-        public delegate void TileActionDelegate(int x, int y);
+        public delegate void TileActionDelegate(int x, int y, ref bool success);
 
-        public static TileActionDelegate PlaceTileAction(int type, bool multitile = false, bool force = true, bool mute = true)
+        public static TileActionDelegate PlaceTile(int type, bool multitile = false, bool force = true, bool mute = true)
         {
-            return (x, y) =>
+            return (int x, int y, ref bool success) =>
             {
                 if (!multitile)
                 {
@@ -39,7 +39,24 @@ namespace Verdant.World.RealtimeGeneration
             };
         }
 
-        public static TileActionDelegate KillWall(bool fail = false) => (x, y) => WorldGen.KillWall(x, y, fail);
-        public static TileActionDelegate PlaceWall(int type, bool mute = true) => (x, y) => WorldGen.PlaceWall(x, y, type, mute);
+        public static TileActionDelegate KillTile(bool fail = false, bool noItem = true) => (int x, int y, ref bool success) =>
+        {
+            WorldGen.KillTile(x, y, fail, false, noItem);
+            success = true;
+        };
+
+        public static TileActionDelegate KillWall(bool fail = false) => (int x, int y, ref bool success) =>
+        {
+            WorldGen.KillWall(x, y, fail);
+            success = true;
+        };
+
+        public static TileActionDelegate PlaceWall(int type, bool mute = true, bool force = false) => (int x, int y, ref bool success) =>
+        {
+            if (force)
+                WorldGen.KillWall(x, y, false);
+            WorldGen.PlaceWall(x, y, type, mute);
+            success = true;
+        };
     }
 }

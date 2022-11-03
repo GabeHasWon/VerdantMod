@@ -1,3 +1,10 @@
 - Made the Pickipuff dangle a little
 - Added Microcosm
+	Sold by the Dryad for base 50 gold, this allows you to create one Verdant microbiome anywhere in the world
 - Added Realtime Generation backend
+- Fixed Spiked Puffball not being craftable
+- Adjusted Apotheosis particle spawn method
+- Adjusted Apotheosis structure + added glass alternate
+- Made Lush Soil merge with Glass
+- Fixed Living Lush Wood Wall issue with housing
+- Minor optimizations

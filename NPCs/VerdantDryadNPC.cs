@@ -2,14 +2,20 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Items.Verdant.Misc;
 
 namespace Verdant.NPCs
 {
     class VerdantDryadNPC : GlobalNPC
     {
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
+        {
+            return entity.type == NPCID.Dryad;
+        }
+
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (npc.type == NPCID.Dryad && NPC.downedMechBossAny && !ModContent.GetInstance<VerdantNPCWorld>().yellowPetalDialogue)
+            if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantNPCWorld>().yellowPetalDialogue)
             {
                 ModContent.GetInstance<VerdantNPCWorld>().yellowPetalDialogue = true;
 
@@ -20,7 +26,10 @@ namespace Verdant.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (type == NPCID.Dryad && NPC.downedMechBossAny)
+            if (!ModContent.GetInstance<VerdantSystem>().microcosmUsed)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());
+
+            if (NPC.downedMechBossAny)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YellowBulb>());
         }
     }

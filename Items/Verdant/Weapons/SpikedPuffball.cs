@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Throwing;
 
 namespace Verdant.Items.Verdant.Weapons
@@ -23,5 +24,7 @@ namespace Verdant.Items.Verdant.Weapons
             Item.shoot = ModContent.ProjectileType<SpikedPuffballProj>();
             Item.shootSpeed = 6f;
         }
+
+        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.Anvils, 3, (ItemID.SpikyBall, 3), (ModContent.ItemType<PuffMaterial>(), 1));
     }
 }

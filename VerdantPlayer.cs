@@ -184,6 +184,13 @@ class VerdantPlayer : ModPlayer
                 ForegroundManager.AddItem(new LushLeafFG(pos));
             }
         }
+
+        if (Player.GetModPlayer<VerdantPlayer>().ZoneApotheosis && (Main.dayTime || Player.position.Y / 16 > Main.worldSurface))
+        {
+            Vector2 pos = Player.Center - new Vector2(Main.rand.Next(-Main.screenWidth, Main.screenWidth),
+                Main.rand.Next(-(int)(Main.screenHeight * 2f), (int)(Main.screenHeight * 2f)));
+            ForegroundManager.AddItem(new ApotheosisParticle(pos));
+        }
     }
 
     public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)

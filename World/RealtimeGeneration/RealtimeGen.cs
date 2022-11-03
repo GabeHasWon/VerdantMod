@@ -6,9 +6,6 @@ namespace Verdant.World.RealtimeGeneration
     {
         public RealtimeAction CurrentAction;
 
-        public override void PreUpdateEntities()
-        {
-            CurrentAction?.Play();
-        }
+        public override void PreUpdateEntities() => CurrentAction?.Play();
     }
 }
