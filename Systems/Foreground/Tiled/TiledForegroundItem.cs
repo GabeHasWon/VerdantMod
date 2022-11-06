@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Verdant.Foreground.Tiled
+namespace Verdant.Systems.Foreground.Tiled
 {
     public class TiledForegroundItem : ForegroundItem
     {
@@ -33,9 +33,9 @@ namespace Verdant.Foreground.Tiled
             {
                 for (int j = 0; j < height; ++j)
                 {
-                    Rectangle rect = new Rectangle(source.X + (18 * i), source.Y + (18 * j), 16, 16);
+                    Rectangle rect = new(source.X + (18 * i), source.Y + (18 * j), 16, 16);
                     Color col = drawLighted ? Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16)) : Color.White;
-                    Main.spriteBatch.Draw(tex, position - Main.screenPosition + (new Vector2(i, j) * 16), rect, col, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(tex.Value, position - Main.screenPosition + (new Vector2(i, j) * 16), rect, col, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                 }
             }
         }

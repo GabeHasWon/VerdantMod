@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ObjectData;
 
-namespace Verdant.World.RealtimeGeneration
+namespace Verdant.Systems.RealtimeGeneration
 {
     internal class TileAction
     {

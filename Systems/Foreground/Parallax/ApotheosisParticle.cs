@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Verdant.Foreground.Parallax
+namespace Verdant.Systems.Foreground.Parallax
 {
     public class ApotheosisParticle : ParallaxedFGItem
     {

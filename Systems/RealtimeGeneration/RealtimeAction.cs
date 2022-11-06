@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Verdant.World.RealtimeGeneration
+namespace Verdant.Systems.RealtimeGeneration
 {
     internal class RealtimeAction
     {

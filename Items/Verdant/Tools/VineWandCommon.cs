@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Verdant.Foreground;
-using Verdant.Foreground.Parallax;
+using Verdant.Systems.Foreground;
+using Verdant.Systems.Foreground.Parallax;
 
 namespace Verdant.Items.Verdant.Tools
 {

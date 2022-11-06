@@ -1,10 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Projectiles.Misc;
 using Verdant.World;
-using Verdant.World.RealtimeGeneration;
+using Verdant.Systems.RealtimeGeneration;
 
 namespace Verdant.Items.Verdant.Misc
 {
@@ -13,7 +11,7 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Microcosm");
-            Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This replaces tiles, use it in a space you don't care about\nCan only be used once per world");
+            Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This overrides a LARGE area (minimum 60x60 tiles on a small world)\nMake sure you use this in a place you don't care about!\nCan only be used once per world");
         }
 
         public override void SetDefaults()

@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Verdant.World.RealtimeGeneration
+namespace Verdant.Systems.RealtimeGeneration
 {
     internal class RealtimeGen : ModSystem
     {

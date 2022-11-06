@@ -3,8 +3,8 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Foreground;
-using Verdant.Foreground.Parallax;
+using Verdant.Systems.Foreground;
+using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Misc;
 

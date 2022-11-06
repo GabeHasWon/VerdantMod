@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Verdant.Foreground.Tiled
+namespace Verdant.Systems.Foreground.Tiled
 {
     public class VerdantBush : TiledForegroundItem
     {

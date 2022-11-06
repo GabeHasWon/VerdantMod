@@ -5,7 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 
-namespace Verdant.Foreground.Parallax
+namespace Verdant.Systems.Foreground.Parallax
 {
     public class EnchantedVine : ParallaxedFGItem
     {

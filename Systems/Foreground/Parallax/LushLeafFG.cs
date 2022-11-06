@@ -2,7 +2,7 @@
 using System;
 using Terraria;
 
-namespace Verdant.Foreground.Parallax;
+namespace Verdant.Systems.Foreground.Parallax;
 
 public class LushLeafFG : ParallaxedFGItem
 {

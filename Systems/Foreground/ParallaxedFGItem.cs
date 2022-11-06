@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Verdant.Foreground
+namespace Verdant.Systems.Foreground
 {
     public class ParallaxedFGItem : ForegroundItem
     {

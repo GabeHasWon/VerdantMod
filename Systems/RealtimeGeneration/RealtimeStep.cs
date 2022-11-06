@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Verdant.World.RealtimeGeneration
+namespace Verdant.Systems.RealtimeGeneration
 {
     internal class RealtimeStep
     {

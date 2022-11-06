@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Verdant.Foreground;
+namespace Verdant.Systems.Foreground;
 
 public static class ForegroundManager
 {
@@ -15,12 +15,11 @@ public static class ForegroundManager
 
     internal static void Hooks()
     {
-        On.Terraria.Main.DrawGore += DrawForeground;
-        On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
+        On.Terraria.Main.DrawProjectiles += PlayerLayerHook;
         Main.OnTickForThirdPartySoftwareOnly += UpdateHook;
     }
 
-    private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+    private static void PlayerLayerHook(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
     {
         orig(self);
 
@@ -32,40 +31,10 @@ public static class ForegroundManager
         Main.spriteBatch.End();
     }
 
-    //private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
-    //{
-    //    foreach (var val in SpecialDrawIndices)
-    //        if (val >= 0 && val < Items.Count)
-    //            Items[val].Draw();
-
-    //    orig(self, behindTiles);
-    //}
-
     private static void UpdateHook()
     {
         if (Main.PlayerLoaded && !Main.gameMenu)
             Update();
-    }
-
-    private static void DrawForeground(On.Terraria.Main.orig_DrawGore orig, Main self)
-    {
-        orig(self);
-
-        if (Main.PlayerLoaded && !Main.gameMenu)
-            Draw();
-
-        Main.spriteBatch.End();
-        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-
-        for (int i = 0; i < Main.maxProjectiles; ++i)
-        {
-            Projectile p = Main.projectile[i];
-            if (p.active && p.ModProjectile is Drawing.IDrawAdditive additive)
-                additive.DrawAdditive(Drawing.AdditiveLayer.AfterPlayer);
-        }
-
-        Main.spriteBatch.End();
-        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
     }
 
     public static void Draw()

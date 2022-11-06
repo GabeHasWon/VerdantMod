@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Foreground;
+using Verdant.Systems.Foreground;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Effects;
 using Verdant.Backgrounds.BGItem;

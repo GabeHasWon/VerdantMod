@@ -3,8 +3,8 @@ using System;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
-using Verdant.Foreground;
-using Verdant.Foreground.Parallax;
+using Verdant.Systems.Foreground;
+using Verdant.Systems.Foreground.Parallax;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant

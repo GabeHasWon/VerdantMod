@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Verdant.Foreground
+namespace Verdant.Systems.Foreground
 {
     public class ForegroundItem
     {
@@ -24,16 +25,15 @@ namespace Verdant.Foreground
 
         public Vector2 Center => position + (source.Size() / 2f);
 
-        public readonly Texture2D tex;
+        public Asset<Texture2D> tex { get; protected set; }
 
         public ForegroundItem(Vector2 pos, Vector2 vel, float sc, string path)
         {
             position = pos;
             velocity = vel;
-            tex = ModContent.Request<Texture2D>($"Verdant/Foreground/{path}").Value;
+            tex = ModContent.Request<Texture2D>($"Verdant/Systems/Foreground/{path}");
             scale = sc;
-
-            source = new Rectangle(0, 0, tex.Width, tex.Height);
+            source = new Rectangle(0, 0, tex.Width(), tex.Height());
         }
 
         public virtual void Update()
@@ -43,7 +43,7 @@ namespace Verdant.Foreground
 
         public virtual void Draw()
         {
-            Main.spriteBatch.Draw(tex, drawPosition - Main.screenPosition, source, drawColor, rotation, tex.Size() / 2, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(tex.Value, drawPosition - Main.screenPosition, source, drawColor, rotation, tex.Size() / 2, scale, SpriteEffects.None, 0f);
         }
 
         /// <summary>Called when saving this ForegroundItem.</summary>

@@ -4,8 +4,8 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Foreground;
-using Verdant.Foreground.Parallax;
+using Verdant.Systems.Foreground;
+using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Tools;
