@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
+using Verdant.Systems.ScreenText.Animations;
 
 namespace Verdant.Systems.ScreenText
 {
@@ -15,18 +16,22 @@ namespace Verdant.Systems.ScreenText
             Right,
         }
 
-        public enum Effect
+        public enum DrawEffect
         {
             None,
             Subtle,
         }
+
+        private readonly float MaxTimeLeft = 0;
+        private readonly bool AutomaticallyDie = true;
 
         public ScreenText Next { get; private set; } = null;
 
         public string text = string.Empty;
         public float scale = 1f;
         public Alignment alignment = Alignment.Center;
-        public Effect effect = Effect.None;
+        public DrawEffect effect = DrawEffect.None;
+        public IScreenTextAnimation anim = new DefaultAnimation();
         public int timeLeft = 0;
         public bool final = false;
 
@@ -34,20 +39,24 @@ namespace Verdant.Systems.ScreenText
 
         private Action<ScreenText> _onFinish = null;
 
-        public ScreenText(string text, int timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, Effect effect = Effect.None)
+        public ScreenText(string text, int timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
         {
             this.text = text;
             this.scale = scale;
             this.alignment = alignment;
             this.effect = effect;
             this.timeLeft = timeLeft;
+            this.anim = anim ?? new DefaultAnimation();
+
+            MaxTimeLeft = timeLeft;
+            AutomaticallyDie = dieAutomatically;
         }
 
         public void Update()
         {
             timeLeft--;
 
-            if (timeLeft <= 0 && Main.mouseRight)
+            if (AutomaticallyDie && timeLeft <= 0 && Main.mouseRight)
             {
                 active = false;
                 _onFinish?.Invoke(this);
@@ -58,8 +67,13 @@ namespace Verdant.Systems.ScreenText
         {
             const string RightClick = "Right click to continue";
 
+            float realFactor = timeLeft / MaxTimeLeft;
+            float factor = MathHelper.Clamp(realFactor, 0, 1);
+            int textSize = (int)(text.Length * (1f - factor));
+            string showText = text[..textSize];
+
             var font = FontAssets.DeathText;
-            Vector2 size = font.Value.MeasureString(text);
+            Vector2 size = font.Value.MeasureString(showText);
             float xOffset = 0;
 
             switch (alignment)
@@ -76,9 +90,14 @@ namespace Verdant.Systems.ScreenText
             }
 
             Vector2 pos = new(Main.screenWidth / 2f + xOffset, Main.screenHeight * 0.1f);
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, text, pos, Color.White, 0f, Vector2.UnitX * size.X / 2f, Vector2.One * scale * 1);
+            float drawScale = scale;
+            Color col = Color.White;
 
-            if (timeLeft <= 0)
+            anim.ModifyDraw(realFactor, this, ref pos, ref col, ref drawScale);
+
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, showText, pos, col, 0f, Vector2.UnitX * size.X / 2f, Vector2.One * drawScale);
+
+            if (timeLeft <= 0 && AutomaticallyDie)
             {
                 Vector2 rSiz = font.Value.MeasureString(RightClick);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, RightClick, pos + (Vector2.UnitY * rSiz.Y), Color.Gray * 0.5f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.5f);

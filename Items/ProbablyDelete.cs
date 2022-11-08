@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Animations;
 
 namespace Verdant.Items;
 
@@ -37,10 +38,11 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
     {
-		ScreenTextManager.CurrentText = new ScreenText("Hello, traveller.", 50).
-			With(new ScreenText("It's been a long time since I've seen a new face.", 100, 0.8f)).
-			With(new ScreenText("Find us at the center of this land,", 60, 0.9f)).
-			FinishWith(new ScreenText("and we might have some gifts to help you along.", 80));
+		ScreenTextManager.CurrentText = new ScreenText("Hello, traveller.", 100).
+			With(new ScreenText("It's been a long time since I've seen a new face.", 200, 0.8f)).
+			With(new ScreenText("Find us at the center of this land,", 120, 0.9f)).
+			With(new ScreenText("and we might have some gifts to help you along.", 160)).
+			FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false));
         return true;
     }
 }
