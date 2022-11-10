@@ -3,21 +3,10 @@ using Terraria.ModLoader.Config;
 
 namespace Verdant
 {
+    [Label("Currently unused.")]
     public class VerdantServerConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        public enum ApotheosisInteraction
-        {
-            World = 0, 
-            Chat,
-            Both
-        }
-
-        [DefaultValue(ApotheosisInteraction.World)]
-        [Label("Talk Interaction")]
-        [Tooltip("Controls whether certain things talk using in-world text, the chatbox, or both.")]
-        public ApotheosisInteraction ApothTextSetting;
     }
 
     public class VerdantClientConfig : ModConfig

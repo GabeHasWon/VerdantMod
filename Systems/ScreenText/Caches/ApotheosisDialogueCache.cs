@@ -15,7 +15,7 @@ namespace Verdant.Systems.ScreenText.Caches
         {
             return new ScreenText("Hello, traveller.", 100) 
             { 
-                shader = ModContent.Request<Effect>("Verdant/Effects/Text/textwobble"), 
+                shader = ModContent.Request<Effect>("Verdant/Effects/Text/TextWobble"), 
                 color = Color.White * 0.6f, 
                 shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30) 
             }.
@@ -66,7 +66,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime * 0.45f,
                 color = Color.Gray * 0.45f,
-                shader = ModContent.Request<Effect>("Verdant/Effects/Text/textwobble"),
+                shader = ModContent.Request<Effect>("Verdant/Effects/Text/TextWobble"),
                 shaderParams = new ScreenTextEffectParameters(0.01f, 0.01f, 30)
             };
 

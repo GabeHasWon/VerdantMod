@@ -118,25 +118,6 @@ internal class Apotheosis : ModTile
         return true;
     }
 
-    private void Speak(string msg)
-    {
-        var speechType = ModContent.GetInstance<VerdantServerConfig>().ApothTextSetting;
-        if (speechType == VerdantServerConfig.ApotheosisInteraction.World || speechType == VerdantServerConfig.ApotheosisInteraction.Both)
-        {
-            int c = CombatText.NewText(new Rectangle((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 60, 20), new Color(88, 188, 24), msg, true);
-            Main.combatText[c].lifeTime *= 2;
-        }
-        if (speechType == VerdantServerConfig.ApotheosisInteraction.Chat || speechType == VerdantServerConfig.ApotheosisInteraction.Both)
-        {
-            string chat = $"The Apotheosis: [c/509128:\"{msg}\"]";
-            if (Main.netMode == NetmodeID.Server) //MP compat :)
-                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(chat), Color.White);
-            else if (Main.netMode == NetmodeID.SinglePlayer)
-                Main.NewText(chat, Color.White);
-        }
-        _timer = 0;
-    }
-
     public override void MouseOver(int i, int j)
     {
         Main.LocalPlayer.cursorItemIconText = "Speak";

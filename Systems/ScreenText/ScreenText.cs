@@ -80,8 +80,13 @@ namespace Verdant.Systems.ScreenText
             string showText = text[..textSize];
 
             var font = FontAssets.DeathText;
-            Vector2 size = font.Value.MeasureString(showText);
             float xOffset = 0;
+            float drawScale = scale;
+            Color col = color;
+            Color speakerCol = speakerColor;
+
+
+            Vector2 size = font.Value.MeasureString(showText);
 
             switch (alignment)
             {
@@ -97,9 +102,6 @@ namespace Verdant.Systems.ScreenText
             }
 
             Vector2 pos = new(Main.screenWidth / 2f + xOffset, Main.screenHeight * 0.1f);
-            float drawScale = scale;
-            Color col = color;
-            Color speakerCol = speakerColor;
 
             anim.ModifyDraw(realFactor, this, ref pos, ref col, ref speakerCol, ref drawScale);
 

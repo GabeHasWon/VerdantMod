@@ -16,7 +16,6 @@ using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Items.Verdant.Tools;
 using Verdant.Noise;
-using Verdant.Projectiles.Misc;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
 using Verdant.World;

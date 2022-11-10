@@ -72,7 +72,6 @@ namespace Verdant.Scenes
             }
         }
 
-
         private void UpdateShader(Player player)
         {
             Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseTargetPosition(Main.screenPosition + (Vector2.UnitY * player.gfxOffY));

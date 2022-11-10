@@ -73,10 +73,9 @@ public class BackgroundItemManager
             return;
 
         foreach (var item in organizedItems)
-            if (item is not null)
-                item.Behaviour();
+            item?.Behaviour();
 
-        bgItems.RemoveAll(x => x is null || x.killMe);
+        bgItems?.RemoveAll(x => x is null || x.killMe);
     }
 
     public static List<TagCompound> Save()
@@ -102,8 +101,8 @@ public class BackgroundItemManager
 
     public static void Unload()
     {
-        bgItems = null; //Clear it and unload
-        organizedItems = null;
+        bgItems.Clear(); //Clear it and unload
+        organizedItems = bgItems.OrderBy(x => x.parallax);
         Loaded = false;
     }
 
