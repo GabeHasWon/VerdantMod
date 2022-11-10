@@ -5,6 +5,8 @@ using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
 using Verdant.Effects;
 using Microsoft.Xna.Framework.Graphics;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Scenes
 {
@@ -30,6 +32,15 @@ namespace Verdant.Scenes
 			bool underground = player.position.Y > Main.worldSurface * 16;
 			return VerdantSystem.InVerdant && underground;
 		}
+
+        public override void OnInBiome(Player player)
+        {
+            if (!ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
+            {
+                ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue();
+                ModContent.GetInstance<VerdantSystem>().apotheosisIntro = true;
+            }
+        }
 
         public override void SpecialVisuals(Player player, bool isActive)
         {

@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Misc
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Heart of Growth");
-            Tooltip.SetDefault("Permenantly increases max minions by one.\nCan only be used once.\n'A heart that beats everliving.'");
+            Tooltip.SetDefault("Permenantly increases max minions by one.\nCan only be used once per person.\n'A heart that beats everliving.'");
         }
 
         public override void SetDefaults()

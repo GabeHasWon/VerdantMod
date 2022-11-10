@@ -6,13 +6,13 @@ using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
-using Verdant.Projectiles.Misc;
+using System.Linq;
 
 namespace Verdant.Items.Verdant.Tools
 {
     class YellowPetalFloater : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it");
+        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it\nRight click for two seconds to remove all cloudsprouts");
         public override void SetDefaults() => QuickItem.SetStaff(this, 40, 20, ProjectileID.GolemFist, 9, 0, 24, 0, 0, ItemRarityID.Green);
         public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<YellowBulb>(), 1), (ModContent.ItemType<LushLeaf>(), 3), (ItemID.Cloud, 10));
 
@@ -31,6 +31,34 @@ namespace Verdant.Items.Verdant.Tools
             
             ForegroundManager.AddItem(new CloudbloomEntity(Main.MouseWorld), true, true);
             return false;
+        }
+
+        int rightClickTimer = 0;
+
+        public override void HoldItem(Player player)
+        {
+            if (Main.mouseRight)
+            {
+                rightClickTimer++;
+
+                if (rightClickTimer > 300)
+                {
+                    ClearAll(false);
+                    rightClickTimer = 0;
+                }
+            }
+        }
+
+        internal static void ClearAll(bool puff)
+        {
+            foreach (var item in ForegroundManager.PlayerLayerItems.Where(x => x is CloudbloomEntity cloud && cloud.puff == puff))
+            {
+                item.killMe = true;
+                int dust = puff ? DustID.PinkStarfish : DustID.Cloud;
+
+                for (int i = 0; i < 14; ++i)
+                    Dust.NewDust(item.position, 50, 30, dust, Main.rand.NextFloat(-0.2f, 0.2f), Main.rand.NextFloat(2, 3f));
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Tools
 {
     class CloudsproutPuff : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it");
+        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it\nRight click for two seconds to remove all cloudsprouts");
         public override void SetDefaults() => QuickItem.SetStaff(this, 40, 20, ProjectileID.GolemFist, 9, 0, 24, 0, 0, ItemRarityID.Green);
         public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<YellowBulb>(), 1), (ModContent.ItemType<PuffMaterial>(), 14));
 
@@ -30,6 +30,24 @@ namespace Verdant.Items.Verdant.Tools
 
             ForegroundManager.AddItem(new CloudbloomEntity(Main.MouseWorld, true), true, true);
             return false;
+        }
+
+        int rightClickTimer = 0;
+
+        public override void HoldItem(Player player)
+        {
+            if (Main.mouseRight)
+            {
+                rightClickTimer++;
+
+                if (rightClickTimer > 120)
+                {
+                    YellowPetalFloater.ClearAll(true);
+                    rightClickTimer = 0;
+                }
+            }
+            else
+                rightClickTimer = 0;
         }
     }
 }

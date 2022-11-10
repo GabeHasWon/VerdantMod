@@ -1,2 +1,10 @@
 - Internal reorganization
 - Improved ForegroundItem backend & optimized it a bit
+- Added ScreenText system
+- Added Apotheosis dialogue
+- Added right click to remove option for Cloudsprouts
+- Added shader for text system
+- Clarified Heart of Growth tooltip
+- Added Apotheosis introduction
+- Reworked some internals
+- Adjusted Apotheosis rewards to use proper player count

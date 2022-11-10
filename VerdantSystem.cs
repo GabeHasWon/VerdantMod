@@ -35,7 +35,8 @@ namespace Verdant
 
         public static FastNoise genNoise;
 
-        public int apotheosisDialogueIndex = 0;
+        public bool apotheosisIntro = false;
+        public bool apotheosisGreeting = false;
         public bool apotheosisEyeDown = false;
         public bool apotheosisEvilDown = false;
         public bool apotheosisSkelDown = false;
@@ -45,7 +46,9 @@ namespace Verdant
         public override void SaveWorldData(TagCompound tag)
         {
             var apotheosisStats = new List<string>();
-            if (apotheosisDialogueIndex >= 3)
+            if (apotheosisIntro)
+                apotheosisStats.Add("intro");
+            if (apotheosisGreeting)
                 apotheosisStats.Add("indexFin");
             if (apotheosisEvilDown)
                 apotheosisStats.Add("eocDown");
@@ -114,7 +117,8 @@ namespace Verdant
         public override void LoadWorldData(TagCompound tag)
         {
             var stats = tag.GetList<string>("apotheosisStats");
-            if (stats.Contains("indexFin")) apotheosisDialogueIndex = 3;
+            apotheosisIntro = stats.Contains("intro");
+            apotheosisGreeting = stats.Contains("indexFin");
             apotheosisEyeDown = stats.Contains("eocDown");
             apotheosisEvilDown = stats.Contains("evilDown");
             apotheosisSkelDown = stats.Contains("skelDown");
@@ -176,7 +180,7 @@ namespace Verdant
         public override void NetSend(BinaryWriter writer)
         {
             var flags = new BitsByte();
-            flags[0] = apotheosisDialogueIndex >= 3;
+            flags[0] = apotheosisGreeting;
             flags[1] = apotheosisEvilDown;
             flags[2] = apotheosisSkelDown;
             flags[3] = apotheosisWallDown;
@@ -187,7 +191,7 @@ namespace Verdant
         {
             BitsByte flags = reader.ReadByte();
 
-            if (flags[0]) apotheosisDialogueIndex = 3;
+            apotheosisGreeting = flags[0];
             apotheosisEvilDown = flags[1];
             apotheosisSkelDown = flags[2];
             apotheosisWallDown = flags[3];
@@ -206,9 +210,11 @@ namespace Verdant
 
             tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
 
-            apotheosisDialogueIndex = 0;
+            apotheosisGreeting = false;
             apotheosisEvilDown = false;
             apotheosisSkelDown = false;
+            apotheosisWallDown = false;
+            apotheosisEyeDown = false;
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)

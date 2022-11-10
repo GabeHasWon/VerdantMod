@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -28,12 +30,17 @@ namespace Verdant.Systems.ScreenText
         public ScreenText Next { get; private set; } = null;
 
         public string text = string.Empty;
+        public string speaker = string.Empty;
         public float scale = 1f;
         public Alignment alignment = Alignment.Center;
         public DrawEffect effect = DrawEffect.None;
         public IScreenTextAnimation anim = new DefaultAnimation();
         public int timeLeft = 0;
         public bool final = false;
+        public Color color = Color.White;
+        public Color speakerColor = Color.White;
+        public Asset<Effect> shader = null;
+        public ScreenTextEffectParameters shaderParams = new ScreenTextEffectParameters();
 
         internal bool active = true;
 
@@ -91,16 +98,19 @@ namespace Verdant.Systems.ScreenText
 
             Vector2 pos = new(Main.screenWidth / 2f + xOffset, Main.screenHeight * 0.1f);
             float drawScale = scale;
-            Color col = Color.White;
+            Color col = color;
+            Color speakerCol = speakerColor;
 
-            anim.ModifyDraw(realFactor, this, ref pos, ref col, ref drawScale);
+            anim.ModifyDraw(realFactor, this, ref pos, ref col, ref speakerCol, ref drawScale);
 
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, showText, pos, col, 0f, Vector2.UnitX * size.X / 2f, Vector2.One * drawScale);
+            Vector2 speakerSize = font.Value.MeasureString(speaker);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, speaker, pos - (Vector2.UnitY * speakerSize.Y * 0.7f), speakerCol, 0f, Vector2.UnitX * speakerSize.X / 2f, Vector2.One * 0.6f);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, showText, pos, col, 0f, Vector2.UnitX * size.X / 2f, Vector2.One * drawScale); //Actual draw text
 
             if (timeLeft <= 0 && AutomaticallyDie)
             {
                 Vector2 rSiz = font.Value.MeasureString(RightClick);
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, RightClick, pos + (Vector2.UnitY * rSiz.Y), Color.Gray * 0.5f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.5f);
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, RightClick, pos + (Vector2.UnitY * rSiz.Y), Color.Gray * 0.5f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
             }
         }
 
@@ -109,26 +119,37 @@ namespace Verdant.Systems.ScreenText
 
         }
 
-        public ScreenText With(ScreenText other)
+        public ScreenText With(ScreenText other, bool sameSpeaker = true)
         {
-            SetNext(other);
+            SetNext(other, sameSpeaker);
             return this;
         }
 
-        public ScreenText FinishWith(ScreenText other, Action<ScreenText> action = null)
+        public ScreenText FinishWith(ScreenText other, Action<ScreenText> action = null, bool sameSpeaker = true)
         {
             other._onFinish = action;
             other.final = true;
-            SetNext(other);
+            SetNext(other, sameSpeaker);
             return this;
         }
 
-        protected void SetNext(ScreenText other)
+        protected void SetNext(ScreenText other, bool sameSpeaker = true)
         {
             if (Next is null)
+            {
+                if (sameSpeaker)
+                {
+                    other.speaker = speaker;
+                    other.speakerColor = speakerColor;
+                }
+
+                other.shader = shader;
+                other.shaderParams = shaderParams;
+                other.color = color;
                 Next = other;
+            }
             else
-                Next.SetNext(other);
+                Next.SetNext(other, sameSpeaker);
         }
     }
 }

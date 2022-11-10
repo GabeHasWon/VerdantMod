@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
+using Verdant.Systems.ScreenText;
 
 namespace Verdant.Systems
 {
@@ -11,7 +12,16 @@ namespace Verdant.Systems
         public void Load(Mod mod)
         {
             On.Terraria.Main.DrawGore += DrawForeground;
-            Main.OnTickForThirdPartySoftwareOnly += ScreenText.ScreenTextManager.Update;
+            On.Terraria.Main.DrawCursor += Main_DrawCursor;
+            Main.OnTickForThirdPartySoftwareOnly += ScreenTextManager.Update;
+        }
+
+        private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Microsoft.Xna.Framework.Vector2 bonus, bool smart)
+        {
+            if (!Main.gameMenu)
+                ScreenTextManager.Render();
+
+            orig(bonus, smart);
         }
 
         private static void DrawForeground(On.Terraria.Main.orig_DrawGore orig, Main self)
@@ -21,13 +31,10 @@ namespace Verdant.Systems
             if (Main.PlayerLoaded && !Main.gameMenu)
                 ForegroundManager.Draw();
 
-            ScreenText.ScreenTextManager.Draw();
-
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
             DrawAdditiveProjectiles();
-            ScreenText.ScreenTextManager.DrawAdditive();
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);

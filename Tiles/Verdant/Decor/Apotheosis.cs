@@ -13,6 +13,8 @@ using Verdant.Items.Verdant.Tools;
 using Terraria.DataStructures;
 using System.Linq;
 using Verdant.Items.Verdant.Equipables;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -47,98 +49,71 @@ internal class Apotheosis : ModTile
         }
     }
 
-    private readonly string[] assurance = new[] { "Remember to breathe...", "Keep the plants alive...", "Return to me once you've slain the EVILBOSS...", "...", "There is nothing more to say.", "We have no more to add." };
-    private readonly string[] boss3Assurance = new[] { "We no longer hear theEVENT, peace at last...", "The mind is calm now...", "Silence, finally..." };
-    private readonly string[] skeleAssurance = new[] { "The poor man's freedom is obtained, thank you.", "We can still hear some screams..." };
-
     public override bool RightClick(int i, int j)
     {
-        Point adjPos = (Main.MouseWorld / 16f).ToPoint();
-        Point adjOff = new Point(Framing.GetTileSafely(adjPos.X, adjPos.Y).TileFrameX / 18, Framing.GetTileSafely(adjPos.X, adjPos.Y).TileFrameY / 18);
-        Vector2 realPos = new Vector2((adjPos.X - adjOff.X) * 16, (adjPos.Y - adjOff.Y) * 16);
+        Vector2 realPos = TileHelper.GetTopLeft(new(i, j)).ToWorldCoordinates() + new Vector2(0, 60);
 
-        int playerCount = Main.player.Where(x => x.active).Count();
+        int playerCount = Main.CurrentFrameFlags.ActivePlayersCount;
 
         if (_timer > 3000)
         {
+            if (ScreenTextManager.CurrentText is not null)
+                return false;
+
             if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
             {
-                Speak("The eye is felled. Thank you. Come back to me whenever you best other foes...");
-
-                for (int k = 0; k < playerCount; ++k)
-                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<PermVineWand>(), 1);
-                ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
+                ScreenTextManager.CurrentText = new ScreenText("The eye is felled. Thank you.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                    FinishWith(new ScreenText($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.", 180, 0.7f), (self) =>
+                    {
+                        for (int k = 0; k < playerCount; ++k)
+                            Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<PermVineWand>(), 1);
+                        ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
+                    });
                 return true;
             }
 
             if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
             {
-                string msg = "My gratitude for defeating the " + (WorldGen.crimson ? "Brain" : "Eater") + "...";
-                Speak(msg);
-
-                for (int k = 0; k < playerCount; ++k)
-                    Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<SproutInABoot>(), 1);
-                ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
+                ScreenTextManager.CurrentText = new ScreenText($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                    With(new ScreenText($"If you're willing, we'd love to see the great skeleton removed. But...", 160, 0.7f)).
+                    FinishWith(new ScreenText("Here's some of my old gear - with some added strength, of course.", 100, 0.8f), (self) =>
+                    {
+                        for (int k = 0; k < playerCount; ++k)
+                            Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<SproutInABoot>(), 1);
+                        ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
+                    });
                 return true;
             }
 
             if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
             {
-                Speak("Our blessings for slaying the skeleton, here...");
-                ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
-                Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 8 * playerCount); //temp ID
+                ScreenTextManager.CurrentText = new ScreenText("The dungeon's souls are...partially freed.", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                    FinishWith(new ScreenText("You're deserving - take these. Our favourites.", 60), (self) =>
+                    {
+                        Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<YellowBulb>(), 12 * playerCount);
+                        ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
+                    });
                 return true;
             }
 
             if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
             {
-                Speak("We sense a powerful spirit released...take this.");
-
-                Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
-                ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
+                ScreenTextManager.CurrentText = new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                    FinishWith(new ScreenText("Take this. I don't need it anymore...", 60), (self) =>
+                    {
+                        Helper.SyncItem(new EntitySource_TileInteraction(Main.LocalPlayer, i, j), new Rectangle((int)realPos.X, (int)realPos.Y, 288, 216), ModContent.ItemType<HeartOfGrowth>(), 1);
+                        ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
+                    });
                 return true;
             }
 
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisDialogueIndex < 3) //Boss text
+            if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
             {
-                string msg = assurance[ModContent.GetInstance<VerdantSystem>().apotheosisDialogueIndex++];
-                if (msg.Contains("EVILBOSS")) msg = msg.Replace("EVILBOSS", WorldGen.crimson ? "mind" : "devourer");
-
-                Speak(msg);
+                ScreenTextManager.CurrentText = ApotheosisDialogueCache.GreetingDialogue();
+                ModContent.GetInstance<VerdantSystem>().apotheosisGreeting = true;
             }
             else
-            {
-                string msg = assurance[Main.rand.Next(3, 6)];
-                int r = Main.rand.Next(9);
-                if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown && r == 1) msg = Main.rand.Next(boss3Assurance).Replace("EVENT", WorldGen.crimson ? " digging" : "ir thoughts");
-                if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown && r == 2) msg = Main.rand.Next(skeleAssurance);
-
-                if (r == 3)
-                {
-                    if (NPC.downedSlimeKing)
-                        msg = "Ah, the King of Slimes has been slain, wonderful...";
-                    if (NPC.downedQueenBee)
-                        msg = "The tyrannical Queen has fallen.\nHopefully you're having a better experience with our bees.";
-                }
-
-                if (r == 4 && ModLoader.TryGetMod("SpiritMod", out Mod spiritMod)) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
-                {
-                    if ((bool)spiritMod.Call("downed", "Scarabeus"))
-                        msg = "The desert sands feel calmer now.";
-                    if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
-                        msg = "Ah, I love the critters of the glowing sky.\nIt seems you've met some as well.";
-                    if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
-                        msg = "The flowers feel more relaxed now. Thank you.";
-                    if ((bool)spiritMod.Call("downed", "Ancient Avian"))
-                        msg = "The skies are more at peace now, well done.";
-                    if ((bool)spiritMod.Call("downed", "Starplate Raider"))
-                        msg = "We always had a soft spot for that glowing mech, but alas...";
-                }
-
-                string[] split = msg.Split("\n");
-                foreach (var item in split)
-                    Speak(msg);
-            }
+                ScreenTextManager.CurrentText = ApotheosisDialogueCache.IdleDialogue();
         }
         return true;
     }

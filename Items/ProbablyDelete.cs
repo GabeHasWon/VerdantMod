@@ -2,13 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.ScreenText;
-using Verdant.Systems.ScreenText.Animations;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => true;
+    public override bool IsLoadingEnabled(Mod mod) => false;
 
     public override void SetStaticDefaults()
 	{
@@ -19,7 +19,7 @@ public class ProbablyDelete : ModItem
 	public override void SetDefaults()
 	{
 		Item.damage = 120;
-		Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+		Item.DamageType = DamageClass.Melee;
 		Item.width = 40;
 		Item.height = 40;
 		Item.useTime = 2;
@@ -36,13 +36,9 @@ public class ProbablyDelete : ModItem
         Item.placeStyle = 0;
 	}
 
-    public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
+    public override bool? UseItem(Player player)
     {
-		ScreenTextManager.CurrentText = new ScreenText("Hello, traveller.", 100).
-			With(new ScreenText("It's been a long time since I've seen a new face.", 200, 0.8f)).
-			With(new ScreenText("Find us at the center of this land,", 120, 0.9f)).
-			With(new ScreenText("and we might have some gifts to help you along.", 160)).
-			FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false));
+		ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue();
         return true;
     }
 }
