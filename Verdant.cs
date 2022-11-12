@@ -13,6 +13,7 @@ using Terraria.Graphics.Shaders;
 using Verdant.Effects;
 using Verdant.Tiles.Verdant;
 using System;
+using System.IO;
 
 namespace Verdant
 {
@@ -41,21 +42,21 @@ namespace Verdant
 
         public override void PostSetupContent()
         {
+            NetEasy.NetEasy.Register(this);
+
             Flowers.Load(this);
         }
 
         public override void Unload()
         {
             ForegroundManager.Unload();
-            UnMonoModChanges();
 
             Instance = null;
         }
 
-        private void UnMonoModChanges()
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            //if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
-            //    IL.Terraria.WaterfallManager.FindWaterfalls -= WaterfallManager_FindWaterfalls;
+            NetEasy.NetEasy.HandleModule(reader, whoAmI);
         }
 
         private void MonoModChanges()
