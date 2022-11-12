@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Blocks.LushWood
 {
+    [Sacrifice(1)]
     public class LushLampItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Lamp", "");

@@ -4,6 +4,7 @@ using Verdant.Tiles.Verdant.Decor.MusicBox;
 
 namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 {
+	[Sacrifice(1)]
 	public class PetalsFallBox : ModItem
 	{
 		public override void SetStaticDefaults()

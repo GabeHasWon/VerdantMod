@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Critter
 {
+    [Sacrifice(5)]
     class RedGrassSnail : ModItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Red Petal Snail");

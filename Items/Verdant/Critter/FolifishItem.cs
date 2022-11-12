@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Critter
 {
+    [Sacrifice(3)]
     class FolifishItem : ModItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Folifish");

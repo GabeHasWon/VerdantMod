@@ -101,7 +101,7 @@ public class BackgroundItemManager
 
     public static void Unload()
     {
-        bgItems.Clear(); //Clear it and unload
+        bgItems = new(); //Clear it and unload
         organizedItems = bgItems.OrderBy(x => x.parallax);
         Loaded = false;
     }

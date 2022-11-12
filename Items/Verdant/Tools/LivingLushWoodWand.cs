@@ -7,6 +7,7 @@ using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Items.Verdant.Tools
 {
+    [Sacrifice(1)]
     class LivingLushWoodWand : ModItem
     {
         public override void SetStaticDefaults()

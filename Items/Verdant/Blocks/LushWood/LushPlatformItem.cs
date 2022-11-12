@@ -2,6 +2,7 @@
 
 namespace Verdant.Items.Verdant.Blocks.LushWood
 {
+    [Sacrifice(1)]
     public class LushPlatformItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Wood Platform", "");

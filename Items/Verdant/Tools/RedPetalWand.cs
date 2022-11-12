@@ -6,6 +6,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Tools
 {
+    [Sacrifice(1)]
     class RedPetalWand : ModItem
     {
         public override void SetStaticDefaults()

@@ -5,6 +5,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
 {
+    [Sacrifice(1)]
     public class VerdantChandelierLargeItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Verdant Chandelier (Large)", "");

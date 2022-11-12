@@ -8,6 +8,7 @@ using Verdant.Items.Verdant.Weapons;
 
 namespace Verdant.Items.Verdant.Fishing
 {
+    [Sacrifice(10)]
     public class LushWoodCrateItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Wood Crate", "Right click to open");

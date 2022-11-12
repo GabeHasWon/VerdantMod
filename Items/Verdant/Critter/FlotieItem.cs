@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Critter
 {
+    [Sacrifice(3)]
     class FlotieItem : ModItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Flotie");

@@ -7,6 +7,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Tools
 {
+    [Sacrifice(1)]
     class VerdantFishingRod : ModItem
     {
         public override void SetStaticDefaults()
@@ -21,6 +22,7 @@ namespace Verdant.Items.Verdant.Tools
             Item.fishingPole = 26;
             Item.shootSpeed = 13f;
             Item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
+            Item.value = Item.buyPrice(0, 0, 30, 0);
         }
 
         public override void HoldItem(Player player)

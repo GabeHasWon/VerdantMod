@@ -5,6 +5,7 @@ using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
 {
+    [Sacrifice(1)]
     public class VerdantYellowPetalChestBlock : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Yellow Petal Chest", "");

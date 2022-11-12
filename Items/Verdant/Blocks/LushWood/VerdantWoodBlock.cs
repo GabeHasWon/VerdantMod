@@ -3,6 +3,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Items.Verdant.Blocks.LushWood
 {
+    [Sacrifice(1)]
     public class VerdantWoodBlock : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Wood", "");

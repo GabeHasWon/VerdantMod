@@ -6,6 +6,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Items.Verdant.Blocks.TileEntity
 {
+    [Sacrifice(5)]
     public class PickipuffItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Pickipuff", "Can only be placed on lush leaves\nCan be picked to harvest Puff\nRegrows after a while");

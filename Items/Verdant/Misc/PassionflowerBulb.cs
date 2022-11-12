@@ -8,6 +8,7 @@ using Verdant.Items.Verdant.Weapons;
 
 namespace Verdant.Items.Verdant.Misc
 {
+    [Sacrifice(10)]
     class PassionflowerBulb : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Passionflower Bulb", "Right click to open\n'Smells of citrus and sweetness'");

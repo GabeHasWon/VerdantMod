@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant;
 
 namespace Verdant
 {
@@ -19,6 +20,14 @@ namespace Verdant
 					continue;
 
 				int type = modItem.Type;
+
+				if (Attribute.IsDefined(info, typeof(SacrificeAttribute)))
+				{
+					SacrificeAttribute attr = Attribute.GetCustomAttribute(info, typeof(SacrificeAttribute)) as SacrificeAttribute;
+					CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[type] = attr.Count;
+					continue;
+				}
+
 				Item item = new Item(type);
 
 				bool placesTile = item.createTile >= TileID.Dirt;

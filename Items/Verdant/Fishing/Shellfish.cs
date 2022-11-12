@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Fishing
 {
+    [Sacrifice(1)]
     public class Shellfish : ModItem
     {
         public override void SetStaticDefaults()
