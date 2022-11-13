@@ -200,7 +200,7 @@ namespace Verdant.Systems.ScreenText.Caches
         public static ScreenText WoFDownDialogue()
         {
             return new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
-                FinishWith(new ScreenText("Take this. I don't need it anymore...", 60), (self) =>
+                FinishWith(new ScreenText("Take this. I...don't need it anymore.", 60), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
                     ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;

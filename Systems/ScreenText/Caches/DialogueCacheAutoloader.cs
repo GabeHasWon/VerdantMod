@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.Syncing;
 
@@ -45,7 +46,9 @@ namespace Verdant.Systems.ScreenText.Caches
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
-            new ScreenTextModule(key).Send(-1, Main.myPlayer);
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                new ScreenTextModule(key).Send(-1, Main.myPlayer);
+
             Play(key);
         }
     }

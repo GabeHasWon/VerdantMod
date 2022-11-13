@@ -44,9 +44,6 @@ internal class Apotheosis : ModTile
 
     public override bool RightClick(int i, int j)
     {
-
-        int playerCount = Main.CurrentFrameFlags.ActivePlayersCount;
-
         if (_timer > 3000)
         {
             if (ScreenTextManager.CurrentText is not null)
