@@ -3,11 +3,11 @@
 namespace Verdant.Systems.ScreenText.Caches
 {
     [AttributeUsage(AttributeTargets.Method)]
-    internal class CacheAttribute : Attribute
+    internal class DialogueCacheKeyAttribute : Attribute
     {
         internal string Key = string.Empty;
 
-        public CacheAttribute(string key)
+        public DialogueCacheKeyAttribute(string key)
         {
             Key = key;
         }

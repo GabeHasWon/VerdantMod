@@ -1,4 +1,3 @@
-- Fixed centering issue with screen texts
-- More bgitem null checks + unload adjustment + cleanup
-- Removed useless code
-- Added proper sacrifice counts for most items that needed it
+- Potentially fixed multiplayer syncing issues with ScreenTexts
+- Added internal system for easily syncing ScreenTexts
+- Fixed Enchanted Vines not working

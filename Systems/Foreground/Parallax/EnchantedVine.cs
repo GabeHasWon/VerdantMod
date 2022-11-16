@@ -27,7 +27,7 @@ namespace Verdant.Systems.Foreground.Parallax
             this.owner = owner;
 
             lifeTimer = 10 * 60;
-            WhoAmI = ForegroundManager.Items.Where(x => x is EnchantedVine).Count();
+            WhoAmI = ForegroundManager.PlayerLayerItems.Where(x => x is EnchantedVine).Count();
             source = new Rectangle(0, 0, 58, 38);
             velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 0.75f) * (parallax * 1.2f)).RotatedByRandom(MathHelper.Pi);
             parallax = 1f;
@@ -71,12 +71,6 @@ namespace Verdant.Systems.Foreground.Parallax
                 p.fallStart = (int)(position.Y / 16f);
                 p.GetModPlayer<VinePulleyPlayer>().CurrentVine = this;
             }
-
-            if (perm)
-                lifeTimer = 10;
-
-            if (lifeTimer < 0)
-                Kill();
         }
 
         public void Kill()
@@ -112,7 +106,7 @@ namespace Verdant.Systems.Foreground.Parallax
         {
             int dir = (WhoAmI % 2) + (WhoAmI % 9) + (WhoAmI % 3); //"randomize" direction
             SpriteEffects effects = (dir % 2 == 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var tex = VerdantMod.Instance.Assets.Request<Texture2D>("Foreground/Parallax/EnchantedVine").Value;
+            var tex = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/EnchantedVine").Value;
 
             drawColor = Lighting.GetColor(position.ToTileCoordinates());
             drawPosition = Center;

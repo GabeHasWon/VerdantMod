@@ -14,7 +14,7 @@ namespace Verdant.Systems.ScreenText.Caches
 {
     internal class ApotheosisDialogueCache : IDialogueCache
     {
-        [Cache(nameof(ApotheosisDialogueCache) + ".Intro")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Intro")]
         public static ScreenText IntroDialogue()
         {
             return new ScreenText("Hello, traveller.", 100) 
@@ -29,7 +29,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false), (self) => { ModContent.GetInstance<VerdantSystem>().apotheosisGreeting = true; });
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".Greeting")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Greeting")]
         public static ScreenText GreetingDialogue()
         {
             return new ScreenText("Remember to breathe,", 100, 0.9f)
@@ -41,10 +41,10 @@ namespace Verdant.Systems.ScreenText.Caches
                 FinishWith(new ScreenText("May we find each other in good spirits soon.", 100, 0.9f));
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".Idle")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Idle")]
         public static ScreenText IdleDialogue()
         {
-            List<string> randomLines = new List<string>()
+            List<string> randomLines = new()
             {
                 "I'm particularly proud of those bouncy sprouts.",
                 "We seek to harbor arbour; has it worked?",
@@ -54,19 +54,19 @@ namespace Verdant.Systems.ScreenText.Caches
                 "Go out and smell the flowers.",
                 "Run along, now."
             };
-            ScreenText randomDialogue = new ScreenText(Main.rand.Next(randomLines), 120, 0.8f)
+            ScreenText randomDialogue = new(Main.rand.Next(randomLines), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime
             };
 
-            List<string> randomThoughts = new List<string>()
+            List<string> randomThoughts = new()
             {
                 "...where nature is most plain and pure...",
                 "Hmm...what to do...",
                 "...pest control...", //shoutout to To The Grave, good band
             };
-            ScreenText randomThoughtDialogue = new ScreenText(Main.rand.Next(randomThoughts), 120, 0.8f)
+            ScreenText randomThoughtDialogue = new(Main.rand.Next(randomThoughts), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime * 0.45f,
@@ -75,31 +75,31 @@ namespace Verdant.Systems.ScreenText.Caches
                 shaderParams = new ScreenTextEffectParameters(0.01f, 0.01f, 30)
             };
 
-            ScreenText eocDialogue = new ScreenText("Finally, the eye is felled.", 120, 0.8f)
+            ScreenText eocDialogue = new("Finally, the eye is felled.", 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
             };
 
-            List<string> evilBossLines = new List<string>()
+            List<string> evilBossLines = new()
             {
                 "May grace befall you.",
                 $"The {(WorldGen.crimson ? "brain" : "worm")} is no more.",
                 "A presence lifted from the infestation..."
             };
-            ScreenText evilDialogue = new ScreenText(Main.rand.Next(evilBossLines), 120, 0.8f)
+            ScreenText evilDialogue = new(Main.rand.Next(evilBossLines), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
             };
 
-            List<string> skeleLines = new List<string>()
+            List<string> skeleLines = new()
             {
                 "That skeleton was...a confusing one.",
                 "The poor man's freedom is obtained..."
             };
 
-            ScreenText skeleDialogue = new ScreenText(Main.rand.Next(skeleLines), 120, 0.8f)
+            ScreenText skeleDialogue = new(Main.rand.Next(skeleLines), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
@@ -124,7 +124,7 @@ namespace Verdant.Systems.ScreenText.Caches
 
         private static void AddAdditionalIdleDialogue(WeightedRandom<ScreenText> texts)
         {
-            List<string> miscBossLines = new List<string>();
+            List<string> miscBossLines = new();
 
             if (NPC.downedSlimeKing)
                 miscBossLines.Add("Ah, the King of Slimes has been slain, wonderful...");
@@ -152,7 +152,7 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (miscBossLines.Count > 0)
             {
-                ScreenText miscBossDialogue = new ScreenText(Main.rand.Next(miscBossLines), 120, 0.8f)
+                ScreenText miscBossDialogue = new(Main.rand.Next(miscBossLines), 120, 0.8f)
                 {
                     speaker = "Apotheosis",
                     speakerColor = Color.Lime,
@@ -162,7 +162,7 @@ namespace Verdant.Systems.ScreenText.Caches
             }
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".Eye")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Eye")]
         public static ScreenText EoCDownDialogue()
         {
             return new ScreenText("The eye is felled. Thank you.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
@@ -173,7 +173,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 });
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".Evil")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Evil")]
         public static ScreenText EvilDownDialogue()
         {
             return new ScreenText($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
@@ -185,7 +185,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 });
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".Skeletron")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Skeletron")]
         public static ScreenText SkeletronDownDialogue()
         {
             return new ScreenText("The dungeon's souls are...partially freed.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
@@ -196,7 +196,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 });
         }
 
-        [Cache(nameof(ApotheosisDialogueCache) + ".WoF")]
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".WoF")]
         public static ScreenText WoFDownDialogue()
         {
             return new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.

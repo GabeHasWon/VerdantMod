@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Graphics.Capture;
-using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
-using Verdant.Effects;
 
 namespace Verdant.Scenes;
 

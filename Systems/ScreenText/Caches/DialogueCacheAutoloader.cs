@@ -18,10 +18,10 @@ namespace Verdant.Systems.ScreenText.Caches
             var types = GetType().Assembly.GetTypes().Where(x => !x.IsAbstract && typeof(IDialogueCache).IsAssignableFrom(x));
             foreach (var type in types)
             {
-                var methods = type.GetMethods().Where(x => Attribute.IsDefined(x, typeof(CacheAttribute)));
+                var methods = type.GetMethods().Where(x => Attribute.IsDefined(x, typeof(DialogueCacheKeyAttribute)));
                 foreach (var method in methods)
                 {
-                    var attr = Attribute.GetCustomAttribute(method, typeof(CacheAttribute)) as CacheAttribute;
+                    var attr = Attribute.GetCustomAttribute(method, typeof(DialogueCacheKeyAttribute)) as DialogueCacheKeyAttribute;
                     dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<ScreenText>), method) as Func<ScreenText>);
                 }
             }
