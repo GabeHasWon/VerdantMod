@@ -8,10 +8,7 @@ namespace Verdant.NPCs
 {
     class VerdantDryadNPC : GlobalNPC
     {
-        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
-        {
-            return entity.type == NPCID.Dryad;
-        }
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.Dryad;
 
         public override void GetChat(NPC npc, ref string chat)
         {
@@ -26,6 +23,9 @@ namespace Verdant.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
+            if (type != NPCID.Dryad)
+                return;
+
             if (!ModContent.GetInstance<VerdantSystem>().microcosmUsed)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());
 

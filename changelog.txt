@@ -1,3 +1,1 @@
-- Potentially fixed multiplayer syncing issues with ScreenTexts
-- Added internal system for easily syncing ScreenTexts
-- Fixed Enchanted Vines not working
+- Fixed all NPCs selling the Microcosm

@@ -1,4 +1,4 @@
-﻿# The Verdant Mod ![](https://img.shields.io/badge/mod%20loader-tModLoader-1976d2?style=flat-square&labelColor=0d1117&color=green) ![](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-steam-workshop.jross.me%2F2884802891&style=flat-square&labelColor=0d1117&color=blue) 
+﻿# The Verdant Mod ![](https://img.shields.io/badge/Mod%20Loader-tModLoader-1976d2?style=flat-square&labelColor=0d1117&color=darkgreen) ![](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-steam-workshop.jross.me%2F2884802891&style=flat-square&labelColor=0d1117&color=blue) 
 ##### by GabeHasWon
 A mod dedicated to cultivating the Verdant - a lush underground cave system with plants and trees about.
 
