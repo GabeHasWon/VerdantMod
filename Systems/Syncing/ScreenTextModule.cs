@@ -7,17 +7,14 @@ using Verdant.Systems.ScreenText.Caches;
 namespace Verdant.Systems.Syncing
 {
     [Serializable]
-    internal class ScreenTextModule : Module
+    public class ScreenTextModule : Module
     {
-        string DialogueKey = "";
-
-        public ScreenTextModule(string dialogueKey)
-        {
-            DialogueKey = dialogueKey;
-        }
+        public string DialogueKey = "";
 
         protected override void Receive()
         {
+            Main.NewText("eggmalt");
+
             if (Main.netMode != NetmodeID.Server)
                 DialogueCacheAutoloader.Play(DialogueKey);
         }

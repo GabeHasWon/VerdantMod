@@ -37,7 +37,7 @@ namespace Verdant.Scenes
         {
             if (!ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
             {
-                ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue();
+                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
                 ModContent.GetInstance<VerdantSystem>().apotheosisIntro = true;
             }
         }

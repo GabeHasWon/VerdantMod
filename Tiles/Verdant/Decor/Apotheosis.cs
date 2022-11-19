@@ -35,8 +35,13 @@ internal class Apotheosis : ModTile
         {
             Vector2 p = new Vector2(i, j) * 16;
             float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7);
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) LightMult *= 1.3f;
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) LightMult *= 1.6f;
+
+            if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) 
+                LightMult *= 1.3f;
+
+            if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) 
+                LightMult *= 1.6f;
+
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * 2f * LightMult);
             Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
         }

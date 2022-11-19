@@ -42,12 +42,11 @@ namespace Verdant.Projectiles.Minion
         {
             const float XMod = 0.02f;
 
-            Player plr = Main.player[Projectile.owner];
-            if (plr.dead || !plr.GetModPlayer<HealingFlowerPlayer>().hasHealFlower)
+            Player player = Main.player[Projectile.owner];
+            if (player.dead || !player.GetModPlayer<HealingFlowerPlayer>().hasHealFlower)
                 Projectile.Kill();
 
             float xOff = (float)Math.Sin(Projectile.ai[0]++ * XMod);
-            Player player = Main.player[Projectile.owner];
             
             Projectile.Center = player.Center + new Vector2(0, player.gfxOffY);
             Projectile.position.X += xOff * 42f;

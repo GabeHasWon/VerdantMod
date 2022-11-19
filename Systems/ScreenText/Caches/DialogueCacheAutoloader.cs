@@ -32,7 +32,6 @@ namespace Verdant.Systems.ScreenText.Caches
         public static void Play(string key)
         {
             var cache = ModContent.GetInstance<DialogueCacheAutoloader>();
-
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
@@ -42,14 +41,10 @@ namespace Verdant.Systems.ScreenText.Caches
         public static void SyncPlay(string key)
         {
             var cache = ModContent.GetInstance<DialogueCacheAutoloader>();
-
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
-                new ScreenTextModule(key).Send(-1, Main.myPlayer);
-
-            Play(key);
+            new ScreenTextModule() { DialogueKey = key }.Send();
         }
     }
 }
