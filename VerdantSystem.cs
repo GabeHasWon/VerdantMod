@@ -183,6 +183,7 @@ namespace Verdant
             flags[1] = apotheosisEvilDown;
             flags[2] = apotheosisSkelDown;
             flags[3] = apotheosisWallDown;
+            flags[4] = apotheosisIntro;
             writer.Write(flags);
         }
 
@@ -194,6 +195,7 @@ namespace Verdant
             apotheosisEvilDown = flags[1];
             apotheosisSkelDown = flags[2];
             apotheosisWallDown = flags[3];
+            apotheosisIntro = flags[4];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
@@ -209,6 +211,7 @@ namespace Verdant
 
             tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
 
+            apotheosisIntro = false;
             apotheosisGreeting = false;
             apotheosisEvilDown = false;
             apotheosisSkelDown = false;

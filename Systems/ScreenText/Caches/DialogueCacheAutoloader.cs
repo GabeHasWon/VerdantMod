@@ -44,7 +44,7 @@ namespace Verdant.Systems.ScreenText.Caches
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
-            new ScreenTextModule() { DialogueKey = key }.Send();
+            new ScreenTextModule(key, Main.myPlayer).Send();
         }
     }
 }

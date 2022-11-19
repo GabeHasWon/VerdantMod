@@ -9,14 +9,21 @@ namespace Verdant.Systems.Syncing
     [Serializable]
     public class ScreenTextModule : Module
     {
-        public string DialogueKey = "";
+        public readonly string dialogueKey = "";
+        public readonly short fromWho = 0;
+
+        public ScreenTextModule(string key, short myPlayer)
+        {
+            dialogueKey = key;
+            fromWho = myPlayer;
+        }
 
         protected override void Receive()
         {
-            Main.NewText("eggmalt");
-
             if (Main.netMode != NetmodeID.Server)
-                DialogueCacheAutoloader.Play(DialogueKey);
+                DialogueCacheAutoloader.Play(dialogueKey);
+            else if (fromWho != -1)
+                Send(-1, fromWho, false);
         }
     }
 }
