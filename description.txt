@@ -11,6 +11,12 @@ It has the following basic content:
     - A new foreground and background system that gives more life to the biome
     - A sort of quest system by the statue in the center of the biome, the Apotheosis
 
+----Frequently Asked Questions----
+Q: Does this mod work with Calamity?
+A: It should work. For that matter, it should work with any mod, excluding Remnants.
+
+
+
 ----Credit----
 --Developers--
 GabeHasWon - Literally everything except The Plant & parts of song compositions

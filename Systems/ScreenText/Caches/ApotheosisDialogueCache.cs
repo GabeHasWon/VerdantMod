@@ -3,8 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Chat;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using Verdant.Effects;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Tools;
@@ -15,23 +18,41 @@ namespace Verdant.Systems.ScreenText.Caches
     internal class ApotheosisDialogueCache : IDialogueCache
     {
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Intro")]
-        public static ScreenText IntroDialogue()
+        public static ScreenText IntroDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisIntro = true;
+
+            if (forServer)
+                return null;
+
+            ChatHelper.BroadcastChatMessage(Terraria.Localization.NetworkText.FromLiteral($"{Main.LocalPlayer.name} recieved Intro!"), Color.White);
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.WorldData);
+
             return new ScreenText("Hello, traveller.", 100) 
             { 
-                shader = ModContent.Request<Effect>("Verdant/Effects/Text/TextWobble"), 
+                shader = ModContent.Request<Effect>(EffectIDs.TextWobble), 
                 color = Color.White * 0.6f, 
                 shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30) 
             }.With(new ScreenText("It's been a long time since I've seen a new face.", 200, 0.8f), false).
                 With(new ScreenText("Call me the Apotheosis.", 80, 1f), false).
                 With(new ScreenText("Find us at the center of our verdant plants,", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime * 0.6f }, false).
                 With(new ScreenText("and we might have some gifts to help you along.", 160, 0.8f)).
-                FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false), (self) => { ModContent.GetInstance<VerdantSystem>().apotheosisGreeting = true; });
+                FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Greeting")]
-        public static ScreenText GreetingDialogue()
+        public static ScreenText GreetingDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisGreeting = true;
+
+            if (forServer)
+                return null;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.WorldData);
+
             return new ScreenText("Remember to breathe,", 100, 0.9f)
             {
                 speaker = "Apotheosis",
@@ -42,8 +63,11 @@ namespace Verdant.Systems.ScreenText.Caches
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Idle")]
-        public static ScreenText IdleDialogue()
+        public static ScreenText IdleDialogue(bool forServer)
         {
+            if (forServer) //Can't actually happen atm, but good to double check
+                return null;
+
             List<string> randomLines = new()
             {
                 "I'm particularly proud of those bouncy sprouts.",
@@ -71,7 +95,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime * 0.45f,
                 color = Color.Gray * 0.45f,
-                shader = ModContent.Request<Effect>("Verdant/Effects/Text/TextWobble"),
+                shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
                 shaderParams = new ScreenTextEffectParameters(0.01f, 0.01f, 30)
             };
 
@@ -163,47 +187,63 @@ namespace Verdant.Systems.ScreenText.Caches
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Eye")]
-        public static ScreenText EoCDownDialogue()
+        public static ScreenText EoCDownDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
+
+            if (forServer)
+                return null;
+
             return new ScreenText("The eye is felled. Thank you.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.", 180, 0.7f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
-                    ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
                 });
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Evil")]
-        public static ScreenText EvilDownDialogue()
+        public static ScreenText EvilDownDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
+
+            if (forServer)
+                return null;
+
             return new ScreenText($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 With(new ScreenText("Our penultimate request; fell the great skeleton near the dungeon. Anyhow -", 160, 0.7f)).
                 FinishWith(new ScreenText("- here's some of my old gear...with some changes.", 100, 0.8f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInABoot>(), 1);
-                    ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown = true;
                 });
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Skeletron")]
-        public static ScreenText SkeletronDownDialogue()
+        public static ScreenText SkeletronDownDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
+
+            if (forServer)
+                return null;
+
             return new ScreenText("The dungeon's souls are...partially freed.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText("You're deserving - take these. Our favourites.", 60, 0.9f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
-                    ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown = true;
                 });
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".WoF")]
-        public static ScreenText WoFDownDialogue()
+        public static ScreenText WoFDownDialogue(bool forServer)
         {
+            ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
+
+            if (forServer)
+                return null;
+
             return new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText("Take this. I...don't need it anymore.", 60), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
-                    ModContent.GetInstance<VerdantSystem>().apotheosisWallDown = true;
                 });
         }
     }

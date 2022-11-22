@@ -38,7 +38,7 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
-		ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue();
+		ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         return true;
     }
 }

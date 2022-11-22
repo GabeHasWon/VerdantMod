@@ -12,6 +12,7 @@ using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant;
 
@@ -100,7 +101,14 @@ class VerdantPlayer : ModPlayer
         }
     }
 
-    public override void PostUpdateMiscEffects() => lastSlotsMinion = Player.slotsMinions;
+    public override void PostUpdateMiscEffects()
+    {
+        lastSlotsMinion = Player.slotsMinions;
+
+        if (ZoneVerdant && !ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
+    }
+
     public override void OnEnterWorld(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = false;
 
     private void TileFloor(Point left, Point right, int lType, int rType)

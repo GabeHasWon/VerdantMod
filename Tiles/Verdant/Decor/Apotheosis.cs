@@ -81,7 +81,7 @@ internal class Apotheosis : ModTile
             if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
                 DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
             else
-                DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle");
+                DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
         }
         return true;
     }

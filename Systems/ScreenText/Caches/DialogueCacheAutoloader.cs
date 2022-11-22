@@ -11,7 +11,7 @@ namespace Verdant.Systems.ScreenText.Caches
     /// <summary>Tool for easily getting net messages to play the requisite dialogue.</summary>
     internal class DialogueCacheAutoloader : ILoadable
     {
-        public Dictionary<string, Func<ScreenText>> dialogues = new();
+        public Dictionary<string, Func<bool, ScreenText>> dialogues = new();
 
         public void Load(Mod mod)
         {
@@ -22,20 +22,26 @@ namespace Verdant.Systems.ScreenText.Caches
                 foreach (var method in methods)
                 {
                     var attr = Attribute.GetCustomAttribute(method, typeof(DialogueCacheKeyAttribute)) as DialogueCacheKeyAttribute;
-                    dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<ScreenText>), method) as Func<ScreenText>);
+                    dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<bool, ScreenText>), method) as Func<bool, ScreenText>);
                 }
             }
         }
 
         public void Unload() { }
 
-        public static void Play(string key)
+        public static void Play(string key, bool forServer)
         {
             var cache = ModContent.GetInstance<DialogueCacheAutoloader>();
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
-            ScreenTextManager.CurrentText = cache.dialogues[key].Invoke();
+            if (forServer)
+            {
+                cache.dialogues[key].Invoke(true);
+                return;
+            }
+
+            ScreenTextManager.CurrentText = cache.dialogues[key].Invoke(false);
         }
 
         public static void SyncPlay(string key)
@@ -44,7 +50,7 @@ namespace Verdant.Systems.ScreenText.Caches
             if (!cache.dialogues.ContainsKey(key))
                 return;
 
-            new ScreenTextModule(key, Main.myPlayer).Send();
+            new ScreenTextModule(key, (short)Main.myPlayer).Send();
         }
     }
 }

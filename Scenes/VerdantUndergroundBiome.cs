@@ -19,8 +19,9 @@ namespace Verdant.Scenes
 		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
         public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.Find<ModUndergroundBackgroundStyle>("Verdant/VerdantUGBackground");
 		public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
+        //public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
-		public override int Music => MusicLoader.GetMusicSlot(Mod, "Sounds/Music/TearRain");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Sounds/Music/TearRain");
 
 		public override string BestiaryIcon => base.BestiaryIcon;
 		public override string BackgroundPath => MapBackground;
@@ -32,15 +33,6 @@ namespace Verdant.Scenes
 			bool underground = player.position.Y > Main.worldSurface * 16;
 			return VerdantSystem.InVerdant && underground;
 		}
-
-        public override void OnInBiome(Player player)
-        {
-            if (!ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
-            {
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
-                ModContent.GetInstance<VerdantSystem>().apotheosisIntro = true;
-            }
-        }
 
         public override void SpecialVisuals(Player player, bool isActive)
         {

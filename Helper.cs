@@ -70,7 +70,12 @@ namespace Verdant
         {
             Point tPos = worldPos.ToTileCoordinates();
             while (!Main.tile[tPos.X, tPos.Y].HasTile || !Main.tileSolid[Main.tile[tPos.X, tPos.Y].TileType])
+            {
                 tPos.Y++;
+
+                if (tPos.Y > Main.maxTilesY - 2)
+                    return tPos.Y;
+            }
             return tPos.Y;
         }
 
