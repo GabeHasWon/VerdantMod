@@ -1,6 +1,8 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Walls;
+using Verdant.Items.Verdant.Tools;
 
 namespace Verdant.Items.Verdant.Materials;
 
@@ -16,4 +18,7 @@ class LushLeaf : ModItem
         QuickItem.AddRecipe(ItemID.BrightGreenDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.SilverDye, 1));
         QuickItem.AddRecipe(ItemID.GreenandBlackDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<LushLeaf>(), 8), (ItemID.BlackDye, 1));
     }
+
+    /// <summary>Used to stop PermVineWand from using extra leaves.</summary>
+    public override bool ConsumeItem(Player player) => player.HeldItem.type != ModContent.ItemType<PermVineWand>();
 }

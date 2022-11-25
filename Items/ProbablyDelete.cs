@@ -2,14 +2,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems;
-using Verdant.Systems.ScreenText;
-using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => true;
+    public override bool IsLoadingEnabled(Mod mod) => false;
 
     public override void SetStaticDefaults()
 	{
@@ -19,7 +17,6 @@ public class ProbablyDelete : ModItem
 
 	public override void SetDefaults()
 	{
-		Item.damage = 120;
 		Item.DamageType = DamageClass.Melee;
 		Item.width = 40;
 		Item.height = 40;
@@ -32,8 +29,6 @@ public class ProbablyDelete : ModItem
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = true;
-        //Item.createTile = ModContent.TileType<Tiles.Verdant.Basic.Beehive>();
-        //Item.createWall = ModContent.WallType<VerdantVineWall_Unsafe>();
         Item.placeStyle = 0;
 	}
 

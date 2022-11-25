@@ -15,7 +15,7 @@ class PermVineWand : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Zipvine (Permanant)");
+        DisplayName.SetDefault("Zipvine");
         Tooltip.SetDefault($"Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\nThese vines use [i:{ModContent.ItemType<LushLeaf>()}] to build, and drop them on being destroyed.");
     }
 
@@ -37,6 +37,13 @@ class PermVineWand : ModItem
     }
 
     public override bool AltFunctionUse(Player player) => true;
+
+    public override bool CanUseItem(Player player)
+    {
+        if (!PermVineWandProjectile.ConsumeTileWand(player, true))
+            PermVineWandProjectile.KillVineAtMouse(player);
+        return true;
+    }
 }
 
 public class PermVineWandProjectile : ModProjectile
@@ -90,12 +97,7 @@ public class PermVineWandProjectile : ModProjectile
 
         if (Main.mouseRight)
         {
-            var vine = ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) as EnchantedVine;
-            if (vine != null && vine.perm)
-            {
-                vine.Kill();
-                Main.player[Projectile.owner].QuickSpawnItem(Projectile.GetSource_FromAI(), ModContent.ItemType<LushLeaf>());
-            }
+            KillVineAtMouse(p);
             return;
         }
 
@@ -110,14 +112,28 @@ public class PermVineWandProjectile : ModProjectile
 
             if (Timer <= 0)
             {
+                if (!ConsumeTileWand(Main.player[Projectile.owner]))
+                {
+                    p.channel = false;
+                    return;
+                }
+
                 LastVine = VineWandCommon.BuildVine(Projectile.owner, LastVine);
-                ConsumeTileWand(Main.player[Projectile.owner]);
                 Timer = 3;
             }
         }
     }
 
-    private static void ConsumeTileWand(Player player)
+    internal static void KillVineAtMouse(Player player)
+    {
+        if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) is EnchantedVine vine && vine.perm)
+        {
+            vine.Kill();
+            player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<LushLeaf>());
+        }
+    }
+
+    internal static bool ConsumeTileWand(Player player, bool justChecking = false)
     {
         for (int i = 0; i < player.inventory.Length; ++i)
         {
@@ -125,12 +141,16 @@ public class PermVineWandProjectile : ModProjectile
 
             if (!item.IsAir && item.type == ModContent.ItemType<LushLeaf>())
             {
-                item.stack--;
+                if (!justChecking) //Only consume if I'm not just checking
+                {
+                    item.stack--;
 
-                if (item.stack <= 0)
-                    item.TurnToAir();
-                break;
+                    if (item.stack <= 0)
+                        item.TurnToAir();
+                }
+                return true;
             }
         }
+        return false;
     }
 }

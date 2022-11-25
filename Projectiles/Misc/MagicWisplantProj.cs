@@ -33,8 +33,8 @@ class MagicWisplantProj : ModProjectile
             Dust.NewDust(new Vector2(i, j) * 16f, 16, 16, DustID.TerraBlade, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
         });
 
-        if (Projectile.timeLeft < 60)
-            Projectile.alpha = Math.Min(255 - (int)(255 * Projectile.timeLeft / 60f), 125);
+        if (Projectile.timeLeft < 30)
+            Projectile.alpha = Math.Min(255 - (int)(255 * ((Projectile.timeLeft + 30) / 60f)), 125);
     }
 
     public override void Kill(int timeLeft)

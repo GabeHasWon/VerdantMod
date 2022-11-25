@@ -1,6 +1,6 @@
 displayName = Verdant
 author = GabeHasWon
-version = 0.1.5
+version = 0.1.5.1
 dllReferences = StructureHelper, NetEasy_v0.1.8, NetSerializer
 hideCode = false
 hideResources = false

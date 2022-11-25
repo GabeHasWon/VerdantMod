@@ -8,8 +8,8 @@ namespace Verdant
 {
     public static class Extensions
     {
-        public static Point Add(this Point p, Point other) => new Point(p.X + other.X, p.Y + other.Y);
-        public static Point Mul(this Point p, int mult) => new Point(p.X * mult, p.Y * mult);
+        public static Point Add(this Point p, Point other) => new(p.X + other.X, p.Y + other.Y);
+        public static Point Mul(this Point p, int mult) => new(p.X * mult, p.Y * mult);
 
         public static Point TileCoordsBottomCentred(this Player p, Vector2? offset = null)
         {
@@ -50,12 +50,5 @@ namespace Verdant
         public static bool AccessoryEquipped(this Player player, Item item) => player.AccessoryEquipped(item.type);
 
         public static Player Owner(this Projectile p) => Main.player[p.owner];
-
-        public static IEnumerable<T> Distinct<T, U>(this IEnumerable<T> seq, Func<T, U> getKey)
-        {
-            return  from item in seq
-                    group item by getKey(item) into gp
-                    select gp.First();
-        }
     }
 }
