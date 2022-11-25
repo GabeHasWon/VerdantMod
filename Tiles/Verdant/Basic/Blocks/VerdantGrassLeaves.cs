@@ -167,13 +167,26 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             Tile self = Framing.GetTileSafely(i, j);
 
-            //decor 1x1
-            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(3))
+            if (TileHelper.ValidTop(self))
             {
-                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<PuffDecor1x1>(), true, false, -1, Main.rand.Next(7));
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
-                return;
+                //decor 1x2
+                if (!Framing.GetTileSafely(i, j - 1).HasTile && !Framing.GetTileSafely(i, j - 2).HasTile && Main.rand.NextBool(6))
+                {
+                    WorldGen.PlaceTile(i, j - 2, ModContent.TileType<PuffDecor1x2>(), true, false, -1, Main.rand.Next(3));
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendTileSquare(-1, i, j - 2, 1, 2, TileChangeType.None);
+                    return;
+                }
+
+                //decor 1x1 or wisplants
+                if (!Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(3))
+                {
+                    bool wisplant = Main.rand.NextBool(20);
+                    WorldGen.PlaceTile(i, j - 1, wisplant ? ModContent.TileType<Wisplant>() : ModContent.TileType<PuffDecor1x1>(), true, false, -1, wisplant ? 0 : Main.rand.Next(7));
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
+                    return;
+                }
             }
         }
 

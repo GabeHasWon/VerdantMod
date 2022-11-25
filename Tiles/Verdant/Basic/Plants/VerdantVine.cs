@@ -62,8 +62,15 @@ internal class VerdantVine : ModTile, IFlowerTile
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile t = Framing.GetTileSafely(i, j);
-
         float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.02f) * 1f;
+
+        if (Main.tile[i, j - 1].TileType != Type)
+            sine = 0;
+        else if (Main.tile[i, j - 2].TileType != Type)
+            sine *= 0.33f;
+        else if (Main.tile[i, j - 3].TileType != Type)
+            sine *= 0.67f;
+
         spriteBatch.Draw(TextureAssets.Tile[Type].Value, TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }

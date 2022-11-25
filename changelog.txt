@@ -1,2 +1,12 @@
-- Fixed all NPCs selling the Microcosm
-- Fixed Apotheosis dialogue not syncing
+- Fixed some more ScreenText issues
+- Added Wisplant, a new herb in the Verdant that spawns in Puff microbiomes
+- Added tool for forcing random updates at a given position
+- Added Magic-Infused Wisplant, which quickly grows everything around it for a short time
+	This also replaces Thorns Potions in Passionflower Bulbs
+- Added Wisplant Candelabra, which slightly speeds up the growth of everything around it
+- Added 1x2 Puff decor
+- Cleanup
+- Added Halfsprout functionality for modded herbs (currently just Wisplant)
+- Added visual touch to vines to make them not move at much at base
+- Added config option to use chat instead of the ScreenText system; clientside
+- Couple sprite touchups

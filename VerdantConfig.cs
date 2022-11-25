@@ -3,12 +3,13 @@ using Terraria.ModLoader.Config;
 
 namespace Verdant
 {
-    [Label("Currently unused.")]
-    public class VerdantServerConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-    }
+    //[Label("Currently unused.")]
+    //public class VerdantServerConfig : ModConfig
+    //{
+    //    public override ConfigScope Mode => ConfigScope.ServerSide;
+    //}
 
+    [Label("Verdant Client Configuration")]
     public class VerdantClientConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
@@ -28,5 +29,10 @@ namespace Verdant
         [Tooltip("Enables waterfalls appearing from tiles, such as the Weeping Bud.")]
         [ReloadRequired]
         public bool Waterfalls;
+
+        [DefaultValue(true)]
+        [Label("Custom Dialogue System")]
+        [Tooltip("Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.")]
+        public bool CustomDialogue;
     }
 }

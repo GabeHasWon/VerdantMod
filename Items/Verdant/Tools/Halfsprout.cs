@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles;
+using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -51,18 +52,32 @@ class Halfsprout : ModItem
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, x, y, 0f, 0, 0, 0);
             }
+            else
+            {
+                short frameX = tile.TileFrameX;
+                ushort tileType = tile.TileType;
+
+                tile.TileFrameX = 18 * 2;
+
+                TileHelper.SyncedKill(x, y);
+                tile.HasTile = true;
+                tile.TileType = tileType;
+                tile.TileFrameX = frameX;
+                tile.TileFrameY = 0;
+
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, x, y, 0f, 0, 0, 0);
+            }
             return true;
         }
         return false;
     }
 
-    private bool IsTileAnHerb(int type, out bool vanillaHerb)
+    private static bool IsTileAnHerb(int type, out bool vanillaHerb)
     {
-        vanillaHerb = false;
-        bool isHerb = type == TileID.BloomingHerbs || type == TileID.ImmatureHerbs || type == TileID.MatureHerbs;
-
-        if (isHerb)
-            vanillaHerb = true;
-        return isHerb;
+        bool isModdedHerb = type == ModContent.TileType<Wisplant>();
+        bool isVanillaHerb = type == TileID.BloomingHerbs || type == TileID.ImmatureHerbs || type == TileID.MatureHerbs;
+        vanillaHerb = isVanillaHerb;
+        return isVanillaHerb || isModdedHerb;
     }
 }

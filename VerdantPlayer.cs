@@ -105,7 +105,7 @@ class VerdantPlayer : ModPlayer
     {
         lastSlotsMinion = Player.slotsMinions;
 
-        if (ZoneVerdant && !ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
+        if (ZoneVerdant && Player.Center.Y / 16f > Main.worldSurface && !ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
     }
 

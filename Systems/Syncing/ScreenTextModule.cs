@@ -20,9 +20,9 @@ namespace Verdant.Systems.Syncing
 
         protected override void Receive()
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server) //Play on client
                 DialogueCacheAutoloader.Play(dialogueKey, false);
-            else if (fromWho != -1)
+            else if (fromWho != -1) //Play on server
             {
                 DialogueCacheAutoloader.Play(dialogueKey, true);
                 Send(-1, fromWho, false);

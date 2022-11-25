@@ -12,7 +12,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
     {
         public override void SetStaticDefaults()
         {
-            Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileWaterDeath[Type] = true;

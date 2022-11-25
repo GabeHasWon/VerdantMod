@@ -15,8 +15,6 @@ It has the following basic content:
 Q: Does this mod work with Calamity?
 A: It should work. For that matter, it should work with any mod, excluding Remnants.
 
-
-
 ----Credit----
 --Developers--
 GabeHasWon - Literally everything except The Plant & parts of song compositions

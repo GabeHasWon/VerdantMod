@@ -17,6 +17,8 @@ namespace Verdant.Systems.ScreenText.Caches
 {
     internal class ApotheosisDialogueCache : IDialogueCache
     {
+        private static bool UseCustomSystem => ModContent.GetInstance<VerdantClientConfig>().CustomDialogue;
+
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Intro")]
         public static ScreenText IntroDialogue(bool forServer)
         {
@@ -25,10 +27,20 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer)
                 return null;
 
-            ChatHelper.BroadcastChatMessage(Terraria.Localization.NetworkText.FromLiteral($"{Main.LocalPlayer.name} recieved Intro!"), Color.White);
-
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendData(MessageID.WorldData);
+
+            if (!UseCustomSystem)
+            {
+                Chat("Hello, traveller.", false);
+                Chat("It's been a long time since I've seen a new face.", false);
+                Chat("Call me the Apotheosis.", false);
+                Chat("Find us at the center of our verdant plants,");
+                Chat("and we might have some gifts to help you along.");
+                Chat("Farewell, for now.");
+
+                return null;
+            }
 
             return new ScreenText("Hello, traveller.", 100) 
             { 
@@ -52,6 +64,16 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendData(MessageID.WorldData);
+
+            if (!UseCustomSystem)
+            {
+                Chat("Remember to breathe,");
+                Chat("keep the plants thriving,");
+                Chat("and return to me once you've slain the great eye.");
+                Chat("May we find each other in good spirits soon.");
+
+                return null;
+            }
 
             return new ScreenText("Remember to breathe,", 100, 0.9f)
             {
@@ -78,10 +100,12 @@ namespace Verdant.Systems.ScreenText.Caches
                 "Go out and smell the flowers.",
                 "Run along, now."
             };
-            ScreenText randomDialogue = new(Main.rand.Next(randomLines), 120, 0.8f)
+
+            List<string> evilBossLines = new()
             {
-                speaker = "Apotheosis",
-                speakerColor = Color.Lime
+                "May grace befall you.",
+                $"The {(WorldGen.crimson ? "brain" : "worm")} is no more.",
+                "A presence lifted from the infestation..."
             };
 
             List<string> randomThoughts = new()
@@ -90,6 +114,19 @@ namespace Verdant.Systems.ScreenText.Caches
                 "Hmm...what to do...",
                 "...pest control...", //shoutout to To The Grave, good band
             };
+
+            List<string> skeleLines = new()
+            {
+                "That skeleton was...a confusing one.",
+                "The poor man's freedom is obtained..."
+            };
+
+            ScreenText randomDialogue = new(Main.rand.Next(randomLines), 120, 0.8f)
+            {
+                speaker = "Apotheosis",
+                speakerColor = Color.Lime
+            };
+
             ScreenText randomThoughtDialogue = new(Main.rand.Next(randomThoughts), 120, 0.8f)
             {
                 speaker = "Apotheosis",
@@ -105,22 +142,10 @@ namespace Verdant.Systems.ScreenText.Caches
                 speakerColor = Color.Lime,
             };
 
-            List<string> evilBossLines = new()
-            {
-                "May grace befall you.",
-                $"The {(WorldGen.crimson ? "brain" : "worm")} is no more.",
-                "A presence lifted from the infestation..."
-            };
             ScreenText evilDialogue = new(Main.rand.Next(evilBossLines), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
-            };
-
-            List<string> skeleLines = new()
-            {
-                "That skeleton was...a confusing one.",
-                "The poor man's freedom is obtained..."
             };
 
             ScreenText skeleDialogue = new(Main.rand.Next(skeleLines), 120, 0.8f)
@@ -143,6 +168,14 @@ namespace Verdant.Systems.ScreenText.Caches
                 texts.Add(skeleDialogue, 0.4f);
 
             AddAdditionalIdleDialogue(texts);
+
+            ScreenText result = texts;
+
+            if (!UseCustomSystem)
+            {
+                Chat(result.text);
+                return null;
+            }
             return texts;
         }
 
@@ -194,6 +227,15 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer)
                 return null;
 
+            if (!UseCustomSystem)
+            {
+                Chat("The eye is felled. Thank you.");
+                Chat($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.");
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
+                return null;
+            }
+
             return new ScreenText("The eye is felled. Thank you.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.", 180, 0.7f), (self) =>
                 {
@@ -208,6 +250,16 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (forServer)
                 return null;
+
+            if (!UseCustomSystem)
+            {
+                Chat($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...");
+                Chat("Our penultimate request; fell the great skeleton near the dungeon. Anyhow -");
+                Chat("- here's some of my old gear...with some changes.");
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInABoot>(), 1);
+                return null;
+            }
 
             return new ScreenText($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 With(new ScreenText("Our penultimate request; fell the great skeleton near the dungeon. Anyhow -", 160, 0.7f)).
@@ -225,6 +277,15 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer)
                 return null;
 
+            if (!UseCustomSystem)
+            {
+                Chat("The dungeon's souls are...partially freed.");
+                Chat("You're deserving - take these. Our favourites.");
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
+                return null;
+            }
+
             return new ScreenText("The dungeon's souls are...partially freed.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText("You're deserving - take these. Our favourites.", 60, 0.9f), (self) =>
                 {
@@ -240,11 +301,29 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer)
                 return null;
 
+            if (!UseCustomSystem)
+            {
+                Chat("A powerful spirit has been released...");
+                Chat("Take this. I...don't need it anymore.");
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
+                return null;
+            }
+
             return new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
                 FinishWith(new ScreenText("Take this. I...don't need it anymore.", 60), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
                 });
+        }
+
+        private static void Chat(string text, bool useName = true)
+        {
+            string useText = "[c/32cd32:The Apotheosis:] " + text;
+            if (!useName)
+                useText = text;
+
+            Main.NewText(useText, Color.White);
         }
     }
 }
