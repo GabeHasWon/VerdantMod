@@ -19,7 +19,7 @@ internal class VerdantBiome : ModBiome
     {
         if (Main.raining)
             return MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall");
-        return -1;
+        return MusicLoader.GetMusicSlot(Mod, "Sounds/Music/VibrantHorizon");
     }
 
     public override string BestiaryIcon => base.BestiaryIcon;

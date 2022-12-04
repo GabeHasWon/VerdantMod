@@ -26,7 +26,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-
             AddMapEntry(new Color(253, 221, 3), CreateMapEntryName());
         }
 

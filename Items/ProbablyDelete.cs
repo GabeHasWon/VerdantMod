@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items;
 
@@ -34,9 +36,9 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
-		//ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-		var pos = Main.MouseWorld.ToTileCoordinates();
-		RandomUpdating.Auto(pos.X, pos.Y, false, 3);
+        ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
+        //var pos = Main.MouseWorld.ToTileCoordinates();
+        //RandomUpdating.Auto(pos.X, pos.Y, false, 3);
         return true;
     }
 }

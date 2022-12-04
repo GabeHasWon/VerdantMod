@@ -7,7 +7,7 @@ It has the following basic content:
     - 76 new tiles
     - 12 new walls
     - 9 new NPCs
-    - 3 brand new music tracks
+    - 4 brand new music tracks
     - A new foreground and background system that gives more life to the biome
     - A sort of quest system by the statue in the center of the biome, the Apotheosis
 
@@ -17,7 +17,8 @@ A: It should work. For that matter, it should work with any mod, excluding Remna
 
 ----Credit----
 --Developers--
-GabeHasWon - Literally everything except The Plant & parts of song compositions
+GabeHasWon - Literally everything except The Plant & some music
+Helton Yan - Music
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback --
@@ -36,6 +37,11 @@ Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#po
 
 My Twitter: https://twitter.com/GabeHasWon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
+
+(Some of the) music by Helton Yan! Check out his other stuff:
+Soundcloud: https://soundcloud.com/heltonyan
+Twitter: https://twitter.com/heltonyan
+Discord: heltonyan#8219
 
 If you'd be so generous, joining the Patreon would help me out a ton. 
 As a hobbyist developer, I spend most of my free time making stuff like this mod.

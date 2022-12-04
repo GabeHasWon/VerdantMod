@@ -5,8 +5,6 @@ using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
 using Verdant.Effects;
 using Microsoft.Xna.Framework.Graphics;
-using Verdant.Systems.ScreenText;
-using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Scenes
 {
@@ -19,7 +17,7 @@ namespace Verdant.Scenes
 		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
         public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.Find<ModUndergroundBackgroundStyle>("Verdant/VerdantUGBackground");
 		public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
-        //public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
         public override int Music => MusicLoader.GetMusicSlot(Mod, "Sounds/Music/TearRain");
 

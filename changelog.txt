@@ -1,6 +1,7 @@
 - Fixed Zipvine being usable if held down after running out of leaves
 - Fixed Zipvine using extra leaves, leading to net loss of leaves
-- Cleanup
+- Internal cleanup
 - Improved Magic-Infused Wisplant death animation
 - Set Magic-Infused Wisplant's journey research count to 3
 - Removed debug item
+- Added Vibrant Horizon, the surface day track for the Verdant by Helton Yan

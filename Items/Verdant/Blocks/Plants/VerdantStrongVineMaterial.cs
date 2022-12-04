@@ -22,7 +22,7 @@ namespace Verdant.Items.Verdant.Blocks.Plants
             return clear && a;
         }
 
-        public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
+        public override bool? UseItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer && player.InInteractionRange(Player.tileTargetX, Player.tileTargetY))
             {
@@ -30,8 +30,9 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+                return true;
             }
-            return true;
+            return false;
         }
 
         public override void HoldItem(Player player)
