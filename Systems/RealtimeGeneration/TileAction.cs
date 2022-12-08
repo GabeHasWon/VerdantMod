@@ -16,6 +16,8 @@ namespace Verdant.Systems.RealtimeGeneration
                     if (force)
                         WorldGen.KillTile(x, y, false, false, true);
                     WorldGen.PlaceTile(x, y, type, mute);
+
+                    success = true;
                 }
                 else
                 {
@@ -35,6 +37,7 @@ namespace Verdant.Systems.RealtimeGeneration
                     }
 
                     WorldGen.PlaceObject(x, y, type, mute);
+                    success = true;
                 }
             };
         }
@@ -57,6 +60,48 @@ namespace Verdant.Systems.RealtimeGeneration
                 WorldGen.KillWall(x, y, false);
             WorldGen.PlaceWall(x, y, type, mute);
             success = true;
+        };
+
+        public static TileActionDelegate FullReplace(TileState state, bool reframe = false, bool skipMe = false) => (int x, int y, ref bool success) =>
+        {
+            Tile tile = Main.tile[x, y];
+            tile.HasTile = state.Active;
+
+            if (state.Active)
+            {
+                tile.TileType = state.TileType;
+                tile.TileFrameX = state.FrameX;
+                tile.TileFrameY = state.FrameY;
+                tile.WallFrameX = state.WallFrameX;
+                tile.WallFrameY = state.WallFrameY;
+                tile.LiquidType = state.LiquidType;
+                tile.LiquidAmount = state.LiquidAmount;
+                tile.Slope = state.Slope;
+            }
+
+            if (reframe)
+                WorldGen.TileFrame(x, y, true, true);
+
+            success = !skipMe;
+        };
+
+        public static TileActionDelegate Reframe(TileState state, bool justReframe = false, bool skipMe = false) => (int x, int y, ref bool success) =>
+        {
+            if (!justReframe)
+            {
+                Tile tile = Main.tile[x, y];
+
+                if (tile.HasTile)
+                {
+                    tile.TileFrameX = state.FrameX;
+                    tile.TileFrameY = state.FrameY;
+                    tile.WallFrameX = state.WallFrameX;
+                    tile.WallFrameY = state.WallFrameY;
+                }
+            }
+
+            WorldGen.TileFrame(x, y, true, true);
+            success = !skipMe;
         };
     }
 }

@@ -1,15 +1,16 @@
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Systems;
-using Verdant.Systems.ScreenText;
-using Verdant.Systems.ScreenText.Caches;
+using Verdant.Systems.RealtimeGeneration;
+using Verdant.Systems.RealtimeGeneration.Old;
 
 namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => false;
+    public override bool IsLoadingEnabled(Mod mod) => true;
 
     public override void SetStaticDefaults()
 	{
@@ -30,15 +31,41 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = true;
+		Item.autoReuse = false;
         Item.placeStyle = 0;
 	}
 
     public override bool? UseItem(Player player)
     {
-        ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-        //var pos = Main.MouseWorld.ToTileCoordinates();
-        //RandomUpdating.Auto(pos.X, pos.Y, false, 3);
-        return true;
+        //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
+        var pos = Main.MouseWorld.ToTileCoordinates();
+
+  //      Tile tile = Main.tile[pos];
+		//tile.TileFrameX = 0;
+		//tile.TileFrameY = 0;
+		//Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+
+  //      return true;
+        if (!RealtimeGen.HasStructure("Testing"))
+			Spawn(pos);
+		else
+			RealtimeGen.ReplaceStructure("Testing");
+		return true;
     }
+
+    private void Spawn(Point pos)
+    {
+		Queue<RealtimeStep> steps = new();
+
+		for (int i = pos.X - 5; i <= pos.X + 5; ++i)
+		{
+			for (int j = pos.Y - 5; j <= pos.Y + 5; ++j)
+			{
+				RealtimeStep step = new(new(i, j), TileAction.PlaceTile(TileID.SilverBrick, false, true, true));
+				steps.Enqueue(step);
+			}
+		}
+		
+		ModContent.GetInstance<RealtimeGen>().CurrentAction = new RealtimeAction(steps, 5, true, "Testing");
+	}
 }

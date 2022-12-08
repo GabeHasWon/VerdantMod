@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Verdant.Systems.RealtimeGeneration;
 
 namespace Verdant;
 
@@ -47,4 +48,24 @@ public static class Extensions
     public static bool AccessoryEquipped(this Player player, Item item) => player.AccessoryEquipped(item.type);
 
     public static Player Owner(this Projectile p) => Main.player[p.owner];
+
+    public static TileState GetState(this Tile tile, int i, int j, string from)
+    {
+        TileState tileState = new(
+            new Terraria.DataStructures.Point16(i, j),
+            tile.HasTile,
+            tile.TileType,
+            tile.TileFrameX,
+            tile.TileFrameY,
+            tile.WallType,
+            (short)tile.WallFrameX,
+            (short)tile.WallFrameY,
+            (byte)tile.LiquidType,
+            tile.LiquidAmount,
+            from,
+            tile.Slope
+        );
+
+        return tileState;
+    }
 }

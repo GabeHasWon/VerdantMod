@@ -1,46 +1,99 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 
-namespace Verdant.Systems.RealtimeGeneration
+namespace Verdant.Systems.RealtimeGeneration;
+
+internal class RealtimeAction
 {
-    internal class RealtimeAction
+    private readonly float TickRate = 0;
+    private readonly Queue<RealtimeStep> TileActions = new();
+    private readonly bool Undoable = false;
+    private readonly string Name = "";
+
+    internal bool finished = false;
+
+    private float _timer = 0;
+    private float _surpassedValues = 0;
+    private Point _topLeft = new(short.MaxValue, short.MaxValue);
+    private Point _bottomRight = new();
+
+    public RealtimeAction(Queue<RealtimeStep> tileActions, float tickRate, bool undoable = false, string name = null)
     {
-        readonly float TickRate = 0;
-        readonly Queue<RealtimeStep> TileActions = new();
+        TileActions = tileActions;
+        TickRate = tickRate;
+        Undoable = undoable;
+        Name = name;
 
-        private float _timer = 0;
-        private float _surpassedValues = 0;
+        var actions = tileActions.ToList();
 
-        public RealtimeAction(Queue<RealtimeStep> tileActions, float tickRate)
+        if (Undoable)
+            foreach (var item in actions) 
+                AdjustRectangle(item);
+
+        OnStart();
+    }
+
+    public void Play()
+    {
+        _surpassedValues = (float)Math.Floor(_timer);
+        _timer += TickRate;
+
+        if (TileActions.Count <= 0)
         {
-            TileActions = tileActions;
-            TickRate = tickRate;
+            finished = true;
+            return;
         }
 
-        public void Play()
+        int repeats = (int)(Math.Floor(_timer) - _surpassedValues);
+        for (int i = 0; i < repeats; ++i)
         {
-            _surpassedValues = (float)Math.Floor(_timer);
-            _timer += TickRate;
-
             if (TileActions.Count <= 0)
                 return;
 
-            int repeats = (int)(Math.Floor(_timer) - _surpassedValues);
-            for (int i = 0; i < repeats; ++i)
-            {
-                if (TileActions.Count <= 0)
-                    return;
+            var step = TileActions.Dequeue();
+            bool success = false;
+            step.Invoke(step.Position.X, step.Position.Y, ref success);
+            
+            if (!success)
+                i--;
 
-                var step = TileActions.Dequeue();
-                bool success = false;
-                step.Invoke(step.Position.X, step.Position.Y, ref success);
-                
-                if (!success)
-                    i--;
-
-                _timer = 0;
-            }
+            _timer = 0;
         }
+    }
+
+    private void OnStart()
+    {
+        if (Undoable)
+        {
+            string path = Path.Combine(ModLoader.ModPath.Replace("Mods", "SavedStructures"), "Structure_Verdant_" + Name + RealtimeGen.StructureID);
+
+            var rect = new Rectangle(_topLeft.X, _topLeft.Y, _bottomRight.X - _topLeft.X, _bottomRight.Y - _topLeft.Y);
+            StructureHelper.Saver.SaveToFile(rect, path);
+            ModContent.GetInstance<RealtimeGen>().CapturedStructures.Add(Name, (path, new Point16(_topLeft.X, _topLeft.Y)));
+
+            OverlayRenderer.Capture(new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16), true);
+        }
+    }
+
+    private void AdjustRectangle(RealtimeStep step)
+    {
+        if (step.Position.X < _topLeft.X)
+            _topLeft.X = step.Position.X;
+
+        if (step.Position.X > _bottomRight.X)
+            _bottomRight.X = step.Position.X;
+
+        if (step.Position.Y < _topLeft.Y)
+            _topLeft.Y = step.Position.Y;
+
+        if (step.Position.Y > _bottomRight.Y)
+            _bottomRight.Y = step.Position.Y;
     }
 }
