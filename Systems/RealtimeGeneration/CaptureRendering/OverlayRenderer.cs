@@ -60,6 +60,8 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
         private void RenderTarget()
         {
+            Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
+
             var bindings = Main.graphics.GraphicsDevice.GetRenderTargets();
             Main.graphics.GraphicsDevice.SetRenderTarget(tileTransitionOverlay);
             Main.graphics.GraphicsDevice.Clear(Color.Black);
@@ -70,6 +72,8 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
             Main.spriteBatch.End();
             Main.graphics.GraphicsDevice.SetRenderTargets(bindings);
+
+            Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.DiscardContents;
         }
 
         private static void DrawTiles()

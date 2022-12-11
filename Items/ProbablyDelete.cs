@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.Old;
+using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items;
 
@@ -31,12 +32,14 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = false;
+		Item.autoReuse = true;
         Item.placeStyle = 0;
+		Item.createTile = ModContent.TileType<LightbulbVine>();
 	}
 
     public override bool? UseItem(Player player)
     {
+		return true;
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         var pos = Main.MouseWorld.ToTileCoordinates();
 

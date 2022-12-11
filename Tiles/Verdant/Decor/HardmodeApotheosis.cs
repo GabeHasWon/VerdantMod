@@ -5,14 +5,22 @@ using Terraria;
 using System;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal class Apotheosis : ModTile
+internal class HardmodeApotheosis : ModTile
 {
     private int _timer = 0;
+    private Asset<Texture2D> glowTex;
 
-    public override void SetStaticDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+    public override void SetStaticDefaults()
+    {
+        QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+        glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
+    }
+
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
     public override bool CanExplode(int i, int j) => false;
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
@@ -24,16 +32,10 @@ internal class Apotheosis : ModTile
         if (Framing.GetTileSafely(i, j).TileFrameX == 126 && Framing.GetTileSafely(i, j).TileFrameY == 36)
         {
             Vector2 p = new Vector2(i, j) * 16;
-            float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7);
-
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) 
-                LightMult *= 1.3f;
-
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) 
-                LightMult *= 1.6f;
+            float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7) * 2f + 0.5f;
 
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * 2f * LightMult);
-            Lighting.AddLight(p, new Vector3(0.1f, 0.03f, 0.06f));
+            Lighting.AddLight(p, new Vector3(0.2f, 0.06f, 0.12f));
         }
     }
 
@@ -81,5 +83,12 @@ internal class Apotheosis : ModTile
         Main.LocalPlayer.cursorItemIconText = "Speak";
         Main.LocalPlayer.cursorItemIconEnabled = false;
         Main.LocalPlayer.cursorItemIconID = -1;
+    }
+
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+    {
+        Tile t = Main.tile[i, j];
+
+        spriteBatch.Draw(glowTex.Value, TileHelper.TileCustomPosition(i, j), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
     }
 }
