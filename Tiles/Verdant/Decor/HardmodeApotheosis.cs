@@ -7,18 +7,22 @@ using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using Verdant.Drawing;
+using Terraria.DataStructures;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal class HardmodeApotheosis : ModTile
+internal class HardmodeApotheosis : ModTile, IAdditiveTile
 {
     private int _timer = 0;
     private Asset<Texture2D> glowTex;
+    private Asset<Texture2D> alphaTex;
 
     public override void SetStaticDefaults()
     {
         QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
         glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
+        alphaTex = ModContent.Request<Texture2D>(Texture + "_GlowAlpha");
     }
 
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
@@ -90,5 +94,15 @@ internal class HardmodeApotheosis : ModTile
         Tile t = Main.tile[i, j];
 
         spriteBatch.Draw(glowTex.Value, TileHelper.TileCustomPosition(i, j), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+    }
+
+    public void DrawAdditive(Point16 position)
+    {
+        Tile t = Main.tile[position.X, position.Y];
+
+        if (t.TileFrameX != 0 || t.TileFrameY != 0)
+            return;
+
+        Main.spriteBatch.Draw(alphaTex.Value, TileHelper.TileCustomPosition(position.X, position.Y, new Vector2(6, -2)), null, Color.White * 0.8f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
     }
 }

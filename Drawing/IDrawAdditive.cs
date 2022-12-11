@@ -1,4 +1,4 @@
-﻿using Terraria;
+﻿using Terraria.DataStructures;
 
 namespace Verdant.Drawing
 {
@@ -11,5 +11,10 @@ namespace Verdant.Drawing
     interface IDrawAdditive
     {
         void DrawAdditive(AdditiveLayer layer);
+    }
+
+    interface IAdditiveTile
+    {
+        void DrawAdditive(Point16 position);
     }
 }
