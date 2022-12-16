@@ -50,12 +50,12 @@ namespace Verdant.Systems
         }
 
         /// <summary>Copied from vanilla TileDrawing.</summary>
-        private void GetScreenDrawArea(Vector2 screenPosition, Vector2 offSet, out int firstTileX, out int lastTileX, out int firstTileY, out int lastTileY)
+        private static void GetScreenDrawArea(Vector2 screenPosition, Vector2 offSet, out int firstTileX, out int lastTileX, out int firstTileY, out int lastTileY)
         {
             firstTileX = (int)((screenPosition.X - offSet.X) / 16f - 1f);
-            lastTileX = (int)((screenPosition.X + (float)Main.screenWidth + offSet.X) / 16f) + 2;
+            lastTileX = (int)((screenPosition.X + Main.screenWidth + offSet.X) / 16f) + 2;
             firstTileY = (int)((screenPosition.Y - offSet.Y) / 16f - 1f);
-            lastTileY = (int)((screenPosition.Y + (float)Main.screenHeight + offSet.Y) / 16f) + 5;
+            lastTileY = (int)((screenPosition.Y + Main.screenHeight + offSet.Y) / 16f) + 5;
 
             if (firstTileX < 4)
                 firstTileX = 4;
