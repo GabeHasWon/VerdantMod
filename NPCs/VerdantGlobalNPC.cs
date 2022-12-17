@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Scenes;
 
 namespace Verdant.NPCs
@@ -20,7 +19,7 @@ namespace Verdant.NPCs
         {
             if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
-                pool[0] = 0f;
+                pool.Clear();
 
                 pool[NPCID.GreenDragonfly] = 0.5f;
                 pool[NPCID.RedDragonfly] = 0.5f;
@@ -91,18 +90,6 @@ namespace Verdant.NPCs
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
                     chat = "These tones are gorgeous! What a wonderful landscape!";
-            }
-        }
-
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
-        {
-            if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
-            {
-                if (type == NPCID.Dryad)
-                {
-                    if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());
-                }
             }
         }
     }

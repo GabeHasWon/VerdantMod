@@ -23,18 +23,20 @@ internal class RealtimeAction
     private float _surpassedValues = 0;
     private Point _topLeft = new(short.MaxValue, short.MaxValue);
     private Point _bottomRight = new();
+    private CaptureData _captureData = new DefaultCapture("");
 
-    public RealtimeAction(Queue<RealtimeStep> tileActions, float tickRate, bool undoable = false, string name = null)
+    public RealtimeAction(Queue<RealtimeStep> tileActions, float tickRate, bool undoable = false, string name = null, CaptureData captureData = null)
     {
         TileActions = tileActions;
         TickRate = tickRate;
         Undoable = undoable;
         Name = name;
+        _captureData = captureData;
 
         var actions = tileActions.ToList();
 
         if (Undoable)
-            foreach (var item in actions) 
+            foreach (var item in actions)
                 AdjustRectangle(item);
 
         OnStart();
@@ -78,7 +80,8 @@ internal class RealtimeAction
             StructureHelper.Saver.SaveToFile(rect, path);
             ModContent.GetInstance<RealtimeGen>().CapturedStructures.Add(Name, (path, new Point16(_topLeft.X, _topLeft.Y)));
 
-            OverlayRenderer.Capture(new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16), true);
+            _captureData.Area = new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16);
+            OverlayRenderer.Capture(true, _captureData);
         }
     }
 

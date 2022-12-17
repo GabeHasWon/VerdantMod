@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -16,31 +16,29 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
         internal bool needsCapture = false;
         internal bool needsReset = false;
-        internal CaptureData captureData = default;
+        internal CaptureData currentCaptureData = default;
+
+        internal List<CaptureData> capturedOverlays = new();
 
         private RenderTarget2D tileTransitionOverlay = null;
 
-        void ILoadable.Load(Mod mod)
-        {
-            DrawSingleTile = Delegate.CreateDelegate(typeof(DrawSingleTileDelegate), Main.instance.TilesRenderer, "DrawSingleTile") as DrawSingleTileDelegate;
-        }
+        void ILoadable.Load(Mod mod) => DrawSingleTile = Delegate.CreateDelegate(typeof(DrawSingleTileDelegate), Main.instance.TilesRenderer, "DrawSingleTile") as DrawSingleTileDelegate;
+        void ILoadable.Unload() => DrawSingleTile = null;
 
-        void ILoadable.Unload() { }
+        public static void Capture(bool needsReset, CaptureData data) => ModContent.GetInstance<OverlayRenderer>().CaptureInternal(needsReset, data);
 
-        public static void Capture(Rectangle area, bool needsReset) => ModContent.GetInstance<OverlayRenderer>().CaptureInternal(area, needsReset);
-
-        private void CaptureInternal(Rectangle area, bool needsReset)
+        private void CaptureInternal(bool needsReset, CaptureData data)
         {
             this.needsReset = needsReset;
             needsCapture = true;
-            captureData = new CaptureData(area);
+            currentCaptureData = data;
         }
 
         public void Render()
         {
             if (needsReset)
             {
-                tileTransitionOverlay = new(Main.graphics.GraphicsDevice, captureData.Area.Width, captureData.Area.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                tileTransitionOverlay = new(Main.graphics.GraphicsDevice, currentCaptureData.Area.Width, currentCaptureData.Area.Height, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                 needsReset = false;
             }
 
@@ -48,14 +46,23 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
             {
                 RenderTarget();
                 needsCapture = false;
+
+                capturedOverlays.Add(currentCaptureData);
             }
 
             if (tileTransitionOverlay is null)
                 return;
 
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-            Main.spriteBatch.Draw(tileTransitionOverlay, Main.MouseScreen, Color.White);
-            Main.spriteBatch.End();
+            foreach (var item in capturedOverlays)
+            {
+                if (!item.ContinueDrawing)
+                    continue;
+
+                item.Update();
+                item.ApplyNormalSpriteBatch();
+                item.DrawTarget(tileTransitionOverlay);
+                Main.spriteBatch.End();
+            }
         }
 
         private void RenderTarget()
@@ -64,8 +71,8 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
             var bindings = Main.graphics.GraphicsDevice.GetRenderTargets();
             Main.graphics.GraphicsDevice.SetRenderTarget(tileTransitionOverlay);
-            Main.graphics.GraphicsDevice.Clear(Color.Black);
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+            Main.graphics.GraphicsDevice.Clear(Color.Transparent);
+            currentCaptureData.ApplyRenderSpriteBatch();
 
             if (!Main.gameMenu)
                 DrawTiles();
@@ -78,16 +85,27 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
         private static void DrawTiles()
         {
+            var area = ModContent.GetInstance<OverlayRenderer>().currentCaptureData.Area;
             var offset = new Vector2(Main.offScreenRange, Main.offScreenRange);
-            var pos = Main.MouseWorld.ToTileCoordinates();
+            var pos = (Main.MouseWorld - (area.Size() / 2)).ToTileCoordinates();
 
             int x = pos.X;
             int y = pos.Y;
 
-            for (int i = 0; i < 10; ++i)
-                DrawSingleTile.Invoke(new TileDrawInfo(), true, -1, Main.Camera.UnscaledPosition, ModContent.GetInstance<OverlayRenderer>().captureData.Area.Location.ToVector2(), x + i, y + i);
+            for (int i = 0; i < area.Width / 16; ++i)
+            {
+                for (int j = 0; j < area.Height / 16; ++j)
+                {
+                    if (!Main.tile[x + i, y + j].HasTile)
+                        continue;
 
-            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, Main.MouseWorld, null, Color.White, 0f, Vector2.Zero, 20f, SpriteEffects.None, 0f);
+                    if (Lighting.Brightness(x + i, y + j) == 0f)
+                        Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Vector2(i, j) * 16, new Rectangle(0, 0, 16, 16), Color.Black);
+
+                    var off = -area.Location.ToVector2() + Main.screenPosition;
+                    DrawSingleTile.Invoke(new TileDrawInfo(), true, -1, Main.Camera.UnscaledPosition, off, x + i, y + j);
+                }
+            }
         }
     }
 }

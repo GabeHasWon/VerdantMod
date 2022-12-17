@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -20,8 +19,7 @@ namespace Verdant.NPCs.Enemy.PestControl
         private Player Target => Main.player[NPC.target];
 
         private ref float Timer => ref NPC.ai[0];
-        private bool Planted { get => NPC.ai[1] != 0; set => NPC.ai[1] = value ? 1 : 0; }
-        private ThornState State { get => (ThornState)NPC.ai[2]; set => NPC.ai[2] = (float)value; }
+        private ThornState State { get => (ThornState)NPC.ai[1]; set => NPC.ai[1] = (float)value; }
 
         public override void SetStaticDefaults()
         {
@@ -100,18 +98,5 @@ namespace Verdant.NPCs.Enemy.PestControl
                 NPC.netUpdate = true;
             }
         }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (NPC.life <= 0)
-            {
-                for (int i = 0; i < 9; ++i)
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3)), !Main.rand.NextBool(3) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("PinkPetalFalling").Type);
-                for (int i = 0; i < 12; ++i)
-                    Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
-            }
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => 0f; //Temporarily(?) removed
     }
 }

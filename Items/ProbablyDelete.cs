@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Effects;
 using Verdant.Systems.RealtimeGeneration;
+using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
@@ -32,14 +35,13 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = true;
+		Item.autoReuse = false;
         Item.placeStyle = 0;
 		Item.createTile = ModContent.TileType<LightbulbVine>();
 	}
 
     public override bool? UseItem(Player player)
     {
-		return true;
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         var pos = Main.MouseWorld.ToTileCoordinates();
 
@@ -60,15 +62,17 @@ public class ProbablyDelete : ModItem
     {
 		Queue<RealtimeStep> steps = new();
 
-		for (int i = pos.X - 5; i <= pos.X + 5; ++i)
+		const int Size = 13;
+
+		for (int i = pos.X - Size; i <= pos.X + Size; ++i)
 		{
-			for (int j = pos.Y - 5; j <= pos.Y + 5; ++j)
+			for (int j = pos.Y - Size; j <= pos.Y + Size; ++j)
 			{
 				RealtimeStep step = new(new(i, j), TileAction.PlaceTile(TileID.SilverBrick, false, true, true));
 				steps.Enqueue(step);
 			}
 		}
 		
-		ModContent.GetInstance<RealtimeGen>().CurrentAction = new RealtimeAction(steps, 5, true, "Testing");
+		ModContent.GetInstance<RealtimeGen>().CurrentAction = new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing"));
 	}
 }

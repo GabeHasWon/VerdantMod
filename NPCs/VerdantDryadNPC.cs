@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Misc;
 
@@ -31,6 +32,9 @@ namespace Verdant.NPCs
 
             if (NPC.downedMechBossAny)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YellowBulb>());
+
+            if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());
         }
     }
 }
