@@ -47,6 +47,7 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
                 RenderTarget();
                 needsCapture = false;
 
+                currentCaptureData.Capture = tileTransitionOverlay;
                 capturedOverlays.Add(currentCaptureData);
             }
 
@@ -55,12 +56,14 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
             foreach (var item in capturedOverlays)
             {
-                if (!item.ContinueDrawing)
+                if (item.Run)
+                    item.Update();
+
+                if (!item.Draw)
                     continue;
 
-                item.Update();
                 item.ApplyNormalSpriteBatch();
-                item.DrawTarget(tileTransitionOverlay);
+                item.DrawTarget(item.Capture);
                 Main.spriteBatch.End();
             }
         }

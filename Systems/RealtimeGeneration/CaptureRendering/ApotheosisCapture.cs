@@ -15,7 +15,7 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
             _timer++;
         }
 
-        internal override void DrawTarget(RenderTarget2D overlay)
+        internal override void DrawTarget(Texture2D overlay)
         {
             Main.spriteBatch.Draw(overlay, Main.MouseScreen - overlay.Size() / 2, Color.White * (1 - (_timer / 400f)));
         }
