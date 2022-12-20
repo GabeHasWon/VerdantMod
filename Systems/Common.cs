@@ -18,8 +18,22 @@ namespace Verdant.Systems
         {
             On.Terraria.Main.DrawGore += DrawForeground;
             On.Terraria.Main.DrawCursor += Main_DrawCursor;
+            On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
             On.Terraria.GameContent.Drawing.TileDrawing.Draw += TileDrawing_Draw;
             Main.OnTickForThirdPartySoftwareOnly += ScreenTextManager.Update;
+        }
+
+        private void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+        {
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            DrawAdditiveNPCs(AdditiveLayer.BeforePlayer);
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            orig(self, behindTiles);
         }
 
         private void TileDrawing_Draw(On.Terraria.GameContent.Drawing.TileDrawing.orig_Draw orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets, int waterStyleOverride)
@@ -68,7 +82,7 @@ namespace Verdant.Systems
                 lastTileY = Main.maxTilesY - 4;
         }
 
-        private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Microsoft.Xna.Framework.Vector2 bonus, bool smart)
+        private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
         {
             if (!Main.gameMenu)
                 ScreenTextManager.Render();
@@ -78,18 +92,29 @@ namespace Verdant.Systems
 
         private static void DrawForeground(On.Terraria.Main.orig_DrawGore orig, Main self)
         {
-            orig(self);
-
-            if (Main.PlayerLoaded && !Main.gameMenu)
-                ForegroundManager.Draw();
-
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
             DrawAdditiveProjectiles();
+            DrawAdditiveNPCs(AdditiveLayer.AfterPlayer);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            orig(self);
+
+            if (Main.PlayerLoaded && !Main.gameMenu)
+                ForegroundManager.Draw();
+        }
+
+        private static void DrawAdditiveNPCs(AdditiveLayer layer)
+        {
+            for (int i = 0; i < Main.maxNPCs; ++i)
+            {
+                NPC n = Main.npc[i];
+                if (n.active && n.ModNPC is IDrawAdditive additive)
+                    additive.DrawAdditive(layer);
+            }
         }
 
         private static void DrawAdditiveProjectiles()

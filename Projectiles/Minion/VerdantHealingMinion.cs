@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Drawing;
+using Verdant.Projectiles.Particles;
 
 namespace Verdant.Projectiles.Minion
 {
@@ -67,7 +68,7 @@ namespace Verdant.Projectiles.Minion
                         for (int j = 0; j < 3; ++j)
                         {
                             Vector2 particleVel = new Vector2(Main.rand.NextFloat(4, 12), 0).RotatedByRandom(MathHelper.TwoPi);
-                            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, particleVel, ModContent.ProjectileType<Misc.HealingParticle>(), 0, 0, Projectile.owner, 0, 0);
+                            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, particleVel, ModContent.ProjectileType<HealingParticle>(), 0, 0, Projectile.owner, 0, 0);
                         }
                     }
                 }

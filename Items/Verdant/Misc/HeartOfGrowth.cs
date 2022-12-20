@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Projectiles.Misc;
+using Verdant.Projectiles.Particles;
 
 namespace Verdant.Items.Verdant.Misc;
 

@@ -38,7 +38,7 @@ namespace Verdant.NPCs.Enemy.PestControl
             NPC.height = 82;
             NPC.damage = 0;
             NPC.defense = 30;
-            NPC.lifeMax = 300;
+            NPC.lifeMax = 800;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.value = Item.buyPrice(0, 0, 10);
@@ -73,7 +73,9 @@ namespace Verdant.NPCs.Enemy.PestControl
 
         private void PlantedAI()
         {
-            const int MaxThorns = 5;
+            const int MaxThorns = 3;
+
+            _thorns.RemoveAll(x => x < 0 || x > Main.maxNPCs || !Main.npc[x].active);
 
             if (_thorns.Count < MaxThorns)
                 Timer++;
@@ -110,7 +112,7 @@ namespace Verdant.NPCs.Enemy.PestControl
             if (Timer <= 10)
                 NPC.velocity.Y -= 0.4f;
             else if (Timer <= 100)
-                NPC.velocity.Y += 0.4f;
+                NPC.velocity.Y += 0.9f;
 
             bool left = Collision.SolidCollision(NPC.position + new Vector2(0, 28), NPC.width / 2, 10);
             bool middle = Collision.SolidCollision(NPC.position + new Vector2(NPC.width / 3, 28), NPC.width / 3, 10);

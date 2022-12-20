@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Verdant.Drawing;
 
-namespace Verdant.Projectiles.Misc
+namespace Verdant.Projectiles.Particles
 {
     class HealingParticle : ModProjectile, IDrawAdditive
     {
@@ -52,7 +52,7 @@ namespace Verdant.Projectiles.Misc
 
             Texture2D tex = Mod.Assets.Request<Texture2D>("Textures/Circle").Value;
             float rot = Projectile.velocity.ToRotation();
-            Vector2 scale = new Vector2(1 + (Projectile.velocity.Length() * 0.075f), 1) * Projectile.scale;
+            Vector2 scale = new Vector2(1 + Projectile.velocity.Length() * 0.075f, 1) * Projectile.scale;
 
             Main.spriteBatch.Draw(tex, Projectile.Center - Main.screenPosition, null, drawCol * 0.8f, rot, tex.Size() / 2f, scale, SpriteEffects.None, 1f);
         }
