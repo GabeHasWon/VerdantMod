@@ -8,6 +8,7 @@ using Verdant.Effects;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
+using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items;
@@ -37,7 +38,7 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
         Item.placeStyle = 0;
-		Item.createTile = ModContent.TileType<LightbulbVine>();
+		Item.createTile = ModContent.TileType<MudBoulderTile>();
 	}
 
     public override bool? UseItem(Player player)
@@ -51,10 +52,10 @@ public class ProbablyDelete : ModItem
 		//Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
   //      return true;
-        if (!RealtimeGen.HasStructure("Testing"))
-			Spawn(pos);
-		else
-			RealtimeGen.ReplaceStructure("Testing");
+  //      if (!RealtimeGen.HasStructure("Testing"))
+		//	Spawn(pos);
+		//else
+		//	RealtimeGen.ReplaceStructure("Testing");
 		return true;
     }
 

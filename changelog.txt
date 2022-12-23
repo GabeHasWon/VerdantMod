@@ -1,0 +1,6 @@
+NEW CONTENT
+- Added Lush Soil Ball
+- Added Wisplant-Infused Lush Soil Ball
+- Added Thorn Beholder
+- Added Thorn
+- Added various hardmode counterparts to existing Verdant tiles

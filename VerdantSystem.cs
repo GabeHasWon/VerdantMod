@@ -222,7 +222,7 @@ namespace Verdant
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             VerdantTiles = tileCounts[ModContent.TileType<VerdantGrassLeaves>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
-            ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()];
+            ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()] + tileCounts[ModContent.TileType<HardmodeApotheosis>()];
         }
 
         public override void ResetNearbyTileEffects()

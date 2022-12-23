@@ -28,15 +28,25 @@ namespace Verdant.Systems
 
         public void Unload() { }
 
-        public static void Surface(int i, int j, bool checkNPCSpawns, int wallDist) => ModContent.GetInstance<RandomUpdating>().SurfaceRandomUpdate.Invoke(i, j, checkNPCSpawns, wallDist);
-        public static void Underground(int i, int j, bool checkNPCSpawns, int wallDist) => ModContent.GetInstance<RandomUpdating>().UndergroundRandomUpdate.Invoke(i, j, checkNPCSpawns, wallDist);
+        private static void Random(int i, int j, bool checkNPCSpawns, int wallDist, bool surface, Action<int, int> perSuccessAction = null)
+        {
+            List<TileCondition> conditions = TileCondition.GetTileSquare(i, j);
 
-        public static void Auto(int i, int j, bool checkNPCSpawns, int wallDist)
+            if (surface)
+                ModContent.GetInstance<RandomUpdating>().SurfaceRandomUpdate.Invoke(i, j, checkNPCSpawns, wallDist);
+            else
+                ModContent.GetInstance<RandomUpdating>().UndergroundRandomUpdate.Invoke(i, j, checkNPCSpawns, wallDist);
+
+            if (conditions.Any(x => x.DiffersFromTile()))
+                perSuccessAction?.Invoke(i, j);
+        }
+
+        public static void Auto(int i, int j, bool checkNPCSpawns, int wallDist, Action<int, int> perSuccessAction = null)
         {
             if (j < Main.worldSurface - 1)
-                Surface(i, j, checkNPCSpawns, wallDist);
-            else 
-                Underground(i, j, checkNPCSpawns, wallDist);
+                Random(i, j, checkNPCSpawns, wallDist, true, perSuccessAction);
+            else
+                Random(i, j, checkNPCSpawns, wallDist, false, perSuccessAction);
         }
 
         public static void CircularUpdate(int x, int y, int radius, int denominator, Action<int, int> perSuccessAction)
@@ -47,7 +57,7 @@ namespace Verdant.Systems
                 {
                     if (Vector2.DistanceSquared(new Vector2(x, y), new Vector2(i, j)) <= radius * radius && Main.rand.NextBool(denominator))
                     {
-                        List<TileCondition> conditions = GetTileSquare(i, j);
+                        List<TileCondition> conditions = TileCondition.GetTileSquare(i, j);
 
                         Auto(i, j, false, 3);
 
@@ -56,23 +66,6 @@ namespace Verdant.Systems
                     }
                 }
             }
-        }
-
-        private static List<TileCondition> GetTileSquare(int i, int j)
-        {
-            List<TileCondition> conditions = new();
-
-            for (int x = i - 1; x < i + 2; ++x)
-            {
-                for (int y = j - 1; y < j + 2; ++y)
-                {
-                    Tile tile = Main.tile[x, y];
-                    TileCondition condition = new(tile.HasTile, tile.TileType, tile.TileFrameX, tile.TileFrameY, new Point16(x, y));
-                    conditions.Add(condition);
-                }
-            }
-
-            return conditions;
         }
 
         private struct TileCondition
@@ -101,6 +94,24 @@ namespace Verdant.Systems
                 if (isDifferent)
                     return true;
                 return false;
+            }
+
+            public static List<TileCondition> GetTileSquare(int i, int j)
+            {
+                List<TileCondition> conditions = new();
+
+                for (int x = i - 1; x < i + 2; ++x)
+                    for (int y = j - 1; y < j + 2; ++y)
+                        conditions.Add(TileAt(x, y));
+
+                return conditions;
+            }
+
+            public static TileCondition TileAt(int i, int j)
+            {
+                Tile tile = Main.tile[i, j];
+                TileCondition condition = new(tile.HasTile, tile.TileType, tile.TileFrameX, tile.TileFrameY, new Point16(i, j));
+                return condition;
             }
         }
     }
