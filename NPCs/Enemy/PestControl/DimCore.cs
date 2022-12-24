@@ -86,8 +86,8 @@ public class DimCore : ModNPC
 
         public override void SetDefaults()
         {
-            NPC.width = 8;
-            NPC.height = 8;
+            NPC.width = 10;
+            NPC.height = 10;
             NPC.damage = 0;
             NPC.defense = 0;
             NPC.lifeMax = 40;
