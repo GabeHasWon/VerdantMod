@@ -13,13 +13,13 @@ namespace Verdant.Items.Verdant.Tools
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lush Fishing Rod");
-            Tooltip.SetDefault("Gives off light when held");
+            Tooltip.SetDefault("Gives off light when held\nGrows in power in the Verdant");
         }
 
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.FiberglassFishingPole);
-            Item.fishingPole = 26;
+            Item.fishingPole = 25;
             Item.shootSpeed = 13f;
             Item.shoot = ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>();
             Item.value = Item.buyPrice(0, 0, 30, 0);
@@ -29,6 +29,11 @@ namespace Verdant.Items.Verdant.Tools
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Misc.VerdantBobber>()] > 0)
                 Lighting.AddLight(player.position + new Vector2(42 * player.direction, -6), new Vector3(0.1f, 0.03f, 0.06f) * 12);
+
+            if (player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+                Item.fishingPole = 30;
+            else
+                Item.fishingPole = 25;
         }
 
         public override void AddRecipes()

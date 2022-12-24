@@ -231,9 +231,12 @@ namespace Verdant.World
             }
         }
 
+        readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
+        readonly static int[] InvalidWalls = new int[] { WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, WallID.GreenDungeonTileUnsafe,
+                WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe };
+
         private static void PlaceApotheosis()
         {
-            int[] invalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
             Point apothPos = new(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4);
             int side = WorldGen.genRand.NextBool(2) ? -1 : 1;
             bool triedOneSide = false;
@@ -244,7 +247,7 @@ namespace Verdant.World
                 for (int j = 0; j < 18; ++j)
                 {
                     Tile t = Framing.GetTileSafely(apothPos.X + i, apothPos.Y + j);
-                    if (t.HasTile && invalidTypes.Contains(t.TileType))
+                    if (t.HasTile && (InvalidTypes.Contains(t.TileType) || InvalidWalls.Contains(t.WallType))) 
                     {
                         apothPos.X += WorldGen.genRand.Next(20, 27) * side;
                         if (!VerdantArea.Contains(apothPos) && !triedOneSide)
@@ -263,7 +266,11 @@ namespace Verdant.World
         private void AddFlowerStructures()
         {
             Point[] offsets = new Point[3] { new Point(7, -1), new Point(3, 0), new Point(3, 0) }; //ruler in-game is ONE HIGHER on both planes
-            int[] invalids = new int[] { TileID.LihzahrdBrick, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, ModContent.TileType<Apotheosis>() };
+
+            var list = InvalidTypes.ToList();
+            list.Add(ModContent.TileType<Apotheosis>());
+            int[] invalids = list.ToArray();
+
             int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
 
             List<Vector2> positions = new() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
