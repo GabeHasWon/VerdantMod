@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,6 +30,9 @@ internal class SmallThorn : ModNPC, IDrawAdditive
     private ref float Frame => ref NPC.ai[0];
     private ref float Timer => ref NPC.ai[1];
     private ref float BombTimer => ref NPC.ai[2];
+    private ref float OwnedByCore => ref NPC.ai[3];
+
+    private Vector2 _offset = Vector2.Zero;
 
     public override void SetStaticDefaults()
     {
@@ -63,11 +67,13 @@ internal class SmallThorn : ModNPC, IDrawAdditive
         });
     }
 
+    public override void OnSpawn(IEntitySource source) => OwnedByCore = -1;
+
     public override void AI()
     {
         Timer++;
 
-        if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height) && Timer > 20)
+        if ((Collision.SolidCollision(NPC.position, NPC.width, NPC.height) && Timer > 20) || OwnedByCore >= 0)
         {
             NPC.velocity = Vector2.Zero;
             GroundedBehaviour();
@@ -76,6 +82,33 @@ internal class SmallThorn : ModNPC, IDrawAdditive
         {
             NPC.velocity.Y += 0.3f;
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
+        }
+
+        if (OwnedByCore != -1)
+        {
+            NPC core = Main.npc[(int)OwnedByCore];
+
+            if (!core.active)
+            {
+                OwnedByCore = -1;
+                NPC.netUpdate = true;
+            }
+
+            DimCore.OrbiterAI(NPC, core, ref _offset);
+        }
+        else
+        {
+            for (int i = 0; i < Main.maxNPCs; ++i)
+            {
+                NPC npc = Main.npc[i];
+
+                if (npc.active && npc.type == ModContent.NPCType<DimCore>() && npc.DistanceSQ(NPC.Center) < DimCore.Radius * DimCore.Radius)
+                {
+                    _offset = NPC.Center - npc.Center;
+                    OwnedByCore = npc.whoAmI;
+                    break;
+                }
+            }
         }
     }
 
@@ -103,7 +136,7 @@ internal class SmallThorn : ModNPC, IDrawAdditive
             Player plr = Main.player[i];
 
             if (plr.active && !plr.dead && plr.DistanceSQ(NPC.Center) < ExplosionRadiusSquared * 1.2f)
-                plr.Hurt(PlayerDeathReason.ByCustomReason($"{plr.name} couldn't handle the corruption."), Main.DamageVar(120), 0);
+                plr.Hurt(PlayerDeathReason.ByCustomReason($"{plr.name} couldn't handle the corruption."), Main.DamageVar(NPC.damage * 2), 0);
         }
 
         NPC.life = 0;
@@ -125,6 +158,9 @@ internal class SmallThorn : ModNPC, IDrawAdditive
         if (Frame == 0)
             Frame = Main.rand.Next(3) + 1;
     }
+
+    public override void SendExtraAI(BinaryWriter writer) => writer.WriteVector2(_offset);
+    public override void ReceiveExtraAI(BinaryReader reader) => _offset = reader.ReadVector2();
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
