@@ -3,4 +3,14 @@ NEW CONTENT
 - Added Wisplant-Infused Lush Soil Ball
 - Added Thorn Beholder
 - Added Thorn
+- Added Dim Core
+- Added Grim Layer
 - Added various hardmode counterparts to existing Verdant tiles
+- Added Puff Block
+- Added Yellow Sprouts (Yellow Bulb tile)
+- Added Verdant Tree alternate top sprite for hardmode
+
+CHANGES
+- Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
+- Sprite edits for:
+	Yellow Bulb item

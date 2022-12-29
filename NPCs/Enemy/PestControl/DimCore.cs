@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
@@ -7,12 +8,16 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Drawing;
 
 namespace Verdant.NPCs.Enemy.PestControl;
 
-public class DimCore : ModNPC
+public class DimCore : ModNPC, IDrawAdditive
 {
     public const int Radius = 180;
+    public const int TrailLength = 40;
+
+    private static Asset<Texture2D> _GlowTex;
 
     enum CoreState
     {
@@ -31,7 +36,9 @@ public class DimCore : ModNPC
 
         Main.npcFrameCount[NPC.type] = 1;
         NPCID.Sets.TrailingMode[Type] = 2;
-        NPCID.Sets.TrailCacheLength[Type] = 10;
+        NPCID.Sets.TrailCacheLength[Type] = TrailLength;
+
+        _GlowTex = ModContent.Request<Texture2D>(Texture + "Glow");
     }
 
     public override void SetDefaults()
@@ -76,6 +83,7 @@ public class DimCore : ModNPC
         }
 
         NPC.rotation = NPC.velocity.X * 0.08f;
+        Lighting.AddLight(NPC.Center, new Vector3(1, 0.86f, 0.3f));
     }
 
     private void FindThorn()
@@ -103,10 +111,7 @@ public class DimCore : ModNPC
         State = CoreState.Move;
     }
 
-    public override void FindFrame(int frameHeight)
-    {
-        NPC.frameCounter++;
-    }
+    public override void FindFrame(int frameHeight) => NPC.frameCounter++;
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
@@ -118,6 +123,19 @@ public class DimCore : ModNPC
         return false;
     }
 
+    void IDrawAdditive.DrawAdditive(AdditiveLayer layer)
+    {
+        if (layer == AdditiveLayer.BeforePlayer)
+            return;
+
+        Texture2D tex = _GlowTex.Value;
+        float sin = MathF.Sin((float)NPC.frameCounter * 0.01f) * 0.1f;
+        Vector2 scale = new Vector2(sin + 1, -sin + 1);
+
+        Main.spriteBatch.Draw(tex, NPC.Center - Main.screenPosition, null, new Color(145, 119, 55) * 0.55f, NPC.rotation, tex.Size() / 2f, scale * 1.3f, SpriteEffects.None, 0);
+        Main.spriteBatch.Draw(tex, NPC.Center - Main.screenPosition, null, new Color(145, 119, 55) * 0.35f, NPC.rotation, tex.Size() / 2f, scale * 0.9f, SpriteEffects.None, 0);
+    }
+
     public static void OrbiterAI(NPC npc, NPC parent, ref Vector2 _offset)
     {
         if (_offset == Vector2.Zero)
@@ -127,7 +145,7 @@ public class DimCore : ModNPC
         }
 
         float rotSin = MathF.Sin((float)(parent.frameCounter + (npc.whoAmI * 0.8f)) * 0.002f);
-        npc.Center = parent.oldPos[npc.whoAmI % 10] + _offset.RotatedBy(rotSin * 3) + parent.Size / 2f;
+        npc.Center = parent.oldPos[npc.whoAmI % TrailLength] + _offset.RotatedBy(rotSin * 3) + parent.Size / 2f;
         npc.position.Y += MathF.Sin((float)(parent.frameCounter + (npc.whoAmI * 0.8f)) * 0.07f) * 14f;
         npc.rotation = parent.velocity.X * 0.05f;
     }

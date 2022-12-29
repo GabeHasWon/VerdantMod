@@ -400,7 +400,7 @@ namespace Verdant.Tiles.Verdant.Trees
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 198)
             {
-                Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeTops").Value;
+                Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeTops" + (Main.hardMode ? "Hardmode" : "")).Value;
                 int frame = t.TileFrameY / 18;
 
                 TileSwaySystem.DrawTreeSway(i, j, tops, new Rectangle(98 * frame, 0, 96, 108), offset, new Vector2(40, 96));

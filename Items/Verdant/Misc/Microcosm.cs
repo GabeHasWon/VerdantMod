@@ -33,7 +33,7 @@ class Microcosm : ModItem
         ModContent.GetInstance<VerdantSystem>().microcosmUsed = true;
 
         var gen = ModContent.GetInstance<RealtimeGen>();
-        gen.CurrentAction = new(MicroVerdantGen.MicroVerdant(), 12f);
+        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(), 12f));
         return true;
     }
 }

@@ -13,7 +13,7 @@ internal class RealtimeGen : ModSystem
 {
     internal Dictionary<string, (string, Point16)> CapturedStructures = new();
 
-    public RealtimeAction CurrentAction;
+    public readonly List<RealtimeAction> CurrentActions = new();
 
     private int _structureID = 0;
 
@@ -29,10 +29,10 @@ internal class RealtimeGen : ModSystem
 
     public override void PreUpdateEntities()
     {
-        CurrentAction?.Play();
+        foreach (var action in CurrentActions)
+            action?.Play();
 
-        if (CurrentAction is not null && CurrentAction.finished)
-            CurrentAction = null;
+        CurrentActions.RemoveAll(x => x is null || x.finished);
     }
 
     public static bool ReplaceStructure(string name)

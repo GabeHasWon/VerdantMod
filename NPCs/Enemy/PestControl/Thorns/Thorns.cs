@@ -46,7 +46,7 @@ internal class SmallThorn : ModNPC, IDrawAdditive
     {
         NPC.width = (int)Math.Min(Size.X, Size.Y);
         NPC.height = (int)Math.Min(Size.X, Size.Y);
-        NPC.damage = 50;
+        NPC.damage = 30;
         NPC.defense = 30;
         NPC.lifeMax = 70;
         NPC.noGravity = true;
@@ -102,9 +102,10 @@ internal class SmallThorn : ModNPC, IDrawAdditive
             {
                 NPC npc = Main.npc[i];
 
-                if (npc.active && npc.type == ModContent.NPCType<DimCore>() && npc.DistanceSQ(NPC.Center) < DimCore.Radius * DimCore.Radius)
+                if (npc.active && npc.type == ModContent.NPCType<DimCore>() && npc.DistanceSQ(NPC.Center) < DimCore.Radius * DimCore.Radius * (0.9f * 0.9f))
                 {
-                    _offset = NPC.Center - npc.Center;
+                    float rotSin = MathF.Sin((float)(npc.frameCounter + (npc.whoAmI * 0.8f)) * 0.002f);
+                    _offset = (NPC.Center - npc.Center).RotatedBy(rotSin * -3);
                     OwnedByCore = npc.whoAmI;
                     break;
                 }
@@ -201,6 +202,6 @@ internal class BigThorn : SmallThorn
         base.SetDefaults();
 
         NPC.lifeMax = 100;
-        NPC.damage = 80;
+        NPC.damage = 60;
     }
 }

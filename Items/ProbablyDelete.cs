@@ -38,25 +38,25 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
         Item.placeStyle = 0;
-		Item.createTile = ModContent.TileType<MudBoulderTile>();
-	}
+        Item.createTile = ModContent.TileType<YellowSprouts>();
+    }
 
     public override bool? UseItem(Player player)
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-        var pos = Main.MouseWorld.ToTileCoordinates();
+        //var pos = Main.MouseWorld.ToTileCoordinates();
 
-  //      Tile tile = Main.tile[pos];
-		//tile.TileFrameX = 0;
-		//tile.TileFrameY = 0;
-		//Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+        //Tile tile = Main.tile[pos];
+        //tile.TileFrameX = 0;
+        //tile.TileFrameY = 0;
+        //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
-  //      return true;
-  //      if (!RealtimeGen.HasStructure("Testing"))
-		//	Spawn(pos);
-		//else
-		//	RealtimeGen.ReplaceStructure("Testing");
-		return true;
+        //return true;
+        //if (!RealtimeGen.HasStructure("Testing"))
+        //    Spawn(pos);
+        //else
+        //    RealtimeGen.ReplaceStructure("Testing");
+        return true;
     }
 
     private void Spawn(Point pos)
@@ -74,6 +74,6 @@ public class ProbablyDelete : ModItem
 			}
 		}
 		
-		ModContent.GetInstance<RealtimeGen>().CurrentAction = new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing"));
+		ModContent.GetInstance<RealtimeGen>().CurrentActions.Add(new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing")));
 	}
 }

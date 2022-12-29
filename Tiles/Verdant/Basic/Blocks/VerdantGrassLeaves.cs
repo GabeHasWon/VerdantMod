@@ -135,6 +135,15 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 return;
             }
 
+            //yellow sprout
+            if (Main.hardMode && Main.rand.NextBool(30) && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
+            {
+                WorldGen.PlaceTile(i, j - 2, ModContent.TileType<YellowSprouts>(), true, false, -1, Main.rand.Next(3));
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
+                return;
+            }
+
             //decor 1x2
             if (Main.rand.NextBool(7) && TileHelper.ValidTop(self) && Helper.AreaClear(i, j - 2, 1, 2))
             {
