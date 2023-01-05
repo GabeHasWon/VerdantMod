@@ -1,4 +1,1 @@
-- Fixed Apotheosis sometimes spawning in the Lihahzrd Temple
-- Minor cleanup
-- Nerfed the Lush Fishing Rod's fishing power slightly (26 -> 25), increases by 5 when in the Verdant
-- Fixed Magic-Infused Wisplant using the wrong star to be crafted
+- Added music box for Vibrant Horizon
