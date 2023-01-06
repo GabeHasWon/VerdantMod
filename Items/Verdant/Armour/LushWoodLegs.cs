@@ -8,11 +8,7 @@ namespace Verdant.Items.Verdant.Armour
     [AutoloadEquip(EquipType.Legs)]
     public class LushWoodLegs : ModItem
 	{
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Lush Wood Leggings");
-            Tooltip.SetDefault("+1 max minion");
-        }
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Lush Wood Leggings");
 
         public override void SetDefaults()
 		{
@@ -22,8 +18,6 @@ namespace Verdant.Items.Verdant.Armour
 			Item.rare = ItemRarityID.Blue;
 			Item.defense = 1;
         }
-
-		public override void UpdateEquip(Player player) => player.maxMinions++;
 
         public override void AddRecipes()
         {

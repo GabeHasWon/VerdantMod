@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Armour
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lush Wood Chestpiece");
-            Tooltip.SetDefault("+2 flat minion damage\n+1 max minion");
+            Tooltip.SetDefault("+1 flat minion damage");
         }
 
         public override void SetDefaults()
@@ -23,11 +23,7 @@ namespace Verdant.Items.Verdant.Armour
             Item.defense = 2;
         }
 
-        public override void UpdateEquip(Player player)
-        {
-            player.GetDamage(DamageClass.Summon).Flat += 2;
-            player.maxMinions++;
-        }
+        public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 1;
 
         public override void AddRecipes()
         {
