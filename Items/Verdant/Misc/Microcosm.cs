@@ -18,7 +18,7 @@ class Microcosm : ModItem
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Yellow;
-        Item.value = Item.sellPrice(gold: 50);
+        Item.value = Item.buyPrice(gold: 30);
         Item.consumable = true;
         Item.width = 24;
         Item.height = 34;
@@ -26,7 +26,7 @@ class Microcosm : ModItem
         Item.useStyle = ItemUseStyleID.HoldUp;
     }
 
-    public override bool CanUseItem(Player player) => true;//!ModContent.GetInstance<VerdantSystem>().microcosmUsed;
+    public override bool CanUseItem(Player player) => !ModContent.GetInstance<VerdantSystem>().microcosmUsed;
 
     public override bool? UseItem(Player player)
     {
