@@ -25,10 +25,8 @@ class LootPlant : ModTile
         QuickTile.SetMulti(this, 2, 2, DustID.OrangeStainedGlass, SoundID.Grass, true, new Color(232, 167, 74), false, false, false, "Passionflower");
     }
 
-    public override bool CanKillTile(int i, int j, ref bool blockDamaged)
-    {
-        return Main.tile[i, j].TileFrameY >= FrameHeight;
-    }
+    public override bool CanKillTile(int i, int j, ref bool blockDamaged) => Main.tile[i, j].TileFrameY >= FrameHeight;
+    public override bool IsTileSpelunkable(int i, int j) => true;
 
     public override bool RightClick(int i, int j)
     {

@@ -1,6 +1,3 @@
-- Significantly reduced price of Microcosm (2.5 platinum -> 30 gold)
-- Fixed Microcosm being usable more than once per world
-- Severely nerfed Lush Wood Armor
-	Body: +1 (down from 2) flat summoner damage, removed additional max minion
-	Legs: Removed additional max minion
-	Set Bonus: No additional defense, only +1 summon damage
+- Added Hunter Potion support to Folifish
+- Added Spelunker Potion support to Passionflower Bulbs
+- Fixed Dryad not liking the underground biome
