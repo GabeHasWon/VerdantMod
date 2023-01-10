@@ -76,7 +76,7 @@ namespace Verdant.NPCs.Passive
             if (NPC.IsABestiaryIconDummy && NPC.ai[1] == 0)
                 NPC.ai[1] = Main.rand.Next(3) + 1;
 
-            Color col = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor((int)(NPC.position.X / 16), (int)(NPC.position.Y / 16), drawColor);
+            Color col = NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(Lighting.GetColor((int)(NPC.position.X / 16), (int)(NPC.position.Y / 16), drawColor));
             Vector2 pos = NPC.position - screenPos + (NPC.Size / 2) + new Vector2(0, 6);
             SpriteEffects dir = SpriteEffects.None;
             if (NPC.spriteDirection == 1)

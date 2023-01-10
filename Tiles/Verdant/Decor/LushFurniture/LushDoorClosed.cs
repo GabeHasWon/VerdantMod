@@ -22,6 +22,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			TileID.Sets.NotReallySolid[Type] = true;
 			TileID.Sets.DrawsWalls[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
+			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			TileObjectData.newTile.Width = 1;
 			TileObjectData.newTile.Height = 3;
@@ -40,6 +41,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			TileObjectData.newAlternate.Origin = new Point16(0, 2);
 			TileObjectData.addAlternate(0);
 			TileObjectData.addTile(Type);
+
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             ModTranslation name = CreateMapEntryName();
@@ -47,7 +49,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             AddMapEntry(new Color(142, 62, 32), name);
 
             DustType = DustID.t_BorealWood;
-			TileID.Sets.DisableSmartCursor[Type] = true;
 			AdjTiles = new int[] { TileID.ClosedDoor };
 			OpenDoorID = ModContent.TileType<LushDoorOpen>();
 		}
