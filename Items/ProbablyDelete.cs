@@ -9,6 +9,7 @@ using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
 using Verdant.Tiles.Verdant.Basic;
+using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items;
@@ -19,7 +20,7 @@ public class ProbablyDelete : ModItem
 
     public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("eg");
+		DisplayName.SetDefault("Zegg");
 		Tooltip.SetDefault("@ me if you see this");
 	}
 
@@ -36,9 +37,9 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = false;
+		Item.autoReuse = true;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<YellowSprouts>();
+        Item.createTile = ModContent.TileType<ThornTile>();
     }
 
     public override bool? UseItem(Player player)

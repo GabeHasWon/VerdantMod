@@ -2,15 +2,14 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks;
-using Verdant.Items.Verdant.Blocks.Puff;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class PuffBlock : ModTile
+internal class ThornTile : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.PinkStarfish, SoundID.NPCHit11, new Color(255, 112, 202), ModContent.ItemType<PuffBlockItem>(), "", true, false);
+        QuickTile.SetAll(this, 0, DustID.Ash, SoundID.DD2_SkeletonHurt, new Color(68, 62, 50), ModContent.ItemType<LushSoilBlock>(), "", true, false);
         QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>());
     }
 }
