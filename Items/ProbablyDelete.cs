@@ -39,7 +39,7 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = true;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<ThornTile>();
+        Item.createTile = ModContent.TileType<MarigoldTile>();
     }
 
     public override bool? UseItem(Player player)

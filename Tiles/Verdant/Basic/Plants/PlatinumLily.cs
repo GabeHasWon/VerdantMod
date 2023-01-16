@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class Bouncebloom : ModTile, IFlowerTile
+internal class PlatinumLily : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
@@ -22,7 +22,7 @@ internal class Bouncebloom : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
         TileObjectData.newTile.Origin = new Point16(1, 1);
-        TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantStrongVine>() };
+        TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Dirt, TileID.Grass, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantStrongVine>() };
         TileObjectData.newTile.AnchorAlternateTiles = new[] { ModContent.TileType<VerdantStrongVine>() };
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.AlternateTile, 1, 1);
         TileObjectData.addTile(Type);
@@ -35,18 +35,25 @@ internal class Bouncebloom : ModTile, IFlowerTile
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
+    public override void RandomUpdate(int i, int j)
+    {
+        Tile tile = Main.tile[i, j];
+
+        if (tile.TileFrameY == 18 || !Main.rand.NextBool(10))
+            return;
+
+        var vel = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-14, -10));
+        int proj = Projectile.NewProjectile(new EntitySource_TileUpdate(i, j), new Vector2(i, j) * 16, vel, ProjectileID.SilverCoinsFalling, 0, 0, Main.myPlayer);
+
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+    }
+
     public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>());
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
-        Tile t = Framing.GetTileSafely(i, j);
-        Texture2D tile = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Basic/Plants/Bouncebloom").Value;
-        Color col = Lighting.GetColor(i, j);
-
-        int frameY = t.TileFrameY;
-
-        spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j), new Rectangle(t.TileFrameX, frameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
-        return false;
+        return true;
     }
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(24, 16) };

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -111,6 +112,13 @@ namespace Verdant.NPCs.Passive
                 State = 1;
                 Timer = 0;
                 honeyCount++;
+
+                var pos = visitedFlowers.Last();
+
+                if (ModContent.GetModTile(Main.tile[pos].TileType) is not IFlowerTile flower)
+                    return;
+
+                flower.OnPollenate(pos.X, pos.Y);
             }
         }
 

@@ -7,6 +7,7 @@ namespace Verdant.Tiles.TileEntities
 {
     internal abstract class DrawableTE : ModTileEntity
     {
+        /// <summary>Acts as the "hitbox" for if the entity is on-screen.</summary>
         protected virtual Point Size => Point.Zero;
 
         protected Vector2 World => Position.ToWorldCoordinates();
