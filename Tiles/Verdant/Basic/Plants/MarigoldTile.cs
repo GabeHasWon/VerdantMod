@@ -30,7 +30,7 @@ class MarigoldTile : ModTile, IFlowerTile
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
         Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, new Vector2(32, 32), ModContent.ItemType<Items.Verdant.Blocks.TileEntity.MarigoldItem>(), 1);
-        ModContent.GetInstance<MarigoldTE>().Kill(i, j); TileID.Gemspar
+        ModContent.GetInstance<MarigoldTE>().Kill(i, j); 
     }
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 13) };
@@ -39,7 +39,7 @@ class MarigoldTile : ModTile, IFlowerTile
 
     public bool OnPollenate(int i, int j)
     {
-        (TileEntity.ByPosition[new Point16(i, j)] as MarigoldTE).coinTimes.Add(30);
+        (TileEntity.ByPosition[new Point16(i, j)] as MarigoldTE).coinTimes.Add(MarigoldTE.CoinTimeMax);
         return true;
     }
 }
