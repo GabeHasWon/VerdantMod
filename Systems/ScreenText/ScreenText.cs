@@ -85,7 +85,6 @@ namespace Verdant.Systems.ScreenText
             Color col = color;
             Color speakerCol = speakerColor;
 
-
             Vector2 size = font.Value.MeasureString(showText);
 
             switch (alignment)
