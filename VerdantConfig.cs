@@ -9,30 +9,30 @@ namespace Verdant
     //    public override ConfigScope Mode => ConfigScope.ServerSide;
     //}
 
-    [Label("Verdant Client Configuration")]
+    [Label("$Mods.Verdant.Configs.HeadLabel")]
     public class VerdantClientConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         [DefaultValue(true)]
-        [Label("Enable Steam Effect")]
-        [Tooltip("Enables steam overlay when inside of the underground Verdant.")]
+        [Label("$Mods.Verdant.Configs.EnableSteamEffectLabel")]
+        [Tooltip("$Mods.Verdant.Configs.EnableSteamEffectTooltip")]
         public bool EnableSteam;
 
         [DefaultValue(true)]
-        [Label("Enable Foreground/Background Objects")]
-        [Tooltip("Enables decoration objects appearing in the surface background or foreground everywhere.")]
+        [Label("$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsLabel")]
+        [Tooltip("$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsTooltip")]
         public bool BackgroundObjects;
 
         [DefaultValue(true)]
-        [Label("Enable Custom Waterfalls")]
-        [Tooltip("Enables waterfalls appearing from tiles, such as the Weeping Bud.")]
+        [Label("$Mods.Verdant.Configs.EnableCustomWaterfallsLabel")]
+        [Tooltip("$Mods.Verdant.Configs.EnableCustomWaterfallsTooltip")]
         [ReloadRequired]
         public bool Waterfalls;
 
         [DefaultValue(true)]
-        [Label("Custom Dialogue System")]
-        [Tooltip("Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.")]
+        [Label("$Mods.Verdant.Configs.CustomDialogueSystemLabel")]
+        [Tooltip("$Mods.Verdant.Configs.CustomDialogueSystemTooltip")]
         public bool CustomDialogue;
     }
 }
