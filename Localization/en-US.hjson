@@ -1,5 +1,16 @@
 ﻿Mods: {
 	Verdant: {
+		Configs : {
+			HeadLabel : Verdant Client Configuration
+			EnableSteamEffectLabel : Enable Steam Effect
+			EnableSteamEffectTooltip : Enables steam overlay when inside of the underground Verdant.
+			EnableForeOrBackgroundObjectsLabel : Enable Foreground/Background Objects
+			EnableForeOrBackgroundObjectsTooltip : Enables decoration objects appearing in the surface background or foreground everywhere.
+			EnableCustomWaterfallsLabel : Enable Custom Waterfalls
+			EnableCustomWaterfallsTooltip : Enables waterfalls appearing from tiles, such as the Weeping Bud.
+			CustomDialogueSystemLabel : Custom Dialogue System
+			CustomDialogueSystemTooltip : Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.
+		}
 		MapObject: {
 			VerdantPylon: Verdant Pylon
 		}
