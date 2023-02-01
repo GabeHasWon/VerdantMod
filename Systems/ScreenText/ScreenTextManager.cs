@@ -16,7 +16,7 @@ namespace Verdant.Systems.ScreenText
         {
             if (CurrentText != null && !Main.gameMenu && !Main.mapFullscreen)
             {
-                CurrentText.Update();
+                CurrentText.Update(Main.gameTimeCache);
 
                 if (!CurrentText.active)
                     CurrentText = CurrentText.Next;

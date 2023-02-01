@@ -35,7 +35,7 @@ namespace Verdant.Systems.ScreenText
         public Alignment alignment = Alignment.Center;
         public DrawEffect effect = DrawEffect.None;
         public IScreenTextAnimation anim = new DefaultAnimation();
-        public int timeLeft = 0;
+        public float timeLeft = 0;
         public bool final = false;
         public Color color = Color.White;
         public Color speakerColor = Color.White;
@@ -46,7 +46,7 @@ namespace Verdant.Systems.ScreenText
 
         private Action<ScreenText> _onFinish = null;
 
-        public ScreenText(string text, int timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
+        public ScreenText(string text, float timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
         {
             this.text = text;
             this.scale = scale;
@@ -59,9 +59,9 @@ namespace Verdant.Systems.ScreenText
             AutomaticallyDie = dieAutomatically;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            timeLeft--;
+            timeLeft -= gameTime.ElapsedGameTime.Milliseconds / 16f;
 
             if (AutomaticallyDie && timeLeft <= 0 && Main.mouseRight)
             {
