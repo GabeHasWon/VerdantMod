@@ -21,6 +21,9 @@ GabeHasWon - Literally everything except The Plant & some music
 Helton Yan - Music
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
+--Contributors--
+gentleMar - Localization patch
+
 --Beta Testers / Feedback --
 
 Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
