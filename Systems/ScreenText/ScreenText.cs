@@ -48,7 +48,7 @@ namespace Verdant.Systems.ScreenText
 
         public ScreenText(string text, float timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
         {
-            this.text = text;
+            this.text = VerdantLocalization.ScreenTextLocalization(text);
             this.scale = scale;
             this.alignment = alignment;
             this.effect = effect;
