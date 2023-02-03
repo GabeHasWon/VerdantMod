@@ -11,8 +11,96 @@
 			CustomDialogueSystemLabel : Custom Dialogue System
 			CustomDialogueSystemTooltip : Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.
 		}
+
 		MapObject: {
 			VerdantPylon: Verdant Pylon
+		}
+
+		ScreenText: {
+			Apotheosis: {
+				Intro: {
+					0: Hello, traveller.
+					1: It's been a long time since I've seen a new face.
+					2: Call me the Apotheosis.
+					3: Find us at the center of our verdant plants,
+					4: and we might have some gifts to help you along.
+					5: Farewell, for now.
+				}
+
+				Greeting: {
+					0: Remember to breathe,
+					1: keep the plants thriving,
+					2: and return to me once you've slain the great eye.
+					3: May we find each other in good spirits soon.
+				}
+
+				Idle: {
+					Normal: {
+						0: I'm particularly proud of those bouncy sprouts.
+						1: We seek to harbor arbour; has it worked?
+						2: Where's my quill - hm?
+						3: '''"I", "we"; it's all the same.'''
+						4: I've nothing more to add.
+						5: Go out and smell the flowers.
+						6: Run along, now.
+					}
+
+					EvilBoss: {
+						0: May grace befall you.
+						1: The {0} is no more.
+						2: A presence lifted from the infestation...
+					}
+
+					Thoughts: {
+						0: ...where nature is most plain and pure...
+						1: Hmm...what to do...
+						2: ...pest control...
+						3: Ah, memories...
+					}
+
+					EoC: Finally, the eye is felled.
+
+					Skeletron: {
+						0: That skeleton was...a confusing one.
+						1: The poor man's freedom is obtained...
+					}
+
+					MiscBosses: {
+						KingSlime: Ah, the King of Slimes has been slain, wonderful...
+						QueenBee: Hopefully you're having a nice time with our bees.
+						Scarabeus: The desert sands feel calmer now.
+						MJW: Ah, I remember those glowing jellyfish nights...
+						VinewrathBane: The flowers feel more relaxed now. Thank you.
+						AncientAvian: The skies are more at peace now, well done.
+						StarplateRaider: We were curious about that glowing mech, but alas...
+					}
+				}
+
+				Downed: {
+					EoC: {
+						0: The eye is felled. Thank you.
+						1: Take this trinket. Return to me once you've beaten the {0}.
+					}
+
+					Evil: {
+						0: Our gratitude for defeating the {0}...
+						1: Our penultimate request; fell the great skeleton near the dungeon. Anyhow -
+						2: - here's some of my old gear...with some changes.
+					}
+
+					Skeletron: {
+						0: The dungeon's souls are...partially freed.
+						1: You're deserving - take these. Our favourites.
+					}
+
+					WoF: {
+						0: A powerful spirit has been released...
+						1: With us...more free, you'll begin to see a couple changes -
+						2: - though, it may take a while. Anyhow, #You might've already noticed a couple. Anyhow,
+						3: as thanks, take this. I...don't need it anymore.
+					}
+				}
+			}
 		}
 	}
 }

@@ -1,3 +1,5 @@
-- Added Hunter Potion support to Folifish
-- Added Spelunker Potion support to Passionflower Bulbs
-- Fixed Dryad not liking the underground biome
+- Added a lot of localization to Apotheosis dialogue (by me) and the mod's configuration (by gentleMar)
+	Thanks to gentleMar for their contribution! Helps a lot
+- Added various additional dialogue lines to the Apotheosis
+- Minor changes and additions to dialogue
+- Updated description

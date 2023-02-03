@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Verdant.Effects;
@@ -28,28 +29,26 @@ namespace Verdant.Systems.ScreenText.Caches
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendData(MessageID.WorldData);
 
+            static string Key(int index) => "$Mods.Verdant.ScreenText.Apotheosis.Intro." + index;
+
             if (!UseCustomSystem)
             {
-                Chat("Hello, traveller.", false);
-                Chat("It's been a long time since I've seen a new face.", false);
-                Chat("Call me the Apotheosis.", false);
-                Chat("Find us at the center of our verdant plants,");
-                Chat("and we might have some gifts to help you along.");
-                Chat("Farewell, for now.");
+                for (int i = 0; i < 6; ++i)
+                    Chat(Key(i), i > 2);
 
                 return null;
             }
 
-            return new ScreenText("Hello, traveller.", 100) 
+            return new ScreenText(Key(0), 100) 
             { 
                 shader = ModContent.Request<Effect>(EffectIDs.TextWobble), 
                 color = Color.White * 0.6f, 
                 shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30) 
-            }.With(new ScreenText("It's been a long time since I've seen a new face.", 200, 0.8f), false).
-                With(new ScreenText("Call me the Apotheosis.", 80, 1f), false).
-                With(new ScreenText("Find us at the center of our verdant plants,", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime * 0.6f }, false).
-                With(new ScreenText("and we might have some gifts to help you along.", 160, 0.8f)).
-                FinishWith(new ScreenText("Farewell, for now.", 140, anim: new FadeAnimation(), dieAutomatically: false));
+            }.With(new ScreenText(Key(1), 200, 0.8f), false).
+                With(new ScreenText(Key(2), 80, 1f), false).
+                With(new ScreenText(Key(3), 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime * 0.6f }, false).
+                With(new ScreenText(Key(4), 160, 0.8f)).
+                FinishWith(new ScreenText(Key(5), 140, anim: new FadeAnimation(), dieAutomatically: false));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Greeting")]
@@ -63,23 +62,23 @@ namespace Verdant.Systems.ScreenText.Caches
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendData(MessageID.WorldData);
 
+            static string Key(int index) => "$Mods.Verdant.ScreenText.Apotheosis.Greeting." + index;
+
             if (!UseCustomSystem)
             {
-                Chat("Remember to breathe,");
-                Chat("keep the plants thriving,");
-                Chat("and return to me once you've slain the great eye.");
-                Chat("May we find each other in good spirits soon.");
+                for (int i = 0; i < 4; ++i)
+                    Chat(Key(i));
 
                 return null;
             }
 
-            return new ScreenText("Remember to breathe,", 100, 0.9f)
+            return new ScreenText(Key(0), 100, 0.9f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime
-            }.With(new ScreenText("keep the plants thriving,", 60, 0.8f)).
-                With(new ScreenText("and return to me once you've slain the great eye.", 140, 0.8f)).
-                FinishWith(new ScreenText("May we find each other in good spirits soon.", 100, 0.9f));
+            }.With(new ScreenText(Key(1), 60, 0.8f)).
+                With(new ScreenText(Key(2), 140, 0.8f)).
+                FinishWith(new ScreenText(Key(3), 100, 0.9f));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Idle")]
@@ -88,44 +87,20 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer) //Can't actually happen atm, but good to double check
                 return null;
 
-            List<string> randomLines = new()
-            {
-                "I'm particularly proud of those bouncy sprouts.",
-                "We seek to harbor arbour; has it worked?",
-                "Where's my quill - hm?",
-                "\"I\", \"we\"; it's all the same.",
-                "I've nothing more to add.",
-                "Go out and smell the flowers.",
-                "Run along, now."
-            };
-
             List<string> evilBossLines = new()
             {
-                "May grace befall you.",
-                $"The {(WorldGen.crimson ? "brain" : "worm")} is no more.",
-                "A presence lifted from the infestation..."
+                "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.0",
+                Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.1", WorldGen.crimson ? "brain" : "worm"),
+                "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.2",
             };
 
-            List<string> randomThoughts = new()
-            {
-                "...where nature is most plain and pure...",
-                "Hmm...what to do...",
-                "...pest control...", //shoutout to To The Grave, good band
-            };
-
-            List<string> skeleLines = new()
-            {
-                "That skeleton was...a confusing one.",
-                "The poor man's freedom is obtained..."
-            };
-
-            ScreenText randomDialogue = new(Main.rand.Next(randomLines), 120, 0.8f)
+            ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(7), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime
             };
 
-            ScreenText randomThoughtDialogue = new(Main.rand.Next(randomThoughts), 120, 0.8f)
+            ScreenText randomThoughtDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Thoughts." + Main.rand.Next(4), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime * 0.45f,
@@ -134,7 +109,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 shaderParams = new ScreenTextEffectParameters(0.01f, 0.01f, 30)
             };
 
-            ScreenText eocDialogue = new("Finally, the eye is felled.", 120, 0.8f)
+            ScreenText eocDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.EoC", 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
@@ -146,7 +121,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 speakerColor = Color.Lime,
             };
 
-            ScreenText skeleDialogue = new(Main.rand.Next(skeleLines), 120, 0.8f)
+            ScreenText skeleDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Skeletron." + Main.rand.Next(2), 120, 0.8f)
             {
                 speaker = "Apotheosis",
                 speakerColor = Color.Lime,
@@ -179,30 +154,32 @@ namespace Verdant.Systems.ScreenText.Caches
 
         private static void AddAdditionalIdleDialogue(WeightedRandom<ScreenText> texts)
         {
+            const string Key = "$Mods.Verdant.ScreenText.Apotheosis.Idle.MiscBosses.";
+
             List<string> miscBossLines = new();
 
             if (NPC.downedSlimeKing)
-                miscBossLines.Add("Ah, the King of Slimes has been slain, wonderful...");
+                miscBossLines.Add(Key + "KingSlime");
 
             if (NPC.downedQueenBee)
-                miscBossLines.Add("Hopefully you're having a nice time with our bees.");
+                miscBossLines.Add(Key + "QueenBee");
 
             if (ModLoader.TryGetMod("SpiritMod", out Mod spiritMod)) //shoutout to spirit mod developer GabeHasWon!! he helped a lot with this project
             {
                 if ((bool)spiritMod.Call("downed", "Scarabeus"))
-                    miscBossLines.Add("The desert sands feel calmer now.");
+                    miscBossLines.Add(Key + "Scarabeus");
 
                 if ((bool)spiritMod.Call("downed", "Moon Jelly Wizard"))
-                    miscBossLines.Add("Ah, I love the critters of the glowing sky.\nIt seems you've met some as well.");
+                    miscBossLines.Add(Key + "MJW");
 
                 if ((bool)spiritMod.Call("downed", "Vinewrath Bane"))
-                    miscBossLines.Add("The flowers feel more relaxed now. Thank you.");
+                    miscBossLines.Add(Key + "VinewrathBane");
 
                 if ((bool)spiritMod.Call("downed", "Ancient Avian"))
-                    miscBossLines.Add("The skies are more at peace now, well done.");
+                    miscBossLines.Add(Key + "AncientAvian");
 
                 if ((bool)spiritMod.Call("downed", "Starplate Raider"))
-                    miscBossLines.Add("We were curious about that glowing mech, but alas...");
+                    miscBossLines.Add(Key + "StarplateRaider");
             }
 
             if (miscBossLines.Count > 0)
@@ -213,7 +190,7 @@ namespace Verdant.Systems.ScreenText.Caches
                     speakerColor = Color.Lime,
                 };
 
-                texts.Add(miscBossDialogue, 0.3f);
+                texts.Add(miscBossDialogue, 0.3f + (miscBossLines.Count * 0.05f));
             }
         }
 
@@ -227,15 +204,15 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat("The eye is felled. Thank you.");
-                Chat($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.");
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.0");
+                Chat(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.1", WorldGen.crimson ? "brain" : "worm"));
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
                 return null;
             }
 
-            return new ScreenText("The eye is felled. Thank you.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
-                FinishWith(new ScreenText($"Take this trinket. Return to me once you've beaten the {(WorldGen.crimson ? "brain" : "eater")}.", 180, 0.7f), (self) =>
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.0", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                FinishWith(new ScreenText(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.1", WorldGen.crimson ? "brain" : "worm"), 180, 0.7f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
                 });
@@ -251,17 +228,20 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...");
-                Chat("Our penultimate request; fell the great skeleton near the dungeon. Anyhow -");
-                Chat("- here's some of my old gear...with some changes.");
+                Chat(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.0", WorldGen.crimson ? "Brain" : "Eater"));
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.1");
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.2");
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInABoot>(), 1);
                 return null;
             }
 
-            return new ScreenText($"Our gratitude for defeating the {(WorldGen.crimson ? "Brain" : "Eater")}...", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
-                With(new ScreenText("Our penultimate request; fell the great skeleton near the dungeon. Anyhow -", 160, 0.7f)).
-                FinishWith(new ScreenText("- here's some of my old gear...with some changes.", 100, 0.8f), (self) =>
+            return new ScreenText(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.0", WorldGen.crimson ? "Brain" : "Eater"), 120, 0.8f) 
+            { 
+                speaker = "Apotheosis", speakerColor = Color.Lime 
+            }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.1", 160, 0.7f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Evil.2", 100, 0.8f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInABoot>(), 1);
                 });
@@ -277,15 +257,15 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat("The dungeon's souls are...partially freed.");
-                Chat("You're deserving - take these. Our favourites.");
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.0");
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.1");
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
                 return null;
             }
 
-            return new ScreenText("The dungeon's souls are...partially freed.", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
-                FinishWith(new ScreenText("You're deserving - take these. Our favourites.", 60, 0.9f), (self) =>
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.0", 120, 0.8f) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.1", 100, 0.9f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
                 });
@@ -301,15 +281,17 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat("A powerful spirit has been released...");
-                Chat("Take this. I...don't need it anymore.");
+                for (int i = 0; i < 4; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF." + i);
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
                 return null;
             }
 
-            return new ScreenText("A powerful spirit has been released...", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
-                FinishWith(new ScreenText("Take this. I...don't need it anymore.", 60), (self) =>
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.0", 120) { speaker = "Apotheosis", speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.1", 120, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.2", 120, 0.9f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.3", 60, 0.9f), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
                 });
@@ -318,10 +300,11 @@ namespace Verdant.Systems.ScreenText.Caches
         private static void Chat(string text, bool useName = true)
         {
             string useText = "[c/32cd32:The Apotheosis:] " + text;
+
             if (!useName)
                 useText = text;
 
-            Main.NewText(useText, Color.White);
+            Main.NewText(VerdantLocalization.ScreenTextLocalization(useText), Color.White);
         }
     }
 }

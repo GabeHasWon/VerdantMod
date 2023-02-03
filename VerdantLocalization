@@ -1,8 +1,0 @@
-namespace Verdant {
-    public class VerdantLocalization {
-        /// <summary>Allow you to use hook to change dialogues and other scree text added by Verdant easily.</summary>
-        public static string ScreenTextLocalization(string text) {
-            return text;
-        }
-    }
-}
