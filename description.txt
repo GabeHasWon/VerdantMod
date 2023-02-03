@@ -3,8 +3,8 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 98 new items
-    - 76 new tiles
+    - 115 new items
+    - 86 new tiles
     - 12 new walls
     - 9 new NPCs
     - 4 brand new music tracks
@@ -22,7 +22,7 @@ Helton Yan - Music
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Contributors--
-gentleMar - Localization patch
+gentleMar - Localization commit
 
 --Beta Testers / Feedback --
 

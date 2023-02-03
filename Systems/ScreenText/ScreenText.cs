@@ -46,6 +46,14 @@ namespace Verdant.Systems.ScreenText
 
         private Action<ScreenText> _onFinish = null;
 
+        /// <summary>Create a new ScreenText with the given parameters.</summary>
+        /// <param name="text">If <paramref name="useTranslationKey"/> is false, the text to use. If not, the key to use to get the text.</param>
+        /// <param name="timeLeft">How long the text takes to tick.</param>
+        /// <param name="scale">Size of the text.</param>
+        /// <param name="alignment">Right, left or center alignment. Center is the only implemented function at this moment.</param>
+        /// <param name="effect">I don't remember lol</param>
+        /// <param name="anim">Animation (such as fadeout) to use.</param>
+        /// <param name="dieAutomatically">Whether this ScreenText stops showing up by itself or not.</param>
         public ScreenText(string text, float timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
         {
             this.text = VerdantLocalization.ScreenTextLocalization(text);
@@ -82,7 +90,6 @@ namespace Verdant.Systems.ScreenText
             var font = FontAssets.DeathText;
             float xOffset = 0;
             float drawScale = scale;
-            Color col = color;
             Color speakerCol = speakerColor;
 
             Vector2 size = font.Value.MeasureString(showText);
@@ -101,6 +108,7 @@ namespace Verdant.Systems.ScreenText
             }
 
             Vector2 pos = new(Main.screenWidth / 2f + xOffset, Main.screenHeight * 0.1f);
+            Color col = color;
 
             anim.ModifyDraw(realFactor, this, ref pos, ref col, ref speakerCol, ref drawScale);
 
