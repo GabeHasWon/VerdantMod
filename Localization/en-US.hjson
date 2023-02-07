@@ -18,6 +18,9 @@
 
 		ScreenText: {
 			Apotheosis: {
+				EoWName: Eater
+				BoCName: Brain
+
 				Intro: {
 					0: Hello, traveller.
 					1: It's been a long time since I've seen a new face.
@@ -84,8 +87,8 @@
 
 					Evil: {
 						0: Our gratitude for defeating the {0}...
-						1: Our penultimate request; fell the great skeleton near the dungeon. Anyhow -
-						2: - here's some of my old gear...with some changes.
+						1: Our penultimate request; fell the great skeleton near the dungeon.
+						2: Here's some of my old gear...with some changes.
 					}
 
 					Skeletron: {
@@ -102,5 +105,8 @@
 				}
 			}
 		}
+
+		ApotheosisName: Apotheosis
+		ApotheosisFullName: The Apotheosis
 	}
 }
