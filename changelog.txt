@@ -1,5 +1,5 @@
-- Added a lot of localization to Apotheosis dialogue (by me) and the mod's configuration (by gentleMar)
-	Thanks to gentleMar for their contribution! Helps a lot
-- Added various additional dialogue lines to the Apotheosis
-- Minor changes and additions to dialogue
-- Updated description
+- Added Apotheosis name localization
+- Fixed Chat dialogue system using bad keys
+- Adjustments to transparency in Apotheosis's subtle texts
+- Fixed Apotheosis giving the EoC down dialogue multiple times
+- Fixed Microcosm being usable both multiple times and being purchaseable multiple times

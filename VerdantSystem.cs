@@ -49,7 +49,7 @@ namespace Verdant
                 apotheosisStats.Add("intro");
             if (apotheosisGreeting)
                 apotheosisStats.Add("indexFin");
-            if (apotheosisEvilDown)
+            if (apotheosisEyeDown)
                 apotheosisStats.Add("eocDown");
             if (apotheosisEvilDown)
                 apotheosisStats.Add("evilDown");
@@ -57,7 +57,7 @@ namespace Verdant
                 apotheosisStats.Add("skelDown");
             if (apotheosisWallDown)
                 apotheosisStats.Add("wallDown");
-            if (apotheosisWallDown)
+            if (microcosmUsed)
                 apotheosisStats.Add("microcosm");
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
@@ -200,16 +200,17 @@ namespace Verdant
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Jungle Temple"));
+            int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals(ModLoader.TryGetMod("Remnants", out Mod _) ? "Jungle Pyramid" : "Jungle Temple"));
             VerdantGenSystem genSystem = ModContent.GetInstance<VerdantGenSystem>();
 
             if (tasks.Count > 0)
                 tasks.Insert(1, new PassLegacy("Noise Seed", (GenerationProgress p, GameConfiguration config) => { genNoise = new FastNoise(WorldGen._genRandSeed); }));
 
             if (VerdantIndex != -1)
+            {
                 tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration)); //Verdant biome gen
-
-            tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
+                tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
+            }
 
             apotheosisIntro = false;
             apotheosisGreeting = false;
@@ -217,6 +218,7 @@ namespace Verdant
             apotheosisSkelDown = false;
             apotheosisWallDown = false;
             apotheosisEyeDown = false;
+            microcosmUsed = false;
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
