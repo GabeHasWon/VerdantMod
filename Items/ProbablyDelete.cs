@@ -11,6 +11,7 @@ using Verdant.Systems.RealtimeGeneration.Old;
 using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.Items;
 
@@ -39,7 +40,7 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = true;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<MarigoldTile>();
+        Item.createTile = ModContent.TileType<SnailStatue>();
     }
 
     public override bool? UseItem(Player player)
