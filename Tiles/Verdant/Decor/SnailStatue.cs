@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameInput;
+using Terraria.Localization;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -26,22 +27,18 @@ internal class SnailStatue : ModTile
 			if (tile.TileFrameY != 90 || (tile.TileFrameX != 18 && tile.TileFrameX != 36))
 				return;
 
-			string[] array = Utils.WordwrapString(SnailText, FontAssets.MouseText.Value, 460, 10, out int lineAmount);
+			string[] lines = Utils.WordwrapString(SnailText(), FontAssets.MouseText.Value, 460, 10, out int lineAmount);
 			lineAmount++;
 
 			Main.spriteBatch.End();
 			Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
-
 			PlayerInput.SetZoom_UI();
-
-			//PlayerInput.SetZoom_UI();
-			//PlayerInput.SetZoom_Test();
 
 			float textWidth = 0f;
 
 			for (int l = 0; l < lineAmount; l++)
 			{
-				float x = FontAssets.MouseText.Value.MeasureString(array[l]).X;
+				float x = FontAssets.MouseText.Value.MeasureString(lines[l]).X;
 
 				if (textWidth < x)
 					textWidth = x;
@@ -71,19 +68,26 @@ internal class SnailStatue : ModTile
 			}
 
 			for (int m = 0; m < lineAmount; m++)
-				Utils.DrawBorderStringFourWay(Main.spriteBatch, FontAssets.MouseText.Value, array[m], position.X, position.Y + (m * 30), color, Color.Black, Vector2.Zero);
+				Utils.DrawBorderStringFourWay(Main.spriteBatch, FontAssets.MouseText.Value, lines[m], position.X, position.Y + (m * 30), color, Color.Black, Vector2.Zero);
 			
 			Main.mouseText = true;
 		}
 	}
 
     public override void SetStaticDefaults() => QuickTile.SetMulti(this, 4, 6, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Snail Statue");
-    public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
-    public override bool CanExplode(int i, int j) => false;
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
-	public string SnailText()
+	public static string SnailText()
     {
-		return "Statue of a Snail";
+		string key = "Prehardmode";
+
+		if (NPC.downedGolemBoss || NPC.downedTowers || NPC.downedAncientCultist)
+			key = "Endgame";
+		else if (Main.hardMode)
+			key = "Hardmode";
+		else if (NPC.downedBoss2 || NPC.downedBoss3)
+			key = "LatePrehardmode";
+
+		return Language.GetTextValue("Mods.Verdant.SnailDialogue." + key + "." + (int)(Main.ActivePlayerFileData.GetPlayTime().TotalMinutes * 0.25f) % 3);
     }
 }

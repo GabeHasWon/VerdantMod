@@ -108,5 +108,31 @@
 
 		ApotheosisName: Apotheosis
 		ApotheosisFullName: The Apotheosis
+
+		SnailDialogue: {
+			Prehardmode: {
+				0: Statue of a Snail
+				1: Snail Statue
+				2: Valiant Snail
+			}
+
+			LatePrehardmode: {
+				0: Elder Snail
+				1: A Lost Snail
+				2: Statue of a Friend
+			}
+
+			Hardmode: {
+				0: Lost Pet
+				1: Past Memory
+				2: Reminder
+			}
+
+			Endgame: {
+				0: Forever Friend
+				1: Our Memory
+				2: 'Orwell'
+			}
+		}
 	}
 }
