@@ -2,11 +2,12 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameInput;
 using Terraria.Localization;
+using Terraria.DataStructures;
+using Verdant.Items.Verdant.Blocks;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -76,6 +77,7 @@ internal class SnailStatue : ModTile
 
     public override void SetStaticDefaults() => QuickTile.SetMulti(this, 4, 6, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Snail Statue");
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+	public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), (i + 2) * 16, (j + 3) * 16, 16, 48, ModContent.ItemType<SnailStatueItem>());
 
 	public static string SnailText()
     {

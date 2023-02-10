@@ -40,25 +40,28 @@ namespace Verdant
         public bool apotheosisEvilDown = false;
         public bool apotheosisSkelDown = false;
         public bool apotheosisWallDown = false;
+        public bool apotheosisPestControlNotif = false;
+
         public bool microcosmUsed = false;
 
         public override void SaveWorldData(TagCompound tag)
         {
             var apotheosisStats = new List<string>();
-            if (apotheosisIntro)
-                apotheosisStats.Add("intro");
-            if (apotheosisGreeting)
-                apotheosisStats.Add("indexFin");
-            if (apotheosisEyeDown)
-                apotheosisStats.Add("eocDown");
-            if (apotheosisEvilDown)
-                apotheosisStats.Add("evilDown");
-            if (apotheosisSkelDown)
-                apotheosisStats.Add("skelDown");
-            if (apotheosisWallDown)
-                apotheosisStats.Add("wallDown");
-            if (microcosmUsed)
-                apotheosisStats.Add("microcosm");
+
+            void AddIfTrue(bool condition, string name)
+            {
+                if (condition)
+                    apotheosisStats.Add(name);
+            }
+
+            AddIfTrue(apotheosisIntro, "intro");
+            AddIfTrue(apotheosisGreeting, "indexFin");
+            AddIfTrue(apotheosisEyeDown, "eocDown");
+            AddIfTrue(apotheosisEvilDown, "evilDown");
+            AddIfTrue(apotheosisSkelDown, "skelDown");
+            AddIfTrue(apotheosisWallDown, "wallDown");
+            AddIfTrue(microcosmUsed, "microcosm");
+            AddIfTrue(apotheosisPestControlNotif, "pestControlNotif");
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
@@ -69,6 +72,9 @@ namespace Verdant
 
             SaveVines(tag);
             SaveClouds(tag);
+
+            if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is not null)
+                tag.Add("apotheosisLocation", ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value);
         }
 
         private void SaveClouds(TagCompound tag)
@@ -140,6 +146,9 @@ namespace Verdant
                 foreach (var item in puffs)
                     ForegroundManager.AddItem(new CloudbloomEntity(item, true), true, true);
             }
+
+            if (tag.ContainsKey("apotheosisLocation"))
+                ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = tag.Get<Point>("apotheosisLocation");
         }
 
         private static void SpawnPermVines(IList<Vector2> positions)

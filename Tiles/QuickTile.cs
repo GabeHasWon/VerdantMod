@@ -74,7 +74,6 @@ namespace Verdant.Tiles
             Main.tileSolidTop[t.Type] = topSolid;
             Main.tileSolid[t.Type] = solid;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Width = w;
             TileObjectData.newTile.Height = h;
             TileObjectData.newTile.CoordinateHeights = new int[h];

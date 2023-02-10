@@ -33,6 +33,8 @@ namespace Verdant.World
 
         private readonly List<GenCircle> VerdantCircles = new();
 
+        internal Point? apotheosisLocation = null;
+
         public void VerdantGeneration(GenerationProgress p, GameConfiguration config)
         {
             p.Message = "Growing plants...";

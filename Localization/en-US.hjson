@@ -98,10 +98,35 @@
 
 					WoF: {
 						0: A powerful spirit has been released...
-						1: With us...more free, you'll begin to see a couple changes -
-						2: - though, it may take a while. Anyhow, #You might've already noticed a couple. Anyhow,
+						1: With us...more free, you'll begin to see a couple changes.
+						2: You might've already noticed a couple. Anyhow,
 						3: as thanks, take this. I...don't need it anymore.
 					}
+				}
+
+				PestControlNotif: {
+					0: With the wall defeated,
+					1: we are free to purify.
+					2: You've certainly noticed the corruption of this world, hm?
+					3: There's...an agreement we can come to.
+					4: This corruption is a ghost over a body;
+					5: and we can help purify the body and push back the ghost.
+					6: Simply give us, ah, this...effigy.
+					7: Be prepared, be well, and I send you luck.
+				}
+
+				PestControlWarning: {
+					0: Are you sure you wish to start?
+					1: This is no simple matter.
+					2: Leave if you need to prepare;
+					3: we shall be here.
+				}
+
+				PestControl: {
+					0: Very well.
+					1: You best have prepared.
+					2: Pests must be controlled, invasion quelled,
+					3: and you must defeat them. Good luck.
 				}
 			}
 		}

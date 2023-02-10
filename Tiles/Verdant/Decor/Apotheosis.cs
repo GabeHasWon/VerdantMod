@@ -5,13 +5,12 @@ using Terraria;
 using System;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
+using Verdant.World;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
 internal class Apotheosis : ModTile
 {
-    private int _timer = 0;
-
     public override void SetStaticDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
     public override bool CanExplode(int i, int j) => false;
@@ -19,17 +18,15 @@ internal class Apotheosis : ModTile
 
     public override void NearbyEffects(int i, int j, bool closer)
     {
-        _timer++;
-
         if (Framing.GetTileSafely(i, j).TileFrameX == 126 && Framing.GetTileSafely(i, j).TileFrameY == 36)
         {
             Vector2 p = new Vector2(i, j) * 16;
             float LightMult = (float)((Math.Sin(Main.time * 0.03f) * 0.6) + 0.7);
 
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) 
+            if (ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
                 LightMult *= 1.3f;
 
-            if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) 
+            if (ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown)
                 LightMult *= 1.6f;
 
             Lighting.AddLight(p, new Vector3(0.44f, 0.17f, 0.28f) * 2f * LightMult);
@@ -39,40 +36,39 @@ internal class Apotheosis : ModTile
 
     public override bool RightClick(int i, int j)
     {
-        if (_timer > 3000)
+        TrySetLocation(i, j);
+
+        if (ScreenTextManager.CurrentText is not null)
+            return false;
+
+        if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
+
+        if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
         {
-            if (ScreenTextManager.CurrentText is not null)
-                return false;
-
-            if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
-            {
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Eye");
-                return true;
-            }
-
-            if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
-            {
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Evil");
-                return true;
-            }
-
-            if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
-            {
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Skeletron");
-                return true;
-            }
-
-            if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
-            {
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".WoF");
-                return true;
-            }
-
-            if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
-                DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
-            else
-                DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Eye");
+            return true;
         }
+
+        if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Evil");
+            return true;
+        }
+
+        if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Skeletron");
+            return true;
+        }
+
+        if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".WoF");
+            return true;
+        }
+
+        DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
         return true;
     }
 
@@ -81,5 +77,19 @@ internal class Apotheosis : ModTile
         Main.LocalPlayer.cursorItemIconText = "Speak";
         Main.LocalPlayer.cursorItemIconEnabled = false;
         Main.LocalPlayer.cursorItemIconID = -1;
+    }
+
+    internal static void TrySetLocation(int i, int j)
+    {
+        var system = ModContent.GetInstance<VerdantGenSystem>();
+
+        if (system.apotheosisLocation is null)
+        {
+            Tile tile = Main.tile[i, j];
+            int x = i - (tile.TileFrameX % 18 / 18) + 8;
+            int y = i - (tile.TileFrameY % 18 / 18) + 6;
+
+            system.apotheosisLocation = new Point(x, y);
+        }
     }
 }

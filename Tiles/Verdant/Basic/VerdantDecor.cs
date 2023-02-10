@@ -15,6 +15,7 @@ internal class VerdantDecor1x1 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 7;
@@ -47,6 +48,7 @@ internal class Decor1x1Right : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
         TileObjectData.newTile.RandomStyleRange = 7;
         TileObjectData.newTile.StyleHorizontal = true;
@@ -81,6 +83,7 @@ internal class Decor1x1Left : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
         TileObjectData.newTile.RandomStyleRange = 7;
         TileObjectData.newTile.StyleHorizontal = true;
@@ -115,6 +118,7 @@ internal class VerdantDecor1x1NoCut : ModTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 4;
@@ -131,6 +135,7 @@ internal class VerdantDecor2x1 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 6;
@@ -150,6 +155,7 @@ internal class VerdantDecor2x2 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 8;
@@ -172,6 +178,7 @@ internal class VerdantDecor1x2 : ModTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 6;
@@ -187,6 +194,7 @@ internal class VerdantDecor1x3 : ModTile
 {
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
         TileObjectData.newTile.RandomStyleRange = 7;

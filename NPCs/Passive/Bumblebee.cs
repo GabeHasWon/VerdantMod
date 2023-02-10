@@ -169,7 +169,6 @@ namespace Verdant.NPCs.Passive
             {
                 for (int j = center.Y - MaxDist; j < center.Y + MaxDist; ++j)
                 {
-
                     if (Main.tile[i, j].HasTile)
                     {
                         Tile t = Main.tile[i, j];
@@ -213,7 +212,7 @@ namespace Verdant.NPCs.Passive
         {
             bool inList = visitedFlowers.Contains(new Point(i, j));
             bool closer = Vector2.DistanceSquared(oldFlower.ToWorldCoordinates(), NPC.Center) > Vector2.DistanceSquared(new Vector2(i, j) * 16, NPC.Center);
-            bool isFlower = Flowers.FlowerIDs[Main.tile[i, j].TileType].IsValid(i, j);
+            bool isFlower = Flowers.FlowerIDs.ContainsKey(Main.tile[i, j].TileType) && Flowers.FlowerIDs[Main.tile[i, j].TileType].IsValid(i, j);
             return !inList && closer && isFlower;
         }
 

@@ -9,7 +9,10 @@ using Terraria.Utilities;
 using Verdant.Effects;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Items.Verdant.Misc;
 using Verdant.Items.Verdant.Tools;
+using Verdant.Projectiles.Misc;
+using Verdant.Systems.PestControl;
 using Verdant.Systems.ScreenText.Animations;
 
 namespace Verdant.Systems.ScreenText.Caches
@@ -284,7 +287,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 for (int i = 0; i < 4; ++i)
                     Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF." + i);
 
-                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
                 return null;
             }
 
@@ -293,8 +296,81 @@ namespace Verdant.Systems.ScreenText.Caches
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.2", 120, 0.9f)).
                 FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.3", 60, 0.9f), (self) =>
                 {
-                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Items.Verdant.Misc.HeartOfGrowth>(), 1);
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
                 });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControlNotif")]
+        public static ScreenText PestControlNotifDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisPestControlNotif = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 8; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif." + i);
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.0", 80) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.1", 80, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.2", 80, 0.9f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.3", 80, 0.9f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.4", 80, 0.9f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.5", 80, 0.9f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.6", 80, 0.9f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.7", 60, 0.9f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, WorldGen.crimson ? ModContent.ItemType<CrimsonEffigy>() : ModContent.ItemType<CorruptEffigy>(), 1);
+                });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControlWarning")]
+        public static ScreenText PestControlWarningDialogue(bool forServer)
+        {
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 8; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning." + i);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.0", 60) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.1", 90, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.2", 90, 0.9f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.3", 80, 0.9f), self =>
+                {
+                    Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), Main.LocalPlayer.Center - new Vector2(0, 200), Vector2.Zero, ModContent.ProjectileType<PestControlTag>(), 0, 0, Main.myPlayer);
+                });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControl")]
+        public static ScreenText PestControlDialogue(bool forServer)
+        {
+            ModContent.GetInstance<PestSystem>().pestControlActive = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 8; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif." + i);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.0", 60) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.1", 90, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.2", 90, 0.9f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.3", 80, 0.9f));
         }
 
         private static void Chat(string text, bool useName = true)
