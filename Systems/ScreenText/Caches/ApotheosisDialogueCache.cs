@@ -14,6 +14,7 @@ using Verdant.Items.Verdant.Tools;
 using Verdant.Projectiles.Misc;
 using Verdant.Systems.PestControl;
 using Verdant.Systems.ScreenText.Animations;
+using Verdant.World;
 
 namespace Verdant.Systems.ScreenText.Caches
 {
@@ -348,7 +349,8 @@ namespace Verdant.Systems.ScreenText.Caches
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.2", 90, 0.9f)).
                 FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.3", 80, 0.9f), self =>
                 {
-                    Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), Main.LocalPlayer.Center - new Vector2(0, 200), Vector2.Zero, ModContent.ProjectileType<PestControlTag>(), 0, 0, Main.myPlayer);
+                    var pos = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value.ToWorldCoordinates(0) - new Vector2(0, 300);
+                    Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), pos, Vector2.Zero, ModContent.ProjectileType<PestControlTag>(), 0, 0, Main.myPlayer);
                 });
         }
 

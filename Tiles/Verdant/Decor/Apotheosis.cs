@@ -6,6 +6,7 @@ using System;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.World;
+using Terraria.DataStructures;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -87,9 +88,9 @@ internal class Apotheosis : ModTile
         {
             Tile tile = Main.tile[i, j];
             int x = i - (tile.TileFrameX % 18 / 18) + 8;
-            int y = i - (tile.TileFrameY % 18 / 18) + 6;
+            int y = j - (tile.TileFrameY % 18 / 18) + 6;
 
-            system.apotheosisLocation = new Point(x, y);
+            system.apotheosisLocation = new Point16(x, y);
         }
     }
 }

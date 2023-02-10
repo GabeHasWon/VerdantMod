@@ -18,6 +18,7 @@ namespace Verdant.Systems.PestControl
 				const int OffsetX = 20;
 				const int OffsetY = 20;
 
+				var system = ModContent.GetInstance<PestSystem>();
 				Texture2D EventIcon = ModContent.Request<Texture2D>("Verdant/Systems/PestControl/Textures/EventIcon").Value;
 				Color descColor = new Color(77, 39, 135);
 				Color waveColor = new Color(255, 241, 51);
@@ -28,11 +29,11 @@ namespace Verdant.Systems.PestControl
 				Rectangle waveBackground = Utils.CenteredRectangle(new Vector2(Main.screenWidth - OffsetX - 100f, Main.screenHeight - OffsetY - 23f), new Vector2(width, height));
 				Utils.DrawInvBG(spriteBatch, waveBackground, new Color(63, 65, 151, 255) * 0.785f);
 
-				string waveText = "0%";
+				string waveText = (system.pestControlProgress.ToString().Length < 5 ? system.pestControlProgress.ToString() : system.pestControlProgress.ToString()[..5]) + "%";
 				Utils.DrawBorderString(spriteBatch, waveText, new Vector2(waveBackground.Center.X, waveBackground.Y + 5), Color.White, Scale, 0.5f, -0.1f);
 				Rectangle waveProgressBar = Utils.CenteredRectangle(new Vector2(waveBackground.Center.X, waveBackground.Y + waveBackground.Height * 0.75f), TextureAssets.ColorBar.Size());
 
-				var waveProgressAmount = new Rectangle(0, 0, (int)(TextureAssets.ColorBar.Width() * 0.01f * MathHelper.Clamp(0, 0f, 100f)), TextureAssets.ColorBar.Height());
+				var waveProgressAmount = new Rectangle(0, 0, (int)(TextureAssets.ColorBar.Width() * 0.01f * system.pestControlProgress), TextureAssets.ColorBar.Height());
 				var offset = new Vector2((waveProgressBar.Width - (int)(waveProgressBar.Width * Scale)) * 0.5f, (waveProgressBar.Height - (int)(waveProgressBar.Height * Scale)) * 0.5f);
 				spriteBatch.Draw(TextureAssets.ColorBar.Value, waveProgressBar.Location.ToVector2() + offset, null, Color.White * Alpha, 0f, new Vector2(0f), Scale, SpriteEffects.None, 0f);
 				spriteBatch.Draw(TextureAssets.ColorBar.Value, waveProgressBar.Location.ToVector2() + offset, waveProgressAmount, waveColor, 0f, new Vector2(0f), Scale, SpriteEffects.None, 0f);

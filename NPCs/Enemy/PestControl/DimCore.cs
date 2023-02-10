@@ -138,6 +138,9 @@ public class DimCore : ModNPC, IDrawAdditive
 
     public static void OrbiterAI(NPC npc, NPC parent, ref Vector2 _offset)
     {
+        if (parent.active || parent.life <= 0)
+            return;
+
         if (_offset == Vector2.Zero)
         {
             _offset = new Vector2(Main.rand.NextFloat(20, 50) * (Main.rand.NextBool(2) ? -1 : 1), Main.rand.NextFloat(20, 50) * (Main.rand.NextBool(2) ? -1 : 1));

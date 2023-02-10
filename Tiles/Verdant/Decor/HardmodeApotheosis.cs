@@ -90,7 +90,7 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
         if (_effigyTimer < 0)
             _effigyTimer = 0;
 
-        if (hasEffigy && _effigyTimer > 300)
+        if (hasEffigy && _effigyTimer > 180)
         {
             for (int k = 0; k < Main.maxItems; ++k)
             {
@@ -120,6 +120,7 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
 
             _effigyTimer = 0;
 
+            ScreenTextManager.CurrentText = null;
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".PestControlWarning");
         }
     }

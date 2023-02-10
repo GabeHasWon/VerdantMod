@@ -33,7 +33,7 @@ namespace Verdant.World
 
         private readonly List<GenCircle> VerdantCircles = new();
 
-        internal Point? apotheosisLocation = null;
+        internal Point16? apotheosisLocation = null;
 
         public void VerdantGeneration(GenerationProgress p, GameConfiguration config)
         {

@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
+using Verdant.NPCs.Enemy.PestControl;
+using Verdant.World;
 
 namespace Verdant.Systems.PestControl;
 
 internal class PestSystem : ModSystem
 {
     public bool pestControlActive = false;
-    public Point16 pestControlCenter = new(0, 0);
+    public float pestControlProgress = 0;
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
@@ -31,17 +35,32 @@ internal class PestSystem : ModSystem
     public override void SaveWorldData(TagCompound tag)
     {
         if (pestControlActive)
-        {
             tag.Add(nameof(pestControlActive), true);
-            tag.Add(nameof(pestControlCenter), pestControlCenter);
-        }
     }
 
     public override void LoadWorldData(TagCompound tag)
     {
         pestControlActive = tag.ContainsKey(nameof(pestControlActive));
+    }
 
+    public override void PostUpdateWorld()
+    {
         if (pestControlActive)
-            pestControlCenter = tag.Get<Point16>(nameof(pestControlCenter));
+        {
+            List<int> types = new()
+            {
+                ModContent.NPCType<ThornBeholder>(),
+                ModContent.NPCType<DimCore>()
+            };
+
+            pestControlProgress += 0.0001f;
+
+            if ((int)(pestControlProgress * 10000) % 1200 == 0)
+            {
+                var loc = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value.ToWorldCoordinates();
+                var pos = loc + new Vector2(0, -1000).RotatedByRandom(MathHelper.PiOver2);
+                NPC.NewNPC(Entity.GetSource_NaturalSpawn(), (int)pos.X, (int)pos.Y, Main.rand.Next(types));
+            }
+        }
     }
 }

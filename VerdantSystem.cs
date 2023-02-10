@@ -19,6 +19,7 @@ using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
 using Verdant.World;
+using Terraria.DataStructures;
 
 namespace Verdant
 {
@@ -129,6 +130,7 @@ namespace Verdant
             apotheosisSkelDown = stats.Contains("skelDown");
             apotheosisWallDown = stats.Contains("wallDown");
             microcosmUsed = stats.Contains("microcosm");
+            apotheosisPestControlNotif = stats.Contains("pestControlNotif");
 
             if (Main.netMode != NetmodeID.Server)
             {
@@ -148,7 +150,7 @@ namespace Verdant
             }
 
             if (tag.ContainsKey("apotheosisLocation"))
-                ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = tag.Get<Point>("apotheosisLocation");
+                ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = tag.Get<Point16>("apotheosisLocation");
         }
 
         private static void SpawnPermVines(IList<Vector2> positions)
