@@ -76,11 +76,11 @@ public class ThornBeholder : ModNPC
         const int MaxThorns = 3;
 
         _thorns.RemoveAll(x => x < 0 || x > Main.maxNPCs || !Main.npc[x].active);
-
+        
         if (_thorns.Count < MaxThorns)
             Timer++;
 
-        if (Timer > 120 && Timer % 10 == 0)
+        if (Timer > 120 && Timer % 80 == 0)
         {
             bool big = Main.rand.NextBool(3);
             int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, big ? ModContent.NPCType<BigThorn>() : ModContent.NPCType<SmallThorn>());

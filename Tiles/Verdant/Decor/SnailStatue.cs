@@ -8,6 +8,7 @@ using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Verdant.Items.Verdant.Blocks;
+using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -60,6 +61,8 @@ internal class SnailStatue : ModTile
 			if (position.X > Main.screenWidth - textWidth)
 				position.X = Main.screenWidth - textWidth;
 
+			position.X -= textWidth / 2;
+
 			Color color = new(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
 
 			if (opaque)
@@ -75,7 +78,15 @@ internal class SnailStatue : ModTile
 		}
 	}
 
-    public override void SetStaticDefaults() => QuickTile.SetMulti(this, 4, 6, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Snail Statue");
+	public override void SetStaticDefaults()
+	{
+		Main.tileFrameImportant[Type] = true;
+		Main.tileNoAttach[Type] = true;
+
+		TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
+		QuickTile.SetMulti(this, 4, 6, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Snail Statue");
+	}
+
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 	public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), (i + 2) * 16, (j + 3) * 16, 16, 48, ModContent.ItemType<SnailStatueItem>());
 

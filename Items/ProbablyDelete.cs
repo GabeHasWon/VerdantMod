@@ -38,7 +38,7 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = true;
+		Item.autoReuse = false;
         Item.placeStyle = 0;
         Item.createTile = ModContent.TileType<HardmodeApotheosis>();
     }
@@ -46,7 +46,7 @@ public class ProbablyDelete : ModItem
     public override bool? UseItem(Player player)
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-        //var pos = Main.MouseWorld.ToTileCoordinates();
+        var pos = Main.MouseWorld.ToTileCoordinates();
 
         //Tile tile = Main.tile[pos];
         //tile.TileFrameX = 0;
@@ -54,10 +54,8 @@ public class ProbablyDelete : ModItem
         //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
         //return true;
-        //if (!RealtimeGen.HasStructure("Testing"))
-        //    Spawn(pos);
-        //else
-        //    RealtimeGen.ReplaceStructure("Testing");
+        if (!RealtimeGen.HasStructure("Testing"))
+            Spawn(pos);
         return true;
     }
 
@@ -76,6 +74,6 @@ public class ProbablyDelete : ModItem
 			}
 		}
 		
-		ModContent.GetInstance<RealtimeGen>().CurrentActions.Add(new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing")));
+		ModContent.GetInstance<RealtimeGen>().CurrentActions.Add(new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing", 400)));
 	}
 }

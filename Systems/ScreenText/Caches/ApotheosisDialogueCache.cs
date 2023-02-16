@@ -345,9 +345,9 @@ namespace Verdant.Systems.ScreenText.Caches
             }
 
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.0", 60) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
-                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.1", 90, 0.8f)).
-                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.2", 90, 0.9f)).
-                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.3", 80, 0.9f), self =>
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.1", 60, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.2", 60, 0.9f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.3", 40, 0.9f), self =>
                 {
                     var pos = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value.ToWorldCoordinates(0) - new Vector2(0, 300);
                     Projectile.NewProjectile(Entity.GetSource_NaturalSpawn(), pos, Vector2.Zero, ModContent.ProjectileType<PestControlTag>(), 0, 0, Main.myPlayer);

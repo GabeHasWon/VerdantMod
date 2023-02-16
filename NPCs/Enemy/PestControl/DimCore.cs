@@ -67,6 +67,8 @@ public class DimCore : ModNPC, IDrawAdditive
 
     public override void AI()
     {
+        const int MaxSpeed = 7;
+
         NPC.TargetClosest(true);
 
         if (State == CoreState.Initialize)
@@ -77,9 +79,21 @@ public class DimCore : ModNPC, IDrawAdditive
                 FindThorn();
 
             if (TargetThorn == -1)
-                NPC.velocity = NPC.DirectionTo(Target.Center) * NPC.Distance(Target.Center) * 0.01f;
+                NPC.velocity += NPC.DirectionTo(Target.Center) * 0.1f;
             else
-                NPC.velocity = NPC.DirectionTo(Main.npc[(int)TargetThorn].Center) * NPC.Distance(Target.Center) * 0.01f;
+            {
+                NPC thorn = Main.npc[(int)TargetThorn];
+
+                if (thorn.ai[3] != -1 || !thorn.active)
+                    TargetThorn = -1;
+                else
+                    NPC.velocity += NPC.DirectionTo(thorn.Center) * 0.1f;
+
+                NPC.velocity *= 0.99f;
+            }
+
+            if (NPC.velocity.LengthSquared() > MaxSpeed * MaxSpeed)
+                NPC.velocity = NPC.velocity.SafeNormalize(Vector2.Zero) * MaxSpeed;
         }
 
         NPC.rotation = NPC.velocity.X * 0.08f;
@@ -88,12 +102,23 @@ public class DimCore : ModNPC, IDrawAdditive
 
     private void FindThorn()
     {
+        int count = 0;
         foreach (var npc in ActiveEntities.NPCs)
         {
-            if (npc.CanBeChasedBy() && NPC.DistanceSQ(npc.Center) > Radius * Radius * 0.99f && (NPC.type == ModContent.NPCType<Thorns.SmallThorn>() || NPC.type == ModContent.NPCType<Thorns.BigThorn>()))
+            if (npc.active && (npc.type == ModContent.NPCType<Thorns.SmallThorn>() || npc.type == ModContent.NPCType<Thorns.BigThorn>()))
             {
-                TargetThorn = npc.whoAmI;
-                return;
+                if (count >= 3)
+                    return;
+
+                float dist = NPC.DistanceSQ(npc.Center);
+
+                if (npc.ai[3] == -1 && dist > Radius * Radius * 1.02f)
+                {
+                    TargetThorn = npc.whoAmI;
+                    return;
+                }
+                else if (npc.ai[3] == NPC.whoAmI)
+                    count++;
             }
         }
     }
@@ -138,8 +163,14 @@ public class DimCore : ModNPC, IDrawAdditive
 
     public static void OrbiterAI(NPC npc, NPC parent, ref Vector2 _offset)
     {
-        if (parent.active || parent.life <= 0)
+        if (!parent.active || parent.life <= 0)
+        {
+            if (npc.type == ModContent.NPCType<CoreOrbiter>())
+                npc.active = false;
+            else
+                npc.ai[3] = -1;
             return;
+        }
 
         if (_offset == Vector2.Zero)
         {

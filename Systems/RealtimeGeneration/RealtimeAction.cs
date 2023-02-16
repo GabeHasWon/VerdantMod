@@ -5,12 +5,11 @@ using System.IO;
 using System.Linq;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 
 namespace Verdant.Systems.RealtimeGeneration;
 
-internal class RealtimeAction
+public class RealtimeAction
 {
     private readonly float TickRate = 0;
     private readonly Queue<RealtimeStep> TileActions = new();
@@ -32,6 +31,7 @@ internal class RealtimeAction
         Undoable = undoable;
         Name = name;
         _captureData = captureData;
+        _captureData.Action = this;
 
         var actions = tileActions.ToList();
 

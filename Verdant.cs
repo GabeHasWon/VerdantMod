@@ -14,6 +14,7 @@ using Verdant.Effects;
 using Verdant.Tiles.Verdant;
 using System;
 using System.IO;
+using Verdant.Systems.ModCompat;
 
 namespace Verdant
 {
@@ -38,6 +39,7 @@ namespace Verdant
             }
 
             MonoModChanges();
+            NewBeginningsCompatibility.AddOrigin();
         }
 
         public override void PostSetupContent()

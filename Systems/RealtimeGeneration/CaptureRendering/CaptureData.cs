@@ -15,6 +15,7 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
 
         public Texture2D Capture { get; internal set; }
         public Rectangle Area { get; internal set; }
+        public RealtimeAction Action { get; internal set; }
 
         public CaptureData(string name)
         {
@@ -28,6 +29,8 @@ namespace Verdant.Systems.RealtimeGeneration.CaptureRendering
         }
 
         internal virtual void ApplyRenderSpriteBatch() => Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null);
+
+
         internal virtual void ApplyNormalSpriteBatch() => Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, Effect, Main.UIScaleMatrix);
         internal virtual void DrawTarget(Texture2D overlay) => Main.spriteBatch.Draw(overlay, Main.MouseScreen - overlay.Size() / 2, Color.White);
 

@@ -3,7 +3,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Systems.RealtimeGeneration
 {
-    internal class TileAction
+    public class TileAction
     {
         public delegate void TileActionDelegate(int x, int y, ref bool success);
 

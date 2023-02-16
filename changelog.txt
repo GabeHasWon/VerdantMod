@@ -9,6 +9,7 @@ NEW CONTENT
 - Added Puff Block
 - Added Yellow Sprouts (Yellow Bulb tile)
 - Added Verdant Tree alternate top sprite for hardmode
+- Added New Beginnings compatibility
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated

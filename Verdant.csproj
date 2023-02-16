@@ -19,6 +19,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Systems\ModCompat\Textures\" />
     <Folder Include="Systems\PestControl\Textures\" />
   </ItemGroup>
 </Project>

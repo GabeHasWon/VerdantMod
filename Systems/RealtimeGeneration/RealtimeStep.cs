@@ -2,7 +2,7 @@
 
 namespace Verdant.Systems.RealtimeGeneration;
 
-internal class RealtimeStep
+public class RealtimeStep
 {
     public readonly Point16 Position;
     public readonly TileAction.TileActionDelegate Action;

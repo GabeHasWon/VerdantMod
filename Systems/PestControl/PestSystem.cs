@@ -16,6 +16,9 @@ internal class PestSystem : ModSystem
     public bool pestControlActive = false;
     public float pestControlProgress = 0;
 
+    public List<int> trackedEnemies = new List<int>();
+    public float lastSpawnProgress = 0;
+
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
         if (pestControlActive)
@@ -38,28 +41,47 @@ internal class PestSystem : ModSystem
             tag.Add(nameof(pestControlActive), true);
     }
 
-    public override void LoadWorldData(TagCompound tag)
+    public override void LoadWorldData(TagCompound tag) => pestControlActive = tag.ContainsKey(nameof(pestControlActive));
+
+    public override void OnWorldUnload()
     {
-        pestControlActive = tag.ContainsKey(nameof(pestControlActive));
+        pestControlActive = false;
+        pestControlProgress = 0;
     }
 
     public override void PostUpdateWorld()
     {
         if (pestControlActive)
         {
+            if (pestControlProgress > 1)
+            {
+                pestControlActive = false;
+                pestControlProgress = 0;
+
+                foreach (int item in trackedEnemies)
+                    Main.npc[item].active = false;
+
+                trackedEnemies.Clear();
+            }
+
             List<int> types = new()
             {
                 ModContent.NPCType<ThornBeholder>(),
                 ModContent.NPCType<DimCore>()
             };
 
-            pestControlProgress += 0.0001f;
+            trackedEnemies.RemoveAll(x => !Main.npc[x].active || !types.Contains(Main.npc[x].type));
 
-            if ((int)(pestControlProgress * 10000) % 1200 == 0)
+            if (trackedEnemies.Count < 9 || lastSpawnProgress > pestControlProgress - 0.005f)
+                pestControlProgress += 0.00001f;
+
+            if ((int)(pestControlProgress * 10000) % 100 == 0 && (int)(pestControlProgress * 10000) != (int)(lastSpawnProgress * 10000))
             {
                 var loc = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value.ToWorldCoordinates();
                 var pos = loc + new Vector2(0, -1000).RotatedByRandom(MathHelper.PiOver2);
-                NPC.NewNPC(Entity.GetSource_NaturalSpawn(), (int)pos.X, (int)pos.Y, Main.rand.Next(types));
+
+                trackedEnemies.Add(NPC.NewNPC(Entity.GetSource_NaturalSpawn(), (int)pos.X, (int)pos.Y, Main.rand.Next(types)));
+                lastSpawnProgress = pestControlProgress;
             }
         }
     }
