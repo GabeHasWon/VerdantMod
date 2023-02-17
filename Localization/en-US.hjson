@@ -46,6 +46,11 @@
 						4: I've nothing more to add.
 						5: Go out and smell the flowers.
 						6: Run along, now.
+						7: Have you seen a snake around here?
+						8: I remember the smell of the flowers, still.
+						9: Snails are underappreciated creatures.
+						10: The world is your garden, my friend.
+						11: No need to dawdle.
 					}
 
 					EvilBoss: {
@@ -59,9 +64,10 @@
 						1: Hmm...what to do...
 						2: ...pest control...
 						3: Ah, memories...
+						4: Research, research, research...
 					}
 
-					EoC: Finally, the eye is felled.
+					EoC: That great eye was a wonder, if a threat.
 
 					Skeletron: {
 						0: That skeleton was...a confusing one.

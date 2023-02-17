@@ -98,13 +98,13 @@ namespace Verdant.Systems.ScreenText.Caches
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.2",
             };
 
-            ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(7), 120, 0.8f)
+            ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(12), 120, 0.8f)
             {
                 speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
                 speakerColor = Color.Lime
             };
 
-            ScreenText randomThoughtDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Thoughts." + Main.rand.Next(4), 120, 0.8f)
+            ScreenText randomThoughtDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Thoughts." + Main.rand.Next(5), 120, 0.8f)
             {
                 speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
                 speakerColor = Color.Lime * 0.45f,
