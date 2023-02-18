@@ -12,6 +12,7 @@ using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
+using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items;
 
@@ -40,23 +41,24 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<HardmodeApotheosis>();
+        Item.createTile = ModContent.TileType<GreenCrystal>();
     }
 
     public override bool? UseItem(Player player)
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         var pos = Main.MouseWorld.ToTileCoordinates();
+		Item.placeStyle = Main.rand.Next(3);
 
-        //Tile tile = Main.tile[pos];
-        //tile.TileFrameX = 0;
-        //tile.TileFrameY = 0;
-        //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+		//Tile tile = Main.tile[pos];
+		//tile.TileFrameX = 0;
+		//tile.TileFrameY = 0;
+		//Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
-        //return true;
-        if (!RealtimeGen.HasStructure("Testing"))
-            Spawn(pos);
-        return true;
+		//return true;
+		//if (!RealtimeGen.HasStructure("Testing"))
+		//    Spawn(pos);
+		return true;
     }
 
     private void Spawn(Point pos)
