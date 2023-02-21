@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -10,7 +11,7 @@ namespace Verdant.Items.Verdant.Blocks.Misc;
 
 public class LightbulbBook : ModItem
 {
-	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lightbulb Research", "'An impressive amount of inight into light bulbs'");
+	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lightbulb Research", "'An impressive amount of insight into light bulbs'\nRight click to read");
 	public override void SetDefaults() => QuickItem.SetBlock(this, 14, 18, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 0, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 
@@ -28,11 +29,12 @@ public class LightbulbBook : ModItem
 			else
 			{
 				SoundEngine.PlaySound(SoundID.MenuOpen);
-				ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState("Lightbulbs", 0.8f, 
-					new object[] { "-------", ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbDisplay"), 
-					"\nCurious bulbs?\nMade of soft plantlike material, like leaves\nGlows softly, though sometimes in a wave motion\nWorks as a source of sunlight, grows on certain flowers",
-					ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection"), "\nFull of water (sugar water?)\nTaste like absolutely nothing, a bit sweet, bit of dirt, DEEPLY" +
-                    " grassy, and a tinge of iron (or other metal? test later)"}));
+				ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState("\"Lightbulbs\"", 0.8f, 
+					new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbDisplay", AssetRequestMode.ImmediateLoad), 
+					"\nWeird bulbs? Seeds?\nmade of soft plantlike material, like leaves\nGlows softly, though sometimes in a wave motion\nWorks as a source of sunlight, grows on certain flowers",
+					ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection", AssetRequestMode.ImmediateLoad), 
+					"\nFull of water? sugar?\ntastes bland, a bit sweet, bit of dirt, mildly grassy, and\na tinge of iron (or other metal? test later)\n\nRare, don't have too much to test on\n" +
+                    "go searching for more later, might be good food"}));
 			}
 			return true;
 		}

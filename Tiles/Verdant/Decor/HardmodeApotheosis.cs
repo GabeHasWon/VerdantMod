@@ -44,8 +44,8 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
             Lighting.AddLight(p, new Vector3(0.2f, 0.06f, 0.12f));
         }
 
-        if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
-            CheckEffigy(i, j);
+        //if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
+        //    CheckEffigy(i, j);
     }
 
     private void CheckEffigy(int i, int j)
@@ -162,11 +162,11 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
             return true;
         }
 
-        if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisPestControlNotif)
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".PestControlNotif");
-            return true;
-        }
+        //if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisPestControlNotif)
+        //{
+        //    DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".PestControlNotif");
+        //    return true;
+        //}
 
         DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
         return true;

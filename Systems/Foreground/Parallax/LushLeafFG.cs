@@ -37,7 +37,7 @@ public class LushLeafFG : ParallaxedFGItem
     {
         base.Update();
         float xVel = (float)Math.Sin(timer++ * 0.036) * 0.48f * scale;
-        velocity.X = xVel + (position.Y < Main.worldSurface * 16 ? Main.windSpeedCurrent * 15 : 0);
+        velocity.X = xVel + (position.Y < Main.worldSurface * 16 ? Main.windSpeedCurrent * 8 : 0);
         velocity.Y = (-Math.Abs(xVel) + scale) * 0.4f;
         rotation = velocity.X * -0.5f;
 

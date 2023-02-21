@@ -7,6 +7,8 @@ namespace Verdant.Items.Verdant.Misc;
 [Sacrifice(1)]
 class CorruptEffigy : ModItem
 {
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     public override void SetStaticDefaults()
     {
         Tooltip.SetDefault("Feels wrong in your hands");
@@ -27,6 +29,8 @@ class CorruptEffigy : ModItem
 [Sacrifice(1)]
 class CrimsonEffigy : ModItem
 {
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     public override void SetStaticDefaults()
     {
         Tooltip.SetDefault("Feels off in your hands");

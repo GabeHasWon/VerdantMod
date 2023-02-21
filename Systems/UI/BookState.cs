@@ -36,7 +36,7 @@ internal class BookState : UIState
         UIPanel panel = new UIPanel()
         {
             Width = StyleDimension.FromPercent(1 / 3.5f),
-            Height = StyleDimension.FromPercent(1 / 2f),
+            Height = StyleDimension.FromPercent(1 / 1.5f),
             VAlign = 0.5f,
             HAlign = 0.5f
         };
@@ -92,7 +92,7 @@ internal class BookState : UIState
                 list.Add(new UIImage(texture)
                 {
                     Width = StyleDimension.Fill,
-                    Height = StyleDimension.FromPixels(texture.Value.Height),
+                    Height = StyleDimension.FromPixels(texture.Value.Height - 8),
                     Left = StyleDimension.FromPixelsAndPercent(texture.Value.Width / -2, 0.5f),
                 });
             }
@@ -106,7 +106,7 @@ internal class BookState : UIState
                 list.Add(new UIText(text)
                 {
                     Width = StyleDimension.Fill,
-                    Height = StyleDimension.FromPixels(stringSize.Y - 8)
+                    Height = StyleDimension.FromPixels(stringSize.Y + 28)
                 });
             }
         }
