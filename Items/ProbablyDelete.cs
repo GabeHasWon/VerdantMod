@@ -41,14 +41,14 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<GreenCrystal>();
+        Item.createTile = ModContent.TileType<ResearchBooks>();
     }
 
     public override bool? UseItem(Player player)
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         var pos = Main.MouseWorld.ToTileCoordinates();
-		Item.placeStyle = Main.rand.Next(3);
+		Item.placeStyle = 0;
 
 		//Tile tile = Main.tile[pos];
 		//tile.TileFrameX = 0;

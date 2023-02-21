@@ -9,6 +9,7 @@ using Terraria.Localization;
 using Terraria.DataStructures;
 using Verdant.Items.Verdant.Blocks;
 using Terraria.ObjectData;
+using Verdant.NPCs.Passive;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -103,4 +104,22 @@ internal class SnailStatue : ModTile
 
 		return Language.GetTextValue("Mods.Verdant.SnailDialogue." + key + "." + (int)(Main.ActivePlayerFileData.GetPlayTime().TotalMinutes * 0.25f) % 3);
     }
+
+    public override void HitWire(int i, int j)
+    {
+		Tile tile = Main.tile[i, j];
+		(int frameX, int frameY) = (tile.TileFrameX, tile.TileFrameY);
+
+		int[] types = new int[] { ModContent.NPCType<VerdantRedGrassSnail>(), ModContent.NPCType<VerdantBulbSnail>() };
+		int npc = NPC.NewNPC(new EntitySource_Wiring(i, j), (i - (frameX / 18 % 4) + 2) * 16, (j - (frameY / 18 % 6) + 3) * 16, Main.rand.Next(types));
+
+		Main.npc[npc].GivenName = SnailText();
+
+		for (int x = i; x < i + 4; ++x)
+			for (int y = j; y < j + 6; ++y)
+				Wiring.SkipWire(x, y);
+
+		if (Main.netMode != NetmodeID.SinglePlayer)
+			NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
+	}
 }

@@ -17,6 +17,7 @@ public class GreenCrystal : ModTile
 		Main.tileFrameImportant[Type] = true;
 		Main.tileObsidianKill[Type] = true;
 		Main.tileNoFail[Type] = true;
+		Main.tileLighted[Type] = true;
 
 		ModTranslation name = CreateMapEntryName();
 		name.SetDefault("Green Crystal");
@@ -55,5 +56,6 @@ public class GreenCrystal : ModTile
 		spriteEffects = i % 2 == 0 && (frameX == 0 || frameX == 66) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 	}
 
-	public override bool IsTileSpelunkable(int i, int j) => true;
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.1f, 0.5f, 0.2f);
+    public override bool IsTileSpelunkable(int i, int j) => true;
 }

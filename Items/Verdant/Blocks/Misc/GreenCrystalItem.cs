@@ -12,6 +12,6 @@ public class GreenCrystalItem : ModItem
 	public override bool? UseItem(Player player)
 	{
 		Item.placeStyle = Main.rand.Next(3);
-		return true;
+		return null;
 	}
 }

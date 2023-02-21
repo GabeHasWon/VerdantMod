@@ -16,11 +16,11 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			Main.tileLavaDeath[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.newTile.Height = 5;
-            TileObjectData.newTile.Origin = new Terraria.DataStructures.Point16(0, 4);
+            TileObjectData.newTile.Origin = new Point16(0, 4);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(200, 200, 200));
+			AddMapEntry(new Color(89, 47, 33));
 
 			AdjTiles = new int[] { TileID.GrandfatherClocks };
 		}
@@ -37,6 +37,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 			if (time < 0.0)
 				time += 24.0;
+
 			if (time >= 12.0)
 				text = "PM";
 
