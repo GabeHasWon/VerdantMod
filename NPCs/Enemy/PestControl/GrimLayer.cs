@@ -14,6 +14,8 @@ public class GrimLayer : ModNPC
         Move,
     }
 
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     private Player Target => Main.player[NPC.target];
 
     private ref float TargetThorn => ref NPC.ai[0];

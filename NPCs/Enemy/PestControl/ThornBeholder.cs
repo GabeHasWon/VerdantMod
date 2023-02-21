@@ -19,6 +19,8 @@ public class ThornBeholder : ModNPC
         Planted
     }
 
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     private Player Target => Main.player[NPC.target];
 
     private ref float Timer => ref NPC.ai[0];

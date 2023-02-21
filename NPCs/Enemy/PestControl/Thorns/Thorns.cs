@@ -22,7 +22,7 @@ internal class SmallThorn : ModNPC, IDrawAdditive
     private static Asset<Texture2D> auraTex;
 
     protected virtual Vector2 Size => new(10, 22);
-    protected virtual string BestiaryText => "The branch of a Thorny Beholder, which explodes when approached. Holds eye contact well...too well.";
+    protected virtual string BestiaryText => "The branch of a ???????, which explodes when approached. Holds eye contact well...too well.";
     protected virtual int ExplosionRadius => 80;
 
     protected int ExplosionRadiusSquared => ExplosionRadius * ExplosionRadius;
@@ -194,7 +194,7 @@ internal class SmallThorn : ModNPC, IDrawAdditive
 internal class BigThorn : SmallThorn
 {
     protected override Vector2 Size => new(16, 32);
-    protected override string BestiaryText => "A larger branch from a Thorny Beholder. Does not hold eye contact as well as its smaller brethren. It is significantly more dangerous though.";
+    protected override string BestiaryText => "A larger branch from a ???????. Does not hold eye contact as well as its smaller brethren. It is significantly more dangerous though.";
     protected override int ExplosionRadius => 125;
 
     public override void SetDefaults()

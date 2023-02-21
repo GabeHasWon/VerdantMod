@@ -19,6 +19,8 @@ public class DimCore : ModNPC, IDrawAdditive
 
     private static Asset<Texture2D> _GlowTex;
 
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     enum CoreState
     {
         Initialize,
@@ -187,6 +189,8 @@ public class DimCore : ModNPC, IDrawAdditive
     private class CoreOrbiter : ModNPC
     {
         private Vector2 _offset = Vector2.Zero;
+
+        public override bool IsLoadingEnabled(Mod mod) => false;
 
         public override void SetStaticDefaults() => DisplayName.SetDefault("Thorny Detritus");
 
