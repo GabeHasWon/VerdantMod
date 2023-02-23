@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Systems.UI;
 
 namespace Verdant.Items
 {
@@ -198,5 +202,19 @@ namespace Verdant.Items
         }
 
         public static bool CanCritterSpawnCheck() => !Framing.GetTileSafely(Main.MouseWorld).HasTile || !Main.tileSolid[Framing.GetTileSafely(Main.MouseWorld).TileType];
+
+        public static void ToggleBookUI(string title, float titleScale, object[] body)
+        {
+            if (ModContent.GetInstance<UISystem>().BookInterface.CurrentState is not null)
+			{
+                SoundEngine.PlaySound(SoundID.MenuClose);
+                ModContent.GetInstance<UISystem>().BookInterface.SetState(null);
+            }
+            else
+            {
+                SoundEngine.PlaySound(SoundID.MenuOpen);
+                ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState(title, titleScale, body));
+            }
+        }
     }
 }

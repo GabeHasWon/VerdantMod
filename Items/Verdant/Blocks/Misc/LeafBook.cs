@@ -21,20 +21,11 @@ public class LeafBook : ModItem
 		{
 			Item.stack++;
 
-			if (ModContent.GetInstance<UISystem>().BookInterface.CurrentState is not null)
-			{
-				SoundEngine.PlaySound(SoundID.MenuClose);
-				ModContent.GetInstance<UISystem>().BookInterface.SetState(null);
-			}
-			else
-			{
-				SoundEngine.PlaySound(SoundID.MenuOpen);
-				ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState("Leaves", 1f, 
-					new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LeafDisplay", AssetRequestMode.ImmediateLoad), 
-					"\nAlmost fabric like texture, durable yet soft\ninexplicably calming to hold\nGrows beautifully in bulb light",
-					ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection", AssetRequestMode.ImmediateLoad), 
-					"\nunpleasant to eat, tastes like grass and dirt\nPlentiful, might use (books? pages? look soon)"}));
-			}
+			QuickItem.ToggleBookUI("Leaves", 1f,
+				new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LeafDisplay", AssetRequestMode.ImmediateLoad),
+				"\nAlmost fabric like texture, durable yet soft\ninexplicably calming to hold\nGrows beautifully in bulb light",
+				"\nunpleasant to eat, tastes like grass and dirt\nPlentiful, might use (books? pages? look soon)\nmight work in small parts?",
+				"grows in vine like clumps, or just clumps? unsure\ngrow only or mostly around flowers"});
 			return true;
 		}
 

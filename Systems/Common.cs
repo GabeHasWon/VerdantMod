@@ -28,6 +28,7 @@ namespace Verdant.Systems
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
+            DrawAdditiveProjectiles(AdditiveLayer.BeforePlayer);
             DrawAdditiveNPCs(AdditiveLayer.BeforePlayer);
 
             Main.spriteBatch.End();
@@ -94,7 +95,7 @@ namespace Verdant.Systems
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
-            DrawAdditiveProjectiles();
+            DrawAdditiveProjectiles(AdditiveLayer.AfterPlayer);
             DrawAdditiveNPCs(AdditiveLayer.AfterPlayer);
 
             Main.spriteBatch.End();
@@ -108,21 +109,19 @@ namespace Verdant.Systems
 
         private static void DrawAdditiveNPCs(AdditiveLayer layer)
         {
-            for (int i = 0; i < Main.maxNPCs; ++i)
+            foreach (var n in ActiveEntities.NPCs)
             {
-                NPC n = Main.npc[i];
                 if (n.active && n.ModNPC is IDrawAdditive additive)
                     additive.DrawAdditive(layer);
             }
         }
 
-        private static void DrawAdditiveProjectiles()
+        private static void DrawAdditiveProjectiles(AdditiveLayer layer)
         {
-            for (int i = 0; i < Main.maxProjectiles; ++i)
+            foreach (var p in ActiveEntities.Projectiles)
             {
-                Projectile p = Main.projectile[i];
                 if (p.active && p.ModProjectile is IDrawAdditive additive)
-                    additive.DrawAdditive(AdditiveLayer.AfterPlayer);
+                    additive.DrawAdditive(layer);
             }
         }
 

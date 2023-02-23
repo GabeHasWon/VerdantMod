@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Effects;
+using Verdant.Projectiles.Magic;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
@@ -41,14 +42,14 @@ public class ProbablyDelete : ModItem
 		Item.UseSound = SoundID.Item1;
 		Item.autoReuse = false;
         Item.placeStyle = 0;
-        Item.createTile = ModContent.TileType<ResearchBooks>();
+        //Item.shoot = ModContent.ProjectileType<HealPlants>();
+        Item.createTile = ModContent.TileType<HangingCrystal>();
     }
 
     public override bool? UseItem(Player player)
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-        var pos = Main.MouseWorld.ToTileCoordinates();
-		Item.placeStyle = 0;
+        //var pos = Main.MouseWorld.ToTileCoordinates();
 
 		//Tile tile = Main.tile[pos];
 		//tile.TileFrameX = 0;

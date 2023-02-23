@@ -30,13 +30,15 @@ namespace Verdant.Projectiles.Particles
 
         public override void AI()
         {
+            const int Cutoff = 40;
+
             Timer++;
 
-            if (Timer < 120)
-                Projectile.velocity *= 0.97f;
+            if (Timer < Cutoff)
+                Projectile.velocity *= 0.93f;
             else
             {
-                Projectile.velocity = Projectile.DirectionTo(Projectile.Owner().Center) * MathHelper.Clamp((Timer - 120) / 2.5f, 0f, 30f);
+                Projectile.velocity = Projectile.DirectionTo(Projectile.Owner().Center) * MathHelper.Clamp((Timer - Cutoff) / 2.5f, 0f, 30f);
 
                 if (Projectile.DistanceSQ(Projectile.Owner().Center) < 20 * 20)
                     Projectile.Kill();

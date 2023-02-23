@@ -21,21 +21,12 @@ public class LightbulbBook : ModItem
 		{
 			Item.stack++;
 
-			if (ModContent.GetInstance<UISystem>().BookInterface.CurrentState is not null)
-			{
-				SoundEngine.PlaySound(SoundID.MenuClose);
-				ModContent.GetInstance<UISystem>().BookInterface.SetState(null);
-			}
-			else
-			{
-				SoundEngine.PlaySound(SoundID.MenuOpen);
-				ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState("\"Lightbulbs\"", 0.8f, 
-					new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbDisplay", AssetRequestMode.ImmediateLoad), 
-					"\nWeird bulbs? Seeds?\nmade of soft plantlike material, like leaves\nGlows softly, though sometimes in a wave motion\nWorks as a source of sunlight, grows on certain flowers",
-					ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection", AssetRequestMode.ImmediateLoad), 
-					"\nFull of water? sugar?\ntastes bland, a bit sweet, bit of dirt, mildly grassy, and\na tinge of iron (or other metal? test later)\n\nRare, don't have too much to test on\n" +
-                    "go searching for more later, might be good food"}));
-			}
+			QuickItem.ToggleBookUI("\"Lightbulbs\"", 0.8f,
+				new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbDisplay", AssetRequestMode.ImmediateLoad),
+				"\nWeird bulbs? Seeds?\nmade of soft plantlike material, like leaves\nGlows softly, though sometimes in a wave motion\nWorks as a source of sunlight, grows on certain flowers",
+				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection", AssetRequestMode.ImmediateLoad),
+				"\nFull of water? sugar?\ntastes bland, a bit sweet, bit of dirt, mildly grassy, and\na tinge of iron (or other metal? test later)\n\nRare, don't have too much to test on\n" +
+				"go searching for more later, might be good food\n\nbeyond analysis, these are incredible specimens\nWill make for better light than these fireflies"});
 			return true;
 		}
 
