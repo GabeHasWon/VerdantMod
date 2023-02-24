@@ -14,6 +14,8 @@ internal class HangingCrystalTE : ModTileEntity
 {
     const int MaxPlants = 4;
 
+    private Tile Anchor => Main.tile[Position.X, Position.Y];
+
     private List<int> plants = new List<int>(5);
     private int time = 0;
     private int count = 0;
@@ -22,6 +24,9 @@ internal class HangingCrystalTE : ModTileEntity
 
     public override void Update()
     {
+        if (Anchor.TileFrameX >= 54)
+            return;
+
         time++;
 
         if (plants.Count >= MaxPlants)
@@ -44,11 +49,6 @@ internal class HangingCrystalTE : ModTileEntity
             }
             return;
         }
-
-        Player nearest = Main.player[Player.FindClosest(Position.ToWorldCoordinates(), 2, 2)];
-
-        if (nearest.DistanceSQ(Position.ToWorldCoordinates()) > 4000 * 4000)
-            return;
 
         if (time % 180 == 0)
             SpawnHealPlant();
