@@ -29,7 +29,7 @@ namespace Verdant.Tiles.Verdant.Misc
             if (style <= 1)
                 Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<LightbulbBook>());
             else if (style <= 3)
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<LightbulbBook>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<LeafBook>());
 
             return false;
         }

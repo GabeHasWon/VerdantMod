@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Systems.UI;
 using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Blocks.Misc;
@@ -21,11 +17,15 @@ public class LeafBook : ModItem
 		{
 			Item.stack++;
 
-			QuickItem.ToggleBookUI("Leaves", 1f,
-				new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LeafDisplay", AssetRequestMode.ImmediateLoad),
-				"\nAlmost fabric like texture, durable yet soft\ninexplicably calming to hold\nGrows beautifully in bulb light",
-				"\nunpleasant to eat, tastes like grass and dirt\nPlentiful, might use (books? pages? look soon)\nmight work in small parts?",
-				"grows in vine like clumps, or just clumps? unsure\ngrow only or mostly around flowers"});
+			QuickItem.ToggleBookUI($"[i:{Type}] Leaves [i:{Type}]", 1f,
+				new object[] { "The book looks particularly old, page worn and yellowed.\nThe material is also clearly foreign.\nThere's drops of water across the top pages.\nThere's also tons of " +
+                "minor scribbles.\nThe scribbles seem of random mundane cave objects,\nfor some reason.\nThere's no dates or authors mentioned, apart from a\nsignature:",
+				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/Signature"),
+				"\nYou scan through the book, and spot the following pages:",
+				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LeafDisplay"),
+				"\n\"Almost fabric like texture, durable yet soft.\nInexplicably calming to hold, grows well in bulb light.\nUnpleasant to eat, tastes like grass and dirt." +
+                "\nPlentiful, might use (books? pages? look soon).\nMight work in small parts?\nGrows in vine like clumps, or just clumps? Unsure.\nGrow only or mostly around flowers." +
+                "\n\n(DO NOT EAT)\n\nTried pressing into pages, seem to work but needs\nmore work. Pages are too green.\""});
 			return true;
 		}
 
