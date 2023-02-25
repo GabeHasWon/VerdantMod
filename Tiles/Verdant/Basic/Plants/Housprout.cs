@@ -15,7 +15,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         public override void SetStaticDefaults()
         {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
-            TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
+            TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
+            TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
             TileObjectData.newTile.RandomStyleRange = 1;
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));

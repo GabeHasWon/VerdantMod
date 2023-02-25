@@ -18,8 +18,8 @@ class BigPuff : ModTile, IFlowerTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, 2, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.HallowedGrass, 
-            TileID.Grass, TileID.JungleGrass, TileID.Hive, ModContent.TileType<VerdantPinkPetal>() };
+        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, ModContent.TileType<VerdantPinkPetal>() };
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
 
         QuickTile.SetMulti(this, 2, 3, DustID.PinkStarfish, SoundID.Grass, false, new Color(255, 112, 202), true, false, origin: new Point16(0, 1));
     }

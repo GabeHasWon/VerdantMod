@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,13 +13,35 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
     internal class VerdantGrassLeaves : ModTile
     {
+        public static List<string> CountsAsVerdantGrass = new();
+
+        public static List<int> VerdantGrassList()
+        {
+            List<int> types = new List<int>();
+
+            foreach (var item in CountsAsVerdantGrass)
+            {
+                var split = item.Split('.');
+
+                if (split.Length != 2)
+                    throw new Exception(nameof(CountsAsVerdantGrass) + " contains objects in formats outside of Mod.Name!");
+
+                types.Add(ModContent.Find<ModTile>(split[0], split[1]).Type);
+            }
+            return types;
+        } 
+
         public override void SetStaticDefaults()
         {
             QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), ModContent.ItemType<LushLeaf>(), "", true, false);
             QuickTile.MergeWith(Type, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>(), TileID.LivingWood, TileID.Stone, TileID.Dirt, TileID.Grass);
 
             Main.tileBrick[Type] = true;
+
+            CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(VerdantGrassLeaves));
         }
+
+        public override void Unload() => CountsAsVerdantGrass = new();
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
@@ -26,15 +49,23 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), (new Vector2(i, j + 1) * 16) - new Vector2(0, 2), new Vector2(0, 0), ModContent.GoreType<Gores.Verdant.VerdantDroplet>(), 1f);
         }
 
-        public override void RandomUpdate(int i, int j)
+        public override void RandomUpdate(int i, int j) => StaticRandomUpdate(i, j);
+
+        internal static bool StaticRandomUpdate(int i, int j)
         {
             Tile self = Framing.GetTileSafely(i, j);
 
             bool puff = CheckPuff(i, j);
             if (!puff)
-                NormalGrowth(i, j);
+            {
+                if (NormalGrowth(i, j))
+                    return true;
+            }
             else
-                PuffGrowth(i, j);
+            {
+                if (PuffGrowth(i, j))
+                    return true;
+            }
 
             //vine
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
@@ -42,8 +73,9 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j + 1, puff ? ModContent.TileType<PuffVine>() : ModContent.TileType<VerdantVine>(), true, false);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
-                return;
+                return true;
             }
+            return false;
         }
 
         internal static bool CheckPuff(int i, int j, float sizeMul = 1f)
@@ -59,7 +91,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             return false;
         }
 
-        private static void NormalGrowth(int i, int j)
+        private static bool NormalGrowth(int i, int j)
         {
             Tile self = Framing.GetTileSafely(i, j);
 
@@ -69,7 +101,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<VerdantDecor1x1>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
-                return;
+                return true;
             }
 
             //tile's left decor
@@ -78,7 +110,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i - 1, j, ModContent.TileType<Decor1x1Right>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i - 1, j, 1, TileChangeType.None);
-                return;
+                return true;
             }
 
             //tile's right decor
@@ -87,7 +119,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i + 1, j, ModContent.TileType<Decor1x1Left>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i + 1, j, 1, TileChangeType.None);
-                return;
+                return true;
             }
 
             //decor 2x1
@@ -96,7 +128,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<VerdantDecor2x1>(), true, false, -1, Main.rand.Next(6));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
-                return;
+                return true;
             }
 
             //lily
@@ -105,7 +137,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<VerdantLillie>(), true, false, -1, 0);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
-                return;
+                return true;
             }
 
             //bouncebloom
@@ -114,7 +146,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Bouncebloom>(), true, false, -1, 0);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
 
             //lightbulb
@@ -123,7 +155,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<VerdantLightbulb>(), true, false, -1, Main.rand.Next(3));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
 
             //decor 2x2
@@ -132,7 +164,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<VerdantDecor2x2>(), true, false, -1, Main.rand.Next(8));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
 
             //yellow sprout
@@ -141,7 +173,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<YellowSprouts>(), true, false, -1, Main.rand.Next(3));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
 
             //decor 1x2
@@ -150,7 +182,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<VerdantDecor1x2>(), true, false, -1, Main.rand.Next(6));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 3, TileChangeType.None);
-                return;
+                return true;
             }
 
             //decor 1x3
@@ -159,7 +191,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 3, ModContent.TileType<VerdantDecor1x3>(), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
 
             //dye plants
@@ -168,11 +200,12 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 WorldGen.PlaceTile(i, j - 2, ModContent.TileType<DyeBulbs>(), true, false, -1, Main.rand.Next(2));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
-                return;
+                return true;
             }
+            return false;
         }
 
-        private static void PuffGrowth(int i, int j)
+        private static bool PuffGrowth(int i, int j)
         {
             Tile self = Framing.GetTileSafely(i, j);
 
@@ -184,7 +217,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                     WorldGen.PlaceTile(i, j - 2, ModContent.TileType<PuffDecor1x2>(), true, false, -1, Main.rand.Next(3));
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendTileSquare(-1, i, j - 2, 1, 2, TileChangeType.None);
-                    return;
+                    return true;
                 }
 
                 //decor 1x1 or wisplants
@@ -194,9 +227,10 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                     WorldGen.PlaceTile(i, j - 1, wisplant ? ModContent.TileType<Wisplant>() : ModContent.TileType<PuffDecor1x1>(), true, false, -1, wisplant ? 0 : Main.rand.Next(7));
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
 
         internal static void ImpactEffects(Player player)

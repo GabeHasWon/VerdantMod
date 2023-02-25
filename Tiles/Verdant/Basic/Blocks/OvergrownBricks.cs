@@ -13,6 +13,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             Main.tileBlendAll[Type] = true;
             Main.tileBrick[Type] = true;
+
+            VerdantGrassLeaves.CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(OvergrownBricks));
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
@@ -21,6 +23,14 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             Tile tile = Main.tile[i, j];
             tile.TileType = TileID.GrayBrick;
+        }
+
+        public override void RandomUpdate(int i, int j)
+        {
+            if (VerdantGrassLeaves.StaticRandomUpdate(i, j))
+                return;
+
+            TileHelper.Spread(i, j, Type, 4);
         }
     }
 }

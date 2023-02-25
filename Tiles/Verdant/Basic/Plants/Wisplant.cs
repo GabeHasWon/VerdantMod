@@ -41,7 +41,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 			AddMapEntry(new Color(255, 174, 183), name);
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
-			TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>() };
+			TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
+			TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
 			TileObjectData.newTile.AnchorAlternateTiles = new int[] { TileID.ClayPot, TileID.PlanterBox };
 			TileObjectData.addTile(Type);
 

@@ -14,7 +14,7 @@ namespace Verdant.Items.Verdant.Materials
 
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, Mod, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantPinkPetalWallItem>(), 4));
+            QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantPinkPetalWallItem>(), 4));
 
             QuickItem.AddRecipe(ItemID.BrightPinkDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<PinkPetal>(), 8), (ItemID.SilverDye, 1));
             QuickItem.AddRecipe(ItemID.PinkandBlackDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<PinkPetal>(), 8), (ItemID.BlackDye, 1));

@@ -22,5 +22,5 @@ internal class MagicWisplant : ModItem
         Item.rare = ItemRarityID.Green;
     }
 
-    public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.Bottles, 1, (ModContent.ItemType<LushLeaf>(), 4), (ModContent.ItemType<WisplantItem>(), 1), (ItemID.FallenStar, 1));
+    public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.Bottles, 1, (ModContent.ItemType<LushLeaf>(), 4), (ModContent.ItemType<WisplantItem>(), 1), (ItemID.FallenStar, 1));
 }

@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Blocks.Walls
         public override void SetDefaults() => QuickItem.SetWall(this, 32, 32, ModContent.WallType<LivingLushWoodWall>());
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 4, (ModContent.ItemType<VerdantWoodBlock>(), 1));
+            QuickItem.AddRecipe(this, TileID.LivingLoom, 4, (ModContent.ItemType<VerdantWoodBlock>(), 1));
             QuickItem.AddRecipe(ModContent.ItemType<VerdantWoodBlock>(), Mod, TileID.LivingLoom, 1, (Item.type, 4));
         }
     }

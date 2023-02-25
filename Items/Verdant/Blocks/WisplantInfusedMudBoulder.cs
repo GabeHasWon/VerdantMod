@@ -13,5 +13,5 @@ public class WisplantInfusedMudBoulder : ModItem
 	}
 
 	public override void SetDefaults() => Item.DefaultToPlaceableTile(ModContent.TileType<WisplantInfusedLushBall>());
-    public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, -1, 1, (ModContent.ItemType<LushSoilBlock>(), 1));
+    public override void AddRecipes() => QuickItem.AddRecipe(this, -1, 1, (ModContent.ItemType<LushSoilBlock>(), 1));
 }

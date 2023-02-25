@@ -15,6 +15,6 @@ namespace Verdant.Items.Verdant.Blocks.Marble
             Item.rare = ItemRarityID.Expert;
         }
 
-        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.WorkBenches, 1, (ItemID.MarbleBlock, 4), (ModContent.ItemType<LushLeaf>(), 8));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ItemID.MarbleBlock, 4), (ModContent.ItemType<LushLeaf>(), 8));
     }
 }

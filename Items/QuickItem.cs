@@ -169,7 +169,7 @@ namespace Verdant.Items
         /// <param name="tile">Tile to use for crafting. -1 means no tile is used. Defaults to -1.</param>
         /// <param name="resultStack">Stack created with this crafting recipe. Defaults to 1.</param>
         /// <param name="ingredients">Ingredients to use. Formatted as a (int, int) pair.</param>
-        public static void AddRecipe(ModItem item, Mod mod, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
+        public static void AddRecipe(ModItem item, int tile = -1, int resultStack = 1, params (int, int)[] ingredients)
         {
             if (ingredients.Length <= 0)
                 throw new ArgumentException("Ingredents array is empty.", nameof(ingredients));

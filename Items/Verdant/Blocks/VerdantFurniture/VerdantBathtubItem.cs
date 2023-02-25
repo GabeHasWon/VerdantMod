@@ -9,6 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Verdant Bathtub", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 54, 34, ModContent.TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantBathtub>());
-        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<RedPetal>(), 4));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.LivingLoom, 1, (ModContent.ItemType<LushLeaf>(), 10), (ModContent.ItemType<RedPetal>(), 4));
     }
 }

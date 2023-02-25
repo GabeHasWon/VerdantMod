@@ -79,42 +79,6 @@ namespace Verdant.Tiles
         public static bool ValidRight(Tile tile) => !tile.RightSlope;
         public static bool ValidRight(int i, int j) => ValidRight(Framing.GetTileSafely(i, j));
 
-        /// <summary>
-        /// Don't use the bool return value for anything.
-        /// </summary>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
-        /// <param name="path"></param>
-        /// <param name="b"></param>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static bool DrawChains(int i, int j, string path, SpriteBatch b, int length)
-        {
-            Texture2D chain = ModContent.Request<Texture2D>(path).Value;
-
-            bool[] valids = new bool[2] { false, false };
-            for (int k = j - 1; k > j - length; --k) //Woo chain drawing
-            {
-                if (SolidTile(i, k + 1)) valids[0] = true;
-                if (SolidTile(i + 2, k + 1)) valids[1] = true;
-
-                float offset = (float)Math.Sin((Main.time + (i * 24) + (k * 19)) * (0.02f * (!Lighting.NotRetro ? 0f : 1))) * 1.2f;
-
-                if (k == j - 1) offset *= 0.5f;
-
-                offset = 0f;
-
-                if (!valids[0])
-                    b.Draw(chain, TileCustomPosition(i, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
-                if (!valids[1])
-                    b.Draw(chain, TileCustomPosition(i + 2, k, new Vector2(offset, 0)), new Rectangle(0, 0, 16, 16), Lighting.GetColor(i + 2, k), 0f, new Vector2(), 1f, SpriteEffects.None, 1f);
-
-                if (valids[0] && valids[1])
-                    return false;
-            }
-            return true;
-        }
-
         public static bool CanPlaceHangingTable(int i, int j)
         {
             if (ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && ActiveType(i + 2, j - 1, ModContent.TileType<VerdantStrongVine>()))
@@ -194,5 +158,47 @@ namespace Verdant.Tiles
         public static bool SolidType(int i, int j, int t) => ActiveType(i, j, t) && Framing.GetTileSafely(i, j).HasTile;
         public static bool ActiveTypeNoTopSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t && !Framing.GetTileSafely(i, j).TopSlope;
         public static bool ActiveTypeNoBottomSlope(int i, int j, int t) => Framing.GetTileSafely(i, j).HasTile && Framing.GetTileSafely(i, j).TileType == t && !Framing.GetTileSafely(i, j).BottomSlope;
+
+        public static void ExpandValidAnchors(this TileObjectData data, List<int> additions, bool alternates = false)
+        {
+            int[] values = alternates ? data.AnchorAlternateTiles : data.AnchorValidTiles;
+            List<int> newValues = new List<int>(additions);
+            newValues.AddRange(values);
+            int[] finalValues = newValues.ToArray();
+
+            if (alternates)
+                data.AnchorAlternateTiles = finalValues;
+            else
+                data.AnchorValidTiles = finalValues;
+        }
+
+        public static bool Spread(int i, int j, int type, int chance)
+        {
+            if (Main.rand.NextBool(chance))
+            {
+                var adjacents = OpenAdjacents(i, j, type);
+
+                if (adjacents.Count == 0)
+                    return false;
+
+                Point p = adjacents[Main.rand.Next(adjacents.Count)];
+
+                Framing.GetTileSafely(p.X, p.Y).TileType = (ushort)type;
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, p.X, p.Y, 1, TileChangeType.None);
+                return true;
+            }
+            return false;
+        }
+
+        public static List<Point> OpenAdjacents(int i, int j, int type)
+        {
+            var p = new List<Point>();
+            for (int k = -1; k < 2; ++k)
+                for (int l = -1; l < 2; ++l)
+                    if (!(l == 0 && k == 0) && Framing.GetTileSafely(i + k, j + l).HasTile && Framing.GetTileSafely(i + k, j + l).TileType == type)
+                        p.Add(new Point(i + k, j + l));
+            return p;
+        }
     }
 }

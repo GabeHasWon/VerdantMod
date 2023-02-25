@@ -18,8 +18,9 @@ class LootPlant : ModTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<VerdantPinkPetal>(), 
+        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<VerdantPinkPetal>(), 
             ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, TileID.Hive };
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
         TileObjectData.newTile.StyleHorizontal = true;
 
         QuickTile.SetMulti(this, 2, 2, DustID.OrangeStainedGlass, SoundID.Grass, true, new Color(232, 167, 74), false, false, false, "Passionflower");

@@ -11,8 +11,8 @@ namespace Verdant.Items.Verdant.Blocks
 
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ItemID.Hive, 4));
-            QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 2, (ItemID.BeeWax, 3));
+            QuickItem.AddRecipe(this, TileID.LivingLoom, 1, (ItemID.Hive, 4));
+            QuickItem.AddRecipe(this, TileID.LivingLoom, 2, (ItemID.BeeWax, 3));
         }
     }
 }

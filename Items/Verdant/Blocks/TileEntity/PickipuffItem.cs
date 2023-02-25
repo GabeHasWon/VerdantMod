@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Blocks.TileEntity
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Pickipuff", "Can only be placed on lush leaves\nCan be picked to harvest Puff\nRegrows after a while");
         public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 28, ItemRarityID.Orange, 99, true);
-        public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.LivingLoom, 1, (ModContent.ItemType<PuffMaterial>(), 12), (ModContent.ItemType<LushLeaf>(), 8));
+        public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.LivingLoom, 1, (ModContent.ItemType<PuffMaterial>(), 12), (ModContent.ItemType<LushLeaf>(), 8));
 
         public override bool CanUseItem(Player player)
         {

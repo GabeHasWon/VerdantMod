@@ -13,7 +13,7 @@ namespace Verdant.Items.Verdant.Materials
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Red Petal", "'They're very smooth'");
         public override void AddRecipes()
         {
-            QuickItem.AddRecipe(this, Mod, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantRedPetalWallItem>(), 4));
+            QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantRedPetalWallItem>(), 4));
 
             QuickItem.AddRecipe(ItemID.BrightRedDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.SilverDye, 1));
             QuickItem.AddRecipe(ItemID.RedandBlackDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.BlackDye, 1));

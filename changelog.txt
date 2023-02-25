@@ -1,17 +1,23 @@
 NEW CONTENT
 - Added Lush Soil Ball
 - Added Wisplant-Infused Lush Soil Ball
-- Added Thorn Beholder
-- Added Thorn
-- Added Dim Core
-- Added Grim Layer
 - Added various hardmode counterparts to existing Verdant tiles
 - Added Puff Block
 - Added Yellow Sprouts (Yellow Bulb tile)
 - Added Verdant Tree alternate top sprite for hardmode
 - Added New Beginnings compatibility
+- Added Book system
+	Includes Lightbulb, Leaf and Hardy Vine books
+- Added Overgrown Bricks
+- Added Green Crystals
+- Added Hanging Crystal
+- Added Research Books
+- Added Study
+- Added a couple more Apotheosis dialogue lines
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
 - Sprite edits for:
 	Yellow Bulb item
+- Beehives can be placed on all tiles
+- Adjusted speed that foreground/background leaves fly at in wind

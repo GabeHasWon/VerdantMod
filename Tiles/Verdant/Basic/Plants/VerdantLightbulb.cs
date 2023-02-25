@@ -17,7 +17,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
         {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
-            TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
+            TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
+            TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.StyleHorizontal = true;
 

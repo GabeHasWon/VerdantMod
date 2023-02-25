@@ -31,7 +31,8 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.newTile.CoordinatePadding = 2;
-			TileObjectData.newTile.AnchorValidTiles = new[] { ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>() };
+			TileObjectData.newTile.AnchorValidTiles = new[] { ModContent.TileType<LushSoil>() };
+			TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.DrawFlipHorizontal = true;
 			TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;

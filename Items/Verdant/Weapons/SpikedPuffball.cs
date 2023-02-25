@@ -25,5 +25,5 @@ internal class SpikedPuffball : ModItem
         Item.shootSpeed = 6f;
     }
 
-    public override void AddRecipes() => QuickItem.AddRecipe(this, Mod, TileID.Anvils, 3, (ItemID.SpikyBall, 3), (ModContent.ItemType<PuffMaterial>(), 1));
+    public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.Anvils, 3, (ItemID.SpikyBall, 3), (ModContent.ItemType<PuffMaterial>(), 1));
 }
