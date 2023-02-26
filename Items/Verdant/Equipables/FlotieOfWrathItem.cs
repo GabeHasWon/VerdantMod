@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Misc;
 
 namespace Verdant.Items.Verdant.Equipables
@@ -11,7 +12,7 @@ namespace Verdant.Items.Verdant.Equipables
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Curious Skull");
-			Tooltip.SetDefault("Summons a Flotie of Wrath\nGives off a tiny amount of light");
+			Tooltip.SetDefault("Summons a Flotie of Wrath\nGives off a small amount of light\n'The angriest flotie you've ever seen'");
 		}
 
 		public override void SetDefaults()
@@ -21,6 +22,7 @@ namespace Verdant.Items.Verdant.Equipables
 			Item.buffType = ModContent.BuffType<Buffs.Pet.FlotiePetBuff>();
 			Item.UseSound = SoundID.NPCDeath6; 
 			Item.rare = ItemRarityID.Yellow;
+			Item.Size = new Vector2(32, 30);
 		}
 
 		public override void UseStyle(Player player, Rectangle heldItemFrame)
@@ -30,5 +32,6 @@ namespace Verdant.Items.Verdant.Equipables
 		}
 
 		public override bool CanUseItem(Player player) => player.miscEquips[1].IsAir;
-	}
+		public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<LushLeaf>(), 8), (ModContent.ItemType<Lightbulb>(), 4), (ItemID.Bone, 6));
+    }
 }

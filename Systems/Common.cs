@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Drawing;
@@ -17,7 +16,6 @@ namespace Verdant.Systems
         public void Load(Mod mod)
         {
             On.Terraria.Main.DrawGore += DrawForeground;
-            On.Terraria.Main.DrawCursor += Main_DrawCursor;
             On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
             On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
             On.Terraria.GameContent.Drawing.TileDrawing.Draw += TileDrawing_Draw;
@@ -91,14 +89,6 @@ namespace Verdant.Systems
                 firstTileY = 4;
             else if (lastTileY > Main.maxTilesY - 4)
                 lastTileY = Main.maxTilesY - 4;
-        }
-
-        private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
-        {
-            if (!Main.gameMenu)
-                ScreenTextManager.Render();
-
-            orig(bonus, smart);
         }
 
         private static void DrawForeground(On.Terraria.Main.orig_DrawGore orig, Main self)

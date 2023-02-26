@@ -8,11 +8,11 @@ namespace Verdant.Systems.ScreenText
 {
     internal class ScreenTextManager
     {
-        public static string Speaker = string.Empty;
-        public static ScreenText CurrentText = null;
-        public static RenderTarget2D textTarget = null;
+        internal static string Speaker = string.Empty;
+        internal static ScreenText CurrentText = null;
+        internal static RenderTarget2D textTarget = null;
 
-        public static void Update()
+        internal static void Update()
         {
             if (CurrentText != null && !Main.gameMenu && !Main.mapFullscreen)
             {
@@ -23,7 +23,7 @@ namespace Verdant.Systems.ScreenText
             }
         }
 
-        public static void Draw()
+        internal static void Draw()
         {
             if (!Main.mapFullscreen)
                 CurrentText?.Draw();
@@ -58,7 +58,7 @@ namespace Verdant.Systems.ScreenText
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
         }
 
-        private static Effect GetTextEffect()
+        internal static Effect GetTextEffect()
         {
             var effect = CurrentText is null || CurrentText.shader is null ? null : CurrentText.shader.Value;
 

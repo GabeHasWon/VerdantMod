@@ -12,8 +12,10 @@ NEW CONTENT
 - Added Green Crystals
 - Added Hanging Crystal
 - Added Research Books
-- Added Study
+- Added Study structure
 - Added a couple more Apotheosis dialogue lines
+- Added Flotie of Wrath
+- Added Floral Tea
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -21,3 +23,5 @@ CHANGES
 	Yellow Bulb item
 - Beehives can be placed on all tiles
 - Adjusted speed that foreground/background leaves fly at in wind
+- Fixed ScreenText being drawn only when the mouse is drawn
+- Moved ScreenText to new UI layer so other mods can modify it if they wish (it's called "Verdant: Screen Text")

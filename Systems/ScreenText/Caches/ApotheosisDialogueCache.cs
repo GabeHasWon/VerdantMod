@@ -136,13 +136,13 @@ namespace Verdant.Systems.ScreenText.Caches
             texts.Add(randomThoughtDialogue, 0.7f);
 
             if (NPC.downedBoss1)
-                texts.Add(eocDialogue, 0.4f);
+                texts.Add(eocDialogue, 0.1f);
 
             if (NPC.downedBoss2)
-                texts.Add(evilDialogue, 0.4f);
+                texts.Add(evilDialogue, 0.1f);
 
             if (NPC.downedBoss3)
-                texts.Add(skeleDialogue, 0.4f);
+                texts.Add(skeleDialogue, 0.1f);
 
             AddAdditionalIdleDialogue(texts);
 
@@ -194,7 +194,7 @@ namespace Verdant.Systems.ScreenText.Caches
                     speakerColor = Color.Lime,
                 };
 
-                texts.Add(miscBossDialogue, 0.3f + (miscBossLines.Count * 0.05f));
+                texts.Add(miscBossDialogue, 0.1f + (miscBossLines.Count * 0.05f));
             }
         }
 
