@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Misc;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -9,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), ItemID.DirtBlock, "", true, false);
+            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), ModContent.ItemType<OvergrownBrickItem>(), "", true, false);
 
             Main.tileBlendAll[Type] = true;
             Main.tileBrick[Type] = true;

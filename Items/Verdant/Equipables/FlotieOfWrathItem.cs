@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Equipables
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Curious Skull");
-			Tooltip.SetDefault("Summons a Flotie of Wrath");
+			Tooltip.SetDefault("Summons a Flotie of Wrath\nGives off a tiny amount of light");
 		}
 
 		public override void SetDefaults()
@@ -29,6 +29,6 @@ namespace Verdant.Items.Verdant.Equipables
 				player.AddBuff(Item.buffType, 3600, true);
 		}
 
-		public override bool CanUseItem(Player player) => player.miscEquips[0].IsAir;
+		public override bool CanUseItem(Player player) => player.miscEquips[1].IsAir;
 	}
 }

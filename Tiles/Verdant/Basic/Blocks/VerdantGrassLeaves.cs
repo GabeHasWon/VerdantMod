@@ -70,7 +70,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //vine
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
             {
-                WorldGen.PlaceTile(i, j + 1, puff ? ModContent.TileType<PuffVine>() : ModContent.TileType<VerdantVine>(), true, false);
+                WorldGen.PlaceTile(i, j + 1, puff ? ModContent.TileType<PuffVine>() : Main.hardMode ? ModContent.TileType<LightbulbVine>() : ModContent.TileType<VerdantVine>(), true, false);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
                 return true;

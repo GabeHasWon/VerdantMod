@@ -162,7 +162,7 @@ namespace Verdant.Tiles
         public static void ExpandValidAnchors(this TileObjectData data, List<int> additions, bool alternates = false)
         {
             int[] values = alternates ? data.AnchorAlternateTiles : data.AnchorValidTiles;
-            List<int> newValues = new List<int>(additions);
+            List<int> newValues = new(additions);
             newValues.AddRange(values);
             int[] finalValues = newValues.ToArray();
 

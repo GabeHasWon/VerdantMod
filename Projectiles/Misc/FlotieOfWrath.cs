@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Verdant.Projectiles.Misc;
@@ -7,7 +8,9 @@ class FlotieOfWrath : ModProjectile
 {
     Player Owner => Main.player[Projectile.owner];
 
-    public override void SetStaticDefaults() => Main.projFrames[Type] = 1;
+    private ref float Timer => ref Projectile.ai[0];
+
+    public override void SetStaticDefaults() => Main.projFrames[Type] = 2;
 
     public override void SetDefaults()
     {
@@ -25,9 +28,7 @@ class FlotieOfWrath : ModProjectile
     {
         Owner.GetModPlayer<Buffs.Pet.PetPlayer>().PetFlag(Projectile);
 
-        Projectile.rotation = Projectile.velocity.X * 0.05f;
-
-        if (Projectile.DistanceSQ(Owner.Center) > 100 * 100)
+        if (Projectile.DistanceSQ(Owner.Center) > 300 * 300)
         {
             Projectile.velocity += (Owner.Center - Projectile.Center) * 0.001f;
 
@@ -37,6 +38,13 @@ class FlotieOfWrath : ModProjectile
         else
             Projectile.velocity *= 0.98f;
 
-        Lighting.AddLight(Projectile.position, new Microsoft.Xna.Framework.Vector3(0.5f, 0.16f, 0.30f) * 1.4f);
+        Projectile.rotation = Projectile.velocity.X * 0.05f;
+        Projectile.velocity.Y += MathF.Sin(Timer++ * 0.04f) * 0.05f;
+        Projectile.frame = Projectile.velocity.Y <= 0 ? 0 : 1;
+
+        if (Math.Abs(Projectile.velocity.X) > 0.0008f)
+            Projectile.spriteDirection = -Math.Sign(Projectile.velocity.X);
+
+        Lighting.AddLight(Projectile.position, new Microsoft.Xna.Framework.Vector3(0.5f, 0.16f, 0.30f) * 2f);
     }
 }

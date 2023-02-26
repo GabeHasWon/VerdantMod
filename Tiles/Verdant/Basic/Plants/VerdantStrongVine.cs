@@ -3,8 +3,10 @@ using System;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -19,6 +21,12 @@ internal class VerdantStrongVine : ModTile
         Main.tileBlockLight[Type] = false;
         Main.tileFrameImportant[Type] = true;
         Main.tileAxe[Type] = true;
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+        TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
+        TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
+        TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+        TileObjectData.addTile(Type);
 
         ItemDrop = ModContent.ItemType<VerdantStrongVineMaterial>();
         DustType = DustID.Grass;
