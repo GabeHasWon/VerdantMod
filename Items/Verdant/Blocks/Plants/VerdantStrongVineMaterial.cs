@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items.Verdant.Blocks.Plants;

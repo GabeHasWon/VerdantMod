@@ -19,8 +19,20 @@ namespace Verdant.Systems
             On.Terraria.Main.DrawGore += DrawForeground;
             On.Terraria.Main.DrawCursor += Main_DrawCursor;
             On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
+            On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
             On.Terraria.GameContent.Drawing.TileDrawing.Draw += TileDrawing_Draw;
             Main.OnTickForThirdPartySoftwareOnly += ScreenTextManager.Update;
+        }
+
+        private void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+        {
+            orig(self);
+
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            DrawAdditiveProjectiles(AdditiveLayer.BeforePlayer);
+
+            Main.spriteBatch.End();
         }
 
         private void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
@@ -28,7 +40,6 @@ namespace Verdant.Systems
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 
-            DrawAdditiveProjectiles(AdditiveLayer.BeforePlayer);
             DrawAdditiveNPCs(AdditiveLayer.BeforePlayer);
 
             Main.spriteBatch.End();
