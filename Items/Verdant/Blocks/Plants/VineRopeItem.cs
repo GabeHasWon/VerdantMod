@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
-namespace Verdant.Items.Verdant.Blocks
+namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class VineRopeItem : ModItem
     {
@@ -23,7 +23,7 @@ namespace Verdant.Items.Verdant.Blocks
 
             var m = Main.MouseWorld.ToTileCoordinates();
             Tile tile = Main.tile[m];
-            if (tile.HasTile && tile.TileType != Item.createTile || (!Valid(m.X, m.Y - 1) && !Valid(m.X, m.Y + 1)))
+            if (tile.HasTile && tile.TileType != Item.createTile || !Valid(m.X, m.Y - 1) && !Valid(m.X, m.Y + 1))
                 return false;
 
             if (!tile.HasTile)

@@ -42,6 +42,7 @@ public class GreenCrystal : ModTile
 		TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
 		TileObjectData.addAlternate(3);
 		TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
+		TileObjectData.newAlternate.AnchorWall = false;
 		TileObjectData.addAlternate(0);
 		TileObjectData.addTile(Type);
 

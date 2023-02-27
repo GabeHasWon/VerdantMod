@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class VineRopeTile : ModTile
+internal class RootRopeTile : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -16,7 +16,7 @@ internal class VineRopeTile : ModTile
         Main.tileRope[Type] = true;
         Main.tileFrameImportant[Type] = false;
 
-        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Plants.RootRopeItem>();
+        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Plants.VineRopeItem>();
 
         AddMapEntry(new Color(23, 102, 32));
 

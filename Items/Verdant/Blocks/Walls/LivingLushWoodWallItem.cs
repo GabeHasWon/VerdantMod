@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Blocks.Walls
         public override void AddRecipes()
         {
             QuickItem.AddRecipe(this, TileID.LivingLoom, 4, (ModContent.ItemType<VerdantWoodBlock>(), 1));
-            QuickItem.AddRecipe(ModContent.ItemType<VerdantWoodBlock>(), Mod, TileID.LivingLoom, 1, (Item.type, 4));
+            QuickItem.AddRecipe(ModContent.ItemType<VerdantWoodBlock>(), TileID.LivingLoom, 1, (Item.type, 4));
         }
     }
 }

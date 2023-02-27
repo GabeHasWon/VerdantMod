@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Verdant.Effects;
 using Verdant.Projectiles.Magic;
 using Verdant.Systems.RealtimeGeneration;
@@ -40,16 +41,16 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = false;
+		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createTile = ModContent.TileType<HangingCrystal>();
+        Item.createTile = TileID.Bamboo;
     }
 
     public override bool? UseItem(Player player)
     {
-        //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-        //var pos = Main.MouseWorld.ToTileCoordinates();
+		//ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
+		//var pos = Main.MouseWorld.ToTileCoordinates();
 
 		//Tile tile = Main.tile[pos];
 		//tile.TileFrameX = 0;
@@ -59,6 +60,7 @@ public class ProbablyDelete : ModItem
 		//return true;
 		//if (!RealtimeGen.HasStructure("Testing"))
 		//    Spawn(pos);
+
 		return true;
     }
 

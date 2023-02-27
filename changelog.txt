@@ -16,11 +16,14 @@ NEW CONTENT
 - Added a couple more Apotheosis dialogue lines
 - Added Flotie of Wrath
 - Added Floral Tea
+- Added Lush Root Rope
+- Added Lush Vine Wall
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
 - Sprite edits for:
 	Yellow Bulb item
+	Lush Vine Rope tile
 - Beehives can be placed on all tiles
 - Adjusted speed that foreground/background leaves fly at in wind
 - Fixed ScreenText being drawn only when the mouse is drawn

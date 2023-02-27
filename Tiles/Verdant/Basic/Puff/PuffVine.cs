@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Dusts;
-using Verdant.Items.Verdant.Blocks;
+using Verdant.Items.Verdant.Blocks.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Puff;
 

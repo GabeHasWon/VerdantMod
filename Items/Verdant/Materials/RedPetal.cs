@@ -15,8 +15,8 @@ namespace Verdant.Items.Verdant.Materials
         {
             QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantRedPetalWallItem>(), 4));
 
-            QuickItem.AddRecipe(ItemID.BrightRedDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.SilverDye, 1));
-            QuickItem.AddRecipe(ItemID.RedandBlackDye, Mod, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.BlackDye, 1));
+            QuickItem.AddRecipe(ItemID.BrightRedDye, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.SilverDye, 1));
+            QuickItem.AddRecipe(ItemID.RedandBlackDye, TileID.DyeVat, 1, (ModContent.ItemType<RedPetal>(), 8), (ItemID.BlackDye, 1));
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)

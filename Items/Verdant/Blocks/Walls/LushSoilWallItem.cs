@@ -10,7 +10,7 @@ namespace Verdant.Items.Verdant.Blocks.Walls
         public override void AddRecipes()
         {
             QuickItem.AddRecipe(this, -1, 4, (ModContent.ItemType<LushSoilBlock>(), 1));
-            QuickItem.AddRecipe(ModContent.ItemType<LushSoilBlock>(), Mod, -1, 1, (Item.type, 4));
+            QuickItem.AddRecipe(ModContent.ItemType<LushSoilBlock>(), -1, 1, (Item.type, 4));
         }
     }
 }

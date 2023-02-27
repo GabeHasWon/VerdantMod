@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.Utilities;
 using Terraria.ID;
+using System.Linq;
 
 namespace Verdant.Tiles
 {
@@ -172,11 +173,11 @@ namespace Verdant.Tiles
                 data.AnchorValidTiles = finalValues;
         }
 
-        public static bool Spread(int i, int j, int type, int chance)
+        public static bool Spread(int i, int j, int type, int chance, params int[] validAdjacentTypes)
         {
             if (Main.rand.NextBool(chance))
             {
-                var adjacents = OpenAdjacents(i, j, type);
+                var adjacents = OpenAdjacents(i, j, validAdjacentTypes);
 
                 if (adjacents.Count == 0)
                     return false;
@@ -191,12 +192,12 @@ namespace Verdant.Tiles
             return false;
         }
 
-        public static List<Point> OpenAdjacents(int i, int j, int type)
+        public static List<Point> OpenAdjacents(int i, int j, params int[] types)
         {
             var p = new List<Point>();
             for (int k = -1; k < 2; ++k)
                 for (int l = -1; l < 2; ++l)
-                    if (!(l == 0 && k == 0) && Framing.GetTileSafely(i + k, j + l).HasTile && Framing.GetTileSafely(i + k, j + l).TileType == type)
+                    if (!(l == 0 && k == 0) && Framing.GetTileSafely(i + k, j + l).HasTile && types.Contains(Framing.GetTileSafely(i + k, j + l).TileType))
                         p.Add(new Point(i + k, j + l));
             return p;
         }
