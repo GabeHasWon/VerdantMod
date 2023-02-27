@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -110,6 +111,59 @@ namespace Verdant.Tiles
                 Main.tileMerge[self][types[i]] = true;
                 Main.tileMerge[types[i]][self] = true;
             }
+        }
+
+        /// <summary>Sets Main.tileX[] array values and TileObjectData.</summary>
+        public static void CrystalAnchoringData(int type, int randomRange, int[] validAnchors = null)
+        {
+            Main.tileFrameImportant[type] = true;
+            Main.tileObsidianKill[type] = true;
+            Main.tileNoFail[type] = true;
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
+            TileObjectData.newTile.RandomStyleRange = randomRange;
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, TileObjectData.newTile.Width, 0);
+
+            if (validAnchors is not null)
+                TileObjectData.newTile.AnchorValidTiles = validAnchors;
+
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
+            TileObjectData.newAlternate.RandomStyleRange = randomRange;
+            TileObjectData.newAlternate.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
+            TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+
+            if (validAnchors is not null)
+                TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
+
+            TileObjectData.addAlternate(1);
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
+            TileObjectData.newAlternate.RandomStyleRange = randomRange;
+            TileObjectData.newAlternate.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
+            TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+
+            if (validAnchors is not null)
+                TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
+
+            TileObjectData.addAlternate(2);
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
+            TileObjectData.newAlternate.RandomStyleRange = randomRange;
+            TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+            TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+
+            if (validAnchors is not null)
+                TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
+
+            TileObjectData.addAlternate(3);
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);
+            TileObjectData.newAlternate.AnchorWall = false;
+            TileObjectData.newAlternate.RandomStyleRange = randomRange;
+            TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, TileObjectData.newTile.Width, 0);
+
+            if (validAnchors is not null)
+                TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
+
+            TileObjectData.addAlternate(0);
+            TileObjectData.addTile(type);
         }
     }
 }

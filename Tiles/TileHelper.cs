@@ -202,5 +202,11 @@ namespace Verdant.Tiles
                         p.Add(new Point(i + k, j + l));
             return p;
         }
+
+        public static void CrystalSetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
+        {
+            int frameX = Main.tile[i, j].TileFrameX;
+            spriteEffects = i % 2 == 0 && (frameX == 0 || frameX == 66) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        }
     }
 }

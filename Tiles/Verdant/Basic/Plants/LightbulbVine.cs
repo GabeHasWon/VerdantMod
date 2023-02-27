@@ -71,7 +71,7 @@ internal class LightbulbVine : ModTile, IFlowerTile
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile t = Framing.GetTileSafely(i, j);
-        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.02f) * 1f;
+        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.08f) * 1.4f;
 
         if (Main.tile[i, j - 1].TileType != Type)
             sine = 0;

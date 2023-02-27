@@ -95,10 +95,12 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             Tile self = Framing.GetTileSafely(i, j);
 
+            int HardmodeOr(int defaultType) => Main.hardMode ? ModContent.TileType<HardmodeDecor1x1>() : defaultType;
+
             //decor 1x1
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<VerdantDecor1x1>(), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i, j - 1, HardmodeOr(ModContent.TileType<VerdantDecor1x1>()), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
                 return true;
@@ -107,7 +109,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //tile's left decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i - 1, j, ModContent.TileType<Decor1x1Right>(), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i - 1, j, HardmodeOr(ModContent.TileType<Decor1x1Right>()), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i - 1, j, 1, TileChangeType.None);
                 return true;
@@ -116,7 +118,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //tile's right decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i + 1, j, ModContent.TileType<Decor1x1Left>(), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i + 1, j, HardmodeOr(ModContent.TileType<Decor1x1Left>()), true, false, -1, Main.rand.Next(7));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i + 1, j, 1, TileChangeType.None);
                 return true;

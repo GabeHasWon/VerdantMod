@@ -77,7 +77,7 @@ public class VerdantLeggings : ModItem
                     }
 
                     if (choice == 0)
-                        TileHelper.SyncedPlace(t.X, t.Y - 1, ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
+                        TileHelper.SyncedPlace(t.X, t.Y - 1, Main.hardMode ? ModContent.TileType<HardmodeDecor1x1>() : ModContent.TileType<VerdantDecor1x1>(), true, true, -1, Main.rand.Next(7));
                     else if (choice == 1)
                         TileHelper.SyncedPlace(t.X, t.Y - 2, ModContent.TileType<VerdantDecor1x2>(), true, true, -1, Main.rand.Next(6));
                     else if (choice == 2)

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -44,24 +43,24 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createTile = ModContent.TileType<SnailStatue>();
+        Item.createTile = ModContent.TileType<HardmodeDecor1x1>();
 	}
 
     public override bool? UseItem(Player player)
     {
-		//ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
-		//var pos = Main.MouseWorld.ToTileCoordinates();
+        //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
+        var pos = Main.MouseWorld.ToTileCoordinates();
 
-		//Tile tile = Main.tile[pos];
-		//tile.TileFrameX = 0;
-		//tile.TileFrameY = 0;
-		//Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+        Tile tile = Main.tile[pos];
+        //tile.TileFrameX = 0;
+        //tile.TileFrameY = 0;
+        Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
-		//return true;
-		//if (!RealtimeGen.HasStructure("Testing"))
-		//    Spawn(pos);
-		Main.NewText(Main.MouseWorld.ToTileCoordinates());
-		return null;
+        //return true;
+        //if (!RealtimeGen.HasStructure("Testing"))
+        //    Spawn(pos);
+        //Main.NewText(Main.MouseWorld.ToTileCoordinates());
+        return null;
     }
 
     private void Spawn(Point pos)
