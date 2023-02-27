@@ -81,14 +81,28 @@ internal class SnailStatue : ModTile
 
 	public override void SetStaticDefaults()
 	{
-		Main.tileFrameImportant[Type] = true;
 		Main.tileNoAttach[Type] = true;
+		Main.tileLavaDeath[Type] = false;
+		Main.tileFrameImportant[Type] = true;
+		Main.tileSolidTop[Type] = false;
+		Main.tileSolid[Type] = false;
 
-		TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
-		QuickTile.SetMulti(this, 4, 6, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Snail Statue");
+		TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+		TileObjectData.newTile.Width = 4;
+        TileObjectData.newTile.Height = 6;
+        TileObjectData.newTile.CoordinateHeights = new int[6] { 16, 16, 16, 16, 16, 16 };
+		TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, -2);
+		TileObjectData.newTile.Direction = Terraria.Enums.TileObjectDirection.None;
+		TileObjectData.newTile.LinkedAlternates = false;
+        TileObjectData.addTile(Type);
+
+		ModTranslation n = CreateMapEntryName();
+		n.SetDefault("Snail Statue");
+		AddMapEntry(Color.Gray, n);
 	}
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+
 	public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), (i + 2) * 16, (j + 3) * 16, 16, 48, ModContent.ItemType<SnailStatueItem>());
 
 	public static string SnailText()

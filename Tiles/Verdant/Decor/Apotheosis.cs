@@ -7,12 +7,18 @@ using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.World;
 using Terraria.DataStructures;
+using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
 internal class Apotheosis : ModTile
 {
-    public override void SetStaticDefaults() => QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+    public override void SetStaticDefaults()
+    {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+    }
+
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;
     public override bool CanExplode(int i, int j) => false;
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

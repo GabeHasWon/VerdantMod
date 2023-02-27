@@ -13,12 +13,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
+            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             Main.tileCut[Type] = false;
             Main.tileSolidTop[Type] = true;
@@ -59,12 +59,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
+            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             Main.tileCut[Type] = false;
             Main.tileSolidTop[Type] = true;
@@ -97,12 +97,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
+            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             Main.tileCut[Type] = false;
             Main.tileSolidTop[Type] = true;
@@ -143,12 +143,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 0);
+            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-            QuickTile.SetMulti(this, 3, 2, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
 
             Main.tileCut[Type] = false;
             Main.tileSolidTop[Type] = true;

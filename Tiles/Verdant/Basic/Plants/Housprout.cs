@@ -14,6 +14,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
             TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());

@@ -11,6 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.Marble
     {
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 2, 2, DustID.MarblePot, SoundID.Shatter, true, new Color(161, 226, 99));

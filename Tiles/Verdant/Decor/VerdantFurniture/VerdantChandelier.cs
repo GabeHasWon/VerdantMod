@@ -12,7 +12,9 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
     {
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom, 2, 0);
+            TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.Origin = new Point16(0, 2);
             TileObjectData.newTile.WaterDeath = false;
@@ -20,7 +22,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
 
-            QuickTile.SetMulti(this, 2, 3, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "");
+            QuickTile.SetMulti(this, 2, 3, DustID.Grass, SoundID.Grass, false, new Color(20, 82, 39), false, false, false, "", null);
 
             Main.tileFrameImportant[Type] = true;
             Main.tileCut[Type] = false;

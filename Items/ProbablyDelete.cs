@@ -44,8 +44,8 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createTile = TileID.Bamboo;
-    }
+        Item.createTile = ModContent.TileType<SnailStatue>();
+	}
 
     public override bool? UseItem(Player player)
     {
@@ -60,8 +60,8 @@ public class ProbablyDelete : ModItem
 		//return true;
 		//if (!RealtimeGen.HasStructure("Testing"))
 		//    Spawn(pos);
-
-		return true;
+		Main.NewText(Main.MouseWorld.ToTileCoordinates());
+		return null;
     }
 
     private void Spawn(Point pos)

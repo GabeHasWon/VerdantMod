@@ -27,6 +27,7 @@ namespace Verdant.Tiles
 
         public static void OpenDoorData(int type)
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(0, 0);

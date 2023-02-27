@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Verdant.Projectiles.Misc;
 using System;
+using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
@@ -13,7 +14,11 @@ internal class MudBoulderTile : ModTile
 {
     protected virtual int ProjectileType => ModContent.ProjectileType<MudBoulder>();
 
-    public override void SetStaticDefaults() => QuickTile.SetMulti(this, 1, 1, DustID.Mud, SoundID.Dig, false, new Color(73, 32, 18));
+    public override void SetStaticDefaults()
+    {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+        QuickTile.SetMulti(this, 1, 1, DustID.Mud, SoundID.Dig, false, new Color(73, 32, 18));
+    }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;

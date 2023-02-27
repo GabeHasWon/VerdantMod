@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent.Metadata;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -15,6 +14,7 @@ namespace Verdant.Tiles.Verdant.Basic.Puff
     {
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
             TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());

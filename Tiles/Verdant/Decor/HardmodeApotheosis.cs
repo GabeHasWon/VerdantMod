@@ -9,9 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Verdant.Drawing;
 using Terraria.DataStructures;
-using Verdant.Systems.PestControl;
 using Verdant.Items.Verdant.Misc;
-using System.Collections.Generic;
+using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -24,6 +23,7 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
 
     public override void SetStaticDefaults()
     {
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
         glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
         alphaTex = ModContent.Request<Texture2D>(Texture + "_GlowAlpha");

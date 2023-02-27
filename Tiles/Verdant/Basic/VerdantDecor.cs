@@ -125,8 +125,9 @@ internal class VerdantDecor1x1NoCut : ModTile
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
         TileObjectData.newTile.RandomStyleRange = 4;
         TileObjectData.newTile.StyleHorizontal = true;
-        Main.tileCut[Type] = false;
         QuickTile.SetMulti(this, 1, 1, DustID.Stone, SoundID.Dig, false, new Color(161, 226, 99));
+
+        Main.tileCut[Type] = false;
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

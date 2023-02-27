@@ -20,6 +20,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
 			TileID.Sets.Platforms[Type] = true;
 
+			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
 			TileObjectData.newTile.CoordinateHeights = new[] { 16 };
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.newTile.CoordinatePadding = 2;

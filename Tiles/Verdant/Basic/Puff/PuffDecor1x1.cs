@@ -15,6 +15,7 @@ namespace Verdant.Tiles.Verdant.Basic.Puff
     {
         public override void SetStaticDefaults()
         {
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
             TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
