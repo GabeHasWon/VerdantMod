@@ -43,7 +43,7 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createTile = ModContent.TileType<HardmodeDecor1x1>();
+        Item.createTile = ModContent.TileType<SunPlant>();
 	}
 
     public override bool? UseItem(Player player)

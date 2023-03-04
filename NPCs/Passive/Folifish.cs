@@ -11,10 +11,7 @@ namespace Verdant.NPCs.Passive
 {
     public class Folifish : ModNPC //yoo thanks to Nimta on discord for the name
     {
-        public override void SetStaticDefaults()
-        {
-            Main.npcCatchable[NPC.type] = true;
-        }
+        public override void SetStaticDefaults() => Main.npcCatchable[NPC.type] = true;
 
         public override void SetDefaults()
         {
@@ -31,7 +28,7 @@ namespace Verdant.NPCs.Passive
             NPC.aiStyle = 16;
             NPC.dontCountMe = true;
             NPC.catchItem = (short)ModContent.ItemType<FolifishItem>();
-
+            
             AIType = NPCID.Goldfish;
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
         }
@@ -39,7 +36,7 @@ namespace Verdant.NPCs.Passive
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy."),
+                new FlavorTextBestiaryInfoElement("A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy. However, it seems to have all but  disappeared from the Verdant."),
             });
         }
 
@@ -84,7 +81,5 @@ namespace Verdant.NPCs.Passive
             spriteBatch.Draw(TextureAssets.Npc[NPC.type].Value, pos, TextureAssets.Npc[NPC.type].Value.Frame(3, 1, (int)NPC.ai[1] - 1, 0), col, 0f, new Vector2(24), 1f, dir, 1f);
             return false;
         }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.Water) ? 1.5f : 0f) * (spawnInfo.PlayerInTown ? 1.75f : 1f);
     }
 }

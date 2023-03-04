@@ -27,8 +27,6 @@ internal class NewBeginningsCompatibility
             object result = beginnings.Call("ShortAddOrigin", ModContent.Request<Texture2D>("Verdant/Systems/ModCompat/Textures/MinorSummoner"), "MinorSummoner", "Lushman",
                 "Slightly in tune with druidic powers, but the signal's a bit weak so just a little bit.", 
                 "Starts with a full Lush Wood set, a Yellow Sprout, a Lightbloom and lowered max health.", Array.Empty<(int, int)>(), equip, misc);
-
-            System.Console.WriteLine();
         }
     }
 }

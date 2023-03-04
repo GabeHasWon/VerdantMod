@@ -18,6 +18,7 @@ NEW CONTENT
 - Added Floral Tea
 - Added Lush Root Rope
 - Added Lush Vine Wall
+- Added Propellerpad
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated

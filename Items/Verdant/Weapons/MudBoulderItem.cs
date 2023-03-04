@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks;
-using Verdant.Tiles.Verdant.Basic;
+using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Weapons;
 

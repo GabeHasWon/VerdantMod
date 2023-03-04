@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -113,8 +114,8 @@ namespace Verdant.Tiles
             }
         }
 
-        /// <summary>Sets Main.tileX[] array values and TileObjectData.</summary>
-        public static void CrystalAnchoringData(int type, int randomRange, int[] validAnchors = null)
+        /// <summary>Sets Main.tileX[] (FrameImportant, ObsidianKill, NoFail) array values and TileObjectData.</summary>
+        public static void CrystalAnchoringData(int type, int randomRange, int[] validAnchors = null, Action<TileObjectData> perData = null)
         {
             Main.tileFrameImportant[type] = true;
             Main.tileObsidianKill[type] = true;
@@ -123,6 +124,7 @@ namespace Verdant.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
             TileObjectData.newTile.RandomStyleRange = randomRange;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, TileObjectData.newTile.Width, 0);
+            perData?.Invoke(TileObjectData.newTile);
 
             if (validAnchors is not null)
                 TileObjectData.newTile.AnchorValidTiles = validAnchors;
@@ -131,6 +133,7 @@ namespace Verdant.Tiles
             TileObjectData.newAlternate.RandomStyleRange = randomRange;
             TileObjectData.newAlternate.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
             TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+            perData?.Invoke(TileObjectData.newAlternate);
 
             if (validAnchors is not null)
                 TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
@@ -140,6 +143,7 @@ namespace Verdant.Tiles
             TileObjectData.newAlternate.RandomStyleRange = randomRange;
             TileObjectData.newAlternate.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.AlternateTile, TileObjectData.newTile.Height, 0);
             TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+            perData?.Invoke(TileObjectData.newAlternate);
 
             if (validAnchors is not null)
                 TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
@@ -149,6 +153,7 @@ namespace Verdant.Tiles
             TileObjectData.newAlternate.RandomStyleRange = randomRange;
             TileObjectData.newAlternate.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
             TileObjectData.newAlternate.AnchorAlternateTiles = new[] { (int)TileID.WoodenBeam };
+            perData?.Invoke(TileObjectData.newAlternate);
 
             if (validAnchors is not null)
                 TileObjectData.newAlternate.AnchorValidTiles = validAnchors;
@@ -158,6 +163,7 @@ namespace Verdant.Tiles
             TileObjectData.newAlternate.AnchorWall = false;
             TileObjectData.newAlternate.RandomStyleRange = randomRange;
             TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, TileObjectData.newTile.Width, 0);
+            perData?.Invoke(TileObjectData.newAlternate);
 
             if (validAnchors is not null)
                 TileObjectData.newAlternate.AnchorValidTiles = validAnchors;

@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Tiles.Verdant.Basic.Cut;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Basic.Puff;
 
@@ -91,16 +92,35 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             return false;
         }
 
+        public static int Decor1x1Type(int i, int j, int defaultType, out int styleRange)
+        {
+            if (Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j].LiquidType == LiquidID.Water)
+            {
+                styleRange = 4;
+                return ModContent.TileType<MossDecor1x1>();
+            }
+
+            if (Main.hardMode)
+            {
+                styleRange = 10;
+                return ModContent.TileType<HardmodeDecor1x1>();
+            }
+
+            styleRange = 7;
+            return defaultType;
+        }
+
+        public static int Decor1x1Type(int i, int j, out int styleRange) => Decor1x1Type(i, j, ModContent.TileType<VerdantDecor1x1>(), out styleRange);
+
         private static bool NormalGrowth(int i, int j)
         {
             Tile self = Framing.GetTileSafely(i, j);
 
-            int HardmodeOr(int defaultType) => Main.hardMode ? ModContent.TileType<HardmodeDecor1x1>() : defaultType;
-
             //decor 1x1
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i, j - 1, HardmodeOr(ModContent.TileType<VerdantDecor1x1>()), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i, j - 1, Decor1x1Type(i, j, out int style), true, false, -1, Main.rand.Next(style));
+
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
                 return true;
@@ -109,7 +129,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //tile's left decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i - 1, j, HardmodeOr(ModContent.TileType<Decor1x1Right>()), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i - 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), true, false, -1, Main.rand.Next(style));
+
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i - 1, j, 1, TileChangeType.None);
                 return true;
@@ -118,7 +139,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //tile's right decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i + 1, j, HardmodeOr(ModContent.TileType<Decor1x1Left>()), true, false, -1, Main.rand.Next(7));
+                WorldGen.PlaceTile(i + 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), true, false, -1, Main.rand.Next(style));
+
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i + 1, j, 1, TileChangeType.None);
                 return true;

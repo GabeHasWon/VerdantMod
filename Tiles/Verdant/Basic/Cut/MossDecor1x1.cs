@@ -1,18 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Metadata;
 using Verdant.Tiles.Verdant.Basic.Blocks;
+using Terraria;
 
-namespace Verdant.Tiles.Verdant.Basic;
+namespace Verdant.Tiles.Verdant.Basic.Cut;
 
-internal class HardmodeDecor1x1 : ModTile, IFlowerTile
+internal class MossDecor1x1 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray());
+        QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray(), (x) => x.WaterPlacement = Terraria.Enums.LiquidPlacement.OnlyInLiquid);
 
         Main.tileCut[Type] = true;
 

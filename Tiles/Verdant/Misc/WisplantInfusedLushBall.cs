@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 using Verdant.Projectiles.Misc;
 
-namespace Verdant.Tiles.Verdant.Basic;
+namespace Verdant.Tiles.Verdant.Misc;
 
 internal class WisplantInfusedLushBall : MudBoulderTile
 {
