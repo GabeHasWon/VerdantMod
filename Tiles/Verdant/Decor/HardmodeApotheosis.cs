@@ -162,6 +162,12 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
             return true;
         }
 
+        if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"]) //WoF boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".AnyMech");
+            return true;
+        }
+
         //if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisPestControlNotif)
         //{
         //    DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".PestControlNotif");

@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Minion;
 
-namespace Verdant.Items.Verdant.Weapons;
+namespace Verdant.Items.Verdant.Equipables;
 
 class Propellerpad : ModItem
 {

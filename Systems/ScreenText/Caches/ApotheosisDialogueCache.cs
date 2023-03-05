@@ -301,6 +301,31 @@ namespace Verdant.Systems.ScreenText.Caches
                 });
         }
 
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".AnyMech")]
+        public static ScreenText AnyMechDownDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"] = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 3; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.AnyMech." + i);
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Propellerpad>(), 1);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.AnyMech.0", 120) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.AnyMech.1", 120, 0.8f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.AnyMech.2", 60, 0.9f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Propellerpad>(), 1);
+                });
+        }
+
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControlNotif")]
         public static ScreenText PestControlNotifDialogue(bool forServer)
         {

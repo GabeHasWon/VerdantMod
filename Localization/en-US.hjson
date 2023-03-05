@@ -110,6 +110,12 @@
 						2: You might've already noticed a couple. Anyhow,
 						3: as thanks, take this. I...don't need it anymore.
 					}
+
+					AnyMech: {
+						0: One of those machines are vanquished.
+						1: Well done! I've been making something...
+						2: It's...odd, but fun. We hope you enjoy it.
+					}
 				}
 
 				PestControlNotif: {

@@ -43,6 +43,8 @@ namespace Verdant
         public bool apotheosisWallDown = false;
         public bool apotheosisPestControlNotif = false;
 
+        public Dictionary<string, bool> apotheosisDowns = new() { { "anyMech", false } };
+
         public bool microcosmUsed = false;
 
         public override void SaveWorldData(TagCompound tag)
@@ -63,6 +65,9 @@ namespace Verdant
             AddIfTrue(apotheosisWallDown, "wallDown");
             AddIfTrue(microcosmUsed, "microcosm");
             AddIfTrue(apotheosisPestControlNotif, "pestControlNotif");
+
+            foreach (var pair in apotheosisDowns)
+                AddIfTrue(pair.Value, pair.Key);
 
             List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
@@ -131,6 +136,9 @@ namespace Verdant
             apotheosisWallDown = stats.Contains("wallDown");
             microcosmUsed = stats.Contains("microcosm");
             apotheosisPestControlNotif = stats.Contains("pestControlNotif");
+
+            foreach (var pair in apotheosisDowns)
+                apotheosisDowns[pair.Key] = stats.Contains(pair.Key);
 
             if (Main.netMode != NetmodeID.Server)
             {
@@ -230,6 +238,9 @@ namespace Verdant
             apotheosisWallDown = false;
             apotheosisEyeDown = false;
             microcosmUsed = false;
+
+            foreach (var pair in apotheosisDowns)
+                apotheosisDowns[pair.Key] = false;
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
