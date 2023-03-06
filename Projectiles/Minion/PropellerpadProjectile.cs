@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Dusts;
 
 namespace Verdant.Projectiles.Minion;
 
@@ -43,7 +44,7 @@ class PropellerpadProjectile : ModProjectile
         Projectile.width = 74;
         Projectile.height = 56;
         Projectile.tileCollide = true;
-        Projectile.ignoreWater = false;
+        Projectile.ignoreWater = true;
         Projectile.minionSlots = 0.75f;
         Projectile.minion = true;
         Projectile.hostile = false;
@@ -58,6 +59,9 @@ class PropellerpadProjectile : ModProjectile
         Projectile.timeLeft = 2;
         Owner.gravity *= 0.15f;
 
+        if (Main.rand.NextBool(State == AIState.PlayerHanging ? 1 : 3))
+            Dust.NewDustPerfect(Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), 8), ModContent.DustType<WindLine>(), new Vector2(0, Main.rand.NextFloat(10, 14)));
+
         if (State == AIState.Idle)
             Idle();
         else
@@ -68,15 +72,18 @@ class PropellerpadProjectile : ModProjectile
     {
         if (State == AIState.PlayerHanging)
         {
-            Owner.Center = Projectile.Center + new Vector2(0, 18);
+            Owner.Center = Projectile.Center + new Vector2(0, 10) + Projectile.velocity;
             Owner.bodyFrame.Y = 56 * 3;
         }
         else if (Projectile.DistanceSQ(Owner.Center) > 1000 * 1000)
-            Projectile.Center = Projectile.Center - new Vector2(0, 80);
+            Projectile.Center = Owner.Center - new Vector2(0, 80);
     }
 
     private void Hanging()
     {
+        Projectile.height = 65;
+        Owner.gfxOffY = 0;
+
         if (FlightTime <= 0)
         {
             State = AIState.Idle;
@@ -115,7 +122,7 @@ class PropellerpadProjectile : ModProjectile
             if (Collision.SolidCollision(Owner.BottomLeft, Owner.width, 6) && Projectile.velocity.Y > 0)
                 Projectile.velocity.Y = 0;
 
-            Owner.Center = Projectile.Center + new Vector2(0, 18);
+            Owner.Center = Projectile.Center + new Vector2(0, 4) + Projectile.velocity;
             Owner.velocity = Projectile.velocity;
             Owner.fallStart = (int)Projectile.Center.Y / 16;
 
@@ -128,11 +135,29 @@ class PropellerpadProjectile : ModProjectile
                 if (++Projectile.frame >= Main.projFrames[Type])
                     Projectile.frame = 0;
             }
+
+            int y = (int)(Projectile.Center.Y / 16f) + 1;
+            while (!WorldGen.SolidOrSlopedTile((int)(Projectile.position.X / 16), y++)) { }
+
+            int y2 = (int)(Projectile.Center.Y / 16f) + 1;
+            while (!WorldGen.SolidOrSlopedTile((int)((Projectile.position.X + Projectile.width) / 16), y2++)) { }
+
+            y = System.Math.Min(y, y2);
+
+            if (y - (Projectile.Center.Y / 16f) < 10)
+            {
+                Projectile.velocity.Y -= VerticalMoveSpeed * 1.5f;
+
+                if (Projectile.velocity.Y > 0)
+                    Projectile.velocity.Y *= 0.92f;
+            }
         }
     }
 
     private void Idle()
     {
+        Projectile.height = 56;
+
         Vector2 center = Owner.Center - new Vector2(0, 80);
         Projectile.velocity += Projectile.DirectionTo(center) * 0.08f;
 
@@ -165,4 +190,10 @@ class PropellerpadProjectile : ModProjectile
     public override bool MinionContactDamage() => false;
     public override bool? CanCutTiles() => false;
     public override bool OnTileCollide(Vector2 oldVelocity) => false;
+
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+    {
+        fallThrough = true;
+        return true;
+    }
 }

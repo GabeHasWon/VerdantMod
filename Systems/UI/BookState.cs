@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ReLogic.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
@@ -82,14 +83,16 @@ internal class BookState : UIState
             Top = StyleDimension.FromPixels(4)
         };
 
-        list.SetScrollbar(scroll);
-        listPanel.Append(scroll);
+        Dictionary<object, int> listPriority = new();
+        int index = 0;
 
         foreach (var item in _body)
         {
+            UIElement result = null;
+
             if (item is Asset<Texture2D> texture)
             {
-                list.Add(new UIImage(texture)
+                list.Add(result = new UIImage(texture)
                 {
                     Width = StyleDimension.Fill,
                     Height = StyleDimension.FromPixels(texture.Value.Height - 8),
@@ -101,14 +104,25 @@ internal class BookState : UIState
                 DynamicSpriteFont dynamicSpriteFont = FontAssets.MouseText.Value;
                 string visibleText = dynamicSpriteFont.CreateWrappedText(text, GetInnerDimensions().Width);
 
-                Vector2 stringSize = ChatManager.GetStringSize(dynamicSpriteFont, visibleText, new Vector2(1f));
+                Vector2 stringSize = dynamicSpriteFont.MeasureString(visibleText) * new Vector2(0.9f);
 
-                list.Add(new UIText(text)
+                list.Add(result = new UIText(text, 0.9f)
                 {
                     Width = StyleDimension.Fill,
-                    Height = StyleDimension.FromPixels(stringSize.Y + 28)
+                    Height = StyleDimension.FromPixels((int)(stringSize.Y * 0.67f))
                 });
             }
+
+            listPriority.Add(result, index++);
         }
+
+        list.ManualSortMethod = (innerList) =>
+        {
+            innerList.Sort((one, two) => listPriority[one].CompareTo(listPriority[two]));
+        };
+        list.UpdateOrder();
+
+        list.SetScrollbar(scroll);
+        listPanel.Append(scroll);
     }
 }

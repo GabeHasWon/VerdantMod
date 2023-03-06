@@ -11,11 +11,6 @@ class VerdantDryadNPC : GlobalNPC
 {
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.Dryad;
 
-    public override void GetChat(NPC npc, ref string chat)
-    {
-
-    }
-
     public override void SetupShop(int type, Chest shop, ref int nextSlot)
     {
         if (type != NPCID.Dryad)

@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.Misc;
+using Verdant.Items.Verdant.Blocks.Misc.Books;
 
 namespace Verdant.Tiles.Verdant.Misc
 {

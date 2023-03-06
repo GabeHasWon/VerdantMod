@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -212,6 +213,22 @@ namespace Verdant.Items
             }
             else
             {
+                List<object> newBody = new();
+
+                foreach (object item in body)
+                {
+                    if (item is string text)
+                    {
+                        string[] split = text.Split("\n");
+
+                        Array.ForEach(split, x => newBody.Add(x));
+                    }
+                    else
+                        newBody.Add(item);
+                }
+
+                body = newBody.ToArray();
+
                 SoundEngine.PlaySound(SoundID.MenuOpen);
                 ModContent.GetInstance<UISystem>().BookInterface.SetState(new BookState(title, titleScale, body));
             }

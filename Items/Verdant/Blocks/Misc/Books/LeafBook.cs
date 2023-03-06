@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Misc;
 
-namespace Verdant.Items.Verdant.Blocks.Misc;
+namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 
 public class LeafBook : ModItem
 {
@@ -18,7 +18,7 @@ public class LeafBook : ModItem
 			Item.stack++;
 
 			QuickItem.ToggleBookUI($"[i:{Type}] Leaves [i:{Type}]", 1f,
-				new object[] { "The book looks particularly old, page worn and yellowed.\nThe material is also clearly foreign.\nThere's drops of water across the top pages.\nThere's also tons of " +
+				new object[] { "The book looks particularly old, page worn and oddly brown.\nThe material is also clearly foreign.\nThere's drops of water across the top pages.\nThere's also tons of " +
                 "minor scribbles.\nThe scribbles seem of random mundane cave objects,\nfor some reason.\nThere's no dates or authors mentioned, apart from a\nsignature:",
 				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/Signature"),
 				"\nYou scan through the book, and spot the following pages:",
