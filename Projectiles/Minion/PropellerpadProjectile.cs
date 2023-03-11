@@ -56,12 +56,18 @@ class PropellerpadProjectile : ModProjectile
 
     public override void AI()
     {
+        if (Projectile.Center.HasNaNs())
+        {
+            Projectile.velocity = Vector2.Zero;
+            Projectile.position = Owner.Center - new Vector2(0, 80) + Projectile.Size / 2f;
+        }
+
         Projectile.timeLeft = 2;
         Owner.gravity *= 0.15f;
 
         if (Main.rand.NextBool(State == AIState.PlayerHanging ? 1 : 3))
-            Dust.NewDustPerfect(Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), 8), ModContent.DustType<WindLine>(), new Vector2(0, Main.rand.NextFloat(10, 14)));
-
+            Dust.NewDustPerfect(Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), 8), ModContent.DustType<WindLine>(), new Vector2(0, Main.rand.NextFloat(10, 14) + Projectile.velocity.Y));
+        
         if (State == AIState.Idle)
             Idle();
         else
