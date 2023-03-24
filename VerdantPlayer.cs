@@ -201,15 +201,6 @@ class VerdantPlayer : ModPlayer
         }
     }
 
-    public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
-    {
-        if (Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && attempt.crate && Main.rand.NextBool(Player.cratePotion ? 3 : 4))
-            itemDrop = ModContent.ItemType<LushWoodCrateItem>();
-
-        if (Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && attempt.questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
-            itemDrop = ModContent.ItemType<Shellfish>();
-    }
-
     public void FloorVisuals(Player p, int t) => FloorVisualEvent?.Invoke(p, t);
     public override void OnHitByNPC(NPC npc, int damage, bool crit) => HitByNPCEvent?.Invoke(Player, npc, damage, crit);
     public void InvokeDrawLayer(PlayerDrawSet set) => ItemDrawLayerEvent?.Invoke(set);

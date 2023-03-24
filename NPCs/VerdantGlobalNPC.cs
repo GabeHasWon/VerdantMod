@@ -19,17 +19,17 @@ namespace Verdant.NPCs
         {
             if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant)
             {
-                pool.Clear();
+                pool[0] = 0;
 
-                pool[NPCID.GreenDragonfly] = 0.5f;
-                pool[NPCID.RedDragonfly] = 0.5f;
-                pool[NPCID.BlueDragonfly] = 0.5f;
-                pool[NPCID.YellowDragonfly] = 0.5f;
+                pool[NPCID.GreenDragonfly] = 0.05f;
+                pool[NPCID.RedDragonfly] = 0.05f;
+                pool[NPCID.BlueDragonfly] = 0.05f;
+                pool[NPCID.YellowDragonfly] = 0.05f;
 
                 if (!Main.hardMode)
-                    pool[NPCID.Firefly] = 0.5f;
+                    pool[NPCID.Firefly] = 0.15f;
                 else
-                    pool[NPCID.LightningBug] = 0.5f;
+                    pool[NPCID.LightningBug] = 0.2f;
             }
         }
 

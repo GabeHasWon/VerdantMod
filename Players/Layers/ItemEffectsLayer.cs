@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Verdant.Players
+namespace Verdant.Players.Layers
 {
     internal class ItemEffectsLayer : PlayerDrawLayer
     {
