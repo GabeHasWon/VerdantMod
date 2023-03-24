@@ -1,8 +1,8 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.Items.Verdant.Blocks.Plants;
-using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Misc;
 
 namespace Verdant.NPCs;
@@ -21,5 +21,11 @@ class VerdantDryadNPC : GlobalNPC
 
         if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());
+
+        if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
+        {
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ApotheoticPaintingItem>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbPaintingItem>());
+        }
     }
 }

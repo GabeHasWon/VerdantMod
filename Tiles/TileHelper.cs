@@ -174,11 +174,11 @@ namespace Verdant.Tiles
                 data.AnchorValidTiles = finalValues;
         }
 
-        public static bool Spread(int i, int j, int type, int chance, params int[] validAdjacentTypes)
+        public static bool Spread(int i, int j, int type, int chance, bool requiresAir, params int[] validAdjacentTypes)
         {
             if (Main.rand.NextBool(chance))
             {
-                var adjacents = OpenAdjacents(i, j, validAdjacentTypes);
+                var adjacents = OpenAdjacents(i, j, requiresAir, validAdjacentTypes);
 
                 if (adjacents.Count == 0)
                     return false;
@@ -193,14 +193,26 @@ namespace Verdant.Tiles
             return false;
         }
 
-        public static List<Point> OpenAdjacents(int i, int j, params int[] types)
+        public static List<Point> OpenAdjacents(int i, int j, bool requiresAir, params int[] types)
         {
             var p = new List<Point>();
             for (int k = -1; k < 2; ++k)
                 for (int l = -1; l < 2; ++l)
                     if (!(l == 0 && k == 0) && Framing.GetTileSafely(i + k, j + l).HasTile && types.Contains(Framing.GetTileSafely(i + k, j + l).TileType))
-                        p.Add(new Point(i + k, j + l));
+                        if (!requiresAir || OpenToAir(i + k, j + l))
+                            p.Add(new Point(i + k, j + l));
+
             return p;
+        }
+
+        public static bool OpenToAir(int i, int j)
+        {
+            for (int k = -1; k < 2; ++k)
+                for (int l = -1; l < 2; ++l)
+                    if (!(l == 0 && k == 0) && !WorldGen.SolidOrSlopedTile(i + k, j + l))
+                        return true;
+
+            return false;
         }
 
         public static void CrystalSetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)

@@ -22,7 +22,6 @@ internal class LightbulbVine : ModTile, IFlowerTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
-        Main.tileLighted[Type] = true;
 
         ItemDrop = 0;
         DustType = DustID.Grass;
@@ -31,8 +30,6 @@ internal class LightbulbVine : ModTile, IFlowerTile
         AddMapEntry(new Color(24, 135, 28));
         glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
     }
-
-    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.44f, 0.17f, 0.28f);
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
@@ -80,8 +77,10 @@ internal class LightbulbVine : ModTile, IFlowerTile
         else if (Main.tile[i, j - 3].TileType != Type)
             sine *= 0.67f;
 
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(glowTex.Value, TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        Color col = Lighting.GetColor(i, j);
+        Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0));
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), col, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(glowTex.Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.Lerp(col, Color.White, 0.5f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }
 

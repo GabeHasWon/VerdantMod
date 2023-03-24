@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 public class LightbulbBook : ModItem
 {
 	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lightbulb Research", "'An impressive amount of insight into light bulbs'\nRight click to read");
-	public override void SetDefaults() => QuickItem.SetBlock(this, 14, 18, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 0, autoReuse: false);
+	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 0, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 
 	public override bool? UseItem(Player player)

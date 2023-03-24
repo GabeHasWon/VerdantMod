@@ -90,10 +90,14 @@ class Beehive : ModTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (Main.rand.NextBool(3) && BeehiveSystem.TryGet(i, j, out int count) && count < 3)
+        Tile tile = Main.tile[i, j];
+        int adjX = i - (tile.TileFrameX / 18);
+        int adjY = j - (tile.TileFrameY / 18);
+
+        if (Main.rand.NextBool(3) && BeehiveSystem.TryGet(adjX, adjY, out int count) && count < 3)
         {
             NPC.NewNPC(new EntitySource_TileUpdate(i, j), i * 16, j * 16, ModContent.NPCType<Bumblebee>());
-            BeehiveSystem.Add(i, j);
+            BeehiveSystem.Add(adjX, adjY);
         }
     }
 

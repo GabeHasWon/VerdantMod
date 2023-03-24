@@ -31,7 +31,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             if (VerdantGrassLeaves.StaticRandomUpdate(i, j))
                 return;
 
-            TileHelper.Spread(i, j, Type, 4, TileID.GrayBrick);
+            TileHelper.Spread(i, j, Type, 4, true, TileID.GrayBrick);
         }
     }
 }

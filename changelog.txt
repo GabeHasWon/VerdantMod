@@ -29,3 +29,5 @@ CHANGES
 - Adjusted speed that foreground/background leaves fly at in wind
 - Fixed ScreenText being drawn only when the mouse is drawn
 - Moved ScreenText to new UI layer so other mods can modify it if they wish (it's called "Verdant: Screen Text")
+- Fixed Beehives spawning too many bees
+- Fixed Lush Wood merging with dirt
