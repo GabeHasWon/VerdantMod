@@ -7,6 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Verdant.Effects;
+using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Misc;
@@ -324,6 +325,32 @@ namespace Verdant.Systems.ScreenText.Caches
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Propellerpad>(), 1);
                 });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Plantera")]
+        public static ScreenText PlanteraDownDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"] = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 4; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera." + i);
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<ChlorophytePlant>(), 3);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera.0", 120) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera.1", 120, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera.2", 60, 0.9f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<ChlorophytePlant>(), 3);
+                }).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera.3", 60, 0.9f));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControlNotif")]

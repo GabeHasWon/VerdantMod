@@ -116,6 +116,13 @@
 						1: Well done! I've been making something...
 						2: It's...odd, but fun. We hope you enjoy it.
 					}
+
+					Plantera: {
+						0: The horrific plant is dead.
+						1: This frees up many opportunities;
+						2: this is a smaller boon, but we hope it helps.
+						3: You may now create more of these yourself as well.
+					}
 				}
 
 				PestControlNotif: {
@@ -170,7 +177,7 @@
 			Endgame: {
 				0: Forever Friend
 				1: Our Memory
-				2: 'Orwell'
+				2: Orwell
 			}
 		}
 	}

@@ -32,6 +32,8 @@ namespace Verdant.NPCs.Passive
         {
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = 2;
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
         }
 
         public override void SetDefaults()
@@ -129,7 +131,6 @@ namespace Verdant.NPCs.Passive
                 Vector2 destination = flower.Value.ToWorldCoordinates() + flowerOffset / 2f;
 
                 NPC.velocity = NPC.DirectionTo(destination) * 3;
-                NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
                 if (NPC.DistanceSQ(destination) < 4 * 4)
                 {
@@ -145,6 +146,8 @@ namespace Verdant.NPCs.Passive
                 else
                     NPC.velocity = NPC.velocity.RotatedBy(Main.rand.Next(-1, 2) * 0.2f);
             }
+
+            NPC.spriteDirection = Math.Sign(NPC.velocity.X);
         }
 
         public override void FindFrame(int frameHeight)

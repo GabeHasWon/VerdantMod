@@ -43,7 +43,7 @@ public class VerdantSystem : ModSystem
     public bool apotheosisWallDown = false;
     public bool apotheosisPestControlNotif = false;
 
-    public Dictionary<string, bool> apotheosisDowns = new() { { "anyMech", false } };
+    public Dictionary<string, bool> apotheosisDowns = new() { { "anyMech", false }, { "plantera", false } };
 
     public bool microcosmUsed = false;
 

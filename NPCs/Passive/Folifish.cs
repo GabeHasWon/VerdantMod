@@ -11,7 +11,12 @@ namespace Verdant.NPCs.Passive
 {
     public class Folifish : ModNPC //yoo thanks to Nimta on discord for the name
     {
-        public override void SetStaticDefaults() => Main.npcCatchable[NPC.type] = true;
+        public override void SetStaticDefaults()
+        {
+            Main.npcCatchable[NPC.type] = true;
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
+        }
 
         public override void SetDefaults()
         {
@@ -36,7 +41,7 @@ namespace Verdant.NPCs.Passive
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy. However, it seems to have all but  disappeared from the Verdant."),
+                new FlavorTextBestiaryInfoElement("A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy. However, it seems to have all but disappeared from the Verdant."),
             });
         }
 

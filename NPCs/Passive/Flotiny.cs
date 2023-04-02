@@ -19,6 +19,8 @@ namespace Verdant.NPCs.Passive
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = 2;
 
+            NPCID.Sets.CountsAsCritter[Type] = true;
+
             glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
         }
 

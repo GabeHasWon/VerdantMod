@@ -15,6 +15,8 @@ namespace Verdant.NPCs.Passive
 
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
         }
 
         public override void SetDefaults()
@@ -69,6 +71,8 @@ namespace Verdant.NPCs.Passive
 
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
         }
 
         public override void SetDefaults()

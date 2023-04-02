@@ -13,6 +13,8 @@ namespace Verdant.NPCs.Passive.Fish
         {
             Main.npcCatchable[Type] = true;
             Main.npcFrameCount[Type] = 3;
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
         }
 
         public override void SetDefaults()

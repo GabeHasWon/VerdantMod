@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter;
 
@@ -15,7 +16,12 @@ namespace Verdant.NPCs.Passive
         ref float Timer => ref NPC.ai[2];
         ref float ScaleSpeed => ref NPC.ai[3];
 
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Mossling [Deprecated]");
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.CountsAsCritter[Type] = true;
+
+            DisplayName.SetDefault("Mossling [Deprecated]");
+        }
 
         public override void SetDefaults()
         {

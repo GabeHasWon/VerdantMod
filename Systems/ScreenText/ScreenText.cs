@@ -134,6 +134,13 @@ namespace Verdant.Systems.ScreenText
             return this;
         }
 
+        public ScreenText With(ScreenText other, Action<ScreenText> action, bool sameSpeaker = true)
+        {
+            other._onFinish = action;
+            SetNext(other, sameSpeaker);
+            return this;
+        }
+
         public ScreenText FinishWith(ScreenText other, Action<ScreenText> action = null, bool sameSpeaker = true)
         {
             other._onFinish = action;

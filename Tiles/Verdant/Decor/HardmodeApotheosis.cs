@@ -168,6 +168,12 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
             return true;
         }
 
+        if (NPC.downedPlantBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]) //WoF boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Plantera");
+            return true;
+        }
+
         //if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisPestControlNotif)
         //{
         //    DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".PestControlNotif");

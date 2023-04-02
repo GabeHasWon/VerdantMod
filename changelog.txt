@@ -7,7 +7,7 @@ NEW CONTENT
 - Added Verdant Tree alternate top sprite for hardmode
 - Added New Beginnings compatibility
 - Added Book system
-	Includes Lightbulb, Leaf and Hardy Vine books
+	Includes Lightbulb, Leaf and Hardy Vine books - alongside others
 - Added Overgrown Bricks
 - Added Green Crystals
 - Added Hanging Crystal
@@ -19,6 +19,8 @@ NEW CONTENT
 - Added Lush Root Rope
 - Added Lush Vine Wall
 - Added Propellerpad
+- Added Niss Carp
+- Added Poolworm
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -31,3 +33,9 @@ CHANGES
 - Moved ScreenText to new UI layer so other mods can modify it if they wish (it's called "Verdant: Screen Text")
 - Fixed Beehives spawning too many bees
 - Fixed Lush Wood merging with dirt
+- Heavily nerfed how much Wisplant items grow Chlorophyte
+- Buffed Magic-Infused Wisplant use time
+- Increased Magic-Infused Wisplant recipe requirements
+- Fixed Bumblebees not flipping sprite when roaming
+- Added Guide to Critter Companionship compatibility with all critters
+- Unloaded Folifish in order to make way for new fishes
