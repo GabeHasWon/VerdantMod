@@ -16,6 +16,8 @@ internal class LightbulbVine : ModTile, IFlowerTile
 {
     private Asset<Texture2D> glowTex;
 
+    public override void Unload() => glowTex = null;
+
     public override void SetStaticDefaults()
     {
         Main.tileSolid[Type] = false;

@@ -15,7 +15,9 @@ namespace Verdant.Tiles.Verdant.Misc;
 
 class HangingCrystal : ModTile
 {
-    Asset<Texture2D> _crystalTex;
+    private static Asset<Texture2D> _crystalTex;
+
+    public override void Load() => _crystalTex = null;
 
     public override void SetStaticDefaults()
     {

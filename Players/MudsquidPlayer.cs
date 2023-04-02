@@ -84,36 +84,10 @@ internal class MudsquidPlayer : ModPlayer
         }
     }
 
-    public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
+    public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
     {
-        void ModColor(ref Color col) => col *= squidAlpha;
-
-        if (squidAlpha <= 0)
-            drawInfo.DrawDataCache.Clear();
-
-        ModColor(ref drawInfo.colorArmorBody);
-        ModColor(ref drawInfo.colorArmorHead);
-        ModColor(ref drawInfo.colorArmorLegs);
-        ModColor(ref drawInfo.colorBodySkin);
-        ModColor(ref drawInfo.colorElectricity);
-        ModColor(ref drawInfo.colorEyes);
-        ModColor(ref drawInfo.colorEyeWhites);
-        ModColor(ref drawInfo.colorHair);
-        ModColor(ref drawInfo.colorHead);
-        ModColor(ref drawInfo.colorLegs);
-        ModColor(ref drawInfo.colorMount);
-        ModColor(ref drawInfo.colorPants);
-        ModColor(ref drawInfo.colorShirt);
-        ModColor(ref drawInfo.colorShoes);
-        ModColor(ref drawInfo.colorUnderShirt);
-        ModColor(ref drawInfo.ArkhalisColor);
-        ModColor(ref drawInfo.armGlowColor);
-        ModColor(ref drawInfo.bodyGlowColor);
-        ModColor(ref drawInfo.floatingTubeColor);
-        ModColor(ref drawInfo.headGlowColor);
-        ModColor(ref drawInfo.itemColor);
-        ModColor(ref drawInfo.legsGlowColor);
-        ModColor(ref drawInfo.selectionGlowColor);
+        if (hasSquid)
+            (r, g, b, a) = (squidAlpha, squidAlpha, squidAlpha, squidAlpha);
     }
 
     private static void SetSolids(bool isValid)

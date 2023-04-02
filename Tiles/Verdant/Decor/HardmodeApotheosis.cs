@@ -21,6 +21,8 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
     private Asset<Texture2D> glowTex;
     private Asset<Texture2D> alphaTex;
 
+    public override void Unload() => glowTex = alphaTex = null;
+
     public override void SetStaticDefaults()
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

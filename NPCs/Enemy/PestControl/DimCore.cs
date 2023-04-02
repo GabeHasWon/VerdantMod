@@ -17,7 +17,7 @@ public class DimCore : ModNPC, IDrawAdditive
     public const int Radius = 180;
     public const int TrailLength = 40;
 
-    private static Asset<Texture2D> _GlowTex;
+    private static Asset<Texture2D> _glowTex;
 
     public override bool IsLoadingEnabled(Mod mod) => false;
 
@@ -32,6 +32,8 @@ public class DimCore : ModNPC, IDrawAdditive
     private ref float TargetThorn => ref NPC.ai[0];
     private CoreState State { get => (CoreState)NPC.ai[1]; set => NPC.ai[1] = (float)value; }
 
+    public override void Unload() => _glowTex = null;
+
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Dim Core");
@@ -40,7 +42,7 @@ public class DimCore : ModNPC, IDrawAdditive
         NPCID.Sets.TrailingMode[Type] = 2;
         NPCID.Sets.TrailCacheLength[Type] = TrailLength;
 
-        _GlowTex = ModContent.Request<Texture2D>(Texture + "Glow");
+        _glowTex = ModContent.Request<Texture2D>(Texture + "Glow");
     }
 
     public override void SetDefaults()
@@ -155,7 +157,7 @@ public class DimCore : ModNPC, IDrawAdditive
         if (layer == AdditiveLayer.BeforePlayer)
             return;
 
-        Texture2D tex = _GlowTex.Value;
+        Texture2D tex = _glowTex.Value;
         float sin = MathF.Sin((float)NPC.frameCounter * 0.01f) * 0.1f;
         Vector2 scale = new Vector2(sin + 1, -sin + 1);
 

@@ -16,6 +16,8 @@ namespace Verdant.Projectiles.Misc
 
         private bool[] _downPlants = new bool[3];
 
+        public override void Unload() => _extraTextures = null;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wisplant-Infused Lush Soil Ball");

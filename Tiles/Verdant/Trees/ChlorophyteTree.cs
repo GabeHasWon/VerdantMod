@@ -17,6 +17,8 @@ internal class ChlorophyteTree : ModTile
     private static Asset<Texture2D> _leaves;
     private static Asset<Texture2D> _tops;
 
+    public override void Unload() => _leaves = _tops = null;
+
     public override void SetStaticDefaults()
     {
         Main.tileSolid[Type] = false;

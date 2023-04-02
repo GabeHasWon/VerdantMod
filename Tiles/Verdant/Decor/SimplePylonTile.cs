@@ -24,7 +24,9 @@ namespace Verdant.Tiles.Verdant.Decor
 
 		internal abstract string MapKeyName { get; }
 
-		public override void Load()
+        public override void Unload() => crystalTexture = highlightTexture = mapIcon = null;
+
+        public override void Load()
 		{
 			crystalTexture = ModContent.Request<Texture2D>(Texture + "_Crystal");
 			highlightTexture = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Decor/PylonHighlight");
