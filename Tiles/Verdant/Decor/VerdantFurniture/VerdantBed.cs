@@ -7,11 +7,11 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.LushWood;
+using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
-namespace Verdant.Tiles.Verdant.Decor.LushFurniture;
+namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-public class LushBed : ModTile
+public class VerdantBed : ModTile
 {
 	public override void SetStaticDefaults()
 	{
@@ -96,7 +96,7 @@ public class LushBed : ModTile
         {
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<LushBedItem>();
+            player.cursorItemIconID = ModContent.ItemType<VerdantBedItem>();
         }
     }
 }

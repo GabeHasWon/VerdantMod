@@ -41,7 +41,6 @@ internal class VineHookProjectile : ModProjectile
         }
     }
 
-    public override void Unload() => _chain = null;
     public override void SetDefaults() => Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
     public override bool? CanUseGrapple(Player player) => player.ownedProjectileCounts[Type] < 3;
     public override float GrappleRange() => 16 * 30;

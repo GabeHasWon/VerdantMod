@@ -19,7 +19,50 @@ internal class MudsquidPlayer : ModPlayer
     public bool hasSquid = false;
     public bool squidActive = false;
 
-    private float squidAlpha = 1f;
+    internal float squidAlpha = 1f;
+
+    public override void Load()
+    {
+        On.Terraria.Player.Update += Player_Update;
+        On.Terraria.Player.ItemCheck += Player_ItemCheck;
+        On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_09_Wings += PlayerDrawLayers_DrawPlayer_09_Wings;
+    }
+
+    private void PlayerDrawLayers_DrawPlayer_09_Wings(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_09_Wings orig, ref PlayerDrawSet drawinfo)
+    {
+        float oldStealth = drawinfo.stealth;
+        drawinfo.stealth = drawinfo.drawPlayer.GetModPlayer<MudsquidPlayer>().squidAlpha;
+        orig(ref drawinfo);
+        drawinfo.stealth = oldStealth;
+    }
+
+    private void Player_ItemCheck(On.Terraria.Player.orig_ItemCheck orig, Player self, int i)
+    {
+        if (self.GetModPlayer<MudsquidPlayer>().squidActive)
+            SetSolids(true);
+
+        orig(self, i);
+
+        if (self.GetModPlayer<MudsquidPlayer>().squidActive)
+            SetSolids(false);
+    }
+
+    private static void Player_Update(On.Terraria.Player.orig_Update orig, Player self, int i)
+    {
+        if (self.GetModPlayer<MudsquidPlayer>().squidActive)
+            SetSolids(false);
+
+        orig(self, i);
+
+        if (self.GetModPlayer<MudsquidPlayer>().squidActive)
+            SetSolids(true);
+    }
+
+    private static void SetSolids(bool isValid)
+    {
+        foreach (var item in MudTypes)
+            Main.tileSolid[item] = isValid;
+    }
 
     public override void ResetEffects()
     {
@@ -50,10 +93,12 @@ internal class MudsquidPlayer : ModPlayer
 
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (hasSquid && VerdantMod.SquidHotkey.JustPressed)
+        if ((hasSquid && VerdantMod.SquidHotkey.JustPressed && !IsSquid) || (Player.mount.Active && squidActive))
         {
             squidActive = !squidActive;
-            SetSolids(!squidActive);
+
+            if (!squidActive)
+                SetSolids(true);
         }
     }
 
@@ -61,7 +106,7 @@ internal class MudsquidPlayer : ModPlayer
     {
         if (IsSquid)
         {
-            const float MoveSpeed = 0.85f;
+            const float MoveSpeed = 0.6f;
             const float MaxSpeed = 14;
 
             if (Player.controlDown)
@@ -81,6 +126,10 @@ internal class MudsquidPlayer : ModPlayer
 
             if (!Player.controlDown && !Player.controlUp && !Player.controlLeft && !Player.controlRight && !Player.controlJump)
                 Player.velocity *= 0.85f;
+
+            int chance = Math.Max((int)(8 / (Player.velocity.Length() * 0.4f)), 2);
+            if (Main.rand.NextBool(chance))
+                Dust.NewDust(Player.Center - new Vector2(10), 20, 20, DustID.Mud, Player.velocity.X, Player.velocity.Y);
         }
     }
 
@@ -88,12 +137,6 @@ internal class MudsquidPlayer : ModPlayer
     {
         if (hasSquid)
             (r, g, b, a) = (squidAlpha, squidAlpha, squidAlpha, squidAlpha);
-    }
-
-    private static void SetSolids(bool isValid)
-    {
-        foreach (var item in MudTypes)
-            Main.tileSolid[item] = isValid;
     }
 
     public static bool SolidCollisionTyped(Vector2 position, int width, int height, params int[] types)

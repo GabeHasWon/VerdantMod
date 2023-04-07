@@ -21,6 +21,8 @@ NEW CONTENT
 - Added Propellerpad
 - Added Niss Carp
 - Added Poolworm
+- Added Verdant Bed
+- Added Guide to Critter Companionship compatibility with all critters
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -37,5 +39,6 @@ CHANGES
 - Buffed Magic-Infused Wisplant use time
 - Increased Magic-Infused Wisplant recipe requirements
 - Fixed Bumblebees not flipping sprite when roaming
-- Added Guide to Critter Companionship compatibility with all critters
 - Unloaded Folifish in order to make way for new fishes
+- Fixed Lush Wood Bed not working as a spawnpoint
+- Made Lush Wood merge with all tiles
