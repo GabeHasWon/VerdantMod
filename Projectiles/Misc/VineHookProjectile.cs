@@ -29,7 +29,7 @@ internal class VineHookProjectile : ModProjectile
         {
             Projectile.Kill();
 
-            if (Main.rand.NextBool(5))
+            if (Main.rand.NextBool(2))
             {
                 string[] choices = new string[] { "Woo!", "Yahoo!", "Wee!" };
                 int c = CombatText.NewText(Projectile.Hitbox, Color.LawnGreen, Main.rand.Next(choices));

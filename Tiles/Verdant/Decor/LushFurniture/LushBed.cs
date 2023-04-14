@@ -37,7 +37,7 @@ public class LushBed : ModTile
 		ModTranslation name = CreateMapEntryName();
 		name.SetDefault("Lush Bed");
 		AddMapEntry(new Color(114, 69, 39), name);
-	}
+    }
 
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 	public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;

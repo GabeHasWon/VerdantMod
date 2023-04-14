@@ -20,7 +20,7 @@ public class ApotheosisBook : ModItem
                 "To a point where I’m not sure that's simply a term,\n or just the truth.\nSome surprisingly lush grass and foliage around,\nI’ve even seen some minor tree saplings here and there.\n" +
                 "A most curious wood, too!\nDespite my starvation, this is a heaven I’ll suffer for.\"\n\n...\n\n" +
                 "\"The meager morsels of this land have been sufficient for some\ntime. " +
-                "I've set up a small but sufficient study,\nboth to hold my things and to keep myself safe.\nOften an errant skeleton or angry bat finds itself around me,\n" +
+                "I've set up a small but acceptable study,\nboth to hold my things and to keep myself safe.\nOften an errant skeleton or angry bat finds itself around me,\n" +
                 "and I am an explorer; monster slayer naught.\nThat being said, food grows scarcer yet.\nBeyond bats, I’ve lost mice - seems the little critters have\nlearned their biggest threat.\n" +
                 "Time lies outside of my reach.\nStudies notwithstanding, I’ve little left anyhow.\"\n\n" +
                 "...\n\n\"Time grows weary; as do I.\nStudies continue, fervor reaching new heights\nas I see things unique to this strange cavern.\nBehind the hunger pains, the fatigue;\ndespite my" +

@@ -14,6 +14,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
 using Verdant.Tiles.Verdant.Misc;
+using Verdant.Walls;
 
 namespace Verdant.Items;
 
@@ -23,7 +24,7 @@ public class ProbablyDelete : ModItem
 
     public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Zegg");
+		DisplayName.SetDefault("Tester Tool");
 		Tooltip.SetDefault("@ me if you see this");
 	}
 
@@ -43,7 +44,7 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createTile = ModContent.TileType<SunPlant>();
+        Item.createWall = ModContent.WallType<BluescreenWall>();
 	}
 
     public override bool? UseItem(Player player)
@@ -54,7 +55,7 @@ public class ProbablyDelete : ModItem
         Tile tile = Main.tile[pos];
         //tile.TileFrameX = 0;
         //tile.TileFrameY = 0;
-        Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+        //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
 
         //return true;
         //if (!RealtimeGen.HasStructure("Testing"))
@@ -62,22 +63,4 @@ public class ProbablyDelete : ModItem
         //Main.NewText(Main.MouseWorld.ToTileCoordinates());
         return null;
     }
-
-    private void Spawn(Point pos)
-    {
-		Queue<RealtimeStep> steps = new();
-
-		const int Size = 13;
-
-		for (int i = pos.X - Size; i <= pos.X + Size; ++i)
-		{
-			for (int j = pos.Y - Size; j <= pos.Y + Size; ++j)
-			{
-				RealtimeStep step = new(new(i, j), TileAction.PlaceTile(TileID.SilverBrick, false, true, true));
-				steps.Enqueue(step);
-			}
-		}
-		
-		ModContent.GetInstance<RealtimeGen>().CurrentActions.Add(new RealtimeAction(steps, 5, true, "Testing", new ApotheosisCapture("Testing", 400)));
-	}
 }

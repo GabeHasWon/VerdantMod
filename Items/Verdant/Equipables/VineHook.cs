@@ -10,7 +10,7 @@ internal class VineHook : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Living Vine Hook");
-        Tooltip.SetDefault("Unhooks automatically when close enough\nA nicer friend than most hooks");
+        Tooltip.SetDefault("Unhooks automatically when close enough\n'A nicer friend than most hooks'");
     }
 
     public override void SetDefaults()

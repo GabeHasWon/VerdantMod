@@ -12,9 +12,10 @@ namespace Verdant.Players;
 
 internal class MudsquidPlayer : ModPlayer
 {
-    private static int[] MudTypes => new int[] { TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, ModContent.TileType<LushSoil>() };
+    private static int[] ValidSquidTileIDs => new int[] { TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>(),
+        ModContent.TileType<LivingLushWood>(), ModContent.TileType<VerdantLeaves>() };
 
-    public bool IsSquid => squidActive && SolidCollisionTyped(Player.position, Player.width, Player.height, MudTypes);
+    public bool IsSquid => squidActive && SolidCollisionTyped(Player.position, Player.width, Player.height, ValidSquidTileIDs);
 
     public bool hasSquid = false;
     public bool squidActive = false;
@@ -60,7 +61,7 @@ internal class MudsquidPlayer : ModPlayer
 
     private static void SetSolids(bool isValid)
     {
-        foreach (var item in MudTypes)
+        foreach (var item in ValidSquidTileIDs)
             Main.tileSolid[item] = isValid;
     }
 
@@ -70,7 +71,7 @@ internal class MudsquidPlayer : ModPlayer
 
         if (squidActive)
         {
-            if (SolidCollisionTyped(Player.position, Player.width, Player.height, MudTypes))
+            if (SolidCollisionTyped(Player.position, Player.width, Player.height, ValidSquidTileIDs))
                 Player.gravity = 0;
             Player.noFallDmg = true;
         }
@@ -78,14 +79,14 @@ internal class MudsquidPlayer : ModPlayer
         if (IsSquid)
         {
             if (squidAlpha >= 0.00001f)
-                squidAlpha = MathHelper.Lerp(squidAlpha, 0f, 0.33f);
+                squidAlpha = MathHelper.Lerp(squidAlpha, 0f, 0.22f);
             else
                 squidAlpha = 0;
         }
         else
         {
             if (squidAlpha <= 0.999999f)
-                squidAlpha = MathHelper.Lerp(squidAlpha, 1f, 0.33f);
+                squidAlpha = MathHelper.Lerp(squidAlpha, 1f, 0.22f);
             else
                 squidAlpha = 1;
         }

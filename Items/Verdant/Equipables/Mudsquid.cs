@@ -10,7 +10,7 @@ class Mudsquid : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mudsquid");
-        Tooltip.SetDefault("Allows quick travel directly through some solid tiles");
+        Tooltip.SetDefault("Allows quick travel directly through some solid tiles,\nincluding all natural Verdant tiles");
     }
 
     public override void SetDefaults()

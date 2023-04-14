@@ -10,8 +10,8 @@ class LushDagger : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Lush Shiv");
-        Tooltip.SetDefault("Thrown in triplets");
+        DisplayName.SetDefault("Lush Splinter");
+        Tooltip.SetDefault("Thrown in triplets\n'Nature's nuisance of choice'");
     }
 
     public override void SetDefaults()
