@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Misc;
 
@@ -17,15 +18,12 @@ public class LeafBook : ModItem
 		{
 			Item.stack++;
 
-			QuickItem.ToggleBookUI($"Leaves", 1f,
-				new object[] { "\nThe book looks particularly old, page worn and oddly brown.\nThe material is also clearly foreign.\nThere's drops of water across the top pages.\nThere's also tons of " +
-                "minor scribbles.\nThe scribbles seem of random mundane cave objects,\nfor some reason.\nThere's no dates or authors mentioned, apart from a\nsignature:",
+			QuickItem.ToggleBookUI(Language.GetTextValue("Mods.Verdant.Books.LeafBook.Title"), 1f,
+				new object[] { Language.GetTextValue("Mods.Verdant.Books.LeafBook.Content.0"),
 				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/Signature", ReLogic.Content.AssetRequestMode.ImmediateLoad),
-				"\nYou scan through the book, and spot the following pages:",
+                Language.GetTextValue("Mods.Verdant.Books.LeafBook.Content.1"),
 				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LeafDisplay", ReLogic.Content.AssetRequestMode.ImmediateLoad),
-				"\n\"Almost fabric like texture, durable yet soft.\nInexplicably calming to hold, grows well in bulb light.\nUnpleasant to eat, tastes like grass and dirt." +
-                "\nPlentiful, might use (books? pages? look soon).\nMight work in small parts?\nGrows in vine like clumps, or just clumps? Unsure.\nGrow only or mostly around flowers." +
-                "\n\n(DO NOT EAT)\n\nTried pressing into pages, seem to work but needs\nmore work. Pages are too green.\""});
+                Language.GetTextValue("Mods.Verdant.Books.LeafBook.Content.2")});
 			return true;
 		}
 

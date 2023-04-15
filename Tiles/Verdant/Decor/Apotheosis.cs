@@ -8,6 +8,7 @@ using Verdant.Systems.ScreenText.Caches;
 using Verdant.World;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Misc.Apotheotic;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -48,6 +49,26 @@ internal class Apotheosis : ModTile
         if (ScreenTextManager.CurrentText is not null)
             return false;
 
+        if (CheckApotheoticHeldItem())
+            return true;
+
+        if (!CommonDialogue())
+            DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
+        return true;
+    }
+
+    public static bool CheckApotheoticHeldItem()
+    {
+        if (!Main.LocalPlayer.HeldItem.IsAir && Main.LocalPlayer.HeldItem.ModItem is ApotheoticItem apoth)
+        {
+            DialogueCacheAutoloader.Play(nameof(ApotheoticItem) + "." + apoth.Name, false);
+            return true;
+        }
+        return false;
+    }
+
+    public static bool CommonDialogue()
+    {
         if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
 
@@ -74,9 +95,7 @@ internal class Apotheosis : ModTile
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".WoF");
             return true;
         }
-
-        DialogueCacheAutoloader.Play(nameof(ApotheosisDialogueCache) + ".Idle", false);
-        return true;
+        return false;
     }
 
     public override void MouseOver(int i, int j)

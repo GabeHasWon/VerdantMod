@@ -108,7 +108,7 @@
 						0: A powerful spirit has been released...
 						1: With us...more free, you'll begin to see a couple changes.
 						2: You might've already noticed a couple. Anyhow,
-						3: as thanks, take this. I...don't need it anymore.
+						3: as thanks, take this. I...I don't need it anymore.
 					}
 
 					AnyMech: {
@@ -121,7 +121,33 @@
 						0: The horrific plant is dead.
 						1: This frees up many opportunities;
 						2: this is a smaller boon, but we hope it helps.
-						3: You may now create more of these yourself as well.
+						3: You may now create more these yourself as well.
+					}
+
+					Golem: {
+						0: The Temple's protector felled.
+						1: This is a bit of a...passion project, of mine.
+						2: We don't know if it'll help much,
+						3: but we suspect it'll be fun.
+						4: Best of luck.
+					}
+
+					Cultist: {
+						0: Those charlatans dead, hm?
+						1: Their practice was a dangerous idiocy.
+						2: Less and less threats are...up close, I see.
+						3: Perhaps we can offer a sliver of our power,
+						4: to your boon. Enjoy.
+					}
+
+					MoonLord: {
+						0: I suspect that's the final fight.
+						1: We don't know what else you have planned;
+						2: and we have little more to give.
+						3: It's been a lot of fun,
+						4: a lot of work,
+						5: and I think we need a break.
+						6: Perhaps you'll see something new in the future.
 					}
 				}
 
@@ -148,6 +174,22 @@
 					1: You best have prepared.
 					2: Pests must be controlled, invasion quelled,
 					3: and you must defeat them. Good luck.
+				}
+
+				ItemInteractions: {
+					WiltedFlower: {
+						0: A daisy, my favourite flower.
+						1: Shame it's been so long, hm?
+					}
+
+					ApotheosisBook: {
+						0: My old notebook.
+						1: I remember writing in it all the time,
+						2: I still get the itch to here and there.
+						3: Oh well, we can't use it anymore.
+						4: It's bizarre enough to regard it at all,
+						5: considering the...last time I wrote in it.
+					}
 				}
 			}
 		}
@@ -178,6 +220,222 @@
 				0: Forever Friend
 				1: Our Memory
 				2: Orwell
+			}
+		}
+
+		Books: {
+			RockBook: { 
+				Content: '''
+					
+					"Supposedly from a distant island, unknown.
+					Would make for an incredible research opportunity!
+					Striations of obsidian line the rock, 
+					along with ember particles throughout? Research later.
+					Various hints of iron, bismite, lead
+					and obsidian in no particular order.
+					Despite its age, still warm to the touch - also sounds hollow?
+					Need more samples, asked around...no replies.
+					Might go searching for more.
+					It's been a while!
+					Map shows a volcanic area around [scratch mark] or so..."
+					
+					Despite the introduction, this book seems to slowly
+					change in purpose - becoming sort of an explorer's log:
+					
+					"Adventure going well,
+					though fruitless; idyll forests
+					sit patiently, as
+					
+					what awaits me at
+					the end of this adventure -
+					a great volcano
+					
+					I'm just sure of it."
+
+					'''
+
+				Title: Volcanic Rocks
+			}
+			LightbulbBook: {
+				Content: {
+					0: '''
+						
+						"Weird bulbs? Seeds?
+						made of soft plantlike material, like leaves.
+						Glows softly, though sometimes in a...wave like motion.
+						Works as a source of sunlight, grows on certain flowers."
+
+						'''
+
+					1: '''
+
+						"Full of water? sugar?
+						Tastes bland, a bit sweet, bit of dirt, mildly grassy, and
+						a tinge of iron (or other metal? Test later.)
+						Rare, don't have too much to test on.
+						Go searching for more later, might be good food.
+						Beyond analysis, these are incredible specimens...
+						Will make for better light than these fireflies"
+						
+						Random things line pages: scribbles, sketches, notes.
+						Occasionally there's a small tidbit of salvageable info:
+						"Grows better in dirty water?"
+						"How would this work in sunlight?"
+						"Almost flowers when growing." +
+						"Soft, but hardy. Hm."
+
+						'''
+				}
+
+				Title: Lightbulbs?
+			}
+
+			LeafBook: {
+				Content: {
+					0: '''
+					
+						The book looks particularly old, page worn and oddly brown.
+						The material is also clearly foreign.
+						There's drops of water across the top pages.
+						There's also tons of minor scribbles.
+						The scribbles seem first of random surface landscapes,
+						then of random mundane cave objects...for some reason.
+						There's no dates or authors mentioned, apart from a
+						signature:
+
+						'''
+
+					1: '''
+						
+						You scan through the book, and spot the following pages:
+
+						'''
+
+					2: '''
+
+						"Almost fabric like texture, durable yet soft.
+						Inexplicably calming to hold, grows well in bulb light.
+						Unpleasant to eat, tastes like grass and dirt.
+						Plentiful, might use (books? pages? look soon).
+						Might work in small parts?
+						Grows in vine like clumps, or just clumps? Unsure.
+						Grow only or mostly around flowers.
+						
+						(DO NOT EAT)
+						
+						Tried pressing into pages, seem to work but needs
+						more work. Pages are too green."
+
+						'''
+				}
+
+				Title: Leaves
+			}
+
+			HardyVineBook: {
+				Content: '''
+
+					"The final shreds of life around here
+					Incredibly durable, despite how thin they are.
+					Trying to cut one of these apart is borderline futile.
+					They grow sparsely, surrounded by more average, smaller
+					vines, leaves and flora.
+					Sometimes flower, with small light bulbs on them.
+					
+					DO NOT EAT
+					
+					Like lettuce but leathery and dirtier.
+					Can be used to create incredibly sturdy ropes.
+					Look into use as a reinforcement?
+					...I don't know if I can."
+					
+					The few remaining pages have small sketches and
+					the occasional small note -
+					
+					"...more plentiful now?..."
+					"New specimens are getting stockier"
+					"...sprouting more often..."
+					
+					- until the book ends.
+
+					'''
+
+				Title: Hardy Vines
+			}
+
+			ApotheosisBook: {
+				Content: '''
+				
+					"It's been a while since I've run out of supplies.
+					My caravan is empty aside from research,
+					with mice and bats being all I can eat.
+					Water is surprisingly clean and fresh
+					around here, so...it’s just hunger.
+					Some research is done, however.
+					I'm categorizing the flora around here, and it's...magical.
+					To a point where I’m not sure that's simply a term,
+					or just the truth.
+					Some surprisingly lush grass and foliage around,
+					I've even seen some minor tree saplings here and there.
+					A most curious wood, too!
+					Despite my starvation, this is a heaven I’ll suffer for."
+				
+
+					...
+
+
+					"The meager morsels of this land have been sufficient for some
+					time, though barely.
+					I've set up a small but acceptable study,
+					both to hold my things and to keep myself safe.
+					Often an errant skeleton or angry bat finds itself around me,
+					and I am an explorer; monster slayer naught.
+					That being said, food grows scarcer yet.
+					Beyond bats, I’ve lost mice - seems the little critters have
+					learned their biggest threat.
+					Time lies outside of my reach.
+					Studies notwithstanding, I’ve little left anyhow."
+
+				
+					...
+
+
+					"Time grows weary; as do I.
+					Studies continue, fervor reaching new heights
+					as I see things unique to this strange cavern.
+					Behind the hunger pains, the fatigue;
+					despite my dismal state of being,
+					I live stronger than I've ever lived.
+					To me, this is life, the creatures around here
+					thrive, play, talk, and fight.
+					Perhaps there's even more I can't see.
+					Alas, Death comes knocking, and I've no way to close the door.
+					But perhaps, in some other time,
+					these plants find another pair of eyes,
+					and bewilder as I have been bewildered."
+				
+				
+					...
+				
+				
+					"View; a flower. A flower with a bulb in it, a curious one -
+					betwixt the petals, a gentle glow.
+					A calming glow.
+					A glow unlike anything I’ve seen in my time here.
+					I’ve all but abandoned my study.
+					There’s no food, and I’m on my last breaths.
+					My only regret is being unable to study this flora,
+					this gift presented before me.
+					...
+					May someone find my work.
+					May some passion revive what I’ve died doing.
+					May this journal find someone in good health,
+					in good spirits,
+					and goodbye."
+
+					'''
+
+				Title: 'My Apotheosis'
 			}
 		}
 	}

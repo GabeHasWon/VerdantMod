@@ -21,7 +21,7 @@ public class GrimLayer : ModNPC
     private ref float TargetThorn => ref NPC.ai[0];
     private LayerState State { get => (LayerState)NPC.ai[1]; set => NPC.ai[1] = (float)value; }
 
-    private RealtimeAction Pillar;
+    //private RealtimeAction Pillar;
 
     public override void SetStaticDefaults()
     {

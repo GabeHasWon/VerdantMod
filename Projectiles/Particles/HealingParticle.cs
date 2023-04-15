@@ -52,7 +52,7 @@ namespace Verdant.Projectiles.Particles
             if (layer != AdditiveLayer.AfterPlayer)
                 return;
 
-            Texture2D tex = Mod.Assets.Request<Texture2D>("Textures/Circle").Value;
+            Texture2D tex = ModContent.Request<Texture2D>(Texture).Value;
             float rot = Projectile.velocity.ToRotation();
             Vector2 scale = new Vector2(1 + Projectile.velocity.Length() * 0.075f, 1) * Projectile.scale;
 

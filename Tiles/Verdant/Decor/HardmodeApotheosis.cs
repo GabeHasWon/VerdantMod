@@ -134,45 +134,33 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
         if (ScreenTextManager.CurrentText is not null)
             return false;
 
-        if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
+        if (Apotheosis.CheckApotheoticHeldItem())
             return true;
-        }
 
-        if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Eye");
+        if (Apotheosis.CommonDialogue())
             return true;
-        }
 
-        if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Evil");
-            return true;
-        }
-
-        if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Skeletron");
-            return true;
-        }
-
-        if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
-        {
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".WoF");
-            return true;
-        }
-
-        if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"]) //WoF boss text
+        if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"]) //Mech boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".AnyMech");
             return true;
         }
 
-        if (NPC.downedPlantBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]) //WoF boss text
+        if (NPC.downedPlantBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]) //Plantera boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Plantera");
+            return true;
+        }
+
+        if (NPC.downedGolemBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["golem"]) //Golem boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Golem");
+            return true;
+        }
+
+        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["moonLord"]) //Golem boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".MoonLord");
             return true;
         }
 

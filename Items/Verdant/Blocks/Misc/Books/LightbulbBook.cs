@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Misc;
 
@@ -18,14 +19,11 @@ public class LightbulbBook : ModItem
 		{
 			Item.stack++;
 
-			QuickItem.ToggleBookUI("\"Lightbulbs\"", 0.8f,
+			QuickItem.ToggleBookUI(Language.GetTextValue("Mods.Verdant.Books.LightbulbBook.Title"), 0.8f,
 				new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbDisplay", AssetRequestMode.ImmediateLoad),
-				"\n\"Weird bulbs? Seeds?\nmade of soft plantlike material, like leaves\nGlows softly, though sometimes in a...wave like motion\nWorks as a source of sunlight, grows on certain flowers",
+                Language.GetTextValue("Mods.Verdant.Books.LightbulbBook.Content.0"),
 				ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/LightbulbCrossSection", AssetRequestMode.ImmediateLoad),
-				"\nFull of water? sugar?\ntastes bland, a bit sweet, bit of dirt, mildly grassy, and\na tinge of iron (or other metal? test later)\nRare, don't have too much to test on\n" +
-				"Go searching for more later, might be good food\nBeyond analysis, these are incredible specimens\nWill make for better light than these fireflies\"\n\nRandom things line pages" +
-                ": scribbles, sketches, notes\nOccasionally there's a small tidbit of salvageable info:\n\"Grows better in dirty water?\"\n\"How would this work in sunlight?\"\n\"Almost flowers when growing\"" +
-                "\n\"Soft, but hardy\""});
+                Language.GetTextValue("Mods.Verdant.Books.LightbulbBook.Content.1")});
 			return true;
 		}
 

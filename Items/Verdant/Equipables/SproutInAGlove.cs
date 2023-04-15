@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Projectiles.Particles;
 
 namespace Verdant.Items.Verdant.Equipables;
 
@@ -12,7 +13,7 @@ class SproutInAGlove : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Sprout in Gloves");
-        Tooltip.SetDefault("Dodges hostile projectiles randomly\nDodging a projectile gives you a small amount of i-frames and heals you slightly" +
+        Tooltip.SetDefault("Dodges hostile projectiles randomly (33% chance)\nDodging a projectile gives you a small amount of i-frames and heals you slightly" +
             "\nProjectiles can only hit you once, even if they pierce or bounce");
     }
 
@@ -22,7 +23,7 @@ class SproutInAGlove : ModItem
 
         if (line.Name == "Verdant:OrLine")
         {
-            line.BaseScale *= 0.8f;
+            line.BaseScale *= 0.9f;
             yOffset -= Offset;
         }
 
@@ -36,43 +37,57 @@ class SproutInAGlove : ModItem
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Green;
-        Item.value = Item.sellPrice(silver: 3);
+        Item.value = Item.sellPrice(gold: 50);
         Item.accessory = true;
     }
 
-    public override void UpdateEquip(Player player) => player.GetModPlayer<SproutInAGlobePlayer>().active = true;
-}
+    public override void UpdateEquip(Player player) => player.GetModPlayer<SproutInAGlovePlayer>().equippedGlove = Item;
 
-class SproutInAGlobePlayer : ModPlayer
-{
-    public bool active = false;
-
-    private List<int> protectedWhoAmIs = new();
-
-    public override void ResetEffects()
+    private class SproutInAGlovePlayer : ModPlayer
     {
-        active = false;
-        protectedWhoAmIs.RemoveAll(x => !Main.projectile[x].active || Main.projectile[x].friendly);
-    }
+        public bool Active => equippedGlove is not null;
 
-    public override bool CanBeHitByProjectile(Projectile proj)
-    {
-        bool contained = protectedWhoAmIs.Contains(proj.whoAmI);
-        bool chance = Main.rand.NextDouble() < 0.2f && !contained;
+        public Item equippedGlove = null;
 
-        if (chance || contained)
+        private List<int> protectedWhoAmIs = new();
+
+        public override void ResetEffects()
         {
-            if (chance)
-            {
-                Player.immune = true;
-                Player.immuneTime = 30;
-                CombatText.NewText(Player.getRect(), Color.White, "eg", true);
-            }
-
-            return false;
+            equippedGlove = null;
+            protectedWhoAmIs.RemoveAll(x => !Main.projectile[x].active || Main.projectile[x].friendly);
         }
 
-        protectedWhoAmIs.Add(proj.whoAmI);
-        return true;
+        public override bool CanBeHitByProjectile(Projectile proj)
+        {
+            if (Active)
+            {
+                bool contained = protectedWhoAmIs.Contains(proj.whoAmI);
+                bool chance = Main.rand.NextDouble() < 0.33333f && !contained;
+
+                if (chance || contained)
+                {
+                    if (chance)
+                    {
+                        Player.immune = true;
+                        Player.immuneTime = 60;
+                        Player.Heal(20);
+
+                        var source = Player.GetSource_Accessory(equippedGlove);
+                        Projectile.NewProjectile(source, Player.Center, new Vector2(0, -4), ModContent.ProjectileType<ApotheosisHand>(), 0, 0, Player.whoAmI);
+
+                        for (int i = 0; i < 3; ++i)
+                        {
+                            var vel = new Vector2(Main.rand.NextFloat(4, 12), 0).RotatedByRandom(MathHelper.TwoPi);
+                            Projectile.NewProjectile(source, Player.Center, vel, ModContent.ProjectileType<HealingParticle>(), 0, 0, Player.whoAmI);
+                        }
+                    }
+
+                    return false;
+                }
+            }
+
+            protectedWhoAmIs.Add(proj.whoAmI);
+            return true;
+        }
     }
 }

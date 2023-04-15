@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Misc.Apotheotic;
 using Verdant.Systems.Syncing;
 
 namespace Verdant.Systems.ScreenText.Caches
@@ -19,10 +19,20 @@ namespace Verdant.Systems.ScreenText.Caches
             foreach (var type in types)
             {
                 var methods = type.GetMethods().Where(x => Attribute.IsDefined(x, typeof(DialogueCacheKeyAttribute)));
+
                 foreach (var method in methods)
                 {
                     var attr = Attribute.GetCustomAttribute(method, typeof(DialogueCacheKeyAttribute)) as DialogueCacheKeyAttribute;
-                    dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<bool, ScreenText>), method) as Func<bool, ScreenText>);
+
+                    if (method.IsStatic)
+                        dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<bool, ScreenText>), method) as Func<bool, ScreenText>);
+                    else
+                    {
+                        if (attr.Key != nameof(ApotheoticItem) + "." + type.Name)
+                            throw new Exception("ApotheoticItem DialogueCacheKeyAttribute has an improper access key!\nUse the format \"nameof(ApotheoticItem) + \".\" + type.Name\"");
+
+                        dialogues.Add(attr.Key, Delegate.CreateDelegate(typeof(Func<bool, ScreenText>), Activator.CreateInstance(type), method.Name) as Func<bool, ScreenText>);
+                    }
                 }
             }
         }

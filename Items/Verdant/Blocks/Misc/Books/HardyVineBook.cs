@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Misc;
 
@@ -18,12 +19,9 @@ public class HardyVineBook : ModItem
 		{
 			Item.stack++;
 
-			QuickItem.ToggleBookUI("Hardy Vines", 0.8f,
+			QuickItem.ToggleBookUI(Language.GetTextValue("Mods.Verdant.Books.HardyVineBook.Title"), 0.8f,
 				new object[] { ModContent.Request<Texture2D>("Verdant/Systems/UI/Textures/HardyVine", AssetRequestMode.ImmediateLoad),
-                "\n\"The final shreds of life around here\nIncredibly durable, despite how thin they are.\nTrying to cut one of these apart is borderline futile\n" +
-                "Grow sparsely, surrounded by more average\nvines and fauna.\nSometimes flower, with small light bulbs on them.\n\nDO NOT EAT\n\nLike lettuce but leathery and dirtier.\n" +
-                "Can be used to create incredibly sturdy ropes.\nLook into use as a reinforcement?\n\nI don't know if I can\"\nThe few remaining pages have small sketches and\nthe occasional small note -" +
-                "\n\"More plentiful now?\"\n\"New specimens are getting thicker...\"\n\n - until the book ends."});
+                Language.GetTextValue("Mods.Verdant.Books.HardyVineBook.Content")});
 			return true;
 		}
 

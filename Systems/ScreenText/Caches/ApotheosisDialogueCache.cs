@@ -11,6 +11,7 @@ using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.Items.Verdant.Equipables;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Misc;
+using Verdant.Items.Verdant.Misc.Apotheotic;
 using Verdant.Items.Verdant.Tools;
 using Verdant.Projectiles.Misc;
 using Verdant.Systems.PestControl;
@@ -353,6 +354,83 @@ namespace Verdant.Systems.ScreenText.Caches
                 FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Plantera.3", 60, 0.9f));
         }
 
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Golem")]
+        public static ScreenText GolemDownDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["golem"] = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                for (int i = 0; i < 5; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem." + i);
+
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Mudsquid>(), 1);
+                return null;
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem.0", 120) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem.1", 120, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem.2", 120, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem.3", 120, 1f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Golem.4", 90, 1f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<Mudsquid>(), 1);
+                });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Cultist")]
+        public static ScreenText CultistDownDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["cultist"] = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInAGlove>(), 1);
+                return ChatLength("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.", 5, true);
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.0", 120) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.1", 120, 0.8f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.2", 120, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.3", 120, 1f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Cultist.4", 90, 1f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<SproutInAGlove>(), 1);
+                });
+        }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".MoonLord")]
+        public static ScreenText MoonLordDownDialogue(bool forServer)
+        {
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["moonLord"] = true;
+
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<ApotheosisBag>(), 1);
+                return ChatLength("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.", 7, true);
+            }
+
+            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.0", 90) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.1", 90, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.2", 90, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.3", 60, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.4", 70, 1f)).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.5", 70, 1f)).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.MoonLord.6", 90, 1f), (self) =>
+                {
+                    Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<ApotheosisBag>(), 1);
+                });
+        }
+
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".PestControlNotif")]
         public static ScreenText PestControlNotifDialogue(bool forServer)
         {
@@ -363,11 +441,8 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                for (int i = 0; i < 8; ++i)
-                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif." + i);
-
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
-                return null;
+                return ChatLength("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif", 8, true);
             }
 
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif.0", 80) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
@@ -390,11 +465,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 return null;
 
             if (!UseCustomSystem)
-            {
-                for (int i = 0; i < 8; ++i)
-                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning." + i);
-                return null;
-            }
+                return ChatLength("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.", 8, true);
 
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.0", 60) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControlWarning.1", 60, 0.8f)).
@@ -415,11 +486,7 @@ namespace Verdant.Systems.ScreenText.Caches
                 return null;
 
             if (!UseCustomSystem)
-            {
-                for (int i = 0; i < 8; ++i)
-                    Chat("$Mods.Verdant.ScreenText.Apotheosis.PestControlNotif." + i);
-                return null;
-            }
+                return ChatLength("$Mods.Verdant.ScreenText.Apotheosis.PestControl", 4, true);
 
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.0", 60) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.1", 90, 0.8f)).
@@ -427,7 +494,14 @@ namespace Verdant.Systems.ScreenText.Caches
                 FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.PestControl.3", 80, 0.9f));
         }
 
-        private static void Chat(string text, bool useName = true)
+        internal static ScreenText ChatLength(string text, int repeats, bool useName = true)
+        {
+            for (int i = 0; i < 8; ++i)
+                Chat(text + i);
+            return null;
+        }
+
+        internal static void Chat(string text, bool useName = true)
         {
             string useText = text;
 
@@ -436,5 +510,7 @@ namespace Verdant.Systems.ScreenText.Caches
 
             Main.NewText($"[c/32cd32:{Language.GetTextValue("Mods.Verdant.ApotheosisFullName")}:] " + VerdantLocalization.ScreenTextLocalization(useText), Color.White);
         }
+
+        internal static ScreenText StartLine(string text, int duration) => new(text, duration) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime };
     }
 }
