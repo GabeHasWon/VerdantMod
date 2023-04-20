@@ -11,6 +11,8 @@ internal class PestPlayer : ModPlayer
 {
     public bool inPestControl = false;
 
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     public bool InPestControl
     {
         get

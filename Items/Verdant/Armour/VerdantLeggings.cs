@@ -67,7 +67,7 @@ public class VerdantLeggings : ModItem
                     while (!valids[choice])
                         choice = Main.rand.Next(3);
 
-                    if (VerdantGrassLeaves.CheckPuff(t.X, t.Y)) //Force puff decor
+                    if (VerdantGrassLeaves.CheckPuffMicrobiome(t.X, t.Y)) //Force puff decor
                         choice = -1;
 
                     if (choice == -1)

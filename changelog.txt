@@ -23,6 +23,7 @@ NEW CONTENT
 - Added Poolworm
 - Added Verdant Bed
 - Added Guide to Critter Companionship compatibility with all critters
+- Added some unique interaction text for the Apotheosis
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated

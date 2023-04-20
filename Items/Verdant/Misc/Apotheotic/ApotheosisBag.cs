@@ -1,6 +1,5 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Tools;
 
 namespace Verdant.Items.Verdant.Misc.Apotheotic;
 
@@ -13,7 +12,7 @@ class ApotheosisBag : ModItem
 
     public override void ModifyItemLoot(ItemLoot itemLoot)
     {
-        itemLoot.AddCommon(ModContent.ItemType<ApotheosisBook>(), 6, 20, 31);
-        itemLoot.AddCommon(ModContent.ItemType<Halfsprout>(), 6, 20, 31);
+        itemLoot.AddCommon(ModContent.ItemType<ApotheosisBook>(), 1);
+        itemLoot.AddCommon(ModContent.ItemType<WiltedFlower>(), 1);
     }
 }

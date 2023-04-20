@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Particles;
@@ -17,6 +18,8 @@ class SproutInAGlove : ModItem
             "\nProjectiles can only hit you once, even if they pierce or bounce");
     }
 
+    bool offsetFlag = false;
+
     public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
     {
         const int Offset = 4;
@@ -25,10 +28,14 @@ class SproutInAGlove : ModItem
         {
             line.BaseScale *= 0.9f;
             yOffset -= Offset;
+            offsetFlag = true;
+        }
+        else if (offsetFlag)
+        {
+            yOffset += Offset;
+            offsetFlag = false;
         }
 
-        if (line.Name == "Equipable")
-            yOffset += Offset;
         return true;
     }
 
@@ -62,14 +69,14 @@ class SproutInAGlove : ModItem
             if (Active)
             {
                 bool contained = protectedWhoAmIs.Contains(proj.whoAmI);
-                bool chance = Main.rand.NextDouble() < 0.33333f && !contained;
+                bool chance = Main.rand.NextDouble() < 0.333333f && !contained;
 
                 if (chance || contained)
                 {
                     if (chance)
                     {
                         Player.immune = true;
-                        Player.immuneTime = 60;
+                        Player.immuneTime = 45;
                         Player.Heal(20);
 
                         var source = Player.GetSource_Accessory(equippedGlove);
@@ -80,6 +87,8 @@ class SproutInAGlove : ModItem
                             var vel = new Vector2(Main.rand.NextFloat(4, 12), 0).RotatedByRandom(MathHelper.TwoPi);
                             Projectile.NewProjectile(source, Player.Center, vel, ModContent.ProjectileType<HealingParticle>(), 0, 0, Player.whoAmI);
                         }
+
+                        SoundEngine.PlaySound(new SoundStyle("Verdant/Sounds/Blessing") with { PitchRange = (0f, 0.66f), Volume = 3f }, Player.Center);
                     }
 
                     return false;

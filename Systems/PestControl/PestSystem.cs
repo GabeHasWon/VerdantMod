@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
@@ -13,6 +11,8 @@ namespace Verdant.Systems.PestControl;
 
 internal class PestSystem : ModSystem
 {
+    public override bool IsLoadingEnabled(Mod mod) => false;
+
     public bool pestControlActive = false;
     public float pestControlProgress = 0;
 

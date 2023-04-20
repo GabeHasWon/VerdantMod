@@ -74,7 +74,7 @@ public partial class VerdantGenSystem
         {
             for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
             {
-                bool puff = VerdantGrassLeaves.CheckPuff(i, j, 1.25f);
+                bool puff = VerdantGrassLeaves.CheckPuffMicrobiome(i, j, 1.25f);
 
                 if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
                 {

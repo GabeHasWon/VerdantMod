@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Misc.Apotheotic;
 [Sacrifice(1)]
 class WiltedFlower : ApotheoticItem
 {
-    public override void SetStaticDefaults() => Tooltip.SetDefault("A long-dead, faded yellow flower");
+    public override void SetStaticDefaults() => Tooltip.SetDefault("A long-dead, faded yellow flower\nShow this to the Apotheosis by right clicking them");
 
     public override void SetDefaults()
     {
@@ -27,9 +27,11 @@ class WiltedFlower : ApotheoticItem
             return null;
 
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
-            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.", 2, true);
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.", 4, true);
 
         return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.0", 80).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.1", 80, 1f));
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.1", 80, 1f)).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.2", 70, 1f)).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.3", 50, 1f));
     }
 }

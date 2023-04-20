@@ -7,8 +7,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Cut;
+using Verdant.Tiles.Verdant.Basic.Mysteria;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Basic.Puff;
+using Verdant.Tiles.Verdant.Trees;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -56,22 +58,24 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             Tile self = Framing.GetTileSafely(i, j);
 
-            bool puff = CheckPuff(i, j);
-            if (!puff)
+            if (CheckMysteriaMicrobiome(i, j))
             {
-                if (NormalGrowth(i, j))
+                if (MysteriaGrowth(i, j))
                     return true;
             }
-            else
+            else if (CheckPuffMicrobiome(i, j))
             {
                 if (PuffGrowth(i, j))
                     return true;
             }
+            else if (NormalGrowth(i, j))
+                return true;
 
             //vine
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
             {
-                WorldGen.PlaceTile(i, j + 1, puff ? ModContent.TileType<PuffVine>() : Main.hardMode ? ModContent.TileType<LightbulbVine>() : ModContent.TileType<VerdantVine>(), true, false);
+                int type = CheckPuffMicrobiome(i, j) ? ModContent.TileType<PuffVine>() : Main.hardMode ? ModContent.TileType<LightbulbVine>() : ModContent.TileType<VerdantVine>();
+                WorldGen.PlaceTile(i, j + 1, type, true, false);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
                 return true;
@@ -79,7 +83,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             return false;
         }
 
-        internal static bool CheckPuff(int i, int j, float sizeMul = 1f)
+        internal static bool CheckPuffMicrobiome(int i, int j, float sizeMul = 1f)
         {
             int width = (int)(10 * sizeMul);
             int height = (int)(14 * sizeMul);
@@ -88,7 +92,18 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 for (int y = j - height; y < j + height; ++y)
                     if (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<BigPuff>())
                         return true;
+            return false;
+        }
 
+        internal static bool CheckMysteriaMicrobiome(int i, int j, float sizeMul = 1f)
+        {
+            int width = (int)(28 * sizeMul);
+            int height = (int)(34 * sizeMul);
+
+            for (int x = i - width; x < i + width; ++x)
+                for (int y = j - height; y < j + height; ++y)
+                    if (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<MysteriaTree>())
+                        return true;
             return false;
         }
 
@@ -119,30 +134,21 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //decor 1x1
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i, j - 1, Decor1x1Type(i, j, out int style), true, false, -1, Main.rand.Next(style));
-
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, out int style), (0, style));
                 return true;
             }
 
             //tile's left decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i - 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), true, false, -1, Main.rand.Next(style));
-
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendTileSquare(-1, i - 1, j, 1, TileChangeType.None);
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), (0, style));
                 return true;
             }
 
             //tile's right decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
             {
-                WorldGen.PlaceTile(i + 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), true, false, -1, Main.rand.Next(style));
-
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendTileSquare(-1, i + 1, j, 1, TileChangeType.None);
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), (0, style));
                 return true;
             }
 
@@ -255,6 +261,56 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 }
             }
             return false;
+        }
+
+        private static bool MysteriaGrowth(int i, int j)
+        {
+            Tile self = Framing.GetTileSafely(i, j);
+
+            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile)
+            {
+                if (Main.rand.NextBool(3)) //Decor 1x1
+                {
+                    PlaceSynced(i, j - 1, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));
+                    return true;
+                }
+            }
+
+            if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile)
+            {
+                if (Main.rand.NextBool(3)) //Decor 1x1
+                {
+                    PlaceSynced(i, j + 1, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));
+                    return true;
+                }
+            }
+
+            if (TileHelper.ValidLeft(self) && !Framing.GetTileSafely(i - 1, j).HasTile)
+            {
+                if (Main.rand.NextBool(3)) //Decor 1x1
+                {
+                    PlaceSynced(i - 1, j, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));
+                    return true;
+                }
+            }
+
+            if (TileHelper.ValidRight(self) && !Framing.GetTileSafely(i + 1, j).HasTile)
+            {
+                if (Main.rand.NextBool(3)) //Decor 1x1
+                {
+                    PlaceSynced(i + 1, j, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static void PlaceSynced(int i, int j, int type, (int min, int max) styleRange)
+        {
+            WorldGen.PlaceTile(i, j, type, true, false, -1, Main.rand.Next(styleRange.min, styleRange.max + 1));
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
         }
 
         internal static void ImpactEffects(Player player)

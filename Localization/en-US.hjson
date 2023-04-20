@@ -180,12 +180,14 @@
 					WiltedFlower: {
 						0: A daisy, my favourite flower.
 						1: Shame it's been so long, hm?
+						2: Ah, and feel free to ask me about anything.
+						3: We're an open book.
 					}
 
 					ApotheosisBook: {
 						0: My old notebook.
 						1: I remember writing in it all the time,
-						2: I still get the itch to here and there.
+						2: I still get the itch to, here and there.
 						3: Oh well, we can't use it anymore.
 						4: It's bizarre enough to regard it at all,
 						5: considering the...last time I wrote in it.
@@ -248,7 +250,7 @@
 					
 					what awaits me at
 					the end of this adventure -
-					a great volcano
+					a great volcano...
 					
 					I'm just sure of it."
 
