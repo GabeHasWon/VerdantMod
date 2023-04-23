@@ -24,12 +24,20 @@ NEW CONTENT
 - Added Verdant Bed
 - Added Guide to Critter Companionship compatibility with all critters
 - Added some unique interaction text for the Apotheosis
+- Added Mysteria microbiome
+	- Added Mysteria trees
+	- Added Mysteria wood
+	- Added Mysteria canopy
+	- Added Mysteria acorns
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
 - Sprite edits for:
 	Yellow Bulb item
 	Lush Vine Rope tile
+	Lush Sapling
+	Red Petal Block
+	Pink Petal Block
 - Beehives can be placed on all tiles
 - Adjusted speed that foreground/background leaves fly at in wind
 - Fixed ScreenText being drawn only when the mouse is drawn
@@ -43,3 +51,4 @@ CHANGES
 - Unloaded Folifish in order to make way for new fishes
 - Fixed Lush Wood Bed not working as a spawnpoint
 - Made Lush Wood merge with all tiles
+- Lush Saplings can now be planted in water

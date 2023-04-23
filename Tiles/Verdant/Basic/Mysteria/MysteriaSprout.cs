@@ -6,13 +6,14 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Systems.RealtimeGeneration;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.World;
 
-namespace Verdant.Tiles.Verdant.Basic.Plants;
+namespace Verdant.Tiles.Verdant.Basic.Mysteria;
 
-public class LushSapling : ModTile
+public class MysteriaSprout : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -42,8 +43,8 @@ public class LushSapling : ModTile
         TileObjectData.addTile(Type);
 
         ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Sapling");
-        AddMapEntry(new Color(89, 47, 33), name);
+        name.SetDefault("Sprout");
+        AddMapEntry(new Color(99, 63, 45), name);
 
         DustType = DustID.Grass;
         AdjTiles = new int[] { TileID.Saplings };
@@ -55,10 +56,16 @@ public class LushSapling : ModTile
     {
         if (WorldGen.genRand.NextBool(12) && GenHelper.CanGrowVerdantTree(i, j, 8, Type))
         {
-            bool isPlayerNear = WorldGen.PlayerLOS(i, j);
             if (Framing.GetTileSafely(i, j).TileFrameY == 0)
                 j++;
-            VerdantTree.Spawn(i, j, -1, null, 8, 34, isPlayerNear, -1, true);
+
+            if (WorldGen.PlayerLOS(i, j))
+            {
+                var gen = ModContent.GetInstance<RealtimeGen>();
+                gen.CurrentActions.Add(new(MysteriaTree.RealtimeGenerate(i, j, 0, Main.rand), 0.3f));
+            }
+            else //Instantly generate tree if not near player, might as well not take extra power
+                MysteriaTree.Generate(i, j, 0, Main.rand);
         }
     }
 

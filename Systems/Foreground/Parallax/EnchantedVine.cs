@@ -63,7 +63,7 @@ namespace Verdant.Systems.Foreground.Parallax
 
             Rectangle playerTop = new((int)p.position.X, (int)p.position.Y, p.width, 2);
 
-            if (playerTop.Intersects(Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(p.position, p.width, p.height) && lifeTimer > 3)
+            if (playerTop.Intersects(Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(p.position, p.width, p.height))
             {
                 p.pulley = true;
                 p.pulleyDir = 1;

@@ -27,7 +27,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 var split = item.Split('.');
 
                 if (split.Length != 2)
-                    throw new Exception(nameof(CountsAsVerdantGrass) + " contains objects in formats outside of Mod.Name!");
+                    throw new Exception(nameof(CountsAsVerdantGrass) + " contains objects in formats outside of \"Mod.Name\"!");
 
                 types.Add(ModContent.Find<ModTile>(split[0], split[1]).Type);
             }
@@ -134,21 +134,21 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //decor 1x1
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(5))
             {
-                PlaceSynced(i, j - 1, Decor1x1Type(i, j, out int style), (0, style));
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, out int style), (0, style - 1));
                 return true;
             }
 
             //tile's left decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
             {
-                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), (0, style));
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), (0, style - 1));
                 return true;
             }
 
             //tile's right decor
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
             {
-                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), (0, style));
+                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), (0, style - 1));
                 return true;
             }
 
@@ -269,6 +269,12 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile)
             {
+                if (Main.rand.NextBool(6)) //Decor 1x2
+                {
+                    PlaceSynced(i, j - 2, ModContent.TileType<MysteriaDecor1x2>(), (0, 6));
+                    return true;
+                }
+
                 if (Main.rand.NextBool(3)) //Decor 1x1
                 {
                     PlaceSynced(i, j - 1, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));

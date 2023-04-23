@@ -30,10 +30,14 @@ public class RealtimeAction
         TickRate = tickRate;
         Undoable = undoable;
         Name = name;
-        _captureData = captureData;
-        _captureData.Action = this;
 
-        var actions = tileActions.ToList();
+        if (captureData is not null)
+        {
+            _captureData = captureData;
+            _captureData.Action = this;
+        }
+
+            var actions = tileActions.ToList();
 
         if (Undoable)
             foreach (var item in actions)
@@ -80,8 +84,11 @@ public class RealtimeAction
             StructureHelper.Saver.SaveToFile(rect, path);
             ModContent.GetInstance<RealtimeGen>().CapturedStructures.Add(Name, (path, new Point16(_topLeft.X, _topLeft.Y)));
 
-            _captureData.Area = new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16);
-            OverlayRenderer.Capture(true, _captureData);
+            if (_captureData is not null)
+            {
+                _captureData.Area = new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16);
+                OverlayRenderer.Capture(true, _captureData);
+            }
         }
     }
 

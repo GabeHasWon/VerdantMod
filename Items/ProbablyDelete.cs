@@ -53,11 +53,13 @@ public class ProbablyDelete : ModItem
     {
         //ScreenTextManager.CurrentText = ApotheosisDialogueCache.IntroDialogue(false);
         var pos = Main.MouseWorld.ToTileCoordinates();
-        GenerateMysteriaTree(pos.X, pos.Y);
         //Tile tile = Main.tile[pos];
         //tile.TileFrameX = 0;
         //tile.TileFrameY = 0;
         //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
+
+        var gen = ModContent.GetInstance<RealtimeGen>();
+        gen.CurrentActions.Add(new(MysteriaTree.RealtimeGenerate(pos.X, pos.Y, player.Center.X / 16 > pos.X ? -1 : 1, Main.rand), 0.3f));
 
         //return true;
         //if (!RealtimeGen.HasStructure("Testing"))
@@ -65,31 +67,4 @@ public class ProbablyDelete : ModItem
         //Main.NewText(Main.MouseWorld.ToTileCoordinates());
         return true;
     }
-
-    public void GenerateMysteriaTree(int x, int y)
-    {
-        var random = Main.rand;
-        int height = random.Next(3, 8);
-
-        int[] widths = new int[7] { random.Next(4, 7), random.Next(3, 5), random.Next(2, 4), random.Next(1, 3), 1, 1, 1 };
-        int dir = random.NextBool(2) ? -1 : 1;
-        int index = 0;
-
-        for (int j = y; j > y - height; --j)
-        {
-            int width = index >= height - 2 ? 1 : widths[index];
-
-            for (int i = 0; i < width; ++i)
-            {
-                WorldGen.PlaceTile(x + (i * dir), j, ModContent.TileType<MysteriaTree>(), true, false);
-                WorldGen.PlaceTile(x + (i * dir), j + 1, ModContent.TileType<MysteriaTree>(), true, false);
-            }
-
-            if (index == height - 1)
-                WorldGen.PlaceTile(x, j - 1, ModContent.TileType<MysteriaTreeTop>(), true, false);
-
-            x += width * dir;
-            index++;
-        }
-    } 
 }
