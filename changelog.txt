@@ -19,7 +19,7 @@ NEW CONTENT
 - Added Lush Root Rope
 - Added Lush Vine Wall
 - Added Propellerpad
-- Added Niss Carp
+- Added Moss Carp
 - Added Poolworm
 - Added Verdant Bed
 - Added Guide to Critter Companionship compatibility with all critters
@@ -29,6 +29,7 @@ NEW CONTENT
 	- Added Mysteria wood
 	- Added Mysteria canopy
 	- Added Mysteria acorns
+- Added Crude Paintbrush
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -52,3 +53,4 @@ CHANGES
 - Fixed Lush Wood Bed not working as a spawnpoint
 - Made Lush Wood merge with all tiles
 - Lush Saplings can now be planted in water
+- Made Bouncebloom, Lightbulb held sprites show up in aftereffects

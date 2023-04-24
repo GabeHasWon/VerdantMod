@@ -10,8 +10,6 @@ namespace Verdant.Players.Layers
 
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {
-            if (drawInfo.shadow != 0f)
-                return;
             Player drawPlayer = drawInfo.drawPlayer;
 
             if (drawPlayer.active && !drawPlayer.outOfRange)

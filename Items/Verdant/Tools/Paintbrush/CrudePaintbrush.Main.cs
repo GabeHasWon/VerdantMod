@@ -1,16 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Verdant.Items.Verdant.Tools;
+namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
 [Sacrifice(1)]
 public partial class CrudePaintbrush : ModItem
 {
-    private enum PlacementMode : byte
+    public enum PlacementMode : byte
     {
         Line,
         Fill,
@@ -19,10 +22,12 @@ public partial class CrudePaintbrush : ModItem
         Count,
     }
 
+    public PlacementMode mode = PlacementMode.Line;
+
     private int _storedItemID = -1;
     private int _placeID = -1;
-    private PlacementMode _mode = PlacementMode.Line;
     private List<Point> _locations = new();
+    private List<Point> _lastChanges = new();
 
     public override void SetStaticDefaults()
     {
@@ -61,15 +66,8 @@ public partial class CrudePaintbrush : ModItem
     public override bool CanUseItem(Player player)
     {
         if (player.altFunctionUse == 2)
-        {
-            _mode++;
-
-            if (_mode == PlacementMode.Count)
-                _mode = PlacementMode.Line;
-
-            Main.NewText($"Mode switched to {_mode}.");
-        }
-        return true;
+            CrudePaintbrushUISystem.Toggle();
+        return !CrudePaintbrushUISystem.Open;
     }
 
     public override void RightClick(Player player)
@@ -98,6 +96,27 @@ public partial class CrudePaintbrush : ModItem
 
         _storedItemID = player.HeldItem.type;
         _placeID = type;
-        Main.NewText($"Placement type set to {TileID.Search.GetName(_placeID)} ({_placeID}).");
+        Main.NewText($"Placement type set to [i:{GetTileWand()}] ({TileID.Search.GetName(_placeID)})");
+    }
+
+    internal void SetMode(PlacementMode index)
+    {
+        mode = index;
+        _locations.Clear();
+    }
+
+    internal void Undo(Player player)
+    {
+        if (_lastChanges.Any())
+        {
+            foreach (var item in _lastChanges)
+                WorldGen.KillTile(item.X, item.Y, false, false, true);
+
+            var first = _lastChanges.First();
+            player.QuickSpawnItem(new EntitySource_TileBreak(first.X, first.Y), GetTileWand(), _lastChanges.Count);
+            _lastChanges.Clear();
+        }
+        else
+            Main.NewText("No changes to undo.");
     }
 }
