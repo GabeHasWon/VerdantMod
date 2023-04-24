@@ -284,7 +284,13 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile)
             {
-                if (Main.rand.NextBool(3)) //Decor 1x1
+                if (Main.rand.NextBool(2))
+                {
+                    PlaceSynced(i, j + 1, Main.rand.NextBool(2) ? ModContent.TileType<MysteriaVineOrange>() : ModContent.TileType<MysteriaVinePurple>(), (0, 0));
+                    return true;
+                }
+
+                if (Main.rand.NextBool(10)) //Decor 1x1
                 {
                     PlaceSynced(i, j + 1, ModContent.TileType<MysteriaDecor1x1>(), (0, 9));
                     return true;
