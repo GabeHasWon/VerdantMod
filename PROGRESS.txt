@@ -1,8 +1,3 @@
-[FINAL RELEASE]
-	- Surface day / night track, if possible
-	- Furniture
-	- Beta testing
-
 [NOTES] - DO NOT let this leak
 	- ADD MILLIONS OF HP WORM BOSS!!!
 		- PROJECTILE.NEWPROJECTILE - MUST REACH PROJ. CAP
@@ -13,99 +8,10 @@
 	- [Directional] Spring flower
 
 [FINISHED CONTENT] -------------------------------------------------
-	MISC
-	- Vines gen
-	- Caves/biome shape
-	- Walls
-	- Apotheosis
-	- Position selection
-	- Mod compatible biome checks - Might need more research
-	- Flower Structures(*)
-	- Little overgrown telltale structure on surface above Verdant
-
-	BLOCKS [ITEMS]
-	- Verdant Armor Set
-	- Lush Soil Block
-	- Verdant Chandelier [Small]
-	- Verdant Flower Bulb
-	- Verdant Hung Tables
-	- Verdant Strong Vine Item
-	- Verdant Wood Block
-	- Verdant Wood Chest Block
-	- Verdant Yellow Petal Chest Block
-
-	WALLS [ITEMS]
-	- Red Petal Wall Item
-	- Pink Petal Wall Item
-	- Verdant Leaf Wall Item
-
-	CRITTERS [ITEMS]
-	- Flotie Item
-	- Flotiny Item
-
-	MATERIALS
-	- Red Petal
-	- Pink Petal
-	- Yellow Bulb
-	- Lush Leaf
-	- Lightbulb
-
-	WEAPONS
-	- Bouncebulb Staff - Unobtainable
-	- Verdant Snail Staff - polish & balance might be good
-	- Verdant Staff
-
-	TOOLS
-	- Verdant Fishing Rod
-	- Verdant Leaf Wand
-	- Bouncebulb : Testing
-
-	EQUIPABLES [ITEMS]
-	- Lightbloom : Might want equip texture
-
-	CRITTERS [ITEMS]
-	- Flotie Item
-	- Flotiny Item
-	- Folifish Item
-
-	ENEMIES
-	- Hostfly - needs mp testing
-	- Small Fly - needs mp testing
-
-	CRITTERS [NPC]
-	- Flotie
-	- Flotiny
-	- Mossling : Unspawnable
-
-	TILES [BLOCKS]
-	- Lush Soil - will require resprite along with tile
-	- Verdant Leaves
-	- Pink Petal Block (RESPRITE)
-	- Red Petal Block (RESPRITE)
-	- Verdant Wood Block (NEEDS RESPRITE)
-
-	TILES [PLANTS]
-	- Verdant Lightbulb
-	- Verdant Lillie
-	- Verdant Strong Vine
-	- Verdant Vine
-	- Bouncebloom
-
-	TILES [GENERAL]
-	- Verdant Decor
-	- Verdant Tree : Stress test
-
-	PROJECTILES
-	- Verdant Healing Minion
-	- Verdant Snail Minion : Polish?
-
-	MUSIC
-	- "Petals Fall"
-	- "Apotheosis Lullaby" (*)
-	- "Tear Rain"
 
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
+	- Mysteria Wood Furniture Set: NOT Implemented | BATHTUB, BED, CANDELABRA, DRESSER, PIANO, SOFA
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: DRESSER, SINK
 
@@ -113,22 +19,5 @@
 	TILES [PLANTS]
 	- Housprout
 
-	GEN
-	- Verdant/Marble minibiomes
-
-	FURNITURE
-	- Verdant/Marble Furniture
-
-	PROJECTILES
-	- Verdant Wisp : Almost everything
-
-	EQUIPABLES [ITEMS]
-	- Blight : Unfinished and unobtainable
-
 	MUSIC
-	- Unnamed Surface Day
 	- Unnamed Surface Night
-
-	SYSTEMS - Are these even necessary?
-	- Foreground : Needs multiplayer compat (I/O optional)
-	- Background : Needs multiplayer compat

@@ -5,7 +5,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Verdant.Drawing;
-using Verdant.NPCs.Passive;
+using Verdant.NPCs.Passive.Floties;
 
 namespace Verdant.Projectiles.Misc;
 

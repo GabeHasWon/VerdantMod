@@ -11,6 +11,7 @@ using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Items.Verdant.Food;
 using Verdant.Items.Verdant.Materials;
 using Verdant.NPCs.Passive;
+using Verdant.NPCs.Passive.Floties;
 
 namespace Verdant.Tiles.Verdant.Trees
 {

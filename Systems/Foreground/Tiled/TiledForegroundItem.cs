@@ -9,7 +9,7 @@ namespace Verdant.Systems.Foreground.Tiled
         int width = 0;
         int height = 0;
 
-        public TiledForegroundItem(Point tilePosition, string path, Point size, bool copyTileFrame, bool lighted = true) : base(tilePosition.ToVector2() * 16, new Vector2(0, 0), 1f, path)
+        public TiledForegroundItem(Point tilePosition, string path, Point size, bool copyTileFrame, bool lighted = true) : base(tilePosition.ToWorldCoordinates(0, 0), new Vector2(0, 0), 1f, path)
         {
             width = size.X;
             height = size.Y;
@@ -22,7 +22,13 @@ namespace Verdant.Systems.Foreground.Tiled
 
         public override void Update()
         {
-            Tile t = Framing.GetTileSafely((int)(position.X / 16), (int)(position.Y / 16));
+            CheckAnchor();
+        }
+
+        protected virtual void CheckAnchor()
+        {
+            Tile t = Framing.GetTileSafely(position.ToTileCoordinates());
+
             if (!t.HasTile)
                 killMe = true;
         }
@@ -35,7 +41,7 @@ namespace Verdant.Systems.Foreground.Tiled
                 {
                     Rectangle rect = new(source.X + (18 * i), source.Y + (18 * j), 16, 16);
                     Color col = drawLighted ? Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16)) : Color.White;
-                    Main.spriteBatch.Draw(tex.Value, position - Main.screenPosition + (new Vector2(i, j) * 16), rect, col, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(Texture.Value, position - Main.screenPosition + (new Vector2(i, j) * 16), rect, col, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                 }
             }
         }

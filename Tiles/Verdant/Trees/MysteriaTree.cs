@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.Mysteria;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Systems.RealtimeGeneration;
 
 namespace Verdant.Tiles.Verdant.Trees;
@@ -27,17 +28,8 @@ internal class MysteriaTree : ModTile
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
-        if (fail)
-            return;
-
-        void KillIfAlsoTree(int x, int y)
-        {
-            if (Main.tile[x, y].HasTile && (Main.tile[x, y].TileType == Type || Main.tile[x, y].TileType == ModContent.TileType<MysteriaTreeTop>()))
-                WorldGen.KillTile(x, y);
-        }
-
-        for (int x = -1; x < 2; ++x)
-            KillIfAlsoTree(i + x, j - 1);
+        if (!fail && (TileHelper.ActiveType(i, j - 1, ModContent.TileType<MysteriaTreeTop>()) || TileHelper.ActiveType(i, j - 1, ModContent.TileType<PeaceTreeTop>())))
+            WorldGen.KillTile(i, j - 1);
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -49,7 +41,7 @@ internal class MysteriaTree : ModTile
 
         Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(2));
         var source = new Rectangle(frameX, frameY, 20, 20);
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, source, Lighting.GetColor(i, j));
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, source, Lighting.GetColor(i, j, tile.IsActuated ? Color.Gray : Color.White));
         return false;
     }
 
@@ -180,14 +172,15 @@ internal class MysteriaTreeTop : ModTile
         if (fail || noItem)
             return;
 
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaAcorn>(), Main.rand.Next(1, 4));
+        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaAcorn>(), Main.rand.Next(1, 3));
+        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaClump>(), Main.rand.Next(3, 8));
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile tile = Main.tile[i, j];
         int frameX = tile.TileFrameX / 18 * 22;
-        Rectangle treeSource = new(0, (frameX - 132) / 22 * 102, 196, 100);
+        Rectangle treeSource = new(0, frameX / 22 % 3 * 102, 196, 100);
         SpriteEffects effects = i % 2 == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
         TileSwaySystem.DrawTreeSway(i, j, TextureAssets.Tile[Type].Value, treeSource, new Vector2(8, 16), new Vector2(98, 100), effects);

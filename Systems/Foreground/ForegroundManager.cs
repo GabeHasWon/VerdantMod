@@ -23,7 +23,7 @@ public static class ForegroundManager
     {
         orig(self);
 
-        Main.spriteBatch.Begin(0, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, (Effect)null, Main.Transform);
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
 
         foreach (var val in PlayerLayerItems)
             val.Draw();
@@ -42,7 +42,10 @@ public static class ForegroundManager
         Rectangle screen = new((int)Main.screenPosition.X - Main.screenWidth, (int)Main.screenPosition.Y - Main.screenHeight, Main.screenWidth * 3, Main.screenHeight * 3);
 
         foreach (var val in Items)
-            val.Draw();
+        {
+            if (screen.Contains(new Rectangle((int)val.position.X, (int)val.position.Y, val.Texture.Width(), val.Texture.Height())))
+                val.Draw();
+        }
     }
 
     public static void Update()
@@ -103,20 +106,47 @@ public static class ForegroundManager
     /// <param name="name">Name of the requested texture.</param>
     public static Texture2D GetTexture(string name) => VerdantMod.Instance.Assets.Request<Texture2D>("Foreground/Textures/" + name).Value;
 
-    internal static TagCompound Save()
+    internal static void Save(TagCompound compound)
     {
-        TagCompound compound = new TagCompound();
+        List<TagCompound> compounds = new();
+
         foreach (var item in Items)
         {
             if (item.SaveMe)
             {
-                var value = item.Save();
-                if (value == null)
-                    continue;
+                TagCompound itemTag = new()
+                {
+                    { "ForegroundItem:type", item.GetType().FullName }
+                };
 
-                compound.Add("fgInfo", value);
+                item.Save(itemTag);
+                compounds.Add(itemTag);
             }
         }
-        return compound;
+
+        compound.Add("Verdant:Foreground", compounds);
     }
+
+    internal static void Load(TagCompound compound)
+    {
+        if (compound.ContainsKey("Verdant:Foreground"))
+        {
+            var tags = compound.GetList<TagCompound>("Verdant:Foreground");
+
+            foreach (var item in tags)
+            {
+                string name = item.GetString("ForegroundItem:type");
+                var fg = Activator.CreateInstance(Type.GetType(name)) as ForegroundItem;
+                fg.Load(item);
+
+                Items.Add(fg);
+            }
+        }
+    }
+}
+
+public class ForegroundWorld : ModSystem
+{
+    public override void SaveWorldData(TagCompound tag) => ForegroundManager.Save(tag);
+    public override void LoadWorldData(TagCompound tag) => ForegroundManager.Load(tag);
 }

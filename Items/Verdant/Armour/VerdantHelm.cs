@@ -46,7 +46,7 @@ namespace Verdant.Items.Verdant.Armour
             if (!player.controlDown)
                 player.maxFallSpeed *= 0.69f; //LMAO
 
-            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.NextBool(74)) //Spawn gores
+            if (Math.Abs(player.velocity.X) > 0.5f && Main.rand.NextBool(140)) //Spawn gores
             {
                 int random = Main.rand.Next(3);
                 int gore = Mod.Find<ModGore>("PinkPetalFalling").Type;

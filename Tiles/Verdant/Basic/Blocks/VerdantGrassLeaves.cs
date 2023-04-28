@@ -60,13 +60,13 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             if (CheckMysteriaMicrobiome(i, j))
             {
-                if (MysteriaGrowth(i, j))
-                    return true;
+                MysteriaGrowth(i, j);
+                return true;
             }
             else if (CheckPuffMicrobiome(i, j))
             {
-                if (PuffGrowth(i, j))
-                    return true;
+                PuffGrowth(i, j);
+                return true;
             }
             else if (NormalGrowth(i, j))
                 return true;
@@ -97,8 +97,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
         internal static bool CheckMysteriaMicrobiome(int i, int j, float sizeMul = 1f)
         {
-            int width = (int)(28 * sizeMul);
-            int height = (int)(34 * sizeMul);
+            int width = (int)(24 * sizeMul);
+            int height = (int)(30 * sizeMul);
 
             for (int x = i - width; x < i + width; ++x)
                 for (int y = j - height; y < j + height; ++y)

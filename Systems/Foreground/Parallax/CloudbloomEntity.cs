@@ -28,7 +28,7 @@ namespace Verdant.Systems.Foreground.Parallax
             anchor = Center;
             parallax = 1f;
             puff = isPuff;
-            tex = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/CloudbloomEntity" + (puff ? "Puff" : ""));
+            Texture = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/CloudbloomEntity" + (puff ? "Puff" : ""));
         }
 
         public override void Update()
@@ -127,7 +127,7 @@ namespace Verdant.Systems.Foreground.Parallax
             drawColor = Lighting.GetColor(position.ToTileCoordinates());
             drawPosition = Center;
 
-            Main.spriteBatch.Draw(tex.Value, drawPosition - Main.screenPosition, null, drawColor, rotation, source.Size() / 2f, 1f, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(Texture.Value, drawPosition - Main.screenPosition, null, drawColor, rotation, source.Size() / 2f, 1f, SpriteEffects.None, 0);
         }
     }
 }

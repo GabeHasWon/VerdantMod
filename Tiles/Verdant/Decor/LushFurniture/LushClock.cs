@@ -27,35 +27,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 		public override bool RightClick(int x, int y)
         {
-			string text = "AM";
-			double time = Main.time;
-			if (!Main.dayTime)
-				time += 54000.0;
-
-			time = time / 86400.0 * 24.0;
-			time = time - 7.5 - 12.0;
-
-			if (time < 0.0)
-				time += 24.0;
-
-			if (time >= 12.0)
-				text = "PM";
-
-			int intTime = (int)time;
-			double deltaTime = time - intTime;
-			deltaTime = (int)(deltaTime * 60.0);
-			string text2 = string.Concat(deltaTime);
-
-            if (deltaTime < 10.0)
-				text2 = "0" + text2;
-			if (intTime > 12)
-				intTime -= 12;
-			if (intTime == 0)
-				intTime = 12;
-
-			var newText = string.Concat("Time: ", intTime, ":", text2, " ", text);
-			Main.NewText(newText, 255, 240, 20);
-			return true;
+            TileHelper.PrintTime(Main.time);
+            return true;
 		}
 
 		public override void NearbyEffects(int i, int j, bool closer)

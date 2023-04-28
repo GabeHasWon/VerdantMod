@@ -18,6 +18,13 @@
 			VerdantPylon: Verdant Pylon
 		}
 
+		TileInteraction: {
+			MysteriaClock: {
+				London: " (London time)"
+				NewYork: " (New York time)"
+			}
+		}
+
 		ScreenText: {
 			Apotheosis: {
 				EoWName: Eater

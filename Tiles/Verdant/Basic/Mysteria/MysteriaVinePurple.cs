@@ -57,9 +57,6 @@ internal class MysteriaVinePurple : ModTile
     {
         if (!Main.tile[i, j - 1].HasTile)
             WorldGen.KillTile(i, j);
-
-        if (Main.rand.NextBool(480))
-            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<PuffDust>(), Scale: Main.rand.NextFloat(0.5f, 0.9f));
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
