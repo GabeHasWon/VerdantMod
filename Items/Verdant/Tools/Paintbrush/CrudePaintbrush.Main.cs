@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI.Chat;
 
 namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
@@ -22,11 +23,13 @@ public partial class CrudePaintbrush : ModItem
         Count,
     }
 
+    private readonly List<Point> _locations = new();
+
     public PlacementMode mode = PlacementMode.Line;
 
     private int _storedItemID = -1;
+    private int _storedRefundID = -1;
     private int _placeID = -1;
-    private List<Point> _locations = new();
     private List<Point> _lastChanges = new();
 
     public override void SetStaticDefaults()
@@ -46,6 +49,7 @@ public partial class CrudePaintbrush : ModItem
         Item.autoReuse = false;
         Item.consumable = false;
         Item.maxStack = 99;
+        Item.rare = ItemRarityID.Red;
     }
 
     public override bool AltFunctionUse(Player player) => true;
@@ -113,7 +117,15 @@ public partial class CrudePaintbrush : ModItem
                 WorldGen.KillTile(item.X, item.Y, false, false, true);
 
             var first = _lastChanges.First();
-            player.QuickSpawnItem(new EntitySource_TileBreak(first.X, first.Y), GetTileWand(), _lastChanges.Count);
+            int count = _lastChanges.Count;
+            int max = ContentSamples.ItemsByType[_storedRefundID].maxStack;
+
+            while (count > 0)
+            {
+                player.QuickSpawnItem(new EntitySource_TileBreak(first.X, first.Y), GetTileWand(), Math.Min(count, max));
+                count -= max;
+            }
+
             _lastChanges.Clear();
         }
         else

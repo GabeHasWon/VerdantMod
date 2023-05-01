@@ -12,6 +12,7 @@ NEW CONTENT
 - Added Green Crystals
 - Added Hanging Crystal
 - Added Research Books
+	- Leaf, Hardy Vine, Lightbulb, and One Secret
 - Added Study structure
 - Added a couple more Apotheosis dialogue lines
 - Added Flotie of Wrath
@@ -29,9 +30,13 @@ NEW CONTENT
 	- Added Mysteria wood
 	- Added Mysteria canopy
 	- Added Mysteria acorns
+	- Added Mysteria Flotie
+	- Added Mysteria armor
+	- Added Mysteria furniture
+	- Added Mysteria drapes
 - Added Crude Paintbrush
-- Added Mysteria Flotie
 - Added proper Save/Load functionality to ForegroundItems
+- Added Lush Sink
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -59,3 +64,7 @@ CHANGES
 - Slightly adjusted Flotie spawn conditions & rates
 - Significantly adjusted Flotie backend, minor changes throughout
 - Improved ForegroundItem performance, will now only draw if they're on screen
+- A lot of changes to Lush Furniture map colors
+- Fixed Lush Sofa dropping a Lush Table
+- A lot of item hitbox adjustments
+- Changed VerdantTree IEntitySource to use EntitySource_ShakeTree

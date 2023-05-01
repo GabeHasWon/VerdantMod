@@ -25,6 +25,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.BasicDresser[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.Origin = new Point16(1, 1);
@@ -36,12 +37,14 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
+
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lush Dresser");
-            AddMapEntry(new Color(200, 200, 200), name);
+            AddMapEntry(new Color(253, 221, 3), name);
+
             DustType = DustID.t_BorealWood;
-            TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Dressers };
 
             ContainerName.SetDefault("Lush Dresser");

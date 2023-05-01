@@ -11,7 +11,7 @@
 
 [NEEDS FINISHING] -------------------------------------------------
 	BLOCKS [ITEMS]
-	- Mysteria Wood Furniture Set: NOT Implemented | BATHTUB, BED, CANDELABRA, DRESSER, PIANO, SOFA
+	- Mysteria Wood Furniture Set: NOT Implemented | CHANDELIER
 	- Lush Wood Furniture Set : Not implemented / designed | NEEDS: CHANDELIER
 	- Verdant Furniture Set : Not implemented / designed | NEEDS: DRESSER, SINK
 

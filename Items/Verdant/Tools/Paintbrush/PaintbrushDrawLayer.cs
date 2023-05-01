@@ -6,7 +6,7 @@ namespace Verdant.Items.Verdant.Tools.Paintbrush;
 internal class PaintbrushDrawLayer : PlayerDrawLayer
 {
     public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.Head);
-    public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) => true;// drawInfo.drawPlayer.HeldItem.type == ModContent.ItemType<CrudePaintbrush>();
+    public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) => true;
 
     protected override void Draw(ref PlayerDrawSet drawInfo)
     {

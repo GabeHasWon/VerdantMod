@@ -15,7 +15,14 @@ namespace Verdant.Items
 		public int amount;
 		private (int minStack, int maxStack)[] stacks;
 
-		public LootPoolDrop((int min, int max)[] stacks, int amount, int chanceDenominator, int chanceNumerator, params int[] options)
+        /// <summary>
+        /// Like a OneFromOptions, but you can specify the stacks of each item.
+        /// </summary>
+        /// <param name="stacks">Stack range (inclusive) of the dropped item.</param>
+        /// <param name="amount">How many items are dropped.</param>
+        /// <param name="options">Item IDs to choose from.</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public LootPoolDrop((int min, int max)[] stacks, int amount, int chanceDenominator, int chanceNumerator, params int[] options)
 		{
 			if (amount > options.Length)
 				throw new ArgumentOutOfRangeException(nameof(amount), "amount must be less than the number of options");

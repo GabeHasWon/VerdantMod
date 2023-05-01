@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Verdant.Items.Verdant.Blocks.Mysteria;
 
 namespace Verdant.Systems.Foreground.Tiled;
 
@@ -29,11 +31,8 @@ internal class MysteriaDrapes : TiledForegroundItem
     {
         base.Update();
 
-        if (Main.rand.NextBool(500 + (_length * _length)) && !WorldGen.SolidTile((int)(position.X / 16), (int)(position.Y / 16) + _length))
-        {
-            _length++;
-            _variant.Add((byte)Main.rand.Next(4));
-        }    
+        if (Main.rand.NextBool(1500 + (_length * _length * _length)) && !WorldGen.SolidTile((int)(position.X / 16), (int)(position.Y / 16) + _length))
+            Grow();
     }
 
     protected override void CheckAnchor()
@@ -41,8 +40,23 @@ internal class MysteriaDrapes : TiledForegroundItem
         var pos = position.ToTileCoordinates();
         Tile t = Framing.GetTileSafely(pos);
 
-        if (!t.HasTile || WorldGen.SolidTile(pos.X, pos.Y + 1))
-            killMe = true;
+        if (!t.HasTile)
+            Kill();
+    }
+
+    public void Kill()
+    {
+        killMe = true;
+
+        var pos = position.ToTileCoordinates();
+        var source = new EntitySource_TileBreak(pos.X, pos.Y, "Verdant:MysteriaDrapes");
+        Item.NewItem(source, position, 16, 16, ModContent.ItemType<MysteriaDrapesItem>(), Main.rand.Next((int)(_length * 0.5f), _length));
+    }
+
+    public void Grow()
+    {
+        _length++;
+        _variant.Add((byte)Main.rand.Next(4));
     }
 
     public override void Draw()

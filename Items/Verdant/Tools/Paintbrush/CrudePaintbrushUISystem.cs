@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -67,7 +66,7 @@ internal class PaintbrushToolsetUI : UIState
         HAlign = 0.5f;
 
         OnUpdate += PaintbrushToolsetUI_OnUpdate;
-
+        
         Setup();
     }
 

@@ -56,7 +56,7 @@ namespace Verdant.Systems.Foreground
         /// <summary>Called on world loading.</summary>
         public virtual void Load(TagCompound tag) { }
 
-        public override string ToString() => $"{GetType().Name} at {position}\nSIZE: {scale}, SAVE: {SaveMe}, LIGHTED: {drawLighted}";
+        public override string ToString() => $"{GetType().Name} at {position.ToTileCoordinates()}\nSIZE: {scale}, SAVE: {SaveMe}, LIGHTED: {drawLighted}";
 
         public Vector2 DirectionTo(Vector2 target) => Vector2.Normalize(target - Center);
         public float DistanceSQ(Vector2 other) => Vector2.DistanceSquared(Center, other);

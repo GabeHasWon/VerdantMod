@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -37,21 +39,95 @@ public partial class CrudePaintbrush : ModItem
             case PlacementMode.Oval:
                 OvalPlacement(player);
                 break;
+            case PlacementMode.Rectangle:
+                RectanglePlacement(player);
+                break;
         }
         return true;
+    }
+
+    private void RectanglePlacement(Player player)
+    {
+        _locations.Add(Main.MouseWorld.ToTileCoordinates());
+
+        if (_locations.Count > 1)
+        {
+            _lastChanges.Clear();
+
+            _storedRefundID = GetTileWand();
+
+            Point first = _locations.First();
+            Point last = Main.MouseWorld.ToTileCoordinates();
+
+            Point topLeft = new(Math.Min(first.X, last.X), Math.Min(first.Y, last.Y));
+            Point bottomRight = new(Math.Max(first.X, last.X), Math.Max(first.Y, last.Y));
+
+            int width = bottomRight.X - topLeft.X;
+            int height = bottomRight.Y - topLeft.Y;
+            int count = 0;
+
+            for (int x = 0; x < width + 1; ++x)
+            {
+                WorldGen.PlaceTile(topLeft.X + x, topLeft.Y, _placeID, true);
+                WorldGen.PlaceTile(topLeft.X + x, bottomRight.Y, _placeID, true);
+
+                _lastChanges.Add(new Point(topLeft.X + x, topLeft.Y));
+                _lastChanges.Add(new Point(topLeft.X + x, bottomRight.Y));
+                count += 2;
+            }
+
+            for (int y = 1; y < height; ++y)
+            {
+                WorldGen.PlaceTile(topLeft.X, topLeft.Y + y, _placeID, true);
+                WorldGen.PlaceTile(bottomRight.X, topLeft.Y + y, _placeID, true);
+
+                _lastChanges.Add(new Point(topLeft.X, topLeft.Y + y));
+                _lastChanges.Add(new Point(bottomRight.X, topLeft.Y + y));
+                count += 2;
+            }
+
+            ConsumeTileWand(count, player);
+            _locations.Clear();
+        }
     }
 
     private void OvalPlacement(Player player)
     {
         _locations.Add(Main.MouseWorld.ToTileCoordinates());
+        
+        if (_locations.Count > 1)
+        {
+            _lastChanges.Clear();
+            _storedRefundID = GetTileWand();
+
+            int count = 0;
+
+            GenHelper.Ellipse((x, y) =>
+            {
+                WorldGen.PlaceTile(x, y, _placeID);
+                count++;
+            }, _locations.First(), Main.MouseWorld.ToTileCoordinates(), ref _lastChanges);
+
+            ConsumeTileWand(count, player);
+            _locations.Clear();
+        }
     }
 
     private void FillPlacement(Player player)
     {
-        _lastChanges.Clear();
+        _locations.Add(default);
 
-        int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placeID, 0, GetTileAmmo(player), ref _lastChanges);
-        ConsumeTileWand(count, player);
+        if (_locations.Count == 2)
+        {
+            _locations.Clear();
+            _lastChanges.Clear();
+            _storedRefundID = GetTileWand();
+
+            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placeID, 0, GetTileAmmo(player), ref _lastChanges);
+            ConsumeTileWand(count, player);
+        }
+        else
+            Main.NewText("You sure you want to fill?");
     }
 
     private void LinePlacement(Player player)
@@ -60,7 +136,10 @@ public partial class CrudePaintbrush : ModItem
 
         if (_locations.Count == 2)
         {
-            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placeID, GetTileAmmo(player));
+            _lastChanges.Clear();
+            _storedRefundID = GetTileWand();
+
+            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placeID, ref _lastChanges, GetTileAmmo(player));
             ConsumeTileWand(count, player);
             _locations.Clear();
         }

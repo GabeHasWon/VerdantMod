@@ -7,6 +7,7 @@ using Verdant.Bezier;
 using Terraria.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Verdant.World;
 
@@ -37,21 +38,6 @@ public static class GenHelper
     public static void ReplaceWall(int x, int y, int t, bool mute = true) => ReplaceWall(new Point(x, y), t, mute);
     public static void ReplaceWall(Point p, int t, bool mute = true) => ReplaceWall(new Point16(p.X, p.Y), t, mute);
 
-    public static void GenLine(Vector2 p, Vector2 rot, Vector2 o, int lW, int hW, int targetType = TileID.Dirt, int type = TileID.Dirt)
-    {
-        while (!Framing.GetTileSafely((int)p.X, (int)p.Y).HasTile || !Main.tileSolid[Framing.GetTileSafely((int)p.X, (int)p.Y).TileType] || 
-            Framing.GetTileSafely((int)p.X, (int)p.Y).TileType == targetType)
-        {
-            for (int j = lW; j < hW; ++j)
-            {
-                Vector2 offset = rot.RotatedBy(1.571f);
-                WorldGen.KillTile((int)p.X - ((int)offset.X * j), (int)p.Y - ((int)offset.Y * j), false, false, true);
-                WorldGen.PlaceTile((int)p.X - ((int)offset.X * j), (int)p.Y - ((int)offset.Y * j), type, true, false, -1);
-            }
-            p = new Vector2(p.X + o.X, p.Y + o.Y);
-        }
-    }
-
     public static void PlaceMultitile(Point position, int type, int style = -1)
     {
         TileObjectData data = TileObjectData.GetTileData(type, style); //Get data
@@ -79,184 +65,6 @@ public static class GenHelper
                 tile.HasTile = true; //activate the tile
             }
         }
-    }
-
-    public static void BasicBox(int x, int y, int width, int height, int type, int wallType = WallID.GrassUnsafe)
-    {
-        for (int i = -width / 2; i < width / 2; ++i)
-        {
-            int nX = x + i;
-            ReplaceTile(nX, y - (height / 2), type, false, true, 0);
-            ReplaceTile(nX, y + (height / 2), type, false, true, 0);
-        }
-
-        for (int j = -height / 2; j < height / 2 + 1; ++j)
-        {
-            int nY = y + j;
-            ReplaceTile(x - (width / 2), nY, type, false, true, 0);
-            ReplaceTile(x + (width / 2), nY, type, false, true, 0);
-        }
-
-        for (int i = -width / 2 + 1; i < width / 2; ++i)
-        {
-            for (int j = -height / 2 + 1; j < height / 2; ++j)
-            {
-                ReplaceWall(x + i, y + j, wallType, true);
-            }
-        }
-    }
-
-    public static void BasicBox(Point pos, Point size, int type, int wallType) => BasicBox(pos.X, pos.Y, size.X, size.Y, type, wallType);
-    public static void BasicBox(Point pos, int width, int height, int type, int wallType) => BasicBox(pos.X, pos.Y, width, height, type, wallType);
-    public static void BasicBox(int x, int y, Point size, int type, int wallType) => BasicBox(x, y, size.X, size.Y, type, wallType);
-
-    public static bool FillChest(int x, int y, (int, int)[] mainItems, (int, int)[] subItems, bool noTypeRepeat = true, UnifiedRandom r = null, int subItemLength = 6)
-    {
-        r ??= Main.rand;
-
-        int ChestIndex = Chest.FindChest(x, y);
-        if (ChestIndex != -1)
-        {
-            int main = r.Next(mainItems.Length);
-            Main.chest[ChestIndex].item[0].SetDefaults(mainItems[main].Item1);
-            Main.chest[ChestIndex].item[0].stack = mainItems[main].Item2;
-
-            int reps = 0;
-
-            List<int> usedTypes = new List<int>();
-
-            for (int i = 0; i < subItemLength; ++i)
-            {
-            repeat:
-                if (reps > 50)
-                {
-                    VerdantMod.Instance.Logger.Info("WARNING: Attempted to repeat item placement too often. Report to dev.");
-                    break;
-                }
-
-                int sub = r.Next(subItems.Length);
-                int itemType = subItems[sub].Item1;
-                int itemStack = subItems[sub].Item2;
-
-                if (noTypeRepeat && usedTypes.Contains(itemType))
-                {
-                    reps++;
-                    goto repeat;
-                }
-
-                usedTypes.Add(itemType);
-
-                Main.chest[ChestIndex].item[i + 1].SetDefaults(itemType);
-                Main.chest[ChestIndex].item[i + 1].stack = itemStack;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public static void FillChestDirect(int x, int y, params (int, int)[] items)
-    {
-        int ChestIndex = Chest.FindChest(x, y);
-        if (ChestIndex != -1)
-        {
-            for (int i = 0; i < items.Length; ++i)
-            {
-                Main.chest[ChestIndex].item[i].SetDefaults(items[i].Item1);
-                Main.chest[ChestIndex].item[i].stack = items[i].Item2;
-            }
-        }
-    }
-
-    /// <summary>Places a chest with items in it.</summary>
-    /// <param name="x">X position.</param>
-    /// <param name="y">Y position.</param>
-    /// <param name="type">Type if the chest.</param>
-    /// <param name="mainItems">List of "main" items, like the main weapon or tool.</param>
-    /// <param name="subItems">List of "sub" items - filler, basically - like potions, weak, stackable weapons, or materials.</param>
-    /// <param name="noTypeRepeat">If true, two stacks of the same item will not be placed in a chest..</param>
-    /// <param name="r">Use Main.rand for in-game generation, use WorldGen.genRand for worldgen.</param>
-    /// <param name="subItemLength">How many sub item stacks there are.</param>
-    /// <param name="style">Style of the chest.</param>
-    public static bool PlaceChest(int x, int y, int type, (int, int)[] mainItems, (int, int)[] subItems, 
-        bool noTypeRepeat = true, UnifiedRandom r = null, int subItemLength = 6, int style = 0, bool overRide = false)
-    {
-        r ??= Main.rand;
-
-        if (overRide)
-        {
-            WorldGen.KillTile(x, y, false, false, true);
-            WorldGen.KillTile(x + 1, y, false, false, true);
-            WorldGen.KillTile(x, y + 1, false, false, true);
-            WorldGen.KillTile(x + 1, y + 1, false, false, true);
-        }
-
-        int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
-        if (ChestIndex != -1)
-        {
-            int main = r.Next(mainItems.Length);
-            Main.chest[ChestIndex].item[0].SetDefaults(mainItems[main].Item1);
-            Main.chest[ChestIndex].item[0].stack = mainItems[main].Item2;
-
-            int reps = 0;
-
-            List<int> usedTypes = new List<int>();
-
-            for (int i = 0; i < subItemLength; ++i)
-            {
-            repeat:
-                if (reps > 50)
-                {
-                    VerdantMod.Instance.Logger.Info("WARNING: Attempted to repeat item placement too often. Report to dev.");
-                    break;  
-                }
-
-                int sub = r.Next(subItems.Length);
-                int itemType = subItems[sub].Item1;
-                int itemStack = subItems[sub].Item2;
-
-                if (noTypeRepeat && usedTypes.Contains(itemType))
-                {
-                    reps++;
-                    goto repeat;
-                }
-
-                usedTypes.Add(itemType);
-
-                Main.chest[ChestIndex].item[i + 1].SetDefaults(itemType);
-                Main.chest[ChestIndex].item[i + 1].stack = itemStack;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /// <summary>Places a chest with items in it.</summary>
-    /// <param name="x">X position.</param>
-    /// <param name="y">Y position.</param>
-    /// <param name="type">Tile ID of the chest.</param>
-    /// <param name="style">Style for the chest.</param>
-    /// <param name="items">Items, in order.</param>
-    public static bool PlaceChest(int x, int y, int type, int style, bool overRide, params (int, int)[] items)
-    {
-        if (overRide)
-        {
-            WorldGen.KillTile(x, y, false, false, true);
-            WorldGen.KillTile(x + 1, y, false, false, true);
-            WorldGen.KillTile(x, y + 1, false, false, true);
-            WorldGen.KillTile(x + 1, y + 1, false, false, true);
-        }
-
-        int ChestIndex = WorldGen.PlaceChest(x, y, (ushort)type, false, style);
-        if (ChestIndex != -1)
-        {
-            for (int i = 0; i < items.Length; ++i)
-            {
-                Main.chest[ChestIndex].item[i].SetDefaults(items[i].Item1);
-                Main.chest[ChestIndex].item[i].stack = items[i].Item2;
-            }
-            return true;
-        }
-        return false;
     }
 
     public static Point[] GetBezier(double[] orderedPositions)
@@ -339,24 +147,6 @@ public static class GenHelper
             end }, 30, type);
     }
 
-    public static void KillRectangle(int x, int y, int w, int h)
-    {
-        for (int i = x; i < x + w; ++i)
-            for (int j = y; j < y + h; ++j)
-                WorldGen.KillTile(i, j);
-    }
-
-    public static void Place(int x, int y, int type, int style = -1)
-    {
-        Tile t = Framing.GetTileSafely(x, y);
-        t.TileType = (ushort)type;
-        t.HasTile = true;
-        if (style == -1)
-            WorldGen.SquareTileFrame(x, y, true);
-        else
-            t.TileFrameX = (short)(18 * style);
-    }
-
     public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
     {
         for (int k = j; k > j - minHeight; k--)
@@ -370,10 +160,10 @@ public static class GenHelper
         return true;
     }
 
-    public static int GenLine(Point start, Point end, int tileType, int cap = -1)
+    public static int GenLine(Point start, Point end, int tileType, ref List<Point> points, int cap = -1)
     {
         int repeats = (int)Vector2.Distance(start.ToVector2() + new Vector2(8), end.ToVector2() + new Vector2(8));
-        int count = repeats;
+        int count = 0;
         Point last = new();
 
         if (cap == -1)
@@ -389,11 +179,21 @@ public static class GenHelper
             if (WorldGen.SolidTile(placePos.X, placePos.Y) || placePos == last)
                 continue;
 
-            WorldGen.PlaceTile(placePos.X, placePos.Y, tileType, true, true);
-            last = placePos;
+            if (WorldGen.PlaceTile(placePos.X, placePos.Y, tileType, true, true))
+            {
+                count++;
+                last = placePos;
+                points.Add(placePos);
+            }
         }
 
-        return repeats;
+        return count;
+    }
+
+    public static int GenLine(Point start, Point end, int tileType, int cap = -1)
+    {
+        List<Point> throwaway = new();
+        return GenLine(start, end, tileType, ref throwaway);
     }
 
     private static int RecursiveFill(Point originalPos, int x, int y, int type, ref int repeats, int maxRepeats, bool forced = false)
@@ -450,4 +250,40 @@ public static class GenHelper
 
     public static int RecursiveFillGetPoints(Point point, int type, int repeats, int maxRepeats, ref List<Point> points, bool forced = false) => 
         RecursiveFillGetPoints(point, point.X, point.Y, type, ref repeats, maxRepeats, ref points, forced);
+
+    public static void Ellipse(Action<int, int> action, Point first, Point last, ref List<Point> points)
+    {
+        Point topLeft = new(Math.Min(first.X, last.X), Math.Min(first.Y, last.Y));
+        Point bottomRight = new(Math.Max(first.X, last.X), Math.Max(first.Y, last.Y));
+        Vector2 center = Vector2.Lerp(topLeft.ToVector2(), bottomRight.ToVector2(), 0.5f);
+
+        int width = bottomRight.X - topLeft.X;
+        int height = bottomRight.Y - topLeft.Y;
+        float perimeter = MathHelper.Pi * ((3 * (width + height)) - MathF.Sqrt((3 * width + height) * (width + 3 * height))); //Approximate perimeter
+
+        if (perimeter == 0)
+            return;
+
+        Point lastPlace = new();
+        float interval = MathHelper.TwoPi / (perimeter * 2);
+
+        for (float repeats = 0; repeats < MathHelper.TwoPi; repeats += interval)
+        {
+            int x = (int)(width * MathF.Cos(repeats)) + (int)center.X;
+            int y = (int)(height * MathF.Sin(repeats)) + (int)center.Y;
+
+            if (Vector2.Distance(lastPlace.ToVector2(), new Vector2(x, y)) >= 1)
+            {
+                action(x, y);
+                lastPlace = new Point(x, y);
+                points.Add(lastPlace);
+            }
+        }
+    }
+
+    public static void Ellipse(Action<int, int> action, Point first, Point last)
+    {
+        List<Point> throwAway = new();
+        Ellipse(action, first, last, ref throwAway);
+    }
 }

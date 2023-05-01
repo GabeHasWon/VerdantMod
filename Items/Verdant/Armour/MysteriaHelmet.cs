@@ -24,7 +24,7 @@ public class MysteriaHelmet : ModItem
         Item.defense = 5;
     }
 
-    public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerdantChestplate>() && legs.type == ModContent.ItemType<VerdantLeggings>();
+    public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerdantChestplate>() && legs.type == ModContent.ItemType<MysteriaLeggings>();
 
     public override void UpdateArmorSet(Player player) => player.GetDamage(DamageClass.Summon).Flat += 6;
     public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 6;
