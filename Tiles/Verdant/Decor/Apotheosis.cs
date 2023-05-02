@@ -117,5 +117,18 @@ internal class Apotheosis : ModTile
 
             system.apotheosisLocation = new Point16(x, y);
         }
+        else
+        {
+            Tile orig = Main.tile[system.apotheosisLocation.Value.ToPoint()];
+
+            if (!orig.HasTile || (orig.TileType != ModContent.TileType<Apotheosis>() && orig.TileType != ModContent.TileType<HardmodeApotheosis>()))
+            {
+                Tile tile = Main.tile[i, j];
+                int x = i - (tile.TileFrameX % 18 / 18) + 8;
+                int y = j - (tile.TileFrameY % 18 / 18) + 6;
+
+                system.apotheosisLocation = new Point16(x, y);
+            }
+        }
     }
 }

@@ -41,8 +41,6 @@ internal class GlobalNPCHooks : ILoadable
         c.Emit(OpCodes.Ret);
 
         c.MarkLabel(marker);
-
-        ILHelper.CompleteLog(c, false);
     }
 
     public void Unload() { }

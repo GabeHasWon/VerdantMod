@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -62,7 +63,10 @@ public class MysteriaSprout : ModTile
             if (WorldGen.PlayerLOS(i, j))
             {
                 var gen = ModContent.GetInstance<RealtimeGen>();
-                gen.CurrentActions.Add(new(MysteriaTree.RealtimeGenerate(i, j, 0, Main.rand), 0.3f));
+                var queue = MysteriaTree.RealtimeGenerate(i, j, 0, Main.rand);
+
+                if (queue.Any())
+                    gen.CurrentActions.Add(new(queue, 0.3f));
             }
             else //Instantly generate tree if not near player, might as well not take extra power
                 MysteriaTree.Generate(i, j, 0, Main.rand);
