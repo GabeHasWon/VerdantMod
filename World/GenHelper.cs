@@ -223,10 +223,11 @@ public static class GenHelper
 
     private static int RecursiveFillGetPoints(Point originalPos, int x, int y, int type, ref int repeats, int maxRepeats, ref List<Point> points, bool forced = false)
     {
-        if (Main.tile[x, y].HasTile || !WorldGen.InWorld(x, y, 4) || repeats > maxRepeats)
+        bool cantPlace = (!forced && Main.tile[x, y].HasTile) || (forced && WorldGen.SolidOrSlopedTile(x, y));
+        if (cantPlace || !WorldGen.InWorld(x, y, 4) || repeats > maxRepeats)
             return repeats;
 
-        WorldGen.PlaceTile(x, y, type, true, forced);
+        WorldGen.PlaceTile(x, y, type, true, true);
         repeats++;
 
         Tile tile = Main.tile[x, y];
@@ -234,16 +235,16 @@ public static class GenHelper
             points.Add(new Point(x, y));
 
         if (x >= originalPos.X)
-            RecursiveFillGetPoints(originalPos, x + 1, y, type, ref repeats, maxRepeats, ref points);
+            RecursiveFillGetPoints(originalPos, x + 1, y, type, ref repeats, maxRepeats, ref points, forced);
 
         if (x <= originalPos.X)
-            RecursiveFillGetPoints(originalPos, x - 1, y, type, ref repeats, maxRepeats, ref points);
+            RecursiveFillGetPoints(originalPos, x - 1, y, type, ref repeats, maxRepeats, ref points, forced);
 
         if (y >= originalPos.Y)
-            RecursiveFillGetPoints(originalPos, x, y + 1, type, ref repeats, maxRepeats, ref points);
+            RecursiveFillGetPoints(originalPos, x, y + 1, type, ref repeats, maxRepeats, ref points, forced);
 
         if (y <= originalPos.Y)
-            RecursiveFillGetPoints(originalPos, x, y - 1, type, ref repeats, maxRepeats, ref points);
+            RecursiveFillGetPoints(originalPos, x, y - 1, type, ref repeats, maxRepeats, ref points, forced);
 
         return repeats;
     }

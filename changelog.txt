@@ -37,6 +37,9 @@ NEW CONTENT
 - Added Crude Paintbrush
 - Added proper Save/Load functionality to ForegroundItems
 - Added Lush Sink
+- Added Shears
+- Added Bushes, which can be trimmed for variations
+- Added Snail Statue
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated

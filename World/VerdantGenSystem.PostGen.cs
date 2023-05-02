@@ -72,10 +72,10 @@ public partial class VerdantGenSystem
     redoAgain:
         side = WorldGen.genRand.NextBool(2) ? -1 : 1;
         int studyID = WorldGen.genRand.Next(2);
-        Point studyLoc = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
         Point16 size = new();
         bool foundGround = false;
         int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
+        Point studyLoc = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
 
         if (side == 1)
             studyLoc.X = VerdantArea.Right - (int)(WorldGen.genRand.Next(20, 80) * WorldSize);
@@ -100,6 +100,18 @@ public partial class VerdantGenSystem
             goto redoAgain;
 
         StructureHelper.Generator.GenerateStructure("World/Structures/Study" + studyID, new Point16(studyLoc.X, studyLoc.Y), VerdantMod.Instance);
+
+    redoAgainAgain:
+        Point pos = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
+
+        if (side == 0)
+            studyLoc.X = VerdantArea.Right - (int)(WorldGen.genRand.Next(20, 80) * WorldSize);
+
+        int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
+        if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 20 && groundCount > 25)
+            StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
+        else
+            goto redoAgainAgain;
     }
 
     private void AddFlowerStructures()

@@ -22,8 +22,9 @@ class Shears : ModItem
 
     public override void SetDefaults()
     {
-        QuickItem.SetMaterial(this, 40, 20, ItemRarityID.Green, 1, false, Item.buyPrice(0, 0, 5, 0));
+        QuickItem.SetMaterial(this, 32, 32, ItemRarityID.Green, 1, false, Item.buyPrice(0, 0, 5, 0));
 
+        Item.noMelee = false;
         Item.DamageType = DamageClass.Melee;
         Item.damage = 4;
         Item.axe = 2;

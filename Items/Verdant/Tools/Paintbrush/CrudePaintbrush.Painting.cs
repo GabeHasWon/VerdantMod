@@ -123,7 +123,7 @@ public partial class CrudePaintbrush : ModItem
             _lastChanges.Clear();
             _storedRefundID = GetTileWand();
 
-            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placeID, 0, GetTileAmmo(player), ref _lastChanges);
+            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placeID, 0, GetTileAmmo(player), ref _lastChanges, true);
             ConsumeTileWand(count, player);
         }
         else

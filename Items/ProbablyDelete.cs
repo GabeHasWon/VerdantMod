@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -12,6 +13,7 @@ using Verdant.Systems.Foreground.Tiled;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
+using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -19,6 +21,7 @@ using Verdant.Tiles.Verdant.Decor;
 using Verdant.Tiles.Verdant.Misc;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.Walls;
+using Verdant.World;
 
 namespace Verdant.Items;
 
@@ -56,8 +59,12 @@ public class ProbablyDelete : ModItem
     {
         var pos = Main.MouseWorld.ToTileCoordinates();
 
-        if (!ForegroundManager.Items.Any(x => x is MysteriaDrapes drape && drape.position == pos.ToWorldCoordinates()))
-            ForegroundManager.AddItem(new MysteriaDrapes(pos), true);
+        int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
+        if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 4 && groundCount > 25)
+            StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
+
+        //if (!ForegroundManager.Items.Any(x => x is MysteriaDrapes drape && drape.position == pos.ToWorldCoordinates()))
+        //    ForegroundManager.AddItem(new MysteriaDrapes(pos), true);
 
         //Tile tile = Main.tile[pos];
         //tile.TileFrameX = 0;
