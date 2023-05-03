@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.Items.Verdant.Critter;
 
 namespace Verdant.NPCs.Passive
@@ -40,9 +41,16 @@ namespace Verdant.NPCs.Passive
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("They say thousands of years ago, a mad scientist did the impossible - combined plant and animal together. The beastly creation, eschewed by man and feared by nature, stands on its own within this cruel and unforgiving world. These creatures began to seek all facets of life - power, love, friendship and most of all, just being a little guy. Some might say that in this quest, and this quest alone, they had succeeded. However, they also say they heard this from someone else in the town and they just don't really remember who, so stop asking and buy something. At the end of the day, this snail is leafy, and that's all you need to know about it."),
+                new FlavorTextBestiaryInfoElement("They say thousands of years ago, a mad scientist did the impossible - combined plant and animal together. " +
+                    "The beastly creation, eschewed by man and feared by nature, stands on its own within this cruel and unforgiving world. " +
+                    "These creatures began to seek all facets of life - power, love, friendship and most of all, just being a little guy. " +
+                    "Some might say that in this quest, and this quest alone, they had succeeded. " +
+                    "However, they also say they heard this from someone else in the town and they just don't really remember who, so stop asking and buy something. " +
+                    "At the end of the day, this snail is leafy, and that's all you need to know about it."),
             });
         }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot) => npcLoot.AddCommon<SnailShellBlockItem>(1, 1, 3);
 
         public override void HitEffect(int hitDirection, double damage)
         {

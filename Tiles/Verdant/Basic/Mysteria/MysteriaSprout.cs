@@ -55,7 +55,7 @@ public class MysteriaSprout : ModTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (WorldGen.genRand.NextBool(12) && GenHelper.CanGrowVerdantTree(i, j, 8, Type))
+        if (WorldGen.genRand.NextBool(12))
         {
             if (Framing.GetTileSafely(i, j).TileFrameY == 0)
                 j++;
