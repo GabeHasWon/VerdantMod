@@ -2,13 +2,15 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items.Verdant.Tools;
 
 [Sacrifice(20)]
-class Halfsprout : ModItem
+class Halfsprout : ApotheoticItem
 {
     public override void SetStaticDefaults()
     {
@@ -79,5 +81,19 @@ class Halfsprout : ModItem
         bool isVanillaHerb = type == TileID.BloomingHerbs || type == TileID.ImmatureHerbs || type == TileID.MatureHerbs;
         vanillaHerb = isVanillaHerb;
         return isVanillaHerb || isModdedHerb;
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Halfsprout))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+        {
+            ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Halfsprout", true);
+            return null;
+        }
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Halfsprout", 100, true);
     }
 }

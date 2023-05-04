@@ -1,6 +1,4 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
-using Verdant.Items.Verdant.Materials;
+﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Items.Verdant.Blocks.Misc;

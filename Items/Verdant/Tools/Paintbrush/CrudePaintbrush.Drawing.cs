@@ -7,13 +7,12 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 using Verdant.World;
 
 namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
-public partial class CrudePaintbrush : ModItem
+public partial class CrudePaintbrush : ApotheoticItem
 {
     public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
     {

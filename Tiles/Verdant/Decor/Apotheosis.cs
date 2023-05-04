@@ -8,7 +8,7 @@ using Verdant.Systems.ScreenText.Caches;
 using Verdant.World;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Misc.Apotheotic;
+using Verdant.Items.Verdant;
 
 namespace Verdant.Tiles.Verdant.Decor;
 

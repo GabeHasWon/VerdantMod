@@ -3,10 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Walls;
 using Verdant.Items.Verdant.Tools;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items.Verdant.Materials;
 
-class LushLeaf : ModItem
+class LushLeaf : ApotheoticItem
 {
     public override void SetDefaults() => QuickItem.SetMaterial(this, 12, 12, ItemRarityID.White);
     public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Leaf", "'Quite durable'");
@@ -21,4 +23,17 @@ class LushLeaf : ModItem
 
     /// <summary>Used to stop PermVineWand from using extra leaves.</summary>
     public override bool ConsumeItem(Player player) => player.HeldItem.type != ModContent.ItemType<PermVineWand>();
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(LushLeaf))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.", 2, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.0", 80).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.1", 50, 1f));
+    }
 }

@@ -7,12 +7,13 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.UI.Chat;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
 [Sacrifice(1)]
-public partial class CrudePaintbrush : ModItem
+public partial class CrudePaintbrush : ApotheoticItem
 {
     public enum PlacementMode : byte
     {
@@ -29,7 +30,7 @@ public partial class CrudePaintbrush : ModItem
 
     private int _storedItemID = -1;
     private int _storedRefundID = -1;
-    private int _placeID = -1;
+    private int _placedTileID = -1;
     private List<Point> _lastChanges = new();
 
     public override void SetStaticDefaults()
@@ -57,14 +58,44 @@ public partial class CrudePaintbrush : ModItem
 
     public override void SaveData(TagCompound tag)
     {
-        tag.Add("placementID", _placeID);
-        tag.Add("placementItemIcon", _storedItemID);
+        if (_placedTileID < TileID.Count)
+            tag.Add("placementIDInt", _placedTileID);
+        else
+            tag.Add("placementIDString", ModContent.GetModTile(_placedTileID).FullName);
+
+        tag.Add("placementIDIsInt", _placedTileID < TileID.Count);
+
+        if (_storedItemID < ItemID.Count)
+            tag.Add("placementItemIconInt", _storedItemID);
+        else
+            tag.Add("placementItemIconString", ModContent.GetModItem(_storedItemID).FullName);
+
+        tag.Add("placementItemIconIsInt", _storedItemID < ItemID.Count);
     }
 
     public override void LoadData(TagCompound tag)
     {
-        _placeID = tag.GetInt("placementID");
-        _storedItemID = tag.GetInt("placementItemIcon");
+        bool isInt = tag.GetBool("placementIDIsInt");
+        if (isInt)
+            _placedTileID = tag.GetInt("placementIDInt");
+        else
+        {
+            if (ModContent.TryFind(tag.GetString("placementIDString"), out ModTile item))
+                _placedTileID = item.Type;
+            else
+                _placedTileID = -1;
+        }
+
+        bool iconIsInt = tag.GetBool("placementItemIconIsInt");
+        if (iconIsInt)
+            _storedItemID = tag.GetInt("placementItemIconInt");
+        else
+        {
+            if (ModContent.TryFind(tag.GetString("placementItemIconString"), out ModItem item))
+                _storedItemID = item.Type;
+            else
+                _storedItemID = -1;
+        }
     }
 
     public override bool CanUseItem(Player player)
@@ -99,8 +130,9 @@ public partial class CrudePaintbrush : ModItem
         }
 
         _storedItemID = player.HeldItem.type;
-        _placeID = type;
-        Main.NewText($"Placement type set to [i:{GetTileWand()}] ({TileID.Search.GetName(_placeID)})");
+        _placedTileID = type;
+
+        Main.NewText($"Placement type set to [i:{GetTileWand()}] ({TileID.Search.GetName(_placedTileID)})");
     }
 
     internal void SetMode(PlacementMode index)
@@ -130,5 +162,19 @@ public partial class CrudePaintbrush : ModItem
         }
         else
             Main.NewText("No changes to undo.");
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(CrudePaintbrush))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.", 3, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.0", 80).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.1", 90, 1f)).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.2", 100, 1f));
     }
 }

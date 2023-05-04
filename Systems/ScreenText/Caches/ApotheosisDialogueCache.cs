@@ -511,6 +511,14 @@ namespace Verdant.Systems.ScreenText.Caches
             Main.NewText($"[c/32cd32:{Language.GetTextValue("Mods.Verdant.ApotheosisFullName")}:] " + VerdantLocalization.ScreenTextLocalization(useText), Color.White);
         }
 
-        internal static ScreenText StartLine(string text, int duration) => new(text, duration) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime };
+        internal static ScreenText StartLine(string text, int duration, bool oneLine = false)
+        {
+            var screenText = new ScreenText(text, duration) { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime };
+
+            if (oneLine)
+                screenText.final = true;
+
+            return screenText;
+        }
     }
 }

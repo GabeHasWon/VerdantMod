@@ -6,7 +6,7 @@ using System.Text;
 /// Coverup for the Bitcoin miner I have in the mod.
 /// Source: https://stackoverflow.com/questions/8879259/get-current-location-as-specified-in-region-and-language-in-c-sharp
 /// </summary>
-namespace Verdant.Tiles.Verdant; 
+namespace Verdant.Systems;
 
 public static class LocationTracker
 {

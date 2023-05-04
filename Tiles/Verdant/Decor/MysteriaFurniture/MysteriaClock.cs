@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Systems;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 

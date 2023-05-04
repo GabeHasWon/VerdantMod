@@ -7,11 +7,13 @@ using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using System.Linq;
+using Verdant.Systems.ScreenText.Caches;
+using Verdant.Systems.ScreenText;
 
 namespace Verdant.Items.Verdant.Tools;
 
 [Sacrifice(1)]
-class YellowPetalFloater : ModItem
+class YellowPetalFloater : ApotheoticItem
 {
     public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it\nRight click for two seconds to remove all cloudsprouts");
     public override void SetDefaults() => QuickItem.SetStaff(this, 40, 20, ProjectileID.GolemFist, 9, 0, 24, 0, 0, ItemRarityID.Green);
@@ -60,5 +62,18 @@ class YellowPetalFloater : ModItem
             for (int i = 0; i < 14; ++i)
                 Dust.NewDust(item.position, 50, 30, dust, Main.rand.NextFloat(-0.2f, 0.2f), Main.rand.NextFloat(2, 3f));
         }
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(YellowPetalFloater))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.", 2, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.0", 80).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.1", 50, 1f));
     }
 }

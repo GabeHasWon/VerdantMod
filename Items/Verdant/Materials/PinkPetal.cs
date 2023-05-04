@@ -2,10 +2,12 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Walls;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items.Verdant.Materials;
 
-class PinkPetal : ModItem
+class PinkPetal : ApotheoticItem
 {
     int updateCounter = 0;
 
@@ -27,5 +29,19 @@ class PinkPetal : ModItem
 
         gravity = 0.09f;
         maxFallSpeed = 0.8f;
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(PinkPetal))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+        {
+            ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PinkPetal", true);
+            return null;
+        }
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PinkPetal", 100, true);
     }
 }

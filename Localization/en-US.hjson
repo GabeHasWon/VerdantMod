@@ -199,6 +199,49 @@
 						4: It's bizarre enough to regard it at all,
 						5: considering the...last time I wrote in it.
 					}
+
+					LushLeaf: {
+						0: The leaves that surround us;
+						1: beautiful, in a way.
+					}
+
+					Lightbulb: {
+						0: My last light, it helped for a long time.
+						1: Hopefully its light helps you as well.
+					}
+
+					YellowBulb: {
+						0: My favourite flower,
+						1: I spread it around this land.
+						2: How pleasant...
+					}
+
+					Wisplant: {
+						0: We really started...experimenting with these.
+						1: Not sure why, but they were fun.
+					}
+
+					PuffMaterial: Honestly, we just wanted to see if we could make these.
+					Halfsprout: A curious little sprout, hm?
+					MysteriaClump: Always good to, ah, branch out a bit.
+					PinkPetal: Don't tell Red Petal - this is my favourite.
+					RedPetal: Don't tell Pink Petal - this is my favourite.
+
+					CrudePaintbrush: {
+						0: Ah, my old paintbrush.
+						1: Apologies, it's a bit rushed,
+						2: but we know it's a useful tool.
+					}
+
+					Bouncebloom: {
+						0: We were...still figuring things out.
+						1: Fun, though.
+					}
+
+					Cloudsprout: {
+						0: To be honest, we can't tell you why we did this.
+						1: It sure is pretty, hm?
+					}
 				}
 			}
 		}

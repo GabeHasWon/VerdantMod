@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Misc.Apotheotic;
+using Verdant.Items.Verdant;
 using Verdant.Systems.Syncing;
 
 namespace Verdant.Systems.ScreenText.Caches

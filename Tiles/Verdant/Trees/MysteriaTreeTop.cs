@@ -30,6 +30,16 @@ internal class MysteriaTreeTop : ModTile
         TileObjectData.addTile(Type);
     }
 
+    public override void NearbyEffects(int i, int j, bool closer)
+    {
+        if (Main.rand.NextBool(80))
+        {
+            var pos = (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-36, 36), Main.rand.Next(44) - 58);
+            string type = Main.rand.NextBool(3) ? "LushLeaf" : "PurplePetalFalling";
+            Gore.NewGore(new EntitySource_TileUpdate(i, j), pos, Vector2.Zero, Mod.Find<ModGore>(type).Type);
+        }
+    }
+
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
         if (fail && !effectOnly && !noItem)

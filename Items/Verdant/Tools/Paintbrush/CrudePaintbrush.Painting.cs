@@ -9,14 +9,14 @@ using Verdant.World;
 
 namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
-public partial class CrudePaintbrush : ModItem
+public partial class CrudePaintbrush : ApotheoticItem
 {
     public override bool? UseItem(Player player)
     {
         if (player.altFunctionUse == 2)
             return true;
 
-        if (_placeID == -1)
+        if (_placedTileID == -1)
         {
             Main.NewText("Select an item to start!");
             return true;
@@ -68,8 +68,8 @@ public partial class CrudePaintbrush : ModItem
 
             for (int x = 0; x < width + 1; ++x)
             {
-                WorldGen.PlaceTile(topLeft.X + x, topLeft.Y, _placeID, true);
-                WorldGen.PlaceTile(topLeft.X + x, bottomRight.Y, _placeID, true);
+                WorldGen.PlaceTile(topLeft.X + x, topLeft.Y, _placedTileID, true);
+                WorldGen.PlaceTile(topLeft.X + x, bottomRight.Y, _placedTileID, true);
 
                 _lastChanges.Add(new Point(topLeft.X + x, topLeft.Y));
                 _lastChanges.Add(new Point(topLeft.X + x, bottomRight.Y));
@@ -78,8 +78,8 @@ public partial class CrudePaintbrush : ModItem
 
             for (int y = 1; y < height; ++y)
             {
-                WorldGen.PlaceTile(topLeft.X, topLeft.Y + y, _placeID, true);
-                WorldGen.PlaceTile(bottomRight.X, topLeft.Y + y, _placeID, true);
+                WorldGen.PlaceTile(topLeft.X, topLeft.Y + y, _placedTileID, true);
+                WorldGen.PlaceTile(bottomRight.X, topLeft.Y + y, _placedTileID, true);
 
                 _lastChanges.Add(new Point(topLeft.X, topLeft.Y + y));
                 _lastChanges.Add(new Point(bottomRight.X, topLeft.Y + y));
@@ -104,7 +104,7 @@ public partial class CrudePaintbrush : ModItem
 
             GenHelper.Ellipse((x, y) =>
             {
-                WorldGen.PlaceTile(x, y, _placeID);
+                WorldGen.PlaceTile(x, y, _placedTileID);
                 count++;
             }, _locations.First(), Main.MouseWorld.ToTileCoordinates(), ref _lastChanges);
 
@@ -123,7 +123,7 @@ public partial class CrudePaintbrush : ModItem
             _lastChanges.Clear();
             _storedRefundID = GetTileWand();
 
-            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placeID, 0, GetTileAmmo(player), ref _lastChanges, true);
+            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placedTileID, 0, GetTileAmmo(player), ref _lastChanges, true);
             ConsumeTileWand(count, player);
         }
         else
@@ -139,7 +139,7 @@ public partial class CrudePaintbrush : ModItem
             _lastChanges.Clear();
             _storedRefundID = GetTileWand();
 
-            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placeID, ref _lastChanges, GetTileAmmo(player));
+            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placedTileID, ref _lastChanges, GetTileAmmo(player));
             ConsumeTileWand(count, player);
             _locations.Clear();
         }

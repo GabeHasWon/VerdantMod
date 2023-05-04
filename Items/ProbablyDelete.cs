@@ -57,8 +57,7 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
-        var pos = Main.MouseWorld.ToTileCoordinates();
-        int x = 0;
+        //var pos = Main.MouseWorld.ToTileCoordinates();
         //int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
         //if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 4 && groundCount > 25)
         //    StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
