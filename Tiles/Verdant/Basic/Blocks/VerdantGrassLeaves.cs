@@ -74,7 +74,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             //vine
             if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
             {
-                int type = CheckPuffMicrobiome(i, j) ? ModContent.TileType<PuffVine>() : Main.hardMode ? ModContent.TileType<LightbulbVine>() : ModContent.TileType<VerdantVine>();
+                int type = Main.hardMode ? ModContent.TileType<LightbulbVine>() : ModContent.TileType<VerdantVine>();
                 WorldGen.PlaceTile(i, j + 1, type, true, false);
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
@@ -259,6 +259,15 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                         NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
                     return true;
                 }
+            }
+
+            if (TileHelper.ValidBottom(self) && !Framing.GetTileSafely(i, j + 1).HasTile && Main.rand.NextBool(3))
+            {
+                WorldGen.PlaceTile(i, j + 1, ModContent.TileType<PuffVine>(), true, false);
+
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
+                return true;
             }
             return false;
         }
