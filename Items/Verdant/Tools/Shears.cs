@@ -11,6 +11,7 @@ using Verdant.Systems.Foreground.Tiled;
 using Verdant.Items.Verdant.Blocks.Mysteria;
 using System;
 using Verdant.Tiles.Verdant.Decor.Bushes;
+using Verdant.Tiles.TileEntities.Puff;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -40,6 +41,11 @@ class Shears : ModItem
         if (ForegroundManager.Items.Any(x => x is MysteriaDrapes drape && drape.position.ToTileCoordinates() == pos))
         {
             (ForegroundManager.Items.First(x => x is MysteriaDrapes drape && drape.position.ToTileCoordinates() == pos) as MysteriaDrapes).Kill();
+            return true;
+        }
+        else if (TileEntity.ByPosition.ContainsKey(new Point16(pos.X, pos.Y)) && TileEntity.ByPosition[new Point16(pos.X, pos.Y)] is Pickipuff pickipuff)
+        {
+            pickipuff.Kill(pos.X, pos.Y);
             return true;
         }
 
