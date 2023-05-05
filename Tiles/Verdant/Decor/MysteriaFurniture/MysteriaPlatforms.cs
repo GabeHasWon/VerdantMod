@@ -19,8 +19,8 @@ public class MysteriaPlatforms : ModTile
         Main.tileLavaDeath[Type] = true;
 
         TileID.Sets.Platforms[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
 
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.CoordinateHeights = new[] { 16 };
         TileObjectData.newTile.CoordinateWidth = 16;
         TileObjectData.newTile.CoordinatePadding = 2;
@@ -35,8 +35,7 @@ public class MysteriaPlatforms : ModTile
         AddMapEntry(new Color(124, 93, 68));
 
         DustType = DustID.t_BorealWood;
-        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPlatformItem>();
-        TileID.Sets.DisableSmartCursor[Type] = true;
+        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaPlatformItem>();
         AdjTiles = new int[] { TileID.Platforms };
     }
 
