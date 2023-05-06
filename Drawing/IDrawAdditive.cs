@@ -15,6 +15,6 @@ namespace Verdant.Drawing
 
     interface IAdditiveTile
     {
-        void DrawAdditive(Point16 position);
+        void DrawAdditive(Point16 position, AdditiveLayer layer);
     }
 }

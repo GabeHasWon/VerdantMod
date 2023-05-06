@@ -125,6 +125,18 @@ public partial class CrudePaintbrush : ApotheoticItem
 
             int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placedTileID, 0, GetTileAmmo(player), ref _lastChanges, true);
             ConsumeTileWand(count, player);
+
+            foreach (var item in _lastChanges)
+            {
+                for (int i = -1; i < 2; ++i)
+                {
+                    for (int j = -1; j < 2; ++j)
+                    {
+                        WorldGen.SquareTileFrame(item.X + i, item.Y + j, true);
+                        Tile.SmoothSlope(item.X + i, item.Y + j, true);
+                    }
+                }
+            }
         }
         else
             Main.NewText("You sure you want to fill?");

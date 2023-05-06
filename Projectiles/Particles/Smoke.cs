@@ -7,7 +7,7 @@ using Verdant.Drawing;
 
 namespace Verdant.Projectiles.Particles
 {
-    class Smoke : ModProjectile, IDrawAdditive
+    class Smoke : ModProjectile
     {
         private Color drawCol = Color.Green;
         private int _maxTimeLeft = 0;
@@ -55,10 +55,6 @@ namespace Verdant.Projectiles.Particles
             var frame = new Rectangle(0, Projectile.frame * 42, 38, 40);
             Main.spriteBatch.Draw(TextureAssets.Projectile[Type].Value, Projectile.Center - Main.screenPosition, frame, drawCol * (Projectile.scale - 0.8f), Projectile.rotation, new(19, 20), Projectile.scale, SpriteEffects.None, 1f);
             return false;
-        }
-
-        public void DrawAdditive(AdditiveLayer layer)
-        {
         }
     }
 }

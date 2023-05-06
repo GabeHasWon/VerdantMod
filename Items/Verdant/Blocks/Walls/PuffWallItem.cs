@@ -13,6 +13,6 @@ public class PuffWallItem : ModItem
     public override void AddRecipes()
     {
         QuickItem.AddRecipe(this, TileID.WorkBenches, 4, (ModContent.ItemType<PuffBlockItem>(), 1));
-        QuickItem.AddRecipe(ModContent.ItemType<PuffBlockItem>(), TileID.LivingLoom, 1, (Type, 4));
+        QuickItem.AddRecipe(ModContent.ItemType<PuffBlockItem>(), TileID.WorkBenches, 1, (Type, 4));
     }
 }

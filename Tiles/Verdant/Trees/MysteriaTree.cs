@@ -30,6 +30,8 @@ internal class MysteriaTree : ModTile
             WorldGen.KillTile(i, j - 1);
     }
 
+    public override bool Slope(int i, int j) => false;
+
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile tile = Main.tile[i, j];
@@ -37,9 +39,9 @@ internal class MysteriaTree : ModTile
         int frameX = tile.TileFrameX / 18 * 22;
         int frameY = tile.TileFrameY / 18 * 22;
 
-        Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(2));
         var source = new Rectangle(frameX, frameY, 20, 20);
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, source, Lighting.GetColor(i, j, tile.IsActuated ? Color.Gray : Color.White));
+        Color color = Lighting.GetColor(i, j, tile.IsActuated ? Color.Gray : Color.White);
+        TileHelper.DrawSlopedGlowMask(i, j, TextureAssets.Tile[Type].Value, color, -new Vector2(2), source);
         return false;
     }
 

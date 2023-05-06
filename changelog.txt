@@ -34,12 +34,15 @@ NEW CONTENT
 	- Added Mysteria armor
 	- Added Mysteria furniture
 	- Added Mysteria drapes
+	- Added Mysteria wall
+	- Added Peace Tree
 - Added Crude Paintbrush
 - Added proper Save/Load functionality to ForegroundItems
 - Added Lush Sink
 - Added Shears
 - Added Bushes, which can be trimmed for variations
 - Added Snail Statue
+- Added Puff Wall
 
 CHANGES
 - Dryad no longer sells Yellow Bulbs in Hardmode after any mech has been defeated
@@ -67,7 +70,8 @@ CHANGES
 - Slightly adjusted Flotie spawn conditions & rates
 - Significantly adjusted Flotie backend, minor changes throughout
 - Improved ForegroundItem performance, will now only draw if they're on screen
-- A lot of changes to Lush Furniture map colors
+- A lot of changes to tile and wall map colors
 - Fixed Lush Sofa dropping a Lush Table
 - A lot of item hitbox adjustments
 - Changed VerdantTree IEntitySource to use EntitySource_ShakeTree
+- 

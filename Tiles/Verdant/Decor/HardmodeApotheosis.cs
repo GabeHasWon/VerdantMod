@@ -188,8 +188,11 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
         spriteBatch.Draw(glowTex.Value, TileHelper.TileCustomPosition(i, j), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
     }
 
-    public void DrawAdditive(Point16 position)
+    public void DrawAdditive(Point16 position, AdditiveLayer layer)
     {
+        if (layer == AdditiveLayer.AfterPlayer)
+            return;
+
         Tile t = Main.tile[position.X, position.Y];
 
         if (t.TileFrameX != 0 || t.TileFrameY != 0)

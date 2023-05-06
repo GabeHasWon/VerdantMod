@@ -12,7 +12,7 @@ public class MysteriaLeggings : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mysteria Leggings");
-        Tooltip.SetDefault("+6 flat minion damage");
+        Tooltip.SetDefault("+2 flat minion damage");
     }
 
     public override void SetDefaults()
@@ -24,7 +24,7 @@ public class MysteriaLeggings : ModItem
         Item.defense = 3;
     }
 
-    public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 6;
+    public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 2;
 
     public override void AddRecipes()
     {

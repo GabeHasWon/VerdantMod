@@ -3,13 +3,10 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Materials;
-using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Systems.Foreground;
 using System.Linq;
 using Verdant.Systems.Foreground.Tiled;
 using Verdant.Items.Verdant.Blocks.Mysteria;
-using System;
 using Verdant.Tiles.Verdant.Decor.Bushes;
 using Verdant.Tiles.TileEntities.Puff;
 
@@ -18,7 +15,7 @@ namespace Verdant.Items.Verdant.Tools;
 [Sacrifice(1)]
 class Shears : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Shears", "Trims certain plants\nCan be used to remove Mysteria Drapes" +
+    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Shears", "Trims certain plants\nCan be used to remove Pickipuff, Mysteria Drapes" +
         "\nCan be used as an axe, technically");
 
     public override void SetDefaults()
@@ -30,8 +27,8 @@ class Shears : ModItem
         Item.damage = 4;
         Item.axe = 2;
         Item.useTurn = true;
-        Item.useTime = 15;
-        Item.useAnimation = 15;
+        Item.useTime = 8;
+        Item.useAnimation = 8;
     }
 
     public override bool? UseItem(Player player)

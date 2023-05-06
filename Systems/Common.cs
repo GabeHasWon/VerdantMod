@@ -51,7 +51,7 @@ namespace Verdant.Systems
             orig(self, solidLayer, forRenderTargets, intoRenderTargets, waterStyleOverride);
 
             Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null);
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null);
 
             Vector2 off = new(Main.offScreenRange);
             Vector2 unscaledPosition = Main.Camera.UnscaledPosition;
@@ -64,7 +64,7 @@ namespace Verdant.Systems
                     Tile tile = Main.tile[i, j];
 
                     if (tile.HasTile && tile.TileType >= TileID.Count && ModContent.GetModTile(tile.TileType) is IAdditiveTile add)
-                        add.DrawAdditive(new Point16(i, j));
+                        add.DrawAdditive(new Point16(i, j), AdditiveLayer.BeforePlayer);
                 }
             }
 
