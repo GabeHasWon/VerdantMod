@@ -520,5 +520,27 @@ namespace Verdant.Systems.ScreenText.Caches
 
             return screenText;
         }
+
+        [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".TRAILER")]
+        public static ScreenText TrailerDialogue(bool forServer)
+        {
+            if (forServer)
+                return null;
+
+            if (!UseCustomSystem)
+            {
+                Chat("$Mods.Verdant.ScreenText.Apotheosis.TRAILERTEXT", true);
+                return null;
+            }
+
+            var text = new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.TRAILERTEXT", 100)
+            {
+                shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
+                color = Color.White * 0.7f,
+                shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
+                final = true
+            };
+            return text;
+        }
     }
 }

@@ -12,7 +12,7 @@ class Propellerpad : ModItem
 
     public override void SetDefaults()
     {
-        QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<PropellerpadProjectile>(), 9, 60, 24, 0, 0, ItemRarityID.Green);
+        QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<PropellerpadProjectile>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
 
         Item.accessory = true;
     }

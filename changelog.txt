@@ -74,4 +74,4 @@ CHANGES
 - Fixed Lush Sofa dropping a Lush Table
 - A lot of item hitbox adjustments
 - Changed VerdantTree IEntitySource to use EntitySource_ShakeTree
-- 
+- Improved fadeout animation for ScreenText

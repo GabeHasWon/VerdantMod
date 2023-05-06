@@ -13,6 +13,7 @@ using Verdant.Systems.Foreground.Tiled;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
 using Verdant.Systems.RealtimeGeneration.Old;
+using Verdant.Systems.ScreenText.Caches;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -48,10 +49,10 @@ public class ProbablyDelete : ModItem
 		Item.value = 10000;
 		Item.rare = ItemRarityID.Green;
 		Item.UseSound = SoundID.Item1;
-		Item.autoReuse = false;
+		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        //Item.createWall = ModContent.WallType<BluescreenWall>();
+        Item.createWall = ModContent.WallType<BluescreenWall>();
         //Item.createTile = ModContent.TileType<MysteriaTree>();
     }
 
@@ -77,6 +78,8 @@ public class ProbablyDelete : ModItem
         //if (!RealtimeGen.HasStructure("Testing"))
         //    Spawn(pos);
         //Main.NewText(Main.MouseWorld.ToTileCoordinates());
+
+        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
         return true;
     }
 }

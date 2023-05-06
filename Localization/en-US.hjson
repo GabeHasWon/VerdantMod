@@ -36,7 +36,7 @@
 					2: Call me the Apotheosis.
 					3: Find us at the center of our verdant plants,
 					4: and we might have some gifts to help you along.
-					5: Farewell, for now.
+					5: Farewell         .
 				}
 
 				Greeting: {
@@ -182,6 +182,8 @@
 					2: Pests must be controlled, invasion quelled,
 					3: and you must defeat them. Good luck.
 				}
+
+				TRAILERTEXT: We'll see you soon.
 
 				ItemInteractions: {
 					WiltedFlower: {
