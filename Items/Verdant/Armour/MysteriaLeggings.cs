@@ -24,7 +24,12 @@ public class MysteriaLeggings : ModItem
         Item.defense = 3;
     }
 
-    public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 2;
+    public override void UpdateEquip(Player player)
+    {
+        player.pickSpeed -= 0.1f;
+        player.tileSpeed += 0.1f;
+        player.wallSpeed += 0.1f;
+    }
 
     public override void AddRecipes()
     {

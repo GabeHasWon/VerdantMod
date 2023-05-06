@@ -12,7 +12,7 @@ public class MysteriaChest : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mysteria Chestpiece");
-        Tooltip.SetDefault("4 flat summon damage\n1 extra minion");
+        Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed");
     }
 
     public override void SetDefaults()
@@ -21,13 +21,15 @@ public class MysteriaChest : ModItem
         Item.height = 22;
         Item.value = 10000;
         Item.rare = ItemRarityID.Green;
-        Item.defense = 5;
+        Item.defense = 7;
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Summon).Flat += 4;
-        player.maxMinions++;
+        player.pickSpeed -= 0.2f;
+        player.tileSpeed += 0.2f;
+        player.wallSpeed += 0.2f;
+        player.blockRange++;
     }
 
     public override void AddRecipes()

@@ -12,7 +12,7 @@ public class MysteriaHelmet : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mysteria Veil");
-        Tooltip.SetDefault("+4 flat minion damage");
+        Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed\nIncreased placement range");
     }
 
     public override void SetDefaults()
@@ -21,16 +21,27 @@ public class MysteriaHelmet : ModItem
         Item.height = 24;
         Item.value = 0;
         Item.rare = ItemRarityID.Green;
-        Item.defense = 4;
+        Item.defense = 5;
     }
 
     public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<MysteriaChest>() && legs.type == ModContent.ItemType<MysteriaLeggings>();
-    public override void UpdateEquip(Player player) => player.GetDamage(DamageClass.Summon).Flat += 4;
+
+    public override void UpdateEquip(Player player)
+    {
+        player.pickSpeed -= 0.1f;
+        player.tileSpeed += 0.1f;
+        player.wallSpeed += 0.1f;
+        player.blockRange++;
+    }
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "3 additional damage flat";
-        player.GetDamage(DamageClass.Summon).Flat += 3;
+        player.GetModPlayer<MysteriaPlayer>().active = true;
+        player.setBonus = "Increased tile and wall placement speed and range\nIncreased mining speed\nEnemies spawn significantly less often";
+        player.pickSpeed -= 0.25f;
+        player.tileSpeed += 0.25f;
+        player.wallSpeed += 0.25f;
+        player.blockRange += 2;
     }
 
     public override void AddRecipes()
@@ -40,5 +51,24 @@ public class MysteriaHelmet : ModItem
             .AddIngredient(ModContent.ItemType<MysteriaWood>(), 20)
             .AddTile(TileID.Anvils)
             .Register();
+    }
+
+    private class MysteriaPlayer : ModPlayer
+    {
+        internal bool active = false;
+
+        public override void ResetEffects() => active = false;
+    }
+
+    private class MysteriaNPC : GlobalNPC 
+    {
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (player.GetModPlayer<MysteriaPlayer>().active)
+            {
+                spawnRate = (int)(spawnRate * 0.1f);
+                maxSpawns = (int)(maxSpawns * 0.2f);
+            }
+        }
     }
 }
