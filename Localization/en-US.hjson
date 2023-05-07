@@ -183,8 +183,6 @@
 					3: and you must defeat them. Good luck.
 				}
 
-				TRAILERTEXT: We'll see you soon.
-
 				ItemInteractions: {
 					WiltedFlower: {
 						0: A daisy, my favourite flower.

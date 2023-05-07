@@ -173,4 +173,9 @@ internal class MudsquidPlayer : ModPlayer
         }
         return false;
     }
+
+    private class MudsquidItem : GlobalItem
+    {
+        public override bool CanUseItem(Item item, Player player) => !player.GetModPlayer<MudsquidPlayer>().IsSquid;
+    }
 }

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Buffs.Minion;
 using Verdant.Dusts;
 
 namespace Verdant.Projectiles.Minion;
@@ -56,6 +57,9 @@ class PropellerpadProjectile : ModProjectile
 
     public override void AI()
     {
+        if (!Owner.HasBuff<PropellerpadBuff>())
+            Projectile.Kill();
+
         if (Projectile.Center.HasNaNs())
         {
             Projectile.velocity = Vector2.Zero;

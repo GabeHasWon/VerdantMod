@@ -80,7 +80,7 @@ public class ScreenText
 
     public void Draw()
     {
-        const string RightClick = "Right click to continue";
+        const string RightClick = "";
 
         float realFactor = timeLeft / MaxTimeLeft;
         float factor = MathHelper.Clamp(realFactor, 0, 1);
@@ -125,7 +125,6 @@ public class ScreenText
 
     public void DrawAdditive()
     {
-
     }
 
     public ScreenText With(ScreenText other, bool sameSpeaker = true)

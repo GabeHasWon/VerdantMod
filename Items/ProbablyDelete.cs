@@ -79,7 +79,7 @@ public class ProbablyDelete : ModItem
         //    Spawn(pos);
         //Main.NewText(Main.MouseWorld.ToTileCoordinates());
 
-        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
+        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".TRAILER");
         return true;
     }
 }

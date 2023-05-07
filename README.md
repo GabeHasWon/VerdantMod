@@ -3,16 +3,17 @@
 A mod dedicated to cultivating the Verdant - a lush underground cave system with plants and trees about.
 
 As of writing this, the mod has the following:
-	- 98 new items
-	- 76 new tiles
-	- 9 new walls
-	- 6 new NPCs
-	- 2 brand new tracks
+    - 181 new items
+    - 137 new tiles
+    - 14 new walls
+    - 16 new NPCs
+    - 4 brand new music tracks
 ...and more!
 
 # Credit
 GabeHasWon - Literally everything except The Plant & song compositions
 Liz - SFX, song compositions, feedback/design & The Plant
+Helton Yan - "Vibrant Horizons" track
 ### Special Thanks -
 Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback
 /u/Nervous-General3220 - Zipvine name

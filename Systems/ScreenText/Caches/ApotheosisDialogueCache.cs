@@ -533,13 +533,12 @@ namespace Verdant.Systems.ScreenText.Caches
                 return null;
             }
 
-            var text = new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.TRAILERTEXT", 100)
+            var text = new ScreenText("We'll see you soon.", 100)
             {
                 shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
                 color = Color.White * 0.7f,
                 shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
-                final = true
-            };
+            }.FinishWith(new("5.11.2023", 60));
             return text;
         }
     }

@@ -7,6 +7,8 @@ using Terraria.GameContent.Generation;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Verdant.Systems.Foreground;
+using Verdant.Systems.Foreground.Tiled;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -63,6 +65,33 @@ internal class HardmodeGen : ModSystem
 
             if (!TileHelper.ActiveType(x, y + 1, ModContent.TileType<VerdantGrassLeaves>()) || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
                 i--;
+            else
+                AddMysteriaDrapes(x, y);
+        }
+    }
+
+    private static void AddMysteriaDrapes(int x, int y)
+    {
+        for (int i = x - 20; i < x + 20; ++i)
+        {
+            for (int j = y - 20; j < y + 20; ++j)
+            {
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()) && !WorldGen.SolidOrSlopedTile(i, j + 1) && WorldGen.genRand.NextBool(4))
+                {
+                    var drape = new MysteriaDrapes(new Point(i, j));
+                    int off = 1;
+
+                    while (!WorldGen.SolidOrSlopedTile(i, j + off))
+                    {
+                        if (!WorldGen.genRand.NextBool(5))
+                            drape.Grow();
+
+                        off++;
+                    }
+
+                    ForegroundManager.AddItem(drape, true);
+                }
+            }
         }
     }
 
