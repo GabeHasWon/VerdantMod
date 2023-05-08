@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Verdant.Projectiles.Misc;
@@ -31,8 +32,7 @@ internal class VineHookProjectile : ModProjectile
 
             if (Main.rand.NextBool(2))
             {
-                string[] choices = new string[] { "Woo!", "Yahoo!", "Wee!" };
-                int c = CombatText.NewText(Projectile.Hitbox, Color.LawnGreen, Main.rand.Next(choices));
+                int c = CombatText.NewText(Projectile.Hitbox, Color.LawnGreen, Language.GetTextValue("Mods.Verdant.VineHookLines" + Main.rand.Next(3)));
                 var combat = Main.combatText[c];
 
                 combat.rotation = Main.rand.NextFloat(-0.2f, 0.2f);

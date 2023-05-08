@@ -28,7 +28,7 @@ namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => true;
+    public override bool IsLoadingEnabled(Mod mod) => false;
 
     public override void SetStaticDefaults()
 	{

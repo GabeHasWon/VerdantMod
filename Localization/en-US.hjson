@@ -249,6 +249,12 @@
 		ApotheosisName: Apotheosis
 		ApotheosisFullName: The Apotheosis
 
+		VineHookLines: {
+			0: Woo!
+			1: Wahoo!
+			2: Wee!
+		}
+
 		SnailDialogue: {
 			Prehardmode: {
 				0: Statue of a Snail
