@@ -14,7 +14,7 @@ internal class FishingPlayer : ModPlayer
         bool inVerdant = Player.GetModPlayer<VerdantPlayer>().ZoneVerdant;
 
         if (inVerdant && attempt.crate && Main.rand.NextBool(Player.cratePotion ? 3 : 4))
-            itemDrop = ModContent.ItemType<LushWoodCrateItem>();
+            itemDrop = !Main.hardMode ? ModContent.ItemType<LushWoodCrateItem>() : ModContent.ItemType<MysteriaCrateItem>();
 
         if (inVerdant && attempt.questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
             itemDrop = ModContent.ItemType<Shellfish>();

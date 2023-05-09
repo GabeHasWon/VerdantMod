@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using Terraria.ObjectData;
 using Verdant.Effects;
 using Verdant.Projectiles.Magic;
@@ -78,7 +79,7 @@ public class ProbablyDelete : ModItem
         //if (!RealtimeGen.HasStructure("Testing"))
         //    Spawn(pos);
         //Main.NewText(Main.MouseWorld.ToTileCoordinates());
-
+        
         DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".TRAILER");
         return true;
     }
