@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Fishing
     public class LushWoodCrateItem : ModItem
     {
         public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Wood Crate", "Right click to open");
-        public override void SetDefaults() => QuickItem.SetBlock(this, 16, 10, ModContent.TileType<Tiles.Verdant.Decor.LushFurniture.LushWoodCrate>(), maxStack: 99);
+        public override void SetDefaults() => QuickItem.SetBlock(this, 32, 32, ModContent.TileType<Tiles.Verdant.Decor.LushFurniture.LushWoodCrate>(), maxStack: 99);
         public override bool CanRightClick() => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot)

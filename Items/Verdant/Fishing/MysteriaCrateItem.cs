@@ -12,7 +12,7 @@ namespace Verdant.Items.Verdant.Fishing;
 public class MysteriaCrateItem : ModItem
 {
     public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Mysteria Crate", "Right click to open");
-    public override void SetDefaults() => QuickItem.SetBlock(this, 16, 10, ModContent.TileType<Tiles.Verdant.Decor.MysteriaFurniture.MysteriaCrate>(), maxStack: 99);
+    public override void SetDefaults() => QuickItem.SetBlock(this, 32, 32, ModContent.TileType<Tiles.Verdant.Decor.MysteriaFurniture.MysteriaCrate>(), maxStack: 99);
     public override bool CanRightClick() => true;
 
     public override void ModifyItemLoot(ItemLoot itemLoot)
