@@ -23,7 +23,8 @@ A: If you're in hardmode, you will miss the new Mysteria microbiome. If you're n
 
 ----Credit----
 --Developers--
-GabeHasWon - Literally everything except The Plant & some music
+GabeHasWon - Everything except The Plant & some music
+
 Helton Yan - Music
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
@@ -67,7 +68,7 @@ Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#po
 My Twitter: https://twitter.com/GabeHasWon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
-(Some of the) music by Helton Yan! Check out his other stuff:
+Vibrant Horizons (Verdant Day) music by Helton Yan! Check out his other stuff:
 Soundcloud: https://soundcloud.com/heltonyan
 Twitter: https://twitter.com/heltonyan
 Discord: heltonyan#8219

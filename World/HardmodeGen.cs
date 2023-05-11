@@ -57,17 +57,41 @@ internal class HardmodeGen : ModSystem
         int halfWidth = (int)(600 * VerdantGenSystem.WorldSize) / 2;
         int repeats = 0;
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             repeats++;
             int x = pos.X + WorldGen.genRand.Next(halfWidth * 2) - halfWidth;
-            int y = pos.Y - 40 + WorldGen.genRand.Next(80);
+            int y = pos.Y - 80 + WorldGen.genRand.Next(160);
+            bool ground = TileHelper.ActiveType(x, y + 1, ModContent.TileType<VerdantGrassLeaves>());
 
-            if (!TileHelper.ActiveType(x, y + 1, ModContent.TileType<VerdantGrassLeaves>()) || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
+            if (repeats > 2000000) //Extremely unlikely fallback
+            {
+                if (!ground)
+                {
+                    i--;
+                    continue;
+                }
+
+                int length = WorldGen.genRand.Next(4, 7);
+
+                for (int j = 0; j < length; ++j)
+                {
+                    if (WorldGen.SolidOrSlopedTile(x, y - j - 2))
+                        length = j + 1;
+
+                    int type = j == length - 1 ? ModContent.TileType<MysteriaTreeTop>() : ModContent.TileType<MysteriaTree>();
+                    WorldGen.PlaceTile(x, y - j, type);
+                }
+                continue;
+            }
+
+            if (!ground || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
                 i--;
             else
                 AddMysteriaDrapes(x, y);
         }
+
+        WorldGen.BroadcastText(Terraria.Localization.NetworkText.FromLiteral("There's some rumbling coming from the Verdant..."), Color.DarkGreen);
     }
 
     private static void AddMysteriaDrapes(int x, int y)
