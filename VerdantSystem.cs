@@ -109,7 +109,7 @@ public class VerdantSystem : ModSystem
 
     private static void SaveVines(TagCompound tag)
     {
-        var vines = ForegroundManager.Items.Where(x => !x.killMe && x is EnchantedVine vine && vine.perm);
+        var vines = ForegroundManager.Items.Where(x => !x.killMe && x is EnchantedVine vine && vine.permanent);
         var positions = new List<Vector2>();
         var continueSet = new List<bool>();
 
@@ -190,7 +190,7 @@ public class VerdantSystem : ModSystem
     {
         EnchantedVine lastVine = null;
         for (int i = 0; i < item.Count; i++)
-            lastVine = VineWandCommon.BuildVine(Main.myPlayer, lastVine, true, item[i]);
+            lastVine = VineWandCommon.BuildVine(Main.myPlayer, lastVine, item[i]);
     }
 
     public override void PostAddRecipes() => SacrificeAutoloader.Load(Mod);

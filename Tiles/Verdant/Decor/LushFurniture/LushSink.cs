@@ -26,7 +26,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(new Color(179, 146, 107));
+            AddMapEntry(new Color(114, 69, 39));
 
             AdjTiles = new int[] { TileID.Sinks };
 		}

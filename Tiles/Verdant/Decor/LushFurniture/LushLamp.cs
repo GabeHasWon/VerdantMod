@@ -29,8 +29,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-
-            AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.FloorLamp"));
+            AddMapEntry(new Color(114, 69, 39), Language.GetText("MapObject.FloorLamp"));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

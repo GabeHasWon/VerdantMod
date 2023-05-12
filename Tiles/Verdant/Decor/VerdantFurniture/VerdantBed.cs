@@ -34,10 +34,8 @@ public class VerdantBed : ModTile
 		TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, -2);
 		TileObjectData.addTile(Type);
 
-		ModTranslation name = CreateMapEntryName();
-		name.SetDefault("Lush Bed");
-		AddMapEntry(new Color(114, 69, 39), name);
-	}
+        AddMapEntry(new Color(20, 82, 39), Language.GetText("ItemName.Bed"));
+    }
 
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 	public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;

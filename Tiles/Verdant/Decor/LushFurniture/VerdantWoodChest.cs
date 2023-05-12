@@ -41,7 +41,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lush Wood Chest");
-            AddMapEntry(new Color(0, 141, 63), name, MapChestName);
+            AddMapEntry(new Color(114, 69, 39), name, MapChestName);
 
             DustType = DustID.t_BorealWood;
             HitSound = SoundID.Dig;

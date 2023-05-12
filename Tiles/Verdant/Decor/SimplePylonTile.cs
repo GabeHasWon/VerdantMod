@@ -53,7 +53,6 @@ namespace Verdant.Tiles.Verdant.Decor
 			AddToArray(ref TileID.Sets.CountsAsPylon);
 
 			ModTranslation pylonName = CreateMapEntryName();
-			pylonName.SetDefault($"${MapKeyName}");
 			AddMapEntry(Color.White, pylonName);
 		}
 

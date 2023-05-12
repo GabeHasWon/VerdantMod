@@ -47,7 +47,7 @@ public class MysteriaDoorClosed : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
         ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Lush Door");
+        name.SetDefault("Mysteria Door");
         AddMapEntry(new Color(124, 93, 68), name);
 
         DustType = DustID.t_BorealWood;

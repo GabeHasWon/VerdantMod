@@ -69,28 +69,33 @@ internal class Apotheosis : ModTile
 
     public static bool CommonDialogue()
     {
-        if (!ModContent.GetInstance<VerdantSystem>().apotheosisGreeting) //Greeting
-            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
+        var system = ModContent.GetInstance<VerdantSystem>();
 
-        if (NPC.downedBoss1 && !ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown) //EoC text
+        if (!system.apotheosisGreeting) //Greeting
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Greeting");
+            return true;
+        }
+
+        if (NPC.downedBoss1 && !system.apotheosisEyeDown) //EoC text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Eye");
             return true;
         }
 
-        if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown) //BoC/EoW text
+        if (NPC.downedBoss2 && !system.apotheosisEvilDown) //BoC/EoW text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Evil");
             return true;
         }
 
-        if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown) //Skeleton boss text
+        if (NPC.downedBoss3 && !system.apotheosisSkelDown) //Skeleton boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Skeletron");
             return true;
         }
 
-        if (Main.hardMode && !ModContent.GetInstance<VerdantSystem>().apotheosisWallDown) //WoF boss text
+        if (Main.hardMode && !system.apotheosisWallDown) //WoF boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".WoF");
             return true;

@@ -42,7 +42,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lush Dresser");
-            AddMapEntry(new Color(253, 221, 3), name);
+            AddMapEntry(new Color(114, 69, 39), name);
 
             DustType = DustID.t_BorealWood;
             AdjTiles = new int[] { TileID.Dressers };

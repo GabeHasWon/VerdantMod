@@ -12,7 +12,7 @@ public class MysteriaLeggings : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mysteria Leggings");
-        Tooltip.SetDefault("+2 flat minion damage");
+        Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed");
     }
 
     public override void SetDefaults()

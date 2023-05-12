@@ -32,7 +32,7 @@ internal class VineHookProjectile : ModProjectile
 
             if (Main.rand.NextBool(2))
             {
-                int c = CombatText.NewText(Projectile.Hitbox, Color.LawnGreen, Language.GetTextValue("Mods.Verdant.VineHookLines" + Main.rand.Next(3)));
+                int c = CombatText.NewText(Projectile.Hitbox, Color.LawnGreen, Language.GetTextValue("Mods.Verdant.VineHookLines." + Main.rand.Next(3)));
                 var combat = Main.combatText[c];
 
                 combat.rotation = Main.rand.NextFloat(-0.2f, 0.2f);

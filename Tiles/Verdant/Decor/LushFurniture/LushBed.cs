@@ -34,9 +34,7 @@ public class LushBed : ModTile
 		TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, -2);
 		TileObjectData.addTile(Type);
 
-		ModTranslation name = CreateMapEntryName();
-		name.SetDefault("Lush Bed");
-		AddMapEntry(new Color(114, 69, 39), name);
+        AddMapEntry(new Color(114, 69, 39), Language.GetText("ItemName.Bed"));
     }
 
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

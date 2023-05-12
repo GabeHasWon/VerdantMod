@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -24,10 +25,7 @@ public class MysteriaPiano : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Mysteria Piano");
-        AddMapEntry(new Color(179, 146, 107), name);
+        AddMapEntry(new Color(179, 146, 107), Language.GetText("ItemName.Piano"));
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

@@ -3,34 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     internal class LushCandle : ModTile
     {
-        public override void SetStaticDefaults()
-        {
-            Main.tileLighted[Type] = true;
-            Main.tileFrameImportant[Type] = true;
-            Main.tileNoAttach[Type] = true;
-            Main.tileWaterDeath[Type] = true;
-            Main.tileLavaDeath[Type] = true;
-
-            TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
-            TileObjectData.newTile.WaterDeath = true;
-            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addTile(Type);
-
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-
-            AddMapEntry(new Color(253, 221, 3), CreateMapEntryName());
-        }
+        public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults(this, new Color(253, 221, 3));
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {

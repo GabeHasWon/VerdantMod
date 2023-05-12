@@ -22,7 +22,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(new Color(165, 108, 58));
+            AddMapEntry(new Color(114, 69, 39));
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Benches };

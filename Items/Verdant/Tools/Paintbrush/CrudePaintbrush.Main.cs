@@ -49,7 +49,7 @@ public partial class CrudePaintbrush : ApotheoticItem
         Item.useTime = 5;
         Item.autoReuse = false;
         Item.consumable = false;
-        Item.maxStack = 99;
+        Item.maxStack = 1;
         Item.rare = ItemRarityID.Red;
     }
 

@@ -20,7 +20,7 @@ namespace Verdant.Systems.Foreground.Parallax
         public EnchantedVine NextVine = null;
         public EnchantedVine PriorVine = null;
 
-        public bool perm = false;
+        public bool permanent = false;
 
         public EnchantedVine(Vector2 pos, int owner) : base(pos - new Vector2(58, 38) / 2f, Vector2.Zero, 1f, "Parallax/CloudbloomEntity")
         {

@@ -68,7 +68,7 @@ public partial class VerdantGenSystem
             }
         }
 
-        ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X, apothPos.Y);
+        ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
         StructureHelper.Generator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
 
     redoAgain:

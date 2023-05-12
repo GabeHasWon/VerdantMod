@@ -57,30 +57,31 @@ public class ProbablyDelete : ModItem
         //Item.createTile = ModContent.TileType<MysteriaTree>();
     }
 
+    readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
+    readonly static int[] InvalidWalls = new int[] { WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, WallID.GreenDungeonTileUnsafe,
+            WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe };
+
     public override bool? UseItem(Player player)
     {
-        //var pos = Main.MouseWorld.ToTileCoordinates();
-        //int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
-        //if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 4 && groundCount > 25)
-        //    StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
+        Point apothPos = Main.MouseWorld.ToTileCoordinates();
+        int side = WorldGen.genRand.NextBool(2) ? -1 : 1;
 
-        //if (!ForegroundManager.Items.Any(x => x is MysteriaDrapes drape && drape.position == pos.ToWorldCoordinates()))
-        //    ForegroundManager.AddItem(new MysteriaDrapes(pos), true);
+    redo:
+        for (int i = 0; i < 20; ++i)
+        {
+            for (int j = 0; j < 18; ++j)
+            {
+                Tile t = Framing.GetTileSafely(apothPos.X + i, apothPos.Y + j);
+                if (t.HasTile && (InvalidTypes.Contains(t.TileType) || InvalidWalls.Contains(t.WallType)))
+                {
+                    apothPos.X += WorldGen.genRand.Next(20, 27) * side;
+                    goto redo; //sorry but i had to
+                }
+            }
+        }
 
-        //Tile tile = Main.tile[pos];
-        //tile.TileFrameX = 0;
-        //tile.TileFrameY = 0;
-        //Main.NewText(tile.TileFrameX + " " + tile.TileFrameY);
-
-        //var gen = ModContent.GetInstance<RealtimeGen>();
-        //gen.CurrentActions.Add(new(MysteriaTree.RealtimeGenerate(pos.X, pos.Y, player.Center.X / 16 > pos.X ? -1 : 1, Main.rand), 0.3f));
-
-        //return true;
-        //if (!RealtimeGen.HasStructure("Testing"))
-        //    Spawn(pos);
-        //Main.NewText(Main.MouseWorld.ToTileCoordinates());
-        
-        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".TRAILER");
+        ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
+        StructureHelper.Generator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
         return true;
     }
 }

@@ -15,7 +15,9 @@
 		}
 
 		MapObject: {
-			VerdantPylon: Verdant Pylon
+			VerdantPylonTile: Verdant Pylon
+			LushCandle: Candle
+			LushCandelabra: Candelabra
 		}
 
 		TileInteraction: {

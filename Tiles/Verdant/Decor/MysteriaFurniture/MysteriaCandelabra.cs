@@ -13,25 +13,7 @@ namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
 internal class MysteriaCandelabra : ModTile
 {
-    public override void SetStaticDefaults()
-    {
-        Main.tileLighted[Type] = true;
-        Main.tileFrameImportant[Type] = true;
-        Main.tileNoAttach[Type] = true;
-        Main.tileWaterDeath[Type] = true;
-        Main.tileLavaDeath[Type] = true;
-
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-        TileObjectData.newTile.WaterDeath = true;
-        TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
-        TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-        TileObjectData.addTile(Type);
-
-        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-
-        AddMapEntry(new Color(253, 221, 3), CreateMapEntryName());
-    }
-
+    public override void SetStaticDefaults() => FurnitureHelper.CandelabraDefaults(this, new Color(124, 93, 68));
     public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<MysteriaCandelabraItem>());
 
     public override void HitWire(int i, int j)

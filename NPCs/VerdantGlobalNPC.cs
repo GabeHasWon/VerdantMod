@@ -63,6 +63,13 @@ namespace Verdant.NPCs
                         chat = "The energy in in the flowers here...it flows powerfully.";
                     else if (rand == 1)
                         chat = "I sense an ancient power within the leaves.";
+                    else if (rand == 2)
+                    {
+                        int whoAmI = NPC.FindFirstNPC(NPCID.Dryad);
+
+                        if (whoAmI != -1)
+                            chat = $"{Main.npc[whoAmI].GivenName}'s been giving me some of her stock...care to take a look? It's quite nice.";
+                    }
                 }
             }
             else if (npc.type == NPCID.DyeTrader) //loves the verdant
@@ -90,6 +97,11 @@ namespace Verdant.NPCs
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
                     chat = "These tones are gorgeous! What a wonderful landscape!";
+            }
+            else if (npc.type == NPCID.Princess)
+            {
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                    chat = "There's so many pretty colours here!";
             }
         }
     }

@@ -2,19 +2,26 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Misc;
+using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Misc;
 
 namespace Verdant.NPCs;
 
-class VerdantDryadNPC : GlobalNPC
+class VerdantVendorNPC : GlobalNPC
 {
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.Dryad;
 
     public override void SetupShop(int type, Chest shop, ref int nextSlot)
     {
-        if (type != NPCID.Dryad)
+        if (type != NPCID.Dryad && type != NPCID.WitchDoctor)
             return;
+
+        if (Main.hardMode)
+        {
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<MysteriaAcorn>());
+            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(0, 0, 1, 0);
+        }
 
         if (!ModContent.GetInstance<VerdantSystem>().microcosmUsed)
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());

@@ -26,7 +26,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Lush Door");
-			AddMapEntry(new Color(142, 62, 32), name);
+			AddMapEntry(new Color(114, 69, 39), name);
 
 			DustType = DustID.t_BorealWood;
 			AdjTiles = new int[] { TileID.OpenDoor };

@@ -32,7 +32,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-			AddMapEntry(new Color(145, 104, 51));
+			AddMapEntry(new Color(114, 69, 39));
 
 			DustType = DustID.t_BorealWood;
 			ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPlatformItem>();

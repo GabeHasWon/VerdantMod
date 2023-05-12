@@ -21,7 +21,7 @@ class YellowBulb : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.YellowBulb.", 3, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LiYellowBulbghtbulb.0", 80).
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.YellowBulb.0", 80).
             With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.YellowBulb.1", 100)).
             FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.YellowBulb.2", 80));
     }

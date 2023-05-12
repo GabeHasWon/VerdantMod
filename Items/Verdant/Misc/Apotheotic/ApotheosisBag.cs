@@ -1,5 +1,6 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Tools.Paintbrush;
 
 namespace Verdant.Items.Verdant.Misc.Apotheotic;
 
@@ -14,5 +15,6 @@ class ApotheosisBag : ModItem
     {
         itemLoot.AddCommon(ModContent.ItemType<ApotheosisBook>(), 1);
         itemLoot.AddCommon(ModContent.ItemType<WiltedFlower>(), 1);
+        itemLoot.AddCommon(ModContent.ItemType<CrudePaintbrush>(), 1);
     }
 }

@@ -20,7 +20,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(89, 47, 33));
+			AddMapEntry(new Color(114, 69, 39));
 
 			AdjTiles = new int[] { TileID.GrandfatherClocks };
 		}

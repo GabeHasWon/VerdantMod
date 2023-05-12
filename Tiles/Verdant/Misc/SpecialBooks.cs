@@ -27,9 +27,13 @@ namespace Verdant.Tiles.Verdant.Misc
             int style = tile.TileFrameX / 18;
 
             if (style <= 1)
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<LightbulbBook>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LightbulbBook>());
             else if (style <= 3)
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<LeafBook>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LeafBook>());
+            else if (style <= 5)
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<HardyVineBook>());
+            else if (style <= 7)
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<RockBook>());
 
             return false;
         }
