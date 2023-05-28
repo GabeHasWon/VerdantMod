@@ -9,7 +9,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
     internal class VerdantCandle : ModTile
     {
-        public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults(this, new Color(20, 82, 39), false);
+        public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults(this, new Color(253, 221, 3), false);
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {

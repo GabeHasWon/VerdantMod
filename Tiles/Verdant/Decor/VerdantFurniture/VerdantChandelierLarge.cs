@@ -29,8 +29,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-
-            AddMapEntry(new Color(33, 124, 22), Language.GetText("MapObject.FloorLamp"));
+            AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.Chandelier"));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierLargeItem>());

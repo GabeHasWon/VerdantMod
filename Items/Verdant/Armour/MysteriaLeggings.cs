@@ -19,8 +19,8 @@ public class MysteriaLeggings : ModItem
     {
         Item.width = 18;
         Item.height = 12;
-        Item.value = 10000;
-        Item.rare = ItemRarityID.Blue;
+        Item.value = Item.buyPrice(0, 0, 50, 0);
+        Item.rare = ItemRarityID.Orange;
         Item.defense = 3;
     }
 
@@ -36,7 +36,7 @@ public class MysteriaLeggings : ModItem
         CreateRecipe()
             .AddIngredient<MysteriaClump>(2)
             .AddIngredient<MysteriaWood>(14)
-            .AddTile(TileID.WorkBenches)
+            .AddTile(TileID.Anvils)
             .Register();
     }
 }

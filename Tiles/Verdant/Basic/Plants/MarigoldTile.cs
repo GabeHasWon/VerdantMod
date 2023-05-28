@@ -20,7 +20,7 @@ class MarigoldTile : ModTile, IFlowerTile
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
 
-        QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(143, 21, 193));
+        QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(242, 207, 82), true, false, false, "Marigold");
     }
 
     public override void PlaceInWorld(int i, int j, Item item)

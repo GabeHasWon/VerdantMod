@@ -31,7 +31,7 @@ internal class MysteriaLantern : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-        AddMapEntry(new Color(124, 93, 68), Language.GetText("MapObject.Lantern"));
+        AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.Lantern"));
     }
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -15,7 +15,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			Main.tileNoAttach[Type] = true;
 			Main.tileTable[Type] = true;
 			Main.tileLavaDeath[Type] = true;
-			Main.tileSolidTop[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new int[2] { 16, 18 };
@@ -26,7 +25,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(new Color(114, 69, 39));
+            AddMapEntry(new Color(114, 69, 39), Terraria.Localization.Language.GetText("MapObject.Sink"));
 
             AdjTiles = new int[] { TileID.Sinks };
 		}

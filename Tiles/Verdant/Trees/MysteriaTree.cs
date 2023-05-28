@@ -20,8 +20,9 @@ internal class MysteriaTree : ModTile
     {
         QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), ModContent.ItemType<MysteriaWood>(), "", true, false);
 
-        Main.tileBlendAll[Type] = true;
+        //Main.tileBlendAll[Type] = true;
         Main.tileBrick[Type] = true;
+        Main.tileMergeDirt[Type] = false;
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

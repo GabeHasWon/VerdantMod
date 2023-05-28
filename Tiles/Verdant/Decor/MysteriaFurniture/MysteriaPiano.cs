@@ -25,7 +25,7 @@ public class MysteriaPiano : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-        AddMapEntry(new Color(179, 146, 107), Language.GetText("ItemName.Piano"));
+        AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.Piano"));
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

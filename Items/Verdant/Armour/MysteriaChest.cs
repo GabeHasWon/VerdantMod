@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks.Plants;
+using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Armour;
@@ -19,8 +19,8 @@ public class MysteriaChest : ModItem
     {
         Item.width = 28;
         Item.height = 22;
-        Item.value = 10000;
-        Item.rare = ItemRarityID.Green;
+        Item.value = Item.buyPrice(0, 0, 50, 0);
+        Item.rare = ItemRarityID.Orange;
         Item.defense = 7;
     }
 
@@ -34,12 +34,10 @@ public class MysteriaChest : ModItem
 
     public override void AddRecipes()
     {
-        Recipe m = CreateRecipe();
-        m.AddIngredient(ModContent.ItemType<VerdantStrongVineMaterial>(), 6);
-        m.AddIngredient(ModContent.ItemType<PinkPetal>(), 14);
-        m.AddIngredient(ModContent.ItemType<LushLeaf>(), 20);
-        m.AddIngredient(ModContent.ItemType<YellowBulb>(), 2);
-        m.AddTile(TileID.Anvils);
-        m.Register();
+        CreateRecipe()
+            .AddIngredient<MysteriaClump>(16)
+            .AddIngredient<MysteriaWood>(20)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 }

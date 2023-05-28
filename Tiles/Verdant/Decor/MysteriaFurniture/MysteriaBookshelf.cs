@@ -21,7 +21,7 @@ public class MysteriaBookshelf : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-        AddMapEntry(new Color(124, 93, 68));
+        AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
 
         DustType = DustID.Grass;
         TileID.Sets.DisableSmartCursor[Type] = true;

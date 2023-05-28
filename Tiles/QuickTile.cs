@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -69,7 +70,8 @@ namespace Verdant.Tiles
         /// <param name="topSolid">Is the top solid?</param>
         /// <param name="solid">Is the tile solid?</param>
         /// <param name="name">Name on the map.</param>
-        public static void SetMulti(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, bool topSolid = false, bool solid = false, string name = "", Point16? origin = null, bool resetData = false)
+        public static void SetMulti(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, 
+            bool topSolid = false, bool solid = false, string name = null, Point16? origin = null)
         {
             Main.tileLavaDeath[t.Type] = lavaDeath;
             Main.tileFrameImportant[t.Type] = true;
@@ -90,12 +92,45 @@ namespace Verdant.Tiles
             TileObjectData.newTile.Origin = origin ?? new Point16(0, 0);
             TileObjectData.addTile(t.Type);
 
-            if (name != "")
+            if (name is not null)
             {
-                ModTranslation n = t.CreateMapEntryName();
-                n.SetDefault(name);
-                t.AddMapEntry(color, n);
+                var mapName = t.CreateMapEntryName();
+                mapName.SetDefault(name);
+                t.AddMapEntry(color, mapName);
             }
+            else
+                t.AddMapEntry(color);
+
+            t.DustType = dust;
+            t.HitSound = sound;
+
+            TileID.Sets.DisableSmartCursor[t.Type] = true;
+        }
+
+        public static void SetMultiLocalized(ModTile t, int w, int h, int dust, SoundStyle sound, bool tallBottom, Color color, bool lavaDeath = false, 
+            bool topSolid = false, bool solid = false, LocalizedText name = null, Point16? origin = null)
+        {
+            Main.tileLavaDeath[t.Type] = lavaDeath;
+            Main.tileFrameImportant[t.Type] = true;
+            Main.tileSolidTop[t.Type] = topSolid;
+            Main.tileSolid[t.Type] = solid;
+
+            TileObjectData.newTile.Width = w;
+            TileObjectData.newTile.Height = h;
+            TileObjectData.newTile.CoordinateHeights = new int[h];
+
+            for (int k = 0; k < h; k++)
+                TileObjectData.newTile.CoordinateHeights[k] = 16;
+            if (tallBottom)
+                TileObjectData.newTile.CoordinateHeights[h - 1] = 18;
+
+            TileObjectData.newTile.CoordinateWidth = 16;
+            TileObjectData.newTile.CoordinatePadding = 2;
+            TileObjectData.newTile.Origin = origin ?? new Point16(0, 0);
+            TileObjectData.addTile(t.Type);
+
+            if (name is not null)
+                t.AddMapEntry(color, name);
             else
                 t.AddMapEntry(color);
 

@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -14,14 +16,15 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
 			Main.tileLavaDeath[Type] = true;
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
+            TileID.Sets.HasOutlines[Type] = true;
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.newTile.Height = 5;
-            TileObjectData.newTile.Origin = new Terraria.DataStructures.Point16(0, 4);
+            TileObjectData.newTile.Origin = new Point16(0, 4);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(85, 188, 41));
-
+			AddMapEntry(new Color(33, 142, 22), Language.GetText("ItemName.GrandfatherClock"));
 			AdjTiles = new int[] { TileID.GrandfatherClocks };
 		}
 
@@ -38,7 +41,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantClockItem>());
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantClockItem>());
 	}
 }

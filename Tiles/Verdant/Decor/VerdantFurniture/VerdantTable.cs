@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
@@ -22,7 +23,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(165, 108, 58));
+            AddMapEntry(new Color(33, 142, 22), Language.GetText("MapObject.Table"));
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Tables };

@@ -285,18 +285,18 @@ public static class TileHelper
             Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X, drawCoordinates.Y + 8), new Rectangle(frameX, frameY, width, 8), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         else
         {
-            var b = tile.Slope;
+            var slope = tile.Slope;
             Rectangle frame;
             Vector2 drawPos;
 
-            if (b == SlopeType.SlopeDownLeft || b == SlopeType.SlopeDownRight)
+            if (slope == SlopeType.SlopeDownLeft || slope == SlopeType.SlopeDownRight)
             {
                 int length;
                 int height2;
 
                 for (int a = 0; a < 8; ++a)
                 {
-                    if (b == SlopeType.SlopeDownRight)
+                    if (slope == SlopeType.SlopeDownRight)
                     {
                         length = 16 - a * 2 - 2;
                         height2 = 14 - a * 2;
@@ -323,7 +323,7 @@ public static class TileHelper
 
                 for (int a = 0; a < 8; ++a)
                 {
-                    if (b == SlopeType.SlopeUpLeft)
+                    if (slope == SlopeType.SlopeUpLeft)
                     {
                         length = a * 2;
                         height2 = 16 - length;

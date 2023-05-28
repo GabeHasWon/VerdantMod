@@ -8,7 +8,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Plants;
-using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
@@ -26,6 +25,10 @@ internal class VerdantStrongVine : ModTile
         TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
         TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
         TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+        TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+        TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
+        TileObjectData.newAlternate.AnchorTop = AnchorData.Empty;
+        TileObjectData.addAlternate(0);
         TileObjectData.addTile(Type);
 
         ItemDrop = ModContent.ItemType<VerdantStrongVineMaterial>();
@@ -81,19 +84,6 @@ internal class VerdantStrongVine : ModTile
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
-        bool pink = Framing.GetTileSafely(i, j).TileFrameX == 18 && (Framing.GetTileSafely(i, j).TileFrameY == 54 || Framing.GetTileSafely(i, j).TileFrameY == 36);
-        bool red = Framing.GetTileSafely(i, j).TileFrameX == 36 && (Framing.GetTileSafely(i, j).TileFrameY == 36 || Framing.GetTileSafely(i, j).TileFrameY == 54);
-        bool valid = pink || red;
-
-        if (!noItem && valid)
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), pink ? ModContent.ItemType<PinkPetal>() : ModContent.ItemType<RedPetal>());
-
-        if (Main.netMode != NetmodeID.Server && valid)
-        {
-            var pos = new Vector2(i + Main.rand.NextFloat(), j + Main.rand.NextFloat()) * 16;
-            Gore.NewGore(new EntitySource_TileBreak(i, j), pos, new Vector2(0), Mod.Find<ModGore>(pink ? "PinkPetalFalling" : "RedPetalFalling").Type, 1);
-        }
-
         if (Main.tile[i, j + 1].TileType == Type)
             WorldGen.KillTile(i, j + 1, fail, false, false);
     }

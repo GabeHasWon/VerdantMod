@@ -35,9 +35,9 @@ namespace Verdant
         [Tooltip("$Mods.Verdant.Configs.CustomDialogueSystemTooltip")]
         public bool CustomDialogue;
 
-        [DefaultValue(true)]
-        [Label("$Mods.Verdant.Configs.FancyBookUILabel")]
-        [Tooltip("$Mods.Verdant.Configs.FancyBookUITooltip")]
-        public bool FancyBookUI;
+        //[DefaultValue(true)]
+        //[Label("$Mods.Verdant.Configs.FancyBookUILabel")]
+        //[Tooltip("$Mods.Verdant.Configs.FancyBookUITooltip")]
+        //public bool FancyBookUI;
     }
 }

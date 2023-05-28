@@ -24,7 +24,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Verdant Door");
-            AddMapEntry(new Color(142, 62, 32), name);
+            AddMapEntry(new Color(33, 142, 22), name);
 
             DustType = DustID.Grass;
 			TileID.Sets.DisableSmartCursor[Type] = true;

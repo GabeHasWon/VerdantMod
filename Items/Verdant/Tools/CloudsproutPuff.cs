@@ -6,11 +6,13 @@ using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Systems.ScreenText.Caches;
+using Verdant.Systems.ScreenText;
 
 namespace Verdant.Items.Verdant.Tools;
 
 [Sacrifice(1)]
-class CloudsproutPuff : ModItem
+class CloudsproutPuff : ApotheoticItem
 {
     public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Cloudsprout", "Floating bounce pad\nRemains even upon world exit\nLeft click on an existing cloud to remove it\nRight click for two seconds to remove all cloudsprouts");
     public override void SetDefaults() => QuickItem.SetStaff(this, 40, 20, ProjectileID.GolemFist, 9, 0, 24, 0, 0, ItemRarityID.Green);
@@ -49,5 +51,18 @@ class CloudsproutPuff : ModItem
         }
         else
             rightClickTimer = 0;
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(CloudsproutPuff))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Bouncebloom.", 2, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Bouncebloom.0", 80).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Bouncebloom.1", 50, 1f));
     }
 }

@@ -6,6 +6,7 @@ using Terraria.ObjectData;
 using Terraria.Enums;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
+using Terraria.Localization;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -34,17 +35,16 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(new Color(114, 69, 39));
+            AddMapEntry(new Color(114, 69, 39), Language.GetText("MapObject.Chair"));
 
             DustType = DustID.t_BorealWood;
-            TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Chairs };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
         public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());
 
-        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => FurnitureHelper.HasSmartInteract(i, j, settings);
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => FurnitureHelper.ChairInteract(i, j, settings);
         public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info) => FurnitureHelper.ModifySittingTargetInfo(i, j, ref info);
         public override bool RightClick(int i, int j) => FurnitureHelper.RightClick(i, j);
         public override void MouseOver(int i, int j) => FurnitureHelper.MouseOver(i, j, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushChairItem>());

@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -24,23 +25,14 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 			TileObjectData.addTile(Type);
 
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(20, 82, 39), Language.GetText("ItemName.Piano"));
+            AddMapEntry(new Color(33, 142, 22), Language.GetText("ItemName.Piano"));
         }
 
-		public override void NumDust(int i, int j, bool fail, ref int num)
-		{
-			num = fail ? 1 : 3;
-		}
+		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+		public override void SetDrawPositions(int i, int j, ref int w, ref int offsetY, ref int h, ref short x, ref short y) => offsetY = 2;
 
-		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
-		{
-			offsetY = 2;
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			//Terraria.Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Blocks.Furniture.Reach.ReachPiano>());
-		}
+		public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantPianoItem>());
 
         public override bool RightClick(int i, int j)
 		{

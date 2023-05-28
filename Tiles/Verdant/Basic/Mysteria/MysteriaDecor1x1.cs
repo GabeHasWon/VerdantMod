@@ -15,6 +15,8 @@ internal class MysteriaDecor1x1 : ModTile, IFlowerTile
         QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray());
 
         Main.tileCut[Type] = true;
+        HitSound = SoundID.Grass;
+        DustType = DustID.Grass;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
         TileID.Sets.SwaysInWindBasic[Type] = true;

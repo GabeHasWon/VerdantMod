@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -16,6 +17,7 @@ public class MysteriaClock : ModTile
         Main.tileFrameImportant[Type] = true;
         Main.tileNoAttach[Type] = true;
         Main.tileLavaDeath[Type] = true;
+        TileID.Sets.HasOutlines[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
         TileObjectData.newTile.Height = 5;
@@ -23,7 +25,7 @@ public class MysteriaClock : ModTile
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
         TileObjectData.addTile(Type);
 
-        AddMapEntry(new Color(124, 93, 68));
+        AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.GrandfatherClock"));
 
         AdjTiles = new int[] { TileID.GrandfatherClocks };
     }
@@ -45,6 +47,7 @@ public class MysteriaClock : ModTile
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
-
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushClockItem>());
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+    public override void KillMultiTile(int i, int j, int frameX, int frameY) => 
+        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaClockItem>());
 }

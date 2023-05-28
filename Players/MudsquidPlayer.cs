@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Players.Layers;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Players;
@@ -26,15 +27,19 @@ internal class MudsquidPlayer : ModPlayer
     {
         On.Terraria.Player.Update += Player_Update;
         On.Terraria.Player.ItemCheck += Player_ItemCheck;
-        On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_09_Wings += PlayerDrawLayers_DrawPlayer_09_Wings;
+        On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
     }
 
-    private void PlayerDrawLayers_DrawPlayer_09_Wings(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_09_Wings orig, ref PlayerDrawSet drawinfo)
+    private void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
     {
-        float oldStealth = drawinfo.stealth;
-        drawinfo.stealth = drawinfo.drawPlayer.GetModPlayer<MudsquidPlayer>().squidAlpha;
-        orig(ref drawinfo);
-        drawinfo.stealth = oldStealth;
+        if (drawinfo.drawPlayer.GetModPlayer<MudsquidPlayer>().squidAlpha > 0.1f)
+            orig(ref drawinfo);
+        else
+        {
+            drawinfo.DrawDataCache.Clear();
+            ModContent.GetInstance<MudsquidLayer>().DrawWithTransformationAndChildren(ref drawinfo);
+            orig(ref drawinfo);
+        }
     }
 
     private void Player_ItemCheck(On.Terraria.Player.orig_ItemCheck orig, Player self, int i)
@@ -132,11 +137,17 @@ internal class MudsquidPlayer : ModPlayer
             if (Main.rand.NextBool(chance))
                 Dust.NewDust(Player.Center - new Vector2(10), 20, 20, DustID.Mud, Player.velocity.X, Player.velocity.Y);
         }
+
+        if (!hasSquid && squidActive && !SolidCollisionTyped(Player.position, Player.width, Player.height, ValidSquidTileIDs))
+        {
+            SetSolids(true);
+            squidActive = false;
+        }
     }
 
     public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
     {
-        if (hasSquid)
+        if (IsSquid)
             (r, g, b, a) = (squidAlpha, squidAlpha, squidAlpha, squidAlpha);
     }
 

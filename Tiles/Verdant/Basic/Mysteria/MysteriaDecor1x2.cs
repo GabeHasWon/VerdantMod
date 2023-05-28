@@ -20,6 +20,7 @@ namespace Verdant.Tiles.Verdant.Basic.Mysteria
             TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
             TileObjectData.newTile.RandomStyleRange = 6;
             TileObjectData.newTile.StyleHorizontal = true;
+
             QuickTile.SetMulti(this, 1, 2, DustID.Grass, SoundID.Grass, true, new Color(148, 113, 207));
             Main.tileCut[Type] = true;
         }

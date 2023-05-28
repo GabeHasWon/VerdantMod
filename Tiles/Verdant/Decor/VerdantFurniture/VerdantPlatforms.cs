@@ -32,7 +32,7 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-			AddMapEntry(new Color(145, 104, 51));
+			AddMapEntry(new Color(33, 142, 22));
 
 			HitSound = SoundID.Grass;
 			DustType = DustID.Grass;

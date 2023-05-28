@@ -22,7 +22,7 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.StyleHorizontal = true;
 
-            QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(143, 21, 193));
+            QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(145, 7, 18));
         }
 
         public override void NearbyEffects(int i, int j, bool closer)

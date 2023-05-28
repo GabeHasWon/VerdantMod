@@ -13,26 +13,21 @@ namespace Verdant.Tiles.Verdant.Decor;
 
 public static class FurnitureHelper
 {
-    public static bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // Avoid being able to trigger it from long range
+    public static bool ChairInteract(int i, int j, SmartInteractScanSettings settings) => settings.player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance); // Avoid being able to trigger it from long range
 
     public static void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info, int nextStyleHeight = 40)
     {
         Tile tile = Framing.GetTileSafely(i, j);
 
-        //info.directionOffset = info.restingEntity is Player ? 6 : 2; // Default to 6 for players, 2 for NPCs
-        //info.visualOffset = Vector2.Zero; // Defaults to (0,0)
-
         info.TargetDirection = -1;
         if (tile.TileFrameX != 0)
-            info.TargetDirection = 1; // Facing right if sat down on the right alternate (added through addAlternate in SetStaticDefaults earlier)
+            info.TargetDirection = 1;
 
-        // The anchor represents the bottom-most tile of the chair. This is used to align the entity hitbox
-        // Since i and j may be from any coordinate of the chair, we need to adjust the anchor based on that
-        info.AnchorTilePosition.X = i; // Our chair is only 1 wide, so nothing special required
+        info.AnchorTilePosition.X = i;
         info.AnchorTilePosition.Y = j;
 
         if (tile.TileFrameY % nextStyleHeight == 0)
-            info.AnchorTilePosition.Y++; // Here, since our chair is only 2 tiles high, we can just check if the tile is the top-most one, then move it 1 down
+            info.AnchorTilePosition.Y++;
     }
 
     public static bool RightClick(int i, int j)
@@ -59,7 +54,7 @@ public static class FurnitureHelper
         player.cursorItemIconEnabled = true;
         player.cursorItemIconID = itemType;
 
-        if (Main.tile[i, j].TileFrameX / 18 < 1)
+        if (player.direction < 1)
             player.cursorItemIconReversed = true;
     }
 
@@ -72,38 +67,18 @@ public static class FurnitureHelper
         Main.tileWaterDeath[type] = true;
         Main.tileLavaDeath[type] = true;
 
+        TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
+
         if (cantPlaceInWater)
         {
-            TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
             TileObjectData.newTile.WaterDeath = true;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addTile(type);
         }
+
+        TileObjectData.addTile(type);
 
         tile.AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         tile.AddMapEntry(color, Language.GetText("ItemName.Candle"));
-    }
-
-    public static void CandelabraDefaults(ModTile tile, Color color, bool cantPlaceInWater = true)
-    {
-        int type = tile.Type;
-        Main.tileLighted[type] = true;
-        Main.tileFrameImportant[type] = true;
-        Main.tileNoAttach[type] = true;
-        Main.tileWaterDeath[type] = true;
-        Main.tileLavaDeath[type] = true;
-
-        if (cantPlaceInWater)
-        {
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-            TileObjectData.newTile.WaterDeath = true;
-            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addTile(type);
-        }
-
-        tile.AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-        tile.AddMapEntry(color, Language.GetText("ItemName.Candelabra"));
     }
 }

@@ -15,9 +15,12 @@ internal class HardmodeDecor1x1 : ModTile, IFlowerTile
         QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray());
 
         Main.tileCut[Type] = true;
+        HitSound = SoundID.Grass;
+        DustType = DustID.Grass;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
         TileID.Sets.SwaysInWindBasic[Type] = true;
+        AddMapEntry(new Color(161, 226, 99));
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -22,7 +23,7 @@ internal class MysteriaWorkbench : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-        AddMapEntry(new Color(124, 93, 68));
+        AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.WorkBench"));
 
         TileID.Sets.DisableSmartCursor[Type] = true;
         AdjTiles = new int[] { TileID.WorkBenches };

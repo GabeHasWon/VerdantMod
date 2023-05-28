@@ -19,8 +19,8 @@ public class MysteriaHelmet : ModItem
     {
         Item.width = 22;
         Item.height = 24;
-        Item.value = 0;
-        Item.rare = ItemRarityID.Green;
+        Item.value = Item.buyPrice(0, 0, 50, 0);
+        Item.rare = ItemRarityID.Orange;
         Item.defense = 5;
     }
 

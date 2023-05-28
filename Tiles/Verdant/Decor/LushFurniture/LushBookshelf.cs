@@ -21,7 +21,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.addTile(Type);
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(114, 69, 39));
+            AddMapEntry(new Color(114, 69, 39), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
 
             DustType = DustID.Grass;
             TileID.Sets.DisableSmartCursor[Type] = true;

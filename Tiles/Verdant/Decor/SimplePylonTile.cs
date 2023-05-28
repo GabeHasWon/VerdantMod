@@ -23,6 +23,7 @@ namespace Verdant.Tiles.Verdant.Decor
 		public Asset<Texture2D> mapIcon;
 
 		internal abstract string MapKeyName { get; }
+        protected abstract Color MapColor { get; }
 
         public override void Unload() => crystalTexture = highlightTexture = mapIcon = null;
 
@@ -53,7 +54,7 @@ namespace Verdant.Tiles.Verdant.Decor
 			AddToArray(ref TileID.Sets.CountsAsPylon);
 
 			ModTranslation pylonName = CreateMapEntryName();
-			AddMapEntry(Color.White, pylonName);
+			AddMapEntry(MapColor, pylonName);
 		}
 
 		public virtual bool IsSold(int npcType, Player player, bool npcHappyEnough) => true;

@@ -53,8 +53,8 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        Item.createWall = ModContent.WallType<BluescreenWall>();
-        //Item.createTile = ModContent.TileType<MysteriaTree>();
+        //Item.createWall = ModContent.WallType<BluescreenWall>();
+        Item.createTile = ModContent.TileType<FloatingCrystal>();
     }
 
     readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
@@ -63,6 +63,7 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
+        return true;
         Point apothPos = Main.MouseWorld.ToTileCoordinates();
         int side = WorldGen.genRand.NextBool(2) ? -1 : 1;
 
