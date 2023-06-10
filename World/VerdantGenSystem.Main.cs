@@ -250,14 +250,14 @@ public partial class VerdantGenSystem : ModSystem
 
     private void GenerateCircles()
     {
-        float repeats = 8 * WorldSize;
+        float repeats = 5 * WorldSize;
 
         VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3 * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(8 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
         VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
         VerdantArea.Width += 80;
         VerdantArea.Height += 80;
-
         VerdantCircles.Clear();
+
         for (int i = 0; i < repeats; ++i)
         {
             int x = (int)MathHelper.Lerp(VerdantArea.X + 50, VerdantArea.Right - 50,  i / repeats);

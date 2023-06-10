@@ -25,7 +25,7 @@ internal class BookState : UIState
         _titleScale = titleScale;
         _body = body;
 
-        if (ModContent.GetInstance<VerdantClientConfig>().FancyBookUI)
+        //if (ModContent.GetInstance<VerdantClientConfig>().FancyBookUI)
             BuildClassic();
 
         if (_body.Any(x => x is not Asset<Texture2D> && x is not string))

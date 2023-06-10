@@ -1,7 +1,5 @@
-- Fixed Hanging Tables not being properly hangable
-- Hanging Tables now need 1 Hardy Vine in their center to be placed
-- Heavily unjankified Hanging Tables
-- Fixed Hanging Tables using the wrong gores sometimes
-- Made Hardy Vines placeable on the ground as well as on ceilings
-- Fixed & updated Floating Crystals sprite
-- Made Floating Crystals move a little
+- Made Expert Guide to Plant Fiber Cordage work better
+- Fixed Root Rope and Vine Rope dropping the wrong tiles
+- Removed Fancy Book UI config option because it does nothing atm
+- Reduced size of Verdant biome
+- Added Music Display support
