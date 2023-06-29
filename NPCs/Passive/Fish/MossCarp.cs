@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Critter;
+using Verdant.Items.Verdant.Critter.Fish;
 
 namespace Verdant.NPCs.Passive.Fish;
 
@@ -31,7 +31,7 @@ public class MossCarp : ModNPC
         NPC.value = 0f;
         NPC.aiStyle = 16;
         NPC.dontCountMe = true;
-        NPC.catchItem = (short)ModContent.ItemType<FolifishItem>();
+        NPC.catchItem = (short)ModContent.ItemType<MossCarpItem>();
 
         AIType = NPCID.Goldfish;
         SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };

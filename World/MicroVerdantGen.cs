@@ -20,12 +20,12 @@ namespace Verdant.World
 {
     internal class MicroVerdantGen
     {
-        public static Queue<RealtimeStep> MicroVerdant()
+        public static Queue<RealtimeStep> MicroVerdant(Point16 position)
         {
             Dictionary<Point16, TileAction.TileActionDelegate> orderedActions = new();
             float diameter = VerdantGenSystem.WorldSize * 39;
 
-            GenCircle circle = new((int)diameter, Main.MouseWorld.ToTileCoordinates16());
+            GenCircle circle = new((int)diameter, position);
             circle.FindTiles(false, false);
 
             VerdantSystem.genNoise = new(Main.rand.Next(int.MaxValue))

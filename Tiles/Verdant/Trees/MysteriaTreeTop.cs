@@ -52,7 +52,7 @@ internal class MysteriaTreeTop : ModTile
         Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaClump>(), Main.rand.Next(3, 8));
     }
 
-    private static void ShakeTree(int x, int y)
+    internal static void ShakeTree(int x, int y)
     {
         for (int k = 0; k < WorldGen.numTreeShakes; k++)
             if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
@@ -71,7 +71,7 @@ internal class MysteriaTreeTop : ModTile
         int rand = random;
         if (rand == 1)
         {
-            int type = Main.rand.NextBool() ? ModContent.ItemType<Grapecherry>() : ModContent.ItemType<BowlFruit>();
+            int type = Main.rand.NextBool() ? ModContent.ItemType<Walnut>() : ModContent.ItemType<Mystuber>();
             Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
         }
         else if (rand == 2)

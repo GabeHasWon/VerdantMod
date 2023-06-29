@@ -29,7 +29,7 @@ namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => false;
+    public override bool IsLoadingEnabled(Mod mod) => true;
 
     public override void SetStaticDefaults()
 	{
@@ -54,7 +54,7 @@ public class ProbablyDelete : ModItem
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
         //Item.createWall = ModContent.WallType<BluescreenWall>();
-        Item.createTile = ModContent.TileType<FloatingCrystal>();
+        Item.createTile = ModContent.TileType<WaterberryBush>();
     }
 
     readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };

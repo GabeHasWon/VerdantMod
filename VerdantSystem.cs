@@ -28,8 +28,6 @@ public class VerdantSystem : ModSystem
     private int VerdantTiles;
     private int ApotheosisTiles;
 
-    public List<Projectile> Vines = new List<Projectile>();
-
     public static bool InVerdant => ModContent.GetInstance<VerdantSystem>().VerdantTiles > 40;
     public static bool NearApotheosis => ModContent.GetInstance<VerdantSystem>().ApotheosisTiles > 2;
 
@@ -105,6 +103,15 @@ public class VerdantSystem : ModSystem
     {
         ForegroundManager.Unload();
         BackgroundItemManager.Unload();
+
+        apotheosisIntro = false;
+        apotheosisGreeting = false;
+        apotheosisEyeDown = false;
+        apotheosisEvilDown = false;
+        apotheosisSkelDown = false;
+        apotheosisWallDown = false;
+        microcosmUsed = false;
+        apotheosisPestControlNotif = false;
     }
 
     private static void SaveVines(TagCompound tag)

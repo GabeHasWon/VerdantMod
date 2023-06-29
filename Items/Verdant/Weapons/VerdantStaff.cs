@@ -49,8 +49,10 @@ namespace Verdant.Items.Verdant.Weapons
                 else
                     for (int l = 0; l < adjList.Count(); ++l)
                         adjList.ElementAt(l).ai[0]++;
+
                 return false;
             }
+
             player.AddBuff(ModContent.BuffType<Buffs.Minion.HealingFlowerBuff>(), 2000);
             return true;
         }

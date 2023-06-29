@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
+using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -21,7 +22,7 @@ internal class HardmodeGen : ModSystem
 {
     public override void ModifyHardmodeTasks(List<GenPass> list)
     {
-        list.Add(new PassLegacy("Verdant Replacements", HardmodeTasks));
+        list.Add(new PassLegacy("Verdant Hardmode", HardmodeTasks));
     }
 
     public void HardmodeTasks(GenerationProgress p, GameConfiguration config)
@@ -63,6 +64,7 @@ internal class HardmodeGen : ModSystem
             int x = pos.X + WorldGen.genRand.Next(halfWidth * 2) - halfWidth;
             int y = pos.Y - 80 + WorldGen.genRand.Next(160);
             bool ground = TileHelper.ActiveType(x, y + 1, ModContent.TileType<VerdantGrassLeaves>());
+            bool safeWall = Main.tile[x, y].WallType > WallID.None && Main.wallHouse[Main.tile[x, y].WallType];
 
             if (repeats > 2000000) //Extremely unlikely fallback
             {
@@ -85,7 +87,7 @@ internal class HardmodeGen : ModSystem
                 continue;
             }
 
-            if (!ground || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
+            if (!ground || safeWall || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
                 i--;
             else
                 AddMysteriaDrapes(x, y);

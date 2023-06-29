@@ -111,7 +111,7 @@ public class PermVineWandProjectile : ModProjectile
 
             Timer--;
 
-            if (Timer <= 0)
+            if (Timer <= 0 && Projectile.owner == Main.myPlayer)
             {
                 if (!ConsumeTileWand(Main.player[Projectile.owner]))
                 {

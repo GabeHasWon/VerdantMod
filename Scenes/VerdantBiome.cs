@@ -32,7 +32,4 @@ internal class VerdantBiome : ModBiome
         bool surface = player.ZoneSkyHeight || player.ZoneOverworldHeight;
         return VerdantSystem.InVerdant && surface;
     }
-
-    public override void OnEnter(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = true;
-    public override void OnLeave(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = false;
 }

@@ -21,7 +21,7 @@ namespace Verdant.Items.Verdant.Tools
                 LastVine = ForegroundManager.AddItemDirect(new EnchantedVine(overridePosition ?? pos, owner), true, true) as EnchantedVine;
             }
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
+            if (Main.netMode != NetmodeID.SinglePlayer && !noSync)
                 new EnchantedVineModule(LastVine.position.X, LastVine.position.Y, oldVine is null ? null : (short)oldVine.WhoAmI, (short)Main.myPlayer).Send();
 
             if (oldVine != null)

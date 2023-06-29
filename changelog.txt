@@ -3,3 +3,9 @@
 - Removed Fancy Book UI config option because it does nothing atm
 - Reduced size of Verdant biome
 - Added Music Display support
+- Fixed research books trying to place on right click
+- Reset world bools on world exit
+- Fixed Verdant biome, Apotheosis biome not syncing for players
+- Added Mystuber, Waterberry food items
+- Made Mysteria trees drop Walnuts, Mystubers
+- Made Peace Canopies also drop stuff on shake, same as Mysteria tops

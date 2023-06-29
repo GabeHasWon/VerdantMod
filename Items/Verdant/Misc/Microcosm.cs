@@ -3,6 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.World;
 using Verdant.Systems.RealtimeGeneration;
+using System;
+using Terraria.DataStructures;
+using Verdant.Systems.Syncing;
 
 namespace Verdant.Items.Verdant.Misc;
 
@@ -30,10 +33,21 @@ class Microcosm : ModItem
 
     public override bool? UseItem(Player player)
     {
+        var pos = Main.MouseWorld.ToTileCoordinates16();
+
+        if (Main.myPlayer == player.whoAmI)
+            SpawnMicrocosm(pos);
+
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            new StartMicrocosmModule(pos, (short)Main.myPlayer).Send();
+        return true;
+    }
+
+    internal static void SpawnMicrocosm(Point16 position)
+    {
         ModContent.GetInstance<VerdantSystem>().microcosmUsed = true;
 
         var gen = ModContent.GetInstance<RealtimeGen>();
-        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(), 12f));
-        return true;
+        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(position), 12f));
     }
 }

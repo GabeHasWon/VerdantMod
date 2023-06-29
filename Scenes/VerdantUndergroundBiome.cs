@@ -71,8 +71,5 @@ namespace Verdant.Scenes
             Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseImageScale(new Vector2(512, 512), 1);
             Filters.Scene[EffectIDs.BiomeSteam].GetShader().UseOpacity(1f);
         }
-
-        public override void OnEnter(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = true;
-		public override void OnLeave(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = false;
 	}
 }

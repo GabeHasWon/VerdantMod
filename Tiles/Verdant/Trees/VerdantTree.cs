@@ -271,13 +271,18 @@ namespace Verdant.Tiles.Verdant.Trees
             else if (t.TileFrameX == 90 || t.TileFrameX == 144 || t.TileFrameX == 162 || t.TileFrameX == 180 || t.TileFrameX == 198 || t.TileFrameX == 288 || t.TileFrameX == 306 || t.TileFrameX == 324) //Main tree cut
             {
                 int nFrameX = Framing.GetTileSafely(i, j + 1).TileFrameX;
-                if (nFrameX == 90) Framing.GetTileSafely(i, j + 1).TileFrameX = 288;
+
+                if (nFrameX == 90) 
+                    Framing.GetTileSafely(i, j + 1).TileFrameX = 288;
+
                 if (t.TileFrameX == 144) //right branch
                 {
                     WorldGen.KillTile(i + 1, j, fail);
                     Framing.GetTileSafely(i, j + 1).TileFrameX = 306;
                 }
-                if (nFrameX == 162) Framing.GetTileSafely(i, j + 1).TileFrameX = 324;
+
+                if (nFrameX == 162) 
+                    Framing.GetTileSafely(i, j + 1).TileFrameX = 324;
             }
             else if (t.TileFrameX == 252)
                 WorldGen.KillTile(i - 1, j, fail, false, false);
@@ -302,7 +307,7 @@ namespace Verdant.Tiles.Verdant.Trees
             {
                 if (Framing.GetTileSafely(i - 1, j + 1).TileType == Type)
                     Framing.GetTileSafely(i - 1, j).TileFrameX = 180;
-                else
+                else if (Main.tile[i - 1, j].TileType == Type)
                     WorldGen.KillTile(i - 1, j);
             }
         }

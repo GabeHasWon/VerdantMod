@@ -19,7 +19,7 @@ using Verdant.Systems.ModCompat;
 namespace Verdant;
 
 public partial class VerdantMod : Mod
-	{
+{
     public static ModKeybind SquidHotkey;
     public static VerdantMod Instance;
 
@@ -94,6 +94,6 @@ public partial class VerdantMod : Mod
             return null;
         }
 
-        throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis");
+        throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis SetVerdantArea");
     }
 }

@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Systems.RealtimeGeneration;
+using Verdant.Tiles.Verdant.Basic.Mysteria;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
@@ -101,6 +102,8 @@ internal class MysteriaTree : ModTile
             int modX = x;
             int index = 0;
 
+            static bool IsImpermeable(Tile t) => WorldGen.SolidOrSlopedTile(t) || (t.HasTile && !Main.tileCut[t.TileType] && t.TileType != ModContent.TileType<MysteriaSprout>());
+
             for (int j = y; j > y - height; --j)
             {
                 if (failExit)
@@ -114,12 +117,17 @@ internal class MysteriaTree : ModTile
 
                 for (int i = 0; i < width; ++i)
                 {
-                    if (WorldGen.SolidOrSlopedTile(modX + (i * dir), j))
+                    Tile tile = Main.tile[modX + (i * dir), j];
+
+                    if (IsImpermeable(tile))
                     {
                         failExit = true;
                         break;
                     }
                 }
+
+                if (failExit)
+                    continue;
 
                 if (index == height - 1)
                 {
@@ -127,7 +135,9 @@ internal class MysteriaTree : ModTile
 
                     if (random.NextBool(3))
                     {
-                        if (WorldGen.SolidOrSlopedTile(modX, j - 1))
+                        Tile tile = Main.tile[modX, j - 1];
+
+                        if (IsImpermeable(tile))
                         {
                             failExit = true;
                             break;
@@ -135,12 +145,15 @@ internal class MysteriaTree : ModTile
                         off = 1;
                     }
 
-                    if (WorldGen.SolidOrSlopedTile(x, j - 1 - off))
+                    if (IsImpermeable(Main.tile[x, j - 1 - off]))
                     {
                         failExit = true;
                         break;
                     }
                 }
+
+                if (failExit)
+                    continue;
 
                 modX += width * dir;
                 index++;

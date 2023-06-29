@@ -13,13 +13,14 @@ using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Systems.ScreenText.Caches;
+using Verdant.Scenes;
 
 namespace Verdant;
 
 class VerdantPlayer : ModPlayer
 {
-    public bool ZoneVerdant;
-    public bool ZoneApotheosis;
+    public bool ZoneVerdant => Player.InModBiome<VerdantBiome>();
+    public bool ZoneApotheosis => Player.InModBiome<NearApotheosisBiome>();
 
     public bool heartOfGrowth = false;
     public bool expertPlantGuide = false;
@@ -44,8 +45,6 @@ class VerdantPlayer : ModPlayer
 
     public override void ResetEffects()
     {
-        ZoneApotheosis = false;
-
         if (heartOfGrowth) //perm bonus
             Player.maxMinions++;
 
@@ -108,8 +107,6 @@ class VerdantPlayer : ModPlayer
         if (ZoneVerdant && Player.Center.Y / 16f > Main.worldSurface && !ModContent.GetInstance<VerdantSystem>().apotheosisIntro)
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Intro");
     }
-
-    public override void OnEnterWorld(Player player) => player.GetModPlayer<VerdantPlayer>().ZoneVerdant = false;
 
     private void TileFloor(Point left, Point right, int lType, int rType)
     {
