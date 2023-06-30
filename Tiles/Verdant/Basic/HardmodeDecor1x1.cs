@@ -1,20 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Metadata;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
-internal class HardmodeDecor1x1 : ModTile, IFlowerTile
+internal class HardmodeDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
-    public override void SetStaticDefaults()
-    {
-        QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray());
+    protected override int StyleRange => 10;
 
+    protected override void StaticDefaults()
+    {
         Main.tileCut[Type] = true;
+
         HitSound = SoundID.Grass;
         DustType = DustID.Grass;
 
@@ -24,7 +22,6 @@ internal class HardmodeDecor1x1 : ModTile, IFlowerTile
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
-    public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) => TileHelper.CrystalSetSpriteEffects(i, j, ref spriteEffects);
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(8) };
     public bool IsFlower(int i, int j) => true;

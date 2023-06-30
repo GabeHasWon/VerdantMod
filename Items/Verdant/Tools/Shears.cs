@@ -62,5 +62,12 @@ class Shears : ModItem
         return false;
     }
 
-    public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.LivingLoom, 1, (ItemID.IronBar, 4), (ModContent.ItemType<MysteriaWood>(), 3));
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddRecipeGroup(RecipeGroupID.IronBar, 4)
+            .AddIngredient<MysteriaWood>(3)
+            .AddTile(TileID.LivingLoom)
+            .Register();
+    }
 }

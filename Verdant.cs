@@ -23,6 +23,8 @@ public partial class VerdantMod : Mod
     public static ModKeybind SquidHotkey;
     public static VerdantMod Instance;
 
+    public static bool DebugModActive => ModLoader.TryGetMod("CheatSheet", out Mod _) || ModLoader.TryGetMod("HEROsMod", out Mod _) || ModLoader.TryGetMod("DragonLens", out Mod _);
+
     public VerdantMod() 
     {
         Instance = this;

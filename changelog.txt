@@ -1,11 +1,18 @@
-- Made Expert Guide to Plant Fiber Cordage work better
-- Fixed Root Rope and Vine Rope dropping the wrong tiles
-- Removed Fancy Book UI config option because it does nothing atm
-- Reduced size of Verdant biome
+ADDITIONS:
+- Added Waterberry, Mystuber food items
+- Added Axolotl
 - Added Music Display support
+- Finished Walnut food item
+- Added Backslate & Perforated Backslate walls
+- Added Waterberry Bushes
+- Added Aquamarine microbiome
+- Added Aquamarine gem
+
+BUGFIXES:
 - Fixed research books trying to place on right click
 - Reset world bools on world exit
 - Fixed Verdant biome, Apotheosis biome not syncing for players
-- Added Mystuber, Waterberry food items
 - Made Mysteria trees drop Walnuts, Mystubers
 - Made Peace Canopies also drop stuff on shake, same as Mysteria tops
+- Made removed NPCs only be loaded if a cheat mod is active
+- Completely reprogrammed tiles that have anchors in every direction

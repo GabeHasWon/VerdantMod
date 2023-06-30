@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
+using Terraria.ObjectData;
 using Verdant.Systems.RealtimeGeneration;
 
 namespace Verdant;

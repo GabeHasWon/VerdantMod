@@ -11,6 +11,8 @@ namespace Verdant.NPCs.Passive
 {
     public class Folifish : ModNPC //yoo thanks to Nimta on discord for the name
     {
+        public override bool IsLoadingEnabled(Mod mod) => VerdantMod.DebugModActive;
+
         public override void SetStaticDefaults()
         {
             Main.npcCatchable[NPC.type] = true;

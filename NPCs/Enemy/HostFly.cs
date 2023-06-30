@@ -12,6 +12,8 @@ namespace Verdant.NPCs.Enemy
     {
         public int[] babies = new int[6];
 
+        public override bool IsLoadingEnabled(Mod mod) => VerdantMod.DebugModActive;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hostess Winglet [Removed]");

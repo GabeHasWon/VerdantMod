@@ -16,6 +16,8 @@ namespace Verdant.NPCs.Passive
         ref float Timer => ref NPC.ai[2];
         ref float ScaleSpeed => ref NPC.ai[3];
 
+        public override bool IsLoadingEnabled(Mod mod) => VerdantMod.DebugModActive;
+
         public override void SetStaticDefaults()
         {
             NPCID.Sets.CountsAsCritter[Type] = true;

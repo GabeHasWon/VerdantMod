@@ -1,25 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Metadata;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Mysteria;
 
-internal class MysteriaDecor1x1 : ModTile, IFlowerTile
+internal class MysteriaDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
-    public override void SetStaticDefaults()
-    {
-        QuickTile.CrystalAnchoringData(Type, 10, VerdantGrassLeaves.VerdantGrassList().ToArray());
+    protected override int StyleRange => 10;
 
-        Main.tileCut[Type] = true;
+    protected override void StaticDefaults()
+    {
         HitSound = SoundID.Grass;
         DustType = DustID.Grass;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
         TileID.Sets.SwaysInWindBasic[Type] = true;
+        Main.tileCut[Type] = true;
 
         AddMapEntry(new Color(148, 113, 207));
     }

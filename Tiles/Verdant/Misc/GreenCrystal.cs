@@ -7,9 +7,11 @@ using Verdant.Items.Verdant.Blocks.Misc;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-public class GreenCrystal : ModTile
+public class GreenCrystal : OmnidirectionalAnchorTile
 {
-	public override void SetStaticDefaults()
+    protected override int StyleRange => 3;
+
+    protected override void StaticDefaults()
 	{
 		Main.tileLighted[Type] = true;
 
@@ -17,14 +19,10 @@ public class GreenCrystal : ModTile
 		name.SetDefault("Green Crystal");
 		AddMapEntry(new Color(20, 145, 41), name);
 
-		QuickTile.CrystalAnchoringData(Type, 3);
-
-		HitSound = SoundID.Grass;
+		HitSound = SoundID.Shatter;
 		DustType = DustID.DungeonGreen;
 		ItemDrop = ModContent.ItemType<GreenCrystalItem>();
 	}
-
-	public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) => TileHelper.CrystalSetSpriteEffects(i, j, ref spriteEffects);
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.1f, 0.5f, 0.2f);
     public override bool IsTileSpelunkable(int i, int j) => true;
