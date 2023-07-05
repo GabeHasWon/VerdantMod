@@ -7,6 +7,7 @@ ADDITIONS:
 - Added Waterberry Bushes
 - Added Aquamarine microbiome
 - Added Aquamarine gem
+- Added Aquamarine gemspark walls and tile
 
 BUGFIXES:
 - Fixed research books trying to place on right click
@@ -16,3 +17,7 @@ BUGFIXES:
 - Made Peace Canopies also drop stuff on shake, same as Mysteria tops
 - Made removed NPCs only be loaded if a cheat mod is active
 - Completely reprogrammed tiles that have anchors in every direction
+- Minor generation adjustments
+- Made progress bar move along with Verdant generation
+- Added weighted generation to Verdant steps
+- Fixed Main.rand usage in world generation

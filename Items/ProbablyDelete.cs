@@ -63,26 +63,8 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
-        return true;
         Point apothPos = Main.MouseWorld.ToTileCoordinates();
-        int side = WorldGen.genRand.NextBool(2) ? -1 : 1;
-
-    redo:
-        for (int i = 0; i < 20; ++i)
-        {
-            for (int j = 0; j < 18; ++j)
-            {
-                Tile t = Framing.GetTileSafely(apothPos.X + i, apothPos.Y + j);
-                if (t.HasTile && (InvalidTypes.Contains(t.TileType) || InvalidWalls.Contains(t.WallType)))
-                {
-                    apothPos.X += WorldGen.genRand.Next(20, 27) * side;
-                    goto redo; //sorry but i had to
-                }
-            }
-        }
-
-        ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
-        StructureHelper.Generator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
+        AquamarineGen.SingleAquamarine(apothPos.X, apothPos.Y);
         return true;
     }
 }

@@ -21,7 +21,9 @@ public partial class VerdantGenSystem
         p.Message = "Trimming plants...";
 
         AddFlowerStructures();
+        p.Value = 0.33f;
         PlaceStructures();
+        p.Value = 0.66f;
 
         for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
         {
@@ -131,7 +133,7 @@ public partial class VerdantGenSystem
 
         for (int i = 0; i < 9 * WorldSize; ++i)
         {
-            int index = Main.rand.Next(offsets.Length);
+            int index = WorldGen.genRand.Next(offsets.Length);
             Point16 pos = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
 
             bool notNear = !positions.Any(x => Vector2.DistanceSquared(x, pos.ToVector2()) < 20 * 20);

@@ -28,6 +28,10 @@ class WaterberryBush : ModTile, IFlowerTile
         HitSound = SoundID.Grass;
 
         Main.tileLighted[Type] = true;
+
+        ModTranslation name = CreateMapEntryName();
+        name.SetDefault("Bush");
+        AddMapEntry(new Color(71, 181, 168), name);
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

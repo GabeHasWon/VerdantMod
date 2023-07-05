@@ -98,7 +98,7 @@ public partial class VerdantGenSystem
                             Framing.GetTileSafely(i, j + l).TileType = (ushort)type;
 
                             if (strong)
-                                Framing.GetTileSafely(i, j + l).TileFrameY = (short)(Main.rand.Next(4) * 18);
+                                Framing.GetTileSafely(i, j + l).TileFrameY = (short)(WorldGen.genRand.Next(4) * 18);
                         }
                         continue;
                     }
@@ -204,7 +204,7 @@ public partial class VerdantGenSystem
         //decor 1x1
         if (!Framing.GetTileSafely(i, j - 1).HasTile && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.genRand.Next(5) >= 1)
         {
-            int type = Main.rand.NextBool(2) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
+            int type = WorldGen.genRand.NextBool(2) ? ModContent.TileType<VerdantDecor1x1>() : ModContent.TileType<VerdantDecor1x1NoCut>();
             WorldGen.PlaceTile(i, j - 1, type, true, true, style: WorldGen.genRand.Next(7));
             return true;
         }

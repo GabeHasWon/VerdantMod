@@ -108,7 +108,21 @@ public class Axolotl : ModNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        float baseChance = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<BubblingWall>() ? 6f : 0f;
-        return baseChance * (spawnInfo.PlayerInTown ? 1.75f : 1f);
+        const int Distance = 8;
+
+        if (!spawnInfo.Water)
+            return 0;
+
+        for (int i = spawnInfo.SpawnTileX - Distance; i < spawnInfo.SpawnTileX + Distance; ++i)
+        {
+            for (int j = spawnInfo.SpawnTileY - Distance; j < spawnInfo.SpawnTileY + Distance; ++j)
+            {
+                int wall = Main.tile[i, j].WallType;
+
+                if (wall == ModContent.WallType<BubblingWall_Unsafe>() || wall == ModContent.WallType<BubblingWall>())
+                    return 6f * (spawnInfo.PlayerInTown ? 1.75f : 1f);
+            }
+        }
+        return 0;
     }
 }

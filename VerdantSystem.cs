@@ -234,9 +234,14 @@ public class VerdantSystem : ModSystem
 
         if (VerdantIndex != -1)
         {
-            tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration)); //Verdant biome gen
-            tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup)); //And final cleanup
+            tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration, 600)); //Verdant biome gen
+            tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup, 25)); //And final cleanup
         }
+
+        int settleWaterIndex = tasks.FindIndex(pass => pass.Name.Equals("Settle Liquids Again"));
+
+        if (settleWaterIndex != -1)
+            tasks.Insert(settleWaterIndex + 1, new PassLegacy("Aquamarine Microbiome", AquamarineGen.Gen, 40f)); //Aquamarine microbiome
 
         apotheosisIntro = false;
         apotheosisGreeting = false;

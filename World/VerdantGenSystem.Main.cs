@@ -86,7 +86,9 @@ public partial class VerdantGenSystem : ModSystem
         }
 
         GenerateCircles();
+        p.Value = 0.25f;
         CleanForCaves();
+        p.Value = 0.5f;
         AddStone();
 
         for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i) //Smooth out the biome!
@@ -95,13 +97,17 @@ public partial class VerdantGenSystem : ModSystem
                     Tile.SmoothSlope(i, j, false);
 
         p.Message = "Growing vines...";
+        p.Value = 0.6f;
         Vines();
         p.Message = "Growing flowers...";
+        p.Value = 0.7f;
         AddPlants();
         p.Message = "Watering plants...";
+        p.Value = 0.8f;
         AddWater();
         AddWaterfalls();
         p.Message = "Growing surface...";
+        p.Value = 0.9f;
         AddSurfaceVerdant();
     }
 
@@ -109,8 +115,8 @@ public partial class VerdantGenSystem : ModSystem
     {
         for (int i = 0; i < 50 * WorldSize; ++i)
         {
-            int x = Main.rand.Next(VerdantArea.Left, VerdantArea.Right);
-            int y = Main.rand.Next(VerdantArea.Top, VerdantArea.Bottom);
+            int x = WorldGen.genRand.Next(VerdantArea.Left, VerdantArea.Right);
+            int y = WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom);
             Tile tile = Main.tile[x, y];
 
             if (!WorldGen.SolidTile(tile))
@@ -250,9 +256,9 @@ public partial class VerdantGenSystem : ModSystem
 
     private void GenerateCircles()
     {
-        float repeats = 5 * WorldSize;
+        float repeats = 6 * WorldSize;
 
-        VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3 * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(8 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
+        VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3f * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(7 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
         VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
         VerdantArea.Width += 80;
         VerdantArea.Height += 80;
@@ -300,6 +306,7 @@ public partial class VerdantGenSystem : ModSystem
         {
             Tile t = Framing.GetTileSafely(point.X, point.Y);
             float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
+
             t.ClearEverything();
             if (n < -0.67f) { }
             else if (n < -0.57f)
@@ -333,7 +340,7 @@ public partial class VerdantGenSystem : ModSystem
         }
     }
 
-    private void GetVerdantArea(List<Point16> aggregateTiles)
+    private static void GetVerdantArea(List<Point16> aggregateTiles)
     {
         int left = Main.maxTilesX;
         int right = 0;

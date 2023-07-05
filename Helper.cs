@@ -40,6 +40,44 @@ namespace Verdant
             return count;
         }
 
+        public static int TileCircle(int i, int j, int w, params int[] types)
+        {
+            int count = 0;
+            for (int l = i - (w / 2); l < i + (w / 2); ++l)
+                for (int k = j - (w / 2); k < j + (w / 2); ++k)
+                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && Framing.GetTileSafely(l, k).HasTile && types.Any(x => x == Framing.GetTileSafely(l, k).TileType))
+                        count++;
+            return count;
+        }
+
+        public static int AnyTileCircle(int i, int j, int w, bool solid = false)
+        {
+            int count = 0;
+
+            for (int l = i - (w / 2); l < i + (w / 2); ++l)
+                for (int k = j - (w / 2); k < j + (w / 2); ++k)
+                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && (!solid || (solid && WorldGen.SolidOrSlopedTile(l, k))))
+                        count++;
+            return count;
+        }
+
+        public static bool FullCircle(int i, int j, int w, bool solid = false, float mult = 1f)
+        {
+            int count = 0;
+            int falseCount = 0;
+
+            for (int l = i - (w / 2); l < i + (w / 2); ++l)
+            {
+                for (int k = j - (w / 2); k < j + (w / 2); ++k)
+                {
+                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && (!solid || (solid && WorldGen.SolidOrSlopedTile(l, k))))
+                        count++;
+                    falseCount++;
+                }
+            }
+            return count >= falseCount * mult;
+        }
+
         public static bool AreaClear(int i, int j, int w, int h) => AnyTileRectangle(i, j, w, h) == 0;
 
         public static int WallRectangle(int i, int j, int w, int h)
