@@ -22,19 +22,17 @@ Q: Do I need to make a new world for the Hardmode update?
 A: If you're in hardmode, you will miss the new Mysteria microbiome. If you're not in hardmode, you will miss only one or two items.
 
 ----Credit----
---Developers--
+--Developer--
 GabeHasWon - Everything except The Plant & some music
-
-Helton Yan - Music
-Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Contributors--
 gentleMar - Localization commit
+Helton Yan - "Vibrant Horizon" track
+Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback --
 
 Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
-Aeterna - A payment of 750 schmeckles
 /u/Nervous-General3220 - Zipvine name
 
 --Community Contributors--
@@ -51,11 +49,6 @@ And, of course,
 - hoosfire
 - Effejn
 - egshels
-
--Contest Winners-
-Ferox, First Place 02/11/23 - Study structure, green crystals (and hanging crystals) concepts
-n7xe, Second Place 02/11/23 - Flotie of Wrath, overgrown bricks concepts
-Cobra, Third Place 02/11/23 - Floral Tea concept, snake Apotheosis quote
 
 ----Socials / Links----
 These are various links to me/my projects/the Mod's discord. 

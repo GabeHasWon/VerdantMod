@@ -43,15 +43,22 @@ internal class AquamarineGen
 
     public static void SingleAquamarine(int x, int y)
     {
+        const int BiomeWidth = 16;
+
+        for (int i = 0; i < 2 + VerdantGenSystem.WorldSize; ++i)
+        {
+            int dX = x + WorldGen.genRand.Next(-BiomeWidth / 2, BiomeWidth / 2);
+            int dY = y + WorldGen.genRand.Next(-BiomeWidth / 2, BiomeWidth / 2);
+            WorldGen.TileRunner(dX, dY, 3, 11, ModContent.TileType<BackslateTile>(), false, 0, 0, false, true);
+        }
+
         Dictionary<GroundedType, List<Point>> grounds = new()
         {
             { GroundedType.DoubleWide, new List<Point>() },
             { GroundedType.Single, new List<Point>() }
         };
 
-        const int BiomeWidth = 16;
-
-        int[] killables = new int[] { ModContent.TileType<VerdantDecor1x1>(), ModContent.TileType<VerdantDecor1x1NoCut>(), ModContent.TileType<VerdantDecor1x2>(), 
+        int[] killables = new int[] { ModContent.TileType<VerdantDecor1x1>(), ModContent.TileType<VerdantDecor1x1NoCut>(), ModContent.TileType<VerdantDecor1x2>(),
             ModContent.TileType<VerdantDecor1x3>(), ModContent.TileType<VerdantDecor2x1>(), ModContent.TileType<VerdantDecor2x2>(), ModContent.TileType<PuffDecor1x1>(),
             ModContent.TileType<PuffDecor1x2>() };
 

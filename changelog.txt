@@ -21,3 +21,4 @@ BUGFIXES:
 - Made progress bar move along with Verdant generation
 - Added weighted generation to Verdant steps
 - Fixed Main.rand usage in world generation
+- Adjusted Weeping Bud tooltip

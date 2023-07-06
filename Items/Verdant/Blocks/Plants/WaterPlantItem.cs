@@ -8,7 +8,7 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class WaterPlantItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Weeping Bud", "A remnant, weeping forever");
+        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Weeping Bud", "'A remnant, weeping forever'");
         public override void SetDefaults() => QuickItem.SetBlock(this, 36, 28, ModContent.TileType<WaterPlant>());
 
         public override void AddRecipes()

@@ -63,6 +63,7 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
+        return true;
         Point apothPos = Main.MouseWorld.ToTileCoordinates();
         AquamarineGen.SingleAquamarine(apothPos.X, apothPos.Y);
         return true;
