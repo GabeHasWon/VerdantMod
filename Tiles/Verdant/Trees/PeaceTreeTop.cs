@@ -55,12 +55,10 @@ internal class PeaceTreeTop : ModTile
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
-        if (fail && !effectOnly && !noItem)
-            MysteriaTreeTop.ShakeTree(i, j);
-
         if (fail || noItem)
             return;
 
+        MysteriaTreeTop.ShakeTree(i, j);
         Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaAcorn>(), Main.rand.Next(1, 3));
         Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaClump>(), Main.rand.Next(3, 8));
     }

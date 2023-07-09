@@ -159,4 +159,21 @@ internal class AquamarineGen
         Single,
         DoubleWide
     }
+
+    internal static void SpamGems(GenerationProgress progress, GameConfiguration configuration)
+    {
+        float repeats = 150 * VerdantGenSystem.WorldSize;
+
+        for (int i = 0; i < repeats; ++i) //Aquamarine
+        {
+            Point p = new(WorldGen.genRand.Next(40, Main.maxTilesX - 40), WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200));
+            while (!TileHelper.ActiveType(p.X, p.Y, TileID.Stone, TileID.ClayBlock))
+                p = new(WorldGen.genRand.Next(40, Main.maxTilesX - 40), WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200));
+
+            float str = WorldGen.genRand.NextFloat(2, 5);
+            WorldGen.TileRunner(p.X, p.Y, str, WorldGen.genRand.Next(5, 15), ModContent.TileType<EmbeddedStoneAquamarine>(), false, 0, 0, false, true);
+
+            progress.Value = i / repeats;
+        }
+    }
 }

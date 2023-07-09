@@ -49,7 +49,7 @@ namespace Verdant.NPCs.Passive
             NPC.knockBackResist = 0f;
             NPC.aiStyle = -1;
             NPC.dontCountMe = true;
-            NPC.catchItem = (short)ModContent.ItemType<FlotieItem>();
+            NPC.catchItem = (short)ModContent.ItemType<BumblebeeItem>();
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
         }
 

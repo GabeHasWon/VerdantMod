@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
-namespace Verdant.Items;
+namespace Verdant.Items.Global;
 
 class AcornGlobal : GlobalItem
 {

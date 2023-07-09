@@ -1,24 +1,12 @@
-ADDITIONS:
-- Added Waterberry, Mystuber food items
-- Added Axolotl
-- Added Music Display support
-- Finished Walnut food item
-- Added Backslate & Perforated Backslate walls
-- Added Waterberry Bushes
-- Added Aquamarine microbiome
-- Added Aquamarine gem
-- Added Aquamarine gemspark walls and tile
-
-BUGFIXES:
-- Fixed research books trying to place on right click
-- Reset world bools on world exit
-- Fixed Verdant biome, Apotheosis biome not syncing for players
-- Made Mysteria trees drop Walnuts, Mystubers
-- Made Peace Canopies also drop stuff on shake, same as Mysteria tops
-- Made removed NPCs only be loaded if a cheat mod is active
-- Completely reprogrammed tiles that have anchors in every direction
-- Minor generation adjustments
-- Made progress bar move along with Verdant generation
-- Added weighted generation to Verdant steps
-- Fixed Main.rand usage in world generation
-- Adjusted Weeping Bud tooltip
+- Made Mysteria treetops "shake" when destroyed
+- Made all Aquamarine items craftable with Thorium's Aquamarine
+- Made Microcosm spawn faster
+- Made Microcosm not spawn Apotheosis if the Apotheosis already exists in-world
+- Made Microcosm usable as many times as desired, with an exponential price increase to deter farming
+- Dryad/Witch Doctor now sell Waterberry Bushes
+- Added Backslate, Aquamarine to Microcosm
+- Increased rate of water in Microcosms
+- Made Microcosm account for, and set, Apotheosis Location (for Gemflower and future content reasons)
+- Made Microcosm update Apotheosis if the world is in hardmode
+- Fixed Hardmode Apotheosis having breakable anchors
+- Increased Microcosm price to 3 platinum

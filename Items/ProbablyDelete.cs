@@ -54,7 +54,7 @@ public class ProbablyDelete : ModItem
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
         //Item.createWall = ModContent.WallType<BluescreenWall>();
-        Item.createTile = ModContent.TileType<WaterberryBush>();
+        Item.createTile = ModContent.TileType<LilyPad>();
     }
 
     readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };

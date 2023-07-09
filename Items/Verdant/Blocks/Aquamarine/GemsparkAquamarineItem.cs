@@ -8,5 +8,13 @@ public class GemsparkAquamarineItem : ModItem
 {
     public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Aquamarine Gemspark");
     public override void SetDefaults() => QuickItem.SetBlock(this, 24, 24, ModContent.TileType<GemsparkAquamarine>());
-    public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.WorkBenches, 20, (ItemID.Glass, 20), (ModContent.ItemType<AquamarineItem>(), 1));
+
+    public override void AddRecipes()
+    {
+        CreateRecipe(20)
+            .AddRecipeGroup(RecipeGroupSystem.AquamarineRecipeGroup)
+            .AddIngredient(ItemID.Glass, 20)
+            .AddTile(TileID.WorkBenches)
+            .Register();
+    }
 }

@@ -26,9 +26,12 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
     public override void SetStaticDefaults()
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+
         QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
+
         glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
         alphaTex = ModContent.Request<Texture2D>(Texture + "_GlowAlpha");
+        AdjTiles = new int[] { ModContent.TileType<Apotheosis>() }; 
     }
 
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => false;

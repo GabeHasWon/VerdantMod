@@ -12,8 +12,6 @@ namespace Verdant.NPCs.Passive.Fish;
 
 public class Axolotl : ModNPC
 {
-    private Player Target => Main.player[NPC.target];
-
     private ref float Timer => ref NPC.ai[0];
 
     public override void SetStaticDefaults()
@@ -50,7 +48,7 @@ public class Axolotl : ModNPC
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
     {
         bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A bizarre specimen, mostly aquatic but survives on land just fine...if a little jumpy."),
+            new FlavorTextBestiaryInfoElement("A mostly aquatic creature, though it survives on land just fine...if a little jumpy. It enjoys the holes in some backslate walls."),
         });
     }
 

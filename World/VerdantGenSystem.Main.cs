@@ -14,6 +14,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles;
 using Terraria.IO;
 using System;
+using Verdant.Tiles.Verdant.Basic.Aquamarine;
 
 namespace Verdant.World;
 
@@ -89,7 +90,7 @@ public partial class VerdantGenSystem : ModSystem
         p.Value = 0.25f;
         CleanForCaves();
         p.Value = 0.5f;
-        AddStone();
+        AddStones();
 
         for (int i = VerdantArea.Left; i < VerdantArea.Right; ++i) //Smooth out the biome!
             for (int j = VerdantArea.Top; j < VerdantArea.Bottom; ++j)
@@ -213,7 +214,7 @@ public partial class VerdantGenSystem : ModSystem
         StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", spawnPos + new Point16(0, tryRepeats), VerdantMod.Instance);
     }
 
-    private static void AddStone()
+    private static void AddStones()
     {
         for (int i = 0; i < 50 * WorldSize; ++i) //Stones
         {
@@ -234,6 +235,14 @@ public partial class VerdantGenSystem : ModSystem
             while (!TileHelper.ActiveType(p.X, p.Y, ModContent.TileType<LushSoil>()))
                 p = new Point(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             WorldGen.TileRunner(p.X, p.Y, WorldGen.genRand.NextFloat(2, 8), WorldGen.genRand.Next(5, 15), TileID.Platinum, false, 0, 0, false, true);
+        }
+
+        for (int i = 0; i < 12 * WorldSize; ++i) //Aquamarine
+        {
+            Point p = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
+            while (!TileHelper.ActiveType(p.X, p.Y, ModContent.TileType<LushSoil>()))
+                p = new Point(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
+            WorldGen.TileRunner(p.X, p.Y, WorldGen.genRand.NextFloat(2, 4), WorldGen.genRand.Next(5, 15), ModContent.TileType<EmbeddedAquamarine>(), false, 0, 0, false, true);
         }
     }
 

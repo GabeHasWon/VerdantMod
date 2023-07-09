@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Misc;
@@ -23,8 +24,10 @@ class VerdantVendorNPC : GlobalNPC
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(0, 0, 1, 0);
         }
 
-        if (!ModContent.GetInstance<VerdantSystem>().microcosmUsed)
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());
+        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());
+
+        shop.item[nextSlot].SetDefaults(ModContent.ItemType<WaterberryBushItem>());
+        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(0, 0, 15, 0);
 
         if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());

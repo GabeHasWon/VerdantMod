@@ -1,5 +1,6 @@
 ﻿using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
+using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.Items.Verdant.Blocks.Aquamarine;
 

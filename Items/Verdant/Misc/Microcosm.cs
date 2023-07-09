@@ -15,21 +15,20 @@ class Microcosm : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Microcosm");
-        Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This overrides a LARGE area (minimum 60x60 tiles on a small world)\nMake sure you use this in a place you don't care about!\nCan only be used once per world");
+        Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This overrides a LARGE area (minimum 60x60 tiles on a small world)\n" +
+            "Make sure you use this in a place you don't care about!\n");
     }
 
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Yellow;
-        Item.value = Item.buyPrice(gold: 30);
+        Item.value = Item.buyPrice(platinum: 3);
         Item.consumable = true;
         Item.width = 24;
         Item.height = 34;
         Item.useAnimation = Item.useTime = 20;
         Item.useStyle = ItemUseStyleID.HoldUp;
     }
-
-    public override bool CanUseItem(Player player) => !ModContent.GetInstance<VerdantSystem>().microcosmUsed;
 
     public override bool? UseItem(Player player)
     {
@@ -45,9 +44,7 @@ class Microcosm : ModItem
 
     internal static void SpawnMicrocosm(Point16 position)
     {
-        ModContent.GetInstance<VerdantSystem>().microcosmUsed = true;
-
         var gen = ModContent.GetInstance<RealtimeGen>();
-        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(position), 12f));
+        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(position), 15f));
     }
 }

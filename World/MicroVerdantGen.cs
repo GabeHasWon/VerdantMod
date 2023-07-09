@@ -15,6 +15,8 @@ using Verdant.Tiles.Verdant.Mounted;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.Walls;
 using Verdant.Systems.RealtimeGeneration;
+using Verdant.Tiles.Verdant.Basic.Aquamarine;
+using Verdant.Tiles.Verdant.Decor;
 
 namespace Verdant.World
 {
@@ -85,6 +87,7 @@ namespace Verdant.World
                     orderedActions.Add(point, action);
             }
 
+            AddOres(circle.tiles, orderedActions);
             Add1xXFoliage(circle.tiles, orderedActions);
 
             var queue = new Queue<RealtimeStep>();
@@ -93,23 +96,59 @@ namespace Verdant.World
 
             PostGenFunctions(circle.tiles, queue);
 
-            queue.Enqueue(new(circle.center, (int x, int y, ref bool success) =>
+            if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is null)
             {
-                success = true;
-                var size = Point16.Zero;
-                StructureHelper.Generator.GetDimensions("World/Structures/ApotheosisGlass", VerdantMod.Instance, ref size);
-                Point16 pos = new(x - (size.X / 2), y - (size.Y / 2));
-                StructureHelper.Generator.GenerateStructure("World/Structures/ApotheosisGlass", pos, VerdantMod.Instance);
+                queue.Enqueue(new(circle.center, (int x, int y, ref bool success) =>
+                {
+                    success = true;
+                    var size = Point16.Zero;
+                    StructureHelper.Generator.GetDimensions("World/Structures/ApotheosisGlass", VerdantMod.Instance, ref size);
+                    Point16 pos = new(x - (size.X / 2), y - (size.Y / 2));
+                    StructureHelper.Generator.GenerateStructure("World/Structures/ApotheosisGlass", pos, VerdantMod.Instance);
 
-                for (int i = pos.X - 1; i < pos.X + size.X + 1; ++i)
-                    for (int j = pos.Y - 1; j < pos.Y + size.Y + 1; ++j)
-                        WorldGen.TileFrame(i, j, true, true);
-            }));
+                    for (int i = pos.X - 1; i < pos.X + size.X + 1; ++i)
+                        for (int j = pos.Y - 1; j < pos.Y + size.Y + 1; ++j)
+                            if (Main.hardMode && Main.tile[i, j].TileType == ModContent.TileType<Apotheosis>())
+                                Main.tile[i, j].TileType = (ushort)ModContent.TileType<HardmodeApotheosis>();
+
+                    for (int i = pos.X - 1; i < pos.X + size.X + 1; ++i)
+                        for (int j = pos.Y - 1; j < pos.Y + size.Y + 1; ++j)
+                            WorldGen.TileFrame(i, j);
+
+                    ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = pos + new Point16(size.X / 2, size.Y / 2);
+                }));
+            }
 
             foreach (var pos in circle.tiles)
                 queue.Enqueue(new(pos, SpawnTree));
 
             return queue;
+        }
+
+        private static void AddOres(List<Point16> tiles, Dictionary<Point16, TileAction.TileActionDelegate> orderedActions)
+        {
+            foreach (var point in tiles)
+            {
+                void AddVeins(int x, int y, ref bool success)
+                {
+                    if (Main.rand.NextBool(120))
+                    {
+                        WorldGen.TileRunner(x, y, 5, 4, ModContent.TileType<BackslateTile>(), false, 0, 0, false, true);
+                        success = true;
+                    }
+
+                    if (Main.rand.NextBool(80))
+                    {
+                        WorldGen.TileRunner(x, y, 2, 8, ModContent.TileType<EmbeddedAquamarine>(), false, 0, 0, false, true);
+                        success = true;
+                    }
+                }
+
+                if (orderedActions.ContainsKey(point))
+                    orderedActions[point] += AddVeins;
+                else
+                    orderedActions.Add(point, AddVeins);
+            }
         }
 
         private static void PostGenFunctions(List<Point16> tiles, Queue<RealtimeStep> queue)
@@ -145,7 +184,7 @@ namespace Verdant.World
 
         public static void SpawnWater(int x, int y, ref bool success)
         {
-            if (!WorldGen.SolidTile(x, y) && Main.rand.NextBool(12))
+            if (!WorldGen.SolidTile(x, y) && Main.rand.NextBool(10))
             {
                 WorldGen.PlaceLiquid(x, y, LiquidID.Water, 255);
                 success = true;

@@ -11,6 +11,7 @@ public abstract class FoodItem : ModItem
 	internal abstract Point Size { get; }
 	internal virtual int Rarity => ItemRarityID.Blue;
 	internal virtual bool Consumeable => true;
+    internal virtual int BuffTime => 5 * 60 * 60;
 
 	public sealed override void SetStaticDefaults()
 	{
@@ -33,7 +34,7 @@ public abstract class FoodItem : ModItem
 		Item.consumable = Consumeable;
 		Item.autoReuse = false;
 		Item.UseSound = SoundID.Item2;
-		Item.buffTime = 5 * 60 * 60;
+		Item.buffTime = BuffTime;
 		Item.buffType = BuffID.WellFed;
 
 		Defaults();

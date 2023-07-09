@@ -26,7 +26,7 @@ internal class VerdantLillie : ModTile, IFlowerTile
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
     {
-        if (!Framing.GetTileSafely(i, j - 1).HasTile)
+        if (!TileHelper.ActiveType(i, j - 1, Type))
             Framing.GetTileSafely(i, j).TileFrameX = 18;
         else
             Framing.GetTileSafely(i, j).TileFrameX = 0;
@@ -45,7 +45,21 @@ internal class VerdantLillie : ModTile, IFlowerTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (!Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(2)&& Framing.GetTileSafely(i, j).LiquidAmount > 155)
+        bool canPlaceLilyPad = true;
+
+        for (int x = i - 1; x < i + 2; ++x)
+        {
+            if (Main.tile[x, j - 1].HasTile)
+            {
+                canPlaceLilyPad = false;
+                break;
+            }
+        }
+
+        if (canPlaceLilyPad && Main.tile[i, j - 1].LiquidAmount > 20 && Main.tile[i, j - 2].LiquidAmount == 0)
+            WorldGen.PlaceObject(i, j - 1, ModContent.TileType<LilyPad>(), true);
+
+        if (!Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(2) && Framing.GetTileSafely(i, j).LiquidAmount > 155)
             WorldGen.PlaceTile(i, j - 1, Type, true, false);
 
         if (Framing.GetTileSafely(i, j).TileFrameX != 0 && Framing.GetTileSafely(i, j).TileFrameY < 54 && Main.rand.NextBool(1)&& Framing.GetTileSafely(i, j).LiquidAmount < 155)
@@ -70,19 +84,22 @@ internal class VerdantLillie : ModTile, IFlowerTile
             WorldGen.KillTile(i, j - 1, false, false, false);
     }
 
+    public static float SineOffset(int i, int j) => (float)Math.Sin((Main.GameUpdateCount + (i * 24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;
+
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile t = Framing.GetTileSafely(i, j);
         Texture2D tile = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Basic/Plants/VerdantLillie").Value;
         Color col = Lighting.GetColor(i, j);
 
-        float xOff = (float)Math.Sin((Main.GameUpdateCount + (i*24) + (j * 19)) * (0.04f * (!Lighting.NotRetro ? 0f : 1))) * 1.3f;
+        float xOff = SineOffset(i, j);
         if (Framing.GetTileSafely(i, j + 1).TileType != Type)
             xOff *= 0.25f;
         else if (Framing.GetTileSafely(i, j + 2).TileType != Type)
             xOff *= 0.5f;
         else if (Framing.GetTileSafely(i, j + 3).TileType != Type)
             xOff *= 0.75f;
+
         spriteBatch.Draw(tile, TileHelper.TileCustomPosition(i, j) - new Vector2(xOff, 0), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         return false;
     }

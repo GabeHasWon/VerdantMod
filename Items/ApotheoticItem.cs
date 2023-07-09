@@ -5,7 +5,7 @@ using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Tiles.Verdant.Decor;
 
-namespace Verdant.Items.Verdant;
+namespace Verdant.Items;
 
 public abstract class ApotheoticItem : ModItem, IDialogueCache
 {

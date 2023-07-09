@@ -43,8 +43,6 @@ public class VerdantSystem : ModSystem
 
     public Dictionary<string, bool> apotheosisDowns = new() { { "anyMech", false }, { "plantera", false }, { "golem", false }, { "moonLord", false } };
 
-    public bool microcosmUsed = false;
-
     public override void SaveWorldData(TagCompound tag)
     {
         var apotheosisStats = new List<string>();
@@ -61,7 +59,6 @@ public class VerdantSystem : ModSystem
         AddIfTrue(apotheosisEvilDown, "evilDown");
         AddIfTrue(apotheosisSkelDown, "skelDown");
         AddIfTrue(apotheosisWallDown, "wallDown");
-        AddIfTrue(microcosmUsed, "microcosm");
         AddIfTrue(apotheosisPestControlNotif, "pestControlNotif");
 
         foreach (var pair in apotheosisDowns)
@@ -110,7 +107,6 @@ public class VerdantSystem : ModSystem
         apotheosisEvilDown = false;
         apotheosisSkelDown = false;
         apotheosisWallDown = false;
-        microcosmUsed = false;
         apotheosisPestControlNotif = false;
     }
 
@@ -141,7 +137,6 @@ public class VerdantSystem : ModSystem
         apotheosisEvilDown = stats.Contains("evilDown");
         apotheosisSkelDown = stats.Contains("skelDown");
         apotheosisWallDown = stats.Contains("wallDown");
-        microcosmUsed = stats.Contains("microcosm");
         apotheosisPestControlNotif = stats.Contains("pestControlNotif");
 
         foreach (var pair in apotheosisDowns)
@@ -236,6 +231,7 @@ public class VerdantSystem : ModSystem
         {
             tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration, 600)); //Verdant biome gen
             tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup, 25)); //And final cleanup
+            tasks.Insert(VerdantIndex - 1, new PassLegacy("Spam Aquamarine", AquamarineGen.SpamGems, 2f));
         }
 
         int settleWaterIndex = tasks.FindIndex(pass => pass.Name.Equals("Settle Liquids Again"));
@@ -249,7 +245,6 @@ public class VerdantSystem : ModSystem
         apotheosisSkelDown = false;
         apotheosisWallDown = false;
         apotheosisEyeDown = false;
-        microcosmUsed = false;
 
         foreach (var pair in apotheosisDowns)
             apotheosisDowns[pair.Key] = false;
