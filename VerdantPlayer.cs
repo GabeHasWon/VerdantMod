@@ -8,7 +8,6 @@ using Verdant.Backgrounds.BGItem.Verdant;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Equipables;
-using Verdant.Items.Verdant.Fishing;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -19,7 +18,7 @@ namespace Verdant;
 
 class VerdantPlayer : ModPlayer
 {
-    public bool ZoneVerdant => Player.InModBiome<VerdantBiome>();
+    public bool ZoneVerdant => Player.InModBiome<VerdantBiome>() || Player.InModBiome<VerdantUndergroundBiome>();
     public bool ZoneApotheosis => Player.InModBiome<NearApotheosisBiome>();
 
     public bool heartOfGrowth = false;

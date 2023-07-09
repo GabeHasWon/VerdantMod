@@ -139,16 +139,16 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             }
 
             //tile's left decor
-            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
+            if (TileHelper.ValidLeft(self) && !Framing.GetTileSafely(i - 1, j).HasTile && Main.rand.NextBool(5))
             {
-                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), (0, style - 1));
+                PlaceSynced(i - 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Right>(), out int style), (0, style - 1));
                 return true;
             }
 
             //tile's right decor
-            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
+            if (TileHelper.ValidRight(self) && !Framing.GetTileSafely(i + 1, j).HasTile && Main.rand.NextBool(5))
             {
-                PlaceSynced(i, j - 1, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), (0, style - 1));
+                PlaceSynced(i + 1, j, Decor1x1Type(i, j, ModContent.TileType<Decor1x1Left>(), out int style), (0, style - 1));
                 return true;
             }
 

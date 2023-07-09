@@ -1,12 +1,5 @@
-- Made Mysteria treetops "shake" when destroyed
-- Made all Aquamarine items craftable with Thorium's Aquamarine
-- Made Microcosm spawn faster
-- Made Microcosm not spawn Apotheosis if the Apotheosis already exists in-world
-- Made Microcosm usable as many times as desired, with an exponential price increase to deter farming
-- Dryad/Witch Doctor now sell Waterberry Bushes
-- Added Backslate, Aquamarine to Microcosm
-- Increased rate of water in Microcosms
-- Made Microcosm account for, and set, Apotheosis Location (for Gemflower and future content reasons)
-- Made Microcosm update Apotheosis if the world is in hardmode
-- Fixed Hardmode Apotheosis having breakable anchors
-- Increased Microcosm price to 3 platinum
+- Updated Music Display compatibility
+- Fixed Vine Wall not being un-craftable back into a Lush Leaf
+- Fixed left/right decor placing poorly
+- Fixed left/right decor placing over existing objects, breaking things
+- Updated biome check for verdant fishing

@@ -9,11 +9,11 @@ internal class MusicDisplayCalls : ModSystem
 		if (!ModLoader.TryGetMod("MusicDisplay", out Mod display))
 			return;
 
-		void AddMusic(string path, string name) => display.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, path), name, "Verdant");
+		void AddMusic(string path, string name, string author) => display.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, path), name, "by " + author, "Verdant");
 
-		AddMusic("Sounds/Music/ApotheosisLullaby", "GabeHasWon, Liz - Apotheosis Lullaby (Apotheosis Theme)");
-		AddMusic("Sounds/Music/PetalsFall", "GabeHasWon, Liz - Petals Fall (Raining Verdant Theme)");
-		AddMusic("Sounds/Music/TearRain", "GabeHasWon - Tear Rain (Underground Verdant Theme)");
-		AddMusic("Sounds/Music/VibrantHorizon", "Heltonyan - Vibrant Horizon (Verdant Day Theme)");
+		AddMusic("Sounds/Music/TearRain", "Tear Rain (Underground Verdant Theme)", "GabeHasWon");
+		AddMusic("Sounds/Music/ApotheosisLullaby", "Apotheosis Lullaby (Apotheosis Theme)", "GabeHasWon & Liz");
+        AddMusic("Sounds/Music/PetalsFall", "Petals Fall (Raining Verdant Theme)", "GabeHasWon & Liz");
+		AddMusic("Sounds/Music/VibrantHorizon", "Vibrant Horizon (Verdant Day Theme)", "Heltonyan");
 	}
 }
