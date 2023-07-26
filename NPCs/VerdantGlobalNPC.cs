@@ -12,7 +12,7 @@ namespace Verdant.NPCs
         public override void SetStaticDefaults()
         {
             NPCHappiness.Get(NPCID.Dryad).SetBiomeAffection<VerdantBiome>(AffectionLevel.Love).SetBiomeAffection<VerdantUndergroundBiome>(AffectionLevel.Love);
-            NPCHappiness.Get(NPCID.TaxCollector).SetBiomeAffection<VerdantBiome>(AffectionLevel.Dislike);
+            NPCHappiness.Get(NPCID.TaxCollector).SetBiomeAffection<VerdantBiome>(AffectionLevel.Dislike).SetBiomeAffection<VerdantUndergroundBiome>(AffectionLevel.Dislike);
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)

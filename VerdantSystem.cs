@@ -230,7 +230,7 @@ public class VerdantSystem : ModSystem
         if (VerdantIndex != -1)
         {
             tasks.Insert(VerdantIndex + 1, new PassLegacy("Verdant Biome", genSystem.VerdantGeneration, 600)); //Verdant biome gen
-            tasks.Add(new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup, 25)); //And final cleanup
+            tasks.Insert(tasks.Count - 2, new PassLegacy("Verdant Cleanup", genSystem.VerdantCleanup, 25)); //And final cleanup
             tasks.Insert(VerdantIndex - 1, new PassLegacy("Spam Aquamarine", AquamarineGen.SpamGems, 2f));
         }
 

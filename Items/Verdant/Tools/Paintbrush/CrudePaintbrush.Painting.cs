@@ -94,7 +94,7 @@ public partial class CrudePaintbrush : ApotheoticItem
     private void OvalPlacement(Player player)
     {
         _locations.Add(Main.MouseWorld.ToTileCoordinates());
-        
+
         if (_locations.Count > 1)
         {
             _lastChanges.Clear();
@@ -163,7 +163,7 @@ public partial class CrudePaintbrush : ApotheoticItem
         {
             Item item = player.inventory[i];
 
-            if (!item.IsAir && item.type == GetTileWand())
+            if (!item.IsAir && item.type == GetTileWand() && item.consumable)
             {
                 if (count <= 0)
                     break;
@@ -189,5 +189,13 @@ public partial class CrudePaintbrush : ApotheoticItem
         return item.tileWand > ItemID.None ? item.tileWand : item.type;
     }
 
-    public int GetTileAmmo(Player player) => player.CountItem(GetTileWand(), int.MaxValue) - 1;
+    public int GetTileAmmo(Player player)
+    {
+        int wand = GetTileWand();
+
+        if (!ContentSamples.ItemsByType[wand].consumable)
+            return 9999;
+
+        return player.CountItem(wand, int.MaxValue) - 1;
+    }
 }

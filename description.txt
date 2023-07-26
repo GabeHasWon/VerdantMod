@@ -4,7 +4,7 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 211 new items
+    - 212 new items
     - 150 new tiles
     - 22 new walls
     - 18 new NPCs
@@ -49,7 +49,7 @@ Kolya, hoosfire, Effejn, egshels
 ----Socials / Links----
 These are various links to me/my projects/the Mod's discord. 
 If you have something to say, be it a bug or a report, balance to comment on, or a complaint about the lack of snails, do report it to the Discord.
-For those in-game looking at this, all of these links can be found in the homepage, which is the Discord.
+For those in-game looking at this, all of these links can be found in the homepage as well.
 
 Discord: https://discord.gg/FAnwxtM2vc
 Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#post-2572017

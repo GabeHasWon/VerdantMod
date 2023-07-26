@@ -7,8 +7,8 @@ namespace Verdant.Items.Verdant.Blocks.Mysteria;
 
 public class PeaceTreetopItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Peace Canopy", "Places a Peace canopy\nBeing near the Peace canopy reduces spawn rates and\nreverts" +
-        " spawns to pre-hardmode.");
+    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Peace Canopy", "Can only be placed on Mysteria wood\nPlaces a Peace canopy\n" +
+        "Being near the Peace canopy reduces spawn rates and\nreverts spawns to pre-hardmode.");
     public override void SetDefaults() => QuickItem.SetBlock(this, 30, 36, ModContent.TileType<PeaceTreeTop>());
     public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.LivingLoom, 1, (ModContent.ItemType<MysteriaWood>(), 20), (ModContent.ItemType<MysteriaClump>(), 16),
         (ItemID.PinkGel, 20));

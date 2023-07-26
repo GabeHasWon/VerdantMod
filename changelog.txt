@@ -1,5 +1,5 @@
-- Updated Music Display compatibility
-- Fixed Vine Wall not being un-craftable back into a Lush Leaf
-- Fixed left/right decor placing poorly
-- Fixed left/right decor placing over existing objects, breaking things
-- Updated biome check for verdant fishing
+- Made New Beginning's compatibility origin Lushman spawn in the Verdant
+- Fixed Wisplant-Infused Lush Soil Ball need a Wisplant to craft
+- Fixed Verdant Candelabra using Pink Petals instead of Red Petals
+- Made Crude Paintbrush account for unconsumable tiles
+- Made Peace Canopy tooltip clarify it can only be placed on Mysteria wood
