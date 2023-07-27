@@ -1,19 +1,22 @@
-﻿ProbablyDelete: {
+ProbablyDelete: {
 	DisplayName: Tester Tool
 	Tooltip: @ me if you see this
 }
 
 LushWoodBody: {
 	DisplayName: Lush Wood Chestpiece
-	Tooltip: "+1 flat minion damage"
+	Tooltip: +1 flat minion damage
 }
 
 LushWoodHead: {
 	DisplayName: Lush Wood Helmet
-	Tooltip: "+1 flat summon damage"
+	Tooltip: +1 flat summon damage
 }
 
-LushWoodLegs.DisplayName: Lush Wood Leggings
+LushWoodLegs: {
+	DisplayName: Lush Wood Leggings
+	Tooltip: ""
+}
 
 MysteriaChest: {
 	DisplayName: Mysteria Chestpiece
@@ -71,14 +74,45 @@ VerdantLeggings: {
 		'''
 }
 
-AquamarineItem.DisplayName: Aquamarine
-AquamarineTorchItem.DisplayName: Aquamarine Torch
-BackslateTileItem.DisplayName: Backslate
-EmbeddedAquamarineItem.DisplayName: Aquamarine Lush Soil Block
-EmbeddedStoneAquamarineItem.DisplayName: Aquamarine Stone Block
-GemsparkAquamarineItem.DisplayName: Aquamarine Gemspark
-GemsparkAquamarineWallItem.DisplayName: Aquamarine Gemspark Wall
-GemsparkAquamarineWallOfflineItem.DisplayName: Aquamarine Gemspark Wall (Offline)
+AquamarineItem: {
+	DisplayName: Aquamarine
+	Tooltip: ""
+}
+
+AquamarineTorchItem: {
+	DisplayName: Aquamarine Torch
+	Tooltip: ""
+}
+
+BackslateTileItem: {
+	DisplayName: Backslate
+	Tooltip: ""
+}
+
+EmbeddedAquamarineItem: {
+	DisplayName: Aquamarine Lush Soil Block
+	Tooltip: ""
+}
+
+EmbeddedStoneAquamarineItem: {
+	DisplayName: Aquamarine Stone Block
+	Tooltip: ""
+}
+
+GemsparkAquamarineItem: {
+	DisplayName: Aquamarine Gemspark
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallItem: {
+	DisplayName: Aquamarine Gemspark Wall
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallOfflineItem: {
+	DisplayName: Aquamarine Gemspark Wall (Offline)
+	Tooltip: ""
+}
 
 BeehiveBlock: {
 	DisplayName: Bumblebee Hive
@@ -87,7 +121,7 @@ BeehiveBlock: {
 
 Bush2x2Item: {
 	DisplayName: Decorative Bush
-	Tooltip: "Can be trimmed with {$Mods.Verdant.Items.Shears.DisplayName}".
+	Tooltip: Can be trimmed with {$Mods.Verdant.Items.Shears.DisplayName}.
 }
 
 Bush3x3Item: {
@@ -95,26 +129,105 @@ Bush3x3Item: {
 	Tooltip: "{$Mods.Verdant.Items.Bush2x2Item.Tooltip}"
 }
 
-LushSoilBlock.DisplayName: Lush Soil
-LushBathtubItem.DisplayName: Lush Bathtub
-LushBedItem.DisplayName: Lush Bed
-LushBookshelfItem.DisplayName: Lush Bookcase
-LushCandelabraItem.DisplayName: Lush Candelabra
-LushCandleItem.DisplayName: Lush Candle
-LushChairItem.DisplayName: Lush Chair
-LushClockItem.DisplayName: Lush Clock
-LushDresserItem.DisplayName: Lush Dresser
-LushLampItem.DisplayName: Lush Lamp
-LushLanternItem.DisplayName: Lush Lantern
-LushPianoItem.DisplayName: Lush Piano
-LushPlatformItem.DisplayName: Lush Wood Platform
-LushSinkItem.DisplayName: Lush Sink
-LushTableItem.DisplayName: Lush Table
-LushWoodDoorItem.DisplayName: Lush Door
-LushWoodSofaItem.DisplayName: Lush Sofa
-LushWorkbenchItem.DisplayName: Lush Workbench
-VerdantWoodBlock.DisplayName: Lush Wood
-VerdantWoodChestBlock.DisplayName: Lush Wood Chest
+LushSoilBlock: {
+	DisplayName: Lush Soil
+	Tooltip: ""
+}
+
+LushBathtubItem: {
+	DisplayName: Lush Bathtub
+	Tooltip: ""
+}
+
+LushBedItem: {
+	DisplayName: Lush Bed
+	Tooltip: ""
+}
+
+LushBookshelfItem: {
+	DisplayName: Lush Bookcase
+	Tooltip: ""
+}
+
+LushCandelabraItem: {
+	DisplayName: Lush Candelabra
+	Tooltip: ""
+}
+
+LushCandleItem: {
+	DisplayName: Lush Candle
+	Tooltip: ""
+}
+
+LushChairItem: {
+	DisplayName: Lush Chair
+	Tooltip: ""
+}
+
+LushClockItem: {
+	DisplayName: Lush Clock
+	Tooltip: ""
+}
+
+LushDresserItem: {
+	DisplayName: Lush Dresser
+	Tooltip: ""
+}
+
+LushLampItem: {
+	DisplayName: Lush Lamp
+	Tooltip: ""
+}
+
+LushLanternItem: {
+	DisplayName: Lush Lantern
+	Tooltip: ""
+}
+
+LushPianoItem: {
+	DisplayName: Lush Piano
+	Tooltip: ""
+}
+
+LushPlatformItem: {
+	DisplayName: Lush Wood Platform
+	Tooltip: ""
+}
+
+LushSinkItem: {
+	DisplayName: Lush Sink
+	Tooltip: ""
+}
+
+LushTableItem: {
+	DisplayName: Lush Table
+	Tooltip: ""
+}
+
+LushWoodDoorItem: {
+	DisplayName: Lush Door
+	Tooltip: ""
+}
+
+LushWoodSofaItem: {
+	DisplayName: Lush Sofa
+	Tooltip: ""
+}
+
+LushWorkbenchItem: {
+	DisplayName: Lush Workbench
+	Tooltip: ""
+}
+
+VerdantWoodBlock: {
+	DisplayName: Lush Wood
+	Tooltip: ""
+}
+
+VerdantWoodChestBlock: {
+	DisplayName: Lush Wood Chest
+	Tooltip: ""
+}
 
 ThePlantItem: {
 	DisplayName: The Plant
@@ -200,7 +313,10 @@ LightbulbPaintingItem: {
 	Tooltip: "'Emily A.'"
 }
 
-OvergrownBrickItem.DisplayName: Overgrown Gray Brick
+OvergrownBrickItem: {
+	DisplayName: Overgrown Gray Brick
+	Tooltip: ""
+}
 
 ResearchBooksItem: {
 	DisplayName: Book of Research
@@ -212,32 +328,110 @@ SnailShellBlockItem: {
 	Tooltip: "'It feels bad to have these'"
 }
 
-LullabyBox.DisplayName: Music Box (Apotheosis Lullaby)
-PetalsFallBox.DisplayName: Music Box (Petals Fall)
-TearRainBox.DisplayName: Music Box (Tear Rain)
-VibrantHorizonBox.DisplayName: Music Box (Vibrant Horizon)
-MysteriaBathtubItem.DisplayName: Mysteria Bathtub
-MysteriaBedItem.DisplayName: Mysteria Bed
-MysteriaBookshelfItem.DisplayName: Mysteria Bookcase
-MysteriaCandelabraItem.DisplayName: Mysteria Candelabra
-MysteriaCandleItem.DisplayName: Mysteria Candle
-MysteriaChairItem.DisplayName: Mysteria Chair
+LullabyBox: {
+	DisplayName: Music Box (Apotheosis Lullaby)
+	Tooltip: ""
+}
+
+PetalsFallBox: {
+	DisplayName: Music Box (Petals Fall)
+	Tooltip: ""
+}
+
+TearRainBox: {
+	DisplayName: Music Box (Tear Rain)
+	Tooltip: ""
+}
+
+VibrantHorizonBox: {
+	DisplayName: Music Box (Vibrant Horizon)
+	Tooltip: ""
+}
+
+MysteriaBathtubItem: {
+	DisplayName: Mysteria Bathtub
+	Tooltip: ""
+}
+
+MysteriaBedItem: {
+	DisplayName: Mysteria Bed
+	Tooltip: ""
+}
+
+MysteriaBookshelfItem: {
+	DisplayName: Mysteria Bookcase
+	Tooltip: ""
+}
+
+MysteriaCandelabraItem: {
+	DisplayName: Mysteria Candelabra
+	Tooltip: ""
+}
+
+MysteriaCandleItem: {
+	DisplayName: Mysteria Candle
+	Tooltip: ""
+}
+
+MysteriaChairItem: {
+	DisplayName: Mysteria Chair
+	Tooltip: ""
+}
 
 MysteriaClockItem: {
 	DisplayName: Mysteria Clock
 	Tooltip: "'The smaller clock seems to be very off'"
 }
 
-MysteriaDoorItem.DisplayName: Mysteria Door
-MysteriaDresserItem.DisplayName: Mysteria Dresser
-MysteriaLampItem.DisplayName: Mysteria Lamp
-MysteriaLanternItem.DisplayName: Mysteria Lantern
-MysteriaPianoItem.DisplayName: Mysteria Piano
-MysteriaPlatformItem.DisplayName: Mysteria Platform
-MysteriaSinkItem.DisplayName: Mysteria Sink
-MysteriaSofaItem.DisplayName: Mysteria Sofa
-MysteriaTableItem.DisplayName: Mysteria Table
-MysteriaWorkbenchItem.DisplayName: Mysteria Workbench
+MysteriaDoorItem: {
+	DisplayName: Mysteria Door
+	Tooltip: ""
+}
+
+MysteriaDresserItem: {
+	DisplayName: Mysteria Dresser
+	Tooltip: ""
+}
+
+MysteriaLampItem: {
+	DisplayName: Mysteria Lamp
+	Tooltip: ""
+}
+
+MysteriaLanternItem: {
+	DisplayName: Mysteria Lantern
+	Tooltip: ""
+}
+
+MysteriaPianoItem: {
+	DisplayName: Mysteria Piano
+	Tooltip: ""
+}
+
+MysteriaPlatformItem: {
+	DisplayName: Mysteria Platform
+	Tooltip: ""
+}
+
+MysteriaSinkItem: {
+	DisplayName: Mysteria Sink
+	Tooltip: ""
+}
+
+MysteriaSofaItem: {
+	DisplayName: Mysteria Sofa
+	Tooltip: ""
+}
+
+MysteriaTableItem: {
+	DisplayName: Mysteria Table
+	Tooltip: ""
+}
+
+MysteriaWorkbenchItem: {
+	DisplayName: Mysteria Workbench
+	Tooltip: ""
+}
 
 MysteriaAcorn: {
 	DisplayName: Mysteria Sapling
@@ -327,8 +521,15 @@ RedDyeBulb: {
 		'''
 }
 
-RootRopeItem.DisplayName: Lush Root Rope
-VerdantFlowerBulb.DisplayName: Flower Bulb
+RootRopeItem: {
+	DisplayName: Lush Root Rope
+	Tooltip: ""
+}
+
+VerdantFlowerBulb: {
+	DisplayName: Flower Bulb
+	Tooltip: ""
+}
 
 VerdantStrongVineMaterial: {
 	DisplayName: Hardy Vine
@@ -339,7 +540,10 @@ VerdantStrongVineMaterial: {
 		'''
 }
 
-VineRopeItem.DisplayName: Lush Vine Rope
+VineRopeItem: {
+	DisplayName: Lush Vine Rope
+	Tooltip: ""
+}
 
 WaterberryBushItem: {
 	DisplayName: Waterberry Bush
@@ -355,7 +559,10 @@ WaterPlantItem: {
 	Tooltip: "'A remnant, weeping forever'"
 }
 
-WisplantSeeds.DisplayName: Wisplant Seeds
+WisplantSeeds: {
+	DisplayName: Wisplant Seeds
+	Tooltip: ""
+}
 
 PuffBlockItem: {
 	DisplayName: Block of Puff
@@ -401,19 +608,70 @@ ApotheosisPlacer: {
 	Tooltip: Places the Apotheosis
 }
 
-PinkPetalBlock.DisplayName: Pink Petal Block
-RedPetalBlock.DisplayName: Red Petal Block
-VerdantGrassBlock.DisplayName: Lush Grass Block
-VerdantBathtubItem.DisplayName: Verdant Bathtub
-VerdantBedItem.DisplayName: Verdant Bed
-VerdantBookshelfItem.DisplayName: Verdant Bookcase
-VerdantCandelabraItem.DisplayName: Verdant Candelabra
-VerdantCandleItem.DisplayName: Verdant Candle
-VerdantChairItem.DisplayName: Verdant Chair
-VerdantChandelierBlock.DisplayName: Verdant Chandelier (Small)
-VerdantChandelierLargeItem.DisplayName: Verdant Chandelier (Large)
-VerdantClockItem.DisplayName: Verdant Clock
-VerdantDoorItem.DisplayName: Verdant Door
+PinkPetalBlock: {
+	DisplayName: Pink Petal Block
+	Tooltip: ""
+}
+
+RedPetalBlock: {
+	DisplayName: Red Petal Block
+	Tooltip: ""
+}
+
+VerdantGrassBlock: {
+	DisplayName: Lush Grass Block
+	Tooltip: ""
+}
+
+VerdantBathtubItem: {
+	DisplayName: Verdant Bathtub
+	Tooltip: ""
+}
+
+VerdantBedItem: {
+	DisplayName: Verdant Bed
+	Tooltip: ""
+}
+
+VerdantBookshelfItem: {
+	DisplayName: Verdant Bookcase
+	Tooltip: ""
+}
+
+VerdantCandelabraItem: {
+	DisplayName: Verdant Candelabra
+	Tooltip: ""
+}
+
+VerdantCandleItem: {
+	DisplayName: Verdant Candle
+	Tooltip: ""
+}
+
+VerdantChairItem: {
+	DisplayName: Verdant Chair
+	Tooltip: ""
+}
+
+VerdantChandelierBlock: {
+	DisplayName: Verdant Chandelier (Small)
+	Tooltip: ""
+}
+
+VerdantChandelierLargeItem: {
+	DisplayName: Verdant Chandelier (Large)
+	Tooltip: ""
+}
+
+VerdantClockItem: {
+	DisplayName: Verdant Clock
+	Tooltip: ""
+}
+
+VerdantDoorItem: {
+	DisplayName: Verdant Door
+	Tooltip: ""
+}
 
 VerdantHungTableBlock_Pink: {
 	DisplayName: Hanging Verdant Table (Pink)
@@ -435,27 +693,110 @@ VerdantHungTableBlock_RedLightless: {
 	Tooltip: Can be hung when placed under two strong vines
 }
 
-VerdantLampItem.DisplayName: Verdant Lamp
-VerdantLanternItem.DisplayName: Verdant Lantern
-VerdantPianoItem.DisplayName: Verdant Piano
-VerdantPlatformItem.DisplayName: Verdant Platform
-VerdantSofaItem.DisplayName: Verdant Sofa
-VerdantTableItem.DisplayName: Verdant Table
-VerdantWorkbenchItem.DisplayName: Verdant Workbench
-VerdantYellowPetalChestBlock.DisplayName: Yellow Petal Chest
-WisplantCandelabraItem.DisplayName: Wisplant Candelabra
-VerdantPylonItem.DisplayName: Verdant Pylon
-BackslateBubblingWallItem.DisplayName: Perforated Backslate Wall
-BackslateWallItem.DisplayName: Backslate Wall
-LivingLushWoodWallItem.DisplayName: Living Lush Wood Wall
-LushSoilWallItem.DisplayName: Lush Soil Wall
-LushWoodWallItem.DisplayName: Lush Wood Wall
-MysteriaWoodWallItem.DisplayName: Mysteria Wood Wall
-PuffWallItem.DisplayName: Puff Wall
-VerdantLeafWallItem.DisplayName: Lush Leaf Wall
-VerdantPinkPetalWallItem.DisplayName: Pink Petal Wall
-VerdantRedPetalWallItem.DisplayName: Red Petal Wall
-VerdantVineWallItem.DisplayName: Lush Vine Wall
+VerdantLampItem: {
+	DisplayName: Verdant Lamp
+	Tooltip: ""
+}
+
+VerdantLanternItem: {
+	DisplayName: Verdant Lantern
+	Tooltip: ""
+}
+
+VerdantPianoItem: {
+	DisplayName: Verdant Piano
+	Tooltip: ""
+}
+
+VerdantPlatformItem: {
+	DisplayName: Verdant Platform
+	Tooltip: ""
+}
+
+VerdantSofaItem: {
+	DisplayName: Verdant Sofa
+	Tooltip: ""
+}
+
+VerdantTableItem: {
+	DisplayName: Verdant Table
+	Tooltip: ""
+}
+
+VerdantWorkbenchItem: {
+	DisplayName: Verdant Workbench
+	Tooltip: ""
+}
+
+VerdantYellowPetalChestBlock: {
+	DisplayName: Yellow Petal Chest
+	Tooltip: ""
+}
+
+WisplantCandelabraItem: {
+	DisplayName: Wisplant Candelabra
+	Tooltip: ""
+}
+
+VerdantPylonItem: {
+	DisplayName: Verdant Pylon
+	Tooltip: ""
+}
+
+BackslateBubblingWallItem: {
+	DisplayName: Perforated Backslate Wall
+	Tooltip: ""
+}
+
+BackslateWallItem: {
+	DisplayName: Backslate Wall
+	Tooltip: ""
+}
+
+LivingLushWoodWallItem: {
+	DisplayName: Living Lush Wood Wall
+	Tooltip: ""
+}
+
+LushSoilWallItem: {
+	DisplayName: Lush Soil Wall
+	Tooltip: ""
+}
+
+LushWoodWallItem: {
+	DisplayName: Lush Wood Wall
+	Tooltip: ""
+}
+
+MysteriaWoodWallItem: {
+	DisplayName: Mysteria Wood Wall
+	Tooltip: ""
+}
+
+PuffWallItem: {
+	DisplayName: Puff Wall
+	Tooltip: ""
+}
+
+VerdantLeafWallItem: {
+	DisplayName: Lush Leaf Wall
+	Tooltip: ""
+}
+
+VerdantPinkPetalWallItem: {
+	DisplayName: Pink Petal Wall
+	Tooltip: ""
+}
+
+VerdantRedPetalWallItem: {
+	DisplayName: Red Petal Wall
+	Tooltip: ""
+}
+
+VerdantVineWallItem: {
+	DisplayName: Lush Vine Wall
+	Tooltip: ""
+}
 
 WisplantInfusedMudBoulder: {
 	DisplayName: Wisplant-Infused Lush Soil Ball
@@ -466,8 +807,15 @@ WisplantInfusedMudBoulder: {
 		'''
 }
 
-BulbSnail.DisplayName: Bulb Snail
-BumblebeeItem.DisplayName: Bumblebee
+BulbSnail: {
+	DisplayName: Bulb Snail
+	Tooltip: ""
+}
+
+BumblebeeItem: {
+	DisplayName: Bumblebee
+	Tooltip: ""
+}
 
 AxolotlItem: {
 	DisplayName: Axolotl
@@ -489,18 +837,40 @@ PoolwormItem: {
 	Tooltip: "'Surprisingly slimy!'"
 }
 
-FlotieItem.DisplayName: Flotie
+FlotieItem: {
+	DisplayName: Flotie
+	Tooltip: ""
+}
 
 FlotinyItem: {
 	DisplayName: Flotiny
 	Tooltip: "'Oh my lord it's so tiny'"
 }
 
-FolifishItem.DisplayName: Folifish
-MysteriaFlotieItem.DisplayName: Mysteria Flotie
-MysteriaFlotinyItem.DisplayName: Mysteria Flotiny
-PuffSlimeSmallItem.DisplayName: Puff Slime
-RedGrassSnail.DisplayName: Red Petal Snail
+FolifishItem: {
+	DisplayName: Folifish
+	Tooltip: ""
+}
+
+MysteriaFlotieItem: {
+	DisplayName: Mysteria Flotie
+	Tooltip: ""
+}
+
+MysteriaFlotinyItem: {
+	DisplayName: Mysteria Flotiny
+	Tooltip: ""
+}
+
+PuffSlimeSmallItem: {
+	DisplayName: Puff Slime
+	Tooltip: ""
+}
+
+RedGrassSnail: {
+	DisplayName: Red Petal Snail
+	Tooltip: ""
+}
 
 ExpertPlantGuide: {
 	DisplayName: Expert Guide to Plant Fiber Cordage
@@ -601,7 +971,10 @@ MysteriaCrateItem: {
 	Tooltip: Right click to open
 }
 
-Shellfish.DisplayName: Overgrown Shellfish
+Shellfish: {
+	DisplayName: Overgrown Shellfish
+	Tooltip: ""
+}
 
 BowlFruit: {
 	DisplayName: Bowl Fruit
@@ -709,7 +1082,10 @@ RedPetal: {
 	Tooltip: "'It's very smooth'"
 }
 
-WisplantItem.DisplayName: Wisplant
+WisplantItem: {
+	DisplayName: Wisplant
+	Tooltip: ""
+}
 
 YellowBulb: {
 	DisplayName: Yellow Bulb
@@ -770,7 +1146,10 @@ PassionflowerBulb: {
 		'''
 }
 
-AquamarineHook.DisplayName: Aquamarine Hook
+AquamarineHook: {
+	DisplayName: Aquamarine Hook
+	Tooltip: ""
+}
 
 BouncebloomItem: {
 	DisplayName: Bouncebloom
@@ -893,8 +1272,15 @@ YellowPetalFloater: {
 		'''
 }
 
-AquamarinePhaseblade.DisplayName: Aquamarine Phaseblade
-AquamarinePhasesaber.DisplayName: Aquamarine Phasesaber
+AquamarinePhaseblade: {
+	DisplayName: Aquamarine Phaseblade
+	Tooltip: ""
+}
+
+AquamarinePhasesaber: {
+	DisplayName: Aquamarine Phasesaber
+	Tooltip: ""
+}
 
 AquamarinePlatinumStaff: {
 	DisplayName: Aquamarine Staff
@@ -923,9 +1309,20 @@ LushDagger: {
 		'''
 }
 
-LushWoodBow.DisplayName: Lush Wood Bow
-LushWoodHammer.DisplayName: Lush Wood Hammer
-LushWoodSword.DisplayName: Lush Wood Sword
+LushWoodBow: {
+	DisplayName: Lush Wood Bow
+	Tooltip: ""
+}
+
+LushWoodHammer: {
+	DisplayName: Lush Wood Hammer
+	Tooltip: ""
+}
+
+LushWoodSword: {
+	DisplayName: Lush Wood Sword
+	Tooltip: ""
+}
 
 MudBoulderItem: {
 	DisplayName: Lush Soil Ball

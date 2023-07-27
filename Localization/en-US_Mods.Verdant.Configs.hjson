@@ -1,4 +1,4 @@
-﻿HeadLabel: Verdant Client Configuration
+HeadLabel: Verdant Client Configuration
 EnableSteamEffectLabel: Enable Steam Effect
 EnableSteamEffectTooltip: Enables steam overlay when inside of the underground Verdant.
 EnableForeOrBackgroundObjectsLabel: Enable Foreground/Background Objects
@@ -9,3 +9,27 @@ CustomDialogueSystemLabel: Custom Dialogue System
 CustomDialogueSystemTooltip: Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.
 FancyBookUILabel: Fancy Book UI
 FancyBookUITooltip: Changes the book UI to something unique.
+
+VerdantClientConfig: {
+	DisplayName: "{$Mods.Verdant.Configs.HeadLabel}"
+
+	EnableSteam: {
+		Label: "{$Mods.Verdant.Configs.EnableSteamEffectLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableSteamEffectTooltip}"
+	}
+
+	BackgroundObjects: {
+		Label: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsTooltip}"
+	}
+
+	Waterfalls: {
+		Label: "{$Mods.Verdant.Configs.EnableCustomWaterfallsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableCustomWaterfallsTooltip}"
+	}
+
+	CustomDialogue: {
+		Label: "{$Mods.Verdant.Configs.CustomDialogueSystemLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.CustomDialogueSystemTooltip}"
+	}
+}

@@ -1,4 +1,4 @@
-﻿Mods: {
+Mods: {
 	Verdant: {
 		MapObject: {
 			VerdantPylonTile: Verdant Pylon
@@ -22,7 +22,25 @@
 		}
 
 		Condition.InVerdant: In the Verdant biome
-
 		RecipeCondition.AfterApotheosisDownedPlantera: In the Verdant biome
+
+		Biomes: {
+			VerdantUndergroundBiome: {
+				TownNPCDialogueName: the Verdant Underground Biome
+				DisplayName: Verdant Underground Biome
+			}
+
+			VerdantBiome: {
+				TownNPCDialogueName: the Verdant Biome
+				DisplayName: Verdant Biome
+			}
+
+			NearApotheosisBiome: {
+				TownNPCDialogueName: the Near Apotheosis Biome
+				DisplayName: Near Apotheosis Biome
+			}
+		}
+
+		"Keybinds.Verdant:SquidForm.DisplayName": Verdant: Squid Form
 	}
 }

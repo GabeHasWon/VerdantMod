@@ -1,4 +1,4 @@
-﻿RockBook: { 
+RockBook: {
 	Content:
 		'''
 
@@ -28,23 +28,21 @@
 		I'm just sure of it."
 
 		'''
-
 	Title: Volcanic Rocks
 }
 
 LightbulbBook: {
 	Content: {
-		"0":
+		0:
 			'''
-			
+
 			"Weird bulbs? Seeds?
 			made of soft plantlike material, like leaves.
 			Glows softly, though sometimes in a...wave like motion.
 			Works as a source of sunlight, grows on certain flowers."
 
 			'''
-
-		"1": 
+		1:
 			'''
 
 			"Full of water? sugar?
@@ -70,7 +68,7 @@ LightbulbBook: {
 
 LeafBook: {
 	Content: {
-		"0": 
+		0:
 			'''
 					
 			The book looks particularly old, page worn and oddly brown.
@@ -83,14 +81,12 @@ LeafBook: {
 			signature:
 
 			'''
-
-		"1": 
+		1:
 			'''
 						
 			You scan through the book, and spot the following pages:
 
 			'''
-
 		2:
 			'''
 
@@ -141,7 +137,6 @@ HardyVineBook: {
 		- until the book ends.
 
 		'''
-
 	Title: Hardy Vines
 }
 
@@ -217,6 +212,5 @@ ApotheosisBook: {
 		and goodbye."
 
 		'''
-
 	Title: "'My Apotheosis'"
 }

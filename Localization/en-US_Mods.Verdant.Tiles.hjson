@@ -1,4 +1,4 @@
-﻿VerdantPylonTile.MapEntry: Verdant Pylon
+VerdantPylonTile.MapEntry: Verdant Pylon
 FloatingCrystal.MapEntry: Floating Crystal
 AquamarineTile.MapEntry: Aquamarine
 Beehive.MapEntry: Beehive
@@ -25,6 +25,7 @@ VerdantWoodChest: {
 	ContainerName: Lush Wood Chest
 }
 
+VerdantWood.MapEntry: Verdant Wood
 LullabyBoxTile.MapEntry: Music Box
 PetalsFallBoxTile.MapEntry: Music Box
 TearRainBoxTile.MapEntry: Music Box
@@ -51,3 +52,19 @@ ApotheoticPainting.MapEntry: Painting
 LightbulbPainting.MapEntry: Painting
 BigVerdantTree.MapEntry: Big Tree
 VerdantTree.MapEntry: Tree
+PeaceTreeTop.MapEntry: Peace Tree Top
+MysteriaTreeTop.MapEntry: Mysteria Tree Top
+MysteriaTree.MapEntry: Mysteria Tree
+VerdantRedPetal.MapEntry: Verdant Red Petal
+VerdantPinkPetal.MapEntry: Verdant Pink Petal
+VerdantLeaves.MapEntry: Verdant Leaves
+VerdantGrassLeaves.MapEntry: Verdant Grass Leaves
+SnailShellBlock.MapEntry: Snail Shell Block
+PuffBlock.MapEntry: Puff Block
+OvergrownBricks.MapEntry: Overgrown Bricks
+LushSoil.MapEntry: Lush Soil
+LivingLushWood.MapEntry: Living Lush Wood
+GemsparkAquamarine.MapEntry: Gemspark Aquamarine
+EmbeddedStoneAquamarine.MapEntry: Embedded Stone Aquamarine
+EmbeddedAquamarine.MapEntry: Embedded Aquamarine
+BackslateTile.MapEntry: Backslate Tile

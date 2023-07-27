@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks;
-using Verdant.Items.Verdant.Blocks.Puff;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
