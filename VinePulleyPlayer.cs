@@ -102,7 +102,7 @@ namespace Verdant
             }
         }
 
-        public static void Player_QuickMount(On.Terraria.Player.orig_QuickMount orig, Player self)
+        public static void Player_QuickMount(Terraria.On_Player.orig_QuickMount orig, Player self)
         {
             if (self.GetModPlayer<VinePulleyPlayer>().CurrentVine != null)
             {
@@ -113,7 +113,7 @@ namespace Verdant
             orig(self);
         }
 
-        public static void Player_Teleport(On.Terraria.Player.orig_Teleport orig, Player self, Vector2 newPos, int Style, int extraInfo)
+        public static void Player_Teleport(Terraria.On_Player.orig_Teleport orig, Player self, Vector2 newPos, int Style, int extraInfo)
         {
             if (self.GetModPlayer<VinePulleyPlayer>().CurrentVine != null)
             {

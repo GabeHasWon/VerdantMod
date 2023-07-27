@@ -12,7 +12,7 @@ class RedPetal : ApotheoticItem
     int updateCounter = 0;
 
     public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 28, ItemRarityID.White, 999);
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Red Petal", "'It's very smooth'");
+
     public override void AddRecipes()
     {
         QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<VerdantRedPetalWallItem>(), 4));

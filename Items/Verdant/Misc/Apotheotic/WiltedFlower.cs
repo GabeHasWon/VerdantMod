@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Misc.Apotheotic;
 [Sacrifice(1)]
 class WiltedFlower : ApotheoticItem
 {
-    public override void SetStaticDefaults() => Tooltip.SetDefault("A long-dead, faded yellow flower");
+    // public override void SetStaticDefaults() => Tooltip.SetDefault("A long-dead, faded yellow flower");
 
     public override void SetDefaults()
     {

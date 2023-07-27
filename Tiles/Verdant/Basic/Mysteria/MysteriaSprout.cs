@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Systems.RealtimeGeneration;
@@ -43,8 +44,8 @@ public class MysteriaSprout : ModTile
         TileObjectData.newTile.StyleMultiplier = 3;
         TileObjectData.addTile(Type);
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Sprout");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Sprout");
         AddMapEntry(new Color(99, 63, 45), name);
 
         DustType = DustID.Grass;

@@ -6,8 +6,7 @@ namespace Verdant.Items.Verdant.Blocks.Aquamarine;
 
 public class GemsparkAquamarineWallItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Aquamarine Gemspark Wall");
-    public override void SetDefaults() => Item.DefaultToPlacableWall((ushort)ModContent.WallType<GemsparkAquamarineWall>());
+    public override void SetDefaults() => Item.DefaultToPlaceableWall((ushort)ModContent.WallType<GemsparkAquamarineWall>());
 
     public override void AddRecipes()
     {

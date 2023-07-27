@@ -19,7 +19,6 @@ internal class PuffVine : ModTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
-        ItemDrop = 0;
         AddMapEntry(new Color(55, 145, 26));
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;

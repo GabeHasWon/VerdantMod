@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.VerdantFurniture;
@@ -22,8 +23,10 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 			TileID.Sets.NotReallySolid[Type] = true;
 			TileID.Sets.DrawsWalls[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
+			TileID.Sets.OpenDoorID[Type] = ModContent.TileType<VerdantDoorOpen>();
+            TileID.Sets.DisableSmartCursor[Type] = true;
 
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
 			TileObjectData.newTile.Width = 1;
 			TileObjectData.newTile.Height = 3;
 			TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -43,14 +46,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Verdant Door");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Verdant Door");
             AddMapEntry(new Color(33, 142, 22), name);
 
             DustType = DustID.t_BorealWood;
-			TileID.Sets.DisableSmartCursor[Type] = true;
 			AdjTiles = new int[] { TileID.ClosedDoor };
-			OpenDoorID = ModContent.TileType<VerdantDoorOpen>();
 		}
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

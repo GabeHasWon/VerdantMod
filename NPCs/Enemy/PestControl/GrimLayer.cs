@@ -25,7 +25,7 @@ public class GrimLayer : ModNPC
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Grim Layer");
+        // DisplayName.SetDefault("Grim Layer");
     }
 
     public override void SetDefaults()

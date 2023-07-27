@@ -9,8 +9,8 @@ public class MudBoulderItem : ModItem
 {
     public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Lush Soil Ball");
-		Tooltip.SetDefault("A minor nuisance");
+		// DisplayName.SetDefault("Lush Soil Ball");
+		// Tooltip.SetDefault("A minor nuisance");
 	}
 
 	public override void SetDefaults() => Item.DefaultToPlaceableTile(ModContent.TileType<MudBoulderTile>());

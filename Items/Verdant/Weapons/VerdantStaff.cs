@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Minion;
 using Verdant.Tiles;
@@ -12,19 +13,14 @@ namespace Verdant.Items.Verdant.Weapons
 {
     class VerdantStaff : ModItem
     {
+        public override void SetStaticDefaults() => Item.staff[Type] = true;
         public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
-
-        public override void SetStaticDefaults()
-        {
-            QuickItem.SetStatic(this, "Lush Healing Staff",
-                "Summons a sacred healing flower.\nStay near the plant to gain some extra regeneration.\nYou can only summon one at a time.\nUse again while its already out to move the flower.", true);
-        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             if (Main.dedServ || Main.netMode != NetmodeID.SinglePlayer)
             {
-                TooltipLine line = new(Mod, "Verdant Staff", "Summoning multiple flowers will empower the flower.");
+                TooltipLine line = new(Mod, "Verdant Staff", Language.GetTextValue("Mods.Verdant.Items.VerdantStaff.MultiplayerTooltip"));
                 tooltips.Add(line);
             }
         }

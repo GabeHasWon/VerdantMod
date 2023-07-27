@@ -13,8 +13,8 @@ namespace Verdant.Items.Verdant.Tools
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pink Petal Wand");
-            Tooltip.SetDefault("Places pink petal blocks\nRight click to switch to Living Lush Wood");
+            // DisplayName.SetDefault("Pink Petal Wand");
+            // Tooltip.SetDefault("Places pink petal blocks\nRight click to switch to Living Lush Wood");
         }
 
         public override void SetDefaults()

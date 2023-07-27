@@ -15,9 +15,6 @@ namespace Verdant.Items.Verdant.Tools;
 [Sacrifice(1)]
 class Shears : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Shears", "Trims certain plants\nCan be used to remove Pickipuff, Mysteria Drapes" +
-        "\nCan be used as an axe, technically");
-
     public override void SetDefaults()
     {
         QuickItem.SetMaterial(this, 32, 32, ItemRarityID.Green, 1, false, Item.buyPrice(0, 0, 5, 0));

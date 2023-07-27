@@ -36,11 +36,13 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), ModContent.ItemType<LushLeaf>(), "", true, false);
-            QuickTile.MergeWith(Type, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>(), TileID.LivingWood, TileID.Stone, TileID.Dirt, TileID.Grass);
+            QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), "", true, false);
+            QuickTile.MergeWith(Type, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>(), 
+                TileID.LivingWood, TileID.Stone, TileID.Dirt, TileID.Grass);
 
             Main.tileBrick[Type] = true;
 
+            RegisterItemDrop(ModContent.ItemType<LushLeaf>());
             CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(VerdantGrassLeaves));
         }
 

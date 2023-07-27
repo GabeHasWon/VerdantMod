@@ -5,8 +5,6 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class WisplantSeeds : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Wisplant Seeds");
-
         public override void SetDefaults()
         {
             QuickItem.SetBlock(this, 22, 28, ModContent.TileType<Tiles.Verdant.Basic.Plants.Wisplant>());

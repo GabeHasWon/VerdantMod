@@ -12,7 +12,6 @@ public class MysteriaWoodWall : ModWall
     {
         Main.wallHouse[Type] = true;
         DustType = DustID.WoodFurniture;
-        ItemDrop = ModContent.ItemType<MysteriaWoodWallItem>();
         AddMapEntry(new Color(107, 70, 50));
     }
 

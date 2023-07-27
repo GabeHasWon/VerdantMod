@@ -9,7 +9,7 @@ internal class BackslateTile : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.UnusedWhiteBluePurple, SoundID.Dig, new Color(183, 201, 194), ModContent.ItemType<Items.Verdant.Blocks.Aquamarine.BackslateTileItem>());
+        QuickTile.SetAll(this, 0, DustID.UnusedWhiteBluePurple, SoundID.Dig, new Color(183, 201, 194));
 
         Main.tileBrick[Type] = true;
     }

@@ -31,17 +31,17 @@ class Beehive : ModTile
             return;
 
         if (t.TileFrameY < FrameHeight * 2)
-            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 128);
+            WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Honey, 128);
         else if (t.TileFrameY < FrameHeight * 3)
-            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+            WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Honey, 255);
         else if (t.TileFrameY < FrameHeight * 4)
         {
-            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+            WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Honey, 255);
             Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Verdant.Food.HoneyNuggets>(), Main.rand.Next(2) + 1);
         }
         else
         {
-            WorldGen.PlaceLiquid(i, j, LiquidID.Honey, 255);
+            WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Honey, 255);
             Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Verdant.Food.HoneyNuggets>(), Main.rand.Next(2) + 2);
             Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Hive, Main.rand.Next(2) + 1);
         }

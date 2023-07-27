@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Plants;
@@ -28,12 +29,11 @@ class WaterberryBush : ModTile, IFlowerTile
 
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
-        ItemDrop = ModContent.ItemType<WaterberryBushItem>();
 
         Main.tileLighted[Type] = true;
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Bush");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Bush");
         AddMapEntry(new Color(71, 181, 168), name);
     }
 

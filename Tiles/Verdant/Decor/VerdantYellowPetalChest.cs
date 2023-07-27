@@ -29,6 +29,7 @@ namespace Verdant.Tiles.Verdant.Decor
             TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
             TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
             TileID.Sets.BasicChest[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Width = 2;
@@ -43,16 +44,13 @@ namespace Verdant.Tiles.Verdant.Decor
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Yellow Petal Chest");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Yellow Petal Chest");
             AddMapEntry(new Color(224, 120, 0), name);
 
             DustType = DustID.Dirt;
             HitSound = SoundID.Grass;
-            TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Containers };
-            ChestDrop = ModContent.ItemType<VerdantYellowPetalChestBlock>();
-            ContainerName.SetDefault("Yellow Petal Chest");
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -86,12 +84,7 @@ namespace Verdant.Tiles.Verdant.Decor
             num = 1;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            //Main.PlaySound(new Terraria.Audio.LegacySoundStyle(3, 4));
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ChestDrop);
-            Chest.DestroyChest(i, j);
-        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Chest.DestroyChest(i, j);
 
         public override bool RightClick(int i, int j)
         {

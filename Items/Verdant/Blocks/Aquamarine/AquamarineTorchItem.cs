@@ -6,7 +6,6 @@ namespace Verdant.Items.Verdant.Blocks.Aquamarine;
 
 public class AquamarineTorchItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Aquamarine Torch");
     public override void SetDefaults() => QuickItem.SetBlock(this, 14, 16, ModContent.TileType<AquamarineTorch>());
 
     public override void AddRecipes()

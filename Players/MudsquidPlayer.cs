@@ -25,12 +25,12 @@ internal class MudsquidPlayer : ModPlayer
 
     public override void Load()
     {
-        On.Terraria.Player.Update += Player_Update;
-        On.Terraria.Player.ItemCheck += Player_ItemCheck;
-        On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+        On_Player.Update += Player_Update;
+        On_Player.ItemCheck += Player_ItemCheck;
+        On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
     }
 
-    private void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+    private void PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
     {
         if (drawinfo.drawPlayer.GetModPlayer<MudsquidPlayer>().squidAlpha > 0.1f)
             orig(ref drawinfo);
@@ -42,18 +42,18 @@ internal class MudsquidPlayer : ModPlayer
         }
     }
 
-    private void Player_ItemCheck(On.Terraria.Player.orig_ItemCheck orig, Player self, int i)
+    private void Player_ItemCheck(On_Player.orig_ItemCheck orig, Player self)
     {
         if (self.GetModPlayer<MudsquidPlayer>().squidActive)
             SetSolids(true);
 
-        orig(self, i);
+        orig(self);
 
         if (self.GetModPlayer<MudsquidPlayer>().squidActive)
             SetSolids(false);
     }
 
-    private static void Player_Update(On.Terraria.Player.orig_Update orig, Player self, int i)
+    private static void Player_Update(On_Player.orig_Update orig, Player self, int i)
     {
         if (self.GetModPlayer<MudsquidPlayer>().squidActive)
             SetSolids(false);

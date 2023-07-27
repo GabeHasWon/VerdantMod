@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -14,9 +15,9 @@ namespace Verdant.Tiles.Verdant.Trees;
 
 internal class PeaceTreeTop : ModTile
 {
-    public override void Load() => On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+    public override void Load() => Terraria.On_NPC.SpawnNPC += NPC_SpawnNPC;
 
-    private void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)
+    private void NPC_SpawnNPC(Terraria.On_NPC.orig_SpawnNPC orig)
     {
         bool hardMode = Main.hardMode;
 
@@ -31,7 +32,7 @@ internal class PeaceTreeTop : ModTile
 
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), ItemID.None, "", true, false);
+        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), "", true, false);
 
         Main.tileBlendAll[Type] = true;
         Main.tileBrick[Type] = true;
@@ -59,8 +60,12 @@ internal class PeaceTreeTop : ModTile
             return;
 
         MysteriaTreeTop.ShakeTree(i, j);
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaAcorn>(), Main.rand.Next(1, 3));
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaClump>(), Main.rand.Next(3, 8));
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        yield return new Item(ModContent.ItemType<MysteriaAcorn>()) { stack = Main.rand.Next(1, 3) };
+        yield return new Item(ModContent.ItemType<MysteriaClump>()) { stack = Main.rand.Next(3, 8) };
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

@@ -14,8 +14,6 @@ namespace Verdant.Tiles.Verdant.Misc
             TileObjectData.newTile.RandomStyleRange = 16; 
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 1, 1, DustID.UnusedBrown, SoundID.Dig, true, new Color(85, 82, 67));
-
-            ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Misc.ResearchBooksItem>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

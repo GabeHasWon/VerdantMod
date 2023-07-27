@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -19,9 +20,11 @@ namespace Verdant.Tiles.Verdant.Trees
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.t_BorealWood, SoundID.Dig, new Color(142, 62, 32), ModContent.ItemType<VerdantWoodBlock>(), "Tree", false, false, false, false);
+            QuickTile.SetAll(this, 0, DustID.t_BorealWood, SoundID.Dig, new Color(142, 62, 32), "Tree", false, false, false, false);
             Main.tileFrameImportant[Type] = true;
             Main.tileAxe[Type] = true;
+
+            RegisterItemDrop(ModContent.ItemType<VerdantWoodBlock>());
 
             TileID.Sets.IsATreeTrunk[Type] = true;
         }
@@ -165,42 +168,38 @@ namespace Verdant.Tiles.Verdant.Trees
                 Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
         }
 
-        public override bool Drop(int i, int j)
+        public override IEnumerable<Item> GetItemDrops(int i, int j)
         {
-            if (Framing.GetTileSafely(i, j).TileFrameX == 198)
+            Tile tile = Framing.GetTileSafely(i, j);
+
+            if (tile.TileFrameX == 198)
             {
                 int tot = Main.rand.Next(6, 11);
                 for (int k = 0; k < tot; ++k)
-                    Helper.SyncItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<VerdantWoodBlock>(), Main.rand.Next(1, 5));
-                tot = Main.rand.Next(1, 4);
+                    yield return new Item(ModContent.ItemType<VerdantWoodBlock>());
+
+                tot = Main.rand.Next(4, 6);
                 for (int k = 0; k < tot; ++k)
-                    Helper.SyncItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ItemID.Acorn, Main.rand.Next(1, 5));
-                tot = Main.rand.Next(3, 8);
+                    yield return new Item(ItemID.Acorn);
+
+                tot = Main.rand.Next(7, 15);
                 for (int k = 0; k < tot; ++k)
-                    Helper.SyncItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-46, 46), Main.rand.Next(-40, 40) - 66), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 5));
+                    yield return new Item(ModContent.ItemType<LushLeaf>());
             }
 
-            if (Framing.GetTileSafely(i, j).TileFrameX == 108 || Framing.GetTileSafely(i, j).TileFrameX == 126)
+            if (tile.TileFrameX == 108 || tile.TileFrameX == 126)
             {
-                int side = Framing.GetTileSafely(i, j).TileFrameX == 108 ? -1 : 1;
-
-                Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(3, 8));
-                Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ItemID.Acorn, Main.rand.Next(1, 3));
-                int rnd = Main.rand.Next(8, 14);
-
-                if (Main.netMode != NetmodeID.Server)
-                    for (int l = 0; l < rnd; ++l)
-                        Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                yield return new Item(ModContent.ItemType<LushLeaf>()) { stack = Main.rand.Next(3, 8) };
+                yield return new Item(ItemID.Acorn) { stack = Main.rand.Next(1, 3) };        
             }
-            return true;
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             Tile t = Framing.GetTileSafely(i, j);
 
-            if (fail && !effectOnly && !noItem)
-                ClimbToTop(i, j);
+            //if (fail && !effectOnly && !noItem)
+            //    ClimbToTop(i, j);
 
             if (Framing.GetTileSafely(i, j).TileFrameX == 198) //gore stuff
             {
@@ -312,53 +311,53 @@ namespace Verdant.Tiles.Verdant.Trees
             }
         }
 
-        private void ClimbToTop(int x, int y)
-        {
-            while (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == Type)
-                y--;
-            y++;
+        //private void ClimbToTop(int x, int y) //1.4.4PORT
+        //{
+        //    while (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == Type)
+        //        y--;
+        //    y++;
 
-            if (Main.tile[x, y].TileFrameX == 198)
-            {
-                for (int k = 0; k < WorldGen.numTreeShakes; k++)
-                    if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
-                        return;
+        //    if (Main.tile[x, y].TileFrameX == 198)
+        //    {
+        //        for (int k = 0; k < WorldGen.ResetTreeShakes; k++)
+        //            if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
+        //                return;
 
-                WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
-                WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
-                WorldGen.numTreeShakes++;
+        //        WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
+        //        WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
+        //        WorldGen.numTreeShakes++;
 
-                WeightedRandom<int> random = new(Main.rand);
+        //        WeightedRandom<int> random = new(Main.rand);
 
-                random.Add(0, 1);
-                random.Add(1, 0.7f);
-                random.Add(2, 0.85f);
+        //        random.Add(0, 1);
+        //        random.Add(1, 0.7f);
+        //        random.Add(2, 0.85f);
 
-                int rand = random;
-                if (rand == 1)
-                {
-                    int type = Main.rand.NextBool() ? ModContent.ItemType<Dropberry>() : ModContent.ItemType<BowlFruit>();
-                    Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
-                }
-                else if (rand == 2)
-                {
-                    int reps = Main.rand.Next(3, 6);
+        //        int rand = random;
+        //        if (rand == 1)
+        //        {
+        //            int type = Main.rand.NextBool() ? ModContent.ItemType<Dropberry>() : ModContent.ItemType<BowlFruit>();
+        //            Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
+        //        }
+        //        else if (rand == 2)
+        //        {
+        //            int reps = Main.rand.Next(3, 6);
 
-                    WeightedRandom<int> npcType = new(Main.rand);
-                    npcType.Add(ModContent.NPCType<Flotie>(), 0.9f);
-                    npcType.Add(ModContent.NPCType<Flotiny>(), 1.2f);
-                    npcType.Add(ModContent.NPCType<VerdantBulbSnail>(), 1f);
-                    npcType.Add(ModContent.NPCType<VerdantRedGrassSnail>(), 1f);
+        //            WeightedRandom<int> npcType = new(Main.rand);
+        //            npcType.Add(ModContent.NPCType<Flotie>(), 0.9f);
+        //            npcType.Add(ModContent.NPCType<Flotiny>(), 1.2f);
+        //            npcType.Add(ModContent.NPCType<VerdantBulbSnail>(), 1f);
+        //            npcType.Add(ModContent.NPCType<VerdantRedGrassSnail>(), 1f);
 
-                    for (int i = 0; i < reps; ++i)
-                        NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
-                }
+        //            for (int i = 0; i < reps; ++i)
+        //                NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
+        //        }
 
-                if (Main.netMode != NetmodeID.Server)
-                    for (int i = 0; i < 20; ++i)
-                        Gore.NewGore(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
-            }
-        }
+        //        if (Main.netMode != NetmodeID.Server)
+        //            for (int i = 0; i < 20; ++i)
+        //                Gore.NewGore(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+        //    }
+        //}
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {

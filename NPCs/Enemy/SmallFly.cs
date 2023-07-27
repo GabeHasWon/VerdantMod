@@ -12,7 +12,7 @@ namespace Verdant.NPCs.Enemy
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Winglet");
+            // DisplayName.SetDefault("Lush Winglet");
             Main.npcFrameCount[NPC.type] = 2;
         }
 
@@ -107,7 +107,7 @@ namespace Verdant.NPCs.Enemy
             else NPC.spriteDirection = -1;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {

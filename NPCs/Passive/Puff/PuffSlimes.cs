@@ -20,7 +20,7 @@ public class PuffSlimeSmall : ModNPC
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Puff Slime");
+        // DisplayName.SetDefault("Puff Slime");
 
         Main.npcCatchable[Type] = true;
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
@@ -59,7 +59,7 @@ public class PuffSlimeSmall : ModNPC
 
     public override void PostAI() => NPC.color = Color.White;
 
-    public override void HitEffect(int hitDirection, double damage)
+    public override void HitEffect(NPC.HitInfo hit)
     {
         if (NPC.life <= 0)
         {

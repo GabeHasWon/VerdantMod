@@ -7,7 +7,7 @@ namespace Verdant.Scenes;
 
 internal class VerdantBiome : ModBiome
 {
-    public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant");
+    // public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant");
     public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
     public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.Find<ModSurfaceBackgroundStyle>("Verdant/VerdantSurfaceBgStyle");
     public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;

@@ -16,7 +16,7 @@ namespace Verdant.Projectiles.Minion
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Snale");
+            // DisplayName.SetDefault("Snale");
             Main.projFrames[Projectile.type] = 15;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
@@ -223,7 +223,7 @@ namespace Verdant.Projectiles.Minion
 
         private void SetFrame(int frame) => Projectile.frame = frame + (_skin * 5);
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Slimed, 20);
             Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;

@@ -10,7 +10,7 @@ namespace Verdant.Projectiles.Misc
 {
     public class VerdantBobber : ModProjectile
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant Bobber");
+        // public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant Bobber");
 
         public override void SetDefaults()
         {

@@ -12,10 +12,15 @@ namespace Verdant.Items.Verdant.Materials;
 class Lightbulb : ApotheoticItem
 {
     public override void Load() => VerdantPlayer.ItemDrawLayerEvent += PlayerDraw;
+
+    public override void SetStaticDefaults()
+    {
+        ItemID.Sets.Torches[Type] = true;
+        ItemID.Sets.WaterTorches[Type] = true;
+    }
+
     public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White, noUseGraphic: true);
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lightbulb", "'Keeps Charlie away'");
     public override void PostUpdate() => Lighting.AddLight(Item.position, new Vector3(0.1f, 0.03f, 0.06f) * 9);
-    public override void AutoLightSelect(ref bool dryTorch, ref bool wetTorch, ref bool glowstick) => wetTorch = true;
     public override void HoldItemFrame(Player player) => player.bodyFrame.Y = 56;
     public override void HoldItem(Player player) => Lighting.AddLight(player.MountedCenter - new Vector2(0, 28), new Vector3(0.1f, 0.03f, 0.06f) * 12);
 

@@ -12,7 +12,7 @@ namespace Verdant.Projectiles.Minion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Yellow Sprout");
+            // DisplayName.SetDefault("Yellow Sprout");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

@@ -11,8 +11,8 @@ class HeartOfGrowth : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("The Heart of Growth");
-        Tooltip.SetDefault("Permenantly increases max minions by one.\nCan only be used once per person.\n'A heart that beats everliving.'");
+        // DisplayName.SetDefault("The Heart of Growth");
+        // Tooltip.SetDefault("Permenantly increases max minions by one.\nCan only be used once per person.\n'A heart that beats everliving.'");
     }
 
     public override void SetDefaults()

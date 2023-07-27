@@ -31,7 +31,6 @@ internal class VerdantStrongVine : ModTile
         TileObjectData.addAlternate(0);
         TileObjectData.addTile(Type);
 
-        ItemDrop = ModContent.ItemType<VerdantStrongVineMaterial>();
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
         MinPick = 20;

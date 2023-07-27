@@ -16,7 +16,7 @@ namespace Verdant.NPCs.Enemy
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hostess Winglet [Removed]");
+            // DisplayName.SetDefault("Hostess Winglet [Removed]");
             Main.npcFrameCount[NPC.type] = 4;
         }
 
@@ -148,7 +148,7 @@ namespace Verdant.NPCs.Enemy
             return true;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {

@@ -15,11 +15,11 @@ public static class ForegroundManager
 
     internal static void Hooks()
     {
-        On.Terraria.Main.DrawProjectiles += PlayerLayerHook;
+        Terraria.On_Main.DrawProjectiles += PlayerLayerHook;
         Main.OnTickForThirdPartySoftwareOnly += UpdateHook;
     }
 
-    private static void PlayerLayerHook(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+    private static void PlayerLayerHook(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
     {
         orig(self);
 

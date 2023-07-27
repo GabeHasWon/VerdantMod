@@ -12,7 +12,6 @@ public class PuffWall : ModWall
     {
         Main.wallHouse[Type] = true;
         DustType = DustID.t_BorealWood;
-        ItemDrop = ModContent.ItemType<PuffWallItem>();
         AddMapEntry(new Color(198, 80, 164));
     }
 }

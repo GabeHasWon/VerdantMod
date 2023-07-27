@@ -8,8 +8,6 @@ namespace Verdant.Items.Verdant.Misc;
 [Sacrifice(3)]
 internal class MagicWisplant : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Magic-Infused Wisplant", "'A powerful aura of druidic energy surrounds it'\nSpeeds up all natural growth in an area by a dramatic amount");
-
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.ThrowingKnife);

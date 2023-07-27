@@ -1,0 +1,19 @@
+﻿HealingFlowerBuff: {
+	DisplayName: Healing Flower
+	Description: The flower's aura will heal you
+}
+
+PropellerpadBuff: {
+	DisplayName: Propellerpad
+	Description: What an odd lilypad!
+}
+
+SnailBuff: {
+	DisplayName: Snail Minion
+	Description: The grassy snails will fight for you
+}
+
+FlotiePetBuff: {
+	DisplayName: Flotie of Wrath
+	Description: "'Despite the skull, very calming'"
+}

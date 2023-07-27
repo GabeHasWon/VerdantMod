@@ -16,7 +16,7 @@ internal class VineHookProjectile : ModProjectile
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("${ProjectileName.GemHookAmethyst}");
+        // DisplayName.SetDefault("${ProjectileName.GemHookAmethyst}");
 
         _chain = ModContent.Request<Texture2D>(Texture + "_Chain");
     }

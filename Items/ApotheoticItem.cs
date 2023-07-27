@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
@@ -27,7 +28,7 @@ public class ApotheoticGlobalItem : GlobalItem
         if (!NPC.downedMoonlord || item.ModItem is not ApotheoticItem)
             return;
 
-        bool close = player.InInteractionRange(Player.tileTargetX, Player.tileTargetY);
+        bool close = player.InInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple);
         Tile tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
 
         if (close && tile.HasTile && (tile.TileType == ModContent.TileType<Apotheosis>() || tile.TileType == ModContent.TileType<HardmodeApotheosis>()))

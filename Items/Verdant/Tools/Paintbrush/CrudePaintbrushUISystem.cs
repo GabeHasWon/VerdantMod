@@ -107,7 +107,7 @@ internal class PaintbrushToolsetUI : UIState
                 Left = StyleDimension.FromPixels(index * 44),
             };
 
-            button.OnClick += (evt, listener) =>
+            button.OnLeftClick += (evt, listener) =>
             {
                 clickEvent(evt, listener);
                 CrudePaintbrushUISystem.PlayersPaintbrush.SetMode((CrudePaintbrush.PlacementMode)index);
@@ -147,7 +147,7 @@ internal class PaintbrushToolsetUI : UIState
             Top = StyleDimension.FromPixels(0),
             Left = StyleDimension.FromPixels(4 * 44),
         };
-        button.OnClick += UndoButtonClick;
+        button.OnLeftClick += UndoButtonClick;
         panel.Append(button);
     }
 

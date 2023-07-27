@@ -78,7 +78,7 @@ internal class AquamarineGen
                 else if (singleValid)
                     grounds[GroundedType.Single].Add(new Point(i, j));
 
-                WorldGen.PlaceLiquid(i, j, LiquidID.Water, 175);
+                WorldGen.PlaceLiquid(i, j, (byte)LiquidID.Water, 175);
 
                 if (singleValid)
                 {

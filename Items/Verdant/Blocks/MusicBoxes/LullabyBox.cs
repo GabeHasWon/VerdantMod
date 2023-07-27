@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Music Box (Apotheosis Lullaby)");
+			// DisplayName.SetDefault("Music Box (Apotheosis Lullaby)");
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ApotheosisLullaby"), ModContent.ItemType<LullabyBox>(), ModContent.TileType<LullabyBoxTile>());
 		}
 
@@ -27,7 +27,7 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = 100000;
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 		}
 	}
 }

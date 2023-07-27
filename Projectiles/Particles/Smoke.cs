@@ -12,7 +12,7 @@ namespace Verdant.Projectiles.Particles
         private Color drawCol = Color.Green;
         private int _maxTimeLeft = 0;
 
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Smoke");
+        // public override void SetStaticDefaults() => DisplayName.SetDefault("Smoke");
 
         public override void SetDefaults()
         {

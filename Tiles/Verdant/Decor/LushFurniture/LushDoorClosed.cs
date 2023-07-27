@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.LushWood;
@@ -23,6 +24,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			TileID.Sets.DrawsWalls[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
+			TileID.Sets.OpenDoorID[Type] = ModContent.TileType<LushDoorOpen>();
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
 			TileObjectData.newTile.Width = 1;
@@ -45,13 +47,12 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Lush Door");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Lush Door");
             AddMapEntry(new Color(114, 69, 39), name);
 
             DustType = DustID.t_BorealWood;
 			AdjTiles = new int[] { TileID.ClosedDoor };
-			OpenDoorID = ModContent.TileType<LushDoorOpen>();
 		}
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

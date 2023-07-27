@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -40,15 +41,12 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Lush Dresser");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Lush Dresser");
             AddMapEntry(new Color(114, 69, 39), name);
 
             DustType = DustID.t_BorealWood;
             AdjTiles = new int[] { TileID.Dressers };
-
-            ContainerName.SetDefault("Lush Dresser");
-            DresserDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushDresserItem>();
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -56,21 +54,18 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
         public override bool RightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
-            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY == 0)
+            int left = Main.tile[i, j].TileFrameX / 18;
+            left %= 3;
+            left = i - left;
+            int top = j - Main.tile[i, j].TileFrameY / 18;
+            if (Main.tile[i, j].TileFrameY == 0)
             {
                 Main.CancelClothesWindow(true);
                 Main.mouseRightRelease = false;
-                int left = Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameX / 18;
-                left %= 3;
-                left = Player.tileTargetX - left;
-                int top = Player.tileTargetY - (Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY / 18);
-                if (player.sign > -1)
-                {
-                    SoundEngine.PlaySound(SoundID.MenuClose);
-                    player.sign = -1;
-                    Main.editSign = false;
-                    Main.npcChatText = string.Empty;
-                }
+                player.CloseSign();
+                player.SetTalkNPC(-1);
+                Main.npcChatCornerItem = 0;
+                Main.npcChatText = "";
                 if (Main.editChest)
                 {
                     SoundEngine.PlaySound(SoundID.MenuTick);
@@ -79,7 +74,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 }
                 if (player.editedChestName)
                 {
-                    NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
+                    NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f);
                     player.editedChestName = false;
                 }
                 if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -92,40 +87,33 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                     }
                     else
                     {
-                        NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top, 0f, 0f, 0, 0, 0);
+                        NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top);
                         Main.stackSplit = 600;
                     }
                 }
                 else
                 {
-                    player.CloseSign();
-                    int chestInd = Chest.FindChest(left, top);
-                    if (chestInd != -1)
+                    player.piggyBankProjTracker.Clear();
+                    player.voidLensChest.Clear();
+                    int chestIndex = Chest.FindChest(left, top);
+                    if (chestIndex != -1)
                     {
                         Main.stackSplit = 600;
-                        if (chestInd == player.chest)
+                        if (chestIndex == player.chest)
                         {
                             player.chest = -1;
                             Recipe.FindRecipes();
                             SoundEngine.PlaySound(SoundID.MenuClose);
                         }
-                        else if (chestInd != player.chest && player.chest == -1)
+                        else if (chestIndex != player.chest && player.chest == -1)
                         {
-                            player.chest = chestInd;
-                            Main.playerInventory = true;
-                            Main.recBigList = false;
+                            player.OpenChest(left, top, chestIndex);
                             SoundEngine.PlaySound(SoundID.MenuOpen);
-                            player.chestX = left;
-                            player.chestY = top;
                         }
                         else
                         {
-                            player.chest = chestInd;
-                            Main.playerInventory = true;
-                            Main.recBigList = false;
+                            player.OpenChest(left, top, chestIndex);
                             SoundEngine.PlaySound(SoundID.MenuTick);
-                            player.chestX = left;
-                            player.chestY = top;
                         }
                         Recipe.FindRecipes();
                     }
@@ -136,41 +124,58 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
                 Main.playerInventory = false;
                 player.chest = -1;
                 Recipe.FindRecipes();
-                Main.interactedDresserTopLeftX = Player.tileTargetX;
-                Main.interactedDresserTopLeftY = Player.tileTargetY;
+                player.SetTalkNPC(-1);
+                Main.npcChatCornerItem = 0;
+                Main.npcChatText = "";
+                Main.interactedDresserTopLeftX = left;
+                Main.interactedDresserTopLeftY = top;
                 Main.OpenClothesWindow();
             }
             return true;
         }
 
-        public override void MouseOverFar(int i, int j)
+        // This is not a hook, this is just a normal method used by the MouseOver and MouseOverFar hooks to avoid repeating code.
+        public static void MouseOverNearAndFarSharedLogic(Player player, int i, int j)
         {
-            Player player = Main.LocalPlayer;
-            Tile tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
-            int left = Player.tileTargetX;
-            int top = Player.tileTargetY;
+            Tile tile = Main.tile[i, j];
+            int left = i;
+            int top = j;
             left -= tile.TileFrameX % 54 / 18;
             if (tile.TileFrameY % 36 != 0)
+            {
                 top--;
+            }
             int chestIndex = Chest.FindChest(left, top);
             player.cursorItemIconID = -1;
             if (chestIndex < 0)
+            {
                 player.cursorItemIconText = Language.GetTextValue("LegacyDresserType.0");
+            }
             else
             {
+                string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
+
                 if (Main.chest[chestIndex].name != "")
                     player.cursorItemIconText = Main.chest[chestIndex].name;
                 else
-                    player.cursorItemIconText = ContainerName.GetDefault();
+                    player.cursorItemIconText = defaultName;
 
-                if (player.cursorItemIconText == ContainerName.GetDefault())
+                if (player.cursorItemIconText == defaultName)
                 {
-                    player.cursorItemIconID = DresserDrop;
+                    player.cursorItemIconID = ModContent.ItemType<LushDresserItem>();
                     player.cursorItemIconText = "";
                 }
             }
+
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
+        }
+
+        public override void MouseOverFar(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            MouseOverNearAndFarSharedLogic(player, i, j);
+
             if (player.cursorItemIconText == "")
             {
                 player.cursorItemIconEnabled = false;
@@ -181,41 +186,16 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
         public override void MouseOver(int i, int j)
         {
             Player player = Main.LocalPlayer;
-            Tile tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
-            int left = Player.tileTargetX;
-            int top = Player.tileTargetY;
-            left -= tile.TileFrameX % 54 / 18;
-            if (tile.TileFrameY % 36 != 0)
-                top--;
-            int chestInd = Chest.FindChest(left, top);
-            player.cursorItemIconID = -1;
-            if (chestInd < 0)
-                player.cursorItemIconText = Language.GetTextValue("LegacyDresserType.0");
-            else
-            {
-                if (Main.chest[chestInd].name != "")
-                    player.cursorItemIconText = Main.chest[chestInd].name;
-                else
-                    player.cursorItemIconText = ContainerName.GetDefault();
+            MouseOverNearAndFarSharedLogic(player, i, j);
 
-                if (player.cursorItemIconText == ContainerName.GetDefault())
-                {
-                    player.cursorItemIconID = DresserDrop;
-                    player.cursorItemIconText = "";
-                }
-            }
-            player.noThrow = 2;
-            player.cursorItemIconEnabled = true;
-            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY > 0)
+            if (Main.tile[i, j].TileFrameY > 0)
+            {
                 player.cursorItemIconID = ItemID.FamiliarShirt;
+                player.cursorItemIconText = "";
+            }
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, DresserDrop);
-            Chest.DestroyChest(i, j);
-        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Chest.DestroyChest(i, j);
     }
 }

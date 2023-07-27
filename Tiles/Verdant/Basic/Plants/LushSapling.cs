@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -41,8 +42,8 @@ public class LushSapling : ModTile
         TileObjectData.newTile.StyleMultiplier = 3;
         TileObjectData.addTile(Type);
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Sapling");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Sapling");
         AddMapEntry(new Color(89, 47, 33), name);
 
         DustType = DustID.Grass;

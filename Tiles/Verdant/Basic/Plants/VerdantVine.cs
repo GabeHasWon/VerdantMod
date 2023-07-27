@@ -19,7 +19,6 @@ internal class VerdantVine : ModTile, IFlowerTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
-        ItemDrop = 0;
         AddMapEntry(new Color(24, 135, 28));
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;

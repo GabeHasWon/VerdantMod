@@ -5,7 +5,6 @@ namespace Verdant.Items.Verdant.Blocks.Walls
 {
     public class LushSoilWallItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Soil Wall", "");
         public override void SetDefaults() => QuickItem.SetWall(this, 32, 32, ModContent.WallType<LushSoilWall>());
         public override void AddRecipes()
         {

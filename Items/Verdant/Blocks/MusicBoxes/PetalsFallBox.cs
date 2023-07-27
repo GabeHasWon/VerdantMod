@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Music Box (Petals Fall)");
+			// DisplayName.SetDefault("Music Box (Petals Fall)");
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall"), ModContent.ItemType<PetalsFallBox>(), ModContent.TileType<PetalsFallBoxTile>());
 		}
 
@@ -27,7 +27,7 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = 100000;
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 		}
 	}
 }

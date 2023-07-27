@@ -11,7 +11,6 @@ namespace Verdant.Walls
         {
             Main.wallHouse[Type] = false;
             DustType = DustID.Grass;
-            ItemDrop = 0;
             AddMapEntry(new Color(81, 4, 22));
         }
 
@@ -26,7 +25,6 @@ namespace Verdant.Walls
         {
             Main.wallHouse[Type] = false;
             DustType = DustID.Grass;
-            ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Walls.VerdantRedPetalWallItem>();
             AddMapEntry(new Color(81, 4, 22));
         }
 

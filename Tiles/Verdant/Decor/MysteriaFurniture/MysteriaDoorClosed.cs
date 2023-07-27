@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
@@ -24,6 +25,7 @@ public class MysteriaDoorClosed : ModTile
         TileID.Sets.DrawsWalls[Type] = true;
         TileID.Sets.HasOutlines[Type] = true;
         TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.OpenDoorID[Type] = ModContent.TileType<MysteriaDoorOpen>();
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
         TileObjectData.newTile.Width = 1;
@@ -46,13 +48,12 @@ public class MysteriaDoorClosed : ModTile
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Mysteria Door");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Mysteria Door");
         AddMapEntry(new Color(124, 93, 68), name);
 
         DustType = DustID.t_BorealWood;
         AdjTiles = new int[] { TileID.ClosedDoor };
-        OpenDoorID = ModContent.TileType<MysteriaDoorOpen>();
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

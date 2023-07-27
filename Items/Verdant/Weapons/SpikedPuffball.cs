@@ -10,8 +10,8 @@ internal class SpikedPuffball : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Spiked Puffball");
-        Tooltip.SetDefault("Floats in the air for half a minute, then drops");
+        // DisplayName.SetDefault("Spiked Puffball");
+        // Tooltip.SetDefault("Floats in the air for half a minute, then drops");
     }
 
     public override void SetDefaults()

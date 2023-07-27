@@ -12,7 +12,6 @@ class PinkPetal : ApotheoticItem
     int updateCounter = 0;
 
     public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White, 999, false);
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Pink Petal", "'It's very soft'");
 
     public override void AddRecipes()
     {

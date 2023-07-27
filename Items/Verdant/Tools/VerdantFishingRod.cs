@@ -12,8 +12,8 @@ namespace Verdant.Items.Verdant.Tools
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Fishing Rod");
-            Tooltip.SetDefault("Gives off light when held\nGrows in power in the Verdant");
+            // DisplayName.SetDefault("Lush Fishing Rod");
+            // Tooltip.SetDefault("Gives off light when held\nGrows in power in the Verdant");
         }
 
         public override void SetDefaults()

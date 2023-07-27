@@ -14,9 +14,9 @@ class Microcosm : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Microcosm");
-        Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This overrides a LARGE area (minimum 60x60 tiles on a small world)\n" +
-            "Make sure you use this in a place you don't care about!\n");
+        // DisplayName.SetDefault("Microcosm");
+        /* Tooltip.SetDefault("Creates a miniscule Verdant biome anywhere\nCaution! This overrides a LARGE area (minimum 60x60 tiles on a small world)\n" +
+            "Make sure you use this in a place you don't care about!\n"); */
     }
 
     public override void SetDefaults()

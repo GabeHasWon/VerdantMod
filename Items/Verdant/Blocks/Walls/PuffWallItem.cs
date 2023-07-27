@@ -7,7 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.Walls;
 
 public class PuffWallItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Puff Wall", "");
     public override void SetDefaults() => QuickItem.SetWall(this, 32, 32, ModContent.WallType<PuffWall>());
 
     public override void AddRecipes()

@@ -14,8 +14,8 @@ class Halfsprout : ApotheoticItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Halfsprout");
-        Tooltip.SetDefault("Instantly grows all herbs, harvests them, then replants them\n");
+        // DisplayName.SetDefault("Halfsprout");
+        // Tooltip.SetDefault("Instantly grows all herbs, harvests them, then replants them\n");
     }
 
     public override void SetDefaults()

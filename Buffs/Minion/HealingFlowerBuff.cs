@@ -7,8 +7,8 @@ namespace Verdant.Buffs.Minion
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healing Flower");
-            Description.SetDefault("The flower's aura will heal you");
+            // DisplayName.SetDefault("Healing Flower");
+            // Description.SetDefault("The flower's aura will heal you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

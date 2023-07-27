@@ -39,16 +39,14 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Lush Wood Chest");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Lush Wood Chest");
             AddMapEntry(new Color(114, 69, 39), name, MapChestName);
 
             DustType = DustID.t_BorealWood;
             HitSound = SoundID.Dig;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Containers };
-            ContainerName.SetDefault("Lush Wood Chest");
-            ChestDrop = ModContent.ItemType<VerdantWoodChestBlock>();
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 36);
@@ -83,16 +81,9 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             }
         }
 
-        public override void NumDust(int i, int j, bool fail, ref int num)
-        {
-            num = 1;
-        }
+        public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ChestDrop);
-            Chest.DestroyChest(i, j);
-        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Chest.DestroyChest(i, j);
 
         public override bool RightClick(int i, int j)
         {

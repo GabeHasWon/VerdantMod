@@ -15,9 +15,9 @@ class PermVineWand : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Zipvine");
-        Tooltip.SetDefault($"Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\n" +
-            $"These vines use [i:{ModContent.ItemType<LushLeaf>()}] to build, and drop them on being destroyed.");
+        // DisplayName.SetDefault("Zipvine");
+        /* Tooltip.SetDefault($"Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\n" +
+            $"These vines use [i:{ModContent.ItemType<LushLeaf>()}] to build, and drop them on being destroyed."); */
     }
 
     public override void SetDefaults()
@@ -57,7 +57,7 @@ public class PermVineWandProjectile : ModProjectile
 
     private bool _init = false;
 
-    public override void SetStaticDefaults() => DisplayName.SetDefault("Enchanted Vine");
+    // public override void SetStaticDefaults() => DisplayName.SetDefault("Enchanted Vine");
 
     public override void SetDefaults()
     {

@@ -10,8 +10,8 @@ public class LushWoodHead : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Lush Wood Helmet");
-        Tooltip.SetDefault("+1 flat summon damage");
+        // DisplayName.SetDefault("Lush Wood Helmet");
+        // Tooltip.SetDefault("+1 flat summon damage");
     }
 
     public override void SetDefaults()

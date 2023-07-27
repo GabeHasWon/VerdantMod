@@ -8,7 +8,6 @@ namespace Verdant.Items.Verdant.Materials;
 
 class YellowBulb : ApotheoticItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Yellow Bulb", "'So rare...'");
     public override void SetDefaults() => Item.DefaultToPlaceableTile(ModContent.TileType<YellowSprouts>());
     public override void Update(ref float gravity, ref float maxFallSpeed) => maxFallSpeed = 0.9f;
 

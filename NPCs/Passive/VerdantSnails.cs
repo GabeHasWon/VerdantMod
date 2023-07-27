@@ -12,7 +12,7 @@ namespace Verdant.NPCs.Passive
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Leafy Snail");
+            // DisplayName.SetDefault("Leafy Snail");
 
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
@@ -52,7 +52,7 @@ namespace Verdant.NPCs.Passive
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) => npcLoot.AddCommon<SnailShellBlockItem>(1, 1, 3);
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -75,7 +75,7 @@ namespace Verdant.NPCs.Passive
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lightbulb Snail");
+            // DisplayName.SetDefault("Lightbulb Snail");
 
             Main.npcCatchable[NPC.type] = true;
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];

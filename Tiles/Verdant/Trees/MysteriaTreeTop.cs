@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -18,7 +19,7 @@ internal class MysteriaTreeTop : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), ItemID.None, "", true, false);
+        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), "", true, false);
 
         Main.tileBlendAll[Type] = true;
         Main.tileBrick[Type] = true;
@@ -46,43 +47,47 @@ internal class MysteriaTreeTop : ModTile
             return;
 
         ShakeTree(i, j);
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaAcorn>(), Main.rand.Next(1, 3));
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<MysteriaClump>(), Main.rand.Next(3, 8));
     }
 
-    internal static void ShakeTree(int x, int y)
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
     {
-        for (int k = 0; k < WorldGen.numTreeShakes; k++)
-            if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
-                return;
+        yield return new Item(ModContent.ItemType<MysteriaAcorn>()) { stack = Main.rand.Next(1, 3) };
+        yield return new Item(ModContent.ItemType<MysteriaClump>()) { stack = Main.rand.Next(3, 8) };
+    }
 
-        WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
-        WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
-        WorldGen.numTreeShakes++;
+    internal static void ShakeTree(int x, int y) //1.4.4PORT
+    {
+        //for (int k = 0; k < WorldGen.numTreeShakes; k++)
+        //    if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
+        //        return;
 
-        WeightedRandom<int> random = new(Main.rand);
+        //WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
+        //WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
+        //WorldGen.numTreeShakes++;
 
-        random.Add(0, 1);
-        random.Add(1, 0.7f);
-        random.Add(2, 0.85f);
+        //WeightedRandom<int> random = new(Main.rand);
 
-        int rand = random;
-        if (rand == 1)
-        {
-            int type = Main.rand.NextBool() ? ModContent.ItemType<Walnut>() : ModContent.ItemType<Mystuber>();
-            Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
-        }
-        else if (rand == 2)
-        {
-            int reps = Main.rand.Next(3, 6);
+        //random.Add(0, 1);
+        //random.Add(1, 0.7f);
+        //random.Add(2, 0.85f);
 
-            WeightedRandom<int> npcType = new(Main.rand);
-            npcType.Add(ModContent.NPCType<MysteriaFlotie>(), 0.9f);
-            npcType.Add(ModContent.NPCType<MysteriaFlotiny>(), 1.2f);
+        //int rand = random;
+        //if (rand == 1)
+        //{
+        //    int type = Main.rand.NextBool() ? ModContent.ItemType<Walnut>() : ModContent.ItemType<Mystuber>();
+        //    Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
+        //}
+        //else if (rand == 2)
+        //{
+        //    int reps = Main.rand.Next(3, 6);
 
-            for (int i = 0; i < reps; ++i)
-                NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
-        }
+        //    WeightedRandom<int> npcType = new(Main.rand);
+        //    npcType.Add(ModContent.NPCType<MysteriaFlotie>(), 0.9f);
+        //    npcType.Add(ModContent.NPCType<MysteriaFlotiny>(), 1.2f);
+
+        //    for (int i = 0; i < reps; ++i)
+        //        NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
+        //}
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

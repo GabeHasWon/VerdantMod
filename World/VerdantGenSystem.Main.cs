@@ -59,9 +59,9 @@ public partial class VerdantGenSystem : ModSystem
         reset:
             center = new Point(GetCenterX(), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.5f), (int)(Main.maxTilesY / 1.75f)));
             total = 0;
-            if (WorldGen.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y - FluffY) || WorldGen.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y + FluffY)
-                || WorldGen.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y - FluffY) || WorldGen.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y + FluffY)
-                || WorldGen.UndergroundDesertLocation.Contains(center))
+            if (GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y + FluffY)
+                || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y + FluffY)
+                || GenVars.UndergroundDesertLocation.Contains(center))
                 continue;
             for (int i = center.X - (int)(FluffX * 1.2f); i < center.X + (FluffX * 1.2f); ++i) //Assume width
             {

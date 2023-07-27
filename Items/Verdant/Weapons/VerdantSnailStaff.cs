@@ -16,8 +16,8 @@ namespace Verdant.Items.Verdant.Weapons
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Snail Staff");
-            Tooltip.SetDefault("Summons determined snails.\nThese snails take less than a full minion slot to summon.");
+            // DisplayName.SetDefault("Snail Staff");
+            // Tooltip.SetDefault("Summons determined snails.\nThese snails take less than a full minion slot to summon.");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }

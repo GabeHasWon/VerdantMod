@@ -7,8 +7,8 @@ namespace Verdant.Items.Verdant.Blocks.LushWood
     [Sacrifice(1)]
     public class LushClockItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Clock", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 24, 48, ModContent.TileType<Tiles.Verdant.Decor.LushFurniture.LushClock>());
+
         public override void AddRecipes()
         {
             Recipe r = CreateRecipe(1);

@@ -12,7 +12,6 @@ namespace Verdant.Walls
         {
             Main.wallHouse[Type] = true;
             DustType = DustID.t_BorealWood;
-            ItemDrop = ModContent.ItemType<LushWoodWallItem>();
             AddMapEntry(new Color(56, 42, 27));
         }
 

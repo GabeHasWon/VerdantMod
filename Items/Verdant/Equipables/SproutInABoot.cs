@@ -34,8 +34,8 @@ namespace Verdant.Items.Verdant.Equipables
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sprout in Boots");
-            Tooltip.SetDefault("Spreads leafy platforms automatically under the player when worn\nUses a single Lush Leaf per platform placed\nNeeds water to continue working\n'Surprisingly comfortable & durable'");
+            // DisplayName.SetDefault("Sprout in Boots");
+            // Tooltip.SetDefault("Spreads leafy platforms automatically under the player when worn\nUses a single Lush Leaf per platform placed\nNeeds water to continue working\n'Surprisingly comfortable & durable'");
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

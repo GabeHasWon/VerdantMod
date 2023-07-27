@@ -10,8 +10,8 @@ namespace Verdant.Items.Verdant.Equipables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Yellow Sprout");
-            Tooltip.SetDefault("Increases healing from potions by 20%\nIncreases mana healing from potions by 30%\nProvides a tiny bit of light\n'You are followed by the strength of willpower'");
+            // DisplayName.SetDefault("Yellow Sprout");
+            // Tooltip.SetDefault("Increases healing from potions by 20%\nIncreases mana healing from potions by 30%\nProvides a tiny bit of light\n'You are followed by the strength of willpower'");
         }
 
         public override void SetDefaults()

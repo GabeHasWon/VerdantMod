@@ -10,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), ModContent.ItemType<OvergrownBrickItem>(), "", true, false);
+            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), "", true, false);
 
             Main.tileBlendAll[Type] = true;
             Main.tileBrick[Type] = true;
@@ -20,10 +20,11 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            fail = true;
-
-            Tile tile = Main.tile[i, j];
-            tile.TileType = TileID.GrayBrick;
+            if (fail)
+            {
+                Tile tile = Main.tile[i, j];
+                tile.TileType = TileID.GrayBrick;
+            }
         }
 
         public override void RandomUpdate(int i, int j)

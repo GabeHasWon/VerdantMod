@@ -6,8 +6,8 @@ namespace Verdant.Items.Verdant.Blocks.LushWood
     [Sacrifice(1)]
     public class VerdantWoodBlock : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Wood", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 32, 18, ModContent.TileType<VerdantWood>());
+
         public override void AddRecipes()
         {
             QuickItem.AddRecipe(this, -1, 1, (ModContent.ItemType<Walls.LushWoodWallItem>(), 4));

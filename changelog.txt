@@ -1,5 +1,7 @@
-- Made New Beginning's compatibility origin Lushman spawn in the Verdant
-- Fixed Wisplant-Infused Lush Soil Ball need a Wisplant to craft
-- Fixed Verdant Candelabra using Pink Petals instead of Red Petals
-- Made Crude Paintbrush account for unconsumable tiles
-- Made Peace Canopy tooltip clarify it can only be placed on Mysteria wood
+- Ported localization, shops, tile changes
+- Made Verdant Staff's multiplayer line localizable
+- Removed duplicate gore code in Verdant Trees
+- Improved Overgrown Brick decay into normal bricks
+- Replaced some tileBlendAll with tileBrick
+- Made Dryad, Witch Doctor always sell Lightbulb Seeds
+- Increased Emily paintings price from vendors from free to 5 gold

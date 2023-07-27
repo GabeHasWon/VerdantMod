@@ -10,8 +10,8 @@ namespace Verdant.Items.Verdant.Armour
 	{
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Wood Chestpiece");
-            Tooltip.SetDefault("+1 flat minion damage");
+            // DisplayName.SetDefault("Lush Wood Chestpiece");
+            // Tooltip.SetDefault("+1 flat minion damage");
         }
 
         public override void SetDefaults()

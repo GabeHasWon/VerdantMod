@@ -9,7 +9,6 @@ namespace Verdant.Items.Verdant.Misc.Apotheotic;
 
 public class ApotheosisBook : ApotheoticItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "'My Apotheosis'", "- Emily");
     public override void SetDefaults() => QuickItem.SetMaterial(this, 36, 46, ItemRarityID.Purple, 1, false, 0, true);
     public override bool AltFunctionUse(Player player) => true;
 

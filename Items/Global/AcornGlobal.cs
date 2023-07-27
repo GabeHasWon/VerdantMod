@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.Blocks;
@@ -15,8 +16,9 @@ class AcornGlobal : GlobalItem
     {
         Point p = Main.MouseWorld.ToTileCoordinates();
         Tile tile = Main.tile[p.X, p.Y + 1];
+        bool inRange = player.IsInTileInteractionRange(p.X, p.Y + 1, TileReachCheckSettings.Simple);
 
-        if (player.IsInTileInteractionRange(p.X, p.Y + 1) && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>() && Main.tile[p.X, p.Y].TileType != ModContent.TileType<LushSapling>())
+        if (inRange && tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>() && Main.tile[p.X, p.Y].TileType != ModContent.TileType<LushSapling>())
         {
             Tile top = Main.tile[p.X, p.Y - 1];
             Tile bot = Main.tile[p.X, p.Y];

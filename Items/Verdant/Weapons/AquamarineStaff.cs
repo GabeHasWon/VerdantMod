@@ -13,8 +13,8 @@ class AquamarineStaff : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Aquamarine Staff");
-        Tooltip.SetDefault("Summons bolts to come from your minions\nThe bolts get some added damage from your minions");
+        // DisplayName.SetDefault("Aquamarine Staff");
+        // Tooltip.SetDefault("Summons bolts to come from your minions\nThe bolts get some added damage from your minions");
 
         Item.staff[Type] = true;
     }

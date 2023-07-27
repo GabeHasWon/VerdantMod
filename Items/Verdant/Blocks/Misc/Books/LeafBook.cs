@@ -8,7 +8,6 @@ namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 
 public class LeafBook : ModItem
 {
-	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Leaf Research", "'An impressive amount of insight into lush leaves'\nRight click to read");
 	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 2, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 

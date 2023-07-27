@@ -7,7 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.VerdantFurniture
     [Sacrifice(1)]
     public class VerdantClockItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Verdant Clock", "");
         public override void SetDefaults() => QuickItem.SetBlock(this, 54, 34, ModContent.TileType<Tiles.Verdant.Decor.VerdantFurniture.VerdantClock>());
 
         public override void AddRecipes()

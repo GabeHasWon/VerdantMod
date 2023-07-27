@@ -67,7 +67,7 @@ public class Flotie : ModNPC
             NPC.frame.Y = (frame + 1) * frameHeight;
     }
 
-    public override void HitEffect(int hitDirection, double damage)
+    public override void HitEffect(NPC.HitInfo hit)
     {
         if (NPC.life <= 0)
         {
@@ -107,7 +107,7 @@ public class MysteriaFlotie : Flotie
         NPCID.Sets.CountsAsCritter[Type] = true;
 
         glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
-        DisplayName.SetDefault("Mysteria Flotie");
+        // DisplayName.SetDefault("Mysteria Flotie");
     }
 
     public override void SetDefaults()

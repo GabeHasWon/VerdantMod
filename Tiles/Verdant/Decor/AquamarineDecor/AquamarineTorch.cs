@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Aquamarine;
@@ -28,7 +29,6 @@ public class AquamarineTorch : ModTile
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileID.Sets.Torch[Type] = true;
 
-        ItemDrop = ModContent.ItemType<AquamarineTorchItem>();
         DustType = DustID.Water;
         AdjTiles = new int[] { TileID.Torches };
 
@@ -49,8 +49,8 @@ public class AquamarineTorch : ModTile
         TileObjectData.addAlternate(0);
         TileObjectData.addTile(Type);
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Torch");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Torch");
         AddMapEntry(new Color(138, 185, 200), name);
 
         if (!Main.dedServ)

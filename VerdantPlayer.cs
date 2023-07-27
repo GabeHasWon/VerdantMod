@@ -36,7 +36,7 @@ class VerdantPlayer : ModPlayer
     public delegate void DoOnRespawn(Player p);
     public static event DoOnRespawn OnRespawnEvent;
 
-    public delegate void HitByNPC(Player p, NPC npc, int damage, bool crit);
+    public delegate void HitByNPC(Player p, NPC npc, Player.HurtInfo hurtInfo);
     public static event HitByNPC HitByNPCEvent;
 
     public delegate void PreUpdateDelegate(Player p);
@@ -63,7 +63,7 @@ class VerdantPlayer : ModPlayer
         PreUpdateEvent = null;
     }
 
-    public override void OnRespawn(Player player) => OnRespawnEvent?.Invoke(player);
+    public override void OnRespawn() => OnRespawnEvent?.Invoke(Player);
 
     public override void PreUpdate()
     {
@@ -198,6 +198,6 @@ class VerdantPlayer : ModPlayer
     }
 
     public void FloorVisuals(Player p, int t) => FloorVisualEvent?.Invoke(p, t);
-    public override void OnHitByNPC(NPC npc, int damage, bool crit) => HitByNPCEvent?.Invoke(Player, npc, damage, crit);
+    public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo) => HitByNPCEvent?.Invoke(Player, npc, hurtInfo);
     public void InvokeDrawLayer(PlayerDrawSet set) => ItemDrawLayerEvent?.Invoke(set);
 }

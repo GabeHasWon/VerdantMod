@@ -7,7 +7,7 @@ namespace Verdant.Items.Verdant.Blocks
 	[Sacrifice(1)]
 	internal class VerdantPylonItem : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant Pylon");
+		// public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant Pylon");
 
 		public override void SetDefaults()
 		{

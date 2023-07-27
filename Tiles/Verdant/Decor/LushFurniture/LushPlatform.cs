@@ -35,7 +35,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			AddMapEntry(new Color(114, 69, 39));
 
 			DustType = DustID.t_BorealWood;
-			ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushPlatformItem>();
 			AdjTiles = new int[] { TileID.Platforms };
 		}
 

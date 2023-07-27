@@ -8,7 +8,6 @@ namespace Verdant.Items.Verdant.Blocks.Misc;
 
 public class HangingCrystalItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hanging Crystal", "Spawns healing plants when placed\nCan be turned on/off with wiring\n'Glows with a gentle power'");
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 32, ModContent.TileType<HangingCrystal>(), rarity: ItemRarityID.Green);
 	public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.Anvils, 1, (ModContent.ItemType<GreenCrystalItem>(), 2), (ModContent.ItemType<VerdantStrongVineMaterial>(), 1));
 

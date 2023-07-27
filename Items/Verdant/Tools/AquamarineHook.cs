@@ -8,7 +8,7 @@ namespace Verdant.Items.Verdant.Tools;
 [Sacrifice(1)]
 internal class AquamarineHook : ModItem
 {
-    public override void SetStaticDefaults() => DisplayName.SetDefault("Aquamarine Hook");
+    // public override void SetStaticDefaults() => DisplayName.SetDefault("Aquamarine Hook");
 
     public override void SetDefaults()
     {

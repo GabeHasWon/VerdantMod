@@ -22,7 +22,7 @@ namespace Verdant.NPCs.Passive
         {
             NPCID.Sets.CountsAsCritter[Type] = true;
 
-            DisplayName.SetDefault("Mossling [Deprecated]");
+            // DisplayName.SetDefault("Mossling [Deprecated]");
         }
 
         public override void SetDefaults()
@@ -159,7 +159,7 @@ namespace Verdant.NPCs.Passive
             return false;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
                 for (int i = 0; i < 2; ++i)

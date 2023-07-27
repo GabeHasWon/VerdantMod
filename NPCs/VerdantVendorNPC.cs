@@ -11,31 +11,35 @@ namespace Verdant.NPCs;
 
 class VerdantVendorNPC : GlobalNPC
 {
-    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.Dryad;
+    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.Dryad || entity.type == NPCID.WitchDoctor;
 
-    public override void SetupShop(int type, Chest shop, ref int nextSlot)
+    public override void ModifyShop(NPCShop shop)
     {
-        if (type != NPCID.Dryad && type != NPCID.WitchDoctor)
-            return;
-
-        if (Main.hardMode)
+        if (shop.NpcType == NPCID.Dryad || shop.NpcType == NPCID.WitchDoctor)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<MysteriaAcorn>());
-            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(0, 0, 1, 0);
-        }
+            shop.Add(new Item(ModContent.ItemType<MysteriaAcorn>())
+            {
+                shopCustomPrice = Item.buyPrice(0, 0, 1, 0),
+            }, Condition.Hardmode);
 
-        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Microcosm>());
+            shop.Add(new Item(ModContent.ItemType<WaterberryBushItem>())
+            {
+                shopCustomPrice = Item.buyPrice(0, 0, 15, 0),
+            }, Condition.Hardmode);
 
-        shop.item[nextSlot].SetDefaults(ModContent.ItemType<WaterberryBushItem>());
-        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(0, 0, 15, 0);
+            shop.Add(ModContent.ItemType<Microcosm>());
+            shop.Add(ModContent.ItemType<LightbulbSeeds>());
 
-        if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown)
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbSeeds>());
+            var inVerdant = new Condition("Mods.Verdant.Condition.InVerdant", () => Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant);
+            shop.Add(new Item(ModContent.ItemType<ApotheoticPaintingItem>())
+            {
+                shopCustomPrice = Item.buyPrice(0, 5, 0, 0),
+            }, inVerdant);
 
-        if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
-        {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ApotheoticPaintingItem>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LightbulbPaintingItem>());
+            shop.Add(new Item(ModContent.ItemType<LightbulbPaintingItem>())
+            {
+                shopCustomPrice = Item.buyPrice(0, 5, 0, 0),
+            }, inVerdant);
         }
     }
 }

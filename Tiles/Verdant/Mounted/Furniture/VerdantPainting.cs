@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
@@ -37,8 +38,8 @@ namespace Verdant.Tiles.Verdant.Mounted.Furniture
 
 			DustType -= 1;
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Painting");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("Painting");
 			AddMapEntry(new Color(109, 81, 69), name);
 		}
 

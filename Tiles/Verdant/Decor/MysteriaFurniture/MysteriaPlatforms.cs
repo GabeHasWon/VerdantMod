@@ -35,7 +35,6 @@ public class MysteriaPlatforms : ModTile
         AddMapEntry(new Color(124, 93, 68));
 
         DustType = DustID.t_BorealWood;
-        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaPlatformItem>();
         AdjTiles = new int[] { TileID.Platforms };
     }
 

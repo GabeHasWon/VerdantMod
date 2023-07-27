@@ -11,8 +11,8 @@ namespace Verdant.Items.Verdant.Tools
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Red Petal Wand");
-            Tooltip.SetDefault("Places red petal blocks\nRight click to switch to Pink Petals");
+            // DisplayName.SetDefault("Red Petal Wand");
+            // Tooltip.SetDefault("Places red petal blocks\nRight click to switch to Pink Petals");
         }
 
         public override void SetDefaults()

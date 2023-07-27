@@ -9,8 +9,8 @@ public class WisplantInfusedMudBoulder : ModItem
 {
     public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Wisplant-Infused Lush Soil Ball");
-		Tooltip.SetDefault("'You just stuck two things together, it's not magic' - Everybody\n'Magic isn't always a spectacle' - Wizards");
+		// DisplayName.SetDefault("Wisplant-Infused Lush Soil Ball");
+		// Tooltip.SetDefault("'You just stuck two things together, it's not magic' - Everybody\n'Magic isn't always a spectacle' - Wizards");
 	}
 
 	public override void SetDefaults() => Item.DefaultToPlaceableTile(ModContent.TileType<WisplantInfusedLushBall>());

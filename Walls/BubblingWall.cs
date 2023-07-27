@@ -15,7 +15,6 @@ namespace Verdant.Walls
             Main.wallHouse[Type] = false;
 
             DustType = DustID.UnusedWhiteBluePurple;
-            ItemDrop = ItemID.None;
             AddMapEntry(new Color(183, 164, 143));
         }
 
@@ -35,7 +34,6 @@ namespace Verdant.Walls
             Main.wallHouse[Type] = true;
 
             DustType = DustID.UnusedWhiteBluePurple;
-            ItemDrop = ModContent.ItemType<BackslateBubblingWallItem>();
             AddMapEntry(new Color(183, 164, 143));
         }
     }

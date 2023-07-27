@@ -1,0 +1,53 @@
+﻿VerdantPylonTile.MapEntry: Verdant Pylon
+FloatingCrystal.MapEntry: Floating Crystal
+AquamarineTile.MapEntry: Aquamarine
+Beehive.MapEntry: Beehive
+LootPlant.MapEntry: Passionflower
+MysteriaSprout.MapEntry: Sprout
+LushSapling.MapEntry: Sapling
+MarigoldTile.MapEntry: Marigold
+WaterberryBush.MapEntry: Bush
+WaterberryBushPicked.MapEntry: Bush
+Wisplant.MapEntry: Wisplant
+Apotheosis.MapEntry: Apotheosis
+AquamarineTorch.MapEntry: Torch
+HardmodeApotheosis.MapEntry: Apotheosis
+LushDoorClosed.MapEntry: Lush Door
+LushDoorOpen.MapEntry: Lush Door
+
+LushDresser: {
+	MapEntry: Lush Dresser
+	ContainerName: Lush Dresser
+}
+
+VerdantWoodChest: {
+	MapEntry: Lush Wood Chest
+	ContainerName: Lush Wood Chest
+}
+
+LullabyBoxTile.MapEntry: Music Box
+PetalsFallBoxTile.MapEntry: Music Box
+TearRainBoxTile.MapEntry: Music Box
+VibrantHorizonBoxTile.MapEntry: Music Box
+MysteriaDoorClosed.MapEntry: Mysteria Door
+MysteriaDoorOpen.MapEntry: Mysteria Door
+
+MysteriaDresser: {
+	MapEntry: Mysteria Dresser
+	ContainerName: Mysteria Dresser
+}
+
+SnailStatue.MapEntry: Snail Statue
+VerdantDoorClosed.MapEntry: Verdant Door
+VerdantDoorOpen.MapEntry: Verdant Door
+
+VerdantYellowPetalChest: {
+	MapEntry: Yellow Petal Chest
+	ContainerName: Yellow Petal Chest
+}
+
+GreenCrystal.MapEntry: Green Crystal
+ApotheoticPainting.MapEntry: Painting
+LightbulbPainting.MapEntry: Painting
+BigVerdantTree.MapEntry: Big Tree
+VerdantTree.MapEntry: Tree

@@ -9,7 +9,7 @@ internal class GemsparkAquamarine : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(56, 144, 170), ModContent.ItemType<Items.Verdant.Blocks.Aquamarine.AquamarineItem>(), "", true, false);
+        QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(56, 144, 170), "", true, false);
 
         Main.tileBrick[Type] = true;
         Main.tileLighted[Type] = true;

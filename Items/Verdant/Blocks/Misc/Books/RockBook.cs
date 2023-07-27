@@ -10,7 +10,6 @@ namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 
 public class RockBook : ModItem
 {
-	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Rock Research", "'Research into...volcanic rocks?'\nRight click to read");
 	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 30, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 6, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 

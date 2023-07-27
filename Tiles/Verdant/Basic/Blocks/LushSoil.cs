@@ -10,8 +10,9 @@ internal class LushSoil : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(91, 58, 28), ModContent.ItemType<LushSoilBlock>(), "", true, false);
-        QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>(), TileID.Glass, TileID.Chlorophyte);
+        QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(91, 58, 28), "", true, false);
+        QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), 
+            ModContent.TileType<VerdantRedPetal>(), TileID.Glass, TileID.Chlorophyte);
 
         Main.tileBrick[Type] = true;
     }

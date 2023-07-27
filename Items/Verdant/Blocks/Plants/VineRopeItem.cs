@@ -8,8 +8,6 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class VineRopeItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Vine Rope", "");
-
         public override void SetDefaults()
         {
             QuickItem.SetBlock(this, 16, 16, ModContent.TileType<VineRopeTile>(), true);

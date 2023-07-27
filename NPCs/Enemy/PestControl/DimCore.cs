@@ -36,7 +36,7 @@ public class DimCore : ModNPC, IDrawAdditive
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Dim Core");
+        // DisplayName.SetDefault("Dim Core");
 
         Main.npcFrameCount[NPC.type] = 1;
         NPCID.Sets.TrailingMode[Type] = 2;
@@ -194,7 +194,7 @@ public class DimCore : ModNPC, IDrawAdditive
 
         public override bool IsLoadingEnabled(Mod mod) => false;
 
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Thorny Detritus");
+        // public override void SetStaticDefaults() => DisplayName.SetDefault("Thorny Detritus");
 
         public override void SetDefaults()
         {

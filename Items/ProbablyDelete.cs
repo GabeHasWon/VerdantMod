@@ -31,12 +31,6 @@ public class ProbablyDelete : ModItem
 {
     public override bool IsLoadingEnabled(Mod mod) => true;
 
-    public override void SetStaticDefaults()
-	{
-		DisplayName.SetDefault("Tester Tool");
-		Tooltip.SetDefault("@ me if you see this");
-	}
-
 	public override void SetDefaults()
 	{
 		Item.DamageType = DamageClass.Melee;

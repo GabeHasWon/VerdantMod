@@ -9,7 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 
 public class HardyVineBook : ModItem
 {
-	public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Hardy Vine Research", "'An impressive amount of insight into hardy vines'\nRight click to read");
 	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 30, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 4, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 

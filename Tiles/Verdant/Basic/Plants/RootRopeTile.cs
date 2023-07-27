@@ -16,8 +16,6 @@ internal class RootRopeTile : ModTile
         Main.tileRope[Type] = true;
         Main.tileFrameImportant[Type] = false;
 
-        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Plants.RootRopeItem>();
-
         AddMapEntry(new Color(165, 108, 58));
 
         DustType = DustID.Grass;

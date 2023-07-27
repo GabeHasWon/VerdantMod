@@ -12,14 +12,6 @@ namespace Verdant.Items
 {
     public class QuickItem
     {
-        public static void SetStatic(ModItem i, string name, string tooltip = "", bool isStaff = false)
-        {
-            i.DisplayName.SetDefault(name);
-            i.Tooltip.SetDefault(tooltip);
-
-            Item.staff[i.Item.type] = true;
-        }
-
         /// <summary>Sets the defaults of an item to a basic item that places a block.</summary>
         /// <param name="i">Item to set the defaults of.</param>
         /// <param name="w">Width of the item.</param>

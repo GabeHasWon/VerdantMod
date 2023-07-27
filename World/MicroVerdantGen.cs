@@ -186,7 +186,7 @@ namespace Verdant.World
         {
             if (!WorldGen.SolidTile(x, y) && Main.rand.NextBool(10))
             {
-                WorldGen.PlaceLiquid(x, y, LiquidID.Water, 255);
+                WorldGen.PlaceLiquid(x, y, (byte)LiquidID.Water, 255);
                 success = true;
             }
         }

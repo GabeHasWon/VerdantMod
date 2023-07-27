@@ -11,8 +11,8 @@ public class MysteriaHelmet : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Mysteria Veil");
-        Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed\nIncreased placement range");
+        // DisplayName.SetDefault("Mysteria Veil");
+        // Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed\nIncreased placement range");
     }
 
     public override void SetDefaults()

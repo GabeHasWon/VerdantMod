@@ -13,7 +13,6 @@ public class GemsparkAquamarineWallOffline : ModWall
         Main.wallHouse[Type] = true;
 
         DustType = DustID.MagnetSphere;
-        ItemDrop = ModContent.ItemType<BackslateBubblingWallItem>();
         AddMapEntry(new Color(26, 63, 124));
     }
 }

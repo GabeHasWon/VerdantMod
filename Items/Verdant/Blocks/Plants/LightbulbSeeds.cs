@@ -6,8 +6,6 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 {
     public class LightbulbSeeds : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lightbulb Seeds", "'These emenate the faintest light already'");
-
         public override void SetDefaults()
         {
             QuickItem.SetBlock(this, 22, 28, ModContent.TileType<Tiles.Verdant.Basic.Plants.VerdantLightbulb>());

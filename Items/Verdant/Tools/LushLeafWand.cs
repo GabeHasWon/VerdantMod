@@ -11,8 +11,8 @@ class LushLeafWand : ModItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Lush Leaf Wand");
-        Tooltip.SetDefault("Places lush leaf blocks\nRight click to switch to Red Petals");
+        // DisplayName.SetDefault("Lush Leaf Wand");
+        // Tooltip.SetDefault("Places lush leaf blocks\nRight click to switch to Red Petals");
     }
 
     public override void SetDefaults()

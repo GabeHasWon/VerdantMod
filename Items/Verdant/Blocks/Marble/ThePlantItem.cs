@@ -7,8 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.Marble
 {
     public class ThePlantItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "The Plant", "'in real'");
-
         public override void SetDefaults()
         {
             QuickItem.SetBlock(this, 32, 30, ModContent.TileType<ThePlant>());

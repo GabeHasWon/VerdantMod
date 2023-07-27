@@ -12,8 +12,8 @@ namespace Verdant.Items.Verdant.Tools
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Living Lush Wood Wand");
-            Tooltip.SetDefault("Places living lush wood blocks\nRight click to switch to Lush Leaves");
+            // DisplayName.SetDefault("Living Lush Wood Wand");
+            // Tooltip.SetDefault("Places living lush wood blocks\nRight click to switch to Lush Leaves");
         }
 
         public override void SetDefaults()

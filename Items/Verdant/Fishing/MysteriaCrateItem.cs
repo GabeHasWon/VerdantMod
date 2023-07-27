@@ -11,7 +11,6 @@ namespace Verdant.Items.Verdant.Fishing;
 [Sacrifice(10)]
 public class MysteriaCrateItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Mysteria Crate", "Right click to open");
     public override void SetDefaults() => QuickItem.SetBlock(this, 32, 32, ModContent.TileType<Tiles.Verdant.Decor.MysteriaFurniture.MysteriaCrate>(), rarity: ItemRarityID.Blue, maxStack: 99);
     public override bool CanRightClick() => true;
 

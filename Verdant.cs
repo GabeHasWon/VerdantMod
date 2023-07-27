@@ -1,13 +1,7 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
-using Microsoft.Xna.Framework;
 using Terraria.Graphics.Effects;
-using Verdant.Backgrounds.BGItem;
-using Verdant.Tiles.Verdant.Trees;
-using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.World.Biome;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Verdant.Effects;
@@ -67,16 +61,16 @@ public partial class VerdantMod : Mod
     private void MonoModChanges()
     {
         ForegroundManager.Hooks();
-        On.Terraria.Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
-        On.Terraria.WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
-        On.Terraria.Main.Update += Main_Update; //Used for BackgroundItemManager Update
-        On.Terraria.Main.DrawWater += Main_DrawWater;
+        On_Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
+        On_WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
+        On_Main.Update += Main_Update; //Used for BackgroundItemManager Update
+        On_Main.oldDrawWater += On_Main_oldDrawWater;
 
-        On.Terraria.Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
-        On.Terraria.Player.Teleport += VinePulleyPlayer.Player_Teleport;
+        On_Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
+        On_Player.Teleport += VinePulleyPlayer.Player_Teleport;
 
         if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
-            IL.Terraria.WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;
+            IL_WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;
     }
 
     public override object Call(params object[] args)

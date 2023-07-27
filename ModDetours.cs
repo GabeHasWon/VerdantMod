@@ -12,7 +12,7 @@ namespace Verdant
 {
     public partial class VerdantMod : Mod
     {
-        private void Main_DrawBackgroundBlackFill(On.Terraria.Main.orig_DrawBackgroundBlackFill orig, Main self)
+        private void Main_DrawBackgroundBlackFill(On_Main.orig_DrawBackgroundBlackFill orig, Main self)
         {
             orig(self);
 
@@ -20,7 +20,7 @@ namespace Verdant
                 BackgroundItemManager.Draw();
         }
 
-        private void Main_Update(On.Terraria.Main.orig_Update orig, Main self, GameTime gameTime)
+        private void Main_Update(On_Main.orig_Update orig, Main self, GameTime gameTime)
         {
             bool playerInv = Main.hasFocus && (!Main.autoPause || Main.netMode != NetmodeID.SinglePlayer || (Main.autoPause && !Main.playerInventory && Main.netMode == NetmodeID.SinglePlayer));
             if (Main.PlayerLoaded && BackgroundItemManager.Loaded && playerInv)
@@ -29,7 +29,7 @@ namespace Verdant
             orig(self, gameTime);
         }
 
-        private void Main_DrawWater(On.Terraria.Main.orig_DrawWater orig, Main self, bool bg, int Style, float Alpha)
+        private void On_Main_oldDrawWater(On_Main.orig_oldDrawWater orig, Main self, bool bg, int Style, float Alpha)
         {
             if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 Alpha *= 0.9f;
@@ -37,7 +37,7 @@ namespace Verdant
             orig(self, bg, Style, Alpha);
         }
 
-        private bool WorldGen_GrowTree(On.Terraria.WorldGen.orig_GrowTree orig, int i, int y)
+        private bool WorldGen_GrowTree(On_WorldGen.orig_GrowTree orig, int i, int y)
         {
             if (Framing.GetTileSafely(i, y).TileType == (ushort)ModContent.TileType<LushSapling>())
             {

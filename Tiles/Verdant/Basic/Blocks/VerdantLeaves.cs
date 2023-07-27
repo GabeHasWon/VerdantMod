@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Gores.Verdant;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -11,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(71, 229, 32), -1, string.Empty, true, false, true, false);
+            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(71, 229, 32), string.Empty, true, false, true, false);
             QuickTile.MergeWith(Type, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
 
             Main.tileCut[Type] = true;

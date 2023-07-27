@@ -7,8 +7,8 @@ public class PropellerpadBuff : ModBuff
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Propellerpad");
-        Description.SetDefault("What an odd lilypad!");
+        // DisplayName.SetDefault("Propellerpad");
+        // Description.SetDefault("What an odd lilypad!");
 
         Main.buffNoSave[Type] = true;
         Main.buffNoTimeDisplay[Type] = true;

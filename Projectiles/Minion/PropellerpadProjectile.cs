@@ -29,7 +29,7 @@ class PropellerpadProjectile : ModProjectile
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Razorpad");
+        // DisplayName.SetDefault("Razorpad");
 
         Main.projFrames[Type] = 4;
 

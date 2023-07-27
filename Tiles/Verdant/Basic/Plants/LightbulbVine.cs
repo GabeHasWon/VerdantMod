@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -25,7 +26,6 @@ internal class LightbulbVine : ModTile, IFlowerTile
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
 
-        ItemDrop = 0;
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
 
@@ -41,18 +41,17 @@ internal class LightbulbVine : ModTile, IFlowerTile
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 
-    public override bool Drop(int i, int j)
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
     {
         int plr = Player.FindClosest(new Vector2(i, j) * 16, 16, 16);
 
         if (plr == -1)
-            return false;
+            yield break;
 
         Player player = Main.player[plr];
 
         if (player.active && !player.dead && player.GetModPlayer<VerdantPlayer>().expertPlantGuide)
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, ModContent.ItemType<VineRopeItem>());
-        return false;
+            yield return new Item(ModContent.ItemType<VineRopeItem>());
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

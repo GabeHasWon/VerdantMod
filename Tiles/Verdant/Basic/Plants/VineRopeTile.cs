@@ -16,8 +16,6 @@ internal class VineRopeTile : ModTile
         Main.tileRope[Type] = true;
         Main.tileFrameImportant[Type] = false;
 
-        ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.Plants.VineRopeItem>();
-
         AddMapEntry(new Color(23, 102, 32));
 
         DustType = DustID.Grass;

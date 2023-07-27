@@ -6,7 +6,6 @@ namespace Verdant.Items.Verdant.Blocks;
 
 public class BeehiveBlock : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Bumblebee Hive", "'The buzzing is mildly concerning'");
     public override void SetDefaults() => QuickItem.SetBlock(this, 28, 28, ModContent.TileType<Beehive>());
 
     public override void AddRecipes()

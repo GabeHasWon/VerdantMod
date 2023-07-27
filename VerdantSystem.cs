@@ -219,7 +219,7 @@ public class VerdantSystem : ModSystem
         apotheosisIntro = flags[4];
     }
 
-    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
     {
         int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals(ModLoader.TryGetMod("Remnants", out Mod _) ? "Jungle Pyramid" : "Jungle Temple"));
         VerdantGenSystem genSystem = ModContent.GetInstance<VerdantGenSystem>();

@@ -12,8 +12,6 @@ class BouncebloomItem : ApotheoticItem
 {
     public override void Load() => VerdantPlayer.ItemDrawLayerEvent += PlayerDraw;
     public override void SetDefaults() => QuickItem.SetBlock(this, 38, 26, ModContent.TileType<Tiles.Verdant.Basic.Plants.Bouncebloom>(), true);
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Bouncebloom", "Slows fall\nHold DOWN to fall faster\n" +
-        "Light enemies above you will bounce on the flower");
 
     public override void HoldItem(Player player)
     {

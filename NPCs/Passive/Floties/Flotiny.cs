@@ -69,7 +69,7 @@ public class Flotiny : Flotie
         npcLoot.AddCommon<Lightbulb>(3);
     }
 
-    public override void HitEffect(int hitDirection, double damage)
+    public override void HitEffect(NPC.HitInfo hit)
     {
         if (NPC.life <= 0)
             FlotieCommon.DeathGores(NPC, 0.5f);

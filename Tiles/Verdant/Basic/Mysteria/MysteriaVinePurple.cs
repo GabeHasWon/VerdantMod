@@ -19,7 +19,6 @@ internal class MysteriaVinePurple : ModTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
-        ItemDrop = 0;
         AddMapEntry(new Color(33, 124, 22));
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;

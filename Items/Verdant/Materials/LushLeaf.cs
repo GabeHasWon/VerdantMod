@@ -11,7 +11,6 @@ namespace Verdant.Items.Verdant.Materials;
 class LushLeaf : ApotheoticItem
 {
     public override void SetDefaults() => QuickItem.SetMaterial(this, 12, 12, ItemRarityID.White);
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Leaf", "'Quite durable'");
 
     public override void AddRecipes()
     {

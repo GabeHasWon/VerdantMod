@@ -7,7 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.Walls
 {
     public class VerdantVineWallItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Lush Vine Wall", "");
         public override void SetDefaults() => QuickItem.SetWall(this, 32, 32, ModContent.WallType<VerdantVineWall>());
 
         public override void AddRecipes()

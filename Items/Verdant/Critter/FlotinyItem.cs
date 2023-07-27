@@ -8,8 +8,8 @@ namespace Verdant.Items.Verdant.Critter
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Flotiny");
-            Tooltip.SetDefault("'Oh my lord it's so tiny'");
+            // DisplayName.SetDefault("Flotiny");
+            // Tooltip.SetDefault("'Oh my lord it's so tiny'");
         }
 
         public override void SetDefaults() => QuickItem.SetCritter(this, 22, 26, ModContent.NPCType<NPCs.Passive.Floties.Flotiny>(), 1, 8);

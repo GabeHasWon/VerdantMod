@@ -8,7 +8,6 @@ namespace Verdant.Items.Verdant.Materials;
 
 class WisplantItem : ApotheoticItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Wisplant");
     public override void SetDefaults() => QuickItem.SetMaterial(this, 16, 24, ItemRarityID.White, 999, false, Item.buyPrice(0, 0, 0, 5));
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(WisplantItem))]

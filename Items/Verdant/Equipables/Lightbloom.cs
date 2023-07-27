@@ -9,8 +9,8 @@ namespace Verdant.Items.Verdant.Equipables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lightbloom");
-            Tooltip.SetDefault("Increases life regeneration when in light\nThe stronger the light, the larger the increase");
+            // DisplayName.SetDefault("Lightbloom");
+            // Tooltip.SetDefault("Increases life regeneration when in light\nThe stronger the light, the larger the increase");
         }
 
         public override void SetDefaults()

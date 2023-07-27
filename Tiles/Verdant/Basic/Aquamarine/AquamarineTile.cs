@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Aquamarine;
 
@@ -14,13 +15,12 @@ public class AquamarineTile : OmnidirectionalAnchorTile
     {
         Main.tileLighted[Type] = true;
 
-        ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Aquamarine");
+        LocalizedText name = CreateMapEntryName();
+        // name.SetDefault("Aquamarine");
         AddMapEntry(new Color(56, 144, 170), name);
 
         HitSound = SoundID.Shatter;
         DustType = DustID.Water;
-        ItemDrop = ModContent.ItemType<AquamarineItem>();
     }
 
     public override bool IsTileSpelunkable(int i, int j) => true;

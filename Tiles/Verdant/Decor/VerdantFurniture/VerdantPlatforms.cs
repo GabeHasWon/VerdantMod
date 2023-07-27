@@ -36,7 +36,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
 			HitSound = SoundID.Grass;
 			DustType = DustID.Grass;
-			ItemDrop = ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantPlatformItem>();
 			AdjTiles = new int[] { TileID.Platforms };
 		}
 
@@ -46,12 +45,12 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
 	public class VerdantPlatformsDropLeaves : VerdantPlatforms
 	{
-        public override string Texture => base.Texture.Substring(0, base.Texture.Length - "DropLeaves".Length);
+        public override string Texture => base.Texture[..^"DropLeaves".Length];
 
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			ItemDrop = ModContent.ItemType<Items.Verdant.Materials.LushLeaf>();
+            RegisterItemDrop(ModContent.ItemType<Items.Verdant.Materials.LushLeaf>());
 		}
 	}
 }

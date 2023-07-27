@@ -7,7 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.Walls
 {
     public class LivingLushWoodWallItem : ModItem
     {
-        public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Living Lush Wood Wall", "");
         public override void SetDefaults() => QuickItem.SetWall(this, 32, 32, ModContent.WallType<LivingLushWoodWall>());
         public override void AddRecipes()
         {

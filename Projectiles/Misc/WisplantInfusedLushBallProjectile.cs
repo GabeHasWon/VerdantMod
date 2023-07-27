@@ -20,7 +20,7 @@ namespace Verdant.Projectiles.Misc
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Wisplant-Infused Lush Soil Ball");
+            // DisplayName.SetDefault("Wisplant-Infused Lush Soil Ball");
             _extraTextures = ModContent.Request<Texture2D>("Verdant/Projectiles/Misc/WisplantInfusedMudBoulderProps");
         }
 

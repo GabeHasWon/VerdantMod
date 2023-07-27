@@ -19,7 +19,7 @@ namespace Verdant.Projectiles.Minion
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lush Flower");
+            // DisplayName.SetDefault("Lush Flower");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

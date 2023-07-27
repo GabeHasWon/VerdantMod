@@ -7,7 +7,6 @@ namespace Verdant.Items.Verdant.Blocks.Aquamarine;
 
 public class EmbeddedAquamarineItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Aquamarine Lush Soil Block");
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 16, ModContent.TileType<EmbeddedAquamarine>());
 
     public override void AddRecipes()
@@ -16,14 +15,13 @@ public class EmbeddedAquamarineItem : ModItem
             .AddIngredient(ModContent.ItemType<LushSoilBlock>())
             .AddRecipeGroup(RecipeGroupSystem.AquamarineRecipeGroup)
             .AddTile(TileID.HeavyWorkBench)
-            .AddCondition(Recipe.Condition.InGraveyardBiome)
+            .AddCondition(Condition.InGraveyard)
             .Register();
     }
 }
 
 public class EmbeddedStoneAquamarineItem : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Aquamarine Stone Block");
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 16, ModContent.TileType<EmbeddedStoneAquamarine>());
 
     public override void AddRecipes()
@@ -32,7 +30,7 @@ public class EmbeddedStoneAquamarineItem : ModItem
             .AddIngredient(ItemID.StoneBlock)
             .AddRecipeGroup(RecipeGroupSystem.AquamarineRecipeGroup)
             .AddTile(TileID.HeavyWorkBench)
-            .AddCondition(Recipe.Condition.InGraveyardBiome)
+            .AddCondition(Condition.InGraveyard)
             .Register();
     }
 }

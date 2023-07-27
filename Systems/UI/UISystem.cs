@@ -14,7 +14,7 @@ internal class UISystem : ModSystem
 
     public override void Load()
     {
-        On.Terraria.Player.ToggleInv += Player_ToggleInv;
+        Terraria.On_Player.ToggleInv += Player_ToggleInv;
 
         if (!Main.dedServ)
             BookInterface = new UserInterface();
@@ -40,7 +40,7 @@ internal class UISystem : ModSystem
         }
     }
 
-    private static void Player_ToggleInv(On.Terraria.Player.orig_ToggleInv orig, Player self)
+    private static void Player_ToggleInv(Terraria.On_Player.orig_ToggleInv orig, Player self)
     {
         var inter = ModContent.GetInstance<UISystem>().BookInterface;
 

@@ -35,8 +35,8 @@ public partial class CrudePaintbrush : ApotheoticItem
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Crude Paintbrush");
-        Tooltip.SetDefault("Can rapidly place tiles in various placement styles\nRight click while holding to cycle placement style\n'A crude veneer belies a powerful artefact'");
+        // DisplayName.SetDefault("Crude Paintbrush");
+        // Tooltip.SetDefault("Can rapidly place tiles in various placement styles\nRight click while holding to cycle placement style\n'A crude veneer belies a powerful artefact'");
     }
 
     public override void SetDefaults()

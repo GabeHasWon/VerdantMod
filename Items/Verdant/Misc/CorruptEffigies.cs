@@ -11,7 +11,7 @@ class CorruptEffigy : ModItem
 
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Feels wrong in your hands");
+        // Tooltip.SetDefault("Feels wrong in your hands");
 
         ItemID.Sets.ItemNoGravity[Type] = true;
     }
@@ -33,7 +33,7 @@ class CrimsonEffigy : ModItem
 
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Feels off in your hands");
+        // Tooltip.SetDefault("Feels off in your hands");
 
         ItemID.Sets.ItemNoGravity[Type] = true;
     }

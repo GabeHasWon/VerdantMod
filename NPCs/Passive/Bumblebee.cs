@@ -219,7 +219,7 @@ namespace Verdant.NPCs.Passive
             return !inList && closer && isFlower;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {

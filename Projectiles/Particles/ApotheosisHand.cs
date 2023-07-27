@@ -18,7 +18,7 @@ class ApotheosisHand : ModProjectile, IDrawAdditive
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Apotheosis Hand");
+        // DisplayName.SetDefault("Apotheosis Hand");
         _wingTex = ModContent.Request<Texture2D>(Texture + "_Wings");
     }
 

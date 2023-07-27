@@ -9,8 +9,6 @@ namespace Verdant.Items.Verdant.Equipables;
 
 class Propellerpad : ModItem
 {
-    public override void SetStaticDefaults() => QuickItem.SetStatic(this, "Propellerpad", "Summons an odd lily pad.\nHang onto the pad's vine to fly around.", true);
-
     public override void SetDefaults()
     {
         QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<PropellerpadProjectile>(), 9, 0, 24, 0, 0, ItemRarityID.Green);

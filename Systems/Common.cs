@@ -15,14 +15,14 @@ namespace Verdant.Systems
     {
         public void Load(Mod mod)
         {
-            On.Terraria.Main.DrawGore += DrawForeground;
-            On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
-            On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
-            On.Terraria.GameContent.Drawing.TileDrawing.Draw += TileDrawing_Draw;
+            Terraria.On_Main.DrawGore += DrawForeground;
+            Terraria.On_Main.DrawNPCs += Main_DrawNPCs;
+            Terraria.On_Main.DrawProjectiles += Main_DrawProjectiles;
+            Terraria.GameContent.Drawing.On_TileDrawing.Draw += TileDrawing_Draw;
             Main.OnTickForThirdPartySoftwareOnly += ScreenTextManager.Update;
         }
 
-        private void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+        private void Main_DrawProjectiles(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
         {
             orig(self);
 
@@ -33,7 +33,7 @@ namespace Verdant.Systems
             Main.spriteBatch.End();
         }
 
-        private void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+        private void Main_DrawNPCs(Terraria.On_Main.orig_DrawNPCs orig, Main self, bool behindTiles)
         {
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
@@ -46,7 +46,7 @@ namespace Verdant.Systems
             orig(self, behindTiles);
         }
 
-        private void TileDrawing_Draw(On.Terraria.GameContent.Drawing.TileDrawing.orig_Draw orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets, int waterStyleOverride)
+        private void TileDrawing_Draw(Terraria.GameContent.Drawing.On_TileDrawing.orig_Draw orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets, int waterStyleOverride)
         {
             orig(self, solidLayer, forRenderTargets, intoRenderTargets, waterStyleOverride);
 
@@ -91,7 +91,7 @@ namespace Verdant.Systems
                 lastTileY = Main.maxTilesY - 4;
         }
 
-        private static void DrawForeground(On.Terraria.Main.orig_DrawGore orig, Main self)
+        private static void DrawForeground(Terraria.On_Main.orig_DrawGore orig, Main self)
         {
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);

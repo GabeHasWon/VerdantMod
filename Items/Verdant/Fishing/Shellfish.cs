@@ -8,7 +8,7 @@ namespace Verdant.Items.Verdant.Fishing
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Overgrown Shellfish");
+            // DisplayName.SetDefault("Overgrown Shellfish");
         }
 
         public override void SetDefaults()

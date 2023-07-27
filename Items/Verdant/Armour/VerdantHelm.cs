@@ -1,10 +1,8 @@
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Gores.Verdant;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
 
@@ -16,13 +14,26 @@ namespace Verdant.Items.Verdant.Armour
         public override void Load()
         {
             VerdantPlayer.OnRespawnEvent += OnRespawn;
-            VerdantPlayer.HitByNPCEvent += OnHit;
+            VerdantPlayer.HitByNPCEvent += VerdantPlayer_HitByNPCEvent;
+        }
+
+        private void VerdantPlayer_HitByNPCEvent(Player p, NPC npc, Player.HurtInfo hurtInfo)
+        {
+            if (p.ArmourSetEquipped(ModContent.ItemType<VerdantHelm>(), ModContent.ItemType<VerdantChestplate>(), ModContent.ItemType<VerdantLeggings>()))
+            {
+                int r = Main.rand.Next(1, 3);
+                for (int i = 0; i < r; ++i)
+                {
+                    int d = Main.rand.NextBool(2) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
+                    Gore.NewGore(p.GetSource_OnHurt(npc), p.position + new Vector2(Main.rand.Next(p.width), Main.rand.Next(p.height)), Vector2.Zero, d, 1f);
+                }
+            }
         }
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Growth Headdress");
-            Tooltip.SetDefault("+5% increased minion damage\nGives off a very small amount of light");
+            // DisplayName.SetDefault("Growth Headdress");
+            // Tooltip.SetDefault("+5% increased minion damage\nGives off a very small amount of light");
         }
 
         public override void SetDefaults()
@@ -73,19 +84,6 @@ namespace Verdant.Items.Verdant.Armour
                 {
                     p.HealEffect(50);
                     p.statLife += 50;
-                }
-            }
-        }
-
-        private void OnHit(Player p, NPC npc, int damage, bool crit)
-        {
-            if (p.ArmourSetEquipped(ModContent.ItemType<VerdantHelm>(), ModContent.ItemType<VerdantChestplate>(), ModContent.ItemType<VerdantLeggings>()))
-            {
-                int r = Main.rand.Next(1, 3);
-                for (int i = 0; i < r; ++i)
-                {
-                    int d = Main.rand.NextBool(2) ? Mod.Find<ModGore>("PinkPetalFalling").Type : Mod.Find<ModGore>("RedPetalFalling").Type;
-                    Gore.NewGore(p.GetSource_OnHurt(npc), p.position + new Vector2(Main.rand.Next(p.width), Main.rand.Next(p.height)), Vector2.Zero, d, 1f);
                 }
             }
         }

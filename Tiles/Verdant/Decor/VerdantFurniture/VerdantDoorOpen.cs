@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
@@ -17,19 +18,19 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
             TileID.Sets.HousingWalls[Type] = true;
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.CloseDoorID[Type] = ModContent.TileType<VerdantDoorClosed>();
+            TileID.Sets.DisableSmartCursor[Type] = true;
 
             TileHelper.OpenDoorData(Type);
 
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Verdant Door");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Verdant Door");
             AddMapEntry(new Color(33, 142, 22), name);
 
             DustType = DustID.Grass;
-			TileID.Sets.DisableSmartCursor[Type] = true;
 			AdjTiles = new int[] { TileID.OpenDoor };
-			CloseDoorID = ModContent.TileType<VerdantDoorClosed>();
 		}
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
