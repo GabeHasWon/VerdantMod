@@ -44,12 +44,6 @@ namespace Verdant.Tiles.Verdant.Mounted.Furniture
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 3 : 7;
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            var rectangle = new Rectangle(i * 16, j * 16, 16 * Width, 16 * Height);
-            Item.NewItem(new EntitySource_TileBreak(i, j), rectangle, ModContent.ItemType<T>(), 1);
-        }
     }
 
     internal class ApotheoticPainting : VerdantPainting<ApotheoticPaintingItem>

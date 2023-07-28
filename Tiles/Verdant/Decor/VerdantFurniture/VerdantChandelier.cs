@@ -47,13 +47,11 @@ internal class VerdantChandelier : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantChandelierBlock>(), 1);
-
         if (Main.netMode != NetmodeID.Server)
         {
             for (int v = 0; v < 4; ++v)
             {
-                Vector2 off = new Vector2(Main.rand.Next(32), Main.rand.Next(54));
+                Vector2 off = new(Main.rand.Next(32), Main.rand.Next(54));
                 Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
         }

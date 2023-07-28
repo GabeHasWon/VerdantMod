@@ -4,6 +4,7 @@ using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.UI.Chat;
 using Verdant.Systems.ScreenText.Animations;
 
@@ -80,8 +81,7 @@ public class ScreenText
 
     public void Draw()
     {
-        const string RightClick = "";
-
+        string rightClick = Language.GetTextValue("Mods.Verdant.ScreenText.RightClick");
         float realFactor = timeLeft / MaxTimeLeft;
         float factor = MathHelper.Clamp(realFactor, 0, 1);
         int textSize = (int)(text.Length * (1f - factor));
@@ -118,8 +118,9 @@ public class ScreenText
 
         if (timeLeft <= 0 && AutomaticallyDie)
         {
-            Vector2 rSiz = font.Value.MeasureString(RightClick);
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, RightClick, pos + (Vector2.UnitY * rSiz.Y), Color.Gray * 0.5f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
+            Vector2 rSiz = font.Value.MeasureString(rightClick);
+            var drawPos = pos + (Vector2.UnitY * rSiz.Y * 0.75f);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, rightClick, drawPos, Color.Gray * 0.75f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
         }
     }
 

@@ -20,8 +20,6 @@ public class PuffSlimeSmall : ModNPC
 
     public override void SetStaticDefaults()
     {
-        // DisplayName.SetDefault("Puff Slime");
-
         Main.npcCatchable[Type] = true;
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
 
@@ -90,7 +88,7 @@ public class PuffSlimeSmall : ModNPC
         Texture2D tex = _eyeTex.Value;
         bool blink = blinkTimer % 70 > 62;
         Vector2 position = NPC.position + offset - screenPos;
-        Color color = Lighting.GetColor(NPC.Center.ToTileCoordinates(), drawColor);
+        Color color = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor(NPC.Center.ToTileCoordinates(), drawColor);
         Rectangle source = new(0, 0, 4, 4);
 
         if (blink)

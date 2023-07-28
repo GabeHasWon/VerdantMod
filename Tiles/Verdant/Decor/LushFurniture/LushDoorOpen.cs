@@ -24,19 +24,17 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 			TileHelper.OpenDoorData(Type);
 
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Lush Door");
 			AddMapEntry(new Color(114, 69, 39), name);
+            RegisterItemDrop(ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>());
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-			DustType = DustID.t_BorealWood;
+            DustType = DustID.t_BorealWood;
 			AdjTiles = new int[] { TileID.OpenDoor };
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>());
 
 		public override void MouseOver(int i, int j)
 		{

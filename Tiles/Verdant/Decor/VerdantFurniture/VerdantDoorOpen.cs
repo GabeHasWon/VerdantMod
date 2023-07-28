@@ -23,11 +23,10 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
             TileHelper.OpenDoorData(Type);
 
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Verdant Door");
             AddMapEntry(new Color(33, 142, 22), name);
+            RegisterItemDrop(ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantDoorItem>());
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             DustType = DustID.Grass;
 			AdjTiles = new int[] { TileID.OpenDoor };
@@ -35,10 +34,6 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantDoorItem>());
-		}
 
 		public override void MouseOver(int i, int j) {
 			Player player = Main.LocalPlayer;

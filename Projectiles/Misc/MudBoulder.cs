@@ -7,8 +7,6 @@ namespace Verdant.Projectiles.Misc;
 
 public class MudBoulder : ModProjectile
 {
-    // public override void SetStaticDefaults() => DisplayName.SetDefault("Lush Soil Ball");
-
     public override void SetDefaults()
     {
         Projectile.CloneDefaults(ProjectileID.Boulder);

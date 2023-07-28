@@ -31,18 +31,15 @@ class HangingCrystal : ModTile
 
         Main.tileLighted[Type] = true;
 
+        RegisterItemDrop(ModContent.ItemType<HangingCrystalItem>());
+
         _crystalTex = ModContent.Request<Texture2D>(Texture + "_Crystals");
     }
 
     public override void Unload() => _crystalTex = null;
 
     public override void PlaceInWorld(int i, int j, Item item) => ModContent.GetInstance<HangingCrystalTE>().Place(i, j);
-
-    public override void KillMultiTile(int i, int j, int frameX, int frameY)
-    {
-        ModContent.GetInstance<HangingCrystalTE>().Kill(i, j);
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<HangingCrystalItem>());
-    }
+    public override void KillMultiTile(int i, int j, int frameX, int frameY) => ModContent.GetInstance<HangingCrystalTE>().Kill(i, j);
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {

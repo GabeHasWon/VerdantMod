@@ -52,7 +52,7 @@ namespace Verdant.World
                 float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
                 TileAction.TileActionDelegate action = (int _, int _, ref bool _) => { };
                 float dist = Vector2.DistanceSquared(point.ToVector2(), circle.center.ToVector2());
-                double cutoff = Math.Pow(diameter - GenCircle.MaxDitherDistance - 1, 2);
+                double cutoff = Math.Pow(diameter - GenCircle.MaxDitherDistance - 2, 2);
 
                 if (dist > cutoff)
                 {

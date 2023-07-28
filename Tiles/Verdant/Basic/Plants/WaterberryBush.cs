@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -33,7 +34,6 @@ class WaterberryBush : ModTile, IFlowerTile
         Main.tileLighted[Type] = true;
 
         LocalizedText name = CreateMapEntryName();
-        // name.SetDefault("Bush");
         AddMapEntry(new Color(71, 181, 168), name);
     }
 
@@ -65,6 +65,17 @@ class WaterberryBush : ModTile, IFlowerTile
         return true;
     }
 
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        yield return new Item(ModContent.ItemType<WaterberryBushItem>());
+
+        if (Main.tile[i, j].TileFrameX != 0)
+            yield break;
+
+        if (Main.tile[i, j].TileType == ModContent.TileType<WaterberryBush>())
+            yield return new Item(ModContent.ItemType<Waterberry>()) { stack = 2 };
+    }
+
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
         if (fail)
@@ -73,17 +84,6 @@ class WaterberryBush : ModTile, IFlowerTile
         Tile tile = Main.tile[i, j];
         int x = i - (tile.TileFrameX / 18);
         int y = j;
-
-        if (!noItem && tile.TileFrameX == 0)
-        {
-            Item.NewItem(new EntitySource_TileBreak(x, y), new Vector2(x, y) * 16, ModContent.ItemType<WaterberryBushItem>());
-
-            if (tile.TileType == ModContent.TileType<WaterberryBush>())
-            {
-                Item.NewItem(new EntitySource_TileBreak(x, y), new Vector2(x, y) * 16, ModContent.ItemType<Waterberry>());
-                Item.NewItem(new EntitySource_TileBreak(x, y), new Vector2(x + 1, y) * 16, ModContent.ItemType<Waterberry>());
-            }
-        }
 
         if (KillingStack)
             return;

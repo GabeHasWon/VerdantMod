@@ -12,12 +12,6 @@ internal class MysteriaCandle : ModTile
 {
     public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults(this, new Color(253, 221, 3));
 
-    public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
-    {
-        if (!fail && !noItem)
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaCandleItem>());
-    }
-
     public override void HitWire(int i, int j)
     {
         Tile tile = Main.tile[i, j];

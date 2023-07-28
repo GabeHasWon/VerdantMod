@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Items.Verdant.Materials;
+using System.Collections.Generic;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants
 {
@@ -25,6 +26,11 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
             QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(145, 7, 18));
         }
 
+        public override IEnumerable<Item> GetItemDrops(int i, int j)
+        {
+            yield return new Item(ModContent.ItemType<Lightbulb>());
+        }
+
         public override void NearbyEffects(int i, int j, bool closer)
         {
             Vector2 p = new Vector2(i, j) * 16;
@@ -36,8 +42,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Lightbulb>(), 1);
-
             if (Main.netMode != NetmodeID.Server)
                 for (int v = 0; v < 4; ++v)
                     Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(32)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);

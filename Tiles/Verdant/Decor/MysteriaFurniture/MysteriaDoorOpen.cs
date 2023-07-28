@@ -24,10 +24,10 @@ public class MysteriaDoorOpen : ModTile
 
         TileHelper.OpenDoorData(Type);
 
-        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-
         LocalizedText name = CreateMapEntryName();
         AddMapEntry(new Color(124, 93, 68), name);
+        RegisterItemDrop(ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaDoorItem>());
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
         DustType = DustID.t_BorealWood;
         AdjTiles = new int[] { TileID.OpenDoor };
@@ -35,9 +35,6 @@ public class MysteriaDoorOpen : ModTile
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
-
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) => 
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaDoorItem>());
 
     public override void MouseOver(int i, int j)
     {

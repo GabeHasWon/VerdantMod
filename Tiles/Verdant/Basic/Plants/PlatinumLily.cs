@@ -50,13 +50,6 @@ internal class PlatinumLily : ModTile, IFlowerTile
             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
     }
 
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Tools.BouncebloomItem>());
-
-    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-    {
-        return true;
-    }
-
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(24, 16) };
     public bool IsFlower(int i, int j) => true;
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();

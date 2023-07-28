@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -38,12 +39,18 @@ class Flower_2x2 : ModTile, IFlowerTile
         AddMapEntry(new Color(193, 50, 109));
     }
 
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        Tile tile = Main.tile[i, j];
+
+        yield return new((tile.TileFrameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>()) { stack = Main.rand.Next(2, 5) };
+
+        if (Main.rand.NextBool(3))
+            yield return new(ModContent.ItemType<VerdantFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
+    }
+
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
-        if (Main.rand.NextBool(3))
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
-
         if (Main.netMode != NetmodeID.Server)
         {
             if (frameX == 18) i--;
@@ -95,33 +102,38 @@ class Flower_3x3 : ModTile, IFlowerTile
         AddMapEntry(new Color(193, 50, 109));
     }
 
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        Tile tile = Main.tile[i, j];
+
+        yield return new((tile.TileFrameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>()) { stack = Main.rand.Next(3, 7) };
+
+        if (Main.rand.NextBool(3)) //1.4.4PORT
+            yield return new(ModContent.ItemType<VerdantFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
+    }
+
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        int frame = frameX % 54 == 0 ? frameX / 54 : 0;
-        int r = Main.rand.Next(6, 10);
-        if (frame == 0)
+        if (Main.netMode != NetmodeID.Server)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<RedPetal>(), Main.rand.Next(3, 7));
+            int frame = frameX % 54 == 0 ? frameX / 54 : 0;
+            int goreType = Mod.Find<ModGore>(frame == 0 ? "RedPetalFalling" : "PinkPetalFalling").Type;
+            int repeats = Main.rand.Next(6, 10);
 
-            if (Main.netMode != NetmodeID.Server)
-                for (int v = 0; v < r; ++v)
-                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), Mod.Find<ModGore>("RedPetalFalling").Type, 1);
-        }
-        else
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 54, 54), ModContent.ItemType<PinkPetal>(), Main.rand.Next(3, 7));
-
-            if (Main.netMode != NetmodeID.Server)
-                for (int v = 0; v < r; ++v)
-                    Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), Mod.Find<ModGore>("PinkPetalFalling").Type, 1);
+            for (int v = 0; v < repeats; ++v)
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + new Vector2(Main.rand.Next(54), Main.rand.Next(54)), new Vector2(0), goreType, 1);
         }
     }
 
     public override void NearbyEffects(int i, int j, bool closer)
     {
         int frame = Framing.GetTileSafely(i, j).TileFrameX % 56 == 0 ? Framing.GetTileSafely(i, j).TileFrameX / 56 : 0;
+
         if (Main.rand.NextBool(800) && Main.netMode != NetmodeID.Server)
-            Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((frame == 0) ? "RedPetalFalling" : "PinkPetalFalling").Type);
+        {
+            Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero,
+                Mod.Find<ModGore>((frame == 0) ? "RedPetalFalling" : "PinkPetalFalling").Type);
+        }
     }
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(26) };

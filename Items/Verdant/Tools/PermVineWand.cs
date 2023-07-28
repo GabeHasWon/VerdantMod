@@ -7,18 +7,14 @@ using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
+using Terraria.Localization;
 
 namespace Verdant.Items.Verdant.Tools;
 
 [Sacrifice(1)]
 class PermVineWand : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Zipvine");
-        /* Tooltip.SetDefault($"Allows the user to build a vine\nThe vine works like a rope and can be used in any open space\n" +
-            $"These vines use [i:{ModContent.ItemType<LushLeaf>()}] to build, and drop them on being destroyed."); */
-    }
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ModContent.ItemType<LushLeaf>());
 
     public override void SetDefaults()
     {

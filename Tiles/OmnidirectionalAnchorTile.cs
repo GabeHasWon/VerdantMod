@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace Verdant.Tiles;
 
@@ -12,6 +13,12 @@ public abstract class OmnidirectionalAnchorTile : ModTile
     {
         Main.tileFrameImportant[Type] = true;
         Main.tileObsidianKill[Type] = true;
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+        TileObjectData.newTile.UsesCustomCanPlace = true;
+        TileObjectData.newTile.AnchorBottom = Terraria.DataStructures.AnchorData.Empty;
+        TileObjectData.newTile.AnchorWall = false;
+        TileObjectData.addTile(Type);
 
         StaticDefaults();
     }

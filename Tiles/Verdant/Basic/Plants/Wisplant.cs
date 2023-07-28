@@ -96,7 +96,7 @@ public class Wisplant : ModTile
         Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
         Player nearestPlayer = Main.player[Player.FindClosest(worldPosition, 16, 16)];
 
-        int herbItemStack = 1;
+        int herbItemStack = 0;
         int seedItemStack = 1;
 
         if (nearestPlayer.active && nearestPlayer.HeldItem.type == ItemID.StaffofRegrowth)

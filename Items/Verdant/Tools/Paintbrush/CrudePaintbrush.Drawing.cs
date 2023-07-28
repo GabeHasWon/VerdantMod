@@ -20,10 +20,10 @@ public partial class CrudePaintbrush : ApotheoticItem
             return;
 
         Item item = ContentSamples.ItemsByType[_storedItemID];
-        Main.DrawItemIcon(spriteBatch, item, position + new Vector2(36 * scale), Color.White, 24f * scale);
+        Main.DrawItemIcon(spriteBatch, item, position + new Vector2(20 * scale, (20 * scale) - 4), Color.White, 24f * scale);
 
         string count = (GetTileAmmo(Main.LocalPlayer) + 1).ToString();
-        var pos = position + (new Vector2(-6, 36) * scale);
+        var pos = position + (new Vector2(6, 18) * scale);
         ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, count, pos, Color.White, 0f, Vector2.Zero, new Vector2(1f) * scale);
     }
 

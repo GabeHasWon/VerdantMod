@@ -31,7 +31,9 @@ public class ProbablyDelete : ModItem
 {
     public override bool IsLoadingEnabled(Mod mod) => true;
 
-	public override void SetDefaults()
+    public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
+
+    public override void SetDefaults()
 	{
 		Item.DamageType = DamageClass.Melee;
 		Item.width = 40;

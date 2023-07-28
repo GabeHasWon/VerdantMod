@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -71,21 +72,21 @@ internal class ChlorophyteTree : ModTile
     public override void RandomUpdate(int i, int j)
     {
         if (!Main.tile[i, j - 1].HasTile && Main.rand.NextBool(20))
-            TileHelper.SyncedPlace(i, j - 1, Type);
+            TileHelper.SyncedPlace(i, j - 1, Type, true);
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        yield return new Item(ItemID.ChlorophyteOre) { stack = Main.rand.Next(1, 3) };
+
+        if (Main.tile[i, j].TileFrameX == 18 && Main.tile[i, j].TileFrameY <= 18)
+            yield return new Item(ModContent.ItemType<ChlorophytePlant>());
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {
         if (fail || effectOnly)
             return;
-
-        if (!noItem)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ItemID.ChlorophyteOre, Main.rand.Next(2));
-
-            if (Main.tile[i, j].TileFrameX == 18 && Main.tile[i, j].TileFrameY <= 18)
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<ChlorophytePlant>(), Main.rand.Next(2));
-        }
 
         if (TileHelper.ActiveType(i, j - 1, Type))
             WorldGen.KillTile(i, j - 1, false, false, false);

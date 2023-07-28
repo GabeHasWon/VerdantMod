@@ -41,7 +41,6 @@ internal class FloatingCrystal : ModTile
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.3f, 0.6f, 0.3f);
-    public override void KillMultiTile(int i, int j, int x, int y) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<FloatingCrystalItem>());
 
     public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
     {

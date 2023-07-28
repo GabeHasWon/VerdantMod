@@ -109,7 +109,7 @@ public partial class VerdantGenSystem : ModSystem
         AddWaterfalls();
         p.Message = "Growing surface...";
         p.Value = 0.9f;
-        AddSurfaceVerdant();
+        AddSurfaceTree();
     }
 
     private static void AddWaterfalls()
@@ -177,7 +177,7 @@ public partial class VerdantGenSystem : ModSystem
         }
     }
 
-    public static void AddSurfaceVerdant()
+    public static void AddSurfaceTree()
     {
         int offset = 0;
     retry:
@@ -196,16 +196,23 @@ public partial class VerdantGenSystem : ModSystem
 
         Point16 spawnPos = new(x, top - size.Y + 12);
 
-        if (Helper.TileRectangle(spawnPos.X, spawnPos.Y, size.X, size.Y, TileID.Cloud, TileID.RainCloud) > 0)
+        if (Helper.TileRectangle(spawnPos.X, spawnPos.Y, size.X, size.Y, TileID.Cloud, TileID.RainCloud, TileID.LeafBlock) > 0)
         {
             offset += offset + WorldGen.genRand.Next(10, 20);
             goto retry;
         }
 
         int tryRepeats = 0;
-        while (tryRepeats < 20 && Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y + tryRepeats++, size.X, size.Y + 36) < 20) { }
+        while (tryRepeats < 20 && Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y + 20, size.X, size.Y + 36) < 20)
+            tryRepeats++;
         
         if (tryRepeats >= 20)
+        {
+            offset += offset + WorldGen.genRand.Next(10, 20);
+            goto retry;
+        }
+
+        if (Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y, size.X, 20) > size.X * 20 * 0.8f)
         {
             offset += offset + WorldGen.genRand.Next(10, 20);
             goto retry;

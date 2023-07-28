@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Scenes;
 
@@ -35,24 +36,28 @@ namespace Verdant.NPCs
 
         public override void GetChat(NPC npc, ref string chat)
         {
+            static string Dialogue(string key) => Language.GetTextValue("Mods.Verdant.NPCDialogue." + key);
+
             if (npc.type == NPCID.Guide) //no one loves him but me </3 - neutral on verdant
             {
                 if (NPC.downedBoss2 && !ModContent.GetInstance<VerdantSystem>().apotheosisEvilDown && Main.rand.NextBool(4))
-                    chat = "I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?";
+                    chat = Dialogue("Guide.ApotheosisEvilDown");
+
                 if (NPC.downedBoss3 && !ModContent.GetInstance<VerdantSystem>().apotheosisSkelDown && Main.rand.NextBool(4))
-                    chat = "I hear another, stronger, voice coming from the lush caves. Take a look there.";
+                    chat = Dialogue("Guide.ApotheosisSkeletronDown");
             }
             else if (npc.type == NPCID.Dryad) //loves the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "I love this overgrown land. The world is powerful here.";
+                    chat = Dialogue("Dryad.0");
+
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "I cannot believe I've never seen this place before...";
+                    chat = Dialogue("Dryad.1");
             }
             else if (npc.type == NPCID.Stylist) //hates the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "The air is WAY too humid here, my hair's frizzing up so much.";
+                    chat = Dialogue("Stylist");
             }
             else if (npc.type == NPCID.WitchDoctor) //likes the verdant
             {
@@ -60,15 +65,15 @@ namespace Verdant.NPCs
                 {
                     int rand = Main.rand.Next(6);
                     if (rand == 0)
-                        chat = "The energy in in the flowers here...it flows powerfully.";
+                        chat = Dialogue("WitchDoctor.0");
                     else if (rand == 1)
-                        chat = "I sense an ancient power within the leaves.";
+                        chat = Dialogue("WitchDoctor.1");
                     else if (rand == 2)
                     {
                         int whoAmI = NPC.FindFirstNPC(NPCID.Dryad);
 
                         if (whoAmI != -1)
-                            chat = $"{Main.npc[whoAmI].GivenName}'s been giving me some of her stock...care to take a look? It's quite nice.";
+                            chat = Language.GetText("Mods.Verdant.NPCDialogue.WitchDoctor.Dryad").Format(Main.npc[whoAmI].GivenName);
                     }
                 }
             }
@@ -77,10 +82,11 @@ namespace Verdant.NPCs
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 {
                     int rand = Main.rand.Next(6);
+
                     if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && rand == 0)
-                        chat = "Now THIS is a sight! What beautiful colours these flowers have!";
+                        chat = Dialogue("DyeTrader.0");
                     else if (rand == 1)
-                        chat = "The glow of these bulbs...spectacular...";
+                        chat = Dialogue("DyeTrader.1");
                 }
             }
             else if (npc.type == NPCID.TaxCollector) //hates the verdant
@@ -88,20 +94,20 @@ namespace Verdant.NPCs
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant)
                 {
                     if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                        chat = "Bah! These leaves keep on getting in the house. Have someone clean them up for me!";
+                        chat = Dialogue("TaxCollector.0");
                     else if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
-                        chat = "Those bright flowers are getting on my nerve! Keep your blasted light out of my sight!";
+                        chat = Dialogue("TaxCollector.1");
                 }
             }
             else if (npc.type == NPCID.Painter) //likes the verdant
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "These tones are gorgeous! What a wonderful landscape!";
+                    chat = Dialogue("Painter");
             }
             else if (npc.type == NPCID.Princess)
             {
                 if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
-                    chat = "There's so many pretty colours here!";
+                    chat = Dialogue("Princess");
             }
         }
     }

@@ -31,13 +31,10 @@ namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 		public override void SetDrawPositions(int i, int j, ref int w, ref int offsetY, ref int h, ref short x, ref short y) => offsetY = 2;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) =>
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Verdant.Blocks.VerdantFurniture.VerdantPianoItem>());
-
         public override bool RightClick(int i, int j)
 		{
 			int rand = Main.rand.Next(2);
-			SoundEngine.PlaySound(new SoundStyle(rand == 0 ? "Sounds/Arpiano" : "Sounds/SoftMelodyPiano") with { PitchVariance = 0.05f }, new Vector2(i, j) * 16);
+			SoundEngine.PlaySound(new SoundStyle(rand == 0 ? "Verdant/Sounds/Arpiano" : "Verdant/Sounds/SoftMelodyPiano") with { PitchVariance = 0.05f }, new Vector2(i, j) * 16);
 			return true;
         }
 

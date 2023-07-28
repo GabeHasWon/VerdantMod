@@ -9,7 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Music Box (Apotheosis Lullaby)");
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ApotheosisLullaby"), ModContent.ItemType<LullabyBox>(), ModContent.TileType<LullabyBoxTile>());
 		}
 

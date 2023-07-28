@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -73,6 +74,12 @@ internal class VerdantLillie : ModTile, IFlowerTile
 
         if (Framing.GetTileSafely(i, j + 1).LiquidAmount < 150 && Framing.GetTileSafely(i, j).LiquidAmount < 150)
             WorldGen.KillTile(i, j, false, false, false);
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        if (Framing.GetTileSafely(i, j).TileFrameY >= 54)
+            yield return new Item(ModContent.ItemType<PinkPetal>());
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

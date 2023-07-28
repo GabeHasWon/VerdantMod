@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -32,20 +33,23 @@ internal class MysteriaVinePurple : ModTile
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 
-    public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
     {
-        if (Main.tile[i, j + 1].TileType == Type)
-            WorldGen.KillTile(i, j + 1, false, false, true);
-
         int plr = Player.FindClosest(new Vector2(i, j) * 16, 16, 16);
 
         if (plr == -1)
-            return;
+            yield break;
 
         Player player = Main.player[plr];
 
         if (player.active && !player.dead && player.GetModPlayer<VerdantPlayer>().expertPlantGuide)
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16, ModContent.ItemType<VineRopeItem>());
+            yield return new Item(ModContent.ItemType<VineRopeItem>());
+    }
+
+    public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+    {
+        if (Main.tile[i, j + 1].TileType == Type)
+            WorldGen.KillTile(i, j + 1, false, false, true);
     }
 
     public override void NearbyEffects(int i, int j, bool closer)

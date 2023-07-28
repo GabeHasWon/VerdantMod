@@ -24,8 +24,6 @@ class BigPuff : ModTile, IFlowerTile
         QuickTile.SetMulti(this, 2, 3, DustID.PinkStarfish, SoundID.Grass, false, new Color(255, 112, 202), true, false, origin: new Point16(0, 1));
     }
 
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Verdant.Blocks.Plants.PinkPuff>());
-
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16) };
     public bool IsFlower(int i, int j) => true;
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();

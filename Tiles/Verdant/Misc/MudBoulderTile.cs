@@ -22,6 +22,7 @@ internal class MudBoulderTile : ModTile
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = i % 2 == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+    public override bool CanDrop(int i, int j) => false;
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
     {

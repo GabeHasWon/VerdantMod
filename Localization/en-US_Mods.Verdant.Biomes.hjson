@@ -1,0 +1,14 @@
+VerdantUndergroundBiome: {
+	TownNPCDialogueName: the Verdant
+	DisplayName: Verdant Biome
+}
+
+VerdantBiome: {
+	TownNPCDialogueName: the Verdant
+	DisplayName: Verdant Biome
+}
+
+NearApotheosisBiome: {
+	TownNPCDialogueName: near the Apotheosis
+	DisplayName: Near the Apotheosis
+}

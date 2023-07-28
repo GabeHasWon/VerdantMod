@@ -1,14 +1,13 @@
 ﻿PermVineWandProjectile.DisplayName: Enchanted Vine
 AquamarineBolt.DisplayName: Aquamarine Bolt
 HealPlants.DisplayName: Heal Plants
-VerdantBounceBulb.DisplayName: Verdant Bounce Bulb
 HealingFlower.DisplayName: Yellow Sprout
-PropellerpadProjectile.DisplayName: Razorpad
+PropellerpadProjectile.DisplayName: Propellerpad
 VerdantHealingMinion.DisplayName: Lush Flower
 VerdantSnailMinion.DisplayName: Snale
 AquamarineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
 FlotieOfWrath.DisplayName: Flotie Of Wrath
-MagicWisplantProj.DisplayName: Magic Wisplant Proj
+MagicWisplantProj.DisplayName: Magic Wisplant
 MudBoulder.DisplayName: Lush Soil Ball
 PestControlTag.DisplayName: Pest Control Tag
 VerdantBobber.DisplayName: Verdant Bobber

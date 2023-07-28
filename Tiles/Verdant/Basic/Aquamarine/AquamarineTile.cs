@@ -16,8 +16,8 @@ public class AquamarineTile : OmnidirectionalAnchorTile
         Main.tileLighted[Type] = true;
 
         LocalizedText name = CreateMapEntryName();
-        // name.SetDefault("Aquamarine");
         AddMapEntry(new Color(56, 144, 170), name);
+        RegisterItemDrop(ModContent.ItemType<AquamarineItem>());
 
         HitSound = SoundID.Shatter;
         DustType = DustID.Water;

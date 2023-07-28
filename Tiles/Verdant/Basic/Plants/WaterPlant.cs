@@ -36,8 +36,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), ModContent.ItemType<Items.Verdant.Blocks.Plants.WaterPlantItem>(), 1);
-
             if (Main.netMode != NetmodeID.Server)
             {
                 for (int v = 0; v < 4; ++v)

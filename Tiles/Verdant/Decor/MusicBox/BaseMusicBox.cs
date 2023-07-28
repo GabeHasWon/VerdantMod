@@ -21,11 +21,9 @@ public abstract class BaseMusicBox<T> : ModTile where T : ModItem
 		TileObjectData.addTile(Type);
 
 		LocalizedText name = CreateMapEntryName();
-		// name.SetDefault("Music Box");
 		AddMapEntry(new Color(200, 200, 200), name);
+        RegisterItemDrop(ModContent.ItemType<T>());
 	}
-
-	public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<T>());
 
 	public override void MouseOver(int i, int j)
 	{

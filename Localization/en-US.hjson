@@ -1,3 +1,6 @@
+# This file is for miscellaneous stuff that I don't really want to move to its own file.
+# If a single part ever gets too large, I'll move it to its own file.
+
 Mods: {
 	Verdant: {
 		MapObject: {
@@ -15,6 +18,7 @@ Mods: {
 		ApotheosisName: Apotheosis
 		ApotheosisFullName: The Apotheosis
 
+		# Try to keep these short, the text looks weird if it's too long
 		VineHookLines: {
 			0: Woo!
 			1: Wahoo!
@@ -23,24 +27,6 @@ Mods: {
 
 		Condition.InVerdant: In the Verdant biome
 		RecipeCondition.AfterApotheosisDownedPlantera: In the Verdant biome
-
-		Biomes: {
-			VerdantUndergroundBiome: {
-				TownNPCDialogueName: the Verdant Underground Biome
-				DisplayName: Verdant Underground Biome
-			}
-
-			VerdantBiome: {
-				TownNPCDialogueName: the Verdant Biome
-				DisplayName: Verdant Biome
-			}
-
-			NearApotheosisBiome: {
-				TownNPCDialogueName: the Near Apotheosis Biome
-				DisplayName: Near Apotheosis Biome
-			}
-		}
-
 		"Keybinds.Verdant:SquidForm.DisplayName": Verdant: Squid Form
 	}
 }

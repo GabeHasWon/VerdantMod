@@ -34,6 +34,8 @@ internal class VerdantStrongVine : ModTile
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
         MinPick = 20;
+
+        RegisterItemDrop(ModContent.ItemType<VerdantStrongVineMaterial>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

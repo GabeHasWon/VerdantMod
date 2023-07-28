@@ -32,15 +32,7 @@ class SunPlant : ModTile, IFlowerTile
         QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(143, 21, 193));
     }
 
-    public override void KillMultiTile(int i, int j, int frameX, int frameY)
-    {
-        
-    }
-
-    public override void NearbyEffects(int i, int j, bool closer)
-    {
-        Lighting.AddLight(Main.LocalPlayer.Center, (Color.Yellow * 20).ToVector3());
-    }
+    public override void NearbyEffects(int i, int j, bool closer) => Lighting.AddLight(Main.LocalPlayer.Center, (Color.Yellow * 20).ToVector3());
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 16) };
     public bool IsFlower(int i, int j) => true;

@@ -121,7 +121,7 @@ BeehiveBlock: {
 
 Bush2x2Item: {
 	DisplayName: Decorative Bush
-	Tooltip: Can be trimmed with {$Mods.Verdant.Items.Shears.DisplayName}.
+	Tooltip: Can be trimmed with [i:{0}].
 }
 
 Bush3x3Item: {
@@ -735,7 +735,7 @@ VerdantYellowPetalChestBlock: {
 
 WisplantCandelabraItem: {
 	DisplayName: Wisplant Candelabra
-	Tooltip: ""
+	Tooltip: Increases nearby growth rate
 }
 
 VerdantPylonItem: {
@@ -1220,7 +1220,7 @@ PermVineWand: {
 		'''
 		Allows the user to build a vine
 		The vine works like a rope and can be used in any open space
-		These vines use [i:5403] to build, and drop them on being destroyed.
+		These vines use [i:{0}] to build, and drop them on being destroyed.
 		'''
 }
 
@@ -1344,4 +1344,14 @@ VerdantStaff: {
 		Use again while its already out to move the flower.
 		'''
 	MultiplayerTooltip: Summoning multiple flowers will empower the flower.
+}
+
+LargeFlowerBulb: {
+	DisplayName: Large Flower Bulb
+	Tooltip: ""
+}
+
+LightbulbFlowerBulb: {
+	DisplayName: Lightflower Bulb
+	Tooltip: ""
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -38,13 +39,19 @@ namespace Verdant.Tiles.Verdant.Mounted
             AddMapEntry(new Color(193, 50, 109));
         }
 
+        public override IEnumerable<Item> GetItemDrops(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+
+            yield return new((tile.TileFrameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>()) { stack = Main.rand.Next(2, 5) };
+            yield return new(ModContent.ItemType<Lightbulb>());
+
+            if (Main.rand.NextBool(3))
+                yield return new(ModContent.ItemType<VerdantFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
+        }
+
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), (frameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>(), Main.rand.Next(2, 5));
-            if (Main.rand.NextBool(3))
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<VerdantFlowerBulb>(), Main.rand.Next(1, 3));
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<Lightbulb>(), 1);
-
             if (frameX % 36 == 18) i--;
             if (frameY % 36 == 18) j--;
 

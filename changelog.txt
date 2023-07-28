@@ -1,7 +1,33 @@
+ADDITIONS
+- Added Large Flower Bulb, places 3x3 mounted flowers
+- Added Lightflower Bulb, places 2x2 mounted lightbulb flowers
+
+BUGFIXES/PORTING
 - Ported localization, shops, tile changes
-- Made Verdant Staff's multiplayer line localizable
 - Removed duplicate gore code in Verdant Trees
 - Improved Overgrown Brick decay into normal bricks
 - Replaced some tileBlendAll with tileBrick
 - Made Dryad, Witch Doctor always sell Lightbulb Seeds
 - Increased Emily paintings price from vendors from free to 5 gold
+- Fixed major tile rendering issue created by port
+- Fixed screen text not having "Right click to continue" prompt
+- Adjusted Crude Paintbrush icon/count draw position
+- Fixed Chlorophyte Plant sometimes dropping Chlorophyte with a stack of 0
+- Muted Chlorophyte Plant growth
+- Lush Root Rope makes the right sound when broken & gives off more appropriate dust
+- Modified Wisplant drop rates/table slightly
+- Fixed Verdant Piano not playing music when played
+- Fixed Puff Slime eyes drawing fullblack in Bestiary
+- Expanded Pickipuff valid anchors
+- Adjusted Flower Bulb item hitbox
+- Updated Flower Bulb crafting recipe (reduced petals needed, added leaves)
+- Minor sprite edit for Perennial Germiium
+- Improved surface tree placement
+- Fixed missing localization for Verdant's biome names
+
+LOCALIZATION
+- Added localization support to the following lines/objects:
+	Verdant Staff's multiplayer line
+	ScreenText's "Right click to continue"
+	All custom NPC dialogue
+- Added minor localization documentation

@@ -7,6 +7,7 @@ namespace Verdant.Items.Verdant.Blocks.Aquamarine;
 
 public class EmbeddedAquamarineItem : ModItem
 {
+    public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 16, ModContent.TileType<EmbeddedAquamarine>());
 
     public override void AddRecipes()
@@ -22,6 +23,7 @@ public class EmbeddedAquamarineItem : ModItem
 
 public class EmbeddedStoneAquamarineItem : ModItem
 {
+    public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 16, ModContent.TileType<EmbeddedStoneAquamarine>());
 
     public override void AddRecipes()

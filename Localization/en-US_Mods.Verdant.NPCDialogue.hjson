@@ -1,0 +1,30 @@
+﻿Guide: {
+	ApotheosisEvilDown: I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?
+	ApotheosisSkeletronDown: I hear another, stronger, voice coming from the lush caves. Take a look there.
+}
+
+Dryad: {
+	0: I love this overgrown land. The world is powerful here.
+	1: I cannot believe I've never seen this place before...
+}
+
+Stylist: The air is WAY too humid here, my hair's frizzing up so much.
+
+WitchDoctor: {
+	0: The energy in in the flowers here...it flows powerfully.
+	1: I sense an ancient power within the leaves.
+	Dryad: "{0}'s been giving me some of her stock...care to take a look? It's quite nice."
+} # Keep the {0} to refer to the Dryad's name.
+
+DyeTrader: {
+	0: Now THIS is a sight! What beautiful colours these flowers have!
+	1: The glow of these bulbs...spectacular...
+}
+
+TaxCollector: {
+	0: Bah! These leaves keep on getting in the house. Have someone clean them up for me!
+	1: Those bright flowers are getting on my nerve! Keep your blasted light out of my sight!
+}
+
+Painter: These tones are gorgeous! What a wonderful landscape!
+Princess: There's so many pretty colours here!

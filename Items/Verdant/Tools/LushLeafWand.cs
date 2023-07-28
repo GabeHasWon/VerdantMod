@@ -9,11 +9,7 @@ namespace Verdant.Items.Verdant.Tools;
 [Sacrifice(1)]
 class LushLeafWand : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Lush Leaf Wand");
-        // Tooltip.SetDefault("Places lush leaf blocks\nRight click to switch to Red Petals");
-    }
+    public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
 
     public override void SetDefaults()
     {

@@ -18,8 +18,8 @@ internal class RootRopeTile : ModTile
 
         AddMapEntry(new Color(165, 108, 58));
 
-        DustType = DustID.Grass;
-        HitSound = SoundID.Grass;
+        DustType = DustID.Dirt;
+        HitSound = SoundID.Dig;
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

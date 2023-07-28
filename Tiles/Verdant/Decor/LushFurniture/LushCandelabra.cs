@@ -11,7 +11,6 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
     internal class LushCandelabra : ModTile
     {
         public override void SetStaticDefaults() => CandelabraHelper.Defaults(this, new Color(253, 221, 3));
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushCandelabraItem>());
         public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

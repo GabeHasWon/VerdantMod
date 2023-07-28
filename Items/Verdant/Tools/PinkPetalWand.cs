@@ -11,11 +11,7 @@ namespace Verdant.Items.Verdant.Tools
     [Sacrifice(1)]
     class PinkPetalWand : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Pink Petal Wand");
-            // Tooltip.SetDefault("Places pink petal blocks\nRight click to switch to Living Lush Wood");
-        }
+        public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
 
         public override void SetDefaults()
         {

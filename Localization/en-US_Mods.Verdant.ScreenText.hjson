@@ -1,4 +1,6 @@
-﻿Apotheosis: {
+RightClick: Right click to continue
+
+Apotheosis: {
 	EoWName: Eater
 	BoCName: Brain
 
@@ -11,6 +13,9 @@
 		5: Farewell         .
 	}
 
+	# Intro.5 "Farewell" line has a little extra space to fade out nicely, keep it there.
+	# Try to keep the following lines around the same length, if possible
+	
 	Greeting: {
 		0: Remember to breathe,
 		1: keep the plants thriving,
@@ -130,6 +135,9 @@
 		}
 	}
 
+	# The following lines are not visible in-game at any point and will be added in a future update.
+	# Feel free to skip these until they're added.
+	
 	PestControlNotif: {
 		0: With the wall defeated,
 		1: we are free to purify.
@@ -155,6 +163,8 @@
 		3: and you must defeat them. Good luck.
 	}
 
+	# Lines after here are in-game.
+	
 	ItemInteractions: {
 		WiltedFlower: {
 			0: A daisy, my favourite flower.

@@ -60,7 +60,7 @@ internal abstract class SimplePylonTile<T> : ModPylon where T : ModItem
 
     public virtual bool IsSold(int npcType, Player player, bool npcHappyEnough) => true;
     public override NPCShop.Entry GetNPCShopEntry() => new(ModContent.ItemType<T>(), Condition.AnotherTownNPCNearby, Condition.NotInEvilBiome, Condition.HappyEnoughToSellPylons,
-    new Condition("Mods.Verdant.Condition.InVerdant", () => Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant));
+        new Condition("Mods.Verdant.Condition.InVerdant", () => Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant));
 
     public override void MouseOver(int i, int j)
     {
@@ -68,11 +68,7 @@ internal abstract class SimplePylonTile<T> : ModPylon where T : ModItem
         Main.LocalPlayer.cursorItemIconID = ModContent.ItemType<T>();
     }
 
-    public override void KillMultiTile(int i, int j, int frameX, int frameY)
-    {
-        ModContent.GetInstance<SimplePylonEntity>().Kill(i, j); //Kill pylon tile entity
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 2, 3, ModContent.ItemType<T>());
-    }
+    public override void KillMultiTile(int i, int j, int frameX, int frameY) => ModContent.GetInstance<SimplePylonEntity>().Kill(i, j); //Kill pylon tile entity
 
     public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch) => DefaultDrawPylonCrystal(spriteBatch, i, j, crystalTexture, highlightTexture, new Vector2(0f, -12f),
     Color.White * 0.1f, Color.White, 4, CrystalVerticalFrameCount);

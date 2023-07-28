@@ -103,8 +103,6 @@ internal class SnailStatue : ModTile
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
-	public override void KillMultiTile(int i, int j, int frameX, int frameY) => Item.NewItem(new EntitySource_TileBreak(i, j), (i + 2) * 16, (j + 3) * 16, 16, 48, ModContent.ItemType<SnailStatueItem>());
-
 	public static string SnailText()
     {
 		string key = "Prehardmode";
