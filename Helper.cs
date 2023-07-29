@@ -4,7 +4,6 @@ using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Verdant
 {
@@ -38,44 +37,6 @@ namespace Verdant
                     if (Framing.GetTileSafely(l, k).HasTile && types.Any(x => x == Framing.GetTileSafely(l, k).TileType))
                         count++;
             return count;
-        }
-
-        public static int TileCircle(int i, int j, int w, params int[] types)
-        {
-            int count = 0;
-            for (int l = i - (w / 2); l < i + (w / 2); ++l)
-                for (int k = j - (w / 2); k < j + (w / 2); ++k)
-                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && Framing.GetTileSafely(l, k).HasTile && types.Any(x => x == Framing.GetTileSafely(l, k).TileType))
-                        count++;
-            return count;
-        }
-
-        public static int AnyTileCircle(int i, int j, int w, bool solid = false)
-        {
-            int count = 0;
-
-            for (int l = i - (w / 2); l < i + (w / 2); ++l)
-                for (int k = j - (w / 2); k < j + (w / 2); ++k)
-                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && (!solid || (solid && WorldGen.SolidOrSlopedTile(l, k))))
-                        count++;
-            return count;
-        }
-
-        public static bool FullCircle(int i, int j, int w, bool solid = false, float mult = 1f)
-        {
-            int count = 0;
-            int falseCount = 0;
-
-            for (int l = i - (w / 2); l < i + (w / 2); ++l)
-            {
-                for (int k = j - (w / 2); k < j + (w / 2); ++k)
-                {
-                    if (Vector2.DistanceSquared(new(i, j), new(l, k)) <= w * w && (!solid || (solid && WorldGen.SolidOrSlopedTile(l, k))))
-                        count++;
-                    falseCount++;
-                }
-            }
-            return count >= falseCount * mult;
         }
 
         public static bool AreaClear(int i, int j, int w, int h) => AnyTileRectangle(i, j, w, h) == 0;
@@ -115,13 +76,6 @@ namespace Verdant
                     return tPos.Y;
             }
             return tPos.Y;
-        }
-
-        public static int FindUp(Point tilePos)
-        {
-            while (!WorldGen.SolidTile(tilePos))
-                tilePos.Y--;
-            return tilePos.Y;
         }
 
         public static int FindUpWithType(Point tilePos, params int[] validTileTypes)
@@ -168,17 +122,8 @@ namespace Verdant
             return newItem;
         }
 
-        public static int SyncItem(IEntitySource source, Rectangle spawnRect, int type, int stack = 1)
-        {
-            Vector2 adjPos = spawnRect.Location.ToVector2() + new Vector2(Main.rand.Next(spawnRect.Width), Main.rand.Next(spawnRect.Height));
-            return SyncItem(source, adjPos, type, stack);
-        }
-
         public static bool OnScreen(Rectangle rect) => rect.Intersects(new Rectangle(0, 0, Main.screenWidth, Main.screenHeight));
-        public static (int, int) ItemStack<T>(int stack = 1) where T : ModItem => (ModContent.ItemType<T>(), stack);
 
         public static Point MouseTile() => (Main.MouseWorld / 16f).ToPoint();
-        public static Point MouseTile(Point offset) => ((Main.MouseWorld / 16f) + offset.ToVector2()).ToPoint();
-        public static Point MouseTile(Vector2 offset) => ((Main.MouseWorld / 16f) + offset).ToPoint();
     }
 }
