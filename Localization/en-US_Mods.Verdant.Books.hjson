@@ -215,7 +215,8 @@ ApotheosisBook: {
 		and goodbye."
 
 		'''
+		
+		# Note that the lines "in good spirits," and "and goodbye." are intentionally spaced out, ideally keep that if you can.
+
 	Title: "'My Apotheosis'"
 }
-
-# Note that the lines "in good spirits," and "and goodbye." are intentionally spaced out, ideally keep that if you can.

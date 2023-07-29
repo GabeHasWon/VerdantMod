@@ -1,4 +1,9 @@
-﻿HostFly.DisplayName: Hostess Winglet
+HostFly.DisplayName: Hostess Winglet
+Mossling.DisplayName: Mossling
+
+# Note that the Hostess Winglet and the Mossling are both deprecated.
+# They are only visible in-game when a cheat mod is active.
+
 BigThorn.DisplayName: Thorn
 SmallThorn.DisplayName: Thorn
 SmallFly.DisplayName: Lush Winglet
@@ -12,10 +17,6 @@ Flotiny.DisplayName: Flotiny
 MysteriaFlotie.DisplayName: Mysteria Flotie
 MysteriaFlotiny.DisplayName: Mysteria Flotiny
 Folifish.DisplayName: Folifish
-Mossling.DisplayName: Mossling
 PuffSlimeSmall.DisplayName: Puff Slime
 VerdantBulbSnail.DisplayName: Lightbulb Snail
 VerdantRedGrassSnail.DisplayName: Leafy Snail
-
-# Note that the Hostess Winglet and the Mossling are both deprecated.
-# They are only visible in-game when a cheat mod is active.

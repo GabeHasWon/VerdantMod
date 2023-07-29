@@ -7,19 +7,6 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Localization\en-US_Mods.Verdant.Biomes.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Books.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Buffs.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Configs.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Items.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.NPCDialogue.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.NPCs.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Projectiles.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.ScreenText.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.SnailDialogue.hjson" />
-    <None Remove="Localization\en-US_Mods.Verdant.Tiles.hjson" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />

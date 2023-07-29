@@ -1,12 +1,12 @@
 ----The Verdant Mod----
--- Hardmode Update --
+-- 1.4.4 Update --
 by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 212 new items
-    - 150 new tiles
-    - 22 new walls
+    - 216 new items
+    - 152 new tiles
+    - 23 new walls
     - 18 new NPCs
     - 4 brand new music tracks
     - A new foreground and background system that gives more life to the biome
@@ -17,16 +17,25 @@ It has the following basic content:
 Q: Does this mod work with Calamity?
 A: It should work. For that matter, it should work with any mod!
 
-Q: Do I need to make a new world for the Hardmode update?
-A: If you're in hardmode, you will miss the new Mysteria microbiome. If you're not in hardmode, you will miss only one or two items.
-
-----Credit----
 --Developer--
 GabeHasWon - Everything except The Plant & some music
 
+Verdant's Discord: https://discord.gg/FAnwxtM2vc
+My Twitter: https://twitter.com/GabeHasWon
+My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
+
+-Support-
+If you'd be so generous, joining the Patreon would help me out a ton. 
+As a hobbyist developer, I spend most of my free time making stuff like this mod.
+If any of you could chip in, I'd appreciate it greatly!
+https://www.patreon.com/gabehaswon
+
 --Contributors--
+Helton Yan (Discord: heltonyan#8219) - "Vibrant Horizon" track
+Soundcloud: https://soundcloud.com/heltonyan
+Twitter: https://twitter.com/heltonyan
+
 gentleMar - Localization commit
-Helton Yan - "Vibrant Horizon" track
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback --
@@ -38,34 +47,13 @@ Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
 
 Zavos - Mud Balls / Wisplant-Infused Mud Balls concepts, Chlorophyte farming concept
 Mangochicken - Marigold concept
-Vidal1sHere - Suggesting a hardmode fishing item, Gemflower concept
+Vidal1sHere - Hardmode fishing suggestion, Gemflower concept
 Ent - Root rope blocks, Mud Balls, snail shell blocks
 torrah - Snail Statue
 
 And, of course, 
 --All of my current and former Patreons!--
 Kolya, hoosfire, Effejn, egshels
-
-----Socials / Links----
-These are various links to me/my projects/the Mod's discord. 
-If you have something to say, be it a bug or a report, balance to comment on, or a complaint about the lack of snails, do report it to the Discord.
-For those in-game looking at this, all of these links can be found in the homepage as well.
-
-Discord: https://discord.gg/FAnwxtM2vc
-Forums: https://forums.terraria.org/index.php?threads/the-verdant-mod.110164/#post-2572017
-
-My Twitter: https://twitter.com/GabeHasWon
-My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
-
-Vibrant Horizons (Verdant Day) music by Helton Yan! Check out his other stuff:
-Soundcloud: https://soundcloud.com/heltonyan
-Twitter: https://twitter.com/heltonyan
-Discord: heltonyan#8219
-
-If you'd be so generous, joining the Patreon would help me out a ton. 
-As a hobbyist developer, I spend most of my free time making stuff like this mod.
-If any of you could chip in, I'd appreciate it greatly! I'd also be able to speed up development on all of my projects.
-https://www.patreon.com/gabehaswon
 
 --Development--
 

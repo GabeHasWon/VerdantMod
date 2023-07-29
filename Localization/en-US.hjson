@@ -1,7 +1,7 @@
-# This file is for miscellaneous stuff that I don't really want to move to its own file.
-# If a single part ever gets too large, I'll move it to its own file.
-
 Mods: {
+	# This file is for miscellaneous stuff that I don't really want to move to its own file.
+	# If a single part ever gets too large, I'll move it to its own file.
+
 	Verdant: {
 		MapObject: {
 			VerdantPylonTile: Verdant Pylon
