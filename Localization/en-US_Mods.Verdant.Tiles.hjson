@@ -59,7 +59,7 @@ VerdantRedPetal.MapEntry: Verdant Red Petal
 VerdantPinkPetal.MapEntry: Verdant Pink Petal
 VerdantLeaves.MapEntry: Verdant Leaves
 VerdantGrassLeaves.MapEntry: Verdant Grass Leaves
-SnailShellBlock.MapEntry: Snail Shell Block
+SnailShellBlock.MapEntry: Snail Shells
 PuffBlock.MapEntry: Puff Block
 OvergrownBricks.MapEntry: Overgrown Bricks
 LushSoil.MapEntry: Lush Soil
@@ -67,4 +67,5 @@ LivingLushWood.MapEntry: Living Lush Wood
 GemsparkAquamarine.MapEntry: Gemspark Aquamarine
 EmbeddedStoneAquamarine.MapEntry: Embedded Stone Aquamarine
 EmbeddedAquamarine.MapEntry: Embedded Aquamarine
-BackslateTile.MapEntry: Backslate Tile
+BackslateTile.MapEntry: Backslate
+ThornTile.MapEntry: Thorns

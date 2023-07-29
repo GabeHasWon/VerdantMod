@@ -7,15 +7,15 @@ using Verdant.Projectiles.Particles;
 namespace Verdant.Items.Verdant.Misc;
 
 [Sacrifice(1)]
-class HeartOfGrowth : ModItem
+class CrystalHeart : ModItem
 {
-    public override void SetStaticDefaults() => ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<CrystalHeart>();
+    public override void SetStaticDefaults() => ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<HeartOfGrowth>();
 
     public override void SetDefaults()
     {
         Item.accessory = false;
         Item.rare = ItemRarityID.Yellow;
-        Item.value = Item.sellPrice(gold: 50);
+        Item.value = 0;
         Item.consumable = false;
         Item.width = 32;
         Item.height = 28;

@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks.Misc;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {

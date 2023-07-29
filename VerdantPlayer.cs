@@ -13,6 +13,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Scenes;
+using Terraria.ID;
 
 namespace Verdant;
 
@@ -22,6 +23,7 @@ class VerdantPlayer : ModPlayer
     public bool ZoneApotheosis => Player.InModBiome<NearApotheosisBiome>();
 
     public bool heartOfGrowth = false;
+    public bool crystalHeart = false;
     public bool expertPlantGuide = false;
     public bool sproutBoots = false;
 
@@ -47,12 +49,33 @@ class VerdantPlayer : ModPlayer
         if (heartOfGrowth) //perm bonus
             Player.maxMinions++;
 
+        if (crystalHeart) //also a perm bonus
+        {
+            Player.buffImmune[BuffID.Poisoned] = true;
+            Player.buffImmune[BuffID.Venom] = true;
+            Player.buffImmune[BuffID.Bleeding] = true;
+            Player.buffImmune[BuffID.Confused] = true;
+            Player.buffImmune[BuffID.Cursed] = true;
+            Player.buffImmune[BuffID.BrokenArmor] = true;
+            Player.buffImmune[BuffID.Chilled] = true;
+            Player.buffImmune[BuffID.Suffocation] = true;
+        }
+
         sproutBoots = true;
         expertPlantGuide = false;
     }
 
-    public override void SaveData(TagCompound tag) => tag.Add("heartOfGrowth", heartOfGrowth);
-    public override void LoadData(TagCompound tag) => heartOfGrowth = tag.GetBool("heartOfGrowth");
+    public override void SaveData(TagCompound tag)
+    {
+        tag.Add(nameof(heartOfGrowth), heartOfGrowth);
+        tag.Add(nameof(crystalHeart), crystalHeart);
+    }
+
+    public override void LoadData(TagCompound tag)
+    {
+        heartOfGrowth = tag.GetBool(nameof(heartOfGrowth));
+        crystalHeart = tag.GetBool(nameof(crystalHeart));
+    }
 
     public override void Unload()
     {

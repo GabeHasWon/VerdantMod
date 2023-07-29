@@ -1355,3 +1355,24 @@ LightbulbFlowerBulb: {
 	DisplayName: Lightflower Bulb
 	Tooltip: ""
 }
+
+CrystalHeart: {
+	DisplayName: Crystal Heart
+	Tooltip:
+		'''
+		Grants immunity to various debuffs on use.
+		Can only be used once per player.
+		Holds many more secrets, somewhere, sometime.
+		'A cracked, hollow heart.'
+		'''
+}
+
+ThornBlock: {
+	DisplayName: Thorn Block
+	Tooltip: Unpleasant in all forms
+}
+
+ThornWallItem: {
+	DisplayName: Thorn Wall Item
+	Tooltip: ""
+}

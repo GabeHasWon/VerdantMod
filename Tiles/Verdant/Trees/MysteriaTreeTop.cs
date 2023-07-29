@@ -21,7 +21,6 @@ internal class MysteriaTreeTop : ModTile
     {
         QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), "", true, false);
 
-        Main.tileBlendAll[Type] = true;
         Main.tileBrick[Type] = true;
         Main.tileSolid[Type] = false;
 

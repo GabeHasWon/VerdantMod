@@ -1,12 +1,16 @@
 ADDITIONS
 - Added Large Flower Bulb, places 3x3 mounted flowers
 - Added Lightflower Bulb, places 2x2 mounted lightbulb flowers
+- Added Crystal Heart
+- Added Thorn block + minor decor
+- Added Thorn walls
+- Added a couple game tips
 
 BUGFIXES/PORTING
-- Ported localization, shops, tile changes
+- Ported localization, shops, tile, OnHit changes
 - Removed duplicate gore code in Verdant Trees
 - Improved Overgrown Brick decay into normal bricks
-- Replaced some tileBlendAll with tileBrick
+- Replaced some tileBlendAll with tileBrick, removed the rest of tileBlendAll
 - Made Dryad, Witch Doctor always sell Lightbulb Seeds
 - Increased Emily paintings price from vendors from free to 5 gold
 - Fixed major tile rendering issue created by port
@@ -24,6 +28,8 @@ BUGFIXES/PORTING
 - Minor sprite edit for Perennial Germiium
 - Improved surface tree placement
 - Fixed missing localization for Verdant's biome names
+- Adjusted names for various tiles
+- SIGNIFICANTLY increased Verdant world generation speed (down to around 5-10 seconds for the whole biome)
 
 LOCALIZATION
 - Added localization support to the following lines/objects:

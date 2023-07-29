@@ -1,4 +1,4 @@
-﻿Guide: {
+Guide: {
 	ApotheosisEvilDown: I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?
 	ApotheosisSkeletronDown: I hear another, stronger, voice coming from the lush caves. Take a look there.
 }
@@ -14,7 +14,9 @@ WitchDoctor: {
 	0: The energy in in the flowers here...it flows powerfully.
 	1: I sense an ancient power within the leaves.
 	Dryad: "{0}'s been giving me some of her stock...care to take a look? It's quite nice."
-} # Keep the {0} to refer to the Dryad's name.
+}
+
+# Keep the {0} to refer to the Dryad's name.
 
 DyeTrader: {
 	0: Now THIS is a sight! What beautiful colours these flowers have!

@@ -203,7 +203,7 @@ public partial class VerdantGenSystem : ModSystem
         }
 
         int tryRepeats = 0;
-        while (tryRepeats < 20 && Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y + 20, size.X, size.Y + 36) < 20)
+        while (tryRepeats < 20 && Helper.AnyTileRectangle(spawnPos.X - 6, spawnPos.Y + 20 + tryRepeats, size.X, size.Y + 36) < 60)
             tryRepeats++;
         
         if (tryRepeats >= 20)
@@ -309,16 +309,16 @@ public partial class VerdantGenSystem : ModSystem
         int startY = VerdantArea.Center.Y - (int)(Main.maxTilesY / (Buffer * 2));
         int endY = VerdantArea.Center.Y + (int)(Main.maxTilesY / (Buffer * 2));
 
-        List<Point16> aggregateTiles = new();
+        Dictionary<Point16, bool> aggregateTiles = new();
 
         foreach (var item in VerdantCircles)
-            aggregateTiles.AddRange(item.tiles);
+            foreach (var tile in item.tiles)
+                if (!aggregateTiles.ContainsKey(tile) || !aggregateTiles[tile])
+                    aggregateTiles.Add(tile, true);
 
-        aggregateTiles = aggregateTiles.Distinct().ToList();
+        GetVerdantArea(aggregateTiles.Keys.ToList());
 
-        GetVerdantArea(aggregateTiles);
-
-        foreach (var point in aggregateTiles)
+        foreach (var (point, _) in aggregateTiles)
         {
             Tile t = Framing.GetTileSafely(point.X, point.Y);
             float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
@@ -344,7 +344,7 @@ public partial class VerdantGenSystem : ModSystem
         VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
         VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
 
-        foreach (var point in aggregateTiles)
+        foreach (var (point, _) in aggregateTiles)
         {
             Tile t = Framing.GetTileSafely(point.X, point.Y);
             float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);

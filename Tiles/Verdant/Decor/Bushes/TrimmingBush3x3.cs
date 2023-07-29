@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -23,6 +22,7 @@ public class TrimmingBush3x3 : ModTile, IBush
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(33, 124, 22));
+        RegisterItemDrop(ModContent.ItemType<Bush3x3Item>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
