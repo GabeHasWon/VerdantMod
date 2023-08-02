@@ -1,0 +1,25 @@
+# Try and keep these short, but otherwise go wild.
+
+Prehardmode: {
+	0: 蜗牛雕像
+	1: 蜗牛雕像
+	2: 英勇蜗牛
+}
+
+LatePrehardmode: {
+	0: 老蜗牛
+	1: 迷失蜗牛
+	2: 一个朋友的雕像
+}
+
+Hardmode: {
+	0: 走失宠物
+	1: 往事记忆
+	2: 引起回忆的事物
+}
+
+Endgame: {
+	0: 永远的朋友
+	1: 我们的记忆
+	2: 奥威尔
+}

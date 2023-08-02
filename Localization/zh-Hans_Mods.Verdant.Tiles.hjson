@@ -1,0 +1,71 @@
+VerdantPylonTile.MapEntry: 葱茏晶塔
+FloatingCrystal.MapEntry: 漂浮水晶
+AquamarineTile.MapEntry: 蓝晶
+Beehive.MapEntry: 蜂巢
+LootPlant.MapEntry: 百香花
+MysteriaSprout.MapEntry: 幼芽
+LushSapling.MapEntry: 树苗
+MarigoldTile.MapEntry: 万寿菊
+WaterberryBush.MapEntry: 灌木丛
+WaterberryBushPicked.MapEntry: 灌木丛
+Wisplant.MapEntry: 智慧植物
+Apotheosis.MapEntry: 天神
+AquamarineTorch.MapEntry: 火炬花
+HardmodeApotheosis.MapEntry: 天神
+LushDoorClosed.MapEntry: 葱郁门
+LushDoorOpen.MapEntry: 葱郁门
+
+LushDresser: {
+	MapEntry: 葱郁梳妆台
+	ContainerName: 葱郁梳妆台
+}
+
+VerdantWoodChest: {
+	MapEntry: 葱郁木箱
+	ContainerName: 葱郁木箱
+}
+
+// VerdantWood.MapEntry: Verdant Wood
+LullabyBoxTile.MapEntry: 音乐盒
+PetalsFallBoxTile.MapEntry: 音乐盒
+TearRainBoxTile.MapEntry: 音乐盒
+VibrantHorizonBoxTile.MapEntry: 音乐盒
+MysteriaDoorClosed.MapEntry: 奥秘门
+MysteriaDoorOpen.MapEntry: 奥秘门
+
+MysteriaDresser: {
+	MapEntry: 奥秘梳妆台
+	ContainerName: 奥秘梳妆台
+}
+
+SnailStatue.MapEntry: 蜗牛雕像
+VerdantDoorClosed.MapEntry: 葱茏门
+VerdantDoorOpen.MapEntry: 葱茏门
+
+VerdantYellowPetalChest: {
+	MapEntry: 黄色花瓣箱
+	ContainerName: 黄色花瓣箱
+}
+
+GreenCrystal.MapEntry: 绿水晶
+ApotheoticPainting.MapEntry: 画
+LightbulbPainting.MapEntry: 画
+BigVerdantTree.MapEntry: 大树
+VerdantTree.MapEntry: 树
+// PeaceTreeTop.MapEntry: Peace Tree Top
+// MysteriaTreeTop.MapEntry: Mysteria Tree Top
+// MysteriaTree.MapEntry: Mysteria Tree
+// VerdantRedPetal.MapEntry: Verdant Red Petal
+// VerdantPinkPetal.MapEntry: Verdant Pink Petal
+// VerdantLeaves.MapEntry: Verdant Leaves
+// VerdantGrassLeaves.MapEntry: Verdant Grass Leaves
+// SnailShellBlock.MapEntry: Snail Shells
+// PuffBlock.MapEntry: Puff Block
+// OvergrownBricks.MapEntry: Overgrown Bricks
+// LushSoil.MapEntry: Lush Soil
+// LivingLushWood.MapEntry: Living Lush Wood
+// GemsparkAquamarine.MapEntry: Gemspark Aquamarine
+// EmbeddedStoneAquamarine.MapEntry: Embedded Stone Aquamarine
+// EmbeddedAquamarine.MapEntry: Embedded Aquamarine
+// BackslateTile.MapEntry: Backslate
+// ThornTile.MapEntry: Thorns

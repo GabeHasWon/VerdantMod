@@ -1,19 +1,27 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Verdant.Systems.ModCompat;
 
 internal class MusicDisplayCalls : ModSystem
 {
-	public override void PostSetupContent()
+	public override void PostAddRecipes()
 	{
 		if (!ModLoader.TryGetMod("MusicDisplay", out Mod display))
 			return;
 
-		void AddMusic(string path, string name, string author) => display.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, path), name, "by " + author, "Verdant");
+        LocalizedText modName = Language.GetText("Mods.Verdant.MusicDisplay.ModName");
 
-		AddMusic("Sounds/Music/TearRain", "Tear Rain (Underground Verdant Theme)", "GabeHasWon");
-		AddMusic("Sounds/Music/ApotheosisLullaby", "Apotheosis Lullaby (Apotheosis Theme)", "GabeHasWon & Liz");
-        AddMusic("Sounds/Music/PetalsFall", "Petals Fall (Raining Verdant Theme)", "GabeHasWon & Liz");
-		AddMusic("Sounds/Music/VibrantHorizon", "Vibrant Horizon (Verdant Day Theme)", "Heltonyan");
+		void AddMusic(string path, string name)
+        {
+            LocalizedText author = Language.GetText("Mods.Verdant.MusicDisplay." + name + ".Author");
+            LocalizedText displayName = Language.GetText("Mods.Verdant.MusicDisplay." + name + ".DisplayName");
+            display.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, path), displayName, author, modName);
+        }
+
+		AddMusic("Sounds/Music/TearRain", "TearRain");
+		AddMusic("Sounds/Music/ApotheosisLullaby", "ApotheosisLullaby");
+        AddMusic("Sounds/Music/PetalsFall", "PetalsFall");
+		AddMusic("Sounds/Music/VibrantHorizon", "VibrantHorizon");
 	}
 }

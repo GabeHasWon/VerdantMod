@@ -1,0 +1,21 @@
+ModName: Verdant
+
+VibrantHorizon: {
+	DisplayName: Vibrant Horizon (Verdant Day Theme)
+	Author: by Heltonyan
+}
+
+TearRain: {
+	DisplayName: Tear Rain (Underground Verdant Theme)
+	Author: by GabeHasWon
+}
+
+ApotheosisLullaby: {
+	DisplayName: Apotheosis Lullaby (Apotheosis Theme)
+	Author: by GabeHasWon & Liz
+}
+
+PetalsFall: {
+	DisplayName: Petals Fall (Raining Verdant Theme)
+	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
+}

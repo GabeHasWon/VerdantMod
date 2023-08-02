@@ -1,3 +1,4 @@
-- Updated description
-- Disabled test item
-- Fixed icon not working for some reason?
+- Updated Music Display compatibility
+- Fixed drawing issue with food items
+- Adjusted food item hold position
+- Added Chinese localization (thanks to gentleMar)

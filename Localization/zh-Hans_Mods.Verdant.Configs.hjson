@@ -1,0 +1,35 @@
+HeadLabel: 葱茏客户端配置
+EnableSteamEffectLabel: 启用蒸汽效果
+EnableSteamEffectTooltip: 启用在地下葱茏之地时覆盖的蒸汽效果
+EnableForeOrBackgroundObjectsLabel: 启用前景/背景物体
+EnableForeOrBackgroundObjectsTooltip: 启用出现在表面背景或前景中无处不在的装饰性物体。
+EnableCustomWaterfallsLabel: 启用自定义瀑布
+EnableCustomWaterfallsTooltip: 启用从物块中出现的瀑布，例如垂泪花蕾。
+CustomDialogueSystemLabel: 自定义对话系统
+CustomDialogueSystemTooltip: 允许为天神使用自定义对话系统。如果关闭，将只使用聊天栏。
+FancyBookUILabel: 花式书籍用户界面
+FancyBookUITooltip: 将书籍用户界面更改为独特的东西。
+
+VerdantClientConfig: {
+	// DisplayName: "{$Mods.Verdant.Configs.HeadLabel}"
+
+	EnableSteam: {
+		// Label: "{$Mods.Verdant.Configs.EnableSteamEffectLabel}"
+		// Tooltip: "{$Mods.Verdant.Configs.EnableSteamEffectTooltip}"
+	}
+
+	BackgroundObjects: {
+		// Label: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsLabel}"
+		// Tooltip: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsTooltip}"
+	}
+
+	Waterfalls: {
+		// Label: "{$Mods.Verdant.Configs.EnableCustomWaterfallsLabel}"
+		// Tooltip: "{$Mods.Verdant.Configs.EnableCustomWaterfallsTooltip}"
+	}
+
+	CustomDialogue: {
+		// Label: "{$Mods.Verdant.Configs.CustomDialogueSystemLabel}"
+		// Tooltip: "{$Mods.Verdant.Configs.CustomDialogueSystemTooltip}"
+	}
+}

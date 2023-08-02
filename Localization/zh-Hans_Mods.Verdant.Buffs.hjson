@@ -1,0 +1,19 @@
+HealingFlowerBuff: {
+	DisplayName: 治愈之花
+	Description: 花之光环会治愈你
+}
+
+PropellerpadBuff: {
+	DisplayName: 螺旋桨头
+	Description: 多么奇怪的睡莲！
+}
+
+SnailBuff: {
+	DisplayName: 蜗牛仆从
+	Description: 葱草蜗牛会为你而战
+}
+
+FlotiePetBuff: {
+	DisplayName: 愤怒之歌
+	Description: “尽管有头骨，但是非常平静”
+}
