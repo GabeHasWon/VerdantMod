@@ -1,0 +1,1573 @@
+Mods: {
+	Verdant: {
+		Configs: {
+			HeadLabel: 葱茏客户端配置
+			EnableSteamEffectLabel: 启用蒸汽效果
+			EnableSteamEffectTooltip: 启用在地下葱茏之地时覆盖的蒸汽效果
+			EnableForeOrBackgroundObjectsLabel: 启用前景/背景物体
+			EnableForeOrBackgroundObjectsTooltip: 启用出现在表面背景或前景中无处不在的装饰性物体。
+			EnableCustomWaterfallsLabel: 启用自定义瀑布
+			EnableCustomWaterfallsTooltip: 启用从物块中出现的瀑布，例如垂泪花蕾。
+			CustomDialogueSystemLabel: 自定义对话系统
+			CustomDialogueSystemTooltip: 允许为天神使用自定义对话系统。如果关闭，将只使用聊天栏。
+			FancyBookUILabel: 花式书籍用户界面
+			FancyBookUITooltip: 将书籍用户界面更改为独特的东西。
+		}
+
+		Tiles: {
+			VerdantPylonTile.MapEntry: 葱茏晶塔
+			FloatingCrystal.MapEntry: 漂浮水晶
+			Apotheosis.MapEntry: 天神
+			LushCandelabra.MapEntry: 烛台
+			LushCandle.MapEntry: 蜡烛
+			VerdantCandelabra.MapEntry: 烛台
+			VerdantCandle.MapEntry: 蜡烛
+			WisplantCandelabra.MapEntry: 烛台
+			AquamarineTile.MapEntry: 蓝晶
+			Beehive.MapEntry: 蜂巢
+			LootPlant.MapEntry: 百香花
+			MysteriaSprout.MapEntry: 幼芽
+			LushSapling.MapEntry: 树苗
+			MarigoldTile.MapEntry: 万寿菊
+			WaterberryBush.MapEntry: 灌木丛
+			WaterberryBushPicked.MapEntry: 灌木丛
+			Wisplant.MapEntry: 智慧植物
+			AquamarineTorch.MapEntry: 火炬花
+			HardmodeApotheosis.MapEntry: 天神
+			LushDoorClosed.MapEntry: 葱郁门
+			LushDoorOpen.MapEntry: 葱郁门
+
+			LushDresser: {
+				MapEntry: 葱郁梳妆台
+				ContainerName: 葱郁梳妆台
+			}
+
+			VerdantWoodChest: {
+				MapEntry: 葱郁木箱
+				ContainerName: 葱郁木箱
+			}
+
+			LullabyBoxTile.MapEntry: 音乐盒
+			PetalsFallBoxTile.MapEntry: 音乐盒
+			TearRainBoxTile.MapEntry: 音乐盒
+			VibrantHorizonBoxTile.MapEntry: 音乐盒
+			MysteriaDoorClosed.MapEntry: 奥秘门
+			MysteriaDoorOpen.MapEntry: 奥秘门
+
+			MysteriaDresser: {
+				MapEntry: 奥秘梳妆台
+				ContainerName: 奥秘梳妆台
+			}
+
+			SnailStatue.MapEntry: 蜗牛雕像
+			VerdantDoorClosed.MapEntry: 葱茏门
+			VerdantDoorOpen.MapEntry: 葱茏门
+
+			VerdantYellowPetalChest: {
+				MapEntry: 黄色花瓣箱
+				ContainerName: 黄色花瓣箱
+			}
+
+			GreenCrystal.MapEntry: 绿水晶
+			ApotheoticPainting.MapEntry: 画
+			LightbulbPainting.MapEntry: 画
+			BigVerdantTree.MapEntry: 大树
+			VerdantTree.MapEntry: 树
+		}
+
+		TileInteraction: {
+			MysteriaClock: {
+				London: " (伦敦时间)"
+				NewYork: " (纽约时间)"
+			}
+		}
+
+		ScreenText: {
+			Apotheosis: {
+				EoWName: 吞噬者
+				BoCName: 大脑
+
+				Intro: {
+					0: 你好，旅人。
+					1: 好久没见到新面孔了。
+					2: 请叫我天神。
+					3: 在我们葱茏植物的中心寻找我们，
+					4: 我们可能会有一些礼物来帮助你。
+					5: 再见。
+				}
+
+				Greeting: {
+					0: 记得呼吸，
+					1: 让植物茁壮成长，
+					2: 杀死巨大的眼球后回到我身边。
+					3: 希望我们早日发现彼此都有好的心情。
+				}
+
+				Idle: {
+					Normal: {
+						0: 我特别为那些有弹性的豆芽感到骄傲。
+						1: 我们寻求庇护；它起过作用吗？
+						2: 我的羽毛笔在哪儿——嗯？
+						3: “我”，“我们”；都是一样的。
+						4: 我没有什么要补充的了。
+						5: 出去闻闻花香。
+						6: 一路奔跑，就现在。
+						7: 你在附近见过蛇吗？
+						8: 我还记得花的气味。
+						9: 蜗牛是一种被低估的生物。
+						10: 世界就是你的花园，我的朋友。
+						11: 没必要磨磨蹭蹭。
+					}
+
+					EvilBoss: {
+						0: 愿恩典降临在你身上。
+						1: "{0}已经不存在了。"
+						2: 一个从感染中解除的存在...
+					}
+
+					Thoughts: {
+						0: ...自然最朴素和纯净的地方...
+						1: 嗯...现在要做什么...
+						2: ...除害虫...
+						3: 啊，回忆...
+						4: 探索、探索、探索...
+					}
+
+					EoC: 终于，眼睛被击落了。
+
+					Skeletron: {
+						0: 那个骷髅是...一个令人困惑的骷髅。
+						1: 可怜的人获得了自由...
+					}
+
+					MiscBosses: {
+						KingSlime: 啊，史莱姆王被杀了，太棒了...
+						QueenBee: 希望你和我们的蜜蜂玩得开心。
+						Scarabeus: 沙漠的沙子现在感觉更平静了。
+						MJW: 啊，我记得夜中那些发光的水母...
+						VinewrathBane: 花儿现在感觉放松多了。谢谢你。
+						AncientAvian: 现在天空更平静了，干得好。
+						StarplateRaider: 我们对那个发光的机甲很好奇，但是，唉...
+					}
+				}
+
+				Downed: {
+					EoC: {
+						0: 眼睛被击落了。谢谢你。
+						1: 带着这个饰品。打败{0}后回到我身边。
+					}
+
+					Evil: {
+						0: 我们感谢击败{0}...
+						1: 我们的倒数第二个要求；在地牢附近击落巨大的骷髅。总之——
+						2: ——这是我的一些旧装备...有一些变化的。
+					}
+
+					Skeletron: {
+						0: 地牢的灵魂...部分解放了。
+						1: 你应得的——拿走这些。我们最喜欢的。
+					}
+
+					WoF: {
+						0: 一股强大的灵魂被释放了出来...
+						1: 随着我们更加自由，您将开始看到一些变化——
+						2: ——不过，这可能需要一段时间。无论如何，#你可能已经注意到几个。无论如何，
+						3: 作为感谢，拿着这个。我...已经不需要了。
+					}
+
+					AnyMech: {
+						0: 其中一台机器被打败了。
+						1: 做得好！我一直在做一些东西...
+						2: 这很...奇怪，但很有趣。我们希望你喜欢它。
+					}
+
+					Plantera: {
+						0: 可怕的植物死了。
+						1: 这释放了很多机会；
+						2: 这是一个较小的好处，但我们希望它有所帮助。
+						3: 你现在也可以自己创造更多这些。
+					}
+
+					Golem: {
+						0: 神殿的保护者倒下了。
+						1: 这是我的一个有点...激情的项目。
+						2: 我们不知道它是否会有很大帮助，
+						3: 但我们怀疑它会很有趣。
+						4: 祝你好运。
+					}
+
+					Cultist: {
+						0: 那些骗子死了，嗯？
+						1: 他们的做法是一种危险的愚蠢行为。
+						2: 威胁越来越少……我明白了。
+						3: 或许我们可以献出一点力量，
+						4: 给你的好处。尽情享用吧。
+					}
+
+					MoonLord: {
+						0: 我怀疑那是最后的战斗。
+						1: 我们不知道你还有什么计划；
+						2: 我们没有更多可以提供的了。
+						3: 玩得很开心，
+						4: 很多工作，
+						5: 我认为我们需要休息一下。
+						6: 也许你将来会看到一些新的东西。
+					}
+				}
+
+				PestControlNotif: {
+					0: 墙被打败后，
+					1: 我们可以自由净化。
+					2: 你肯定注意到这个世界的腐败，嗯？
+					3: 这里有...一个我们可以达成的协议。
+					4: 这种腐败是身体上的幽灵；
+					5: 我们可以帮助净化身体并驱赶鬼魂。
+					6: 简单地给我们，啊，这个……雕像。
+					7: 做好准备，身体健康，我会送你好运。
+				}
+
+				PestControlWarning: {
+					0: 你确定要开始吗？
+					1: 这不是简单的事情。
+					2: 需要准备就离开；
+					3: 我们会在这里。
+				}
+
+				PestControl: {
+					0: 很好。
+					1: 你最好做好准备。
+					2: 必须控制害虫，平息入侵，
+					3: 你必须打败他们。 祝你好运。
+				}
+
+				ItemInteractions: {
+					WiltedFlower: {
+						0: 雏菊，我最喜欢的花。
+						1: 可惜已经这么久了，嗯？
+						2: 啊，有什么事尽管问我。
+						3: 我们是一本打开的书。
+					}
+
+					ApotheosisBook: {
+						0: 我的旧笔记本。
+						1: 我记得一直在里面写，
+						2: 我仍然很痒，到处都是。
+						3: 哦，好吧，我们不能再使用它了。
+						4: 把它放在眼里已经够奇怪的了，
+						5: 考虑到……我上次在里面写的。
+					}
+
+					LushLeaf: {
+						0: 我们周围的树叶；
+						1: 美丽，在某种程度上。
+					}
+
+					Lightbulb: {
+						0: 我的最后一盏灯，它帮助了很长时间。
+						1: 希望它的光也能帮助你。
+					}
+
+					YellowBulb: {
+						0: 我最爱的花，
+						1: 我把它散布在这片土地上。
+						2: 多么惬意...
+					}
+
+					Wisplant: {
+						0: 我们真的开始......用这些进行试验。
+						1: 不知道为什么，但它们很有趣。
+					}
+
+					PuffMaterial: 老实说，我们只是想看看我们是否能做出这些。
+					Halfsprout: 一个好奇的小幼芽，嗯？
+					MysteriaClump: 总是好的，啊，分支出来一点。
+					PinkPetal: 不要告诉红色花瓣——这是我的最爱。
+					RedPetal: 不要告诉粉色花瓣——这是我的最爱。
+
+					CrudePaintbrush: {
+						0: 啊，我的旧画笔。
+						1: 抱歉，有点仓促，
+						2: 但我们知道这是一个有用的工具。
+					}
+
+					Bouncebloom: {
+						0: 我们……还在想办法。
+						1: 很有趣，不过。
+					}
+
+					Cloudsprout: {
+						0: 老实说，我们无法告诉你我们为什么这样做。
+						1: 它肯定很漂亮，嗯？
+					}
+				}
+			}
+		}
+
+		ApotheosisName: 天神
+		ApotheosisFullName: 天神
+
+		VineHookLines: {
+			0: 哇！
+			1: 哇哦！
+			2: 呜威！
+		}
+
+		SnailDialogue: {
+			Prehardmode: {
+				0: 蜗牛雕像
+				1: 蜗牛雕像
+				2: 英勇蜗牛
+			}
+
+			LatePrehardmode: {
+				0: 老蜗牛
+				1: 迷失蜗牛
+				2: 一个朋友的雕像
+			}
+
+			Hardmode: {
+				0: 走失宠物
+				1: 往事记忆
+				2: 引起回忆的事物
+			}
+
+			Endgame: {
+				0: 永远的朋友
+				1: 我们的记忆
+				2: 奥威尔
+			}
+		}
+
+		Books: {
+			RockBook: {
+				Content:
+					'''
+
+					“据说来自一个遥远的岛屿，不为人知。
+					这会带来难以置信的研究机会！
+					黑曜石的条纹沿着岩石排列，
+					还有灰烬颗粒遍布？ 稍后再研究。
+					没有按照特定顺序的各种铁、铋、铅和黑曜石的各种迹象。
+					尽管年代久远，但摸起来还是温暖的——而且听起来是空心的？
+					需要更多样品，四处打听过了...没有回复。
+					可能会去搜索更多。
+					有一阵子了！
+					地图显示 [划痕] 周围有一个火山区……”
+
+					尽管有前言，这本书似乎慢慢地
+					更变目的——成为某种探险家的日志：
+
+					“冒险进展顺利，
+					虽然没有成果； 田园诗般的森林
+					耐心地待着，因为
+
+					什么在等着我
+					这次冒险的尽头——
+					一座巨大的火山...
+
+					我很确定。”
+
+					'''
+				Title: 火山岩石
+			}
+
+			LightbulbBook: {
+				Content: {
+					0:
+						'''
+
+						“奇怪的球茎？种子？
+						由柔软的植物状材料制成，如叶子。
+						柔和地发光，虽然有时会像波浪一样运动。
+						作为阳光的来源，生长在某些花上。”
+
+						'''
+					1:
+						'''
+
+						装满水？糖？
+						味道平淡，有点甜，有点土，有点青草味，而且
+						淡淡的铁色（或其他金属？稍后测试。）
+						很少见，没有太多可以测试的。
+						稍后再去寻找更多，可能是美食。
+						除了分析，这些都是令人难以置信的标本……
+						会产生比这些萤火虫更好的光”
+
+						随机事物线页：涂鸦，草图，笔记。
+						偶尔会有一些可挽救的信息：
+						“在脏水里长得更好？”
+						“这在阳光下如何工作？”
+						“生长时几乎开花。”
+						“柔软，但坚韧。嗯。”
+
+						'''
+				}
+
+				Title: 电灯泡？
+			}
+
+			LeafBook: {
+				Content: {
+					0:
+						'''
+
+						这本书看起来特别旧，页面破旧且呈奇怪的棕色。
+						该材料也显然是外国的。
+						首页上有水滴。
+						还有大量的小涂鸦。
+						涂鸦似乎首先是随机的表面景观，
+						然后是随机的世俗洞穴物体……出于某种原因。
+						没有提到日期或作者，除了一个
+						签名：
+
+						'''
+					1:
+						'''
+
+						你浏览了这本书，发现了以下页面：
+
+						'''
+					2:
+						'''
+
+						“几乎像织物一样的质地，耐用而柔软。
+						拿着莫名使人平静，在球茎灯下生长良好。
+						吃起来不愉快，尝起来像草和泥土。
+						丰富，可能会用到（书籍？书页？很快就会看到）。
+						可能在小零件上工作？
+						像团块一样长在藤蔓上，还是只是团块？ 不确定。
+						仅仅或主要围绕花朵生长。
+
+						（不要吃）
+
+						尝试压入书页，似乎有效但需要
+						更多的工作。书页太绿了。”
+
+						'''
+				}
+
+				Title: 叶子
+			}
+
+			HardyVineBook: {
+				Content:
+					'''
+
+					“这里最后的生命碎片
+					非常耐用，尽管它们很薄。
+					试图将其中之一分开是徒劳的。
+					它们稀疏地生长，周围是更平均、更小的
+					藤蔓、树叶和植物群。
+					有时开花，上面有小灯泡。
+
+					不要吃
+
+					像生菜，但更坚韧、更脏。
+					可用于制造非常坚固的绳索。
+					考虑用作加固？
+					……我不知道我能不能。”
+
+					剩下的几页有小草图和
+					偶尔的小纸条——
+
+					“……现在更丰富了？……”
+					“新标本越来越粗壮”
+					“……更频繁地发芽……”
+
+					- 直到本书结束。
+
+					'''
+				Title: 坚韧藤蔓
+			}
+
+			ApotheosisBook: {
+				Content:
+					'''
+
+					“自从我的物资用完以来已经有一段时间了。
+					       除了研究，我的大篷车是空的，
+					       我只能吃老鼠和蝙蝠。
+					       水出奇的干净和新鲜
+					       在这附近，所以……只是饥饿。
+					       然而，一些研究已经完成。
+					       我正在对这里的植物群进行分类，这很……神奇。
+					       在某种程度上我不确定这只是一个术语，
+					       或者只是事实。
+					       一些令人惊讶的郁郁葱葱的草和树叶，
+					       我什至在这里和那里看到了一些小树苗。
+					       也是一种最好奇的木材！
+					       尽管我挨饿了，但这是我愿意为之受苦的天堂。”
+
+
+					       ...
+
+
+					       “这片土地上的微薄食物已经足够一些人
+					       时间，虽然勉强。
+					       我已经建立了一个小但可以接受的研究，
+					       既能拿着我的东西，又能保证我自己的安全。
+					       经常有一只走错路的骷髅或愤怒的蝙蝠发现自己在我身边，
+					       我是探险家； 怪物杀手一无所获。
+					       话虽这么说，食物变得越来越稀缺。
+					       除了蝙蝠，我还失去了老鼠——似乎小动物们也失去了
+					       了解到他们最大的威胁。
+					       时间在我的能力范围之外。
+					       尽管进行了研究，但我已经所剩无几了。”
+
+
+					       ...
+
+
+					       “时间会让人厌倦；我也是。
+					       研究继续，热情达到新的高度
+					       因为我看到了这个奇怪洞穴的独特之处。
+					       饥肠辘辘的背后，是疲惫；
+					       尽管我的状态很糟糕，
+					       我活得比以往任何时候都坚强。
+					       对我来说，这就是生活，这里的生物
+					       茁壮成长，玩耍，交谈和战斗。
+					       也许还有更多我看不到的东西。
+					       唉，死神来敲门，我关不上门。
+					       但也许，在其他时间，
+					       这些植物找到了另一双眼睛，
+					       和我一样困惑。”
+
+
+					       ...
+
+
+					       “看；一朵花。一朵有球茎的花，一朵奇特的花——
+					       花瓣之间，柔和的光辉。
+					       平静的光芒。
+					       一种不同于我在这里的时间看到的任何东西的光芒。
+					       我几乎放弃了学习。
+					       没有食物，我已经奄奄一息了。
+					       我唯一的遗憾是无法研究这个植物群，
+					       这份礼物呈现在我面前。
+					       ...
+					       愿有人找到我的作品。
+					       愿一些激情重振我死去所做的事情。
+					       愿本刊找到身体健康的人，
+					       心情愉快，
+					       再见。”
+
+					'''
+				Title: “我的天神”
+			}
+		}
+
+		Buffs: {
+			HealingFlowerBuff: {
+				DisplayName: 治愈之花
+				Description: 花之光环会治愈你
+			}
+
+			PropellerpadBuff: {
+				DisplayName: 螺旋桨头
+				Description: 多么奇怪的睡莲！
+			}
+
+			SnailBuff: {
+				DisplayName: 蜗牛仆从
+				Description: 葱草蜗牛会为你而战
+			}
+
+			FlotiePetBuff: {
+				DisplayName: 愤怒之歌
+				Description: “尽管有头骨，但是非常平静”
+			}
+		}
+
+		Items: {
+			ProbablyDelete: {
+				/* DisplayName: Tester Tool */
+				/* Tooltip: @ me if you see this */
+			}
+
+			LushWoodBody: {
+				DisplayName: 葱郁木胸甲
+				Tooltip: 基础仆从伤害增加1
+			}
+
+			LushWoodHead: {
+				DisplayName: 葱郁木头盔
+				Tooltip: 基础召唤伤害增加1
+			}
+
+			LushWoodLegs.DisplayName: 葱郁木护腿
+
+			MysteriaChest: {
+				DisplayName: 奥秘胸甲
+				Tooltip:
+					'''
+					提高挖掘速度
+					提高物块和墙放置速度
+					'''
+			}
+
+			MysteriaHelmet: {
+				DisplayName: 奥秘面纱
+				Tooltip:
+					'''
+					提高挖掘速度
+					提高物块和墙放置速度
+					增加放置范围
+					'''
+			}
+
+			MysteriaLeggings: {
+				DisplayName: 奥秘护腿
+				Tooltip:
+					'''
+					提高挖掘速度
+					提高物块和墙放置速度
+					'''
+			}
+
+			VerdantChestplate: {
+				DisplayName: 生长胸甲
+				Tooltip:
+					'''
+					仆从伤害增加7%
+					最大仆从数量增加1个
+					'''
+			}
+
+			VerdantHelm: {
+				DisplayName: 生长头饰
+				Tooltip:
+					'''
+					仆从伤害增加5%
+					发出非常少量的光
+					'''
+			}
+
+			VerdantLeggings: {
+				DisplayName: 生长护腿
+				Tooltip:
+					'''
+					提高再生率
+					最大仆从数量增加1个
+					在你走路的时候在你下面种植植物
+					'''
+			}
+
+			AquamarineItem.DisplayName: 蓝晶
+			AquamarineTorchItem.DisplayName: 蓝晶火把
+			BackslateTileItem.DisplayName: 背板岩
+			EmbeddedAquamarineItem.DisplayName: 蓝晶葱郁土块
+			EmbeddedStoneAquamarineItem.DisplayName: 蓝晶石块
+			GemsparkAquamarineItem.DisplayName: 蓝晶晶莹宝石块
+			GemsparkAquamarineWallItem.DisplayName: 蓝晶晶莹宝石墙
+			GemsparkAquamarineWallOfflineItem.DisplayName: 暗淡蓝晶晶莹宝石墙
+
+			BeehiveBlock: {
+				DisplayName: 熊峰蜂巢
+				Tooltip: 嗡嗡声有点令人担忧
+			}
+
+			Bush2x2Item: {
+				DisplayName: 装饰灌木丛
+				Tooltip: 可以用[i:5373]修剪
+			}
+
+			Bush3x3Item: {
+				DisplayName: 装饰灌木丛（大）
+				Tooltip: 可以用[i:5373]修剪
+			}
+
+			LushSoilBlock.DisplayName: 葱郁土块
+			LushBathtubItem.DisplayName: 葱郁浴缸
+			LushBedItem.DisplayName: 葱郁床
+			LushBookshelfItem.DisplayName: 葱郁书架
+			LushCandelabraItem.DisplayName: 葱郁烛台
+			LushCandleItem.DisplayName: 葱郁蜡烛
+			LushChairItem.DisplayName: 葱郁椅
+			LushClockItem.DisplayName: 葱郁时钟
+			LushDresserItem.DisplayName: 葱郁梳妆台
+			LushLampItem.DisplayName: 葱郁落地灯
+			LushLanternItem.DisplayName: 葱郁灯笼
+			LushPianoItem.DisplayName: 葱郁钢琴
+			LushPlatformItem.DisplayName: 葱郁木平台
+			LushSinkItem.DisplayName: 葱郁水槽
+			LushTableItem.DisplayName: 葱郁桌
+			LushWoodDoorItem.DisplayName: 葱郁门
+			LushWoodSofaItem.DisplayName: 葱郁沙发
+			LushWorkbenchItem.DisplayName: 葱郁工作台
+			VerdantWoodBlock.DisplayName: 葱郁木
+			VerdantWoodChestBlock.DisplayName: 葱郁木箱
+
+			ThePlantItem: {
+				DisplayName: 植物
+				Tooltip: “真实的”
+			}
+
+			ApotheoticPaintingItem: {
+				DisplayName: 神一般的
+				Tooltip: “Emily A.”
+			}
+
+			HardyVineBook: {
+				DisplayName: 坚韧藤蔓研究
+				Tooltip:
+					'''
+					“对坚韧藤蔓的深刻洞察”
+					右键点击阅读
+					'''
+			}
+
+			LeafBook: {
+				DisplayName: 葱郁叶研究
+				Tooltip:
+					'''
+					“对葱郁叶的深刻洞察”
+					右键点击阅读
+					'''
+			}
+
+			LightbulbBook: {
+				DisplayName: 亮灯球茎研究
+				Tooltip:
+					'''
+					“对亮灯球茎的深刻洞察”
+					右键点击阅读
+					'''
+			}
+
+			RockBook: {
+				DisplayName: 岩石研究
+				Tooltip:
+					'''
+					“研究...火山岩？”
+					右键点击阅读
+					'''
+			}
+
+			ChlorophytePlant: {
+				DisplayName: 叶绿幼芽
+				Tooltip:
+					'''
+					种植可再生叶绿
+					“一块参差不齐的岩石不知何故充满了生命”
+					'''
+			}
+
+			FloatingCrystalItem: {
+				DisplayName: 漂浮水晶
+				Tooltip:
+					'''
+					可以放置在半空中
+					可以被抓住
+					'''
+			}
+
+			GreenCrystalItem: {
+				DisplayName: 绿水晶
+				Tooltip: “不像看起来那么锋利”
+			}
+
+			HangingCrystalItem: {
+				DisplayName: 悬挂水晶
+				Tooltip:
+					'''
+					放置时生成治疗植物
+					可以通过接线打开/关闭
+					“以一种柔和的力量散发光芒”
+					'''
+			}
+
+			LightbulbPaintingItem: {
+				DisplayName: 亮灯球茎
+				Tooltip: "'Emily A.'"
+			}
+
+			OvergrownBrickItem.DisplayName: 蔓生灰砖
+
+			ResearchBooksItem: {
+				DisplayName: 研究书
+				Tooltip: “一页又一页的涂鸦、文本和理论”
+			}
+
+			SnailShellBlockItem: {
+				DisplayName: 蜗牛壳
+				Tooltip: “拥有这些感觉很糟糕”
+			}
+
+			LullabyBox.DisplayName: 音乐盒(天神催眠曲)
+			PetalsFallBox.DisplayName: 音乐盒(花瓣落下)
+			TearRainBox.DisplayName: 音乐盒(泪雨)
+			VibrantHorizonBox.DisplayName: 音乐盒(葱茏地平线)
+			MysteriaBathtubItem.DisplayName: 奥秘浴缸
+			MysteriaBedItem.DisplayName: 奥秘床
+			MysteriaBookshelfItem.DisplayName: 奥秘书架
+			MysteriaCandelabraItem.DisplayName: 奥秘烛台
+			MysteriaCandleItem.DisplayName: 奥秘蜡烛
+			MysteriaChairItem.DisplayName: 奥秘椅
+
+			MysteriaClockItem: {
+				DisplayName: 奥秘钟
+				Tooltip: “较小的钟似乎很不正常”
+			}
+
+			MysteriaDoorItem.DisplayName: 奥秘门
+			MysteriaDresserItem.DisplayName: 奥秘梳妆台
+			MysteriaLampItem.DisplayName: 奥秘落地灯
+			MysteriaLanternItem.DisplayName: 奥秘灯笼
+			MysteriaPianoItem.DisplayName: 奥秘钢琴
+			MysteriaPlatformItem.DisplayName: 奥秘平台
+			MysteriaSinkItem.DisplayName: 奥秘水槽
+			MysteriaSofaItem.DisplayName: 奥秘沙发
+			MysteriaTableItem.DisplayName: 奥秘桌
+			MysteriaWorkbenchItem.DisplayName: 奥秘工作台
+
+			MysteriaAcorn: {
+				DisplayName: 奥秘树苗
+				Tooltip:
+					'''
+					种植一棵奥秘树
+					奥秘树通过附近的葱茏之地传播奥秘小生物群系。
+					树是实体的且走不过去。
+					'''
+			}
+
+			MysteriaDrapesItem: {
+				DisplayName: 奥秘帘
+				Tooltip:
+					'''
+					放置在任何实体物块上
+					像藤蔓一样慢慢生长
+					在现有锚点上放置更多以增加悬垂性
+					总是在玩家面前
+					'''
+			}
+
+			MysteriaTreetop: {
+				DisplayName: 奥秘天棚
+				Tooltip:
+					'''
+					放置一个奥秘树树冠
+					“需要一些组装”
+					'''
+			}
+
+			MysteriaWood: {
+				DisplayName: 奥秘木
+				Tooltip: 这些方块不能倾斜
+			}
+
+			PeaceTreetopItem: {
+				DisplayName: 宁静天棚
+				Tooltip:
+					'''
+					放置一个宁静天篷
+					靠近宁静树冠会降低产怪物生成率
+					将生成恢复到困难模式之前。
+					'''
+			}
+
+			HousproutItem: {
+				DisplayName: 豆芽
+				Tooltip:
+					'''
+					在制品-在发布前不会完成
+					“据说几乎可以立即建造一座小房子的壮丽生长物”
+					'''
+			}
+
+			LightbulbSeeds: {
+				DisplayName: 亮灯球茎种子
+				Tooltip: “这些已经散发出了最微弱的光芒”
+			}
+
+			LilyPadItem: {
+				DisplayName: 百合叶
+				Tooltip: 必须放在百合花上
+			}
+
+			PinkDyeBulb: {
+				DisplayName: 西洛百合
+				Tooltip:
+					'''
+					“非常明亮的颜色！”
+					用于制造粉色染料
+					'''
+			}
+
+			PinkPuff: {
+				DisplayName: 粉色气团花
+				Tooltip: “看似轻盈”
+			}
+
+			RedDyeBulb: {
+				DisplayName: 常盛天竺葵
+				Tooltip:
+					'''
+					“非常明亮的颜色！”
+					用于制造红色染料
+					'''
+			}
+
+			RootRopeItem.DisplayName: 葱郁根绳
+			VerdantFlowerBulb.DisplayName: 花球茎
+
+			VerdantStrongVineMaterial: {
+				DisplayName: 坚韧藤蔓
+				Tooltip: “切开这些需要相当锋利的刀片”
+			}
+
+			VineRopeItem.DisplayName: 葱茏藤蔓绳
+
+			WaterberryBushItem: {
+				DisplayName: 水莓丛
+				Tooltip:
+					'''
+					可以放置在其自身和葱茏叶上
+					只生长在水中
+					'''
+			}
+
+			WaterPlantItem: {
+				DisplayName: 垂泪花蕾
+				Tooltip: 一个永远哭泣的遗民
+			}
+
+			WisplantSeeds.DisplayName: 智慧植物种子
+
+			PuffBlockItem: {
+				DisplayName: 气团花块
+				Tooltip: “非常柔软！”
+			}
+
+			SnailStatueItem: {
+				DisplayName: 蜗牛雕像
+				Tooltip:
+					'''
+					一只大蜗牛的雕像
+					底下有个牌子
+					'''
+			}
+
+			HarvestedPickipuffItem: {
+				DisplayName: 挑剔气团花（收获的）
+				Tooltip:
+					'''
+					只能放在葱郁叶上
+					可以采摘来收获气团花
+					过段时间又长出来
+					'''
+			}
+
+			MarigoldItem: {
+				DisplayName: 万寿菊
+				Tooltip: “闻起来…...有金属味？”
+			}
+
+			PickipuffItem: {
+				DisplayName: 挑剔气团花
+				Tooltip:
+					'''
+					只能放在葱郁叶上
+					可采摘以收获气团花
+					一段时间后重新生长
+					'''
+			}
+
+			ApotheosisPlacer: {
+				DisplayName: 天神
+				Tooltip: 放置天神
+			}
+
+			PinkPetalBlock.DisplayName: 粉色花瓣块
+			RedPetalBlock.DisplayName: 红色花瓣块
+			VerdantGrassBlock.DisplayName: 葱郁草块
+			VerdantBathtubItem.DisplayName: 葱茏浴缸
+			VerdantBedItem.DisplayName: 葱茏床
+			VerdantBookshelfItem.DisplayName: 葱茏书架
+			VerdantCandelabraItem.DisplayName: 葱茏烛台
+			VerdantCandleItem.DisplayName: 葱茏蜡烛
+			VerdantChairItem.DisplayName: 葱茏椅
+			VerdantChandelierBlock.DisplayName: 葱茏吊灯(小号)
+			VerdantChandelierLargeItem.DisplayName: 葱茏吊灯(大号)
+			VerdantClockItem.DisplayName: 葱茏时钟
+			VerdantDoorItem.DisplayName: 葱茏门
+
+			VerdantHungTableBlock_Pink: {
+				DisplayName: 悬挂式葱茏桌(粉色)
+				Tooltip: 放置在两个结实的藤蔓下时可以悬挂
+			}
+
+			VerdantHungTableBlock_PinkLightless: {
+				DisplayName: 悬挂式葱茏桌(粉色，无亮灯球茎)
+				Tooltip: 放置在两个结实的藤蔓下时可以悬挂
+			}
+
+			VerdantHungTableBlock_Red: {
+				DisplayName: 悬挂式葱茏桌(红色)
+				Tooltip: 放置在两个结实的藤蔓下时可以悬挂
+			}
+
+			VerdantHungTableBlock_RedLightless: {
+				DisplayName: 悬挂式葱茏桌(红色，无亮灯球茎)
+				Tooltip: 放置在两个结实的藤蔓下时可以悬挂
+			}
+
+			VerdantLampItem.DisplayName: 葱茏落地灯
+			VerdantLanternItem.DisplayName: 葱茏灯笼
+			VerdantPianoItem.DisplayName: 葱茏钢琴
+			VerdantPlatformItem.DisplayName: 葱茏平台
+			VerdantSofaItem.DisplayName: 葱茏沙发
+			VerdantTableItem.DisplayName: 葱茏桌
+			VerdantWorkbenchItem.DisplayName: 葱茏工作台
+			VerdantYellowPetalChestBlock.DisplayName: 黄色花瓣箱
+			WisplantCandelabraItem.DisplayName: 智慧植物烛台
+			VerdantPylonItem.DisplayName: 葱茏晶塔
+			BackslateBubblingWallItem.DisplayName: 穿孔背板岩墙
+			BackslateWallItem.DisplayName: 背板岩墙
+			LivingLushWoodWallItem.DisplayName: 生命葱郁木墙
+			LushSoilWallItem.DisplayName: 葱郁土墙
+			LushWoodWallItem.DisplayName: 葱郁木墙
+			MysteriaWoodWallItem.DisplayName: 奥秘木墙
+			PuffWallItem.DisplayName: 气团花墙
+			VerdantLeafWallItem.DisplayName: 葱郁叶墙
+			VerdantPinkPetalWallItem.DisplayName: 粉色花瓣墙
+			VerdantRedPetalWallItem.DisplayName: 红色花瓣墙
+			VerdantVineWallItem.DisplayName: 葱郁藤蔓墙
+
+			WisplantInfusedMudBoulder: {
+				DisplayName: 注魔智慧植物葱郁土球
+				Tooltip:
+					'''
+					“你只是把两件事物粘在一起，这不是魔法”——每个人
+					“魔法并不总是奇观”——巫师们
+					'''
+			}
+
+			BulbSnail.DisplayName: 亮灯球茎蜗牛
+			BumblebeeItem.DisplayName: 熊峰
+
+			AxolotlItem: {
+				DisplayName: 蝾螈
+				Tooltip: "“太可爱了！”"
+			}
+
+			BulbboxJellyItem: {
+				DisplayName: 亮灯球茎水母
+				Tooltip: “软软的！”
+			}
+
+			MossCarpItem: {
+				DisplayName: 苔鲤
+				Tooltip: “丰盛的肉和草的混合物”
+			}
+
+			PoolwormItem: {
+				DisplayName: 池虫
+				Tooltip: “出乎意料的黏糊糊！”
+			}
+
+			FlotieItem.DisplayName: 飘花
+
+			FlotinyItem: {
+				DisplayName: 漂浮球茎
+				Tooltip: “哦，天哪，它太小了”
+			}
+
+			FolifishItem.DisplayName: 叶鱼
+			MysteriaFlotieItem.DisplayName: 奥秘飘花
+			MysteriaFlotinyItem.DisplayName: 奥秘漂浮球茎
+			PuffSlimeSmallItem.DisplayName: 气团花粘液
+			RedGrassSnail.DisplayName: 红色花瓣蜗牛
+
+			ExpertPlantGuide: {
+				DisplayName: 植物纤维绳专家指南
+				Tooltip:
+					'''
+					使得你掌握一种非常特殊的元素
+					藤蔓可以从葱茏之地收集
+					从葱茏之地收获的藤蔓放置明显更快
+					当下面没有空间时，藤蔓会向上爬升
+					'''
+			}
+
+			FlotieOfWrathItem: {
+				DisplayName: 好奇头骨
+				Tooltip:
+					'''
+					召唤愤怒的飘花
+					发出少量光
+					“你见过的最愤怒的飘花”
+					'''
+			}
+
+			HealingFlowerItem: {
+				DisplayName: 黄色幼芽
+				Tooltip:
+					'''
+					药剂的治疗效果提高20%
+					药剂的魔法回复效果提高30%
+					提供一点点照明
+					“你的意志力紧随其后”
+					'''
+			}
+
+			Lightbloom: {
+				DisplayName: 灯花
+				Tooltip:
+					'''
+					在照明下增加生命再生
+					照明越强，增加量越大
+					'''
+			}
+
+			Mudsquid: {
+				DisplayName: 泥鱿
+				Tooltip:
+					'''
+					允许快速直接穿过一些实心物块，
+					包括所有天然葱茏之地物块
+					'''
+			}
+
+			Propellerpad: {
+				DisplayName: 螺旋桨睡莲
+				Tooltip:
+					'''
+					召唤一个奇怪的睡莲叶。
+					挂在睡莲的藤蔓以四处飞行。
+					'''
+			}
+
+			SproutInABoot: {
+				DisplayName: 靴中幼芽
+				Tooltip:
+					'''
+					佩戴时自动在球员下方展开叶子平台
+					每个平台使用一片葱郁叶
+					需要水才能继续工作
+					“惊人地舒适耐用”
+					'''
+			}
+
+			SproutInAGlove: {
+				DisplayName: 手套中幼芽
+				Tooltip:
+					'''
+					随机躲避敌对投射物（33% 几率）
+					躲避射弹会给你少量的无敌帧并稍微治愈你
+					射弹只能击中你一次，即使它们穿透或反弹
+					'''
+			}
+
+			VineHook: {
+				DisplayName: 生命藤蔓钩
+				Tooltip:
+					'''
+					足够近时自动脱钩
+					“比大多数钩子更好的朋友”
+					'''
+			}
+
+			LushWoodCrateItem: {
+				DisplayName: 葱郁木匣
+				Tooltip: 右键点击打开
+			}
+
+			MysteriaCrateItem: {
+				DisplayName: 奥秘匣
+				Tooltip: 右键点击打开
+			}
+
+			Shellfish.DisplayName: 蔓生贝
+
+			BowlFruit: {
+				DisplayName: 碗果
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“春水”
+					'''
+			}
+
+			Dropberry: {
+				DisplayName: 落莓
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“闻起来像下雨时的尘土味”
+					'''
+			}
+
+			FloralTea: {
+				DisplayName: 花茶
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“一条蛇的特别食谱”
+					'''
+			}
+
+			Grapecherry: {
+				DisplayName: 葡萄樱桃
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“奇怪但美味的组合”
+					'''
+			}
+
+			HoneyNuggets: {
+				DisplayName: 蜂蜜块
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“尽管来源非常好”
+					'''
+			}
+
+			Mystuber: {
+				DisplayName: 神秘人
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“令人费解！令人困惑！令人迷惑”
+					'''
+			}
+
+			Walnut: {
+				DisplayName: 核桃
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“你的牙齿会好起来的”
+					'''
+			}
+
+			Waterberry: {
+				DisplayName: 水莓
+				Tooltip:
+					'''
+					对所有属性进行轻微改进
+					“几乎就像糖果一样！”
+					'''
+			}
+
+			Lightbulb: {
+				DisplayName: 亮灯球茎
+				Tooltip: “让查理远离”
+			}
+
+			LushLeaf: {
+				DisplayName: 葱郁叶
+				Tooltip: “相当耐用”
+			}
+
+			MysteriaClump: {
+				DisplayName: 奥秘花丛
+				Tooltip: “非常柔软”
+			}
+
+			PinkPetal: {
+				DisplayName: 粉色花瓣
+				Tooltip: “它们非常柔软”
+			}
+
+			PuffMaterial: {
+				DisplayName: 气团花
+				Tooltip:
+					'''
+					触感轻盈柔软
+					味道不好
+					'''
+			}
+
+			RedPetal: {
+				DisplayName: 红色花瓣
+				Tooltip: “它们非常光滑”
+			}
+
+			WisplantItem.DisplayName: 智慧植物
+
+			YellowBulb: {
+				DisplayName: 黄色亮灯球茎
+				Tooltip: “如此罕见...”
+			}
+
+			ApotheosisBag: {
+				DisplayName: 研究员的包
+				Tooltip: 右键点击打开
+			}
+
+			ApotheosisBook: {
+				DisplayName: "《我的天神》"
+				Tooltip: - Emily
+			}
+
+			WiltedFlower: {
+				DisplayName: 枯萎的花
+				Tooltip: 一朵早已死去、褪色的黄花
+			}
+
+			HeartOfGrowth: {
+				DisplayName: 生长之心
+				Tooltip:
+					'''
+					永久增加最大仆从数量1个
+					每人只能使用一次
+					“一颗永远跳动的心。”
+					'''
+			}
+
+			MagicWisplant: {
+				DisplayName: 注魔智慧植物
+				Tooltip:
+					'''
+					“祭师能量的强大光环围绕着它”
+					加速一个地区的所有自然生长一个惊人的量
+					'''
+			}
+
+			Microcosm: {
+				DisplayName: 微缩
+				Tooltip:
+					'''
+					在任何地方创建一个微小的葱茏之地生物群落
+					小心这将覆盖一个大区域(小世界中最小为60x60个物块)
+					确保你在你不在乎的地方使用这个！
+					每个世界只能使用一次
+					'''
+			}
+
+			PassionflowerBulb: {
+				DisplayName: 百香花球茎
+				Tooltip:
+					'''
+					右键点击打开
+					“橘味和甜味”
+					'''
+			}
+
+			AquamarineHook.DisplayName: 蓝晶钩
+
+			BouncebloomItem: {
+				DisplayName: 弹跳花
+				Tooltip:
+					'''
+					缓慢下降
+					按住DOWN可快速下降
+					你上方的轻型敌人会在花上弹跳
+					'''
+			}
+
+			CloudsproutPuff: {
+				DisplayName: 云芽
+				Tooltip:
+					'''
+					浮动的缓冲垫
+					即使退出世界仍然存在
+					左键点击现有云以将其移除
+					右键点击两秒钟以移除所有云芽
+					'''
+			}
+
+			GemFlower: {
+				DisplayName: 宝石花
+				Tooltip: 传送你到天神
+			}
+
+			Halfsprout: {
+				DisplayName: 半芽菜
+				Tooltip: 立即长成所有草药，收获它们，然后重新种植
+			}
+
+			LivingLushWoodWand: {
+				DisplayName: 生命葱郁木手杖
+				Tooltip:
+					'''
+					放置葱郁木块
+					右键点击切换到葱郁叶
+					'''
+			}
+
+			LushLeafWand: {
+				DisplayName: 葱郁叶魔棒
+				Tooltip:
+					'''
+					放置葱郁叶块
+					右键点击以切换到“红色花瓣”
+					'''
+			}
+
+			CrudePaintbrush: {
+				DisplayName: 粗糙画笔
+				Tooltip:
+					'''
+					可以快速放置各种放置样式的物块
+					持握时右键点击以循环放置样式
+					“粗糙的外表遮掩了强大的工艺品”
+					'''
+			}
+
+			PermVineWand: {
+				DisplayName: 拉链藤
+				Tooltip:
+					'''
+					允许用户构建藤蔓
+					藤蔓像绳子一样工作，可以在任何空白区域上使用
+					这些藤蔓使用[i:5284]来构建，并在被摧毁时掉落
+					'''
+			}
+
+			PinkPetalWand: {
+				DisplayName: 粉色花瓣魔棒
+				Tooltip:
+					'''
+					放置粉色花瓣块
+					右键点击可切换到生命葱郁木
+					'''
+			}
+
+			RedPetalWand: {
+				DisplayName: 红色花瓣魔棒
+				Tooltip:
+					'''
+					放置红色花瓣块
+					右键点击以切换到粉色花瓣
+					'''
+			}
+
+			Shears: {
+				DisplayName: 剪刀
+				Tooltip:
+					'''
+					修剪某些植物
+					可用于移除挑剔气团花、奥秘帘
+					技术上可以用作斧头
+					'''
+			}
+
+			VerdantFishingRod: {
+				DisplayName: 葱郁鱼竿
+				Tooltip:
+					'''
+					握持时会发光
+					在葱茏之地会增强能力
+					'''
+			}
+
+			YellowPetalFloater: {
+				DisplayName: 云芽
+				Tooltip:
+					'''
+					浮动的缓冲垫
+					即使退出世界仍然存在
+					左键点击现有云以将其移除
+					右键点击两秒钟以移除所有云芽
+					'''
+			}
+
+			AquamarinePhaseblade.DisplayName: 晶蓝陨石光剑
+			AquamarinePhasesaber.DisplayName: 晶蓝晶光刃
+
+			AquamarinePlatinumStaff: {
+				DisplayName: 蓝晶法杖
+				Tooltip:
+					'''
+					召唤光束从你的仆从那里发出
+					光束得到你仆从的伤害加成
+					'''
+			}
+
+			AquamarineStaff: {
+				DisplayName: 蓝晶法杖
+				Tooltip:
+					'''
+					召唤光束从你的仆从那里发出
+					光束得到你仆从的伤害加成
+					'''
+			}
+
+			LushDagger: {
+				DisplayName: 葱郁匕首
+				Tooltip: 三连发
+			}
+
+			LushWoodBow.DisplayName: 葱郁木弓
+			LushWoodHammer.DisplayName: 葱郁木锤
+			LushWoodSword.DisplayName: 葱郁木剑
+
+			MudBoulderItem: {
+				DisplayName: 葱郁土球
+				Tooltip: 一个小麻烦
+			}
+
+			SpikedPuffball: {
+				DisplayName: 生刺气团花
+				Tooltip: 在空中漂浮半分钟，然后下落
+			}
+
+			VerdantStaff: {
+				DisplayName: 葱茏治愈法杖
+				Tooltip:
+					'''
+					召唤一株神圣的治愈之花
+					待在这株植物附近，获得额外的再生
+					一次只能召唤一个
+					当它已经出来时再次使用以移动花
+					'''
+			}
+		}
+
+		Projectiles: {
+			PermVineWandProjectile.DisplayName: 附魔藤蔓
+			AquamarineBolt.DisplayName: 蓝晶光束
+			HealPlants.DisplayName: 治愈植物
+			VerdantBounceBulb.DisplayName: 葱茏弹跳球茎
+			HealingFlower.DisplayName: 黄色幼芽
+			PropellerpadProjectile.DisplayName: 剃刀叶
+			VerdantHealingMinion.DisplayName: 葱郁之花
+			VerdantSnailMinion.DisplayName: 蜗牛
+			AquamarineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
+			FlotieOfWrath.DisplayName: 愤怒飘花
+			MagicWisplantProj.DisplayName: 魔法智慧植物
+			MudBoulder.DisplayName: 葱郁土球
+			PestControlTag.DisplayName: 害虫防治标签
+			VerdantBobber.DisplayName: 葱茏浮标
+			VerdantWisp.DisplayName: 小精灵
+			VineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
+			VineWandVine.DisplayName: 藤蔓
+			WisplantInfusedLushBallProjectile.DisplayName: 智慧植物注入的葱郁土球
+			ApotheosisHand.DisplayName: 天神之手
+			HealingParticle.DisplayName: 治疗粒子
+			Smoke.DisplayName: 烟雾
+			LushDaggerProj.DisplayName: 葱郁匕首
+			SpikedPuffballProj.DisplayName: 生刺气团花球
+		}
+
+		NPCs: {
+			BigThorn.DisplayName: 荆棘
+			SmallThorn.DisplayName: 荆棘
+			SmallFly.DisplayName: 葱郁小翼
+			Bumblebee.DisplayName: 熊峰
+			Axolotl.DisplayName: 蝾螈
+			BulbboxJelly.DisplayName: 亮灯球茎水母
+			MossCarp.DisplayName: 苔鲤
+			Poolworm.DisplayName: 池虫
+			Flotie.DisplayName: 飘花
+			Flotiny.DisplayName: 漂浮球茎
+			MysteriaFlotie.DisplayName: 奥秘飘花
+			MysteriaFlotiny.DisplayName: 奥秘漂浮球茎
+			PuffSlimeSmall.DisplayName: 气团花史莱姆
+			VerdantBulbSnail.DisplayName: 亮灯球茎蜗牛
+			VerdantRedGrassSnail.DisplayName: 叶子蜗牛
+			Folifish.DisplayName: 叶鱼
+			HostFly.DisplayName: 小翼女主人 [已移除]
+			Mossling.DisplayName: 苔藓 [弃用]
+		}
+
+		Biomes: {
+			NearApotheosisBiome.DisplayName: 天神周围之地
+			VerdantBiome.DisplayName: 葱茏之地
+			VerdantUndergroundBiome.DisplayName: 葱茏之地
+		}
+	}
+}
