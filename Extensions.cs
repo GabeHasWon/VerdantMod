@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Systems.RealtimeGeneration;
 
@@ -69,5 +71,11 @@ public static class Extensions
         );
 
         return tileState;
+    }
+
+    public static Vector2 GetRealDrawPosition(this PlayerDrawLayer layer, Vector2 position)
+    {
+        position = position.ToPoint().ToVector2();
+        return new(MathF.Round(position.X, MidpointRounding.ToNegativeInfinity), MathF.Round(position.Y, MidpointRounding.AwayFromZero));
     }
 }

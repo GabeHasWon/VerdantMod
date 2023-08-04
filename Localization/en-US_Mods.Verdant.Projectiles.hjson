@@ -1,4 +1,4 @@
-﻿PermVineWandProjectile.DisplayName: Enchanted Vine
+PermVineWandProjectile.DisplayName: Enchanted Vine
 AquamarineBolt.DisplayName: Aquamarine Bolt
 HealPlants.DisplayName: Heal Plants
 HealingFlower.DisplayName: Yellow Sprout
@@ -20,3 +20,5 @@ HealingParticle.DisplayName: Healing Particle
 Smoke.DisplayName: Smoke
 LushDaggerProj.DisplayName: Lush Dagger
 SpikedPuffballProj.DisplayName: Spiked Puffball
+HostSwarm.DisplayName: Host Swarm
+HostSwarmBee.DisplayName: Host Swarm Bee

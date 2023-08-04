@@ -1363,3 +1363,39 @@ ThornWallItem: {
 	// DisplayName: Thorn Wall Item
 	// Tooltip: ""
 }
+
+ApotheoticBeeHelmet: {
+	// DisplayName: Apotheotic Host Headdress
+	/* Tooltip:
+		'''
+		Holds a swarm of bees
+		When not holding an item, these bees surround your cursor and do damage over time
+		10% increased summon damage
+		+2 minion slots
+		'It is so much more concerning when it's on top of your head'
+		''' */
+}
+
+ApotheoticTreeHelmet: {
+	// DisplayName: Apotheotic Treeband
+	/* Tooltip:
+		'''
+		A tree grows on the headband, somehow
+		The tree is replete with food and health
+		You will regain large portions of health when near your summons
+		Life regen is increased
+		+10% increased minion damage
+		+1 minion slot
+		'The tree soothes you'
+		''' */
+}
+
+ApotheoticChestplate: {
+	// DisplayName: Apotheotic Chestplate
+	/* Tooltip:
+		'''
+		10% increased minion damage
+		+1 minion slot
+		Increased wing flight time
+		''' */
+}

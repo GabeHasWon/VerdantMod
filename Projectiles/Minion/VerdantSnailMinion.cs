@@ -224,7 +224,7 @@ namespace Verdant.Projectiles.Minion
         private void SetFrame(int frame) => Projectile.frame = frame + (_skin * 5);
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
+        { 
             target.AddBuff(BuffID.Slimed, 20);
             Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.Next(-70, 71) * 0.01f) * -1f;
         }
