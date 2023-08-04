@@ -4,7 +4,6 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Mysteria;
@@ -47,6 +46,8 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
 
     public override void UpdateArmorSet(Player player)
     {
+        player.setBonus = "Bee swarm does increased damage\nWhen the bees kill something, they drop a honey heart pickup which heals 10 health";
+        player.GetModPlayer<HostHelmetPlayer>().setBonus = true;
     }
 
     public override void AddRecipes()
@@ -74,14 +75,19 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
 internal class HostHelmetPlayer : ModPlayer
 {
     internal bool active = false;
+    internal bool setBonus = false;
 
-    public override void ResetEffects() => active = false;
+    public override void ResetEffects()
+    {
+        active = false;
+        setBonus = false;
+    }
 
     public override void PreUpdate()
     {
         if (!Player.dead && active && Player.ownedProjectileCounts[ModContent.ProjectileType<HostSwarm>()] <= 0)
         {
-            int dmg = (int)Player.GetDamage(DamageClass.Summon).ApplyTo(8);
+            int dmg = (int)Player.GetDamage(DamageClass.Summon).ApplyTo(setBonus ? 14 : 8);
             Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Vector2.Zero, ModContent.ProjectileType<HostSwarm>(), dmg, 1f);
         }
     }
@@ -104,6 +110,8 @@ internal class HostSwarm : ModProjectile
         get => Projectile.ai[0] == 1;
         set => Projectile.ai[0] = value ? 1 : 0;
     }
+
+    private ref float Timer => ref Projectile.ai[1];
 
     public override void SetStaticDefaults() => BeeTexture = ModContent.Request<Texture2D>(Texture + "Bee");
     public override void Unload() => BeeTexture = null;
@@ -145,6 +153,8 @@ internal class HostSwarm : ModProjectile
         if ((!Remove && !Owner.GetModPlayer<HostHelmetPlayer>().active) || Owner.dead)
             Remove = true;
 
+        Projectile.damage = (int)Owner.GetDamage(DamageClass.Summon).ApplyTo(Owner.GetModPlayer<HostHelmetPlayer>().setBonus ? 14 : 8);
+
         Vector2 target = Active ? Main.MouseWorld : Owner.Center - new Vector2(0, 30);
         Projectile.Center = Vector2.Lerp(Projectile.Center, target, Active ? 0.03f : 0.05f);
         Projectile.velocity = Vector2.Zero;
@@ -152,14 +162,25 @@ internal class HostSwarm : ModProjectile
 
     public override void PostDraw(Color lightColor)
     {
+        Timer++;
         float alpha = Remove ? Projectile.timeLeft / MaxTimeLeft : 1f;
 
-        foreach (var item in bees)
-            item.Draw(alpha);
+        for (int i = 0; i < bees.Count; ++i)
+            bees[i].Draw(alpha, i + (int)Timer);
     }
 
     public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) => modifiers.FinalDamage.Base += Projectile.damage;
     public override bool? CanHitNPC(NPC target) => Active;
+    public override bool? CanCutTiles() => false;
+
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+    {
+        if (target.life <= 0)
+        {
+            var item = Owner.QuickSpawnItemDirect(target.GetSource_OnHurt(Projectile), ItemID.Heart);
+            item.Center = target.Center;
+        }
+    }
 
     internal class HostSwarmBee
     {
@@ -192,12 +213,13 @@ internal class HostSwarm : ModProjectile
                 velocity = velocity.RotatedByRandom(0.08f);
         }
 
-        public void Draw(float alpha)
+        public void Draw(float alpha, int timer)
         {
             var realPos = parent.Center + position;
             var light = Lighting.GetColor(realPos.ToTileCoordinates()) * alpha;
             var effect = velocity.X <= 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            Main.spriteBatch.Draw(BeeTexture.Value, realPos - Main.screenPosition, null, light, 0f, Vector2.Zero, scale, effect, 0);
+            var source = new Rectangle(14 * (timer % 10 < 5 ? 1 : 0), 0, 12, 14);
+            Main.spriteBatch.Draw(BeeTexture.Value, realPos - Main.screenPosition, source, light, 0f, Vector2.Zero, scale, effect, 0);
         }
     }
 }
