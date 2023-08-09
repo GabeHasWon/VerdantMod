@@ -22,9 +22,9 @@ internal class TallHatLayer : PlayerDrawLayer
             return;
 
         var tex = ChosenTexture(hat);
-        var hatPos = hat.HatPosition(player, drawInfo);
-        var position = this.GetRealDrawPosition(hatPos - Main.screenPosition + new Vector2(player.width / 2f, 0));
-        var col = Main.gameMenu ? Color.White : Lighting.GetColor(hatPos.ToTileCoordinates());
+        var hatPos = hat.HatOffset(player, drawInfo);
+        var position = drawInfo.GetRealDrawPosition(hatPos + new Vector2(player.width / 2f, 0));
+        var col = Main.gameMenu ? Color.White : Lighting.GetColor((position + Main.screenPosition).ToTileCoordinates());
         var frame = player.bodyFrame;
 
         if (!hat.HatModifyFraming(frame, out Rectangle newFrame))
@@ -44,7 +44,7 @@ internal class TallHatLayerBack : TallHatLayer
 
 internal interface ITallHat
 {
-    Vector2 HatPosition(Player player, PlayerDrawSet info);
+    Vector2 HatOffset(Player player, PlayerDrawSet info);
     Texture2D HatTexture();
     Texture2D HatBackTexture();
 

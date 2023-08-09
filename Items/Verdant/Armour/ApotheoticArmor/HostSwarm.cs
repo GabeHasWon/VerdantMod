@@ -16,7 +16,7 @@ internal class HostSwarm : ModProjectile
     public static Asset<Texture2D> BeeTexture;
 
     private Player Owner => Main.player[Projectile.owner];
-    private bool Active => !Owner.dead && Main.mouseLeft && !Main.isMouseLeftConsumedByUI && Owner.HeldItem.IsAir;
+    private bool Active => !Owner.dead && !Main.isMouseLeftConsumedByUI && Owner.HeldItem.CountsAsClass(DamageClass.Summon) && Owner.HeldItem.damage > 0;
 
     private List<HostSwarmBee> bees = new();
 

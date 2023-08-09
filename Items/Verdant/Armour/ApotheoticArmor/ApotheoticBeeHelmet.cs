@@ -62,7 +62,7 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
             .Register();
     }
 
-    public Vector2 HatPosition(Player player, PlayerDrawSet info) => info.Position - new Vector2(0, -2);
+    public Vector2 HatOffset(Player player, PlayerDrawSet info) => new(0, 2);
     public Texture2D HatTexture() => _hatSheet.Value;
     public Texture2D HatBackTexture() => _hatBackSheet.Value;
 

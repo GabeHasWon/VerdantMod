@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -21,14 +22,10 @@ public class ApotheoticTreeHelmet : ModItem, ITallHat
     static Asset<Texture2D> _hatSheet;
     static Asset<Texture2D> _hatBackSheet;
 
-    internal static Asset<Texture2D> fruitTex;
-
     public override void SetStaticDefaults()
     {
         _hatSheet = ModContent.Request<Texture2D>(Texture + "Sheet");
         _hatBackSheet = ModContent.Request<Texture2D>(Texture + "SheetBack");
-
-        fruitTex = ModContent.Request<Texture2D>(Texture + "Fruits");
     }
 
     public override void Unload() => _hatSheet = _hatBackSheet = null;
@@ -68,7 +65,7 @@ public class ApotheoticTreeHelmet : ModItem, ITallHat
             .Register();
     }
 
-    public Vector2 HatPosition(Player player, PlayerDrawSet info) => info.Position + new Vector2(0, 6);
+    public Vector2 HatOffset(Player player, PlayerDrawSet info) => new(0, 6);
     public Texture2D HatTexture() => _hatSheet.Value;
     public Texture2D HatBackTexture() => _hatBackSheet.Value;
 
@@ -86,7 +83,6 @@ internal class TreeHelmetPlayer : ModPlayer
 
     internal bool active = false;
     internal FruitType[] fruits = new FruitType[MaxFruits];
-    internal Vector2[] fruitLocations = new Vector2[MaxFruits];
 
     private int _fruitTimer = 0;
 
@@ -126,9 +122,8 @@ internal class TreeHelmetPlayer : ModPlayer
                     if (index == -1)
                         return;
 
-                    fruitProj.fruitBuff = fruits[index];
-                    fruitProj.fruitTime = TreeFruitProjectile.MaxFruitTime;
-
+                    Projectile.NewProjectile(Player.GetSource_Accessory(Player.armor[0]), Player.Center, Vector2.Zero, 
+                        ModContent.ProjectileType<FruitProjectile>(), 0, 0, Player.whoAmI, proj.whoAmI, (float)fruits[index]);
                     fruits[index] = 0;
                 }
             }
@@ -226,7 +221,8 @@ internal class TreeFruitProjectile : GlobalProjectile
         if (fruitBuff == FruitType.None)
             return;
 
-        var tex = ApotheoticTreeHelmet.fruitTex.Value;
+        Main.instance.LoadProjectile(ModContent.ProjectileType<FruitProjectile>());
+        var tex = TextureAssets.Projectile[ModContent.ProjectileType<FruitProjectile>()].Value;
         var pos = projectile.Center - new Vector2(0, projectile.height + projectile.gfxOffY + 4);
         var col = Color.Lerp(Lighting.GetColor(pos.ToTileCoordinates()), Color.White, 0.25f) * projectile.Opacity;
         float cutoff = fruitTime / (float)MaxFruitTime;

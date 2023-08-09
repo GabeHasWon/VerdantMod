@@ -1382,7 +1382,7 @@ ApotheoticBeeHelmet: {
 	Tooltip:
 		'''
 		Holds a swarm of bees
-		When not holding an item, these bees surround your cursor and do damage over time
+		When holding a summon item, these bees surround your cursor and do damage over time
 		10% increased summon damage
 		+2 minion slots
 		The bees are empowered by the Hive Pack

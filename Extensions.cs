@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Systems.RealtimeGeneration;
@@ -73,9 +74,21 @@ public static class Extensions
         return tileState;
     }
 
-    public static Vector2 GetRealDrawPosition(this PlayerDrawLayer layer, Vector2 position)
+    public static Vector2 GetRealDrawPosition(this PlayerDrawSet info, Vector2 offset)
     {
-        position = position.ToPoint().ToVector2();
-        return new(MathF.Round(position.X, MidpointRounding.ToNegativeInfinity), MathF.Round(position.Y, MidpointRounding.AwayFromZero));
+        offset += info.Position - Main.screenPosition;
+
+        if (info.drawPlayer.mount is not null && info.drawPlayer.mount.Active)
+            offset.Y += info.drawPlayer.mount.HeightBoost;
+
+        offset = offset.ToPoint().ToVector2();
+        return new(MathF.Round(offset.X, MidpointRounding.ToNegativeInfinity), MathF.Round(offset.Y, MidpointRounding.AwayFromZero));
+    }
+
+    public static int GetBobble(this Player player)
+    {
+        int playerFrame = player.bodyFrame.Y / player.bodyFrame.Height;
+        bool lowFrame = (playerFrame >= 7 && playerFrame <= 9) || (playerFrame >= 14 && playerFrame <= 16);
+        return lowFrame ? 0 : -2;
     }
 }
