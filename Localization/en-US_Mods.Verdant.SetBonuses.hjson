@@ -1,0 +1,31 @@
+Lush: +1 flat summon damage
+Mysteria:
+	'''
+	Increased tile and wall placement speed and range
+	Increased mining speed
+	Enemies spawn significantly less often
+	'''
+Verdant:
+	'''
+	+4% minion damage
+	+1 max minion
+	Reduces fall speed - Hold DOWN to fall faster
+	Upon respawning, heals you by 50 health
+	'''
+
+Apotheotic: {
+	Tree:
+		'''
+		You can grow one more fruit
+		The fruits' effects are stronger
+		+1 max minion
+		+10 defense
+		'''
+	Bee:
+		'''
+		The bees do increased damage
+		When the bees kill something, they drop a honey heart pickup which heals 10 health
+		+1 max minion
+		+5% minion damage"
+		'''
+}

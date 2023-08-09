@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -7,7 +8,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.Plants;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
@@ -35,14 +36,20 @@ internal class VerdantStrongVine : ModTile
         HitSound = SoundID.Grass;
         MinPick = 20;
 
-        RegisterItemDrop(ModContent.ItemType<VerdantStrongVineMaterial>());
+        RegisterItemDrop(ModContent.ItemType<LushLeaf>());
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        yield return new Item(ModContent.ItemType<LushLeaf>()) { stack = Main.rand.Next(1, 4)};
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
     {
-        bool validAbove = TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j - 1, ModContent.TileType<Bouncebloom>()) || TileHelper.ActiveType(i, j - 1, Type);
+        bool validAbove = TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()) || 
+            TileHelper.ActiveType(i, j - 1, ModContent.TileType<Bouncebloom>()) || TileHelper.ActiveType(i, j - 1, Type);
         bool validBelow = TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()) || TileHelper.ActiveType(i, j + 1, Type);
 
         if (!validBelow) //Hanging table functionality

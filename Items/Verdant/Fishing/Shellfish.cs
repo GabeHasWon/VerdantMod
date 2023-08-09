@@ -6,11 +6,6 @@ namespace Verdant.Items.Verdant.Fishing
     [Sacrifice(1)]
     public class Shellfish : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Overgrown Shellfish");
-        }
-
         public override void SetDefaults()
         {
             Item.width = 44;

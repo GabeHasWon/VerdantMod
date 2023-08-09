@@ -10,12 +10,6 @@ namespace Verdant.Items.Verdant.Armour
     [AutoloadEquip(EquipType.Body)]
     public class VerdantChestplate : ModItem
 	{
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Growth Chestpiece");
-            // Tooltip.SetDefault("+7% minion damage\n+1 max minion");
-        }
-
         public override void SetDefaults()
 		{
 			Item.width = 28;

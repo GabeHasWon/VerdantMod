@@ -107,7 +107,6 @@ public class MysteriaFlotie : Flotie
         NPCID.Sets.CountsAsCritter[Type] = true;
 
         glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
-        // DisplayName.SetDefault("Mysteria Flotie");
     }
 
     public override void SetDefaults()

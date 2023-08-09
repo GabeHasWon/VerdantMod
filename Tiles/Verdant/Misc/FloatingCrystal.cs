@@ -8,18 +8,17 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.Misc;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
 internal class FloatingCrystal : ModTile
 {
-    public override void Load() => Terraria.On_Projectile.VanillaAI += Projectile_VanillaAI;
+    public override void Load() => On_Projectile.VanillaAI += Projectile_VanillaAI;
 
     /// <summary>
     /// Makes this tiles solid for only hooks
     /// </summary>
-    private void Projectile_VanillaAI(Terraria.On_Projectile.orig_VanillaAI orig, Projectile self)
+    private void Projectile_VanillaAI(On_Projectile.orig_VanillaAI orig, Projectile self)
     {
         Main.tileSolid[ModContent.TileType<FloatingCrystal>()] = true;
         orig(self);

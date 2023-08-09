@@ -11,15 +11,8 @@ internal class AquamarineHookProjectile : ModProjectile
 {
     public static Asset<Texture2D> _chain;
 
+    public override void SetStaticDefaults() => _chain = ModContent.Request<Texture2D>(Texture + "_Chain");
     public override void Unload() => _chain = null;
-
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("${ProjectileName.GemHookAmethyst}");
-
-        _chain = ModContent.Request<Texture2D>(Texture + "_Chain");
-    }
-
     public override void SetDefaults() => Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
     public override bool? CanUseGrapple(Player player) => player.ownedProjectileCounts[Type] < 2;
     public override float GrappleRange() => 16 * 27;

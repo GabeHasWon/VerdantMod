@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks.Aquamarine;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Magic;
 
@@ -11,13 +10,7 @@ namespace Verdant.Items.Verdant.Weapons;
 
 class AquamarineStaff : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Aquamarine Staff");
-        // Tooltip.SetDefault("Summons bolts to come from your minions\nThe bolts get some added damage from your minions");
-
-        Item.staff[Type] = true;
-    }
+    public override void SetStaticDefaults() => Item.staff[Type] = true;
 
     public override void SetDefaults()
     {

@@ -32,12 +32,6 @@ namespace Verdant.Items.Verdant.Equipables
             EquipLoader.AddEquipTexture(Mod, Texture + "_Legs_3", EquipType.Legs, this, nameof(SproutInABoot) + "_Legs_3");
         }
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Sprout in Boots");
-            // Tooltip.SetDefault("Spreads leafy platforms automatically under the player when worn\nUses a single Lush Leaf per platform placed\nNeeds water to continue working\n'Surprisingly comfortable & durable'");
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             if (_water <= 0)

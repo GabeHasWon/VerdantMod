@@ -7,11 +7,8 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	[Sacrifice(1)]
 	public class VibrantHorizonBox : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Music Box (Vibrant Horizon)");
+		public override void SetStaticDefaults() => 
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/VibrantHorizon"), ModContent.ItemType<VibrantHorizonBox>(), ModContent.TileType<VibrantHorizonBoxTile>());
-		}
 
 		public override void SetDefaults()
 		{

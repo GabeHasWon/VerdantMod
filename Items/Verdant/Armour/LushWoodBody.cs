@@ -8,12 +8,6 @@ namespace Verdant.Items.Verdant.Armour
     [AutoloadEquip(EquipType.Body)]
     public class LushWoodBody : ModItem
 	{
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Lush Wood Chestpiece");
-            // Tooltip.SetDefault("+1 flat minion damage");
-        }
-
         public override void SetDefaults()
 		{
 			Item.width = 28;

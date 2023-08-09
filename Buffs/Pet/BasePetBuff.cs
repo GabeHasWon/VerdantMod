@@ -11,9 +11,6 @@ namespace Verdant.Buffs.Pet
 
 		public sealed override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault(BuffInfo.Item1);
-			// Description.SetDefault(BuffInfo.Item2);
-
 			Main.buffNoTimeDisplay[Type] = true;
 
 			if (IsLightPet)

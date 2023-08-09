@@ -38,7 +38,6 @@ internal class SmallThorn : ModNPC, IDrawAdditive
 
     public override void SetStaticDefaults()
     {
-        // DisplayName.SetDefault("Thorn");
         Main.npcFrameCount[NPC.type] = 1;
 
         auraTex = ModContent.Request<Texture2D>("Verdant/NPCs/Enemy/PestControl/Thorns/ThornAura");

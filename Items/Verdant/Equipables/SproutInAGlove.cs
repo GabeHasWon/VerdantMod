@@ -8,16 +8,8 @@ using Verdant.Projectiles.Particles;
 
 namespace Verdant.Items.Verdant.Equipables;
 
-//[AutoloadEquip(EquipType.HandsOn)]
 class SproutInAGlove : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Sprout in Gloves");
-        /* Tooltip.SetDefault("Dodges hostile projectiles randomly (33% chance)\nDodging a projectile gives you a small amount of i-frames and heals you slightly" +
-            "\nProjectiles can only hit you once, even if they pierce or bounce"); */
-    }
-
     bool offsetFlag = false;
 
     public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)

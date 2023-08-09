@@ -9,12 +9,6 @@ namespace Verdant.Items.Verdant.Equipables;
 
 internal class FlotieOfWrathItem : ModItem
 {
-	public override void SetStaticDefaults()
-	{
-		// DisplayName.SetDefault("Curious Skull");
-		// Tooltip.SetDefault("Summons a Flotie of Wrath\nGives off a small amount of light\n'The angriest flotie you've ever seen'");
-	}
-
 	public override void SetDefaults()
 	{
 		Item.CloneDefaults(ItemID.Fish);

@@ -19,12 +19,6 @@ public class VerdantLeggings : ModItem
         return true;
     }
 
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Growth Leggings");
-        // Tooltip.SetDefault("Increased regen\n+1 max minion\nGrows plants under you as you walk");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 18;

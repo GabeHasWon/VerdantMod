@@ -29,8 +29,6 @@ class PropellerpadProjectile : ModProjectile
 
     public override void SetStaticDefaults()
     {
-        // DisplayName.SetDefault("Razorpad");
-
         Main.projFrames[Type] = 4;
 
         ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;

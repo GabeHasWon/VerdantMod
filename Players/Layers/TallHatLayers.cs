@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Verdant.Players.Layers;
 
+/// <summary>
+/// Draws any given tall hat I may need.
+/// </summary>
 internal class TallHatLayer : PlayerDrawLayer
 {
     public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.ArmOverItem);
@@ -16,13 +18,13 @@ internal class TallHatLayer : PlayerDrawLayer
     {
         Player player = drawInfo.drawPlayer;
 
-        if (!player.active || player.outOfRange || player.dead || player.armor[0].ModItem is not ITallHat hat)
+        if ((!player.active && !Main.gameMenu) || player.outOfRange || player.dead || player.armor[0].ModItem is not ITallHat hat)
             return;
 
         var tex = ChosenTexture(hat);
-        var hatPos = hat.HatPosition(player);
-        var position = this.GetRealDrawPosition(hatPos - Main.screenPosition + new Vector2(0, player.gfxOffY));
-        var col = Lighting.GetColor(hatPos.ToTileCoordinates());
+        var hatPos = hat.HatPosition(player, drawInfo);
+        var position = this.GetRealDrawPosition(hatPos - Main.screenPosition + new Vector2(player.width / 2f, 0));
+        var col = Main.gameMenu ? Color.White : Lighting.GetColor(hatPos.ToTileCoordinates());
         var frame = player.bodyFrame;
 
         if (!hat.HatModifyFraming(frame, out Rectangle newFrame))
@@ -42,7 +44,7 @@ internal class TallHatLayerBack : TallHatLayer
 
 internal interface ITallHat
 {
-    Vector2 HatPosition(Player player);
+    Vector2 HatPosition(Player player, PlayerDrawSet info);
     Texture2D HatTexture();
     Texture2D HatBackTexture();
 

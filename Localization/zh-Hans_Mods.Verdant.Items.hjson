@@ -1381,12 +1381,12 @@ ApotheoticTreeHelmet: {
 	/* Tooltip:
 		'''
 		A tree grows on the headband, somehow
-		The tree is replete with food and health
-		You will regain large portions of health when near your summons
-		Life regen is increased
+		You have a healing aura
+		The tree grows various fruits
+		Click on one of your minions to buff it greatly for a short period of time
 		+10% increased minion damage
 		+1 minion slot
-		'The tree soothes you'
+		'The tree soothes life, and life soothes you'
 		''' */
 }
 
@@ -1398,4 +1398,9 @@ ApotheoticChestplate: {
 		+1 minion slot
 		Increased wing flight time
 		''' */
+}
+
+HoneyHeart: {
+	// DisplayName: Honey Heart
+	// Tooltip: ""
 }

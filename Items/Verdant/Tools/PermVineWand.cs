@@ -53,8 +53,6 @@ public class PermVineWandProjectile : ModProjectile
 
     private bool _init = false;
 
-    // public override void SetStaticDefaults() => DisplayName.SetDefault("Enchanted Vine");
-
     public override void SetDefaults()
     {
         Projectile.width = 42;

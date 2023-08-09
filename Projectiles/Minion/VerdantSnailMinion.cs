@@ -16,7 +16,6 @@ namespace Verdant.Projectiles.Minion
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Snale");
             Main.projFrames[Projectile.type] = 15;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;

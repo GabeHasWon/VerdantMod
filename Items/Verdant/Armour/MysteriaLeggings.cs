@@ -9,12 +9,6 @@ namespace Verdant.Items.Verdant.Armour;
 [AutoloadEquip(EquipType.Legs)]
 public class MysteriaLeggings : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Mysteria Leggings");
-        // Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 18;

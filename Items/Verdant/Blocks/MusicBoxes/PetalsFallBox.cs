@@ -7,11 +7,8 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	[Sacrifice(1)]
 	public class PetalsFallBox : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Music Box (Petals Fall)");
-			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall"), ModContent.ItemType<PetalsFallBox>(), ModContent.TileType<PetalsFallBoxTile>());
-		}
+		public override void SetStaticDefaults() => 
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/PetalsFall"), ModContent.ItemType<PetalsFallBox>(), ModContent.TileType<PetalsFallBoxTile>());
 
 		public override void SetDefaults()
 		{

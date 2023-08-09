@@ -7,8 +7,6 @@ namespace Verdant.Buffs.Minion
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Snail Minion");
-            // Description.SetDefault("The grassy snails will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

@@ -19,12 +19,7 @@ namespace Verdant.Projectiles.Misc
 
         public bool perm = false;
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Vine");
-
-            Main.projFrames[Projectile.type] = 2;
-        }
+        public override void SetStaticDefaults() => Main.projFrames[Projectile.type] = 2;
 
         public override void SetDefaults()
         {

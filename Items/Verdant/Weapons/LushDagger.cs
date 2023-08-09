@@ -8,12 +8,6 @@ namespace Verdant.Items.Verdant.Weapons;
 
 class LushDagger : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Lush Splinter");
-        // Tooltip.SetDefault("Thrown in triplets\n'Nature's nuisance of choice'");
-    }
-
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.ThrowingKnife);

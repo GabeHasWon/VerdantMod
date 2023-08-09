@@ -7,12 +7,6 @@ namespace Verdant.Items.Verdant.Equipables
 {
     class Lightbloom : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Lightbloom");
-            // Tooltip.SetDefault("Increases life regeneration when in light\nThe stronger the light, the larger the increase");
-        }
-
         public override void SetDefaults()
         {
             Item.accessory = true;

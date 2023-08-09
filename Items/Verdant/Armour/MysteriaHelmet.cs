@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Items.Verdant.Materials;
@@ -9,12 +10,6 @@ namespace Verdant.Items.Verdant.Armour;
 [AutoloadEquip(EquipType.Head)]
 public class MysteriaHelmet : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Mysteria Veil");
-        // Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed\nIncreased placement range");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 22;
@@ -37,7 +32,7 @@ public class MysteriaHelmet : ModItem
     public override void UpdateArmorSet(Player player)
     {
         player.GetModPlayer<MysteriaPlayer>().active = true;
-        player.setBonus = "Increased tile and wall placement speed and range\nIncreased mining speed\nEnemies spawn significantly less often";
+        player.setBonus = Language.GetTextValue("Mods.Verdant.SetBonuses.Mysteria");
         player.pickSpeed -= 0.25f;
         player.tileSpeed += 0.25f;
         player.wallSpeed += 0.25f;

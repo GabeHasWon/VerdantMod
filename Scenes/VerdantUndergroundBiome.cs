@@ -13,7 +13,6 @@ namespace Verdant.Scenes
         private float _steamOpacity = 0f;
         private float _steamProgress = 0f;
 
-        // public override void SetStaticDefaults() => DisplayName.SetDefault("Verdant");
 		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
         public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.Find<ModUndergroundBackgroundStyle>("Verdant/VerdantUGBackground");
 		public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;

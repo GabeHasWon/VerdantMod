@@ -36,8 +36,6 @@ public class DimCore : ModNPC, IDrawAdditive
 
     public override void SetStaticDefaults()
     {
-        // DisplayName.SetDefault("Dim Core");
-
         Main.npcFrameCount[NPC.type] = 1;
         NPCID.Sets.TrailingMode[Type] = 2;
         NPCID.Sets.TrailCacheLength[Type] = TrailLength;

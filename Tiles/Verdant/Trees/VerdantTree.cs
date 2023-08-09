@@ -174,24 +174,18 @@ namespace Verdant.Tiles.Verdant.Trees
 
             if (tile.TileFrameX == 198)
             {
-                int tot = Main.rand.Next(6, 11);
-                for (int k = 0; k < tot; ++k)
-                    yield return new Item(ModContent.ItemType<VerdantWoodBlock>());
-
-                tot = Main.rand.Next(4, 6);
-                for (int k = 0; k < tot; ++k)
-                    yield return new Item(ItemID.Acorn);
-
-                tot = Main.rand.Next(7, 15);
-                for (int k = 0; k < tot; ++k)
-                    yield return new Item(ModContent.ItemType<LushLeaf>());
+                yield return new Item(ModContent.ItemType<VerdantWoodBlock>()) { stack = Main.rand.Next(6, 11) };
+                yield return new Item(ItemID.Acorn) { stack = Main.rand.Next(4, 6) };
+                yield return new Item(ModContent.ItemType<LushLeaf>()) { stack = Main.rand.Next(7, 15) };
             }
 
             if (tile.TileFrameX == 108 || tile.TileFrameX == 126)
             {
-                yield return new Item(ModContent.ItemType<LushLeaf>()) { stack = Main.rand.Next(3, 8) };
+                yield return new Item(ModContent.ItemType<LushLeaf>()) { stack = Main.rand.Next(3, 7) };
                 yield return new Item(ItemID.Acorn) { stack = Main.rand.Next(1, 3) };        
             }
+
+            yield return new Item(ModContent.ItemType<VerdantWoodBlock>()) { stack = Main.rand.Next(1, 3) };
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

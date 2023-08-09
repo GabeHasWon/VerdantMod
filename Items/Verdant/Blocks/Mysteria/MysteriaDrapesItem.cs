@@ -9,12 +9,6 @@ namespace Verdant.Items.Verdant.Blocks.Mysteria;
 
 public class MysteriaDrapesItem : ModItem
 {
-    public override void SetStaticDefaults()
-	{
-		// DisplayName.SetDefault("Mysteria Drapes");
-		// Tooltip.SetDefault("Places on any solid tile\nGrows like a vine, slowly\nPlace more on an existing anchor to grow the drape\nIs always in front of the player");
-	}
-
 	public override void SetDefaults()
 	{
 		Item.width = 16;

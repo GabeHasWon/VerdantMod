@@ -14,8 +14,6 @@ namespace Verdant.Items.Verdant.Weapons
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Etherial Leash");
-            // Tooltip.SetDefault("Controls a memory lost long ago\nRight click to direct flames towards enemies");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }

@@ -28,11 +28,7 @@ public class ThornBeholder : ModNPC
 
     private List<int> _thorns = new();
 
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Thorny Beholder");
-        Main.npcFrameCount[NPC.type] = 2;
-    }
+    public override void SetStaticDefaults() => Main.npcFrameCount[NPC.type] = 2;
 
     public override void SetDefaults()
     {

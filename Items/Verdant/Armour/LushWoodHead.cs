@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.LushWood;
 
@@ -8,12 +9,6 @@ namespace Verdant.Items.Verdant.Armour;
 [AutoloadEquip(EquipType.Head)]
 public class LushWoodHead : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Lush Wood Helmet");
-        // Tooltip.SetDefault("+1 flat summon damage");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 30;
@@ -28,7 +23,7 @@ public class LushWoodHead : ModItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "+1 flat summon damage";
+        player.setBonus = Language.GetTextValue("Mods.Verdant.SetBonuses.Lush");
         player.GetDamage(DamageClass.Summon).Flat += 1;
     }
 

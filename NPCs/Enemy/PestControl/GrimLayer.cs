@@ -23,11 +23,6 @@ public class GrimLayer : ModNPC
 
     //private RealtimeAction Pillar;
 
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Grim Layer");
-    }
-
     public override void SetDefaults()
     {
         NPC.width = 42;

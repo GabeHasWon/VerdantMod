@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Localization\en-US_Mods.Verdant.MusicDisplay.hjson" />
+    <None Remove="Localization\en-US_Mods.Verdant.SetBonuses.hjson" />
   </ItemGroup>
 
   <ItemGroup>

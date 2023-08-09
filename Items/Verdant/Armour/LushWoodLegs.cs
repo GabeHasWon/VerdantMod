@@ -8,8 +8,6 @@ namespace Verdant.Items.Verdant.Armour
     [AutoloadEquip(EquipType.Legs)]
     public class LushWoodLegs : ModItem
 	{
-        // public override void SetStaticDefaults() => DisplayName.SetDefault("Lush Wood Leggings");
-
         public override void SetDefaults()
 		{
 			Item.width = 18;

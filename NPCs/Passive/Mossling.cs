@@ -18,12 +18,7 @@ namespace Verdant.NPCs.Passive
 
         public override bool IsLoadingEnabled(Mod mod) => VerdantMod.DebugModActive;
 
-        public override void SetStaticDefaults()
-        {
-            NPCID.Sets.CountsAsCritter[Type] = true;
-
-            // DisplayName.SetDefault("Mossling [Deprecated]");
-        }
+        public override void SetStaticDefaults() => NPCID.Sets.CountsAsCritter[Type] = true;
 
         public override void SetDefaults()
         {

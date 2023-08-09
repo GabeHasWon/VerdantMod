@@ -10,11 +10,7 @@ namespace Verdant.NPCs.Enemy
     {
         private short distanceToHost = -1;
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Lush Winglet");
-            Main.npcFrameCount[NPC.type] = 2;
-        }
+        public override void SetStaticDefaults() => Main.npcFrameCount[NPC.type] = 2;
 
         public override void SetDefaults()
         {

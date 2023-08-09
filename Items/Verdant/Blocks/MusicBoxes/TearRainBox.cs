@@ -7,11 +7,8 @@ namespace Verdant.Items.Verdant.Blocks.MusicBoxes
 	[Sacrifice(1)]
 	public class TearRainBox : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Music Box (Tear Rain)");
+		public override void SetStaticDefaults() =>
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/TearRain"), ModContent.ItemType<TearRainBox>(), ModContent.TileType<TearRainBoxTile>());
-		}
 
 		public override void SetDefaults()
 		{

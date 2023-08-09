@@ -7,12 +7,6 @@ namespace Verdant.Items.Verdant.Equipables;
 
 internal class VineHook : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Living Vine Hook");
-        // Tooltip.SetDefault("Unhooks automatically when close enough\n'A nicer friend than most hooks'");
-    }
-
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.AmethystHook);

@@ -12,8 +12,6 @@ namespace Verdant.Projectiles.Particles
 
         private Color drawCol = Color.Green;
 
-        // public override void SetStaticDefaults() => DisplayName.SetDefault("Healing Particle");
-
         public override void SetDefaults()
         {
             Projectile.hostile = false;

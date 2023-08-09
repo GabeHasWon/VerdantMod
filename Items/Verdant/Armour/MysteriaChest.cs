@@ -9,12 +9,6 @@ namespace Verdant.Items.Verdant.Armour;
 [AutoloadEquip(EquipType.Body)]
 public class MysteriaChest : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Mysteria Chestpiece");
-        // Tooltip.SetDefault("Increased mining speed\nIncreased tile and wall placement speed");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 28;

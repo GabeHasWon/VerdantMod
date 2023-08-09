@@ -12,12 +12,6 @@ namespace Verdant.Items.Verdant.Tools;
 [Sacrifice(20)]
 class Halfsprout : ApotheoticItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Halfsprout");
-        // Tooltip.SetDefault("Instantly grows all herbs, harvests them, then replants them\n");
-    }
-
     public override void SetDefaults()
     {
         Item.Size = new Vector2(40, 56);

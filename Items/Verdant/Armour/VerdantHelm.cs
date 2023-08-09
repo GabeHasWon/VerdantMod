@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Materials;
@@ -30,12 +31,6 @@ namespace Verdant.Items.Verdant.Armour
             }
         }
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Growth Headdress");
-            // Tooltip.SetDefault("+5% increased minion damage\nGives off a very small amount of light");
-        }
-
         public override void SetDefaults()
 		{
 			Item.width = 30;
@@ -49,8 +44,7 @@ namespace Verdant.Items.Verdant.Armour
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = $"+4% minion damage\n+1 max minion\nReduces fall speed - Hold DOWN to fall faster\nUpon respawning, heals you for 50 health";
-
+            player.setBonus = Language.GetTextValue("Mods.Verdant.SetBonuses.Verdant");
             player.maxMinions++;
             player.GetDamage(DamageClass.Summon) *= 1.04f;
 

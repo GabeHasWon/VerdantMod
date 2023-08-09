@@ -16,11 +16,7 @@ class ApotheosisHand : ModProjectile, IDrawAdditive
 
     private Color drawCol = Color.Green;
 
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Apotheosis Hand");
-        _wingTex = ModContent.Request<Texture2D>(Texture + "_Wings");
-    }
+    public override void SetStaticDefaults() => _wingTex = ModContent.Request<Texture2D>(Texture + "_Wings");
 
     public override void Unload() => _wingTex = null;
 
