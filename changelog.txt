@@ -1,3 +1,5 @@
 - Made Hardy Vines drop lush leaves, and are now craftable with lush leaves
 - Added Apotheotic armor
 - Added localization for set bonuses
+- Significantly reduced Lush Armor sell value
+- ScreenTexts now automatically determine their lifetime, scale

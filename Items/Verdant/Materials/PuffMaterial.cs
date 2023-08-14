@@ -22,6 +22,6 @@ class PuffMaterial : ApotheoticItem
             ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PuffMaterial", true);
             return null;
         }
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PuffMaterial", 100, true);
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PuffMaterial", true);
     }
 }

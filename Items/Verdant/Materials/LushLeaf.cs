@@ -32,7 +32,7 @@ class LushLeaf : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.", 2, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.0", 80).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.1", 50, 1f));
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.0").
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.LushLeaf.1"));
     }
 }

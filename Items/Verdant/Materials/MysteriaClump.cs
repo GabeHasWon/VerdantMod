@@ -33,6 +33,6 @@ class MysteriaClump : ApotheoticItem
             ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.MysteriaClump", true);
             return null;
         }
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.MysteriaClump", 100, true);
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.MysteriaClump", true);
     }
 }

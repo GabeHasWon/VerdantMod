@@ -88,6 +88,6 @@ class Halfsprout : ApotheoticItem
             ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Halfsprout", true);
             return null;
         }
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Halfsprout", 100, true);
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Halfsprout", true);
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -10,9 +11,11 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Players.Layers;
+using Verdant.Systems.Syncing;
 
 namespace Verdant.Items.Verdant.Armour.ApotheoticArmor;
 
@@ -40,7 +43,7 @@ public class ApotheoticTreeHelmet : ModItem, ITallHat
     }
 
     public override bool IsArmorSet(Item head, Item body, Item legs) => 
-        body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<MysteriaLeggings>();
+        body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<ApotheoticLeggings>();
 
     public override void UpdateEquip(Player player)
     {
@@ -52,7 +55,7 @@ public class ApotheoticTreeHelmet : ModItem, ITallHat
     public override void UpdateArmorSet(Player player)
     {
         player.setBonus = Language.GetTextValue("Mods.Verdant.SetBonuses.Apotheotic.Tree");
-
+        player.GetModPlayer<TreeHelmetPlayer>().setBonus = true;
     }
 
     public override void AddRecipes()
@@ -60,6 +63,7 @@ public class ApotheoticTreeHelmet : ModItem, ITallHat
         CreateRecipe()
             .AddIngredient<MysteriaClump>(6)
             .AddIngredient<MysteriaWood>(12)
+            .AddIngredient<ApotheoticSoul>(1)
             .AddIngredient(ItemID.ChlorophyteBar, 16)
             .AddTile(TileID.MythrilAnvil)
             .Register();
@@ -82,24 +86,42 @@ internal class TreeHelmetPlayer : ModPlayer
     const int MaxFruits = 3;
 
     internal bool active = false;
+    internal bool setBonus = false;
     internal FruitType[] fruits = new FruitType[MaxFruits];
-
-    private int _fruitTimer = 0;
+    internal int fruitTimer = 0;
 
     public override void ResetEffects()
     {
         active = false;
+        setBonus = false;
     }
+
+    public override void CopyClientState(ModPlayer targetCopy)
+    {
+        var target = targetCopy as TreeHelmetPlayer;
+        target.fruits = fruits;
+        target.fruitTimer = fruitTimer;
+    }
+
+    public override void SendClientChanges(ModPlayer clientPlayer)
+    {
+        var clone = clientPlayer as TreeHelmetPlayer;
+
+        if (fruits != clone.fruits || fruitTimer != clone.fruitTimer)
+            SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
+    }
+
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) => new SyncTreebandModule(fruits, fruitTimer, (short)fromWho).Send(toWho, fromWho);
 
     public override void PostUpdateEquips()
     {
-        if (active && fruits.Contains(FruitType.None) && _fruitTimer++ >= 2)// TreeFruitProjectile.MaxFruitTime * 1.5f)
+        if (active && fruits.Contains(FruitType.None) && ++fruitTimer > TreeFruitProjectile.MaxFruitTime * (setBonus ? 1.15f : 1.5f))
         {
             fruits[Array.IndexOf(fruits, FruitType.None)] = (FruitType)(Main.rand.Next(3) + 1);
-            _fruitTimer = 0;
+            fruitTimer = 0;
         }
 
-        if (fruits.Any(x => x != FruitType.None))
+        if (fruits.Any(x => x != FruitType.None) && Player.whoAmI == Main.myPlayer)
             ScanMinions();
     }
 
@@ -107,7 +129,7 @@ internal class TreeHelmetPlayer : ModPlayer
     {
         foreach (var proj in ActiveEntities.Projectiles) 
         {
-            if (proj.active && proj.owner == Player.whoAmI)
+            if (proj.active && (proj.owner == Player.whoAmI || (proj.TryGetOwner(out Player otherPlayer) && otherPlayer.InOpposingTeam(Player))))
             {
                 if (!proj.TryGetGlobalProjectile(out TreeFruitProjectile fruitProj))
                     continue;
@@ -115,16 +137,37 @@ internal class TreeHelmetPlayer : ModPlayer
                 var hitbox = proj.Hitbox;
                 hitbox.Inflate(20, 20);
 
-                if (hitbox.Contains(Main.MouseWorld.ToPoint()) && fruitProj.fruitBuff == FruitType.None && Main.mouseLeft && Main.mouseLeftRelease)
+                if (hitbox.Contains(Main.MouseWorld.ToPoint()) && fruitProj.fruitBuff == FruitType.None)
                 {
                     int index = Array.FindIndex(fruits, x => x != FruitType.None);
 
                     if (index == -1)
                         return;
 
-                    Projectile.NewProjectile(Player.GetSource_Accessory(Player.armor[0]), Player.Center, Vector2.Zero, 
-                        ModContent.ProjectileType<FruitProjectile>(), 0, 0, Player.whoAmI, proj.whoAmI, (float)fruits[index]);
-                    fruits[index] = 0;
+                    Player.noThrow = 2;
+                    Player.cursorItemIconEnabled = true;
+                    Player.cursorItemIconID = fruits[index] switch
+                    {
+                        FruitType.SpicyPepper => ModContent.ItemType<FruitIconGreen>(),
+                        FruitType.SweetApple => ModContent.ItemType<FruitIconRed>(),
+                        FruitType.HoneyDrop => ModContent.ItemType<FruitIconYellow>(),
+                        _ => throw new Exception("Uh oh? Bad fruit type in ApotheoticTreeHelmet/ScanMinions!")
+                    };
+
+                    if (Main.mouseLeft && Main.mouseLeftRelease)
+                    {
+                        int projWhoAmI = Projectile.NewProjectile(Player.GetSource_Accessory(Player.armor[0]), Player.Center, Vector2.Zero,
+                            ModContent.ProjectileType<FruitProjectile>(), 0, 0, Player.whoAmI, proj.whoAmI, (float)fruits[index]);
+                        
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projWhoAmI);
+                            Main.projectile[projWhoAmI].netUpdate = true;
+                        }
+
+                        fruits[index] = 0;
+                        return;
+                    }
                 }
             }
         }
@@ -145,22 +188,42 @@ internal class TreeFruitProjectile : GlobalProjectile
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) => entity.minion;
     public override void Kill(Projectile projectile, int timeLeft) => fruitBuff = FruitType.None;
 
+    public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+    {
+        binaryWriter.Write((byte)fruitBuff);
+        binaryWriter.Write((short)fruitTime);
+    }
+
+    public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+    {
+        fruitBuff = (FruitType)binaryReader.ReadByte();
+        fruitTime = binaryReader.ReadInt16();
+    }
+
     public override bool PreAI(Projectile projectile)
     {
+        if (!projectile.TryGetOwner(out Player _))
+            return true;
+
+        bool setBonus = Main.player[projectile.owner].GetModPlayer<TreeHelmetPlayer>().setBonus;
+        float damageBonus = setBonus ? 1.33f : 1;
+
         if (fruitBuff == FruitType.HoneyDrop)
-            RepeatAI(projectile, 1);
+            RepeatAI(projectile, !setBonus ? 1 : 1 + (fruitTime % 2));
         else if (fruitBuff == FruitType.SweetApple)
         {
-            if (projectile.timeLeft % 2 == 0)
+            bool extraSpeed = setBonus ? fruitTime % 4 <= 2 : fruitTime % 4 == 0;
+
+            if (extraSpeed)
                 RepeatAI(projectile, 1);
 
             lastDamage = projectile.damage;
-            projectile.damage = (int)(projectile.damage * 1.15f);
+            projectile.damage = (int)(projectile.damage * 1.2f * damageBonus);
         }
         else if (fruitBuff == FruitType.SpicyPepper)
         {
             lastDamage = projectile.damage;
-            projectile.damage = (int)(projectile.damage * 1.5f);
+            projectile.damage = (int)(projectile.damage * 1.5f * damageBonus);
         }
 
         if (fruitBuff != FruitType.None)
@@ -206,7 +269,7 @@ internal class TreeFruitProjectile : GlobalProjectile
         switch (fruitBuff)
         {
             case FruitType.SpicyPepper:
-                return GetModColor(Color.LightGreen);
+                return GetModColor(Color.LawnGreen);
             case FruitType.SweetApple:
                 return GetModColor(Color.Orange);
             case FruitType.HoneyDrop:
@@ -232,7 +295,7 @@ internal class TreeFruitProjectile : GlobalProjectile
     }
 }
 
-internal enum FruitType : int
+public enum FruitType : int
 {
     None,
     HoneyDrop, //Speed

@@ -35,11 +35,11 @@ public class ApotheosisBook : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.", 6, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.0", 80).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.1", 120, 1f)).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.2", 120, 1f)).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.3", 80, 1f)).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.4", 120, 1f)).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.5", 120, 1f));
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.0").
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.1")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.2")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.3")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.4")).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheosisBook.5"));
     }
 }

@@ -106,6 +106,8 @@ Apotheosis: {
 			1: 这释放了很多机会；
 			2: 这是一个较小的好处，但我们希望它有所帮助。
 			3: 你现在也可以自己创造更多这些。
+			// 4: Feel free to take these as well,
+			// 5: With these, we are certain they'll help.
 		}
 
 		Golem: {

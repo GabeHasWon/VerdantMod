@@ -68,16 +68,20 @@ internal class HostSwarm : ModProjectile
         if ((!Remove && !Owner.GetModPlayer<HostHelmetPlayer>().active) || Owner.dead)
             Remove = true;
 
-        int damage = Owner.GetModPlayer<HostHelmetPlayer>().setBonus ? 14 : 8;
+        int damage = Owner.GetModPlayer<HostHelmetPlayer>().setBonus ? 10 : 6;
 
         if (Owner.strongBees)
-            damage = (int)(damage * 1.2f);
+            damage = (int)(damage * 1.25f);
 
         Projectile.damage = (int)Owner.GetDamage(DamageClass.Summon).ApplyTo(damage);
 
-        Vector2 target = Active ? Main.MouseWorld : Owner.Center - new Vector2(0, 30);
-        Projectile.Center = Vector2.Lerp(Projectile.Center, target, Active ? 0.03f : 0.05f);
-        Projectile.velocity = Vector2.Zero;
+        if (Main.myPlayer == Projectile.owner)
+        {
+            Vector2 target = Active ? Main.MouseWorld : Owner.Center - new Vector2(0, 30);
+            Projectile.Center = Vector2.Lerp(Projectile.Center, target, Active ? 0.03f : 0.05f);
+            Projectile.velocity = Vector2.Zero;
+            Projectile.netUpdate = true;
+        }
     }
 
     public override void PostDraw(Color lightColor)

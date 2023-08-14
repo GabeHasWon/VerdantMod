@@ -51,6 +51,8 @@ internal class FruitProjectile : ModProjectile
             TreeFruitProjectile proj = TargettedMinion.GetGlobalProjectile<TreeFruitProjectile>();
             proj.fruitBuff = Fruit;
             proj.fruitTime = TreeFruitProjectile.MaxFruitTime;
+
+            TargettedMinion.netUpdate = true;
             Projectile.Kill();
         }
     }

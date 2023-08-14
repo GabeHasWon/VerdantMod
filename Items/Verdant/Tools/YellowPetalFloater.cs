@@ -72,7 +72,7 @@ class YellowPetalFloater : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.", 2, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.0", 80).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.1", 50, 1f));
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.0").
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Cloudsprout.1"));
     }
 }

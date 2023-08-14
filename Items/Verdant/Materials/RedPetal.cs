@@ -41,6 +41,6 @@ class RedPetal : ApotheoticItem
             ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.RedPetal", true);
             return null;
         }
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.RedPetal", 100, true);
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.RedPetal", true);
     }
 }

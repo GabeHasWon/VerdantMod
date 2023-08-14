@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Trees;
@@ -14,7 +15,7 @@ public class ChlorophytePlant : ModItem
         CreateRecipe().
             AddIngredient(ItemID.ChlorophyteOre, 5).
             AddIngredient(ModContent.ItemType<GreenCrystalItem>(), 1).
-            AddCondition(Language.GetText("Mods.Verdant.RecipeCondition.AfterApotheosisDownedPlantera"), () => ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]).
+            AddCondition(RecipeConditions.AfterApotheosisDownedPlantera).
             Register();
     }
 }

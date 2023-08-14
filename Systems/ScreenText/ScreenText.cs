@@ -49,20 +49,19 @@ public class ScreenText
 
     /// <summary>Create a new ScreenText with the given parameters.</summary>
     /// <param name="text">If <paramref name="useTranslationKey"/> is false, the text to use. If not, the key to use to get the text.</param>
-    /// <param name="timeLeft">How long the text takes to tick.</param>
-    /// <param name="scale">Size of the text.</param>
     /// <param name="alignment">Right, left or center alignment. Center is the only implemented function at this moment.</param>
     /// <param name="effect">I don't remember lol</param>
     /// <param name="anim">Animation (such as fadeout) to use.</param>
     /// <param name="dieAutomatically">Whether this ScreenText stops showing up by itself or not.</param>
-    public ScreenText(string text, float timeLeft, float scale = 1f, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
+    public ScreenText(string text, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
     {
         this.text = VerdantLocalization.ScreenTextLocalization(text);
-        this.scale = scale;
         this.alignment = alignment;
         this.effect = effect;
-        this.timeLeft = timeLeft;
         this.anim = anim ?? new DefaultAnimation();
+        
+        timeLeft = this.text.Length * 3.25f;
+        scale = this.text.Length > 30 ? 1 - ((this.text.Length - 30) / 80f) : 1f;
 
         MaxTimeLeft = timeLeft;
         AutomaticallyDie = dieAutomatically;

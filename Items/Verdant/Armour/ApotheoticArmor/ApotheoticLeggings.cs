@@ -6,31 +6,30 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Armour.ApotheoticArmor;
 
-[AutoloadEquip(EquipType.Body)]
-public class ApotheoticChestplate : ModItem
+[AutoloadEquip(EquipType.Legs)]
+public class ApotheoticLeggings : ModItem
 {
     public override void SetDefaults()
     {
-        Item.width = 36;
+        Item.width = 26;
         Item.height = 20;
-        Item.value = Item.buyPrice(0, 5, 0, 0);
-        Item.rare = ItemRarityID.Yellow;
-        Item.defense = 20;
+        Item.value = Item.buyPrice(0, 2, 0, 0);
+        Item.rare = ItemRarityID.Blue;
+        Item.defense = 12;
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Summon) += 0.1f;
+        player.GetDamage(DamageClass.Summon) += 0.05f;
         player.maxMinions++;
     }
 
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient<MysteriaWood>(20)
+            .AddIngredient<MysteriaWood>(8)
             .AddIngredient<ApotheoticSoul>(1)
-            .AddIngredient<YellowBulb>(2)
-            .AddIngredient(ItemID.ChlorophyteBar, 15)
+            .AddIngredient(ItemID.ChlorophyteBar, 6)
             .AddTile(TileID.MythrilAnvil)
             .Register();
     }

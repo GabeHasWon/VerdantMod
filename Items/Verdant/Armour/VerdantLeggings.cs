@@ -23,7 +23,7 @@ public class VerdantLeggings : ModItem
     {
         Item.width = 18;
         Item.height = 12;
-        Item.value = 10000;
+        Item.value = Item.buyPrice(copper: 30);
         Item.rare = ItemRarityID.Green;
         Item.defense = 4;
         Item.lifeRegen = 2;

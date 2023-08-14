@@ -35,7 +35,8 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
         Item.defense = 14;
     }
 
-    public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<MysteriaLeggings>();
+    public override bool IsArmorSet(Item head, Item body, Item legs) 
+        => body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<ApotheoticLeggings>();
 
     public override void UpdateEquip(Player player)
     {
@@ -57,6 +58,7 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
         CreateRecipe()
             .AddIngredient(ModContent.ItemType<MysteriaClump>(), 10)
             .AddIngredient(ModContent.ItemType<MysteriaWood>(), 10)
+            .AddIngredient<ApotheoticSoul>(1)
             .AddIngredient(ItemID.ChlorophyteBar, 16)
             .AddTile(TileID.MythrilAnvil)
             .Register();

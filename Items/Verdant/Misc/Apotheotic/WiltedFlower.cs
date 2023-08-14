@@ -29,9 +29,9 @@ class WiltedFlower : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.", 4, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.0", 80).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.1", 80, 1f)).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.2", 70, 1f)).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.3", 50, 1f));
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.0").
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.1")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.2")).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.WiltedFlower.3"));
     }
 }

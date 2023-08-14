@@ -14,8 +14,8 @@ namespace Verdant.Items.Verdant.Armour
 		{
 			Item.width = 28;
 			Item.height = 22;
-			Item.value = 10000;
-			Item.rare = ItemRarityID.Green;
+			Item.value = Item.buyPrice(copper: 30);
+            Item.rare = ItemRarityID.Green;
             Item.defense = 6;
         }
 

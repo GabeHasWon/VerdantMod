@@ -1397,11 +1397,43 @@ ApotheoticChestplate: {
 		'''
 		10% increased minion damage
 		+1 minion slot
-		Increased wing flight time
+		''' */
+}
+
+ApotheoticLeggings: {
+	// DisplayName: Apotheotic Leggings
+	/* Tooltip:
+		'''
+		5% increased minion damage
+		+1 minion slot
 		''' */
 }
 
 HoneyHeart: {
 	// DisplayName: Honey Heart
 	// Tooltip: ""
+}
+
+FruitIconGreen: {
+	// DisplayName: Spicy Pepper
+	// Tooltip: ""
+}
+
+FruitIconRed: {
+	// DisplayName: Sweet Apple
+	// Tooltip: ""
+}
+
+FruitIconYellow: {
+	// DisplayName: Honey Drop
+	// Tooltip: ""
+}
+
+ApotheoticSoul: {
+	// DisplayName: Apotheotic Murmur
+	/* Tooltip:
+		'''
+		The barest essense of an apotheosis
+		'You can hear whizzing and dancing'
+		''' */
 }

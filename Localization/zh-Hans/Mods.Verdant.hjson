@@ -23,7 +23,7 @@ VineHookLines: {
 }
 
 // Condition.InVerdant: In the Verdant biome
-// RecipeCondition.AfterApotheosisDownedPlantera: In the Verdant biome
+// RecipeCondition.AfterApotheosisDownedPlantera: After getting the Apotheosis's Plantera gift
 // "Keybinds.Verdant:SquidForm.DisplayName": Verdant: Squid Form
 
 GameTips: {

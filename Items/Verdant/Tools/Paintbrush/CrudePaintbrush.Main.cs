@@ -167,8 +167,8 @@ public partial class CrudePaintbrush : ApotheoticItem
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
             return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.", 3, true);
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.0", 80).
-            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.1", 90, 1f)).
-            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.2", 100, 1f));
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.0").
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.1")).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.CrudePaintbrush.2"));
     }
 }

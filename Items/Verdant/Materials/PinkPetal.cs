@@ -41,6 +41,6 @@ class PinkPetal : ApotheoticItem
             ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PinkPetal", true);
             return null;
         }
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PinkPetal", 100, true);
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.PinkPetal", true);
     }
 }
