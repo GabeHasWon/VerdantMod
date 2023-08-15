@@ -110,13 +110,13 @@ internal class PaintbrushToolsetUI : UIState
             button.OnLeftClick += (evt, listener) =>
             {
                 clickEvent(evt, listener);
-                CrudePaintbrushUISystem.PlayersPaintbrush.SetMode((CrudePaintbrush.PlacementMode)index);
+                CrudePaintbrushUISystem.PlayersPaintbrush.SetMode((CrudePaintbrush.ToolType)index);
 
                 int ind = 0;
 
                 foreach (var butt in buttons) //nice
                 {
-                    if ((int)(Main.LocalPlayer.HeldItem.ModItem as CrudePaintbrush).mode == ind)
+                    if ((int)(Main.LocalPlayer.HeldItem.ModItem as CrudePaintbrush).tool == ind)
                         butt.SetColor(Color.White);
                     else
                         butt.SetColor(Color.Gray);
@@ -126,7 +126,7 @@ internal class PaintbrushToolsetUI : UIState
 
             };
 
-            if ((int)(Main.LocalPlayer.HeldItem.ModItem as CrudePaintbrush).mode == index)
+            if ((int)(Main.LocalPlayer.HeldItem.ModItem as CrudePaintbrush).tool == index)
                 button.SetColor(Color.White);
             else
                 button.SetColor(Color.Gray);

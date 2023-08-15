@@ -29,6 +29,12 @@ class LootPlant : ModTile
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => Main.tile[i, j].TileFrameY >= FrameHeight;
     public override bool IsTileSpelunkable(int i, int j) => true;
 
+    public override void RandomUpdate(int i, int j)
+    {
+        if (Main.rand.NextBool(1500))
+            DecreaseFrame(new Point(i, j));
+    }
+
     public override bool RightClick(int i, int j)
     {
         IncreaseFrame(new Point(i, j));
@@ -55,6 +61,23 @@ class LootPlant : ModTile
             {
                 Tile t = Main.tile[i, j];
                 t.TileFrameY += FrameHeight;
+            }
+        }
+    }
+
+    internal static void DecreaseFrame(Point tL)
+    {
+        if (Main.tile[tL.X, tL.Y].TileFrameY < FrameHeight)
+            return;
+
+        tL = TileHelper.GetTopLeft(tL);
+
+        for (int i = tL.X; i < tL.X + 2; ++i)
+        {
+            for (int j = tL.Y; j < tL.Y + 2; ++j)
+            {
+                Tile t = Main.tile[i, j];
+                t.TileFrameY -= FrameHeight;
             }
         }
     }

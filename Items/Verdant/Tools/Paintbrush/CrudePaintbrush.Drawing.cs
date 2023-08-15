@@ -22,24 +22,24 @@ public partial class CrudePaintbrush : ApotheoticItem
         Item item = ContentSamples.ItemsByType[_storedItemID];
         Main.DrawItemIcon(spriteBatch, item, position + new Vector2(20 * scale, (20 * scale) - 4), Color.White, 24f * scale);
 
-        string count = (GetTileAmmo(Main.LocalPlayer) + 1).ToString();
+        string count = (GetAvailableBlocks(Main.LocalPlayer) + 1).ToString();
         var pos = position + (new Vector2(6, 18) * scale);
         ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, count, pos, Color.White, 0f, Vector2.Zero, new Vector2(1f) * scale);
     }
 
     public void GetLayerDrawing(PlayerDrawSet info)
     {
-        if (mode == PlacementMode.Line)
+        if (tool == ToolType.Line)
         {
             if (_locations.Count == 1)
                 DrawIndicatorLine(info);
         }
-        else if (mode == PlacementMode.Oval)
+        else if (tool == ToolType.Oval)
         {
             if (_locations.Count == 1)
                 GenHelper.Ellipse((x, y) => AddTileIndicator(info, new(x, y), Color.White), _locations.First(), Main.MouseWorld.ToTileCoordinates());
         }
-        else if (mode == PlacementMode.Rectangle)
+        else if (tool == ToolType.Rectangle)
         {
             if (_locations.Count == 1)
             {
@@ -64,15 +64,20 @@ public partial class CrudePaintbrush : ApotheoticItem
                 }
             }
         }
+        else if (tool == ToolType.Fill)
+        {
+            if (_locations.Any())
+                RecursiveFillUntilDone(info, Main.MouseWorld.ToTileCoordinates(), GetAvailableBlocks(info.drawPlayer));
+        }
     }
 
-    private static int RecursiveFill(PlayerDrawSet info, Point originalPos, int x, int y, ref int repeats, int maxRepeats, List<Point> points)
+    private static int RecursiveFill(PlayerDrawSet info, Point originalPos, int x, int y, ref int repeats, int maxRepeats, Dictionary<Point, bool> points)
     {
-        if (Main.tile[x, y].HasTile || !WorldGen.InWorld(x, y, 4) || repeats > maxRepeats || points.Contains(new Point(x, y)))
+        if (Main.tile[x, y].HasTile || !WorldGen.InWorld(x, y, 4) || repeats > maxRepeats || points.ContainsKey(new Point(x, y)))
             return repeats;
 
         AddTileIndicator(info, new Point(x, y), Color.White);
-        points.Add(new Point(x, y));
+        points[new Point(x, y)] = true;
         repeats++;
 
         if (x >= originalPos.X)
@@ -90,17 +95,18 @@ public partial class CrudePaintbrush : ApotheoticItem
         return repeats;
     }
 
-    public static int RecursiveFill(PlayerDrawSet info, Point point, int repeats, int maxRepeats)
+    public static int RecursiveFillUntilDone(PlayerDrawSet info, Point point, int maxRepeats)
     {
-        List<Point> points = new List<Point>();
-        return RecursiveFill(info, point, point.X, point.Y, ref repeats, maxRepeats, points);
+        Dictionary<Point, bool> points = new();
+        int repeats = 0;
+        return RecursiveFill(info, point, point.X, point.Y, ref repeats, 1000, points);
     }
 
     private void DrawIndicatorLine(PlayerDrawSet info)
     {
         var mouse = Main.MouseWorld.ToTileCoordinates().ToVector2();
         int repeats = (int)Vector2.Distance(_locations.First().ToVector2(), mouse);
-        int count = GetTileAmmo(info.drawPlayer);
+        int count = GetAvailableBlocks(info.drawPlayer);
         Point last = new();
 
         for (int i = 0; i <= repeats; ++i)

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -18,7 +20,7 @@ internal class HostSwarm : ModProjectile
     private Player Owner => Main.player[Projectile.owner];
     private bool Active => !Owner.dead && !Main.isMouseLeftConsumedByUI && Owner.HeldItem.CountsAsClass(DamageClass.Summon) && Owner.HeldItem.damage > 0;
 
-    private List<HostSwarmBee> bees = new();
+    private List<HostSwarmBee> bees = null;
 
     private bool Remove
     {
@@ -27,6 +29,9 @@ internal class HostSwarm : ModProjectile
     }
 
     private ref float Timer => ref Projectile.ai[1];
+
+    private float aimX = 0;
+    private float aimY = 0;
 
     public override void SetStaticDefaults() => BeeTexture = ModContent.Request<Texture2D>(Texture + "Bee");
     public override void Unload() => BeeTexture = null;
@@ -49,16 +54,11 @@ internal class HostSwarm : ModProjectile
         AIType = 0;
     }
 
-    public override void OnSpawn(IEntitySource source)
-    {
-        bees = new List<HostSwarmBee>(MaxBees);
-
-        for (int i = 0; i < MaxBees; ++i)
-            bees.Add(new(Projectile));
-    }
-
     public override void AI()
     {
+        SetBees();
+        Projectile.velocity = Vector2.Zero;
+        
         if (!Remove)
             Projectile.timeLeft++;
 
@@ -78,19 +78,51 @@ internal class HostSwarm : ModProjectile
         if (Main.myPlayer == Projectile.owner)
         {
             Vector2 target = Active ? Main.MouseWorld : Owner.Center - new Vector2(0, 30);
+            Owner.LimitPointToPlayerReachableArea(ref target);
+
+            if (aimX != target.X || aimY != target.Y)
+            {
+                Projectile.netUpdate = true;
+                aimX = target.X;
+                aimY = target.Y;
+            }
+
             Projectile.Center = Vector2.Lerp(Projectile.Center, target, Active ? 0.03f : 0.05f);
-            Projectile.velocity = Vector2.Zero;
-            Projectile.netUpdate = true;
         }
+    }
+
+    public override void SendExtraAI(BinaryWriter writer)
+    {
+        writer.Write(aimX);
+        writer.Write(aimY);
+    }
+
+    public override void ReceiveExtraAI(BinaryReader reader)
+    {
+        aimX = reader.ReadSingle();
+        aimY = reader.ReadSingle();
     }
 
     public override void PostDraw(Color lightColor)
     {
+        SetBees();
+
         Timer++;
         float alpha = Remove ? Projectile.timeLeft / MaxTimeLeft : 1f;
 
         for (int i = 0; i < bees.Count; ++i)
             bees[i].Draw(alpha, i + (int)Timer);
+    }
+
+    private void SetBees()
+    {
+        if (bees is null)
+        {
+            bees = new List<HostSwarmBee>(MaxBees);
+
+            for (int i = 0; i < MaxBees; ++i)
+                bees.Add(new(Projectile));
+        }
     }
 
     public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) => modifiers.FinalDamage.Base += Projectile.damage;

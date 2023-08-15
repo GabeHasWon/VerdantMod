@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Armour.ApotheoticArmor;
@@ -46,14 +47,14 @@ internal class FruitProjectile : ModProjectile
         Projectile.timeLeft++;
         Projectile.Center = Vector2.Lerp(Projectile.Center, TargettedMinion.Center, Timer * 0.005f);
 
-        if (TargettedMinion.DistanceSQ(Projectile.Center) < MathF.Pow(Projectile.width * 0.8f, 2))
+        if (TargettedMinion.DistanceSQ(Projectile.Center) < MathF.Pow(Projectile.width * 0.8f, 2) && Projectile.owner == Main.myPlayer)
         {
             TreeFruitProjectile proj = TargettedMinion.GetGlobalProjectile<TreeFruitProjectile>();
             proj.fruitBuff = Fruit;
             proj.fruitTime = TreeFruitProjectile.MaxFruitTime;
 
-            TargettedMinion.netUpdate = true;
             Projectile.Kill();
+            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, (int)TargettedMinionWhoAmI);
         }
     }
 

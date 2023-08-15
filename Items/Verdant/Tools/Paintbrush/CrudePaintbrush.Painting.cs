@@ -1,16 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Localization;
 using Verdant.World;
 
 namespace Verdant.Items.Verdant.Tools.Paintbrush;
 
 public partial class CrudePaintbrush : ApotheoticItem
 {
+    public int GetTileIDToPlace 
+    {
+        get
+        {
+            Item item = ContentSamples.ItemsByType[_storedItemID];
+            return item.tileWand > ItemID.None ? item.tileWand : item.type;
+        }
+    }
+
     public override bool? UseItem(Player player)
     {
         if (player.altFunctionUse == 2)
@@ -18,28 +26,28 @@ public partial class CrudePaintbrush : ApotheoticItem
 
         if (_placedTileID == -1)
         {
-            Main.NewText("Select an item to start!");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.NoItemSelected"));
             return true;
         }
 
-        if (GetTileAmmo(player) == -1)
+        if (GetAvailableBlocks(player) == -1)
         {
-            Main.NewText($"You don't have enough [i:{GetTileWand()}]!");
+            Main.NewText(Language.GetText("Mods.Verdant.Items.CrudePaintbrush.Information.NotEnoughItem").WithFormatArgs(GetTileIDToPlace).Value);
             return true;
         }
 
-        switch (mode)
+        switch (tool)
         {
-            case PlacementMode.Line:
+            case ToolType.Line:
                 LinePlacement(player);
                 break;
-            case PlacementMode.Fill:
+            case ToolType.Fill:
                 FillPlacement(player);
                 break;
-            case PlacementMode.Oval:
+            case ToolType.Oval:
                 OvalPlacement(player);
                 break;
-            case PlacementMode.Rectangle:
+            case ToolType.Rectangle:
                 RectanglePlacement(player);
                 break;
         }
@@ -54,7 +62,7 @@ public partial class CrudePaintbrush : ApotheoticItem
         {
             _lastChanges.Clear();
 
-            _storedRefundID = GetTileWand();
+            _storedRefundID = GetTileIDToPlace;
 
             Point first = _locations.First();
             Point last = Main.MouseWorld.ToTileCoordinates();
@@ -98,7 +106,7 @@ public partial class CrudePaintbrush : ApotheoticItem
         if (_locations.Count > 1)
         {
             _lastChanges.Clear();
-            _storedRefundID = GetTileWand();
+            _storedRefundID = GetTileIDToPlace;
 
             int count = 0;
 
@@ -121,9 +129,9 @@ public partial class CrudePaintbrush : ApotheoticItem
         {
             _locations.Clear();
             _lastChanges.Clear();
-            _storedRefundID = GetTileWand();
+            _storedRefundID = GetTileIDToPlace;
 
-            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placedTileID, 0, GetTileAmmo(player), ref _lastChanges, true);
+            int count = GenHelper.RecursiveFillGetPoints(Main.MouseWorld.ToTileCoordinates(), _placedTileID, 0, GetAvailableBlocks(player), ref _lastChanges, true);
             ConsumeTileWand(count, player);
 
             foreach (var item in _lastChanges)
@@ -139,7 +147,7 @@ public partial class CrudePaintbrush : ApotheoticItem
             }
         }
         else
-            Main.NewText("You sure you want to fill?");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.FillConfirm"));
     }
 
     private void LinePlacement(Player player)
@@ -149,9 +157,9 @@ public partial class CrudePaintbrush : ApotheoticItem
         if (_locations.Count == 2)
         {
             _lastChanges.Clear();
-            _storedRefundID = GetTileWand();
+            _storedRefundID = GetTileIDToPlace;
 
-            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placedTileID, ref _lastChanges, GetTileAmmo(player));
+            int count = GenHelper.GenLine(_locations.First(), _locations.Last(), _placedTileID, ref _lastChanges, GetAvailableBlocks(player));
             ConsumeTileWand(count, player);
             _locations.Clear();
         }
@@ -163,7 +171,7 @@ public partial class CrudePaintbrush : ApotheoticItem
         {
             Item item = player.inventory[i];
 
-            if (!item.IsAir && item.type == GetTileWand() && item.consumable)
+            if (!item.IsAir && item.type == GetTileIDToPlace && item.consumable)
             {
                 if (count <= 0)
                     break;
@@ -183,19 +191,10 @@ public partial class CrudePaintbrush : ApotheoticItem
         }
     }
 
-    public int GetTileWand()
+    public int GetAvailableBlocks(Player player)
     {
-        Item item = ContentSamples.ItemsByType[_storedItemID];
-        return item.tileWand > ItemID.None ? item.tileWand : item.type;
-    }
-
-    public int GetTileAmmo(Player player)
-    {
-        int wand = GetTileWand();
-
-        if (!ContentSamples.ItemsByType[wand].consumable)
-            return 9999;
-
-        return player.CountItem(wand, int.MaxValue) - 1;
+        int wand = GetTileIDToPlace;
+        int count = !ContentSamples.ItemsByType[wand].consumable ? 1000 : player.CountItem(wand, int.MaxValue) - 1;
+        return tool == ToolType.Fill ? Math.Min(count, 1000) : count;
     }
 }

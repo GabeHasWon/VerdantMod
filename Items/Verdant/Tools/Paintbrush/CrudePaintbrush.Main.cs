@@ -5,6 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Verdant.Systems.ScreenText;
@@ -15,7 +16,7 @@ namespace Verdant.Items.Verdant.Tools.Paintbrush;
 [Sacrifice(1)]
 public partial class CrudePaintbrush : ApotheoticItem
 {
-    public enum PlacementMode : byte
+    public enum ToolType : byte
     {
         Line,
         Fill,
@@ -26,7 +27,7 @@ public partial class CrudePaintbrush : ApotheoticItem
 
     private readonly List<Point> _locations = new();
 
-    public PlacementMode mode = PlacementMode.Line;
+    public ToolType tool = ToolType.Line;
 
     private int _storedItemID = -1;
     private int _storedRefundID = -1;
@@ -105,7 +106,7 @@ public partial class CrudePaintbrush : ApotheoticItem
 
         if (player.HeldItem.IsAir)
         {
-            Main.NewText("Select a block to start!");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.SelectBlock"));
             return;
         }
 
@@ -113,25 +114,26 @@ public partial class CrudePaintbrush : ApotheoticItem
 
         if (type == -1)
         {
-            Main.NewText("Select a valid block to start!");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.SelectBlock"));
             return;
         }
 
         if (Main.tileFrameImportant[type])
         {
-            Main.NewText("Select a solid, 1x1 block (like dirt) to start!");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.NotValidBlock"));
             return;
         }
 
         _storedItemID = player.HeldItem.type;
         _placedTileID = type;
 
-        Main.NewText($"Placement type set to [i:{GetTileWand()}] ({TileID.Search.GetName(_placedTileID)})");
+        string tileName = TileID.Search.GetName(_placedTileID);
+        Main.NewText(Language.GetText("Mods.Verdant.Items.CrudePaintbrush.Information.Selected").WithFormatArgs(GetTileIDToPlace, tileName).Value);
     }
 
-    internal void SetMode(PlacementMode index)
+    internal void SetMode(ToolType index)
     {
-        mode = index;
+        tool = index;
         _locations.Clear();
     }
 
@@ -148,14 +150,14 @@ public partial class CrudePaintbrush : ApotheoticItem
 
             while (count > 0)
             {
-                player.QuickSpawnItem(new EntitySource_TileBreak(first.X, first.Y), GetTileWand(), Math.Min(count, max));
+                player.QuickSpawnItem(new EntitySource_TileBreak(first.X, first.Y), GetTileIDToPlace, Math.Min(count, max));
                 count -= max;
             }
 
             _lastChanges.Clear();
         }
         else
-            Main.NewText("No changes to undo.");
+            Main.NewText(Language.GetTextValue("Mods.Verdant.Items.CrudePaintbrush.Information.NoUndos"));
     }
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(CrudePaintbrush))]

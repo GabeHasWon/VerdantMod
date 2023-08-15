@@ -18,9 +18,10 @@ class PassionflowerBulb : ModItem
     {
         var halfSproutRule = ItemDropRule.Common(ModContent.ItemType<Halfsprout>(), 6, 20, 31);
         halfSproutRule.OnFailedRoll(ItemDropRule.OneFromOptions(1, ModContent.ItemType<VerdantStaff>(), ModContent.ItemType<Lightbloom>(), 
-            ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>(), ModContent.ItemType<LushLeafWand>()));
+            ModContent.ItemType<ExpertPlantGuide>(), ModContent.ItemType<HealingFlowerItem>()));
         
         itemLoot.Add(halfSproutRule);
+        itemLoot.AddCommon<LushLeafWand>(3);
 
         int[] itemIDArray = new int[] { ItemID.IronskinPotion, ModContent.ItemType<MagicWisplant>(), ModContent.ItemType<LushDagger>(), ModContent.ItemType<PinkPetal>(), 
             ModContent.ItemType<RedPetal>(), ModContent.ItemType<Lightbulb>(), ItemID.Dynamite, ItemID.Glowstick, ItemID.Bomb, ItemID.NightOwlPotion, ItemID.HealingPotion, 

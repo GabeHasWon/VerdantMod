@@ -1,5 +1,10 @@
 - Made Hardy Vines drop lush leaves, and are now craftable with lush leaves
 - Added Apotheotic armor
-- Added localization for set bonuses
 - Significantly reduced Lush Armor sell value
 - ScreenTexts now automatically determine their lifetime, scale
+- Passionflower Bulbs now rarely regrow
+- Lush Leaf Wands are significantly more likely from Passionflower Bulbs
+
+LOCALIZATION
+- Added localization for set bonuses (Mods.Verdant.SetBonuses.hjson)
+- Added localization for Crude Paintbrush messages (under Mods.Verdant.Items.hjson, CrudePaintbrush entry)

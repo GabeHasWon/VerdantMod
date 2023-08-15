@@ -1210,8 +1210,19 @@ CrudePaintbrush: {
 		'''
 		Can rapidly place tiles in various placement styles
 		Right click while holding to cycle placement style
+		Fill tool has a maximum 1000 tiles placed at a time
 		'A crude veneer belies a powerful artefact'
 		'''
+
+	Information: {
+		NoItemSelected: Select an item to start!
+		NotEnoughItem: You don't have enough [i:{0}]!
+		FillConfirm: Are you sure you want to fill?
+		NoUndos: No changes to undo.
+		SelectBlock: Select a block to start!
+		NotValidBlock: Select a solid, 1x1 block (like Dirt [i:2]) to start!
+		Selected: Placement type set to [i:{0}] ({1})!
+	}
 }
 
 PermVineWand: {

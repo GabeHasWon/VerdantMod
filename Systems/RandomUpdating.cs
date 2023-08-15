@@ -84,7 +84,7 @@ internal class RandomUpdating : ILoadable
             Position = pos;
         }
 
-        public bool DiffersFromTile()
+        public readonly bool DiffersFromTile()
         {
             Tile tile = Main.tile[Position.ToPoint()];
 

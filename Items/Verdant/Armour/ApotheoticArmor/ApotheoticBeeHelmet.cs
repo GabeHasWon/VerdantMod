@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -92,7 +93,14 @@ internal class HostHelmetPlayer : ModPlayer
         if (!Player.dead && active && Player.ownedProjectileCounts[ModContent.ProjectileType<HostSwarm>()] <= 0)
         {
             int dmg = (int)Player.GetDamage(DamageClass.Summon).ApplyTo(setBonus ? 14 : 8);
-            Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Vector2.Zero, ModContent.ProjectileType<HostSwarm>(), dmg, 1f);
+
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                int proj = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, Vector2.Zero, ModContent.ProjectileType<HostSwarm>(), dmg, 1f, Player.whoAmI);
+
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+            }
         }
     }
 }
