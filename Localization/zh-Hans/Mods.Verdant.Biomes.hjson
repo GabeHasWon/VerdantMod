@@ -1,14 +1,14 @@
 VerdantUndergroundBiome: {
-	// TownNPCDialogueName: the Verdant
+	TownNPCDialogueName: 葱茏之地
 	DisplayName: 葱茏之地
 }
 
 VerdantBiome: {
-	// TownNPCDialogueName: the Verdant
+	TownNPCDialogueName: 葱茏之地
 	DisplayName: 葱茏之地
 }
 
 NearApotheosisBiome: {
-	// TownNPCDialogueName: near the Apotheosis
-	DisplayName: 天神周围之地
+	TownNPCDialogueName: 天神周围
+	DisplayName: 天神周围
 }
