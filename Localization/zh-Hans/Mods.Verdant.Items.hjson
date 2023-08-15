@@ -1375,7 +1375,7 @@ ThornWallItem: {
 }
 
 ApotheoticBeeHelmet: {
-	DisplayName: 天神主之头饰
+	DisplayName: 天神群蜂头饰
 	Tooltip:
 		'''
 		拥有一群蜜蜂
