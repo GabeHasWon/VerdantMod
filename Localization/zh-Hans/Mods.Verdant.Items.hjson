@@ -469,7 +469,7 @@ MysteriaWood: {
 }
 
 PeaceTreetopItem: {
-	DisplayName: 宁静天棚
+	DisplayName: 宁静天篷
 	Tooltip:
 		'''
 		放置一个宁静天篷
@@ -1205,13 +1205,13 @@ CrudePaintbrush: {
 		'''
 
 	Information: {
-		// NoItemSelected: Select an item to start!
-		// NotEnoughItem: You don't have enough [i:{0}]!
-		// FillConfirm: Are you sure you want to fill?
-		// NoUndos: No changes to undo.
-		// SelectBlock: Select a block to start!
-		// NotValidBlock: Select a solid, 1x1 block (like Dirt [i:2]) to start!
-		// Selected: Placement type set to [i:{0}] ({1})!
+		NoItemSelected: 选择一个物品以开始！
+		NotEnoughItem: 你没有足够的[i:{0}]！
+		FillConfirm: 你确定你想要填充吗？
+		NoUndos: 没有能够撤回的改变。
+		SelectBlock: 选择一个方块以开始！
+		NotValidBlock: 选择一个固体的，1x1的方块(比如泥土[i:2])以开始！
+		Selected: 放置类型设置为[i:{0}] ({1})！
 	}
 }
 
@@ -1219,7 +1219,7 @@ PermVineWand: {
 	DisplayName: 拉链藤
 	Tooltip:
 		'''
-		允许用户构建藤蔓
+		允许使用者构建藤蔓
 		藤蔓像绳子一样工作，可以在任何空白区域上使用
 		这些藤蔓使用[i:5284]来构建，并在被摧毁时掉落
 		'''
@@ -1340,110 +1340,110 @@ VerdantStaff: {
 		一次只能召唤一个
 		当它已经出来时再次使用以移动花
 		'''
-	// MultiplayerTooltip: Summoning multiple flowers will empower the flower.
+	MultiplayerTooltip: 召唤多朵花将为花赋予力量。
 }
 
 LargeFlowerBulb: {
-	// DisplayName: Large Flower Bulb
-	// Tooltip: ""
+	DisplayName: 大型球茎
+	Tooltip: ""
 }
 
 LightbulbFlowerBulb: {
-	// DisplayName: Lightflower Bulb
-	// Tooltip: ""
+	DisplayName: 光花球茎
+	Tooltip: ""
 }
 
 CrystalHeart: {
-	// DisplayName: Crystal Heart
-	/* Tooltip:
+	DisplayName: 水晶之心
+	Tooltip:
 		'''
-		Grants immunity to various debuffs on use.
-		Can only be used once per player.
-		Holds many more secrets, somewhere, sometime.
-		'A cracked, hollow heart.'
-		''' */
+		使用时免疫各种减益效果。
+		每个玩家只能使用一次。
+		在某个地方、某个时间，还藏着更多的秘密。
+		“一颗破碎、空洞的心。”
+		'''
 }
 
 ThornBlock: {
-	// DisplayName: Thorn Block
-	// Tooltip: Unpleasant in all forms
+	DisplayName: 荆棘块
+	Tooltip: 各种形式都令人不愉快
 }
 
 ThornWallItem: {
-	// DisplayName: Thorn Wall Item
-	// Tooltip: ""
+	DisplayName: 荆棘墙
+	Tooltip: ""
 }
 
 ApotheoticBeeHelmet: {
-	// DisplayName: Apotheotic Host Headdress
-	/* Tooltip:
+	DisplayName: 天神主之头饰
+	Tooltip:
 		'''
-		Holds a swarm of bees
-		When holding a summon item, these bees surround your cursor and do damage over time
-		10% increased summon damage
-		+2 minion slots
-		The bees are empowered by the Hive Pack
-		'It is so much more concerning when it's on top of your head'
-		''' */
+		拥有一群蜜蜂
+		当持有召唤物品时，这些蜜蜂会围绕你的光标并造成持续伤害
+		召唤伤害提高10%
+		仆从数量上限提高2个
+		蜂巢背包能够给蜜蜂赋能
+		“当它出现在你的头顶上时，那就更令人担忧了”
+		'''
 }
 
 ApotheoticTreeHelmet: {
-	// DisplayName: Apotheotic Treeband
-	/* Tooltip:
+	DisplayName: 天神树环
+	Tooltip:
 		'''
-		A tree grows on the headband, somehow
-		You have a healing aura
-		The tree grows various fruits
-		Click on one of your minions to buff it greatly for a short period of time
-		+10% increased minion damage
-		+1 minion slot
-		'The tree soothes life, and life soothes you'
-		''' */
+		不知何故，头带上长出了一棵树
+		你有一个治愈光环
+		树上长出各种各样的果实
+		点击你的一个仆从可以在短时间内极大地增强它
+		仆从伤害提高10%
+		仆从数量上限提高1个
+		“树抚慰着生命，生命抚慰着你”
+		'''
 }
 
 ApotheoticChestplate: {
-	// DisplayName: Apotheotic Chestplate
-	/* Tooltip:
+	DisplayName: 天神胸甲
+	Tooltip:
 		'''
-		10% increased minion damage
-		+1 minion slot
-		''' */
+		仆从伤害提高10%
+		仆从数量上限提高1个
+		'''
 }
 
 ApotheoticLeggings: {
-	// DisplayName: Apotheotic Leggings
-	/* Tooltip:
+	DisplayName: 天神护腿
+	Tooltip:
 		'''
-		5% increased minion damage
-		+1 minion slot
-		''' */
+		仆从伤害提高5%
+		仆从数量上限提高1个
+		'''
 }
 
 HoneyHeart: {
-	// DisplayName: Honey Heart
-	// Tooltip: ""
+	DisplayName: 蜜心
+	Tooltip: ""
 }
 
 FruitIconGreen: {
-	// DisplayName: Spicy Pepper
-	// Tooltip: ""
+	DisplayName: 辣辣椒
+	Tooltip: ""
 }
 
 FruitIconRed: {
-	// DisplayName: Sweet Apple
-	// Tooltip: ""
+	DisplayName: 甜苹果
+	Tooltip: ""
 }
 
 FruitIconYellow: {
-	// DisplayName: Honey Drop
-	// Tooltip: ""
+	DisplayName: 蜜滴
+	Tooltip: ""
 }
 
 ApotheoticSoul: {
-	// DisplayName: Apotheotic Murmur
-	/* Tooltip:
+	DisplayName: 天神低语
+	Tooltip:
 		'''
-		The barest essense of an apotheosis
-		'You can hear whizzing and dancing'
-		''' */
+		天神的最纯粹的本质
+		“你可以听到呼啸声和舞蹈声”
+		'''
 }
