@@ -25,7 +25,7 @@ VerdantWoodChest: {
 	ContainerName: 葱郁木箱
 }
 
-// VerdantWood.MapEntry: Verdant Wood
+VerdantWood.MapEntry: 葱茏木
 LullabyBoxTile.MapEntry: 音乐盒
 PetalsFallBoxTile.MapEntry: 音乐盒
 TearRainBoxTile.MapEntry: 音乐盒
@@ -52,20 +52,20 @@ ApotheoticPainting.MapEntry: 画
 LightbulbPainting.MapEntry: 画
 BigVerdantTree.MapEntry: 大树
 VerdantTree.MapEntry: 树
-// PeaceTreeTop.MapEntry: Peace Tree Top
-// MysteriaTreeTop.MapEntry: Mysteria Tree Top
-// MysteriaTree.MapEntry: Mysteria Tree
-// VerdantRedPetal.MapEntry: Verdant Red Petal
-// VerdantPinkPetal.MapEntry: Verdant Pink Petal
-// VerdantLeaves.MapEntry: Verdant Leaves
-// VerdantGrassLeaves.MapEntry: Verdant Grass Leaves
-// SnailShellBlock.MapEntry: Snail Shells
-// PuffBlock.MapEntry: Puff Block
-// OvergrownBricks.MapEntry: Overgrown Bricks
-// LushSoil.MapEntry: Lush Soil
-// LivingLushWood.MapEntry: Living Lush Wood
-// GemsparkAquamarine.MapEntry: Gemspark Aquamarine
-// EmbeddedStoneAquamarine.MapEntry: Embedded Stone Aquamarine
-// EmbeddedAquamarine.MapEntry: Embedded Aquamarine
-// BackslateTile.MapEntry: Backslate
-// ThornTile.MapEntry: Thorns
+PeaceTreeTop.MapEntry: 宁静树顶
+MysteriaTreeTop.MapEntry: 奥秘树顶
+MysteriaTree.MapEntry: 奥秘树
+VerdantRedPetal.MapEntry: 葱茏红色花瓣
+VerdantPinkPetal.MapEntry: 葱茏粉色花瓣
+VerdantLeaves.MapEntry: 葱茏叶
+VerdantGrassLeaves.MapEntry: 葱茏草叶
+SnailShellBlock.MapEntry: 蜗牛壳
+PuffBlock.MapEntry: 气团花块
+OvergrownBricks.MapEntry: 蔓生砖块
+LushSoil.MapEntry: 葱郁土
+LivingLushWood.MapEntry: 生命葱郁木
+GemsparkAquamarine.MapEntry: 蓝晶晶莹宝石块
+EmbeddedStoneAquamarine.MapEntry: 镶嵌蓝晶石块
+EmbeddedAquamarine.MapEntry: 镶嵌蓝晶
+BackslateTile.MapEntry: 背板
+ThornTile.MapEntry: 荆棘

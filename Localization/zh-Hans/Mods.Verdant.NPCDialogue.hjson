@@ -1,32 +1,32 @@
 Guide: {
-	// ApotheosisEvilDown: I hear a faint voice coming from those lush caves deep underground. Maybe you should check it out?
-	// ApotheosisSkeletronDown: I hear another, stronger, voice coming from the lush caves. Take a look there.
+	ApotheosisEvilDown: 我听到地下深处那些葱郁洞穴里传来微弱的声音。也许你应该去看看？
+	ApotheosisSkeletronDown: 我听到另一个更强烈的声音从葱郁洞穴中传来。到那里看看。
 }
 
 Dryad: {
-	// 0: I love this overgrown land. The world is powerful here.
-	// 1: I cannot believe I've never seen this place before...
+	0: 我爱这片过度生长的土地。 这里的世界很强大。
+	1: 我不敢相信我以前从未见过这个地方...
 }
 
-// Stylist: The air is WAY too humid here, my hair's frizzing up so much.
+Stylist: 这里的空气太潮湿了，我的头发卷曲得很厉害。
 
 WitchDoctor: {
-	// 0: The energy in in the flowers here...it flows powerfully.
-	// 1: I sense an ancient power within the leaves.
-	// Dryad: "{0}'s been giving me some of her stock...care to take a look? It's quite nice."
+	0: 这里的花朵里蕴藏着能量...能量强烈地流动。
+	1: 我感觉到树叶中有一种古老的力量。
+	Dryad: "{0}给了我一些她的库存...想看一下吗？ 非常好的东西。"
 }
 
 # Keep the {0} to refer to the Dryad's name.
 
 DyeTrader: {
-	// 0: Now THIS is a sight! What beautiful colours these flowers have!
-	// 1: The glow of these bulbs...spectacular...
+	0: 此刻这是一道风景线！ 这些花的颜色多么美丽啊！
+	1: 这些灯泡的光芒...壮观...
 }
 
 TaxCollector: {
-	// 0: Bah! These leaves keep on getting in the house. Have someone clean them up for me!
-	// 1: Those bright flowers are getting on my nerve! Keep your blasted light out of my sight!
+	0: 呸!这些叶子不断进入房子。派人来帮我清理一下吧！
+	1: 那些鲜艳的花朵让我心烦意乱！让你那该死的光芒远离我的视线！
 }
 
-// Painter: These tones are gorgeous! What a wonderful landscape!
-// Princess: There's so many pretty colours here!
+Painter: 这些色调太美了！多么美妙的风景啊！
+Princess: 这里有很多漂亮的颜色！

@@ -1,8 +1,8 @@
 # This file is for miscellaneous stuff that I don't really want to move to its own file.
 # If a single part ever gets too large, I'll move it to its own file.
 MapObject: {
-	// VerdantPylonTile: Verdant Pylon
-	// FloatingCrystal: Floating Crystal
+	VerdantPylonTile: 葱茏晶塔
+	FloatingCrystal: 漂浮水晶
 }
 
 TileInteraction: {
@@ -22,11 +22,11 @@ VineHookLines: {
 	2: 呜威！
 }
 
-// Condition.InVerdant: In the Verdant biome
-// RecipeCondition.AfterApotheosisDownedPlantera: After getting the Apotheosis's Plantera gift
-// "Keybinds.Verdant:SquidForm.DisplayName": Verdant: Squid Form
+Condition.InVerdant: 在葱茏之地群系
+RecipeCondition.AfterApotheosisDownedPlantera: 获得天神的世纪之花礼物后
+"Keybinds.Verdant:SquidForm.DisplayName": Verdant: 鱿鱼形态
 
 GameTips: {
-	// VerdantGameTip0: Talk to the Apotheosis often, they might have rewards for you.
-	// VerdantGameTip1: The lush caves of the Verdant offer a reprieve anywhere!
+	VerdantGameTip0: 经常与天神交谈，他们可能会给你奖励。
+	VerdantGameTip1: 葱郁洞穴在任何地方都能提供喘息的机会！
 }
