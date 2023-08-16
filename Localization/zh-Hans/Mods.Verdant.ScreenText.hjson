@@ -1,4 +1,4 @@
-// RightClick: Right click to continue
+RightClick: 右键单击以继续
 
 Apotheosis: {
 	EoWName: 吞噬者
@@ -106,8 +106,8 @@ Apotheosis: {
 			1: 这释放了很多机会；
 			2: 这是一个较小的好处，但我们希望它有所帮助。
 			3: 你现在也可以自己创造更多这些。
-			// 4: Feel free to take these as well,
-			// 5: With these, we are certain they'll help.
+			4: 这些也请随意拿走，
+			5: 带上这些，我们确信它们会有所帮助。
 		}
 
 		Golem: {

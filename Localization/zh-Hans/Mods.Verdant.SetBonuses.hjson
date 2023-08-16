@@ -1,31 +1,31 @@
-// Lush: +1 flat summon damage
-/* Mysteria:
+Lush: 基础召唤伤害增加1
+Mysteria:
 	'''
-	Increased tile and wall placement speed and range
-	Increased mining speed
-	Enemies spawn significantly less often
-	''' */
-/* Verdant:
+	提高物块和墙的放置速度和范围
+	提高挖掘速度
+	显著降低敌人生成的频率
 	'''
-	+4% minion damage
-	+1 max minion
-	Reduces fall speed - Hold DOWN to fall faster
-	Upon respawning, heals you by 50 health
-	''' */
+Verdant:
+	'''
+	仆从伤害增加4%
+	最大仆从数量增加1个
+	降低下落速度 - 按住DOWN以下落得更快
+	重生后，恢复50生命值
+	'''
 
 Apotheotic: {
-	/* Tree:
+	Tree:
 		'''
-		Fruits regrow significantly faster
-		The fruits' effects are stronger
-		+1 max minion
-		+10 defense
-		''' */
-	/* Bee:
+		水果再生速度明显加快
+		水果的功效更强
+		仆从数量上限提高1个
+		防御增加10
 		'''
-		The bees do increased damage
-		When the bees kill something, they drop a honey heart pickup which heals 10 health
-		+1 max minion
-		+5% minion damage
-		''' */
+	Bee:
+		'''
+		蜜蜂造成的伤害增加
+		当蜜蜂杀死某些东西时，它们会掉落一个蜜心掉落物，可以治愈10点生命值
+		仆从数量上限提高1个
+		仆从伤害提高5%
+		'''
 }
