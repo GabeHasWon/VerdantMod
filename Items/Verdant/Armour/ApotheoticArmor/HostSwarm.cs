@@ -138,6 +138,9 @@ internal class HostSwarm : ModProjectile
         }
     }
 
+    /// <summary>
+    /// Controls a single bee. Client side.
+    /// </summary>
     internal class HostSwarmBee
     {
         internal Vector2 position;
