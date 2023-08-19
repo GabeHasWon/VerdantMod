@@ -14,7 +14,7 @@ public class ApotheoticLeggings : ModItem
         Item.width = 26;
         Item.height = 20;
         Item.value = Item.buyPrice(0, 2, 0, 0);
-        Item.rare = ItemRarityID.Blue;
+        Item.rare = ItemRarityID.Yellow;
         Item.defense = 12;
     }
 

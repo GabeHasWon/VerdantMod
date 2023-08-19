@@ -8,6 +8,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Localization\en-US\Mods.Verdant.Origins.hjson" />
     <None Remove="Localization\en-US_Mods.Verdant.MusicDisplay.hjson" />
     <None Remove="Localization\en-US_Mods.Verdant.SetBonuses.hjson" />
   </ItemGroup>

@@ -1,0 +1,11 @@
+Botanist: {
+	DisplayName: Botanist
+	Flavor: The druid of the science world; understands what makes life life, what grows and dies, and most importantly, what fungi is the tastiest.
+	Description: Starts with 500 lush shivs, 10 wisplants, 10 pink puff, 80 max mana, and an expert guide to plant fiber cordage.
+}
+
+MinorSummoner: {
+	DisplayName: Lushman
+	Flavor: A child of the Apotheosis, in word only. A botanist in a past life.
+	Description: Starts with a full Lush Wood set, a Yellow Sprout, a Lightbloom and lowered max health.
+}
