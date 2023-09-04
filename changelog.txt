@@ -1,4 +1,2 @@
-- Updated Chinese localization (thanks again gentleMar)
-- Made Apotheotic Leggings rarity consistent with set
-- Updated New Beginnings compatibility
-- Added New Beginnings localization
+- Fixed issue where jumping on Bouncebloom once would make them not drop an item
+- Fixed weird gore spawning offset when jumping on Bounceblooms

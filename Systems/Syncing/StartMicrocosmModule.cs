@@ -24,12 +24,7 @@ public class StartMicrocosmModule : Module
 
     protected override void Receive()
     {
-        if (Main.netMode != NetmodeID.Server) //Spawn on client
+        if (Main.netMode == NetmodeID.Server) //Spawn on server
             Microcosm.SpawnMicrocosm(new(x, y));
-        else if (fromWho != -1) //Spawn on server
-        {
-            Microcosm.SpawnMicrocosm(new(x, y));
-            Send(-1, fromWho, false);
-        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using Verdant.Items.Verdant.Blocks.Unobtainable;
 
 namespace Verdant
 {

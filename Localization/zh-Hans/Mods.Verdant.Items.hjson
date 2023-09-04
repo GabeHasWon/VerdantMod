@@ -1447,3 +1447,28 @@ ApotheoticSoul: {
 		“你可以听到呼啸声和舞蹈声”
 		'''
 }
+
+LushWoodPlankBlock: {
+	// DisplayName: Lush Plank
+	// Tooltip: ""
+}
+
+LushPlankWallItem: {
+	// DisplayName: Lush Plank Wall Item
+	// Tooltip: ""
+}
+
+MysteriaFluffItem: {
+	// DisplayName: Mysteria Fluff Item
+	// Tooltip: ""
+}
+
+MysteriaFluffWallItem: {
+	// DisplayName: Mysteria Fluff Wall Item
+	// Tooltip: ""
+}
+
+LushFenceItem: {
+	// DisplayName: Lush Fence Item
+	// Tooltip: ""
+}

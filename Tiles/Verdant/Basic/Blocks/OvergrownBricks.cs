@@ -9,7 +9,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), "", true, false);
+            QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Grass, new Color(90, 120, 90), true, false);
 
             Main.tileBlendAll[Type] = true;
             Main.tileBrick[Type] = true;

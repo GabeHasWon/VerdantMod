@@ -10,7 +10,7 @@ internal class ThornTile : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.Ash, SoundID.DD2_SkeletonHurt, new Color(68, 62, 50), "", true, false);
+        QuickTile.SetAll(this, 0, DustID.Ash, SoundID.DD2_SkeletonHurt, new Color(68, 62, 50), true, false);
         Main.tileBrick[Type] = true;
     }
 

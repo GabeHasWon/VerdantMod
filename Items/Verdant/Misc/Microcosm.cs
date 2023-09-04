@@ -27,17 +27,16 @@ class Microcosm : ModItem
     {
         var pos = Main.MouseWorld.ToTileCoordinates16();
 
-        if (Main.myPlayer == player.whoAmI)
-            SpawnMicrocosm(pos);
-
-        if (Main.netMode != NetmodeID.SinglePlayer)
+        if (Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI)
             new StartMicrocosmModule(pos, (short)Main.myPlayer).Send();
+        else if (Main.netMode == NetmodeID.SinglePlayer)
+            SpawnMicrocosm(pos);
         return true;
     }
 
     internal static void SpawnMicrocosm(Point16 position)
     {
         var gen = ModContent.GetInstance<RealtimeGen>();
-        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(position), 15f));
+        gen.CurrentActions.Add(new(MicroVerdantGen.MicroVerdant(position), Main.netMode == NetmodeID.Server ? 500f : 15f));
     }
 }

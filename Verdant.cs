@@ -14,15 +14,11 @@ namespace Verdant;
 
 public partial class VerdantMod : Mod
 {
+    public static VerdantMod Instance => ModContent.GetInstance<VerdantMod>();
+
     public static ModKeybind SquidHotkey;
-    public static VerdantMod Instance;
 
     public static bool DebugModActive => ModLoader.HasMod("CheatSheet") || ModLoader.HasMod("HEROsMod") || ModLoader.HasMod("DragonLens");
-
-    public VerdantMod() 
-    {
-        Instance = this;
-    }
 
     public override void Load()
     {
@@ -30,7 +26,7 @@ public partial class VerdantMod : Mod
 
         if (!Main.dedServ)
         {
-            Ref<Effect> filterRef = new Ref<Effect>(Assets.Request<Effect>("Effects/Screen/SteamEffect", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+            Ref<Effect> filterRef = new(Assets.Request<Effect>("Effects/Screen/SteamEffect", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
             Filters.Scene[EffectIDs.BiomeSteam] = new Filter(new ScreenShaderData(filterRef, "Steam"), EffectPriority.VeryHigh);
             Filters.Scene[EffectIDs.BiomeSteam].Load();
         }
@@ -46,17 +42,10 @@ public partial class VerdantMod : Mod
         Flowers.Load(this);
     }
 
-    public override void Unload()
-    {
-        ForegroundManager.Unload();
+    public override void Unload() => ForegroundManager.Unload();
 
-        Instance = null;
-    }
 
-    public override void HandlePacket(BinaryReader reader, int whoAmI)
-    {
-        NetEasy.NetEasy.HandleModule(reader, whoAmI);
-    }
+    public override void HandlePacket(BinaryReader reader, int whoAmI) => NetEasy.NetEasy.HandleModule(reader, whoAmI);
 
     private void MonoModChanges()
     {

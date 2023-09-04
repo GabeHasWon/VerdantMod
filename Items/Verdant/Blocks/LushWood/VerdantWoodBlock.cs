@@ -3,10 +3,10 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Items.Verdant.Blocks.LushWood
 {
-    [Sacrifice(1)]
+    [Sacrifice(100)]
     public class VerdantWoodBlock : ModItem
     {
-        public override void SetDefaults() => QuickItem.SetBlock(this, 32, 18, ModContent.TileType<VerdantWood>());
+        public override void SetDefaults() => QuickItem.SetBlock(this, 24, 20, ModContent.TileType<VerdantWood>());
 
         public override void AddRecipes()
         {

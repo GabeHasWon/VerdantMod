@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Utilities;
 
 namespace Verdant.World
 {
@@ -23,26 +24,30 @@ namespace Verdant.World
             tiles = new List<Point16>();
         }
 
-        public override string ToString() => radius + " + " + center;
+        public override readonly string ToString() => radius + " + " + center;
 
-        public void FindTiles(bool horiSort = true, bool biomeNoise = true)
+        public readonly void FindTiles(bool horiSort = true, bool biomeNoise = true, UnifiedRandom random = null)
         {
+            random ??= WorldGen.genRand;
+
             if (horiSort)
             {
                 for (int i = -radius; i < radius; ++i)
                     for (int j = -radius; j < radius; ++j)
-                        SingleCheck(i, j, biomeNoise);
+                        SingleCheck(i, j, biomeNoise, random);
             }
             else
             {
                 for (int j = -radius; j < radius; ++j)
                     for (int i = -radius; i < radius; ++i)
-                        SingleCheck(i, j, biomeNoise);
+                        SingleCheck(i, j, biomeNoise, random);
             }
         }
 
-        private void SingleCheck(int i, int j, bool biomeNoise)
+        private readonly void SingleCheck(int i, int j, bool biomeNoise, UnifiedRandom random = null)
         {
+            random ??= WorldGen.genRand;
+
             Point16 nPos = new(center.X + i, center.Y + j);
             float dist = Vector2.Distance(nPos.ToVector2(), center.ToVector2());
 
@@ -54,7 +59,7 @@ namespace Verdant.World
                     {
                         float chance = (radius - dist) / MaxDitherDistance;
 
-                        if (WorldGen.genRand.NextFloat() <= chance && Main.tile[nPos.X, nPos.Y].HasTile)
+                        if (random.NextFloat() <= chance && Main.tile[nPos.X, nPos.Y].HasTile)
                             tiles.Add(nPos);
                     }
                 }

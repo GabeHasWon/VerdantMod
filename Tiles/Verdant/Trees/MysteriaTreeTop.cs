@@ -19,7 +19,7 @@ internal class MysteriaTreeTop : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), "", true, false);
+        QuickTile.SetAll(this, 0, DustID.WoodFurniture, SoundID.Dig, new Color(124, 93, 68), true, false);
 
         Main.tileBrick[Type] = true;
         Main.tileSolid[Type] = false;

@@ -1,13 +1,13 @@
 HeadLabel: Verdant Client Configuration
-EnableSteamEffectLabel: Enable Steam Effect
+EnableSteamEffectLabel: "[i:3365] Enable Steam Effect"
 EnableSteamEffectTooltip: Enables steam overlay when inside of the underground Verdant.
-EnableForeOrBackgroundObjectsLabel: Enable Foreground/Background Objects
+EnableForeOrBackgroundObjectsLabel: "[i:933] Enable Foreground/Background Objects"
 EnableForeOrBackgroundObjectsTooltip: Enables decoration objects appearing in the surface background or foreground everywhere.
-EnableCustomWaterfallsLabel: Enable Custom Waterfalls
+EnableCustomWaterfallsLabel: "[i:2169] Enable Custom Waterfalls"
 EnableCustomWaterfallsTooltip: Enables waterfalls appearing from tiles, such as the Weeping Bud.
-CustomDialogueSystemLabel: Custom Dialogue System
+CustomDialogueSystemLabel: "[i:320] Custom Dialogue System"
 CustomDialogueSystemTooltip: Allows the usage of a custom dialogue system for the Apotheosis. If turned off, will just use the chat.
-FancyBookUILabel: Fancy Book UI
+FancyBookUILabel: "[i:4065] Fancy Book UI"
 FancyBookUITooltip: Changes the book UI to something unique.
 
 VerdantClientConfig: {

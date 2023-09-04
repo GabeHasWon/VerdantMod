@@ -16,18 +16,18 @@ RockBook: {
 		Might go searching for more.
 		It's been a while!
 		Map shows a volcanic area around [scratch mark] or so..."
-					
+
 		Despite the introduction, this book seems to slowly
 		change in purpose - becoming sort of an explorer's log:
-					
+
 		"Adventure going well,
 		though fruitless; idyll forests
 		sit patiently, as
-					
+
 		what awaits me at
 		the end of this adventure -
 		a great volcano...
-					
+
 		I'm just sure of it."
 
 		'''
@@ -55,7 +55,7 @@ LightbulbBook: {
 			Go searching for more later, might be good food.
 			Beyond analysis, these are incredible specimens...
 			Will make for better light than these fireflies"
-						
+
 			Random things line pages: scribbles, sketches, notes.
 			Occasionally there's a small tidbit of salvageable info:
 			"Grows better in dirty water?"
@@ -73,7 +73,7 @@ LeafBook: {
 	Content: {
 		0:
 			'''
-					
+
 			The book looks particularly old, page worn and oddly brown.
 			The material is also clearly foreign.
 			There's drops of water across the top pages.
@@ -86,7 +86,7 @@ LeafBook: {
 			'''
 		1:
 			'''
-						
+
 			You scan through the book, and spot the following pages:
 
 			'''
@@ -100,9 +100,9 @@ LeafBook: {
 			Might work in small parts?
 			Grows in vine like clumps, or just clumps? Unsure.
 			Grow only or mostly around flowers.
-						
+
 			(DO NOT EAT)
-						
+
 			Tried pressing into pages, seem to work but needs
 			more work. Pages are too green."
 
@@ -122,21 +122,21 @@ HardyVineBook: {
 		They grow sparsely, surrounded by more average, smaller
 		vines, leaves and flora.
 		Sometimes flower, with small light bulbs on them.
-					
+
 		DO NOT EAT
-					
+
 		Like lettuce but leathery and dirtier.
 		Can be used to create incredibly sturdy ropes.
 		Look into use as a reinforcement?
 		...I don't know if I can."
-					
+
 		The few remaining pages have small sketches and
 		the occasional small note -
-					
+
 		"...more plentiful now?..."
 		"New specimens are getting stockier"
 		"...sprouting more often..."
-					
+
 		- until the book ends.
 
 		'''
@@ -146,7 +146,7 @@ HardyVineBook: {
 ApotheosisBook: {
 	Content:
 		'''
-				
+
 		"It's been a while since I've run out of supplies.
 		My caravan is empty aside from research,
 		with mice and bats being all I can eat.
@@ -160,7 +160,7 @@ ApotheosisBook: {
 		I've even seen some minor tree saplings here and there.
 		A most curious wood, too!
 		Despite my starvation, this is a heaven I’ll suffer for."
-				
+
 
 		...
 
@@ -177,7 +177,7 @@ ApotheosisBook: {
 		Time lies outside of my reach.
 		Studies notwithstanding, I’ve little left anyhow."
 
-				
+
 		...
 
 
@@ -194,11 +194,11 @@ ApotheosisBook: {
 		But perhaps, in some other time,
 		these plants find another pair of eyes,
 		and bewilder as I have been bewildered."
-				
-				
+
+
 		...
-				
-				
+
+
 		"View; a flower. A flower with a bulb in it, a curious one -
 		betwixt the petals, a gentle glow.
 		A calming glow.

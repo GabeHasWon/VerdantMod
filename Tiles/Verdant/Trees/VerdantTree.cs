@@ -20,7 +20,7 @@ namespace Verdant.Tiles.Verdant.Trees
     {
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.t_BorealWood, SoundID.Dig, new Color(142, 62, 32), "Tree", false, false, false, false);
+            QuickTile.SetAll(this, 0, DustID.t_BorealWood, SoundID.Dig, new Color(142, 62, 32), false, false, false, false);
             Main.tileFrameImportant[Type] = true;
             Main.tileAxe[Type] = true;
 

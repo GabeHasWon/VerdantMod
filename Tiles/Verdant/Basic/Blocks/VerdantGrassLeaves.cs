@@ -36,7 +36,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
         public override void SetStaticDefaults()
         {
-            QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), "", true, false);
+            QuickTile.SetAll(this, 0, DustID.GrassBlades, SoundID.Grass, new Color(44, 160, 54), true, false);
             QuickTile.MergeWith(Type, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantPinkPetal>(), ModContent.TileType<VerdantRedPetal>(), 
                 TileID.LivingWood, TileID.Stone, TileID.Dirt, TileID.Grass);
 

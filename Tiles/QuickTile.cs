@@ -24,14 +24,13 @@ public class QuickTile
     /// <param name="mapColor">Colour on the minimap.</param>
     /// <param name="drop">Item that the tile drops.</param>
     /// <param name="mapName">Name on the map.</param>
-    public static void Set(ModTile t, int minPick, int dustType, SoundStyle soundType, Color mapColor, string mapName = "")
+    public static void Set(ModTile t, int minPick, int dustType, SoundStyle soundType, Color mapColor)
     {
         t.MinPick = minPick;
         t.DustType = dustType;
         t.HitSound = soundType;
 
         LocalizedText name = t.CreateMapEntryName();
-        // name.SetDefault(mapName);
         t.AddMapEntry(mapColor, name);
     }
 
@@ -52,9 +51,9 @@ public class QuickTile
     }
 
     /// <summary>Does Set and SetProperties in one method.</summary>
-    public static void SetAll(ModTile t, int minPick, int dust, SoundStyle sound, Color mapColour, string mapName = "", bool solid = true, bool mergeDirt = true, bool lighted = true, bool blockLight = true)
+    public static void SetAll(ModTile t, int minPick, int dust, SoundStyle sound, Color mapColour, bool solid = true, bool mergeDirt = true, bool lighted = true, bool blockLight = true)
     {
-        Set(t, minPick, dust, sound, mapColour, mapName);
+        Set(t, minPick, dust, sound, mapColour);
         SetProperties(t, solid, mergeDirt, lighted, blockLight);
     }
 

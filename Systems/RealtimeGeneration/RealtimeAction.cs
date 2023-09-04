@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
@@ -66,7 +67,7 @@ public class RealtimeAction
             var step = TileActions.Dequeue();
             bool success = false;
             step.Invoke(step.Position.X, step.Position.Y, ref success);
-            
+
             if (!success)
                 i--;
 

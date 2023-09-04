@@ -15,6 +15,7 @@ namespace Verdant.Tiles.Verdant.Misc
             TileObjectData.newTile.RandomStyleRange = 16; 
             TileObjectData.newTile.StyleHorizontal = true;
             QuickTile.SetMulti(this, 1, 1, DustID.UnusedBrown, SoundID.Dig, true, new Color(85, 82, 67));
+
             RegisterItemDrop(ModContent.ItemType<ResearchBooksItem>());
         }
 

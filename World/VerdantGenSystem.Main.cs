@@ -41,16 +41,18 @@ public partial class VerdantGenSystem : ModSystem
 
         static int GetCenterX()
         {
-            int x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.25f));
+            int x;
 
-            while (Math.Abs(x - (Main.maxTilesX / 2)) < 80)
-                x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.25f));
+            do
+            {
+                x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.2f));
+            } while (Math.Abs(x - (Main.maxTilesX / 2)) < 180);
             return x;
         }
 
-        Point center = new(GetCenterX(), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.75f)));
+        Point center = new(GetCenterX(), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f)));
 
-        int FluffX = (int)(220 * WorldSize);
+        int FluffX = (int)(230 * WorldSize);
         int FluffY = (int)(130 * WorldSize);
 
         int total = 0;

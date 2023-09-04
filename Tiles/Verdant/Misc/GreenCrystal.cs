@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,8 +16,8 @@ public class GreenCrystal : OmnidirectionalAnchorTile
 		Main.tileLighted[Type] = true;
 
 		LocalizedText name = CreateMapEntryName();
-		// name.SetDefault("Green Crystal");
 		AddMapEntry(new Color(20, 145, 41), name);
+        RegisterItemDrop(ModContent.ItemType<GreenCrystalItem>());
 
 		HitSound = SoundID.Shatter;
 		DustType = DustID.DungeonGreen;

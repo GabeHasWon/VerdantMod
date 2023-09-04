@@ -163,12 +163,10 @@ class VerdantPlayer : ModPlayer
             {
                 for (int j = 0; j < 2; ++j)
                 {
-                    Framing.GetTileSafely(offsetX + i, offsetY + j).TileFrameY = (short)(38 + (18 * j));
-
                     if (Main.rand.Next(5) <= 3 && j == 0)
                     {
-                        int type = Main.rand.NextBool(2)? Mod.Find<ModGore>("RedPetalFalling").Type : Mod.Find<ModGore>("LushLeaf").Type;
-                        Gore.NewGore(Player.GetSource_TileInteraction(offsetX + i, offsetY + j), (new Vector2(offsetX + i, offsetY + j + 2) * 16) + new Vector2(Main.rand.Next(18), Main.rand.Next(18)), Vector2.Zero, type);
+                        int type = Main.rand.NextBool(2) ? Mod.Find<ModGore>("RedPetalFalling").Type : Mod.Find<ModGore>("LushLeaf").Type;
+                        Gore.NewGore(Player.GetSource_TileInteraction(offsetX + i, offsetY + j), (new Vector2(offsetX + i, offsetY + j) * 16) + new Vector2(Main.rand.Next(18), Main.rand.Next(18)), Vector2.Zero, type);
                     }
                 }
             }
