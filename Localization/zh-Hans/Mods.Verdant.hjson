@@ -23,7 +23,12 @@ VineHookLines: {
 }
 
 Condition.InVerdant: 在葱茏之地群系
-RecipeCondition.AfterApotheosisDownedPlantera: 获得天神的世纪之花礼物后
+
+RecipeCondition: {
+	AfterApotheosisDownedPlantera: 获得天神的世纪之花礼物后
+	// HasShears: While carrying Shears [i:{0}]
+}
+
 "Keybinds.Verdant:SquidForm.DisplayName": Verdant: 鱿鱼形态
 
 GameTips: {

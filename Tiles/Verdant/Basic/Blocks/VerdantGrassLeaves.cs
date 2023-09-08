@@ -227,9 +227,9 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             }
 
             //dye plants
-            if (Main.rand.NextBool(70) && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
+            if (Main.rand.NextBool(50) && TileHelper.ValidTop(self) && TileHelper.ValidTop(i + 1, j) && Helper.AreaClear(i, j - 2, 2, 2))
             {
-                WorldGen.PlaceTile(i, j - 2, ModContent.TileType<DyeBulbs>(), true, false, -1, Main.rand.Next(2));
+                WorldGen.PlaceTile(i, j - 2, ModContent.TileType<DyeBulbs>(), true, false, -1, Main.rand.Next(4));
                 if (Main.netMode == NetmodeID.Server)
                     NetMessage.SendTileSquare(-1, i, j - 1, 5, TileChangeType.None);
                 return true;

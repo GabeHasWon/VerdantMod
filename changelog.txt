@@ -1,2 +1,7 @@
-- Fixed issue where jumping on Bouncebloom once would make them not drop an item
-- Fixed weird gore spawning offset when jumping on Bounceblooms
+- Made Overgrown Bricks, Lightbulb Leaves and Lush Grass count towards Verdant biome requirement
+- Changed Shears to use Lush Wood instead of Mysteria Wood and an Anvil instead of a Living Loom
+- Added Trimmed Overgrown Brick, same as Overgrown Brick but they do not grow or spread
+- Fixed Lush Grass breaking when hit by just about any projectile
+- Adjusted Overgrown Brick item hitbox
+- Made most, but not all, placeable tiles and walls use the proper Item.CommonMaxStack, which is 9999 by default
+- Made Acorns preview the right tile when hovering over valid Lush Sapling surfaces

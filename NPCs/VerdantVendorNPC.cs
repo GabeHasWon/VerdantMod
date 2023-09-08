@@ -30,6 +30,11 @@ class VerdantVendorNPC : GlobalNPC
             shop.Add(ModContent.ItemType<Microcosm>());
             shop.Add(ModContent.ItemType<LightbulbSeeds>());
 
+            shop.Add(new Item(ModContent.ItemType<LushGrassSeeds>())
+            {
+                shopCustomPrice = Item.buyPrice(0, 0, 0, 50)
+            });
+
             var inVerdant = new Condition("Mods.Verdant.Condition.InVerdant", () => Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant);
             shop.Add(new Item(ModContent.ItemType<ApotheoticPaintingItem>())
             {

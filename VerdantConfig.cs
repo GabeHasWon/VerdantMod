@@ -1,16 +1,8 @@
 ﻿using System.ComponentModel;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
-using Verdant.Items.Verdant.Blocks.Unobtainable;
 
 namespace Verdant
 {
-    //[Label("Currently unused.")]
-    //public class VerdantServerConfig : ModConfig
-    //{
-    //    public override ConfigScope Mode => ConfigScope.ServerSide;
-    //}
-
     public class VerdantClientConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;

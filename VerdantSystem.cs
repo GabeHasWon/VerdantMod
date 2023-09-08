@@ -252,7 +252,8 @@ public class VerdantSystem : ModSystem
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
     {
-        VerdantTiles = tileCounts[ModContent.TileType<VerdantGrassLeaves>()] + tileCounts[ModContent.TileType<VerdantLeaves>()];
+        VerdantTiles = tileCounts[ModContent.TileType<VerdantGrassLeaves>()] + tileCounts[ModContent.TileType<VerdantLeaves>()] + tileCounts[ModContent.TileType<LushGrass>()]
+            + tileCounts[ModContent.TileType<LightbulbLeaves>()] + tileCounts[ModContent.TileType<OvergrownBricks>()];
         ApotheosisTiles = tileCounts[ModContent.TileType<Apotheosis>()] + tileCounts[ModContent.TileType<HardmodeApotheosis>()];
     }
 

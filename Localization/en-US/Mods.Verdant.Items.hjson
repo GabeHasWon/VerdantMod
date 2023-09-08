@@ -499,7 +499,7 @@ LilyPadItem: {
 }
 
 PinkDyeBulb: {
-	DisplayName: Cillo Lily
+	DisplayName: Calla Lily
 	Tooltip:
 		'''
 		'A wonderfully bright colour!'
@@ -513,7 +513,7 @@ PinkPuff: {
 }
 
 RedDyeBulb: {
-	DisplayName: Perennial Germiium
+	DisplayName: Perennial Geranium
 	Tooltip:
 		'''
 		'A wonderfully bright colour!'
@@ -1468,21 +1468,59 @@ LushWoodPlankBlock: {
 }
 
 LushPlankWallItem: {
-	DisplayName: Lush Plank Wall Item
+	DisplayName: Lush Plank Wall
 	Tooltip: ""
 }
 
 MysteriaFluffItem: {
-	DisplayName: Mysteria Fluff Item
-	Tooltip: ""
+	DisplayName: Mysteria Fluff
+	Tooltip: "'You feel richer just touching this'"
 }
 
 MysteriaFluffWallItem: {
-	DisplayName: Mysteria Fluff Wall Item
-	Tooltip: ""
+	DisplayName: Mysteria Fluff Wall
+	Tooltip: "'It's like having a carpet wall!"
 }
 
 LushFenceItem: {
-	DisplayName: Lush Fence Item
+	DisplayName: Lush Fence
 	Tooltip: ""
+}
+
+LushGrassSeeds: {
+	DisplayName: Lush Grass Seeds
+	Tooltip: "'These taste like lettuce'"
+}
+
+BlueDyeBulb: {
+	DisplayName: Skyblue Itoh Peony
+	Tooltip:
+		'''
+		'A wonderfully vibrant colour!'
+		Used to make Blue Dye
+		'''
+}
+
+WhiteDyeBulb: {
+	DisplayName: Moth Orchid
+	Tooltip:
+		'''
+		'A wonderfully joyful colour!'
+		Used to make Silver Dye
+		'''
+}
+
+LightbulbLeafItem: {
+	DisplayName: Lightbulb Leaves
+	Tooltip: Gives off a gentle glow
+}
+
+LushLoomItem: {
+	DisplayName: Lush Loom
+	Tooltip: Works as both a Living Loom and a normal loom
+}
+
+TrimmedOvergrownBrickItem: {
+	DisplayName: Trimmed Overgrown Brick
+	Tooltip: Doesn't spread or grow anything, just looks nice!
 }

@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
 using System.Linq;
 using Verdant.Systems.Foreground.Tiled;
-using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Tiles.Verdant.Decor.Bushes;
 using Verdant.Tiles.TileEntities.Puff;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -63,8 +63,8 @@ class Shears : ModItem
     {
         CreateRecipe()
             .AddRecipeGroup(RecipeGroupID.IronBar, 4)
-            .AddIngredient<MysteriaWood>(3)
-            .AddTile(TileID.LivingLoom)
+            .AddIngredient<VerdantWoodBlock>(3)
+            .AddTile(TileID.Anvils)
             .Register();
     }
 }

@@ -20,7 +20,7 @@ namespace Verdant.Items
         /// <param name="consumable">If the item is consumable. Defaults to true.</param>
         /// <param name="placeStyle">The placeStyle of the item. Defaults to -1, which skips setting it.</param>
         /// <param name="rarity">Rarity of the item. Defaults to <see cref="ItemRarityID.White"/>.</param>
-        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White, int maxStack = 999, int createStyle = 0, bool autoReuse = true)
+        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White, int maxStack = -1, int createStyle = 0, bool autoReuse = true)
         {
             i.Item.width = w;
             i.Item.height = h;
@@ -30,7 +30,7 @@ namespace Verdant.Items
             i.Item.autoReuse = autoReuse;
             i.Item.useAnimation = 15;
             i.Item.useTime = 10;
-            i.Item.maxStack = maxStack;
+            i.Item.maxStack = maxStack == -1 ? Item.CommonMaxStack : maxStack;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.consumable = consumable;
             i.Item.rare = rarity;
@@ -50,12 +50,11 @@ namespace Verdant.Items
             i.Item.width = w;
             i.Item.height = h;
             i.Item.createWall = wall;
-
             i.Item.useTurn = true;
             i.Item.autoReuse = true;
             i.Item.useAnimation = 15;
             i.Item.useTime = 7;
-            i.Item.maxStack = 999;
+            i.Item.maxStack = Item.CommonMaxStack;
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.consumable = consumable;
         }

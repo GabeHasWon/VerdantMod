@@ -71,3 +71,6 @@ BackslateTile.MapEntry: 背板
 ThornTile.MapEntry: 荆棘
 // LushPlanks.MapEntry: Lush Planks
 // MysteriaFluff.MapEntry: Mysteria Fluff
+// LushGrass.MapEntry: Lush Grass
+// LightbulbLeaves.MapEntry: Lightbulb Leaves
+// TrimmedOvergrownBricks.MapEntry: Trimmed Overgrown Bricks

@@ -3,10 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Global;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Trees;
 using Verdant.World;
@@ -43,7 +45,6 @@ public class LushSapling : ModTile
         TileObjectData.addTile(Type);
 
         LocalizedText name = CreateMapEntryName();
-        // name.SetDefault("Sapling");
         AddMapEntry(new Color(89, 47, 33), name);
 
         DustType = DustID.Grass;
@@ -64,4 +65,5 @@ public class LushSapling : ModTile
     }
 
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => AcornGlobal.CanPlaceAt(new Point(i, j), Main.LocalPlayer);
 }
