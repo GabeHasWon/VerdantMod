@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -14,6 +15,8 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<LushSoil>());
 
             Main.tileBrick[Type] = true;
+
+            RegisterItemDrop(ModContent.ItemType<VerdantWoodBlock>());
         }
     }
 }

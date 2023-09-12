@@ -10,7 +10,7 @@ LushWoodBody: {
 
 LushWoodHead: {
 	DisplayName: Lush Wood Helmet
-	Tooltip: +1 flat summon damage
+	Tooltip: +1 flat minion damage
 }
 
 LushWoodLegs: {
@@ -116,7 +116,12 @@ GemsparkAquamarineWallOfflineItem: {
 
 BeehiveBlock: {
 	DisplayName: Bumblebee Hive
-	Tooltip: "'The buzzing is mildly concerning'"
+	Tooltip:
+		'''
+		Spawns bees, which pollinate nearby flowers
+		Can be harvested after enough bees return with pollen for some goodies
+		'The buzzing is mildly concerning'
+		'''
 }
 
 Bush2x2Item: {
@@ -509,7 +514,11 @@ PinkDyeBulb: {
 
 PinkPuff: {
 	DisplayName: Pink Puff
-	Tooltip: "'Deceptively light'"
+	Tooltip:
+		'''
+		Creates a Puff microbiome around it
+		'Deceptively light'
+		'''
 }
 
 RedDyeBulb: {
@@ -1384,7 +1393,7 @@ ThornBlock: {
 }
 
 ThornWallItem: {
-	DisplayName: Thorn Wall Item
+	DisplayName: Thorn Wall
 	Tooltip: ""
 }
 
@@ -1394,7 +1403,7 @@ ApotheoticBeeHelmet: {
 		'''
 		Holds a swarm of bees
 		When holding a summon item, these bees surround your cursor and do damage over time
-		10% increased summon damage
+		10% increased minion damage
 		+2 minion slots
 		The bees are empowered by the Hive Pack
 		'It is so much more concerning when it's on top of your head'
@@ -1523,4 +1532,64 @@ LushLoomItem: {
 TrimmedOvergrownBrickItem: {
 	DisplayName: Trimmed Overgrown Brick
 	Tooltip: Doesn't spread or grow anything, just looks nice!
+}
+
+BasicTerrariumItem: {
+	DisplayName: Basic Terrarium
+	Tooltip: "'Pleasant to observe'"
+}
+
+FlotieTerrariumItem: {
+	DisplayName: Flotie Terrarium
+	Tooltip: "'Relaxing, intruiging...'"
+}
+
+FlotinyTerrariumItem: {
+	DisplayName: Flotiny Terrarium
+	Tooltip: "'Floating lightbulbs in a terrarium? That's the future of lamps!'"
+}
+
+MysteriaFlotinyTerrariumItem: {
+	DisplayName: Mysteria Flotiny Terrarium
+	Tooltip: "'Almost a hypnotic pattern to see'"
+}
+
+MysteriaFlotieTerrariumItem: {
+	DisplayName: Mysteria Flotie Terrarium
+	Tooltip: "'The wind in its soul blows forever'"
+}
+
+AquariumItem: {
+	DisplayName: Aquarium
+	Tooltip: Can be used to keep aquatic critters
+}
+
+PoolwormAquariumItem: {
+	DisplayName: Poolworm Aquarium
+	Tooltip: "'Looks like it's having fun!'"
+}
+
+BulbboxAquariumItem: {
+	DisplayName: Bulbbox Aquarium
+	Tooltip: "'This guy could beat you in a swimming race'"
+}
+
+MossCarpAquariumItem: {
+	DisplayName: Moss Carp Aquarium
+	Tooltip: "'There's a micro-terrarium on the bottom of the fish...'"
+}
+
+AxolotlAquariumItem: {
+	DisplayName: Axolotl Aquarium
+	Tooltip: "'Have you heard their little noises?'"
+}
+
+RedSnailCage: {
+	DisplayName: Red Snail Cage
+	Tooltip: "'Confident, but slow.'"
+}
+
+BulbSnailCage: {
+	DisplayName: Bulb Snail Cage
+	Tooltip: "'Cowardly, but powerful.'"
 }

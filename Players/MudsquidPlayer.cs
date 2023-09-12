@@ -30,7 +30,7 @@ internal class MudsquidPlayer : ModPlayer
         On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
     }
 
-    private void PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+    private void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
     {
         if (drawinfo.drawPlayer.GetModPlayer<MudsquidPlayer>().squidAlpha > 0.1f)
             orig(ref drawinfo);

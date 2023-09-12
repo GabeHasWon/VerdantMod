@@ -48,4 +48,6 @@ internal class HarvestedPickipuffItem : PickipuffItem
         (Terraria.DataStructures.TileEntity.ByID[id] as Pickipuff).SetToHarvested();
         return true;
     }
+
+    public override void AddRecipes() { } //No recipes for you!
 }

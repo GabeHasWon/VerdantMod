@@ -4,10 +4,11 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 224 new items
-    - 152 new tiles
+    - 235 new items
+    - 158 new tiles
     - 4 new armor sets
-    - 18 new NPCs
+    - Absolutely no new town NPCs
+    - 18 new NPCs (mostly critters)
     - 4 brand new music tracks
     - A new foreground and background system that gives more life to the biome
     - A sort of quest system by the statue in the center of the biome, the Apotheosis

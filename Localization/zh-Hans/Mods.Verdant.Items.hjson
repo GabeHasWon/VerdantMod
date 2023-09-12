@@ -1510,3 +1510,63 @@ TrimmedOvergrownBrickItem: {
 	// DisplayName: Trimmed Overgrown Brick
 	// Tooltip: Doesn't spread or grow anything, just looks nice!
 }
+
+BasicTerrariumItem: {
+	// DisplayName: Basic Terrarium
+	// Tooltip: "'Pleasant to observe'"
+}
+
+FlotieTerrariumItem: {
+	// DisplayName: Flotie Terrarium
+	// Tooltip: "'Relaxing, intruiging...'"
+}
+
+FlotinyTerrariumItem: {
+	// DisplayName: Flotiny Terrarium
+	// Tooltip: "'Floating lightbulbs in a terrarium? That's the future of lamps!'"
+}
+
+MysteriaFlotinyTerrariumItem: {
+	// DisplayName: Mysteria Flotiny Terrarium
+	// Tooltip: "'Almost a hypnotic pattern to see'"
+}
+
+MysteriaFlotieTerrariumItem: {
+	// DisplayName: Mysteria Flotie Terrarium
+	// Tooltip: "'The wind in its soul blows forever'"
+}
+
+AquariumItem: {
+	// DisplayName: Aquarium
+	// Tooltip: Can be used to keep aquatic critters
+}
+
+PoolwormAquariumItem: {
+	// DisplayName: Poolworm Aquarium
+	// Tooltip: "'Looks like it's having fun!'"
+}
+
+BulbboxAquariumItem: {
+	// DisplayName: Bulbbox Aquarium
+	// Tooltip: "'This guy could beat you in a swimming race'"
+}
+
+MossCarpAquariumItem: {
+	// DisplayName: Moss Carp Aquarium
+	// Tooltip: "'There's a micro-terrarium on the bottom of the fish...'"
+}
+
+AxolotlAquariumItem: {
+	// DisplayName: Axolotl Aquarium
+	// Tooltip: "'Have you heard their little noises?'"
+}
+
+RedSnailCage: {
+	// DisplayName: Red Snail Cage
+	// Tooltip: "'Confident, but slow.'"
+}
+
+BulbSnailCage: {
+	// DisplayName: Bulb Snail Cage
+	// Tooltip: "'Cowardly, but powerful.'"
+}
