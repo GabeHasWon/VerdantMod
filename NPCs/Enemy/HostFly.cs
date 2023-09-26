@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.NPCs.Passive;
 
 namespace Verdant.NPCs.Enemy;
 

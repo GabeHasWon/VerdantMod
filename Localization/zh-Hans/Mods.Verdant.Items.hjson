@@ -1570,3 +1570,13 @@ BulbSnailCage: {
 	// DisplayName: Bulb Snail Cage
 	// Tooltip: "'Cowardly, but powerful.'"
 }
+
+LushWingletItem: {
+	// DisplayName: Lush Winglet
+	// Tooltip: "'Tiny and frail.'"
+}
+
+LushWingletTerrariumItem: {
+	// DisplayName: Lush Winglet Terrarium Item
+	// Tooltip: "'...it looks content!'"
+}

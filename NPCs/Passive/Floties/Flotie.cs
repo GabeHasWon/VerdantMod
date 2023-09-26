@@ -95,7 +95,7 @@ public class Flotie : ModNPC
 
 public class MysteriaFlotie : Flotie
 {
-    public static Asset<Texture2D> glowTexture;
+    public new static Asset<Texture2D> glowTexture;
 
     public override void Unload() => glowTexture = null;
 

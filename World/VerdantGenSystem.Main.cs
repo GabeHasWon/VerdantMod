@@ -39,6 +39,20 @@ public partial class VerdantGenSystem : ModSystem
         Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed);
         Mod.Logger.Info("Noise Seed: " + VerdantSystem.genNoise.Seed);
 
+        static bool IsInvalidCenterX(int x)
+        {
+            if (ModContent.GetInstance<VerdantClientConfig>().JungleSpawn)
+            {
+                for (int y = 200; y < Main.maxTilesY - 200; ++y)
+                    if (TileHelper.ActiveType(x, y, TileID.JungleGrass))
+                        return false;
+
+                return true;
+            }
+
+            return Math.Abs(x - (Main.maxTilesX / 2)) < 220;
+        }
+
         static int GetCenterX()
         {
             int x;
@@ -46,11 +60,15 @@ public partial class VerdantGenSystem : ModSystem
             do
             {
                 x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.2f));
-            } while (Math.Abs(x - (Main.maxTilesX / 2)) < 180);
+            } while (IsInvalidCenterX(x));
             return x;
         }
 
-        Point center = new(GetCenterX(), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f)));
+        static int GetCenterY() => ModContent.GetInstance<VerdantClientConfig>().JungleSpawn ?
+            WorldGen.genRand.Next((int)(Main.maxTilesY / 2.7f), (int)(Main.maxTilesY / 1.9f)) :
+            WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f));
+
+        Point center = new(GetCenterX(), GetCenterY());
 
         int FluffX = (int)(230 * WorldSize);
         int FluffY = (int)(130 * WorldSize);
@@ -59,7 +77,7 @@ public partial class VerdantGenSystem : ModSystem
         while (true) //Find valid position for biome
         {
         reset:
-            center = new Point(GetCenterX(), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.5f), (int)(Main.maxTilesY / 1.75f)));
+            center = new Point(GetCenterX(), GetCenterY());
             total = 0;
             if (GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y + FluffY)
                 || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y + FluffY)

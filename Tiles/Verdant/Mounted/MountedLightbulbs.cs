@@ -47,7 +47,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             yield return new(ModContent.ItemType<Lightbulb>());
 
             if (Main.rand.NextBool(3))
-                yield return new(ModContent.ItemType<VerdantFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
+                yield return new(ModContent.ItemType<LightbulbFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

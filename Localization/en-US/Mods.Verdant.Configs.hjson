@@ -32,4 +32,9 @@ VerdantClientConfig: {
 		Label: "{$Mods.Verdant.Configs.CustomDialogueSystemLabel}"
 		Tooltip: "{$Mods.Verdant.Configs.CustomDialogueSystemTooltip}"
 	}
+
+	JungleSpawn: {
+		Label: "[i:620] Jungle Spawn"
+		Tooltip: Forces the Verdant to only spawn in the Jungle. This is less likely to overwrite most modded biomes if that is an issue.
+	}
 }

@@ -13,7 +13,7 @@ namespace Verdant.NPCs.Passive.Floties;
 
 public class Flotiny : Flotie
 {
-    public static Asset<Texture2D> glowTexture;
+    public new static Asset<Texture2D> glowTexture;
 
     public override void Unload() => glowTexture = null;
 
@@ -81,7 +81,7 @@ public class Flotiny : Flotie
 
 public class MysteriaFlotiny : Flotiny
 {
-    public static Asset<Texture2D> glowTexture;
+    public new static Asset<Texture2D> glowTexture;
 
     public override void Unload() => glowTexture = null;
 

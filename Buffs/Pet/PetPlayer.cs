@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 
 namespace Verdant.Buffs.Pet
 {
@@ -24,7 +25,7 @@ namespace Verdant.Buffs.Pet
 		public void PetFlag(Projectile projectile)
 		{
 			var modPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
-
+            
 			if (!modPlayer.pets.ContainsKey(projectile.type))
 				modPlayer.pets.Add(projectile.type, true);
 

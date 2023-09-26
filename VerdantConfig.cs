@@ -20,6 +20,9 @@ namespace Verdant
         [DefaultValue(true)]
         public bool CustomDialogue;
 
+        [DefaultValue(false)]
+        public bool JungleSpawn;
+
         //[DefaultValue(true)]
         //[Label("$Mods.Verdant.Configs.FancyBookUILabel")]
         //[Tooltip("$Mods.Verdant.Configs.FancyBookUITooltip")]

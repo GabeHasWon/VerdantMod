@@ -21,8 +21,6 @@ internal class SmallThorn : ModNPC, IDrawAdditive
 
     private static Asset<Texture2D> auraTex;
 
-    public override void Unload() => auraTex = null;
-
     protected virtual Vector2 Size => new(10, 22);
     protected virtual string BestiaryText => "The branch of a ???????, which explodes when approached. Holds eye contact well...too well.";
     protected virtual int ExplosionRadius => 80;
@@ -35,6 +33,9 @@ internal class SmallThorn : ModNPC, IDrawAdditive
     private ref float OwnedByCore => ref NPC.ai[3];
 
     private Vector2 _offset = Vector2.Zero;
+
+    public override void Unload() => auraTex = null;
+    public override bool IsLoadingEnabled(Mod mod) => false;
 
     public override void SetStaticDefaults()
     {

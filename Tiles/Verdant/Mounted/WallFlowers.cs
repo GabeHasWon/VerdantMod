@@ -109,7 +109,7 @@ class Flower_3x3 : ModTile, IFlowerTile
         yield return new((tile.TileFrameX <= 18) ? ModContent.ItemType<RedPetal>() : ModContent.ItemType<PinkPetal>()) { stack = Main.rand.Next(3, 7) };
 
         if (Main.rand.NextBool(3)) //1.4.4PORT
-            yield return new(ModContent.ItemType<VerdantFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
+            yield return new(ModContent.ItemType<LargeFlowerBulb>()) { stack = Main.rand.Next(1, 3) };
     }
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)

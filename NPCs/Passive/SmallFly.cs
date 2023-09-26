@@ -3,14 +3,21 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Critter;
 
-namespace Verdant.NPCs.Enemy
+namespace Verdant.NPCs.Passive
 {
     public class SmallFly : ModNPC
     {
         private short distanceToHost = -1;
 
-        public override void SetStaticDefaults() => Main.npcFrameCount[NPC.type] = 2;
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[NPC.type] = 2;
+            Main.npcCatchable[Type] = true;
+
+            NPCID.Sets.CountsAsCritter[Type] = true;
+        }
 
         public override void SetDefaults()
         {
@@ -27,13 +34,15 @@ namespace Verdant.NPCs.Enemy
             NPC.aiStyle = -1;
             NPC.HitSound = SoundID.Critter;
             NPC.DeathSound = SoundID.Critter;
+            NPC.catchItem = (short)ModContent.ItemType<LushWingletItem>();
+
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("A tiny creature made of leaf, petal and flesh. Skittish and harmless."),
+                new FlavorTextBestiaryInfoElement("A tiny creature made of leaf, petal and flesh. Skittish and harmless. Somehow, they hold a little sadness within."),
             });
         }
 
@@ -50,19 +59,19 @@ namespace Verdant.NPCs.Enemy
                 NPC.ai[1]++; //Timer
                 if (NPC.ai[1] == 90) //If timer elapses a set time
                 {
-                    NPC.ai[2] = NPC.position.X + Main.rand.Next(70, 170) * (Main.rand.NextBool(2)? -1 : 1); //Find a position in the world
-                    NPC.ai[3] = NPC.position.Y + Main.rand.Next(70, 170) * (Main.rand.NextBool(2)? -1 : 1);
+                    NPC.ai[2] = NPC.position.X + Main.rand.Next(70, 170) * (Main.rand.NextBool(2) ? -1 : 1); //Find a position in the world
+                    NPC.ai[3] = NPC.position.Y + Main.rand.Next(70, 170) * (Main.rand.NextBool(2) ? -1 : 1);
 
                     if (Vector2.Distance(NPC.position, target.position) < 240) //If the player is too close, find a position away from the player in the world
                     {
-                        Vector2 offset = -Vector2.Normalize(target.position - NPC.position) * (Main.rand.Next(120, 200));
+                        Vector2 offset = -Vector2.Normalize(target.position - NPC.position) * Main.rand.Next(120, 200);
                         NPC.ai[2] = NPC.position.X + offset.X;
                         NPC.ai[3] = NPC.position.Y + offset.Y;
                         NPC.netUpdate = true;
                     }
                 }
 
-                float mult = (Vector2.Distance(NPC.position, target.position) < 240) ? 1.5f : 1f; //Extra speed if the player is too close
+                float mult = Vector2.Distance(NPC.position, target.position) < 240 ? 1.5f : 1f; //Extra speed if the player is too close
 
                 if (NPC.ai[2] != 0) NPC.velocity = Vector2.Normalize(new Vector2(NPC.ai[2], NPC.ai[3]) - NPC.position) * (3.5f * mult); //Speed
                 else NPC.velocity *= 0.975f; //Slow down when not going to a place
@@ -114,6 +123,6 @@ namespace Verdant.NPCs.Enemy
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) && !spawnInfo.PlayerInTown ? (spawnInfo.Water ? 1.4f : 1f) : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && !spawnInfo.PlayerInTown ? spawnInfo.Water ? 1.4f : 1f : 0f;
     }
 }

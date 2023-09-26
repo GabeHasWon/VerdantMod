@@ -28,10 +28,18 @@ public class SyncTreebandModule : Module
     {
         if (Main.netMode != NetmodeID.Server) //Set on client
         {
+            if (fromWho < 0 || fromWho >= Main.maxPlayers)
+                return;
+
             Main.player[fromWho].GetModPlayer<TreeHelmetPlayer>().fruits = fruits;
             Main.player[fromWho].GetModPlayer<TreeHelmetPlayer>().fruitTimer = fruitTimer;
         }
         else if (fromWho != -1) //Send to other clients
+        {
+            if (fromWho < 0 || fromWho >= Main.maxPlayers)
+                return;
+
             Send(-1, fromWho, false);
+        }
     }
 }

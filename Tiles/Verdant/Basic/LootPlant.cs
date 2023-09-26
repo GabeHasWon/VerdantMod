@@ -16,6 +16,8 @@ class LootPlant : ModTile
 
     public override void SetStaticDefaults()
     {
+        Main.tileLighted[Type] = true;
+
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<VerdantPinkPetal>(), 
@@ -28,6 +30,7 @@ class LootPlant : ModTile
 
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) => Main.tile[i, j].TileFrameY >= FrameHeight;
     public override bool IsTileSpelunkable(int i, int j) => true;
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.5f, 0.1f, 0.4f);
 
     public override void RandomUpdate(int i, int j)
     {

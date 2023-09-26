@@ -25,7 +25,7 @@ class VerdantVendorNPC : GlobalNPC
             shop.Add(new Item(ModContent.ItemType<WaterberryBushItem>())
             {
                 shopCustomPrice = Item.buyPrice(0, 0, 15, 0),
-            }, Condition.Hardmode);
+            });
 
             shop.Add(ModContent.ItemType<Microcosm>());
             shop.Add(ModContent.ItemType<LightbulbSeeds>());
