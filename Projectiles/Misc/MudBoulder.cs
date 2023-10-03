@@ -18,7 +18,7 @@ public class MudBoulder : ModProjectile
 
     public override bool OnTileCollide(Vector2 oldVelocity) => oldVelocity.X != Projectile.velocity.X;
 
-    public override void Kill(int timeLeft)
+    public override void OnKill(int timeLeft)
     {
         for (int i = 0; i < 4; ++i)
             Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Mud, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));

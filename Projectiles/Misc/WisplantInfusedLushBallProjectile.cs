@@ -51,7 +51,7 @@ namespace Verdant.Projectiles.Misc
                 Dust.NewDust(Projectile.position, 16, 16, DustID.TerraBlade, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-3f, -1f));
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 4; ++i)
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Mud, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));

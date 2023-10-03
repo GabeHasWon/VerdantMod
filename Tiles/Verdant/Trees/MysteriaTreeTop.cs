@@ -64,29 +64,29 @@ internal class MysteriaTreeTop : ModTile
         //WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
         //WorldGen.numTreeShakes++;
 
-        //WeightedRandom<int> random = new(Main.rand);
+        WeightedRandom<int> random = new(Main.rand);
 
-        //random.Add(0, 1);
-        //random.Add(1, 0.7f);
-        //random.Add(2, 0.85f);
+        random.Add(0, 1);
+        random.Add(1, 0.7f);
+        random.Add(2, 0.85f);
 
-        //int rand = random;
-        //if (rand == 1)
-        //{
-        //    int type = Main.rand.NextBool() ? ModContent.ItemType<Walnut>() : ModContent.ItemType<Mystuber>();
-        //    Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
-        //}
-        //else if (rand == 2)
-        //{
-        //    int reps = Main.rand.Next(3, 6);
+        int rand = random;
+        if (rand == 1)
+        {
+            int type = Main.rand.NextBool() ? ModContent.ItemType<Walnut>() : ModContent.ItemType<Mystuber>();
+            Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
+        }
+        else if (rand == 2)
+        {
+            int reps = Main.rand.Next(3, 6);
 
-        //    WeightedRandom<int> npcType = new(Main.rand);
-        //    npcType.Add(ModContent.NPCType<MysteriaFlotie>(), 0.9f);
-        //    npcType.Add(ModContent.NPCType<MysteriaFlotiny>(), 1.2f);
+            WeightedRandom<int> npcType = new(Main.rand);
+            npcType.Add(ModContent.NPCType<MysteriaFlotie>(), 0.9f);
+            npcType.Add(ModContent.NPCType<MysteriaFlotiny>(), 1.2f);
 
-        //    for (int i = 0; i < reps; ++i)
-        //        NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
-        //}
+            for (int i = 0; i < reps; ++i)
+                NPC.NewNPC(new EntitySource_ShakeTree(x, y), x * 16, y * 16, npcType);
+        }
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

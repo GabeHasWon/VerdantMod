@@ -98,15 +98,16 @@ namespace Verdant.Systems.ScreenText.Caches
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.0",
                 Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}")),
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.2",
+                "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.3",
             };
 
-            ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(12))
+            ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(25))
             {
                 speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
                 speakerColor = Color.Lime
             };
 
-            ScreenText randomThoughtDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Thoughts." + Main.rand.Next(5))
+            ScreenText randomThoughtDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Thoughts." + Main.rand.Next(10))
             {
                 speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
                 speakerColor = Color.Lime * 0.45f,

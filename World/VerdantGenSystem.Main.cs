@@ -59,7 +59,7 @@ public partial class VerdantGenSystem : ModSystem
 
             do
             {
-                x = WorldGen.genRand.Next(Main.maxTilesX / 4, (int)(Main.maxTilesX / 1.2f));
+                x = WorldGen.genRand.Next(Main.maxTilesX / 5, (int)(Main.maxTilesX / 1.25f));
             } while (IsInvalidCenterX(x));
             return x;
         }
@@ -329,22 +329,27 @@ public partial class VerdantGenSystem : ModSystem
         int startY = VerdantArea.Center.Y - (int)(Main.maxTilesY / (Buffer * 2));
         int endY = VerdantArea.Center.Y + (int)(Main.maxTilesY / (Buffer * 2));
 
-        Dictionary<Point16, bool> aggregateTiles = new();
+        HashSet<Point16> aggregateTiles = new();
 
         foreach (var item in VerdantCircles)
             foreach (var tile in item.tiles)
-                if (!aggregateTiles.ContainsKey(tile) || !aggregateTiles[tile])
-                    aggregateTiles.Add(tile, true);
+                if (!aggregateTiles.Contains(tile))
+                    aggregateTiles.Add(tile);
 
-        GetVerdantArea(aggregateTiles.Keys.ToList());
+        GetVerdantArea(aggregateTiles);
 
-        foreach (var (point, _) in aggregateTiles)
+        foreach (var point in aggregateTiles)
         {
             Tile t = Framing.GetTileSafely(point.X, point.Y);
             float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
 
             t.ClearEverything();
-            if (n < -0.67f) { }
+
+            if (n < -0.85f)
+                continue;
+
+            if (n < -0.67f) 
+            { }
             else if (n < -0.57f)
                 WorldGen.PlaceTile(point.X, point.Y, TileTypes[0]);
             else
@@ -364,10 +369,15 @@ public partial class VerdantGenSystem : ModSystem
         VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
         VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
 
-        foreach (var (point, _) in aggregateTiles)
+        foreach (var point in aggregateTiles)
         {
-            Tile t = Framing.GetTileSafely(point.X, point.Y);
             float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
+
+            if (n > -0.4f)
+                continue;
+
+            Tile t = Framing.GetTileSafely(point.X, point.Y);
+
             if (t.WallType == WallTypes[0] && n < -0.4f)
                 GenHelper.ReplaceWall(point, WallTypes[2]);
 
@@ -376,7 +386,7 @@ public partial class VerdantGenSystem : ModSystem
         }
     }
 
-    private static void GetVerdantArea(List<Point16> aggregateTiles)
+    private static void GetVerdantArea(HashSet<Point16> aggregateTiles)
     {
         int left = Main.maxTilesX;
         int right = 0;

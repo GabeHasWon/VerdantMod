@@ -20,7 +20,8 @@ namespace Verdant.Items
         /// <param name="consumable">If the item is consumable. Defaults to true.</param>
         /// <param name="placeStyle">The placeStyle of the item. Defaults to -1, which skips setting it.</param>
         /// <param name="rarity">Rarity of the item. Defaults to <see cref="ItemRarityID.White"/>.</param>
-        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White, int maxStack = -1, int createStyle = 0, bool autoReuse = true)
+        /// <param name="price">Price of the item.</param>
+        public static void SetBlock(ModItem i, int w, int h, int tile, bool consumable = true, int placeStyle = -1, int rarity = ItemRarityID.White, int maxStack = -1, int createStyle = 0, bool autoReuse = true, int price = 0)
         {
             i.Item.width = w;
             i.Item.height = h;
@@ -34,6 +35,7 @@ namespace Verdant.Items
             i.Item.useStyle = ItemUseStyleID.Swing;
             i.Item.consumable = consumable;
             i.Item.rare = rarity;
+            i.Item.value = price;
 
             if (placeStyle != -1)
                 i.Item.placeStyle = placeStyle;
@@ -94,7 +96,17 @@ namespace Verdant.Items
             i.Item.UseSound = SoundID.Item44;
         }
 
-        public static void SetCritter(ModItem i, int w, int h, int npcType, int rarity = 0, int b = 5)
+        /// <summary>
+        /// Sets a ModItem to default to a critter item.
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        /// <param name="npcType"></param>
+        /// <param name="rarity"></param>
+        /// <param name="bait"></param>
+        /// <param name="price">Price of the item. Defaults to 7 silver 50 copper.</param>
+        public static void SetCritter(ModItem i, int w, int h, int npcType, int rarity = 0, int bait = 5, int price = -1)
         {
             i.Item.width = w;
             i.Item.height = h;
@@ -106,10 +118,11 @@ namespace Verdant.Items
             i.Item.noUseGraphic = true;
             i.Item.noMelee = false;
             i.Item.useStyle = ItemUseStyleID.Swing;
-            i.Item.bait = b;
+            i.Item.bait = bait;
             i.Item.makeNPC = (short)npcType;
             i.Item.autoReuse = true;
             i.Item.consumable = true;
+            i.Item.value = price == -1 ? Item.buyPrice(silver: 7, copper: 50) : price;
         }
 
         public static void SetMaterial(ModItem i, int w, int h, int rarity = 0, int maxStack = 999, bool consumable = false, int value = 0, bool noUseGraphic = false)

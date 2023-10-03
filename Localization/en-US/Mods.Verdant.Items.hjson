@@ -599,7 +599,7 @@ HarvestedPickipuffItem: {
 
 MarigoldItem: {
 	DisplayName: Marigold
-	Tooltip: "'Smells...metallic?'"
+	Tooltip: "'Smells...metallic...and faintly of magic.'"
 }
 
 PickipuffItem: {

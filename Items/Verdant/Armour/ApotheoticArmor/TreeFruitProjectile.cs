@@ -20,7 +20,7 @@ internal class TreeFruitProjectile : GlobalProjectile
     private int? lastDamage = null;
 
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) => entity.minion;
-    public override void Kill(Projectile projectile, int timeLeft) => fruitBuff = FruitType.None;
+    public override void OnKill(Projectile projectile, int timeLeft) => fruitBuff = FruitType.None;
 
     public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
     {

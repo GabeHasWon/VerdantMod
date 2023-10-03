@@ -1,1 +1,12 @@
-- you better not forget to do the critter cost things
+- Added obtainability method to Marigold
+	Place a 2x2 square of gold coins on Verdant ground to spawn a Marigold
+- Added a significant amount of Apotheosis dialogue
+- Added a proper sell value to all critters
+- Re-implemented tree shaking drops with temporary workaround
+- Added a bunch of new Apotheosis item interaction
+- Made all dye bulbs sell for 40 silver
+- Made Marigold sell for 4 gold
+- Adjusted Lush Grass map color
+- Removed the base from Verdant trees since they caused a bunch of issues
+- Significantly improved Verdant generation speed
+- Made trees more common in the Verdant biome

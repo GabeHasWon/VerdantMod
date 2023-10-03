@@ -37,7 +37,7 @@ class MagicWisplantProj : ModProjectile
             Projectile.alpha = Math.Min(255 - (int)(255 * ((Projectile.timeLeft + 30) / 60f)), 125);
     }
 
-    public override void Kill(int timeLeft)
+    public override void OnKill(int timeLeft)
     {
         for (int i = 0; i < 6; ++i)
             Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Grass, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));

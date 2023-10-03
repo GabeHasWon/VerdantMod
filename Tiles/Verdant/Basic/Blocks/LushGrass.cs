@@ -9,7 +9,7 @@ internal class LushGrass : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Dig, new Color(142, 62, 32), true, false);
+        QuickTile.SetAll(this, 0, DustID.Grass, SoundID.Dig, new Color(84, 178, 38), true, false);
 
         Main.tileBrick[Type] = true;
 

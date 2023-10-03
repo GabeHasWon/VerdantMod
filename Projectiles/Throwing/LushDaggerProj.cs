@@ -26,7 +26,7 @@ class LushDaggerProj : ModProjectile
         Projectile.velocity.Y += 0.1f;
     }
 
-    public override void Kill(int timeLeft)
+    public override void OnKill(int timeLeft)
     {
         Gore.NewGorePerfect(Projectile.GetSource_Death(), Projectile.Center, new Vector2(0, 0), ModContent.GoreType<Gores.Verdant.LushLeaf>(), 1f);
 

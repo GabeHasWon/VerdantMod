@@ -160,27 +160,22 @@ public partial class VerdantGenSystem
             for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees & puffs so they get all the spawns they need
             {
                 //Trees
-                bool doPlace = true;
-
-                for (int k = -1; k < 2; ++k)
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
                 {
-                    bool anyConditions = !TileHelper.ActiveTypeNoTopSlope(i + k, j, TileTypes[0]) || !WorldGen.TileEmpty(i + k, j - 1);
-                    if (anyConditions)
-                    {
-                        doPlace = false;
-                        break;
-                    }
+                    int minHeight = 0;
+
+                    for (int k = 1; k < 13; ++k)
+                        if (!WorldGen.TileEmpty(i, j - k))
+                            minHeight = k;
+
+                    if (minHeight > 6 && WorldGen.genRand.NextBool(16))
+                        VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, minHeight, false, -1, false);
                 }
 
-                if (!WorldGen.TileEmpty(i, j - 2))
-                    doPlace = false;
-
-                if (doPlace && WorldGen.genRand.NextBool(24))
-                    VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, 12, false, -1, false);
-
                 //Puffs
-                doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) &&
+                bool doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) &&
                     TileHelper.ActiveTypeNoTopSlope(i + 1, j + 3, ModContent.TileType<VerdantGrassLeaves>());
+
                 if (doPlace && WorldGen.genRand.NextBool(60))
                 {
                     WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
