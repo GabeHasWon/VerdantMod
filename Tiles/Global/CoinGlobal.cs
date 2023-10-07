@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System.Linq;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.TileEntities.Verdant;
@@ -22,7 +23,7 @@ internal class CoinGlobal : GlobalTile
                     if (TileHelper.ActiveType(i + k, j + l, TileID.GoldCoinPile))
                         count++;
 
-            var grasses = VerdantGrassLeaves.VerdantGrassList().ToArray();
+            var grasses = VerdantGrassLeaves.VerdantGrassTypes.ToArray();
             bool canPlace = TileHelper.ActiveType(i, j + 2, grasses) && TileHelper.ActiveType(i + 1, j + 2, grasses);
 
             if (count >= 4 && canPlace)

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -108,38 +109,91 @@ public static class ForegroundManager
 
     internal static void Save(TagCompound compound)
     {
-        List<TagCompound> compounds = new();
+        TagCompound compounds = new()
+        {
+            { "count", Items.Where(x => x.SaveMe).Count() }
+        };
 
+        int index = 0;
         foreach (var item in Items)
         {
             if (item.SaveMe)
             {
                 TagCompound itemTag = new()
                 {
-                    { "ForegroundItem:type", item.GetType().FullName }
+                    { "type", item.GetType().AssemblyQualifiedName }
                 };
 
                 item.Save(itemTag);
-                compounds.Add(itemTag);
+                compounds.Add("item" + index, itemTag);
+                index++;
+            }
+        }
+
+        TagCompound playerLayerCompounds = new()
+        {
+            { "count", PlayerLayerItems.Where(x => x.SaveMe).Count() }
+        };
+
+        index = 0;
+        foreach (var item in PlayerLayerItems)
+        {
+            if (item.SaveMe)
+            {
+                TagCompound itemTag = new()
+                {
+                    { "type", item.GetType().AssemblyQualifiedName }
+                };
+
+                item.Save(itemTag);
+                playerLayerCompounds.Add("item" + index, itemTag);
+                index++;
             }
         }
 
         compound.Add("Verdant:Foreground", compounds);
+        compound.Add("Verdant:PlayerLayerForeground", playerLayerCompounds);
     }
 
     internal static void Load(TagCompound compound)
     {
         if (compound.ContainsKey("Verdant:Foreground"))
         {
-            var tags = compound.GetList<TagCompound>("Verdant:Foreground");
+            if (compound["Verdant:Foreground"] is not TagCompound tag)
+                return;
 
-            foreach (var item in tags)
+            int count = tag.GetInt("count");
+
+            for (int i = 0; i < count; i++)
             {
-                string name = item.GetString("ForegroundItem:type");
-                var fg = Activator.CreateInstance(Type.GetType(name)) as ForegroundItem;
-                fg.Load(item);
+                if (!tag.ContainsKey("item" + i))
+                    continue;
 
-                Items.Add(fg);
+                var item = tag.GetCompound("item" + i);
+                string type = item.GetString("type");
+                ForegroundItem fgItem = Activator.CreateInstance(Type.GetType(type)) as ForegroundItem;
+                fgItem.Load(item);
+                Items.Add(fgItem);
+            }
+        }
+
+        if (compound.ContainsKey("Verdant:PlayerLayerForeground"))
+        {
+            if (compound["Verdant:PlayerLayerForeground"] is not TagCompound playerLayerTag)
+                return;
+
+            int count = playerLayerTag.GetInt("count");
+
+            for (int i = 0; i < count; i++)
+            {
+                if (!playerLayerTag.ContainsKey("item" + i))
+                    continue;
+
+                var item = playerLayerTag.GetCompound("item" + i);
+                string type = item.GetString("type");
+                ForegroundItem fgItem = Activator.CreateInstance(Type.GetType(type)) as ForegroundItem;
+                fgItem.Load(item);
+                PlayerLayerItems.Add(fgItem);
             }
         }
     }

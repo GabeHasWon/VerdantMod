@@ -40,6 +40,6 @@ class AcornGlobal : GlobalItem
         Tile tile = Main.tile[pos.X, pos.Y + 1];
         bool inRange = player.IsInTileInteractionRange(pos.X, pos.Y + 1, TileReachCheckSettings.Simple);
 
-        return inRange && tile.HasTile && VerdantGrassLeaves.VerdantGrassList().Contains(tile.TileType) && Main.tile[pos].TileType != ModContent.TileType<LushSapling>();
+        return inRange && tile.HasTile && VerdantGrassLeaves.VerdantGrassTypes.Contains(tile.TileType) && Main.tile[pos].TileType != ModContent.TileType<LushSapling>();
     }
 }

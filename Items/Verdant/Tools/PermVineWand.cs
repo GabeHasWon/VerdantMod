@@ -37,7 +37,7 @@ class PermVineWand : ModItem
 
     public override bool CanUseItem(Player player)
     {
-        if (!PermVineWandProjectile.ConsumeTileWand(player, true))
+        if (player.altFunctionUse == 2 && !PermVineWandProjectile.ConsumeTileWand(player, true))
             PermVineWandProjectile.KillVineAtMouse(player);
         return true;
     }
@@ -49,7 +49,7 @@ public class PermVineWandProjectile : ModProjectile
 
     public ref float Timer => ref Projectile.ai[0];
 
-    public EnchantedVine LastVine = null;
+    public ZipvineEntity lastVine = null;
 
     private bool _init = false;
 
@@ -74,7 +74,7 @@ public class PermVineWandProjectile : ModProjectile
         if (!_init)
         {
             Timer = 1;
-            LastVine = null;
+            lastVine = null;
             _init = true;
         }
 
@@ -105,7 +105,9 @@ public class PermVineWandProjectile : ModProjectile
 
             Timer--;
 
-            if (Timer <= 0 && Projectile.owner == Main.myPlayer)
+            const int MinDistance = 16;
+
+            if (Timer <= 0 && Projectile.owner == Main.myPlayer && (lastVine is null || Vector2.Distance(Main.MouseWorld, lastVine.Center) > MinDistance))
             {
                 if (!ConsumeTileWand(Main.player[Projectile.owner]))
                 {
@@ -113,7 +115,7 @@ public class PermVineWandProjectile : ModProjectile
                     return;
                 }
 
-                LastVine = VineWandCommon.BuildVine(Projectile.owner, LastVine);
+                lastVine = VineWandCommon.BuildVine(MinDistance, lastVine);
                 Timer = 3;
             }
         }
@@ -121,7 +123,7 @@ public class PermVineWandProjectile : ModProjectile
 
     internal static void KillVineAtMouse(Player player)
     {
-        if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is EnchantedVine && x.DistanceSQ(Main.MouseWorld) < 18 * 18) is EnchantedVine vine && vine.permanent)
+        if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is ZipvineEntity && x.DistanceSQ(Main.MouseWorld) < 18 * 18) is ZipvineEntity vine)
         {
             vine.Kill();
             player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<LushLeaf>());
@@ -136,7 +138,7 @@ public class PermVineWandProjectile : ModProjectile
 
             if (!item.IsAir && item.type == ModContent.ItemType<LushLeaf>())
             {
-                if (!justChecking) //Only consume if I'm not just checking
+                if (!justChecking) // Only consume if I'm not just checking
                 {
                     item.stack--;
 

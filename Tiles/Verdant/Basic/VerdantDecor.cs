@@ -8,6 +8,7 @@ using Terraria;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Metadata;
+using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
@@ -18,7 +19,7 @@ internal class VerdantDecor1x1 : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 7;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
@@ -122,7 +123,7 @@ internal class VerdantDecor1x1NoCut : ModTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 4;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Stone, SoundID.Dig, false, new Color(161, 226, 99));
@@ -141,7 +142,7 @@ internal class VerdantDecor2x1 : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 6;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 2, 1, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
@@ -162,7 +163,7 @@ internal class VerdantDecor2x2 : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 8;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
@@ -186,7 +187,7 @@ internal class VerdantDecor1x2 : ModTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 6;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 2, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));
@@ -203,7 +204,7 @@ internal class VerdantDecor1x3 : ModTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 7;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 3, DustID.Grass, SoundID.Grass, true, new Color(161, 226, 99));

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.World;
+using Terraria.Audio;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -20,7 +21,11 @@ class GemFlower : ModItem
         if (raw is null)
             Main.NewText("Talk to the Apotheosis first!");
         else
+        {
+            SoundEngine.PlaySound(SoundID.Item6, player.Center);
             player.Teleport(raw.Value.ToWorldCoordinates(), TeleportationStyleID.MagicConch, 0);
+            SoundEngine.PlaySound(SoundID.Item6, player.Center);
+        }
         return true;
     }
 }

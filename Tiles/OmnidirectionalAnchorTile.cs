@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -8,6 +9,7 @@ namespace Verdant.Tiles;
 public abstract class OmnidirectionalAnchorTile : ModTile
 {
     protected virtual int StyleRange => 1;
+    protected virtual int[] ValidTiles => null;
 
     public sealed override void SetStaticDefaults()
     {
@@ -56,15 +58,23 @@ public abstract class OmnidirectionalAnchorTile : ModTile
         return false;
     }
 
-    private static bool AnyValidDirection(int i, int j, out bool left, out bool right, out bool top, out bool bottom)
+    private bool AnyValidDirection(int i, int j, out bool left, out bool right, out bool top, out bool bottom)
     {
-        left = WorldGen.SolidTile(i - 1, j, true);
-        right = WorldGen.SolidTile(i + 1, j, true);
-        top = WorldGen.SolidTile(i, j - 1);
-        bottom = WorldGen.SolidTile(i, j + 1);
+        bool Valid(int x, int y)
+        {
+            if (ValidTiles is null)
+                return WorldGen.SolidTile(x, y, true);
+
+            return WorldGen.SolidTile(x, y, true) && ValidTiles.Contains(Main.tile[x, y].TileType);
+        }
+
+        left = Valid(i - 1, j);
+        right = Valid(i + 1, j);
+        top = Valid(i, j - 1);
+        bottom = Valid(i, j + 1);
 
         return left || right || top || bottom;
     }
 
-    private static bool AnyValidDirection(int i, int j) => AnyValidDirection(i, j, out bool _, out bool _, out bool _, out bool _);
+    private bool AnyValidDirection(int i, int j) => AnyValidDirection(i, j, out bool _, out bool _, out bool _, out bool _);
 }

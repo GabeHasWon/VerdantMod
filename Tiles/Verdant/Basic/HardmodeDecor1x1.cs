@@ -2,12 +2,15 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.GameContent.Metadata;
+using Verdant.Tiles.Verdant.Basic.Blocks;
+using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
 internal class HardmodeDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
     protected override int StyleRange => 10;
+    protected override int[] ValidTiles => VerdantGrassLeaves.VerdantGrassTypes.ToArray();
 
     protected override void StaticDefaults()
     {

@@ -14,6 +14,7 @@ namespace Verdant.Systems.Foreground
         /// </summary>
         public virtual Point DrawSize => source.Size().ToPoint();
         public virtual bool SaveMe => false;
+        public virtual bool SyncMe => SaveMe;
 
         public Asset<Texture2D> Texture { get; protected set; }
         public Vector2 Center => position + (source.Size() / 2f);

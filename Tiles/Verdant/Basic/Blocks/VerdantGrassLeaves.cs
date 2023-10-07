@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,13 +15,16 @@ using Verdant.Tiles.Verdant.Trees;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
-    internal class VerdantGrassLeaves : ModTile
+    internal class VerdantGrassLeaves : ModTile, IVerdantGrassTile
     {
-        public static List<string> CountsAsVerdantGrass = new();
+        private static List<string> CountsAsVerdantGrass = new();
+        public static ReadOnlyCollection<int> VerdantGrassTypes { get; private set; }
 
-        public static List<int> VerdantGrassList()
+        public static void AddGrass(string type) => CountsAsVerdantGrass.Add(type);
+
+        internal static void FinalizeGrass()
         {
-            List<int> types = new List<int>();
+            List<int> types = new();
 
             foreach (var item in CountsAsVerdantGrass)
             {
@@ -31,8 +35,9 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
                 types.Add(ModContent.Find<ModTile>(split[0], split[1]).Type);
             }
-            return types;
-        } 
+
+            VerdantGrassTypes = new(types);
+        }
 
         public override void SetStaticDefaults()
         {
@@ -43,7 +48,6 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             Main.tileBrick[Type] = true;
 
             RegisterItemDrop(ModContent.ItemType<LushLeaf>());
-            CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(VerdantGrassLeaves));
         }
 
         public override void Unload() => CountsAsVerdantGrass = new();

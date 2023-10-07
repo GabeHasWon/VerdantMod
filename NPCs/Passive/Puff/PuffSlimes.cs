@@ -41,7 +41,8 @@ public class PuffSlimeSmall : ModNPC
         NPC.aiStyle = NPCAIStyleID.Slime;
         NPC.dontCountMe = true;
         NPC.catchItem = (short)ModContent.ItemType<PuffSlimeSmallItem>();
-        NPC.HitSound = new SoundStyle("Verdant/Sounds/CloudLand") with { PitchVariance = 0.05f };
+        NPC.HitSound = new SoundStyle("Verdant/Sounds/CloudLand") with { PitchVariance = 0.05f, Volume = 0.25f };
+        NPC.DeathSound = new SoundStyle("Verdant/Sounds/CloudLand") with { Pitch = 0.5f, PitchVariance = 0.25f, Volume = 1f };
 
         AnimationType = NPCID.BlueSlime;
         AIType = NPCID.Crimslime;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -19,7 +20,7 @@ class BigPuff : ModTile, IFlowerTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, ModContent.TileType<VerdantPinkPetal>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
 
         QuickTile.SetMulti(this, 2, 3, DustID.PinkStarfish, SoundID.Grass, false, new Color(255, 112, 202), true, false, origin: new Point16(0, 1));
     }

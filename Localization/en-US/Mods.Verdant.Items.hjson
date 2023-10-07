@@ -537,7 +537,7 @@ RootRopeItem: {
 
 VerdantFlowerBulb: {
 	DisplayName: Flower Bulb
-	Tooltip: ""
+	Tooltip: Can only be placed on Verdant Leaf or Verdant Vine walls
 }
 
 VerdantStrongVineMaterial: {
@@ -1368,12 +1368,12 @@ VerdantStaff: {
 
 LargeFlowerBulb: {
 	DisplayName: Large Flower Bulb
-	Tooltip: ""
+	Tooltip: "{$VerdantFlowerBulb.Tooltip}"
 }
 
 LightbulbFlowerBulb: {
 	DisplayName: Lightflower Bulb
-	Tooltip: ""
+	Tooltip: "{$VerdantFlowerBulb.Tooltip}"
 }
 
 CrystalHeart: {

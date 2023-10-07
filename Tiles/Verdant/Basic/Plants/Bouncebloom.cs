@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
@@ -23,7 +24,7 @@ internal class Bouncebloom : ModTile, IFlowerTile
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
         TileObjectData.newTile.Origin = new Point16(1, 1);
         TileObjectData.newTile.AnchorValidTiles = new[] { TileID.Mud, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantStrongVine>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.AnchorAlternateTiles = new[] { ModContent.TileType<VerdantStrongVine>() };
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.AlternateTile, 1, 1);
         TileObjectData.addTile(Type);

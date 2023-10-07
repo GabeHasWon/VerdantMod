@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class LushGrass : ModTile
+internal class LushGrass : ModTile, IVerdantGrassTile
 {
     public override void SetStaticDefaults()
     {
@@ -15,8 +15,6 @@ internal class LushGrass : ModTile
 
         TileID.Sets.NeedsGrassFramingDirt[Type] = ModContent.TileType<LushSoil>();
         TileID.Sets.NeedsGrassFraming[Type] = true;
-
-        VerdantGrassLeaves.CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(LushGrass));
     }
 
     public override bool CanExplode(int i, int j)

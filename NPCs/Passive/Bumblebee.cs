@@ -50,6 +50,8 @@ namespace Verdant.NPCs.Passive
             NPC.aiStyle = -1;
             NPC.dontCountMe = true;
             NPC.catchItem = (short)ModContent.ItemType<BumblebeeItem>();
+            NPC.DeathSound = SoundID.NPCHit45;
+
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
         }
 

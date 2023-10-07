@@ -10,18 +10,18 @@ using Verdant.Systems.Foreground.Parallax;
 namespace Verdant.Systems.Syncing;
 
 [Serializable]
-public class EnchantedVineModule : Module
+public class ZipvineModule : Module
 {
     public readonly float x;
     public readonly float y;
-    public readonly short? beforeWhoAmI;
+    public readonly short? slotInList;
     public readonly short fromWho = 0;
 
-    public EnchantedVineModule(float x, float y, short? beforeWhoAmI, short myPlayer)
+    public ZipvineModule(float x, float y, short? slotInList, short myPlayer)
     {
         this.x = x;
         this.y = y;
-        this.beforeWhoAmI = beforeWhoAmI;
+        this.slotInList = slotInList;
         fromWho = myPlayer;
     }
 
@@ -29,7 +29,7 @@ public class EnchantedVineModule : Module
     {
         if (Main.netMode != NetmodeID.Server) //Spawn on client
         {
-            var vine = beforeWhoAmI is null ? null : ForegroundManager.PlayerLayerItems[beforeWhoAmI.Value] as EnchantedVine;
+            var vine = slotInList is null ? null : ForegroundManager.PlayerLayerItems[slotInList.Value] as ZipvineEntity;
             VineWandCommon.BuildVine(fromWho, vine, new Vector2(x, y), true);
         }
         else if (fromWho != -1) //Send to other clients

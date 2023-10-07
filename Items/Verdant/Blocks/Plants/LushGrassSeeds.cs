@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +32,7 @@ public class LushGrassSeeds : ModItem
         {
             tile.TileType = (ushort)ModContent.TileType<LushGrass>();
             WorldGen.SquareTileFrame(Player.tileTargetX, Player.tileTargetY, true);
+            SoundEngine.PlaySound(SoundID.Grass, new Vector2(Player.tileTargetX, Player.tileTargetY) * 16);
 
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendTileSquare(-1, Player.tileTargetX, Player.tileTargetY, 1, TileChangeType.None);

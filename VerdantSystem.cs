@@ -71,7 +71,6 @@ public class VerdantSystem : ModSystem
         tag.Add("apotheosisStats", apotheosisStats);
         tag.Add("backgroundItems", backgroundItems);
 
-        SaveVines(tag);
         SaveClouds(tag);
 
         if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is not null)
@@ -110,24 +109,6 @@ public class VerdantSystem : ModSystem
         apotheosisPestControlNotif = false;
     }
 
-    private static void SaveVines(TagCompound tag)
-    {
-        var vines = ForegroundManager.Items.Where(x => !x.killMe && x is EnchantedVine vine && vine.permanent);
-        var positions = new List<Vector2>();
-        var continueSet = new List<bool>();
-
-        for (int i = 0; i < vines.Count(); ++i)
-        {
-            var item = vines.ElementAt(i) as EnchantedVine;
-            positions.Add(item.Center);
-
-            if (i > 0 && i < vines.Count() - 2 && item != (vines.ElementAt(i + 1) as EnchantedVine).PriorVine)
-                positions.Add(Vector2.Zero);
-        }
-
-        tag.Add("permVinePositions", positions);
-    }
-
     public override void LoadWorldData(TagCompound tag)
     {
         var stats = tag.GetList<string>("apotheosisStats");
@@ -148,8 +129,6 @@ public class VerdantSystem : ModSystem
             if (bgItems != null)
                 BackgroundItemManager.Load(bgItems);
 
-            SpawnPermVines(tag.GetList<Vector2>("permVinePositions"));
-
             var clouds = tag.GetList<Vector2>("cloudPositions");
             foreach (var item in clouds)
                 ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
@@ -161,38 +140,6 @@ public class VerdantSystem : ModSystem
 
         if (tag.ContainsKey("apotheosisLocation"))
             ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = tag.Get<Point16>("apotheosisLocation");
-    }
-
-    private static void SpawnPermVines(IList<Vector2> positions)
-    {
-        List<List<Vector2>> Vines = new()
-        {
-            new List<Vector2>()
-        };
-
-        int currentSet = 0;
-
-        for (int i = 0; i < positions.Count; ++i)
-        {
-            if (positions[i] == Vector2.Zero /*i > 0 && !continuity[i - 1]*/)
-            {
-                currentSet++;
-                Vines.Add(new List<Vector2>());
-                continue;
-            }
-
-            Vines[currentSet].Add(positions[i]);
-        }
-
-        foreach (var item in Vines)
-            BuildVine(item);
-    }
-
-    private static void BuildVine(List<Vector2> item)
-    {
-        EnchantedVine lastVine = null;
-        for (int i = 0; i < item.Count; i++)
-            lastVine = VineWandCommon.BuildVine(Main.myPlayer, lastVine, item[i]);
     }
 
     public override void PostAddRecipes() => SacrificeAutoloader.Load(Mod);

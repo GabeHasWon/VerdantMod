@@ -19,7 +19,7 @@ class SunPlant : ModTile, IFlowerTile
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>(), TileID.Dirt };
 
-        List<int> grasses = new(VerdantGrassLeaves.VerdantGrassList());
+        List<int> grasses = new(VerdantGrassLeaves.VerdantGrassTypes);
 
         for (int i = 0; i < TileID.Sets.Grass.Length; ++i)
             if (TileID.Sets.Grass[i])

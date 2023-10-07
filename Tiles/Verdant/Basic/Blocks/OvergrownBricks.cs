@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
-    internal class OvergrownBricks : ModTile
+    internal class OvergrownBricks : ModTile, IVerdantGrassTile
     {
         public override void SetStaticDefaults()
         {
@@ -13,8 +13,6 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
             Main.tileBlendAll[Type] = true;
             Main.tileBrick[Type] = true;
-
-            VerdantGrassLeaves.CountsAsVerdantGrass.Add(nameof(Verdant) + "." + nameof(OvergrownBricks));
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

@@ -9,6 +9,10 @@ using Verdant.Tiles.Verdant;
 using System;
 using System.IO;
 using Verdant.Systems.ModCompat;
+using System.Linq;
+using System.Reflection;
+using Verdant.Tiles;
+using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant;
 
@@ -31,8 +35,22 @@ public partial class VerdantMod : Mod
             Filters.Scene[EffectIDs.BiomeSteam].Load();
         }
 
+        LoadVerdantGrasses();
         MonoModChanges();
         NewBeginningsCompatibility.AddOrigin();
+    }
+
+    private void LoadVerdantGrasses()
+    {
+        var types = GetType().Assembly.GetTypes().Where(x => typeof(IVerdantGrassTile).IsAssignableFrom(x) && !x.IsAbstract);
+        foreach (var item in types)
+        {
+            string name = item.Assembly.GetName().Name;
+            string type = item.Name;
+            VerdantGrassLeaves.AddGrass(name + "." + type);
+        }
+
+        VerdantGrassLeaves.FinalizeGrass();
     }
 
     public override void PostSetupContent()
@@ -54,9 +72,6 @@ public partial class VerdantMod : Mod
         On_WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
         On_Main.Update += Main_Update; //Used for BackgroundItemManager Update
         On_Main.oldDrawWater += On_Main_oldDrawWater;
-
-        On_Player.QuickMount += VinePulleyPlayer.Player_QuickMount;
-        On_Player.Teleport += VinePulleyPlayer.Player_Teleport;
 
         if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)
             IL_WaterfallManager.FindWaterfalls += WaterfallManager_FindWaterfalls;

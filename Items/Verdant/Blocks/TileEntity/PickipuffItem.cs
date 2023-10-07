@@ -18,7 +18,7 @@ public class PickipuffItem : ModItem
     {
         Tile atTarget = Main.tile[Player.tileTargetX, Player.tileTargetY];
         return player.whoAmI == Main.myPlayer && player.InInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) 
-            && atTarget.HasTile && VerdantGrassLeaves.VerdantGrassList().Contains(atTarget.TileType);
+            && atTarget.HasTile && VerdantGrassLeaves.VerdantGrassTypes.Contains(atTarget.TileType);
     }
 
     public override bool? UseItem(Player player)

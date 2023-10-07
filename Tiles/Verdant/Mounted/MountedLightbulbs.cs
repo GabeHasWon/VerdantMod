@@ -30,7 +30,7 @@ namespace Verdant.Tiles.Verdant.Mounted
             TileObjectData.newTile.AnchorBottom = default;
             TileObjectData.newTile.AnchorTop = default;
             TileObjectData.newTile.AnchorWall = true;
-            TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), WallID.GrassUnsafe, WallID.Grass };
+            TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), ModContent.WallType<VerdantVineWall>(), WallID.GrassUnsafe, WallID.Grass };
             TileObjectData.addTile(Type);
 
             DustType = DustID.Grass;

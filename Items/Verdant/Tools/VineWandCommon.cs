@@ -5,32 +5,29 @@ using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Systems.Syncing;
 
-namespace Verdant.Items.Verdant.Tools
+namespace Verdant.Items.Verdant.Tools;
+
+internal class VineWandCommon
 {
-    internal class VineWandCommon
+    public static ZipvineEntity BuildVine(int minDistance, ZipvineEntity lastVine, Vector2? position = null, bool fromNet = false)
     {
-        public static EnchantedVine BuildVine(int owner, EnchantedVine LastVine, Vector2? overridePosition = null, bool noSync = false)
+        if (lastVine is null)
         {
-            var oldVine = LastVine;
+            var zipvine = ForegroundManager.AddItemDirect(new ZipvineEntity(position ?? Main.MouseWorld, -1, -1), true, true) as ZipvineEntity;
 
-            if (LastVine is null)
-                LastVine = ForegroundManager.AddItemDirect(new EnchantedVine(overridePosition ?? Main.MouseWorld, owner), true, true) as EnchantedVine;
-            else
-            {
-                Vector2 pos = LastVine.Center + (LastVine.DirectionTo(Main.MouseWorld) * 14);
-                LastVine = ForegroundManager.AddItemDirect(new EnchantedVine(overridePosition ?? pos, owner), true, true) as EnchantedVine;
-            }
+            if (Main.netMode != NetmodeID.SinglePlayer && !fromNet)
+                new ZipvineModule(zipvine.position.X, zipvine.position.Y, null, (short)Main.myPlayer).Send();
+            return zipvine;
+        }
+        else
+        {
+            Vector2 placePos = position ?? lastVine.position + lastVine.DirectionTo(Main.MouseWorld) * minDistance;
+            var zipvine = ForegroundManager.AddItemDirect(new ZipvineEntity(placePos, lastVine.whoAmI, -1), true, true) as ZipvineEntity;
+            lastVine.nextVine = zipvine;
 
-            if (Main.netMode != NetmodeID.SinglePlayer && !noSync)
-                new EnchantedVineModule(LastVine.position.X, LastVine.position.Y, oldVine is null ? null : (short)oldVine.WhoAmI, (short)Main.myPlayer).Send();
-
-            if (oldVine != null)
-            {
-                oldVine.NextVine = LastVine;
-                LastVine.PriorVine = oldVine;
-            }
-            LastVine.permanent = true;
-            return LastVine;
+            if (Main.netMode != NetmodeID.SinglePlayer && !fromNet)
+                new ZipvineModule(zipvine.position.X, zipvine.position.Y, (short)ForegroundManager.PlayerLayerItems.IndexOf(lastVine), (short)Main.myPlayer).Send();
+            return zipvine;
         }
     }
 }

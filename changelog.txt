@@ -1,12 +1,9 @@
-- Added obtainability method to Marigold
-	Place a 2x2 square of gold coins on Verdant ground to spawn a Marigold
-- Added a significant amount of Apotheosis dialogue
-- Added a proper sell value to all critters
-- Re-implemented tree shaking drops with temporary workaround
-- Added a bunch of new Apotheosis item interaction
-- Made all dye bulbs sell for 40 silver
-- Made Marigold sell for 4 gold
-- Adjusted Lush Grass map color
-- Removed the base from Verdant trees since they caused a bunch of issues
-- Significantly improved Verdant generation speed
-- Made trees more common in the Verdant biome
+- Updated all Flower Bulb tooltips to describe where they can be placed
+- Made Flower Bulbs placeable on friendly Lush Vine walls
+- Updated code that stores ForegroundItems, unused until now
+- Stupid workaround for Waterberry Bush not dropping items (???)
+- Added sound to placing Lush Grass Seeds
+- Added sound to Gemflower use
+- Fixed Verdant grass decor sprite issue
+- Fixed Omnidirectional Anchor tile framing
+- Optimized how grasses are categorized heavily, fixed load order

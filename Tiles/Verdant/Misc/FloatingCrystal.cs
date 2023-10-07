@@ -13,12 +13,12 @@ namespace Verdant.Tiles.Verdant.Misc;
 
 internal class FloatingCrystal : ModTile
 {
-    public override void Load() => On_Projectile.VanillaAI += Projectile_VanillaAI;
+    public override void Load() => On_Projectile.AI += Projectile_VanillaAI;
 
     /// <summary>
     /// Makes this tiles solid for only hooks
     /// </summary>
-    private void Projectile_VanillaAI(On_Projectile.orig_VanillaAI orig, Projectile self)
+    private void Projectile_VanillaAI(On_Projectile.orig_AI orig, Projectile self)
     {
         Main.tileSolid[ModContent.TileType<FloatingCrystal>()] = true;
         orig(self);

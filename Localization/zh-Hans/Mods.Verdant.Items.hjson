@@ -527,7 +527,7 @@ RootRopeItem: {
 
 VerdantFlowerBulb: {
 	DisplayName: 花球茎
-	// Tooltip: ""
+	// Tooltip: Can only be placed on Verdant Leaf or Verdant Vine walls
 }
 
 VerdantStrongVineMaterial: {

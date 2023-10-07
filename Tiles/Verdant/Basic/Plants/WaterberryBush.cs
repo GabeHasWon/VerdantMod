@@ -25,7 +25,7 @@ class WaterberryBush : ModTile, IFlowerTile
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.AlternateTile, 2, 0);
         TileObjectData.newTile.AnchorAlternateTiles = new int[] { ModContent.TileType<WaterberryBushPicked>(), ModContent.TileType<WaterberryBush>() };
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
-        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassList());
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.addTile(Type);
 
         DustType = DustID.Grass;
@@ -35,6 +35,7 @@ class WaterberryBush : ModTile, IFlowerTile
 
         LocalizedText name = CreateMapEntryName();
         AddMapEntry(new Color(71, 181, 168), name);
+        RegisterItemDrop(ModContent.ItemType<WaterberryBushItem>());
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -65,7 +66,7 @@ class WaterberryBush : ModTile, IFlowerTile
         return true;
     }
 
-    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    public override IEnumerable<Item> GetItemDrops(int i, int j) // This straight up doesn't work unless I call it btw
     {
         yield return new Item(ModContent.ItemType<WaterberryBushItem>());
 
@@ -98,6 +99,14 @@ class WaterberryBush : ModTile, IFlowerTile
                     continue;
 
                 WorldGen.KillTile(k, y, false);
+            }
+
+            var drops = GetItemDrops(i, j); // Nonsense workaround (?? why does this need to be here)
+            foreach (Item item in drops)
+            {
+                item.Prefix(-1);
+                int num = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(x, y), x * 16, y * 16, 16, 16, item);
+                Main.item[num].TryCombiningIntoNearbyItems(num);
             }
 
             y--;
