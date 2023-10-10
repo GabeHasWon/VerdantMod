@@ -31,7 +31,7 @@ public class ZipvineEntity : ParallaxedFGItem
         }
     }
 
-    public Rectangle Hitbox => new((int)Center.X - 6, (int)Center.Y, 12, 12);
+    public Rectangle Hitbox => new((int)position.X, (int)position.Y, 12, 12);
 
     public int whoAmI = 0;
     public ZipvineEntity nextVine = null;
@@ -60,7 +60,7 @@ public class ZipvineEntity : ParallaxedFGItem
     public void Kill()
     {
         for (int i = 0; i < 3; ++i)
-            Dust.NewDust(Center + Hitbox.Size() / 3f, Hitbox.Width / 2, Hitbox.Height / 2, DustID.Grass, 0, 0);
+            Dust.NewDust(position + Hitbox.Size() / 3f, Hitbox.Width / 2, Hitbox.Height / 2, DustID.Grass, 0, 0);
 
         killMe = true;
 
@@ -77,7 +77,7 @@ public class ZipvineEntity : ParallaxedFGItem
         SpriteEffects effects = (dir % 2 == 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
         drawColor = Lighting.GetColor(position.ToTileCoordinates());
-        drawPosition = Center;
+        drawPosition = position;
         rotation = 0f;
 
         if (Frame == 0)

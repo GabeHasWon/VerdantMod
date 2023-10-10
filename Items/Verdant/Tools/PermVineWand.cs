@@ -128,7 +128,7 @@ public class PermVineWandProjectile : ModProjectile
     /// <param name="player"></param>
     internal static void KillVineAtMouse(Player player)
     {
-        if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is ZipvineEntity && x.DistanceSQ(Main.MouseWorld) < 18 * 18) is ZipvineEntity vine)
+        if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is ZipvineEntity && Vector2.DistanceSquared(x.position, Main.MouseWorld) < 18 * 18) is ZipvineEntity vine)
         {
             vine.Kill();
             player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<LushLeaf>());
