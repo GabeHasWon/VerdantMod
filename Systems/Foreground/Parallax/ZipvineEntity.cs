@@ -10,6 +10,7 @@ namespace Verdant.Systems.Foreground.Parallax;
 
 public class ZipvineEntity : ParallaxedFGItem
 {
+    public virtual Vector2 HoldOffset => new(-6, 18);
     public virtual float ClimbSpeed => 0.6f;
     public virtual byte VineLength => 16;
 
@@ -30,7 +31,7 @@ public class ZipvineEntity : ParallaxedFGItem
         }
     }
 
-    public Rectangle Hitbox => new Rectangle((int)Center.X - 4, (int)Center.Y, 10, 10);
+    public Rectangle Hitbox => new((int)Center.X - 6, (int)Center.Y, 12, 12);
 
     public int whoAmI = 0;
     public ZipvineEntity nextVine = null;
@@ -72,7 +73,7 @@ public class ZipvineEntity : ParallaxedFGItem
 
     public override void Draw()
     {
-        int dir = (int)(((whoAmI % 2) + (whoAmI % 9) + (whoAmI % 3)) % int.MaxValue); //"randomize" direction
+        int dir = (((whoAmI % 2) + (whoAmI % 9) + (whoAmI % 3)) % int.MaxValue); //"randomize" direction
         SpriteEffects effects = (dir % 2 == 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
         drawColor = Lighting.GetColor(position.ToTileCoordinates());
@@ -90,10 +91,10 @@ public class ZipvineEntity : ParallaxedFGItem
             rotation = MathHelper.Lerp(DirectionTo(nextVine.Center).ToRotation(), DirectionTo(priorVine.Center).ToRotation(), 0.5f);
 
         float offset = (float)Math.Sin((_lifeTime + whoAmI % 500000 * 6) * 0.03f) * 0.25f;
-        var frame = new Rectangle(0, Frame * 20, 20, 20);
+        var frame = new Rectangle(dir % 3 * 16, Frame * 20, 14, 18);
 
         if (!killMe)
-            Main.spriteBatch.Draw(Texture.Value, drawPosition - Main.screenPosition, frame, drawColor, rotation + offset, new Vector2(10), 1f, effects, 0);
+            Main.spriteBatch.Draw(Texture.Value, drawPosition - Main.screenPosition, frame, drawColor, rotation + offset, new Vector2(7, 9), 1f, effects, 0);
     }
 
     public override void Save(TagCompound tag)

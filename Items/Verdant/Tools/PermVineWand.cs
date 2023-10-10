@@ -25,7 +25,7 @@ class PermVineWand : ModItem
         Item.useAnimation = 2;
         Item.useTime = 2;
         Item.autoReuse = false;
-        Item.rare = ItemRarityID.Green;
+        Item.rare = ItemRarityID.Yellow;
         Item.channel = true;
         Item.shoot = ModContent.ProjectileType<PermVineWandProjectile>();
         Item.noUseGraphic = true;
@@ -56,8 +56,8 @@ public class PermVineWandProjectile : ModProjectile
 
     public override void SetDefaults()
     {
-        Projectile.width = 42;
-        Projectile.height = 24;
+        Projectile.width = 36;
+        Projectile.height = 28;
         Projectile.friendly = true;
         Projectile.penetrate = -1;
         Projectile.tileCollide = false;

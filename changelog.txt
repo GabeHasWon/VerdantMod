@@ -19,3 +19,4 @@
 - Fixed desync caused by foreground entities not being updated if the window is not in focus in multiplayer
 - Fixed Cloudblooms not syncing properly
 - Improved Cloudbloom saving/loading code
+- Added new sprite for the Zipvine and its vines

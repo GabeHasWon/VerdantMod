@@ -49,7 +49,7 @@ internal class ZipvinePlayer : ModPlayer
         AdjustVineProgress();
 
         Vector2 nextPosition = zipvine.nextVine is null ? zipvine.position : zipvine.nextVine.position;
-        Vector2 realNextPos = Vector2.Lerp(zipvine.position, nextPosition, progress) + new Vector2(0, 34);
+        Vector2 realNextPos = Vector2.Lerp(zipvine.position, nextPosition, progress) + zipvine.HoldOffset;
 
         bool mockLineCheck = true;
 

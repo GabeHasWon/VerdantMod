@@ -16,11 +16,19 @@ public static class ForegroundManager
 
     internal static void Hooks()
     {
-        Terraria.On_Main.DrawProjectiles += PlayerLayerHook;
-        Main.OnTickForThirdPartySoftwareOnly += UpdateHook;
+        On_Main.DrawProjectiles += PlayerLayerHook;
+        On_Main.DoUpdate += On_Main_DoUpdate;
     }
 
-    private static void PlayerLayerHook(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
+    private static void On_Main_DoUpdate(On_Main.orig_DoUpdate orig, Main self, ref GameTime gameTime)
+    {
+        orig(self, ref gameTime);
+
+        if (Main.PlayerLoaded && !Main.gameMenu)
+            Update();
+    }
+
+    private static void PlayerLayerHook(On_Main.orig_DrawProjectiles orig, Main self)
     {
         orig(self);
 
@@ -30,12 +38,6 @@ public static class ForegroundManager
             val.Draw();
 
         Main.spriteBatch.End();
-    }
-
-    private static void UpdateHook()
-    {
-        if (Main.PlayerLoaded && !Main.gameMenu)
-            Update();
     }
 
     public static void Draw()

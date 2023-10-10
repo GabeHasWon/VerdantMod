@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.CodeAnalysis.Operations;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -141,6 +142,7 @@ namespace Verdant.Systems.Foreground.Parallax
             puff = tag.GetBool("puff");
 
             anchor = Center;
+            source = new Rectangle(0, 0, 58, 38);
 
             if (Main.netMode != NetmodeID.Server)
                 Texture = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/CloudbloomEntity" + (puff ? "Puff" : ""));
@@ -151,7 +153,8 @@ namespace Verdant.Systems.Foreground.Parallax
             drawColor = Lighting.GetColor(position.ToTileCoordinates());
             drawPosition = Center;
 
-            Main.spriteBatch.Draw(Texture.Value, drawPosition - Main.screenPosition, null, drawColor, rotation, source.Size() / 2f, 1f, SpriteEffects.None, 0);
+            var origin = Texture.Size() / 2f;
+            Main.spriteBatch.Draw(Texture.Value, drawPosition - Main.screenPosition, null, drawColor, rotation, origin, 1f, SpriteEffects.None, 0);
         }
     }
 }
