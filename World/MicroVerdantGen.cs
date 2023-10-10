@@ -17,6 +17,7 @@ using Verdant.Walls;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
 using Verdant.Tiles.Verdant.Decor;
+using System.Runtime.ExceptionServices;
 
 namespace Verdant.World
 {
@@ -100,7 +101,13 @@ namespace Verdant.World
 
             PostGenFunctions(circle.tiles, queue);
 
-            if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is null)
+            Point16? apothLoc = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation;
+            bool noApotheosis = apothLoc is null;
+
+            if (!noApotheosis)
+                Apotheosis.TrySetLocation(apothLoc.Value.X, apothLoc.Value.Y);
+
+            if (noApotheosis)
             {
                 queue.Enqueue(new(circle.center, (int x, int y, ref bool success) =>
                 {

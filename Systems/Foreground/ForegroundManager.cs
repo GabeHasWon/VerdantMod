@@ -61,7 +61,7 @@ public static class ForegroundManager
 
         foreach (var val in set)
         {
-            if (Main.hasFocus && !Main.gamePaused)
+            if (!Main.gamePaused)
                 val.Update();
 
             if (val.killMe)

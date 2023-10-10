@@ -9,6 +9,7 @@ using Verdant.Items.Verdant.Materials;
 using System.Linq;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Systems.ScreenText;
+using Verdant.Systems.Syncing;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -27,11 +28,19 @@ class YellowPetalFloater : ApotheoticItem
             if (item is CloudbloomEntity && Vector2.DistanceSquared(item.Center, Main.MouseWorld) < 40 * 40)
             {
                 item.killMe = true;
+
+                if (Main.netMode != NetmodeID.SinglePlayer && player.whoAmI == Main.myPlayer)
+                    new CloudbloomModule((byte)Main.myPlayer, ForegroundManager.PlayerLayerItems.IndexOf(item)).Send();
+
                 return false;
             }
-        }   
-        
-        ForegroundManager.AddItem(new CloudbloomEntity(Main.MouseWorld), true, true);
+        }
+
+        var mouse = Main.MouseWorld;
+        ForegroundManager.AddItem(new CloudbloomEntity(mouse), true, true);
+
+        if (Main.netMode != NetmodeID.SinglePlayer && player.whoAmI == Main.myPlayer)
+            new CloudbloomModule((byte)Main.myPlayer, mouse.X, mouse.Y, false).Send();
         return false;
     }
 

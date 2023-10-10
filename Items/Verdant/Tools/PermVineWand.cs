@@ -8,6 +8,7 @@ using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using Terraria.Localization;
+using Verdant.Systems.Syncing;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -37,7 +38,7 @@ class PermVineWand : ModItem
 
     public override bool CanUseItem(Player player)
     {
-        if (player.altFunctionUse == 2 && !PermVineWandProjectile.ConsumeTileWand(player, true))
+        if (Main.myPlayer == player.whoAmI && player.altFunctionUse == 2 && !PermVineWandProjectile.ConsumeTileWand(player, true))
             PermVineWandProjectile.KillVineAtMouse(player);
         return true;
     }
@@ -121,12 +122,19 @@ public class PermVineWandProjectile : ModProjectile
         }
     }
 
+    /// <summary>
+    /// Kills the vine near the mouse. Should only be run on the multiplayer client that kills the vine.
+    /// </summary>
+    /// <param name="player"></param>
     internal static void KillVineAtMouse(Player player)
     {
         if (ForegroundManager.PlayerLayerItems.FirstOrDefault(x => x is ZipvineEntity && x.DistanceSQ(Main.MouseWorld) < 18 * 18) is ZipvineEntity vine)
         {
             vine.Kill();
             player.QuickSpawnItem(player.GetSource_FromThis(), ModContent.ItemType<LushLeaf>());
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                new KillZipvineModule((short)Main.myPlayer, (short)ForegroundManager.PlayerLayerItems.IndexOf(vine)).Send();
         }
     }
 

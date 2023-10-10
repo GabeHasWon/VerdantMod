@@ -7,3 +7,14 @@
 - Fixed Verdant grass decor sprite issue
 - Fixed Omnidirectional Anchor tile framing
 - Optimized how grasses are categorized heavily, fixed load order
+- Fixed Apotheosis being destroyed by lava
+- Made Microcosm replace Apotheosis if the pre-existing Apotheosis is destroyed or otherwise removed
+- Rewrote Zipvine code entirely
+	- Code is cleaner and more efficient
+	- Zipvines now can be climbed faster and more smoothly
+	- They now save and load properly
+	- They now sync & control properly in multiplayer
+	- They now accept changes that would make upgrades or modifications way easier
+	- Added collision checks so you can't clip through tiles
+- Fixed desync caused by foreground entities not being updated if the window is not in focus
+- Fixed Cloudblooms not syncing properly

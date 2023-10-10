@@ -11,6 +11,7 @@ namespace Verdant.Systems.Foreground.Parallax;
 public class ZipvineEntity : ParallaxedFGItem
 {
     public virtual float ClimbSpeed => 0.6f;
+    public virtual byte VineLength => 16;
 
     public override bool SaveMe => true;
 
@@ -29,7 +30,7 @@ public class ZipvineEntity : ParallaxedFGItem
         }
     }
 
-    public Rectangle Hitbox { get; private set; }
+    public Rectangle Hitbox => new Rectangle((int)Center.X - 4, (int)Center.Y, 10, 10);
 
     public int whoAmI = 0;
     public ZipvineEntity nextVine = null;
@@ -51,8 +52,6 @@ public class ZipvineEntity : ParallaxedFGItem
 
         if (nextWho != -1)
             nextVine = ForegroundManager.PlayerLayerItems.First(x => x is ZipvineEntity zip && zip.whoAmI == nextWho) as ZipvineEntity;
-
-        Hitbox = new Rectangle((int)Center.X - 4, (int)Center.Y, 10, 10);
     }
 
     public override void Update() => _lifeTime++;
@@ -119,7 +118,6 @@ public class ZipvineEntity : ParallaxedFGItem
 
             priorVine = prior as ZipvineEntity;
             priorVine.nextVine = this;
-            Hitbox = new Rectangle((int)Center.X - 4, (int)Center.Y, 10, 10);
         }
     }
 }

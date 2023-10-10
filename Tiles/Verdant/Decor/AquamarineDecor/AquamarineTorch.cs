@@ -65,9 +65,8 @@ public class AquamarineTorch : ModTile
 
         if (tile.TileFrameX < 66)
         {
-            r = 0.9f;
-            g = 0.9f;
-            b = 0.9f;
+            var light = new Vector3(0.315f, 0.676f, 2.147f);
+            (r, g, b) = (light.X, light.Y, light.Z);
         }
     }
 

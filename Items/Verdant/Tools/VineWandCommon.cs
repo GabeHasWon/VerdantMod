@@ -16,7 +16,7 @@ internal class VineWandCommon
             var zipvine = ForegroundManager.AddItemDirect(new ZipvineEntity(position ?? Main.MouseWorld, -1, -1), true, true) as ZipvineEntity;
 
             if (Main.netMode != NetmodeID.SinglePlayer && !fromNet)
-                new ZipvineModule(zipvine.position.X, zipvine.position.Y, null, (short)Main.myPlayer).Send();
+                new ZipvineModule(zipvine.position.X, zipvine.position.Y, null, (byte)minDistance, (short)Main.myPlayer).Send();
             return zipvine;
         }
         else
@@ -26,7 +26,7 @@ internal class VineWandCommon
             lastVine.nextVine = zipvine;
 
             if (Main.netMode != NetmodeID.SinglePlayer && !fromNet)
-                new ZipvineModule(zipvine.position.X, zipvine.position.Y, (short)ForegroundManager.PlayerLayerItems.IndexOf(lastVine), (short)Main.myPlayer).Send();
+                new ZipvineModule(zipvine.position.X, zipvine.position.Y, (short)ForegroundManager.PlayerLayerItems.IndexOf(lastVine), (byte)minDistance,(short)Main.myPlayer).Send();
             return zipvine;
         }
     }

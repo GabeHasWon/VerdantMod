@@ -17,6 +17,10 @@ internal class Apotheosis : ModTile
     public override void SetStaticDefaults()
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        TileObjectData.newTile.LavaDeath = false;
+        TileObjectData.newTile.LavaPlacement = Terraria.Enums.LiquidPlacement.Allowed;
+        TileObjectData.newTile.WaterDeath = false;
+        TileObjectData.newTile.WaterPlacement = Terraria.Enums.LiquidPlacement.Allowed;
         QuickTile.SetMulti(this, 16, 12, DustID.Stone, SoundID.Dig, false, new Color(142, 120, 124), false, false, false, "Apotheosis");
     }
 
@@ -110,9 +114,19 @@ internal class Apotheosis : ModTile
         Main.LocalPlayer.cursorItemIconID = -1;
     }
 
+    /// <summary>
+    /// Sets the location (<see cref="VerdantGenSystem.apotheosisLocation"/>) to new(i, j) if successful or null if not.
+    /// </summary>
     internal static void TrySetLocation(int i, int j)
     {
         var system = ModContent.GetInstance<VerdantGenSystem>();
+        Tile checkTile = Main.tile[i, j];
+
+        if (!checkTile.HasTile || (checkTile.TileType != ModContent.TileType<Apotheosis>() && checkTile.TileType != ModContent.TileType<HardmodeApotheosis>()))
+        {
+            system.apotheosisLocation = null;
+            return;
+        }
 
         if (system.apotheosisLocation is null)
         {

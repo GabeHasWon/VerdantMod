@@ -1,13 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
+using Verdant.Systems.Syncing;
 
 namespace Verdant.Players;
 
+/// <summary>
+/// Handles Zipvine controls and movement.
+/// </summary>
 internal class ZipvinePlayer : ModPlayer
 {
     ZipvineEntity zipvine = null;
@@ -23,6 +27,7 @@ internal class ZipvinePlayer : ModPlayer
             Player.fallStart = (int)(zipvine.position.Y / 16f);
             Player.pulley = true;
             Player.pulleyDir = 0;
+            Player.FindPulley();
 
             VineMovement();
         }
@@ -41,6 +46,37 @@ internal class ZipvinePlayer : ModPlayer
         else if (Player.controlDown)
             progress -= zipvine.ClimbSpeed;
 
+        AdjustVineProgress();
+
+        Vector2 nextPosition = zipvine.nextVine is null ? zipvine.position : zipvine.nextVine.position;
+        Vector2 realNextPos = Vector2.Lerp(zipvine.position, nextPosition, progress) + new Vector2(0, 34);
+
+        bool mockLineCheck = true;
+
+        for (float i = 0; i < 1; i += 0.1f) // Mock a tile collision line check so you can't pass through thin walls
+        {
+            if (Collision.SolidCollision(Vector2.Lerp(Player.position, realNextPos, i), Player.width, Player.height))
+            {
+                mockLineCheck = false;
+                break;
+            }
+        }
+
+        if (mockLineCheck)
+            Player.position = realNextPos;
+        else
+        {
+            if (Player.controlUp) // Climb vine
+                progress -= zipvine.ClimbSpeed;
+            else if (Player.controlDown)
+                progress += zipvine.ClimbSpeed;
+
+            AdjustVineProgress();
+        }
+    }
+
+    private void AdjustVineProgress()
+    {
         if (progress < 0) // Adjust progress so we skip to next vine(s) if needed
         {
             if (zipvine.priorVine is null)
@@ -75,9 +111,6 @@ internal class ZipvinePlayer : ModPlayer
                 progress -= 1f;
             }
         }
-
-        Vector2 nextPosition = zipvine.nextVine is null ? zipvine.position : zipvine.nextVine.position;
-        Player.position = Vector2.Lerp(zipvine.position, nextPosition, progress) + new Vector2(Player.width, 30);
     }
 
     private void TryGrabAnyVine()
@@ -105,6 +138,12 @@ internal class ZipvinePlayer : ModPlayer
                 return;
             }
         }
+    }
+
+    public override void OnEnterWorld()
+    {
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            new SyncZipvinesModule((byte)Main.myPlayer).Send();
     }
 
     public override void Load()
