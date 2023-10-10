@@ -140,12 +140,6 @@ internal class ZipvinePlayer : ModPlayer
         }
     }
 
-    public override void OnEnterWorld()
-    {
-        if (Main.netMode != NetmodeID.SinglePlayer)
-            new SyncZipvinesModule((byte)Main.myPlayer).Send();
-    }
-
     public override void Load()
     {
         On_Player.QuickMount += Player_QuickMount;

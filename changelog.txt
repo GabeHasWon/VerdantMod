@@ -16,5 +16,6 @@
 	- They now sync & control properly in multiplayer
 	- They now accept changes that would make upgrades or modifications way easier
 	- Added collision checks so you can't clip through tiles
-- Fixed desync caused by foreground entities not being updated if the window is not in focus
+- Fixed desync caused by foreground entities not being updated if the window is not in focus in multiplayer
 - Fixed Cloudblooms not syncing properly
+- Improved Cloudbloom saving/loading code

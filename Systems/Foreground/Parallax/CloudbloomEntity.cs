@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Verdant.Dusts;
 
 namespace Verdant.Systems.Foreground.Parallax
@@ -13,6 +14,8 @@ namespace Verdant.Systems.Foreground.Parallax
     {
         const int Width = 58;
 
+        public override bool SaveMe => true;
+
         private int DustType => puff ? ModContent.DustType<PuffDust>() : DustID.Cloud;
 
         private bool BouncedUpon = false;
@@ -20,6 +23,10 @@ namespace Verdant.Systems.Foreground.Parallax
         private int rotTimer = 0;
         internal Vector2 anchor = Vector2.Zero;
         internal bool puff = false;
+
+        public CloudbloomEntity() : base(Vector2.Zero, Vector2.Zero, 1f, "Parallax/CloudbloomEntity")
+        {
+        }
 
         public CloudbloomEntity(Vector2 pos, bool isPuff = false) : base(pos - new Vector2(58, 38) / 2f, Vector2.Zero, 1f, "Parallax/CloudbloomEntity")
         {
@@ -120,6 +127,23 @@ namespace Verdant.Systems.Foreground.Parallax
                 bounceTimer = 40;
             }
             return false;
+        }
+
+        public override void Save(TagCompound tag)
+        {
+            tag.Add("position", position);
+            tag.Add("puff", puff);
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            position = tag.Get<Vector2>("position");
+            puff = tag.GetBool("puff");
+
+            anchor = Center;
+
+            if (Main.netMode != NetmodeID.Server)
+                Texture = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/CloudbloomEntity" + (puff ? "Puff" : ""));
         }
 
         public override void Draw()

@@ -71,28 +71,8 @@ public class VerdantSystem : ModSystem
         tag.Add("apotheosisStats", apotheosisStats);
         tag.Add("backgroundItems", backgroundItems);
 
-        SaveClouds(tag);
-
         if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is not null)
             tag.Add("apotheosisLocation", ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value);
-    }
-
-    private void SaveClouds(TagCompound tag)
-    {
-        var clouds = ForegroundManager.PlayerLayerItems.Where(x => x is CloudbloomEntity);
-        var positions = new List<Vector2>();
-        var puffPositions = new List<Vector2>();
-
-        foreach (var item in clouds)
-        {
-            if ((item as CloudbloomEntity).puff)
-                puffPositions.Add(item.Center);
-            else
-                positions.Add(item.Center);
-        }
-
-        tag.Add("cloudPositions", positions);
-        tag.Add("puffPositions", puffPositions);
     }
 
     public override void OnWorldUnload()
@@ -128,14 +108,6 @@ public class VerdantSystem : ModSystem
             var bgItems = tag.GetList<TagCompound>("backgroundItems");
             if (bgItems != null)
                 BackgroundItemManager.Load(bgItems);
-
-            var clouds = tag.GetList<Vector2>("cloudPositions");
-            foreach (var item in clouds)
-                ForegroundManager.AddItem(new CloudbloomEntity(item), true, true);
-
-            var puffs = tag.GetList<Vector2>("puffPositions");
-            foreach (var item in puffs)
-                ForegroundManager.AddItem(new CloudbloomEntity(item, true), true, true);
         }
 
         if (tag.ContainsKey("apotheosisLocation"))
