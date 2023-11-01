@@ -7,6 +7,7 @@ using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 
+[Sacrifice(1)]
 public class HardyVineBook : ModItem
 {
 	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 30, ModContent.TileType<SpecialBooks>(), maxStack: 1, createStyle: 4, autoReuse: false);

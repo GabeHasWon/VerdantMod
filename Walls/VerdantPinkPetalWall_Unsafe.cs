@@ -23,7 +23,7 @@ namespace Verdant.Walls
 
         public override void SetStaticDefaults()
         {
-            Main.wallHouse[Type] = false;
+            Main.wallHouse[Type] = true;
             DustType = DustID.Grass;
             AddMapEntry(new Color(112, 0, 59));
         }

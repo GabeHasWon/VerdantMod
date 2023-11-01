@@ -216,10 +216,7 @@ internal class Pickipuff : DrawableTE
         Item.NewItem(new EntitySource_TileBreak(Position.X, Position.Y, "Verdant:Pickipuff"), World, type, 1);
     }
 
-    public void SetToHarvested()
-    {
-        puffState = Harvested;
-    }
+    public void SetToHarvested() => puffState = Harvested;
 
     internal override void Draw(SpriteBatch spriteBatch)
     {

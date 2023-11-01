@@ -1580,3 +1580,12 @@ LushWingletTerrariumItem: {
 	// DisplayName: Lush Winglet Terrarium Item
 	// Tooltip: "'...it looks content!'"
 }
+
+PlainMicrocosm: {
+	// DisplayName: Plain Microcosm
+	/* Tooltip:
+		'''
+		{$Microcosm.Tooltip}
+		Free of glass!
+		''' */
+}

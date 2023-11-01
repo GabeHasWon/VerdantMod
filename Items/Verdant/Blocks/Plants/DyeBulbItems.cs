@@ -6,6 +6,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items.Verdant.Blocks.Plants;
 
+[Sacrifice(1)]
 public class PinkDyeBulb : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<DyeBulbs>(), true, 0, ItemRarityID.Blue, Item.buyPrice(0, 0, 40));
@@ -13,6 +14,7 @@ public class PinkDyeBulb : ModItem
     public override void ModifyTooltips(List<TooltipLine> tooltips) => tooltips.RemoveAll(x => x.Mod == "Terraria" && x.Name == "Material");
 }
 
+[Sacrifice(1)]
 public class RedDyeBulb : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 30, 34, ModContent.TileType<DyeBulbs>(), true, 1, ItemRarityID.Blue, Item.buyPrice(0, 0, 40));
@@ -20,6 +22,7 @@ public class RedDyeBulb : ModItem
     public override void ModifyTooltips(List<TooltipLine> tooltips) => tooltips.RemoveAll(x => x.Mod == "Terraria" && x.Name == "Material");
 }
 
+[Sacrifice(1)]
 public class BlueDyeBulb : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 30, 34, ModContent.TileType<DyeBulbs>(), true, 2, ItemRarityID.Blue, Item.buyPrice(0, 0, 40));
@@ -27,6 +30,7 @@ public class BlueDyeBulb : ModItem
     public override void ModifyTooltips(List<TooltipLine> tooltips) => tooltips.RemoveAll(x => x.Mod == "Terraria" && x.Name == "Material");
 }
 
+[Sacrifice(1)]
 public class WhiteDyeBulb : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 30, 34, ModContent.TileType<DyeBulbs>(), true, 3, ItemRarityID.Blue, Item.buyPrice(0, 0, 40));

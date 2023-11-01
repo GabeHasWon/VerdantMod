@@ -5,6 +5,7 @@ using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Blocks;
 
+[Sacrifice(20)]
 public class WisplantInfusedMudBoulder : ModItem
 {
 	public override void SetDefaults() => Item.DefaultToPlaceableTile(ModContent.TileType<WisplantInfusedLushBall>());

@@ -23,7 +23,7 @@ namespace Verdant.World
 {
     internal class MicroVerdantGen
     {
-        public static Queue<RealtimeStep> MicroVerdant(Point16 position)
+        public static Queue<RealtimeStep> MicroVerdant(Point16 position, bool glassless = false)
         {
             Dictionary<Point16, TileAction.TileActionDelegate> orderedActions = new();
             float diameter = VerdantGenSystem.WorldSize * 39;
@@ -64,7 +64,7 @@ namespace Verdant.World
                 if (dist > cutoff)
                 {
                     if (!zeniths.Contains(point))
-                        orderedActions.Add(point, TileAction.PlaceTile(TileID.Glass, false));
+                        orderedActions.Add(point, TileAction.PlaceTile(glassless ? ModContent.TileType<VerdantGrassLeaves>() : TileID.Glass, false));
                     continue;
                 }
 
@@ -81,7 +81,10 @@ namespace Verdant.World
                 if (dist < cutoff)
                 {
                     if (n < -0.85f)
-                        action += TileAction.PlaceWall(WallID.Glass, force: true);
+                    {
+                        if (!glassless)
+                            action += TileAction.PlaceWall(WallID.Glass, force: true);
+                    }
                     else if (n < -0.52f)
                         action += TileAction.PlaceWall(ModContent.WallType<VerdantLeafWall_Unsafe>(), force: true);
                     else

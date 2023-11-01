@@ -61,7 +61,7 @@ class VerdantPlayer : ModPlayer
             Player.buffImmune[BuffID.Suffocation] = true;
         }
 
-        sproutBoots = true;
+        sproutBoots = false;
         expertPlantGuide = false;
     }
 

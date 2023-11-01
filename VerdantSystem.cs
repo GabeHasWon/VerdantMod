@@ -140,7 +140,8 @@ public class VerdantSystem : ModSystem
 
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
     {
-        int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals(ModLoader.TryGetMod("Remnants", out Mod _) ? "Jungle Pyramid" : "Jungle Temple"));
+        bool remnants = ModLoader.HasMod("Remnants");
+        int VerdantIndex = tasks.FindIndex(genpass => genpass.Name.Equals(remnants ? "[R] Jungle Pyramid" : "Jungle Temple"));
         VerdantGenSystem genSystem = ModContent.GetInstance<VerdantGenSystem>();
 
         if (tasks.Count > 0)
@@ -153,7 +154,7 @@ public class VerdantSystem : ModSystem
             tasks.Insert(VerdantIndex - 1, new PassLegacy("Spam Aquamarine", AquamarineGen.SpamGems, 2f));
         }
 
-        int settleWaterIndex = tasks.FindIndex(pass => pass.Name.Equals("Settle Liquids Again"));
+        int settleWaterIndex = tasks.FindIndex(pass => pass.Name.Equals(remnants ? "Oasis" : "Settle Liquids Again"));
 
         if (settleWaterIndex != -1)
             tasks.Insert(settleWaterIndex + 1, new PassLegacy("Aquamarine Microbiome", AquamarineGen.Gen, 40f)); //Aquamarine microbiome

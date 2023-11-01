@@ -19,17 +19,17 @@ namespace Verdant.Projectiles.Minion
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            Main.projPet[Type] = true;
+            ProjectileID.Sets.TrailCacheLength[Type] = 3;
+            ProjectileID.Sets.TrailingMode[Type] = 0;
+            ProjectileID.Sets.MinionSacrificable[Type] = true;
         }
 
         public override void SetDefaults()
         {
-            Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.width = 48;
             Projectile.height = 48;
-            Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.minionSlots = 1f;

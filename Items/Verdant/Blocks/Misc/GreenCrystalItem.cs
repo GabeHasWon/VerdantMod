@@ -4,6 +4,7 @@ using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Blocks.Misc;
 
+[Sacrifice(100)]
 public class GreenCrystalItem : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 14, 18, ModContent.TileType<GreenCrystal>());

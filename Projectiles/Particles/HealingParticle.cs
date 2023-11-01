@@ -10,7 +10,7 @@ namespace Verdant.Projectiles.Particles
     {
         public ref float Timer => ref Projectile.ai[0];
 
-        private Color drawCol = Color.Green;
+        internal Color drawCol = Color.Green;
 
         public override void SetDefaults()
         {

@@ -6,6 +6,7 @@ using Verdant.Tiles.Verdant.Misc;
 
 namespace Verdant.Items.Verdant.Blocks.Misc;
 
+[Sacrifice(1)]
 public class HangingCrystalItem : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 16, 32, ModContent.TileType<HangingCrystal>(), rarity: ItemRarityID.Green);

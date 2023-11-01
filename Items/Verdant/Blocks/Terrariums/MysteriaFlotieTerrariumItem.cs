@@ -7,6 +7,7 @@ using Verdant.Tiles.Verdant.Decor.Terrariums;
 
 namespace Verdant.Items.Verdant.Blocks.Terrariums;
 
+[Sacrifice(1)]
 public class MysteriaFlotieTerrariumItem : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 48, 48, ModContent.TileType<MysteriaFlotieTerrarium>());

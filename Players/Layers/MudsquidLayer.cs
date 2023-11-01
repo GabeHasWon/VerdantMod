@@ -24,8 +24,7 @@ public class MudsquidLayer : PlayerDrawLayer
 
         if (squidPlayer.squidAlpha < 1)
         {
-            if (_squidTexture is null)
-                _squidTexture = ModContent.Request<Texture2D>("Verdant/Items/Verdant/Equipables/Mudsquid");
+            _squidTexture ??= ModContent.Request<Texture2D>("Verdant/Items/Verdant/Equipables/Mudsquid");
 
             if (drawPlayer.velocity.LengthSquared() > 0.6f)
                 _rotation = drawPlayer.velocity.ToRotation() + MathHelper.PiOver2;

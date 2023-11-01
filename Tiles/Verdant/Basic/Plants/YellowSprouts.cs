@@ -6,6 +6,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Materials;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
@@ -22,6 +23,7 @@ class YellowSprouts : ModTile, IFlowerTile
         TileObjectData.newTile.StyleHorizontal = true;
 
         QuickTile.SetMulti(this, 2, 2, DustID.YellowStarfish, SoundID.Grass, true, new Color(224, 120, 0));
+        RegisterItemDrop(ModContent.ItemType<YellowBulb>());
     }
 
     public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16) };

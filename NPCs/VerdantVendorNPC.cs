@@ -27,7 +27,7 @@ class VerdantVendorNPC : GlobalNPC
                 shopCustomPrice = Item.buyPrice(0, 0, 15, 0),
             });
 
-            shop.Add(ModContent.ItemType<Microcosm>());
+            shop.Add(ModContent.ItemType<PlainMicrocosm>());
             shop.Add(ModContent.ItemType<LightbulbSeeds>());
 
             shop.Add(new Item(ModContent.ItemType<LushGrassSeeds>())

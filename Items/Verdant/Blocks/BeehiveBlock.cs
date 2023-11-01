@@ -4,6 +4,7 @@ using Verdant.Tiles.Verdant.Basic;
 
 namespace Verdant.Items.Verdant.Blocks;
 
+[Sacrifice(1)]
 public class BeehiveBlock : ModItem
 {
     public override void SetDefaults() => QuickItem.SetBlock(this, 28, 28, ModContent.TileType<Beehive>());

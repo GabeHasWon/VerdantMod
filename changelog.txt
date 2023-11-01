@@ -1,1 +1,4 @@
-- Fixed bug where Zipvines would have a poorly positioned hitbox when spawned (but not when saved & loaded)
+- Fixed Yellow Flower tiles not dropping anything on certain styles
+- Fixed Crystal Heart not doing anything
+- Significantly spruced up the Crystal Heart's use animation
+- Fixed Sprout in Boots not resetting properly
