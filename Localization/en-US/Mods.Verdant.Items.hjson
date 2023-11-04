@@ -1200,7 +1200,7 @@ LivingLushWoodWand: {
 	Tooltip:
 		'''
 		Places living lush wood blocks
-		Right click to switch to Lush Leaves
+		[c/88FF88:Right click this item] to Lush Leaves
 		'''
 }
 
@@ -1209,7 +1209,7 @@ LushLeafWand: {
 	Tooltip:
 		'''
 		Places lush leaf blocks
-		Right click to switch to Red Petals
+		[c/88FF88:Right click this item] to switch to Red Petals
 		'''
 }
 
@@ -1249,7 +1249,7 @@ PinkPetalWand: {
 	Tooltip:
 		'''
 		Places pink petal blocks
-		Right click to switch to Living Lush Wood
+		[c/88FF88:Right click this item] to Living Lush Wood
 		'''
 }
 
@@ -1258,7 +1258,7 @@ RedPetalWand: {
 	Tooltip:
 		'''
 		Places red petal blocks
-		Right click to switch to Pink Petals
+		[c/88FF88:Right click this item] to Pink Petals
 		'''
 }
 
@@ -1610,5 +1610,14 @@ PlainMicrocosm: {
 		'''
 		{$Microcosm.Tooltip}
 		Free of glass!
+		'''
+}
+
+PassionflowerBlock: {
+	DisplayName: Passionflower Sprout
+	Tooltip:
+		'''
+		Regrows slowly
+		'A subtle yet comforting scent comes off of the remaining petals'
 		'''
 }

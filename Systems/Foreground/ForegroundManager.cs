@@ -17,12 +17,12 @@ public static class ForegroundManager
     internal static void Hooks()
     {
         On_Main.DrawProjectiles += PlayerLayerHook;
-        On_Main.DoUpdate += On_Main_DoUpdate;
+        On_Main.DoUpdateInWorld += On_Main_DoUpdateInWorld;
     }
 
-    private static void On_Main_DoUpdate(On_Main.orig_DoUpdate orig, Main self, ref GameTime gameTime)
+    private static void On_Main_DoUpdateInWorld(On_Main.orig_DoUpdateInWorld orig, Main self, System.Diagnostics.Stopwatch sw)
     {
-        orig(self, ref gameTime);
+        orig(self, sw);
 
         if (Main.PlayerLoaded && !Main.gameMenu)
             Update();

@@ -21,10 +21,10 @@ public class BackgroundItemManager
 
     public static void AddItem(BaseBGItem item, bool forceSpawn = false)
     {
-        if (bgItems is null)
-            bgItems = new List<BaseBGItem>();
+        bgItems ??= new List<BaseBGItem>();
 
-        if ((!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forceSpawn) || Main.netMode == NetmodeID.Server) //Skip if option is turned off & it's not forced
+        //Skip if option is turned off & it's not forced
+        if ((!ModContent.GetInstance<VerdantClientConfig>().BackgroundObjects && !forceSpawn) || Main.netMode == NetmodeID.Server)
             return;
 
         if (item != null)
@@ -43,7 +43,7 @@ public class BackgroundItemManager
             return;
 
         int range = Main.offScreenRange * 3;
-        Rectangle screen = new Rectangle((int)Main.screenPosition.X - range, (int)Main.screenPosition.Y - range, Main.screenWidth + (range * 2), Main.screenHeight + (range * 2));
+        Rectangle screen = new ((int)Main.screenPosition.X - range, (int)Main.screenPosition.Y - range, Main.screenWidth + (range * 2), Main.screenHeight + (range * 2));
 
         if (bgItems is null)
             bgItems = new List<BaseBGItem>();
@@ -66,8 +66,7 @@ public class BackgroundItemManager
         if (Main.netMode == NetmodeID.Server)
             return;
 
-        if (bgItems is null)
-            bgItems = new List<BaseBGItem>();
+        bgItems ??= new List<BaseBGItem>();
 
         if (!Main.hasFocus || Main.gamePaused || organizedItems is null)
             return;

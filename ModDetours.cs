@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,13 +21,15 @@ namespace Verdant
                 BackgroundItemManager.Draw();
         }
 
-        private void Main_Update(On_Main.orig_Update orig, Main self, GameTime gameTime)
+        private void On_Main_DoUpdateInWorld(On_Main.orig_DoUpdateInWorld orig, Main self, System.Diagnostics.Stopwatch sw)
         {
-            bool playerInv = Main.hasFocus && (!Main.autoPause || Main.netMode != NetmodeID.SinglePlayer || (Main.autoPause && !Main.playerInventory && Main.netMode == NetmodeID.SinglePlayer));
+            bool playerInv = Main.hasFocus && (!Main.autoPause || Main.netMode != NetmodeID.SinglePlayer || 
+                (Main.autoPause && !Main.playerInventory && Main.netMode == NetmodeID.SinglePlayer));
+
             if (Main.PlayerLoaded && BackgroundItemManager.Loaded && playerInv)
                 BackgroundItemManager.Update();
 
-            orig(self, gameTime);
+            orig(self, sw);
         }
 
         private void On_Main_oldDrawWater(On_Main.orig_oldDrawWater orig, Main self, bool bg, int Style, float Alpha)

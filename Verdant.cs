@@ -70,7 +70,7 @@ public partial class VerdantMod : Mod
         ForegroundManager.Hooks();
         On_Main.DrawBackgroundBlackFill += Main_DrawBackgroundBlackFill; //BackgroundItemManager Draw hook
         On_WorldGen.GrowTree += WorldGen_GrowTree; //So that GrowTree works along with other mods
-        On_Main.Update += Main_Update; //Used for BackgroundItemManager Update
+        On_Main.DoUpdateInWorld += On_Main_DoUpdateInWorld; //Used for BackgroundItemManager Update
         On_Main.oldDrawWater += On_Main_oldDrawWater;
 
         if (ModContent.GetInstance<VerdantClientConfig>().Waterfalls)

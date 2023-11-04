@@ -1589,3 +1589,12 @@ PlainMicrocosm: {
 		Free of glass!
 		''' */
 }
+
+PassionflowerBlock: {
+	// DisplayName: Passionflower Sprout
+	/* Tooltip:
+		'''
+		Regrows slowly
+		'A subtle yet comforting scent comes off of the remaining petals'
+		''' */
+}

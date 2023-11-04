@@ -141,8 +141,8 @@ namespace Verdant.Systems.Foreground.Parallax
             position = tag.Get<Vector2>("position");
             puff = tag.GetBool("puff");
 
-            anchor = Center;
             source = new Rectangle(0, 0, 58, 38);
+            anchor = Center;
 
             if (Main.netMode != NetmodeID.Server)
                 Texture = VerdantMod.Instance.Assets.Request<Texture2D>("Systems/Foreground/Parallax/CloudbloomEntity" + (puff ? "Puff" : ""));

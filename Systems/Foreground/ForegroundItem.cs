@@ -17,7 +17,12 @@ namespace Verdant.Systems.Foreground
         public virtual bool SyncMe => SaveMe;
 
         public Asset<Texture2D> Texture { get; protected set; }
-        public Vector2 Center => position + (source.Size() / 2f);
+
+        public Vector2 Center 
+        { 
+            get => position + (source.Size() / 2f); 
+            set => position = value - (source.Size() / 2f); 
+        }
 
         public Vector2 position = new Vector2(0, 0);
         internal Vector2 drawPosition = new Vector2();

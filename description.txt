@@ -4,7 +4,7 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 249 new items
+    - 251 new items
     - 171 new tiles
     - 4 new armor sets
     - Absolutely no new town NPCs
@@ -25,7 +25,7 @@ Verdant's Discord: https://discord.gg/FAnwxtM2vc
 My Twitter: https://twitter.com/GabeHasWon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
--Support-
+--Support--
 If you'd be so generous, joining the Patreon would help me out a ton. 
 As a hobbyist developer, I spend most of my free time making stuff like this mod.
 If any of you could chip in, I'd appreciate it greatly!
@@ -39,12 +39,12 @@ Twitter: https://twitter.com/heltonyan
 gentleMar - Localization commit
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
---Beta Testers / Feedback --
+--Beta Testers / Feedback--
 
 Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
 /u/Nervous-General3220 - Zipvine name
 
---Community Contributors--
+-Community Contributors-
 
 Zavos - Mud Balls / Wisplant-Infused Mud Balls concepts, Chlorophyte farming concept
 Mangochicken - Marigold concept
@@ -60,4 +60,4 @@ Kolya, hoosfire, Effejn, egshels
 
 Rather than clog up this description, for your development needs & interests, check the GitHub!
 It's also linked in the Discord for those in-game.
-GitHub: https://github.com/GabeHasWon/VerdantMod
+https://github.com/GabeHasWon/VerdantMod

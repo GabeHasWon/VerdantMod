@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -6,6 +7,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Misc;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
@@ -24,18 +26,24 @@ class LootPlant : ModTile
         TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<VerdantPinkPetal>(), 
             ModContent.TileType<LushSoil>(), TileID.HallowedGrass, TileID.Grass, TileID.JungleGrass, TileID.Hive };
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
-        TileObjectData.newTile.StyleHorizontal = true;
 
         QuickTile.SetMulti(this, 2, 2, DustID.OrangeStainedGlass, SoundID.Grass, true, new Color(232, 167, 74), false, false, false, "Passionflower");
     }
 
-    public override bool CanKillTile(int i, int j, ref bool blockDamaged) => Main.tile[i, j].TileFrameY >= FrameHeight;
     public override bool IsTileSpelunkable(int i, int j) => true;
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) => (r, g, b) = (0.5f, 0.1f, 0.4f);
 
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        if (Main.tile[i, j].TileFrameY < FrameHeight)
+            yield return new Item(ModContent.ItemType<PassionflowerBulb>());
+
+        yield return new Item(ModContent.ItemType<PassionflowerBlock>());
+    }
+
     public override void RandomUpdate(int i, int j)
     {
-        if (Main.rand.NextBool(1500))
+        if (Main.rand.NextBool(200))
             DecreaseFrame(new Point(i, j));
     }
 
@@ -89,6 +97,9 @@ class LootPlant : ModTile
     public override void MouseOver(int i, int j)
     {
         Player player = Main.LocalPlayer;
+
+        if (Main.tile[i, j].TileFrameY >= FrameHeight)
+            return;
 
         player.noThrow = 2;
         player.cursorItemIconEnabled = true;
