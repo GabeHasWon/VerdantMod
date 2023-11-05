@@ -190,8 +190,10 @@ public static class TileHelper
             Point p = adjacents[Main.rand.Next(adjacents.Count)];
 
             Framing.GetTileSafely(p.X, p.Y).TileType = (ushort)type;
-            if (Main.netMode == NetmodeID.Server)
-                NetMessage.SendTileSquare(-1, p.X, p.Y, 1, TileChangeType.None);
+            WorldGen.SquareTileFrame(i, j, true);
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendTileSquare(-1, p.X, p.Y, TileChangeType.None);
             return true;
         }
         return false;

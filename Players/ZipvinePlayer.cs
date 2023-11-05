@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ionic.Zip;
+using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -41,6 +43,8 @@ internal class ZipvinePlayer : ModPlayer
             return;
         }
 
+        float oldProgress = progress;
+
         if (Player.controlUp) // Climb vine
             progress += zipvine.ClimbSpeed;
         else if (Player.controlDown)
@@ -73,6 +77,24 @@ internal class ZipvinePlayer : ModPlayer
 
             AdjustVineProgress();
         }
+
+        if (progress != oldProgress)
+            UpdatePulleyFrame();
+    }
+
+    private void UpdatePulleyFrame()
+    {
+        if (Player.controlUp || Player.controlDown)
+            Player.pulleyFrameCounter += zipvine.ClimbSpeed * 3;
+
+        if (Player.pulleyFrameCounter > 10f)
+        {
+            Player.pulleyFrame++;
+            Player.pulleyFrameCounter = 0f;
+        }
+
+        if (Player.pulleyFrame > 1)
+            Player.pulleyFrame = 0;
     }
 
     private void AdjustVineProgress()

@@ -34,10 +34,7 @@ internal class LushGrass : ModTile, IVerdantGrassTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (VerdantGrassLeaves.StaticRandomUpdate(i, j))
-            return;
-
-        if (TileHelper.Spread(i, j, Type, 4, true, ModContent.TileType<LushSoil>()))
-            WorldGen.SquareTileFrame(i, j, true);
+        VerdantGrassLeaves.StaticRandomUpdate(i, j);
+        TileHelper.Spread(i, j, Type, 4, true, ModContent.TileType<LushSoil>());
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
@@ -40,6 +42,7 @@ class AcornGlobal : GlobalItem
         Tile tile = Main.tile[pos.X, pos.Y + 1];
         bool inRange = player.IsInTileInteractionRange(pos.X, pos.Y + 1, TileReachCheckSettings.Simple);
 
-        return inRange && tile.HasTile && VerdantGrassLeaves.VerdantGrassTypes.Contains(tile.TileType) && Main.tile[pos].TileType != ModContent.TileType<LushSapling>();
+        return inRange && tile.HasTile && TileObjectData.GetTileData(ModContent.TileType<LushSapling>(), 0).AnchorValidTiles.Contains(tile.TileType)
+            && Main.tile[pos].TileType != ModContent.TileType<LushSapling>();
     }
 }

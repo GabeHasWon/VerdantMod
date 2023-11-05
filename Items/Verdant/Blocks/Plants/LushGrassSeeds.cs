@@ -34,7 +34,7 @@ public class LushGrassSeeds : ModItem
             WorldGen.SquareTileFrame(Player.tileTargetX, Player.tileTargetY, true);
             SoundEngine.PlaySound(SoundID.Grass, new Vector2(Player.tileTargetX, Player.tileTargetY) * 16);
 
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
                 NetMessage.SendTileSquare(-1, Player.tileTargetX, Player.tileTargetY, 1, TileChangeType.None);
             return true;
         }

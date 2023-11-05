@@ -62,6 +62,9 @@ internal class VerdantTree : ModTile
         {
             WorldGen.KillTile(i, j, false, false, true);
             WorldGen.KillTile(i, j - 1, false, false, true);
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendTileSquare(-1, i, j, 2, 1, TileChangeType.None);
         }
 
         int height = r.Next(minSize, maxSize); //Height & trunk
@@ -104,6 +107,9 @@ internal class VerdantTree : ModTile
                     Framing.GetTileSafely(i, j - k).TileFrameX = 162;
                     Framing.GetTileSafely(i - 1, j - k).TileFrameX = 108;
                     Framing.GetTileSafely(i - 1, j - k).TileFrameY = (short)(r.Next(3) * 18);
+
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i - 1, j - k, TileChangeType.None);
                 }
                 else if (side == 1 && !Framing.GetTileSafely(i + 1, j - k).HasTile)
                 {
@@ -111,6 +117,9 @@ internal class VerdantTree : ModTile
                     Framing.GetTileSafely(i, j - k).TileFrameX = 144;
                     Framing.GetTileSafely(i + 1, j - k).TileFrameX = 126;
                     Framing.GetTileSafely(i + 1, j - k).TileFrameY = (short)(r.Next(3) * 18);
+
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i + 1, j - k, TileChangeType.None);
                 }
             }
 
@@ -123,6 +132,9 @@ internal class VerdantTree : ModTile
                         Gore.NewGore(Entity.GetSource_NaturalSpawn(), (new Vector2(i, j - k) * 16) + new Vector2(8 + r.Next(-4, 5), 8), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), leavesType);
                 }
             }
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendTileSquare(-1, i, j - k, TileChangeType.None);
         }
         return true;
     }

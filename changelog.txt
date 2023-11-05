@@ -1,5 +1,3 @@
-- Updated Wand item descriptions to highlight switchability
-- Updated Update hook for foreground and background items to not be unreasonably fast
-- Fixed Cloudblooms being *slightly* offset every time you save & load a world
-- Made Passionflowers destructable, added item
-- Made Passionflowers regrow significantly faster
+- Added Chlorovine recipe
+- Added animation to rope pulley when climbing a Zipvine
+- Nerfed Zipvine slightly to make Chlorovine feel faster

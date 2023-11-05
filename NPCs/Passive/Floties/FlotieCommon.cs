@@ -13,10 +13,13 @@ internal class FlotieCommon
 {
     public static void DeathGores(NPC npc, float mult = 1)
     {
-        for (int i = 0; i < 6 * mult; ++i)
+        if (Main.netMode != NetmodeID.Server)
         {
-            var pos = npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height));
-            Gore.NewGore(npc.GetSource_Death(), pos, Vector2.Zero, ModContent.Find<ModGore>("Verdant/LushLeaf").Type);
+            for (int i = 0; i < 6 * mult; ++i)
+            {
+                var pos = npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(npc.height));
+                Gore.NewGore(npc.GetSource_Death(), pos, Vector2.Zero, ModContent.Find<ModGore>("Verdant/LushLeaf").Type);
+            }
         }
 
         for (int i = 0; i < 12 * mult; ++i)

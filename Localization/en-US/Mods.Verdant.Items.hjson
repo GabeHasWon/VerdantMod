@@ -1240,7 +1240,7 @@ PermVineWand: {
 		'''
 		Allows the user to build a vine
 		The vine works like a rope and can be used in any open space
-		These vines use [i:{0}] to build, and drop them on being destroyed.
+		These vines use [i:{0}] to build, and drop them on being destroyed
 		'''
 }
 
@@ -1619,5 +1619,16 @@ PassionflowerBlock: {
 		'''
 		Regrows slowly
 		'A subtle yet comforting scent comes off of the remaining petals'
+		'''
+}
+
+ChlorovineWand: {
+	DisplayName: Chlorovine
+	Tooltip:
+		'''
+		Allows the user to build a Chlorovine
+		The vine works like a rope and can be used in any open space
+		These vines use [i:{0}] to build, and drop them on being destroyed
+		A magical energy lets you climb significantly faster
 		'''
 }

@@ -11,15 +11,16 @@ namespace Verdant.Systems.Foreground.Parallax;
 public class ZipvineEntity : ParallaxedFGItem
 {
     public virtual Vector2 HoldOffset => new(-6, 18);
-    public virtual float ClimbSpeed => 0.6f;
+    public virtual float ClimbSpeed => 0.5f;
     public virtual byte VineLength => 16;
+    public virtual int VineId => 0;
 
     public override bool SaveMe => true;
 
     public bool HasNext => nextVine is not null;
     public bool HasPrior => priorVine is not null;
 
-    private int Frame
+    protected int Frame
     {
         get
         {
@@ -37,13 +38,17 @@ public class ZipvineEntity : ParallaxedFGItem
     public ZipvineEntity nextVine = null;
     public ZipvineEntity priorVine = null;
 
-    private int _lifeTime = 0;
-    
+    protected int _lifeTime = 0;
+
     public ZipvineEntity() : base(Vector2.Zero, Vector2.Zero, 0, "Parallax/ZipvineBasic")
     {
     }
 
-    public ZipvineEntity(Vector2 position, long priorWho = -1, long nextWho = -1) : base(position, Vector2.Zero, 1f, "Parallax/ZipvineBasic")
+    public ZipvineEntity(string tex = "Parallax/ZipvineBasic") : base(Vector2.Zero, Vector2.Zero, 0, tex)
+    {
+    }
+
+    public ZipvineEntity(Vector2 position, long priorWho = -1, long nextWho = -1, string tex = "Parallax/ZipvineBasic") : base(position, Vector2.Zero, 1f, tex)
     {
         //DateTime.MinValue.Ticks
         whoAmI = (int)(DateTime.UtcNow.Ticks % int.MaxValue);
