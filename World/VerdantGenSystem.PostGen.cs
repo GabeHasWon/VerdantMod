@@ -8,9 +8,11 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
+using Verdant.Tiles.Verdant.Trees;
 
 namespace Verdant.World;
 
@@ -36,6 +38,32 @@ public partial class VerdantGenSystem
                 int[] vineAnchors = new int[] { ModContent.TileType<VerdantVine>(), ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantLeaves>() };
                 if (t.TileType == ModContent.TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).TileType))
                     WorldGen.KillTile(i, j);
+            }
+        }
+
+        ClearOrphans();
+    }
+
+    private void ClearOrphans()
+    {
+        for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
+        {
+            for (int j = VerdantArea.Bottom; j > VerdantArea.Y; --j)
+            {
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).LiquidAmount < 155)
+                    WorldGen.KillTile(i, j, false, false, true);
+
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()))
+                    WorldGen.KillTile(i, j, false, false, true);
+            }
+        }
+
+        for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
+        {
+            for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
+            {
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()))
+                    WorldGen.KillTile(i, j, false, false, true);
             }
         }
     }

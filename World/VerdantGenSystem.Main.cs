@@ -15,6 +15,7 @@ using Verdant.Tiles;
 using Terraria.IO;
 using System;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
+using System.Diagnostics;
 
 namespace Verdant.World;
 
@@ -36,8 +37,7 @@ public partial class VerdantGenSystem : ModSystem
     {
         p.Message = "Growing plants...";
 
-        Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed);
-        Mod.Logger.Info("Noise Seed: " + VerdantSystem.genNoise.Seed);
+        Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed + "\nNoise Seed: " + VerdantSystem.genNoise.Seed);
 
         static bool IsInvalidCenterX(int x)
         {
@@ -317,11 +317,13 @@ public partial class VerdantGenSystem : ModSystem
         const float Buffer = 3f;
 
         //Caves
-        VerdantSystem.genNoise = new FastNoise(WorldGen._genRandSeed);
-        VerdantSystem.genNoise.Seed = WorldGen._genRandSeed;
-        VerdantSystem.genNoise.Frequency = 0.05f;
-        VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.CubicFractal; //Sets noise to proper type
-        VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
+        VerdantSystem.genNoise = new FastNoise(WorldGen._genRandSeed)
+        {
+            Seed = WorldGen._genRandSeed,
+            Frequency = 0.05f,
+            NoiseType = FastNoise.NoiseTypes.CubicFractal, //Sets noise to proper type
+            FractalType = FastNoise.FractalTypes.Billow
+        };
 
         int startX = VerdantArea.Center.X - (int)(Main.maxTilesX / Buffer);
         int endX = VerdantArea.Center.X + (int)(Main.maxTilesX / Buffer);
@@ -329,14 +331,16 @@ public partial class VerdantGenSystem : ModSystem
         int startY = VerdantArea.Center.Y - (int)(Main.maxTilesY / (Buffer * 2));
         int endY = VerdantArea.Center.Y + (int)(Main.maxTilesY / (Buffer * 2));
 
-        HashSet<Point16> aggregateTiles = new();
+        HashSet<Point16> aggregateTiles = GenCircle.Locations;
 
-        foreach (var item in VerdantCircles)
-            foreach (var tile in item.tiles)
-                if (!aggregateTiles.Contains(tile))
-                    aggregateTiles.Add(tile);
+        //foreach (var item in VerdantCircles)
+        //    foreach (var tile in item.tiles)
+        //        if (!aggregateTiles.Contains(tile))
+        //            aggregateTiles.Add(tile);
 
         GetVerdantArea(aggregateTiles);
+
+        Mod.Logger.Info("Overriding tiles");
 
         foreach (var point in aggregateTiles)
         {
@@ -351,16 +355,16 @@ public partial class VerdantGenSystem : ModSystem
             if (n < -0.67f) 
             { }
             else if (n < -0.57f)
-                WorldGen.PlaceTile(point.X, point.Y, TileTypes[0]);
+                WorldGen.PlaceTile(point.X, point.Y, TileTypes[0], true);
             else
-                WorldGen.PlaceTile(point.X, point.Y, TileTypes[1]);
+                WorldGen.PlaceTile(point.X, point.Y, TileTypes[1], true);
 
             if (n < -0.85f)
                 WorldGen.KillWall(point.X, point.Y, false);
             else if (n < -0.52f)
-                WorldGen.PlaceWall(point.X, point.Y, WallTypes[0]);
+                WorldGen.PlaceWall(point.X, point.Y, WallTypes[0], true);
             else
-                WorldGen.PlaceWall(point.X, point.Y, WallTypes[1]);
+                WorldGen.PlaceWall(point.X, point.Y, WallTypes[1], true);
         }
 
         VerdantSystem.genNoise.Seed = WorldGen._genRandSeed;
@@ -368,6 +372,8 @@ public partial class VerdantGenSystem : ModSystem
         VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.ValueFractal;
         VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
         VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
+
+        Mod.Logger.Info("Overriding walls");
 
         foreach (var point in aggregateTiles)
         {
@@ -384,6 +390,8 @@ public partial class VerdantGenSystem : ModSystem
             if (n < -0.72f && TileTypes.Any(x => x == t.TileType) && t.TileType != TileTypes[0] && t.HasTile)
                 GenHelper.ReplaceTile(point, TileTypes[4]);
         }
+
+        GenCircle.Locations.Clear();
     }
 
     private static void GetVerdantArea(HashSet<Point16> aggregateTiles)
@@ -409,29 +417,5 @@ public partial class VerdantGenSystem : ModSystem
         }
 
         VerdantArea = new Rectangle(left, top, right - left, bottom - top);
-    }
-
-    public override void PostWorldGen() //Final cleanup
-    {
-        for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
-        {
-            for (int j = VerdantArea.Bottom; j > VerdantArea.Y; --j)
-            {
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).LiquidAmount < 155)
-                    WorldGen.KillTile(i, j, false, false, true);
-
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()))
-                    WorldGen.KillTile(i, j, false, false, true);
-            }
-        }
-
-        for (int i = VerdantArea.X; i < VerdantArea.Right; ++i)
-        {
-            for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
-            {
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()))
-                    WorldGen.KillTile(i, j, false, false, true);
-            }
-        }
     }
 }

@@ -12,6 +12,8 @@ namespace Verdant.World
     {
         public const float MaxDitherDistance = 8f;
 
+        public readonly static HashSet<Point16> Locations = new();
+
         public int radius;
         public Point16 center;
         public List<Point16> tiles;
@@ -60,12 +62,18 @@ namespace Verdant.World
                         float chance = (radius - dist) / MaxDitherDistance;
 
                         if (random.NextFloat() <= chance && Main.tile[nPos.X, nPos.Y].HasTile)
-                            tiles.Add(nPos);
+                            AddLocation(nPos);
                     }
                 }
                 else
-                    tiles.Add(nPos);
+                    AddLocation(nPos);
             }
+        }
+
+        private static void AddLocation(Point16 nPos)
+        {
+            if (!Locations.Contains(nPos))
+                Locations.Add(nPos);
         }
     }
 }

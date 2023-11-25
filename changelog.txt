@@ -1,3 +1,4 @@
-- Added Chlorovine recipe
-- Added animation to rope pulley when climbing a Zipvine
-- Nerfed Zipvine slightly to make Chlorovine feel faster
+- Added more debug text to Verdant's world generation
+- Moved post world gen actions to a very late world gen action
+- Optimized world generation (base terrain step) a notable bit
+- Hopefully optimized crossmod with Remnants
