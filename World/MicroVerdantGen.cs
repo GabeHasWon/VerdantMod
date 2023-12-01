@@ -54,7 +54,7 @@ namespace Verdant.World
 
             Point16[] offsets = new Point16[4] { zeniths[0] + new Point16(-1, 0), zeniths[1] + new Point16(0, -1), zeniths[2] + new Point16(0, 1), zeniths[3] + new Point16(1, 0) };
 
-            foreach (var point in circle.tiles)
+            foreach (var point in GenCircle.Locations)
             {
                 float n = VerdantSystem.genNoise.GetNoise(point.X, point.Y);
                 TileAction.TileActionDelegate action = (int _, int _, ref bool _) => { };
@@ -95,14 +95,14 @@ namespace Verdant.World
                     orderedActions.Add(point, action);
             }
 
-            AddOres(circle.tiles, orderedActions);
-            Add1xXFoliage(circle.tiles, orderedActions);
+            AddOres(GenCircle.Locations, orderedActions);
+            Add1xXFoliage(GenCircle.Locations, orderedActions);
 
             var queue = new Queue<RealtimeStep>();
             foreach (var key in orderedActions.Keys)
                 queue.Enqueue(new(key, orderedActions[key]));
 
-            PostGenFunctions(circle.tiles, queue);
+            PostGenFunctions(GenCircle.Locations, queue);
 
             Point16? apothLoc = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation;
             bool noApotheosis = apothLoc is null;
@@ -133,11 +133,13 @@ namespace Verdant.World
                 }));
             }
 
-            foreach (var pos in circle.tiles)
+            foreach (var pos in GenCircle.Locations)
                 queue.Enqueue(new(pos, SpawnTree));
 
             if (Main.netMode == NetmodeID.Server)
                 queue.Enqueue(syncStep);
+
+            GenCircle.Locations.Clear();
             return queue;
         }
 
@@ -161,7 +163,7 @@ namespace Verdant.World
             }
         }
 
-        private static void AddOres(List<Point16> tiles, Dictionary<Point16, TileAction.TileActionDelegate> orderedActions)
+        private static void AddOres(HashSet<Point16> tiles, Dictionary<Point16, TileAction.TileActionDelegate> orderedActions)
         {
             foreach (var point in tiles)
             {
@@ -187,7 +189,7 @@ namespace Verdant.World
             }
         }
 
-        private static void PostGenFunctions(List<Point16> tiles, Queue<RealtimeStep> queue)
+        private static void PostGenFunctions(HashSet<Point16> tiles, Queue<RealtimeStep> queue)
         {
             foreach (var pos in tiles)
             {
@@ -201,9 +203,13 @@ namespace Verdant.World
             void Pickipuff(int x, int y, ref bool success)
             {
                 int count = 0;
+
                 while (count < 2)
                 {
-                    var random = WorldGen.genRand.Next(tiles);
+                    if (!tiles.Any())
+                        break;
+
+                    var random = WorldGen.genRand.Next(tiles.ToList());
                     Tile tile = Main.tile[random.ToPoint()];
 
                     if (tile.HasTile && tile.TileType == ModContent.TileType<VerdantGrassLeaves>())
@@ -279,7 +285,7 @@ namespace Verdant.World
             }
         }
 
-        private static void Add1xXFoliage(List<Point16> tiles, Dictionary<Point16, TileAction.TileActionDelegate> orderedActions)
+        private static void Add1xXFoliage(HashSet<Point16> tiles, Dictionary<Point16, TileAction.TileActionDelegate> orderedActions)
         {
             foreach (var point in tiles)
             {

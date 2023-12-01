@@ -16,14 +16,11 @@ namespace Verdant.World
 
         public int radius;
         public Point16 center;
-        public List<Point16> tiles;
 
         public GenCircle(int radius, Point16 center)
         {
             this.radius = radius;
             this.center = center;
-
-            tiles = new List<Point16>();
         }
 
         public override readonly string ToString() => radius + " + " + center;
