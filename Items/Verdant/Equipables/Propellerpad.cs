@@ -4,10 +4,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Buffs.Minion;
 using Verdant.Projectiles.Minion;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 
 namespace Verdant.Items.Verdant.Equipables;
 
-class Propellerpad : ModItem
+class Propellerpad : ApotheoticItem
 {
     public override void SetDefaults()
     {
@@ -31,5 +33,19 @@ class Propellerpad : ModItem
         }
         else if (player.HasBuff<PropellerpadBuff>())
             player.ClearBuff(ModContent.BuffType<PropellerpadBuff>());
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Propellerpad))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.", 3, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.0").
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.1")).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.2"));
     }
 }

@@ -1,2 +1,8 @@
-- Fixed Microcosms being unusable
-- Optimized Microcosm code lightly
+- Fixed Microcosm not spawning a replacement Apotheosis in some cases
+- Moved Apotheosis & Study structure generation to post worldgen instead of end of worldgen
+- Added a lot of Apotheosis flavor text for various items
+- Heavily modified generation for the biome in dontdigup worlds
+	- Biome is now vertical
+	- Caves are slightly different
+	- Biome is a little smaller
+- Updated sprite for Lush Soil Wall

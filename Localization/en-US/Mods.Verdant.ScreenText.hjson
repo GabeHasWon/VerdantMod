@@ -253,5 +253,43 @@ Apotheosis: {
 		FlotieItem: We love this little guy.
 		FlotinyItem: We love this guy too.
 		LushWingletItem: One of the first...
+
+		Propellerpad: {
+			0: One of my favourites.
+			1: Simple, clean, natural, silent.
+			2: What more can you ask for?
+		}
+
+		Mudsquid: {
+			0: Probably our proudest achievements.
+			1: I've never seen, much less used, anything like it.
+			2: Not that we've had much magic before...
+		}
+
+		SproutInAGlove: Sometimes, simplicity is key.
+		VineHook: This guy's always having the time of his life.
+
+		ExpertPlantGuide: {
+			0: Ah, my old book.
+			1: I wrote this a few years ago...
+			2: How time flies.
+		}
+
+		ApotheoticSoul: {
+			0: ...
+			1: ...not to dive too far in,
+			2: but this is a small sample of our power.
+			3: It's something you've earned,
+			4: and you've done well to get here.
+			5: I doubt you'll need more,
+			6: and we hope you understand what we've given you.
+			7: The world cares for you,
+			8: as you do it.
+		}
+
+		LushDagger: {
+			0: Violence is something we cannot avoid,
+			1: but we hope you avoid it with our plants.
+		}
 	}
 }

@@ -23,9 +23,7 @@ public partial class VerdantGenSystem
         p.Message = "Trimming plants...";
 
         AddFlowerStructures();
-        p.Value = 0.33f;
-        PlaceStructures();
-        p.Value = 0.66f;
+        p.Value = 0.5f;
 
         for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
         {
@@ -72,7 +70,7 @@ public partial class VerdantGenSystem
     readonly static int[] InvalidWalls = new int[] { WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, WallID.GreenDungeonTileUnsafe,
             WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe };
 
-    private static void PlaceStructures()
+    public override void PostWorldGen()
     {
         Point apothPos = new(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4);
         int side = WorldGen.genRand.NextBool(2) ? -1 : 1;

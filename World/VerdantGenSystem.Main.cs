@@ -55,6 +55,9 @@ public partial class VerdantGenSystem : ModSystem
 
         static int GetCenterX()
         {
+            if (WorldGen.remixWorldGen)
+                return WorldGen.genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 3f * 2));
+
             int x;
 
             do
@@ -292,18 +295,38 @@ public partial class VerdantGenSystem : ModSystem
 
     private void GenerateCircles()
     {
+        VerdantCircles.Clear();
         float repeats = 6 * WorldSize;
 
-        VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3f * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(7 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
-        VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
-        VerdantArea.Width += 80;
-        VerdantArea.Height += 80;
-        VerdantCircles.Clear();
+        if (!WorldGen.remixWorldGen)
+        {
+            VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3f * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(7 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
+            VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
+            VerdantArea.Width += 80;
+            VerdantArea.Height += 80;
+        }
+        else // dontdigup gen
+        {
+            VerdantArea = new Rectangle(VerdantArea.Center.X - 20, VerdantArea.Center.Y, 200, (int)(5 * WorldSize * WorldGen.genRand.Next(75, 85)));
+            VerdantArea.Width += 40;
+            VerdantArea.Height += 40;
+        }
 
         for (int i = 0; i < repeats; ++i)
         {
-            int x = (int)MathHelper.Lerp(VerdantArea.X + 50, VerdantArea.Right - 50,  i / repeats);
-            int y = VerdantArea.Center.Y - WorldGen.genRand.Next(-20, 20);
+            int x;
+            int y;
+
+            if (!WorldGen.remixWorldGen) 
+            {
+                x = (int)MathHelper.Lerp(VerdantArea.X + 50, VerdantArea.Right - 50, i / repeats);
+                y = VerdantArea.Center.Y - WorldGen.genRand.Next(-20, 20);
+            }
+            else
+            {
+                x = VerdantArea.Center.X - WorldGen.genRand.Next(-20, 20);
+                y = (int)MathHelper.Lerp(VerdantArea.Y + 50, VerdantArea.Bottom - 50, i / repeats);
+            }
 
             VerdantCircles.Add(new GenCircle((int)(WorldGen.genRand.Next(50, 80) * WorldSize), new Point16(x, y)));
         }
@@ -317,11 +340,18 @@ public partial class VerdantGenSystem : ModSystem
         const float Buffer = 3f;
 
         //Caves
-        VerdantSystem.genNoise = new FastNoise(WorldGen._genRandSeed)
+        VerdantSystem.genNoise = WorldGen.remixWorldGen ? new FastNoise(WorldGen._genRandSeed)
         {
             Seed = WorldGen._genRandSeed,
             Frequency = 0.05f,
             NoiseType = FastNoise.NoiseTypes.CubicFractal, //Sets noise to proper type
+            FractalType = FastNoise.FractalTypes.Billow
+        } 
+        : new FastNoise(WorldGen._genRandSeed)
+        {
+            Seed = WorldGen._genRandSeed,
+            Frequency = 0.025f,
+            NoiseType = FastNoise.NoiseTypes.PerlinFractal,
             FractalType = FastNoise.FractalTypes.Billow
         };
 
@@ -332,15 +362,9 @@ public partial class VerdantGenSystem : ModSystem
         int endY = VerdantArea.Center.Y + (int)(Main.maxTilesY / (Buffer * 2));
 
         HashSet<Point16> aggregateTiles = GenCircle.Locations;
-
-        //foreach (var item in VerdantCircles)
-        //    foreach (var tile in item.tiles)
-        //        if (!aggregateTiles.Contains(tile))
-        //            aggregateTiles.Add(tile);
-
         GetVerdantArea(aggregateTiles);
 
-        Mod.Logger.Info("Overriding tiles");
+        Mod.Logger.Info("Placing base");
 
         foreach (var point in aggregateTiles)
         {
@@ -368,12 +392,12 @@ public partial class VerdantGenSystem : ModSystem
         }
 
         VerdantSystem.genNoise.Seed = WorldGen._genRandSeed;
-        VerdantSystem.genNoise.Frequency = 0.014f;
-        VerdantSystem.genNoise.NoiseType = FastNoise.NoiseTypes.ValueFractal;
+        VerdantSystem.genNoise.Frequency = WorldGen.remixWorldGen ? 0.03f : 0.014f;
+        VerdantSystem.genNoise.NoiseType = WorldGen.remixWorldGen ? FastNoise.NoiseTypes.PerlinFractal : FastNoise.NoiseTypes.ValueFractal;
         VerdantSystem.genNoise.FractalType = FastNoise.FractalTypes.Billow;
         VerdantSystem.genNoise.InterpolationMethod = FastNoise.Interp.Quintic;
 
-        Mod.Logger.Info("Overriding walls");
+        Mod.Logger.Info("Placing roots");
 
         foreach (var point in aggregateTiles)
         {
@@ -385,7 +409,7 @@ public partial class VerdantGenSystem : ModSystem
             Tile t = Framing.GetTileSafely(point.X, point.Y);
 
             if (t.WallType == WallTypes[0] && n < -0.4f)
-                GenHelper.ReplaceWall(point, WallTypes[2]);
+                GenHelper.ReplaceWall(point, WorldGen.remixWorldGen ? WallTypes[1] : WallTypes[2]);
 
             if (n < -0.72f && TileTypes.Any(x => x == t.TileType) && t.TileType != TileTypes[0] && t.HasTile)
                 GenHelper.ReplaceTile(point, TileTypes[4]);

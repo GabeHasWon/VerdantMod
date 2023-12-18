@@ -4,10 +4,13 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Equipables;
+using Verdant.Systems.ScreenText.Caches;
+using Verdant.Systems.ScreenText;
 
 namespace Verdant.Items.Verdant.Materials;
 
-public class ApotheoticSoul : ModItem
+public class ApotheoticSoul : ApotheoticItem
 {
     public override void SetStaticDefaults()
     {
@@ -39,5 +42,25 @@ public class ApotheoticSoul : ModItem
         return new Color(Math.Clamp(col.R + Main.rand.Next(-50, 50), 0, 255),
             Math.Clamp(col.G + Main.rand.Next(-50, 50), 0, 255),
             Math.Clamp(col.B + Main.rand.Next(-50, 50), 0, 255));
+    }
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(ApotheoticSoul))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.", 9, true);
+
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.0").
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.1")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.2")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.3")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.4")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.5")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.6")).
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.7")).
+            FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ApotheoticSoul.8"));
     }
 }

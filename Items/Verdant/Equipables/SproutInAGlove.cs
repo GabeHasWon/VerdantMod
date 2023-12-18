@@ -5,10 +5,13 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Projectiles.Particles;
+using Verdant.Systems.ScreenText.Caches;
+using Verdant.Systems.ScreenText;
+using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Items.Verdant.Equipables;
 
-class SproutInAGlove : ModItem
+class SproutInAGlove : ApotheoticItem
 {
     bool offsetFlag = false;
 
@@ -31,7 +34,11 @@ class SproutInAGlove : ModItem
         return true;
     }
 
-    public override void ModifyTooltips(List<TooltipLine> lines) => lines.Insert(1, new TooltipLine(Mod, "Verdant:OrLine", "[c/969696:Or: the Apotheosis's Blessing]"));
+    public override void ModifyTooltips(List<TooltipLine> lines)
+    {
+        lines.Insert(1, new TooltipLine(Mod, "Verdant:OrLine", "[c/969696:Or: the Apotheosis's Blessing]"));
+        base.ModifyTooltips(lines);
+    }
 
     public override void SetDefaults()
     {
@@ -41,6 +48,20 @@ class SproutInAGlove : ModItem
     }
 
     public override void UpdateEquip(Player player) => player.GetModPlayer<SproutInAGlovePlayer>().equippedGlove = Item;
+
+    [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(SproutInAGlove))]
+    public override ScreenText Dialogue(bool forServer)
+    {
+        if (forServer)
+            return null;
+
+        if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
+        {
+            ApotheosisDialogueCache.Chat("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.SproutInAGlove", true);
+            return null;
+        }
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.SproutInAGlove", true);
+    }
 
     private class SproutInAGlovePlayer : ModPlayer
     {

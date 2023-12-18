@@ -1,35 +1,18 @@
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
-using Terraria.ObjectData;
-using Verdant.Effects;
-using Verdant.Projectiles.Magic;
-using Verdant.Systems.Foreground;
-using Verdant.Systems.Foreground.Tiled;
-using Verdant.Systems.RealtimeGeneration;
-using Verdant.Systems.RealtimeGeneration.CaptureRendering;
-using Verdant.Systems.RealtimeGeneration.Old;
-using Verdant.Systems.ScreenText.Caches;
-using Verdant.Tiles;
-using Verdant.Tiles.Verdant.Basic;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.Tiles.Verdant.Decor;
-using Verdant.Tiles.Verdant.Misc;
-using Verdant.Tiles.Verdant.Trees;
-using Verdant.Walls;
-using Verdant.World;
 
 namespace Verdant.Items;
 
 public class ProbablyDelete : ModItem
 {
-    public override bool IsLoadingEnabled(Mod mod) => false;
+    public override bool IsLoadingEnabled(Mod mod) =>
+#if DEBUG
+        true;
+#else
+        false;
+#endif
 
     public override void SetStaticDefaults() => ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
 
@@ -53,15 +36,10 @@ public class ProbablyDelete : ModItem
         Item.createTile = ModContent.TileType<LilyPad>();
     }
 
-    readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
-    readonly static int[] InvalidWalls = new int[] { WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, WallID.GreenDungeonTileUnsafe,
-            WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe };
-
     public override bool? UseItem(Player player)
     {
-        return true;
-        Point apothPos = Main.MouseWorld.ToTileCoordinates();
-        AquamarineGen.SingleAquamarine(apothPos.X, apothPos.Y);
+        Tile tile = Main.tile[Main.MouseWorld.ToTileCoordinates()];
+        tile.HasTile = false;
         return true;
     }
 }

@@ -12,7 +12,7 @@ public abstract class ApotheoticItem : ModItem, IDialogueCache
 {
     public abstract ScreenText Dialogue(bool forServer);
 
-    public sealed override void ModifyTooltips(List<TooltipLine> tooltips)
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
         if (!NPC.downedMoonlord)
             return;

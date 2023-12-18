@@ -105,12 +105,11 @@ namespace Verdant.World
             PostGenFunctions(GenCircle.Locations, queue);
 
             Point16? apothLoc = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation;
-            bool noApotheosis = apothLoc is null;
 
-            if (!noApotheosis)
+            if (apothLoc.HasValue && (Main.tile[apothLoc.Value].TileType != ModContent.TileType<Apotheosis>() && Main.tile[apothLoc.Value].TileType != ModContent.TileType<HardmodeApotheosis>()))
                 Apotheosis.TrySetLocation(apothLoc.Value.X, apothLoc.Value.Y);
 
-            if (noApotheosis)
+            if (!apothLoc.HasValue)
             {
                 queue.Enqueue(new(circle.center, (int x, int y, ref bool success) =>
                 {
