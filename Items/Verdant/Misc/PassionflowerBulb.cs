@@ -11,7 +11,7 @@ namespace Verdant.Items.Verdant.Misc;
 [Sacrifice(10)]
 class PassionflowerBulb : ModItem
 {
-    public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 22, ItemRarityID.Lime, 1);
+    public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 22, ItemRarityID.Lime, 99);
     public override bool CanRightClick() => true;
 
     public override void ModifyItemLoot(ItemLoot itemLoot)

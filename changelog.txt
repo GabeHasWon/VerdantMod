@@ -1,8 +1,7 @@
-- Fixed Microcosm not spawning a replacement Apotheosis in some cases
-- Moved Apotheosis & Study structure generation to post worldgen instead of end of worldgen
-- Added a lot of Apotheosis flavor text for various items
-- Heavily modified generation for the biome in dontdigup worlds
-	- Biome is now vertical
-	- Caves are slightly different
-	- Biome is a little smaller
-- Updated sprite for Lush Soil Wall
+- Updated Zipvine and Chlorovine tooltips to include right click to remove vine functionality
+- Updated Apotheosis downed boss dialogue for Skeletron and Wall of Flesh
+- Changed Heart of Growth's ability to +5% permenant Summon damage instead of +1 permenant max minion
+- Added compatibility with my new mod, Stockable Shops
+	- The Dryad now sells Green Crystals, 5 per stock rotation, after the Eye of Cthulhu is defeated
+	- She sells all special Research Books, the Vine and Leaf ones on all even stock rotations, and Rock and Lightbulb ones on odd stock rotations
+	- She restocks once every 5 days

@@ -1607,5 +1607,6 @@ ChlorovineWand: {
 		The vine works like a rope and can be used in any open space
 		These vines use [i:{0}] to build, and drop them on being destroyed
 		A magical energy lets you climb significantly faster
+		Right click Chlorovines while holding this to remove them
 		''' */
 }

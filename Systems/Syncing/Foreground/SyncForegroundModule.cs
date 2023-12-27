@@ -5,8 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
+using Verdant.Systems.Foreground.Tiled;
 
-namespace Verdant.Systems.Syncing;
+namespace Verdant.Systems.Syncing.Foreground;
 
 /// <summary>
 /// Purpose-made 
@@ -34,7 +35,13 @@ public class SyncForegroundModule : Module
                 }
                 else if (item is CloudbloomEntity cloud)
                     new CloudbloomModule(Main.maxPlayers, cloud.position.X, cloud.position.Y, cloud.puff).Send(fromWho, -1, false);
-            } 
+            }
+
+            foreach (var item in ForegroundManager.Items)
+            {
+                if (item is MysteriaDrapes drapes)
+                    new DrapesModule(Main.maxPlayers, (int)(drapes.position.X / 16f), (int)(drapes.position.Y / 16f), false, drapes.length).Send(fromWho, -1, false);
+            }
         }
     }
 }

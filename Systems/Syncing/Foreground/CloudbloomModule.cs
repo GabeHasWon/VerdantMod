@@ -8,13 +8,13 @@ using Verdant.Systems.Foreground;
 using Microsoft.Xna.Framework;
 using System.Linq;
 
-namespace Verdant.Systems.Syncing;
+namespace Verdant.Systems.Syncing.Foreground;
 
 [Serializable]
 public class CloudbloomModule : Module
 {
     public enum Data
-    { 
+    {
         None,
         Kill,
         PlacePuff

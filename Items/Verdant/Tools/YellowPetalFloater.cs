@@ -9,7 +9,7 @@ using Verdant.Items.Verdant.Materials;
 using System.Linq;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Systems.ScreenText;
-using Verdant.Systems.Syncing;
+using Verdant.Systems.Syncing.Foreground;
 
 namespace Verdant.Items.Verdant.Tools;
 

@@ -16,11 +16,15 @@ namespace Verdant.Players;
 /// </summary>
 internal class ZipvinePlayer : ModPlayer
 {
-    ZipvineEntity zipvine = null;
-    float progress = 0;
+    internal ZipvineEntity zipvine = null;
+    
+    float _progress = 0;
 
     public override void PreUpdateMovement()
     {
+        if (zipvine is not null && zipvine.killMe)
+            zipvine = null;
+
         if (zipvine is null)
             TryGrabAnyVine();
         else
@@ -43,17 +47,17 @@ internal class ZipvinePlayer : ModPlayer
             return;
         }
 
-        float oldProgress = progress;
+        float oldProgress = _progress;
 
         if (Player.controlUp) // Climb vine
-            progress += zipvine.ClimbSpeed;
+            _progress += zipvine.ClimbSpeed;
         else if (Player.controlDown)
-            progress -= zipvine.ClimbSpeed;
+            _progress -= zipvine.ClimbSpeed;
 
         AdjustVineProgress();
 
         Vector2 nextPosition = zipvine.nextVine is null ? zipvine.position : zipvine.nextVine.position;
-        Vector2 realNextPos = Vector2.Lerp(zipvine.position, nextPosition, progress) + zipvine.HoldOffset;
+        Vector2 realNextPos = Vector2.Lerp(zipvine.position, nextPosition, _progress) + zipvine.HoldOffset;
 
         bool mockLineCheck = true;
 
@@ -71,14 +75,14 @@ internal class ZipvinePlayer : ModPlayer
         else
         {
             if (Player.controlUp) // Climb vine
-                progress -= zipvine.ClimbSpeed;
+                _progress -= zipvine.ClimbSpeed;
             else if (Player.controlDown)
-                progress += zipvine.ClimbSpeed;
+                _progress += zipvine.ClimbSpeed;
 
             AdjustVineProgress();
         }
 
-        if (progress != oldProgress)
+        if (_progress != oldProgress)
             UpdatePulleyFrame();
     }
 
@@ -99,38 +103,38 @@ internal class ZipvinePlayer : ModPlayer
 
     private void AdjustVineProgress()
     {
-        if (progress < 0) // Adjust progress so we skip to next vine(s) if needed
+        if (_progress < 0) // Adjust progress so we skip to next vine(s) if needed
         {
             if (zipvine.priorVine is null)
-                progress = 0;
+                _progress = 0;
 
-            while (progress < 0)
+            while (_progress < 0)
             {
                 if (zipvine.priorVine is null)
                 {
-                    progress = 0;
+                    _progress = 0;
                     break;
                 }
 
                 zipvine = zipvine.priorVine;
-                progress += 1f;
+                _progress += 1f;
             }
         }
-        else if (progress > 1)
+        else if (_progress > 1)
         {
             if (zipvine.nextVine is null)
-                progress = 1;
+                _progress = 1;
 
-            while (progress > 1)
+            while (_progress > 1)
             {
                 if (zipvine.nextVine is null)
                 {
-                    progress = 1;
+                    _progress = 1;
                     break;
                 }
 
                 zipvine = zipvine.nextVine;
-                progress -= 1f;
+                _progress -= 1f;
             }
         }
     }

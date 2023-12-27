@@ -75,6 +75,9 @@ class LootPlant : ModTile
                 t.TileFrameY += FrameHeight;
             }
         }
+
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            NetMessage.SendTileSquare(-1, tL.X, tL.Y, 2, 2);
     }
 
     internal static void DecreaseFrame(Point tL)
@@ -92,6 +95,9 @@ class LootPlant : ModTile
                 t.TileFrameY -= FrameHeight;
             }
         }
+
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            NetMessage.SendTileSquare(-1, tL.X, tL.Y, 2, 2);
     }
 
     public override void MouseOver(int i, int j)

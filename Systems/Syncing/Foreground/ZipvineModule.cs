@@ -9,7 +9,7 @@ using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using static Humanizer.In;
 
-namespace Verdant.Systems.Syncing;
+namespace Verdant.Systems.Syncing.Foreground;
 
 [Serializable]
 public class ZipvineModule : Module

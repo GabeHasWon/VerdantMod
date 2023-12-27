@@ -48,11 +48,14 @@ namespace Verdant.NPCs
             }
             else if (npc.type == NPCID.Dryad) //loves the verdant
             {
-                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
                     chat = Dialogue("Dryad.0");
 
-                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(4))
+                if (Main.LocalPlayer.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.rand.NextBool(5))
                     chat = Dialogue("Dryad.1");
+
+                if (NPC.downedBoss1 && Main.rand.NextBool(5))
+                    chat = Dialogue("Dryad.GreenCrystal");
             }
             else if (npc.type == NPCID.Stylist) //hates the verdant
             {

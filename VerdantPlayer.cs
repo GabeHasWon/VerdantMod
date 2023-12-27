@@ -47,7 +47,7 @@ class VerdantPlayer : ModPlayer
     public override void ResetEffects()
     {
         if (heartOfGrowth) //perm bonus
-            Player.maxMinions++;
+            Player.GetDamage(DamageClass.Summon) += 0.05f;
 
         if (crystalHeart) //also a perm bonus
         {

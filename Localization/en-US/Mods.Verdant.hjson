@@ -35,3 +35,8 @@ GameTips: {
 	VerdantGameTip0: Talk to the Apotheosis often, they might have rewards for you.
 	VerdantGameTip1: The lush caves of the Verdant offer a reprieve anywhere!
 }
+
+DryadShop: {
+	Restock: Restocks once every 5 days, or once every 3 days if in the Verdant
+	Condition: Every other stock rotation
+}

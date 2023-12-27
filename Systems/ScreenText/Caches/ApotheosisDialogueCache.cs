@@ -264,18 +264,21 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.0");
-                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.1");
+                for (int i = 0; i < 5; ++i)
+                    Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron." + i);
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
                 return null;
             }
 
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.0") { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
-                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.1"), (self) =>
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.1"), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<YellowBulb>(), 10);
-                });
+                }).
+                With(new("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.2")).
+                With(new("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.3")).
+                FinishWith(new("$Mods.Verdant.ScreenText.Apotheosis.Downed.Skeletron.4"));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".WoF")]
@@ -288,7 +291,7 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 7; ++i)
                     Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF." + i);
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
@@ -298,10 +301,13 @@ namespace Verdant.Systems.ScreenText.Caches
             return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.0") { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.1")).
                 With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.2")).
-                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.3"), (self) =>
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.3"), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<HeartOfGrowth>(), 1);
-                });
+                }).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.4")).
+                With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.5")).
+                FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.WoF.6"));
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".AnyMech")]

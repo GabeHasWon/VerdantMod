@@ -108,6 +108,9 @@ Apotheosis: {
 		Skeletron: {
 			0: 地牢的灵魂...部分解放了。
 			1: 你应得的——拿走这些。我们最喜欢的。
+			// 2: Now, find the Wall in the infernal depths. Remove it.
+			// 3: But, take all the time you need.
+			// 4: Growth isn't instant.
 		}
 
 		WoF: {
@@ -115,6 +118,9 @@ Apotheosis: {
 			1: 随着我们更加自由，您将开始看到一些变化——
 			2: ——不过，这可能需要一段时间。无论如何，#你可能已经注意到几个。无论如何，
 			3: 作为感谢，拿着这个。我...已经不需要了。
+			// 4: ...and while you're here,
+			// 5: know that I will reward you for defeating more evils;
+			// 6: so check in sometimes, hm?
 		}
 
 		AnyMech: {

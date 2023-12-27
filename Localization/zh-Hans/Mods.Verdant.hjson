@@ -35,3 +35,8 @@ GameTips: {
 	VerdantGameTip0: 经常与天神交谈，他们可能会给你奖励。
 	VerdantGameTip1: 葱郁洞穴在任何地方都能提供喘息的机会！
 }
+
+DryadShop: {
+	// Restock: Restocks once every 5 days, or once every 3 days if in the Verdant
+	// Condition: Every other stock rotation
+}

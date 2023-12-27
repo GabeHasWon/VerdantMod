@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
-using Verdant.Systems.Syncing;
+using Verdant.Systems.Syncing.Foreground;
 
 namespace Verdant.Items.Verdant.Tools;
 

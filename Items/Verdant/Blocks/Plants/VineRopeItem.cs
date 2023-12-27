@@ -17,6 +17,9 @@ namespace Verdant.Items.Verdant.Blocks.Plants
 
         public override bool? UseItem(Player player)
         {
+            if (player.whoAmI != Main.myPlayer)
+                return false;
+            
             static bool Valid(int x, int y) => Main.tile[x, y].HasTile && !Main.tileCut[Main.tile[x, y].TileType];
 
             var m = Main.MouseWorld.ToTileCoordinates();
@@ -38,7 +41,7 @@ namespace Verdant.Items.Verdant.Blocks.Plants
                     return true;
 
                 y--;
-                while (Main.tile[x, y].HasTile)
+                while (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == Item.createTile)
                     y--;
 
                 if (!Main.tile[x, y].HasTile && Main.tile[x, y + 1].TileType == Item.createTile)

@@ -6,7 +6,7 @@ using Verdant.Systems.Foreground.Parallax;
 using Verdant.Systems.Foreground;
 using System.Linq;
 
-namespace Verdant.Systems.Syncing;
+namespace Verdant.Systems.Syncing.Foreground;
 
 [Serializable]
 public class KillZipvineModule : Module

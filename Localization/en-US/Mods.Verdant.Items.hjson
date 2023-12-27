@@ -1120,7 +1120,7 @@ HeartOfGrowth: {
 	DisplayName: The Heart of Growth
 	Tooltip:
 		'''
-		Permenantly increases max minions by one.
+		Permenantly increases minion damage by 5%.
 		Can only be used once per person.
 		'A heart that beats everliving.'
 		'''
@@ -1241,6 +1241,7 @@ PermVineWand: {
 		Allows the user to build a vine
 		The vine works like a rope and can be used in any open space
 		These vines use [i:{0}] to build, and drop them on being destroyed
+		Right click Zipvines while holding this to remove them
 		'''
 }
 
@@ -1630,5 +1631,6 @@ ChlorovineWand: {
 		The vine works like a rope and can be used in any open space
 		These vines use [i:{0}] to build, and drop them on being destroyed
 		A magical energy lets you climb significantly faster
+		Right click Chlorovines while holding this to remove them
 		'''
 }

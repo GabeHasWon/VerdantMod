@@ -145,7 +145,10 @@ public static class TileHelper
             return false;
 
         if (Main.netMode != NetmodeID.SinglePlayer)
+        {
             NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j, 0f, 0, 0, 0);
+            NetMessage.SendTileSquare(-1, i, j);
+        }
         return true;
     }
 

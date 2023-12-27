@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using Verdant.Systems.Syncing;
+using Verdant.Systems.Syncing.Foreground;
 
 namespace Verdant.Players;
 

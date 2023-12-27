@@ -12,6 +12,7 @@ using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
+using Verdant.Tiles.Verdant.Misc;
 using Verdant.Tiles.Verdant.Trees;
 
 namespace Verdant.World;
@@ -130,6 +131,7 @@ public partial class VerdantGenSystem
             goto redoAgain;
 
         StructureHelper.Generator.GenerateStructure("World/Structures/Study" + studyID, new Point16(studyLoc.X, studyLoc.Y), VerdantMod.Instance);
+        ReplaceBooks(studyLoc, size);
 
     redoAgainAgain:
         Point pos = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
@@ -142,6 +144,29 @@ public partial class VerdantGenSystem
             StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
         else
             goto redoAgainAgain;
+    }
+
+    private static void ReplaceBooks(Point studyLoc, Point16 size)
+    {
+        bool placeRock = true;
+
+        while (true)
+        {
+            int x = studyLoc.X + WorldGen.genRand.Next(size.X);
+            int y = studyLoc.Y + WorldGen.genRand.Next(size.Y);
+
+            if (TileHelper.ActiveType(x, y, ModContent.TileType<ResearchBooks>()))
+            {
+                Tile tile = Main.tile[x, y];
+                tile.TileType = (ushort)ModContent.TileType<SpecialBooks>();
+                tile.TileFrameX = (short)((placeRock ? 108 : 72) + (WorldGen.genRand.NextBool() ? 18 : 0));
+
+                if (!placeRock)
+                    break;
+                else
+                    placeRock = false;
+            }
+        }
     }
 
     private void AddFlowerStructures()
@@ -157,7 +182,7 @@ public partial class VerdantGenSystem
         List<Vector2> positions = new() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
         int attempts = 0;
 
-        for (int i = 0; i < 9 * WorldSize; ++i)
+        for (int i = 0; i < 8 * WorldSize; ++i)
         {
             int index = WorldGen.genRand.Next(offsets.Length);
             Point16 pos = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));

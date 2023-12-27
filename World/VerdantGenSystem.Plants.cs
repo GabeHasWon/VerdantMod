@@ -160,7 +160,7 @@ public partial class VerdantGenSystem
             for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j) //Loop explicitly for trees & puffs so they get all the spawns they need
             {
                 //Trees
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()) && WorldGen.SolidTile(i, j))
                 {
                     int minHeight = 0;
 

@@ -8,7 +8,7 @@ using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Systems.ScreenText;
-using Verdant.Systems.Syncing;
+using Verdant.Systems.Syncing.Foreground;
 
 namespace Verdant.Items.Verdant.Tools;
 

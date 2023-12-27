@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.Misc.Books;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
@@ -12,7 +13,13 @@ internal class SpecialBooks : ModTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
         TileObjectData.newTile.StyleHorizontal = true;
+
         QuickTile.SetMulti(this, 1, 1, DustID.UnusedBrown, SoundID.Dig, true, new Color(85, 82, 67));
+
+        RegisterItemDrop(ModContent.ItemType<LightbulbBook>(), 0, 1);
+        RegisterItemDrop(ModContent.ItemType<LeafBook>(), 2, 3);
+        RegisterItemDrop(ModContent.ItemType<HardyVineBook>(), 4, 5);
+        RegisterItemDrop(ModContent.ItemType<RockBook>(), 5, 6);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

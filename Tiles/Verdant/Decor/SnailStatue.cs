@@ -15,9 +15,9 @@ namespace Verdant.Tiles.Verdant.Decor;
 
 internal class SnailStatue : ModTile
 {
-    public override void Load() => Terraria.On_Main.DrawMouseOver += Main_DrawMouseOver;
+    public override void Load() => On_Main.DrawMouseOver += Main_DrawMouseOver;
 
-    private void Main_DrawMouseOver(Terraria.On_Main.orig_DrawMouseOver orig, Main self)
+    private void Main_DrawMouseOver(On_Main.orig_DrawMouseOver orig, Main self)
     {
         orig(self);
 
@@ -94,6 +94,7 @@ internal class SnailStatue : ModTile
 		TileObjectData.newTile.CoordinatePaddingFix = new Point16(0, -2);
 		TileObjectData.newTile.Direction = Terraria.Enums.TileObjectDirection.None;
 		TileObjectData.newTile.LinkedAlternates = false;
+		TileObjectData.newTile.Origin = new(2, 3);
         TileObjectData.addTile(Type);
 
 		LocalizedText n = CreateMapEntryName();
