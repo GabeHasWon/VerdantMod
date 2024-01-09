@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.DataStructures;
-using Verdant.Items.Verdant.Blocks;
 using Terraria.ObjectData;
 using Verdant.NPCs.Passive;
 

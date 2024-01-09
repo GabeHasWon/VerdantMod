@@ -43,12 +43,7 @@ public class BulbboxJelly : ModNPC
         SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A curious, harmless little jelly. Its plant-like tentacles grow from their transparent body."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void OnSpawn(IEntitySource source)
     {

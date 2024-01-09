@@ -37,12 +37,7 @@ public class MossCarp : ModNPC
         SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("The bottom of this fish collects nutrients and plants, which other Moss Carp can harvest, forming a symbiotic relationship."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override bool PreAI()
     {

@@ -5,8 +5,17 @@ Mossling.DisplayName: 苔藓 [弃用]
 
 BigThorn.DisplayName: 荆棘
 SmallThorn.DisplayName: 荆棘
-SmallFly.DisplayName: 葱郁小翼
-Bumblebee.DisplayName: 熊峰
+
+SmallFly: {
+	DisplayName: 葱郁小翼
+	// Entry: A tiny creature made of leaf, petal and flesh. Skittish and harmless. Somehow, they hold a little sadness within.
+}
+
+Bumblebee: {
+	DisplayName: 熊峰
+	// Entry: A bee with extra bumble. Bumble with a little bit more bee on top. Speck with wings.
+}
+
 Axolotl.DisplayName: 蝾螈
 BulbboxJelly.DisplayName: 亮灯球茎水母
 MossCarp.DisplayName: 苔鲤

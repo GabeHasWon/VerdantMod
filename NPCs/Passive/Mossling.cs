@@ -40,12 +40,7 @@ namespace Verdant.NPCs.Passive
             SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new FlavorTextBestiaryInfoElement("An almost microscopic speck, growing in and around lush, humid areas. Moves to a beat you cannot hear. Sadly, they can't be found naturally any longer."),
-            });
-        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
         public const int MaxDistance = 40;
         public override void AI()

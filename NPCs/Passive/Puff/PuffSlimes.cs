@@ -46,15 +46,10 @@ public class PuffSlimeSmall : ModNPC
 
         AnimationType = NPCID.BlueSlime;
         AIType = NPCID.Crimslime;
-        SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A typical Slime, albeit significantly more friendly, curious, and fluffy!...and perhaps a little bit hyperactive, too."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void PostAI() => NPC.color = Color.White;
 

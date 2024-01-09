@@ -1,7 +1,1 @@
-- Updated Zipvine and Chlorovine tooltips to include right click to remove vine functionality
-- Updated Apotheosis downed boss dialogue for Skeletron and Wall of Flesh
-- Changed Heart of Growth's ability to +5% permenant Summon damage instead of +1 permenant max minion
-- Added compatibility with my new mod, Stockable Shops
-	- The Dryad now sells Green Crystals, 5 per stock rotation, after the Eye of Cthulhu is defeated
-	- She sells all special Research Books, the Vine and Leaf ones on all even stock rotations, and Rock and Lightbulb ones on odd stock rotations
-	- She restocks once every 5 days
+- Stockable Shops is still broken :( it's gone now

@@ -45,12 +45,7 @@ public class Flotie : ModNPC
         SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A curious glowing critter found in lush caves. It's usually found surrounded by its younglings."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void AI() => FlotieCommon.Behavior(NPC, 1, 1);
 
@@ -118,12 +113,7 @@ public class MysteriaFlotie : Flotie
         NPC.catchItem = (short)ModContent.ItemType<MysteriaFlotieItem>();
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A variant of the more common Verdant Flotie, found in Mysteria groves. Smells of a pleasant, floral aroma."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void AI()
     {

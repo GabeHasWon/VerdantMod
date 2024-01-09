@@ -45,12 +45,7 @@ public class Flotiny : Flotie
         SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A tiny floating creature. Despite levitating, it makes no sound and doesn't move apart from gentle swaying, as if in a breeze."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void AI() => FlotieCommon.Behavior(NPC, 0.65f, 0.6f);
     public sealed override int SpawnNPC(int tileX, int tileY) => NPC.NewNPC(null, tileX * 16 + 8, tileY * 16, NPC.type);
@@ -101,13 +96,7 @@ public class MysteriaFlotiny : Flotiny
         NPC.catchItem = (short)ModContent.ItemType<MysteriaFlotinyItem>();
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A recently discovered creature, Mysteria Flotinies seem to congregate around Mysteria canopies. " +
-            "Perhaps there's more to learn about these creatures?"),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void AI()
     {

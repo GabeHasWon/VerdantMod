@@ -42,15 +42,10 @@ public class Axolotl : ModNPC
             NPC.HitSound = new SoundStyle("Verdant/Sounds/AxolotlBoop") with { Pitch = 0.35f, PitchVariance = 0.2f, Volume = 1.5f };
 
         AnimationType = NPCID.BlueJellyfish;
-        SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-    {
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-            new FlavorTextBestiaryInfoElement("A mostly aquatic creature, though it survives on land just fine...if a little jumpy. It enjoys the holes in some backslate walls."),
-        });
-    }
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
 
     public override void OnSpawn(IEntitySource source)
     {

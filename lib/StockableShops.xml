@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StockableShops</name>
+    </assembly>
+    <members>
+        <member name="T:StockableShops.Stock.Shops.MerchantStock">
+            <summary>
+            Example stocked shop. Sells 5 King Statues for 10 silver each, and sells 5 Queen Statues after EoW/BoC is downed for 20 gold each.
+            </summary>
+        </member>
+        <member name="T:StockableShops.Stock.StockedShop">
+            <summary>
+            Defines a shop which has a variable stock with conditions, alongside helper classes to register, find and check for shops.
+            </summary>
+        </member>
+        <member name="P:StockableShops.Stock.StockedShop.NPCType">
+            <summary>
+            Refers to which NPC this shop is attached to. 
+            If the NPC you're attaching to does not have a vanilla system shop, this <see cref="T:StockableShops.Stock.StockedShop"/> does nothing.
+            </summary>
+        </member>
+        <member name="P:StockableShops.Stock.StockedShop.RestockCondition">
+            <summary>
+            By what conditions this shop's stock refreshes. 
+            This is mandatory for mods that may want to show other mod's restock conditions without undue effort.<br/>
+            This should be a localized object, so make sure you're using <see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> or catching a localized text to use.
+            </summary>
+        </member>
+        <member name="F:StockableShops.Stock.StockedShop.FullStock">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:StockableShops.Stock.StockedShop.needsRestock">
+            <summary>
+            Default bool for tracking if the shop needs a restock or not.
+            </summary>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopsPerMod(System.String)">
+            <summary>
+            Returns all shops registered under the given mod name.
+            </summary>
+            <param name="name">Name of the mod to reference.</param>
+            <returns>The <see cref="!:Dictionary&lt;,&gt;"/> containing the mod's shops, by NPC ID.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopsPerNpcId(System.Int32)">
+            <summary>
+            Returns all shops registered under the given NPC ID.
+            </summary>
+            <param name="id">The NPC ID to reference.</param>
+            <returns>The <see cref="!:Dictionary&lt;,&gt;"/> containing each of the NPC's shops, by mod.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopsPerNpcId``1">
+            <inheritdoc cref="M:StockableShops.Stock.StockedShop.ShopsPerNpcId(System.Int32)"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.HasShop(System.Int32)">
+            <summary>
+            Gets whether the given NPC ID has a shop registered.
+            </summary>
+            <param name="id">The NPC ID to check.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.HasShop``1">
+            <inheritdoc cref="M:StockableShops.Stock.StockedShop.HasShop(System.Int32)"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.GetShop(System.Int32,System.String)">
+            <summary>
+            Gets the shop registered to the NPC ID under the given mod name. The mod name is always simply "ModName", i.e. "Verdant".<br/>
+            </summary>
+            <param name="id">NPC ID to use.</param>
+            <param name="modName">Mod name to use.</param>
+            <returns>The <see cref="T:StockableShops.Stock.StockedShop"/> instance assinged to the given NPC under the given mod.</returns>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.GetShop(System.Int32,Terraria.ModLoader.Mod)">
+            <inheritdoc cref="M:StockableShops.Stock.StockedShop.GetShop(System.Int32,System.String)"/>
+            <param name="mod">Mod to use mod.Name.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.GetShop``1(System.String)">
+            <inheritdoc cref="M:StockableShops.Stock.StockedShop.GetShop(System.Int32,System.String)"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.GetShop``1(Terraria.ModLoader.Mod)">
+            <inheritdoc cref="M:StockableShops.Stock.StockedShop.GetShop(System.Int32,Terraria.ModLoader.Mod)"/>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.Register">
+            <summary>
+            This handles registering the new shop to the given dictionaries automatically, alongside the lookup.
+            </summary>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.SetupStock(Terraria.NPC)">
+            <summary>
+            Called when the stock needs to be set up. Modify <see cref="F:StockableShops.Stock.StockedShop.FullStock"/>, as <see cref="F:StockableShops.Stock.StockedShop.stock"/> is the stock after being checked for availability.<br/>
+            This is ONLY RUN ONCE. It's similar to ModifyNPCLoot, so only use it when creating the initial stock.
+            </summary>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.StockShop(Terraria.NPC,System.String,Terraria.Item[])">
+            <summary>
+            Called when the given <see cref="T:Terraria.NPC"/>'s shop is stocked or restocked.<br/>
+            This is run through <see cref="M:Terraria.ModLoader.GlobalNPC.ModifyActiveShop(Terraria.NPC,System.String,Terraria.Item[])"/>.<br/>
+            <see cref="M:StockableShops.Stock.StockedShop.ShouldRestockShop"/> is checked every time the shop is opened, and is what determines if a new or replacement stock is given.<br/>
+            Otherwise, the shop will contain the remaining items from <see cref="F:StockableShops.Stock.StockedShop.stock"/>.<br/>
+            You should only override this if you really know what you're doing! This default implementation is good for 99% of cases.
+            </summary>
+            <param name="npc">The NPC which is being restocked.</param>
+            <param name="shop">The shop (item array) being modified.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.RestockShop(Terraria.NPC,Terraria.Item[])">
+            <summary>
+            Called when the shop is restocked. Use this to modify variables, update stuff or manually modify <see cref="F:StockableShops.Stock.StockedShop.stock"/>.
+            </summary>
+            <param name="npc">The NPC which is being restocked.</param>
+            <param name="shop">The shop (item array) being modified.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.BasicStockShop(Terraria.Item[],System.Boolean)">
+            <summary>
+            This is the basic implementation for stocking the shop. By default, it generates the new stock (if <paramref name="reset"/> is true), 
+            or adds in the old stock.<br/>
+            Old stock that is null, air, or at or below a stack of 0 is automatically removed.
+            </summary>
+            <param name="shop"></param>
+            <param name="reset"></param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.StockIndividualItem(StockableShops.Stock.StockedShop.ShopItem,Terraria.Item[],System.Int32@,System.Boolean)">
+            <summary>
+            Used by <see cref="M:StockableShops.Stock.StockedShop.BasicStockShop(Terraria.Item[],System.Boolean)"/> to stock individual items. You may want to adapt this to fit your specific method if needed.
+            </summary>
+            <param name="item">The shop item to stock.</param>
+            <param name="shop">The shop to stock in.</param>
+            <param name="index">The current index for the shop.</param>
+            <param name="addToStock">Whether this method adds the current <paramref name="item"/> to <see cref="F:StockableShops.Stock.StockedShop.stock"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShouldRestockShop">
+            <summary>
+            Determines whether the shop should restock. By default, this returns <c><see cref="F:StockableShops.Stock.StockedShop.stock"/>.Count == 0 or (!<see cref="F:StockableShops.Stock.StockedShop.needsRestock"/> and <see cref="F:Terraria.Main.dayTime"/>)</c>.
+            </summary>
+            <returns>Whether the shop should restock.</returns>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.WhileShopOpen(Terraria.NPC,Terraria.Chest)">
+            <summary>
+            Runs while the NPC's shop is open. Does nothing by default.
+            </summary>
+            <param name="npc">The NPC you're shopping at.</param>
+            <param name="shop">The...shop...you're shopping at.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.Update">
+            <summary>
+            This method is always running. Use this for constant checks or changes made regardless of if the shop is or isn't open.<br/>
+            By default, this sets <see cref="F:StockableShops.Stock.StockedShop.needsRestock"/> to false at night.
+            </summary>
+        </member>
+        <member name="T:StockableShops.Stock.StockedShop.ShopItem">
+            <summary>
+            Handles a single stocked item with a given condition.<br/>
+            For example:
+            <code>new ShopItem(new Condition.NotTheBeesWorld(), new Item(ItemID.Dirt, 20));</code>
+            would create a shop item that is only available on a Not The Bees! world, and has a max stock of 20.
+            </summary>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopItem.#ctor(Terraria.Item)">
+            <summary>
+            Creates an instance of <see cref="T:StockableShops.Stock.StockedShop.ShopItem"/> with the given item and a condition that is always true.
+            </summary>
+            <param name="item">The item that this holds.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopItem.#ctor(Terraria.Condition,Terraria.Item)">
+            <summary>
+            Creates an instance of <see cref="T:StockableShops.Stock.StockedShop.ShopItem"/> with the given condition and item.
+            </summary>
+            <param name="condition">The condition to check, i.e. <c>() => Main.dayTime;</c></param>
+            <param name="item">The item that this holds.</param>
+        </member>
+        <member name="M:StockableShops.Stock.StockedShop.ShopItem.#ctor(System.Func{System.Boolean},Terraria.Item)">
+            <summary>
+            Creates an instance of <see cref="T:StockableShops.Stock.StockedShop.ShopItem"/>, using the given <paramref name="condition"/> to create a new <see cref="T:Terraria.Condition"/>.
+            </summary>
+            <param name="condition">The condition to check, i.e. <c>() => Main.dayTime;</c>.</param>
+            <param name="item">The item that this holds.</param>
+        </member>
+        <member name="T:StockableShops.Stock.StockedShop.StockedShopUpdater">
+            <summary>
+            Handles updating all loaded StockedShops.
+            </summary>
+        </member>
+        <member name="T:StockableShops.Stock.StockedVendorNPC">
+            <summary>
+            Handles stocked vendor NPCs. This is the primary reason this mod must be loaded, otherwise this'd be a dllReference.
+            </summary>
+        </member>
+    </members>
+</doc>
