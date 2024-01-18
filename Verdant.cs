@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
+using Terraria.ModLoader.Core;
 
 namespace Verdant;
 
@@ -42,7 +43,8 @@ public partial class VerdantMod : Mod
 
     private void LoadVerdantGrasses()
     {
-        var types = GetType().Assembly.GetTypes().Where(x => typeof(IVerdantGrassTile).IsAssignableFrom(x) && !x.IsAbstract);
+        var types = AssemblyManager.GetLoadableTypes(Code).Where(x => typeof(IVerdantGrassTile).IsAssignableFrom(x) && !x.IsAbstract);
+
         foreach (var item in types)
         {
             string name = item.Assembly.GetName().Name;

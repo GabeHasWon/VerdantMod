@@ -12,7 +12,7 @@ internal class GlobalNPCHooks : ILoadable
 {
     public void Load(Mod mod)
     {
-        Terraria.IL_NPC.SlimeRainSpawns += AddPuffToSlimeRain;
+        IL_NPC.SlimeRainSpawns += AddPuffToSlimeRain;
     }
 
     private void AddPuffToSlimeRain(ILContext il)

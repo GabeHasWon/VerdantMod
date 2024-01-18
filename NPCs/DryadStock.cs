@@ -8,6 +8,8 @@ using Verdant.Items.Verdant.Blocks.Misc.Books;
 
 namespace Verdant.NPCs;
 
+[JITWhenModsEnabled("StockableShops")]
+[ExtendsFromMod("StockableShops")]
 internal class DryadStock : StockedShop
 {
     public override int NPCType => NPCID.Dryad;

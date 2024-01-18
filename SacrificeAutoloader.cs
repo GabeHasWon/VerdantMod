@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 using Verdant.Items.Verdant;
 
 namespace Verdant;
@@ -13,7 +14,7 @@ public class SacrificeAutoloader
 {
 	public static void Load(Mod mod)
 	{
-		var types = typeof(VerdantMod).Assembly.GetTypes().Where(x => typeof(ModItem).IsAssignableFrom(x) && !x.IsAbstract);
+        var types = AssemblyManager.GetLoadableTypes(mod.Code).Where(x => typeof(ModItem).IsAssignableFrom(x) && !x.IsAbstract);
 		foreach (var info in types)
 		{
 			if (!mod.TryFind(info.Name, out ModItem modItem))

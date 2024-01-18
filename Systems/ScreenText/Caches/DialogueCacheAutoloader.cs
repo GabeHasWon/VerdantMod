@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 using Verdant.Items;
 using Verdant.Systems.Syncing;
 
@@ -15,7 +16,7 @@ namespace Verdant.Systems.ScreenText.Caches
 
         public void Load(Mod mod)
         {
-            var types = GetType().Assembly.GetTypes().Where(x => !x.IsAbstract && typeof(IDialogueCache).IsAssignableFrom(x));
+            var types = AssemblyManager.GetLoadableTypes(mod.Code).Where(x => !x.IsAbstract && typeof(IDialogueCache).IsAssignableFrom(x));
             foreach (var type in types)
             {
                 var methods = type.GetMethods().Where(x => Attribute.IsDefined(x, typeof(DialogueCacheKeyAttribute)));

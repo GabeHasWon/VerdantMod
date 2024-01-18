@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NetEasy;
 using System;
 using System.IO;
 using Terraria;
@@ -10,6 +11,7 @@ using Terraria.ModLoader.IO;
 using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.TileEntity;
 using Verdant.Items.Verdant.Materials;
+using Verdant.Systems.ScreenText.Caches;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.TileEntities.Puff;
@@ -46,14 +48,14 @@ internal class Pickipuff : DrawableTE
     private const int Retreating = 1;
     private const int Chilling = 0;
 
-    private float factor = 0;
-    private float targetFactor = 0;
-    private float factorTime = 0;
-    private int puffState = 0;
-    private int length = 0;
+    internal float factor = 0;
+    internal float targetFactor = 0;
+    internal float factorTime = 0;
+    internal int puffState = 0;
+    internal int length = 0;
     private int timer = 0;
 
-    protected override Point Size => new Point(18, (int)(targetFactor * length) + 22);
+    protected override Point Size => new(18, (int)(targetFactor * length) + 22);
 
     public override void SaveData(TagCompound tag)
     {
@@ -115,6 +117,9 @@ internal class Pickipuff : DrawableTE
 
         CheckPickup();
         SpawnDust();
+
+        if (Main.netMode == NetmodeID.Server)
+            new PickipuffModule(Position.X, Position.Y, length, factor, puffState, targetFactor).Send(runLocally: false);
     }
 
     private void SpawnDust()
@@ -235,5 +240,41 @@ internal class Pickipuff : DrawableTE
         }
 
         spriteBatch.Draw(tex, PuffLocation - Main.screenPosition, new Rectangle(0, 20 * puffState, 18, 20), Lighting.GetColor(PuffLocation.ToTileCoordinates()), 0f, new Vector2(12, 0), 1f, SpriteEffects.None, 0f);
+    }
+}
+
+[Serializable]
+public class PickipuffModule : Module
+{
+    private int x;
+    private int y;
+    private int length;
+    private float factor;
+    private int puffState;
+    private float targetFactor;
+
+    public PickipuffModule(int x, int y, int length, float factor, int puffState, float targetFactor)
+    {
+        this.x = x;
+        this.y = y;
+        this.length = length;
+        this.factor = factor;
+        this.puffState = puffState;
+        this.targetFactor = targetFactor;
+    }
+
+    protected override void Receive()
+    {
+        if (Main.netMode != NetmodeID.Server)
+        {
+            if (!TileEntity.ByPosition.TryGetValue(new Point16(x, y), out var entity))
+                return;
+
+            var puff = entity as Pickipuff;
+            puff.length = length;
+            puff.factor = factor;
+            puff.puffState = puffState;
+            puff.targetFactor = targetFactor;
+        }
     }
 }

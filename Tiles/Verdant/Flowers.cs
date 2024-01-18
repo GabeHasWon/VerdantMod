@@ -5,6 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 namespace Verdant.Tiles.Verdant;
 
@@ -14,8 +15,8 @@ public class Flowers
 
     public static void Load(Mod mod)
     {
-        var types = mod.GetType().Assembly.GetTypes().Where(x => !x.IsAbstract && typeof(IFlowerTile).IsAssignableFrom(x));
-        FlowerIDs = new();
+        var types = AssemblyManager.GetLoadableTypes(mod.Code).Where(x => !x.IsAbstract && typeof(IFlowerTile).IsAssignableFrom(x));
+        FlowerIDs = [];
 
         LoadVanillaFlowers();
 

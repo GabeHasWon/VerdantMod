@@ -93,12 +93,12 @@ internal class VerdantTree : ModTile
 
             if (k == height - 1)
             {
-                if (r.NextBool(12)) 
+                if (r.NextBool(18)) 
                     Framing.GetTileSafely(i, j - k).TileFrameX = 180;
                 else 
                     Framing.GetTileSafely(i, j - k).TileFrameX = 198;
             }
-            else if (r.NextBool(4))
+            else if (r.NextBool(4) && k > 2)
             {
                 int side = r.Next(2);
                 if (side == 0 && !Framing.GetTileSafely(i - 1, j - k).HasTile)

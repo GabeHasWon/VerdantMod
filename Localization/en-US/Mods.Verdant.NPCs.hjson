@@ -73,10 +73,10 @@ PuffSlimeSmall: {
 
 VerdantBulbSnail: {
 	DisplayName: Lightbulb Snail
-	Entry: Did this snail eat a light bulb? No. Did it eat a lightbulb? Perhaps. 
+	Entry: Did this snail eat a light bulb? No. Did it eat a lightbulb? Perhaps.
 }
 
-# Sorry for the above entry being really long, I just think it's funny.
+# Sorry for the below entry being really long, I just think it's funny.
 
 VerdantRedGrassSnail: {
 	DisplayName: Leafy Snail

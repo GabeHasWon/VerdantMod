@@ -1,10 +1,15 @@
-HostFly.DisplayName: 小翼女主人 [已移除]
-Mossling.DisplayName: 苔藓 [弃用]
+HostFly: {
+	DisplayName: 小翼女主人 [已移除]
+	// Entry: The matriarch of a small fly colony, angry that its children are being attacked. Seems to be extinct naturally, despite the commonality of the Lush Winglet.
+}
+
+Mossling: {
+	DisplayName: 苔藓 [弃用]
+	// Entry: An almost microscopic speck, growing in and around lush, humid areas. Moves to a beat you cannot hear. Sadly, they can't be found naturally any longer.
+}
+
 # Note that the Hostess Winglet and the Mossling are both deprecated.
 # They are only visible in-game when a cheat mod is active.
-
-BigThorn.DisplayName: 荆棘
-SmallThorn.DisplayName: 荆棘
 
 SmallFly: {
 	DisplayName: 葱郁小翼
@@ -16,15 +21,64 @@ Bumblebee: {
 	// Entry: A bee with extra bumble. Bumble with a little bit more bee on top. Speck with wings.
 }
 
-Axolotl.DisplayName: 蝾螈
-BulbboxJelly.DisplayName: 亮灯球茎水母
-MossCarp.DisplayName: 苔鲤
-Poolworm.DisplayName: 池虫
-Flotie.DisplayName: 飘花
-Flotiny.DisplayName: 漂浮球茎
-MysteriaFlotie.DisplayName: 奥秘飘花
-MysteriaFlotiny.DisplayName: 奥秘漂浮球茎
-Folifish.DisplayName: 叶鱼
-PuffSlimeSmall.DisplayName: 气团花史莱姆
-VerdantBulbSnail.DisplayName: 亮灯球茎蜗牛
-VerdantRedGrassSnail.DisplayName: 叶子蜗牛
+Axolotl: {
+	DisplayName: 蝾螈
+	// Entry: A mostly aquatic creature, though it survives on land just fine...if a little jumpy. It enjoys the holes in some backslate walls.
+}
+
+BulbboxJelly: {
+	DisplayName: 亮灯球茎水母
+	// Entry: A curious, harmless little jelly. Its plant-like tentacles grow from their transparent body.
+}
+
+MossCarp: {
+	DisplayName: 苔鲤
+	// Entry: The bottom of this fish collects nutrients and plants, which other Moss Carp can harvest, forming a symbiotic relationship.
+}
+
+Poolworm: {
+	DisplayName: 池虫
+	// Entry: The smallest aquatic critter in the Verdant. Makes for great bait.
+}
+
+Flotie: {
+	DisplayName: 飘花
+	// Entry: A curious glowing critter found in lush caves. It's usually found surrounded by its younglings.
+}
+
+Flotiny: {
+	DisplayName: 漂浮球茎
+	// Entry: A tiny floating creature. Despite levitating, it makes no sound and doesn't move apart from gentle swaying, as if in a breeze.
+}
+
+MysteriaFlotie: {
+	DisplayName: 奥秘飘花
+	// Entry: A variant of the more common Verdant Flotie, found in Mysteria groves. Smells of a pleasant, floral aroma.
+}
+
+MysteriaFlotiny: {
+	DisplayName: 奥秘漂浮球茎
+	// Entry: A recently discovered creature, Mysteria Flotinies seem to congregate around Mysteria canopies. Perhaps there's more to learn about these creatures?
+}
+
+Folifish: {
+	DisplayName: 叶鱼
+	// Entry: A fish overgrown with plant life. While eating it isn't particularly tasty, it is quite healthy. However, it seems to have all but disappeared from the Verdant.
+}
+
+PuffSlimeSmall: {
+	DisplayName: 气团花史莱姆
+	// Entry: A typical Slime, albeit significantly more friendly, curious, and fluffy!...and perhaps a little bit hyperactive, too.
+}
+
+VerdantBulbSnail: {
+	DisplayName: 亮灯球茎蜗牛
+	// Entry: Did this snail eat a light bulb? No. Did it eat a lightbulb? Perhaps.
+}
+
+# Sorry for the below entry being really long, I just think it's funny.
+
+VerdantRedGrassSnail: {
+	DisplayName: 叶子蜗牛
+	// Entry: They say thousands of years ago, a mad scientist did the impossible - combined plant and animal together. The beastly creation, eschewed by man and feared by nature, stands on its own within this cruel and unforgiving world. These creatures began to seek all facets of life - power, love, friendship and most of all, just being a little guy. Some might say that in this quest, and this quest alone, they had succeeded. However, they also say they heard this from someone else in the town and they just don't really remember who, so stop asking and buy something. At the end of the day, this snail is leafy, and that's all you need to know about it.
+}
