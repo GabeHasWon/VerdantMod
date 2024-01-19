@@ -18,6 +18,15 @@ namespace Verdant.Items.Verdant.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<HealingFlowerPlayer>().hasHealFlower = true;
+            player.GetModPlayer<HealingFlowerPlayer>().flowerEffects = true;
+
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingFlower>()] == 0)
+                Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingFlower>(), 0, 0, player.whoAmI);
+        }
+
+        public override void UpdateVanity(Player player)
+        {
+            player.GetModPlayer<HealingFlowerPlayer>().hasHealFlower = true;
 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingFlower>()] == 0)
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingFlower>(), 0, 0, player.whoAmI);
@@ -27,18 +36,19 @@ namespace Verdant.Items.Verdant.Equipables
     class HealingFlowerPlayer : ModPlayer
     {
         internal bool hasHealFlower = false;
+        internal bool flowerEffects = false;
 
-        public override void ResetEffects() => hasHealFlower = false;
+        public override void ResetEffects() => hasHealFlower = flowerEffects = false;
 
         public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
         {
-            if (hasHealFlower)
+            if (flowerEffects)
                 healValue = (int)(healValue * 1.2f);
         }
 
         public override void GetHealMana(Item item, bool quickHeal, ref int healValue)
         {
-            if (hasHealFlower)
+            if (flowerEffects)
                 healValue = (int)(healValue * 1.3f);
         }
     }

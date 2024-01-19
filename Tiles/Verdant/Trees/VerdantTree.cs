@@ -11,8 +11,8 @@ using Terraria.Utilities;
 using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.Items.Verdant.Food;
 using Verdant.Items.Verdant.Materials;
-using Verdant.NPCs.Passive;
 using Verdant.NPCs.Passive.Floties;
+using Verdant.NPCs.Passive.Snails;
 
 namespace Verdant.Tiles.Verdant.Trees;
 

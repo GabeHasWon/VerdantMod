@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Misc;
 using Verdant.Items.Verdant.Critter;
 
-namespace Verdant.NPCs.Passive;
+namespace Verdant.NPCs.Passive.Snails;
 
 public class VerdantRedGrassSnail : ModNPC
 {
@@ -32,7 +32,6 @@ public class VerdantRedGrassSnail : ModNPC
         NPC.catchItem = (short)ModContent.ItemType<RedGrassSnail>();
 
         AnimationType = NPCID.Snail;
-        DrawOffsetY = 2;
         SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
@@ -57,38 +56,36 @@ public class VerdantRedGrassSnail : ModNPC
     {
         if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.PlayerInTown)
             return 2f;
-        return (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant) ? 0.8f : 0f;
+        return spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant ? 0.8f : 0f;
     }
 }
 
 public class VerdantBulbSnail : VerdantRedGrassSnail
 {
-    public override void SetStaticDefaults()
-    {
-        Main.npcCatchable[NPC.type] = true;
-        Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Snail];
-
-        NPCID.Sets.CountsAsCritter[Type] = true;
-    }
-
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.Snail);
+        base.SetDefaults();
+
         NPC.width = 20;
         NPC.height = 16;
-        NPC.damage = 0;
-        NPC.defense = 0;
-        NPC.lifeMax = 5;
-        NPC.value = 0f;
-        NPC.knockBackResist = 0f;
-        NPC.dontCountMe = true;
         NPC.catchItem = (short)ModContent.ItemType<BulbSnail>();
-
-        AnimationType = NPCID.Snail;
-        SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");
+    public override void AI() => Lighting.AddLight(NPC.Center, Color.HotPink.ToVector3() * 0.4f);
+}
+
+public class ShellSnail : VerdantRedGrassSnail
+{
+    public override void SetDefaults()
+    {
+        base.SetDefaults();
+
+        NPC.width = 20;
+        NPC.height = 16;
+        NPC.catchItem = (short)ModContent.ItemType<BulbSnail>();
+
+        DrawOffsetY = 2;
+    }
 
     public override void AI() => Lighting.AddLight(NPC.Center, Color.HotPink.ToVector3() * 0.4f);
 }

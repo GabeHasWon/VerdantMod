@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.NPCs.Passive;
+using Verdant.NPCs.Passive.Snails;
 
 namespace Verdant.Tiles.Verdant.Decor.Terrariums;
 
@@ -47,8 +47,8 @@ public abstract class SnailTerrarium : ModTile
 
         if (tile.TileFrameX == 72 && tile.TileFrameY == 36)
         {
-            float[] offsets =   new[] { 0f, 6, 12, 18, 18, 12,  6,  0, -6, -12, -18, -18, -12, -6, 0 };
-            float[] rotations = new[] { 0, 0f, 0f, 0,  1,  1,   1,  1,  1,  1,   1,   0,  0,    0, 0 };
+            float[] offsets =   [0f, 6, 12, 18, 18, 12,  6,  0, -6, -12, -18, -18, -12, -6, 0];
+            float[] rotations = [0, 0f, 0f, 0,  1,  1,   1,  1,  1,  1,   1,   0,  0,    0, 0];
 
             Main.instance.LoadNPC(NPCType);
             Texture2D tex = TextureAssets.Npc[NPCType].Value;
@@ -78,4 +78,12 @@ public class BulbSnailTerrarium : SnailTerrarium
     protected override Point NPCSize => new(26, 16);
 
     protected override float GetOffset(int i, int j) => (i - j) * MathHelper.PiOver4;
+}
+
+public class ShellSnailTerrarium : SnailTerrarium
+{
+    protected override int NPCType => ModContent.NPCType<ShellSnail>();
+    protected override Point NPCSize => new(38, 22);
+
+    protected override float GetOffset(int i, int j) => (i - j) * MathHelper.PiOver4 + MathHelper.PiOver2;
 }

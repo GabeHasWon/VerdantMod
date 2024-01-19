@@ -1,5 +1,3 @@
-- Made Stockable Shops a weak reference (which means optional)
-- Adjusted code to make the above work as it didn't before
-- Fixed Pickipuffs not syncing in multiplayer
-- Fixed Verdant Grass 1x2 growth replacing tiles in some occasions
-- Changed Verdant Biome priority to BiomeMedium
+- Renamed Leafy Snail to Red Petal Snail
+- Added Shelly Snail
+- Made the Yellow Sprout visible in vanity slots

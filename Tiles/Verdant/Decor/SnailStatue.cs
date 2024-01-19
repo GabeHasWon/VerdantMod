@@ -8,7 +8,7 @@ using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
-using Verdant.NPCs.Passive;
+using Verdant.NPCs.Passive.Snails;
 
 namespace Verdant.Tiles.Verdant.Decor;
 

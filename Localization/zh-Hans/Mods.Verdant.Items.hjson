@@ -1610,3 +1610,13 @@ ChlorovineWand: {
 		Right click Chlorovines while holding this to remove them
 		''' */
 }
+
+ShellSnailCage: {
+	// DisplayName: Shell Snail Cage
+	// Tooltip: ""
+}
+
+ShellSnailItem: {
+	// DisplayName: Shell Snail Item
+	// Tooltip: ""
+}
