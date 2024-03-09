@@ -1,3 +1,2 @@
-- Renamed Leafy Snail to Red Petal Snail
-- Added Shelly Snail
-- Made the Yellow Sprout visible in vanity slots
+- Adjusted 'My Apotheosis' book text to fit on-page
+- Fixed Shelly Snail being unobtainable

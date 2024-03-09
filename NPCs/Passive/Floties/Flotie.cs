@@ -64,7 +64,7 @@ public class Flotie : ModNPC
 
     public override void HitEffect(NPC.HitInfo hit)
     {
-        if (NPC.life <= 0)
+        if (NPC.life <= 0 && Main.netMode != NetmodeID.Server)
         {
             FlotieCommon.DeathGores(NPC);
 

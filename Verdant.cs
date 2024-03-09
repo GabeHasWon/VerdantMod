@@ -10,7 +10,6 @@ using System;
 using System.IO;
 using Verdant.Systems.ModCompat;
 using System.Linq;
-using System.Reflection;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Terraria.ModLoader.Core;

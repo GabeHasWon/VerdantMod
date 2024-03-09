@@ -82,7 +82,7 @@ public class ShellSnail : VerdantRedGrassSnail
 
         NPC.width = 20;
         NPC.height = 16;
-        NPC.catchItem = (short)ModContent.ItemType<BulbSnail>();
+        NPC.catchItem = (short)ModContent.ItemType<ShellSnailItem>();
 
         DrawOffsetY = 2;
     }
