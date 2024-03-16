@@ -18,7 +18,22 @@ internal class TallHatLayer : PlayerDrawLayer
     {
         Player player = drawInfo.drawPlayer;
 
-        if ((!player.active && !Main.gameMenu) || player.outOfRange || player.dead || player.armor[0].ModItem is not ITallHat hat)
+        if (!player.active && !Main.gameMenu)
+            return;
+
+        bool isArmorTallHatAndNotHidden = player.armor[0].ModItem is ITallHat && player.armor[10].IsAir;
+        bool isVanityTallHat = player.armor[10].ModItem is ITallHat;
+
+        if (player.outOfRange || player.dead || (!isArmorTallHatAndNotHidden && !isVanityTallHat))
+            return;
+
+        ITallHat hat;
+
+        if (isArmorTallHatAndNotHidden)
+            hat = player.armor[0].ModItem as ITallHat;
+        else if (isVanityTallHat)
+            hat = player.armor[10].ModItem as ITallHat;
+        else
             return;
 
         var tex = ChosenTexture(hat);

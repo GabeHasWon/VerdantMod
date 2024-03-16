@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -42,7 +41,7 @@ public class Flotie : ModNPC
         NPC.aiStyle = -1;
         NPC.dontCountMe = true;
         NPC.catchItem = (short)ModContent.ItemType<FlotieItem>();
-        SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+        SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");

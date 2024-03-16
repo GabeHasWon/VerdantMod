@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -36,8 +35,7 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
         Item.defense = 14;
     }
 
-    public override bool IsArmorSet(Item head, Item body, Item legs) 
-        => body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<ApotheoticLeggings>();
+    public override bool IsArmorSet(Item h, Item body, Item legs) => body.type == ModContent.ItemType<ApotheoticChestplate>() && legs.type == ModContent.ItemType<ApotheoticLeggings>();
 
     public override void UpdateEquip(Player player)
     {

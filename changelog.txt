@@ -1,2 +1,2 @@
-- Adjusted 'My Apotheosis' book text to fit on-page
-- Fixed Shelly Snail being unobtainable
+- Fixed tall hats (both Apotheotic helmets) not being hidden by vanity
+- Fixed tall hats not being able to be worn properly in vanity
