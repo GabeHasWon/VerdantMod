@@ -30,7 +30,7 @@ public class ApotheoticBeeHelmet : ModItem, ITallHat
     {
         Item.width = 34;
         Item.height = 46;
-        Item.value = Item.buyPrice(0, 5, 0, 0);
+        Item.value = Item.buyPrice(0, 15, 0, 0);
         Item.rare = ItemRarityID.Yellow;
         Item.defense = 14;
     }

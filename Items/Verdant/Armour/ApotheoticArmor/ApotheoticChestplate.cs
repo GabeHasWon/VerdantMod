@@ -13,7 +13,7 @@ public class ApotheoticChestplate : ModItem
     {
         Item.width = 36;
         Item.height = 20;
-        Item.value = Item.buyPrice(0, 5, 0, 0);
+        Item.value = Item.buyPrice(0, 15, 0, 0);
         Item.rare = ItemRarityID.Yellow;
         Item.defense = 20;
     }

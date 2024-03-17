@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks.Aquamarine;
 
 namespace Verdant.Items.Verdant.Weapons;
 

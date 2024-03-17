@@ -5,7 +5,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Items.Global;
@@ -14,8 +13,13 @@ class AcornGlobal : GlobalItem
 {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemID.Acorn;
 
-    public override void HoldItem(Item item, Player player) 
-        => item.createTile = CanPlaceAt(Main.MouseWorld.ToTileCoordinates(), player) ? ModContent.TileType<LushSapling>() : TileID.Saplings;
+    public override void HoldItem(Item item, Player player)
+    {
+        if (CanPlaceAt(Main.MouseWorld.ToTileCoordinates(), player)) // Replace placement with lush sapling if it can be placed here
+            item.createTile = ModContent.TileType<LushSapling>();
+        else if (item.createTile == ModContent.TileType<LushSapling>()) // Otherwise revert only if it's still a lush sapling
+            item.createTile = TileID.Saplings;
+    }
 
     public override bool? UseItem(Item item, Player player)
     {

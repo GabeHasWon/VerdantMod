@@ -1,2 +1,2 @@
-- Fixed tall hats (both Apotheotic helmets) not being hidden by vanity
-- Fixed tall hats not being able to be worn properly in vanity
+- Fixed this mod overriding other mods that may modify acorns similarly
+- Made sell prices for all armor way more consistent
