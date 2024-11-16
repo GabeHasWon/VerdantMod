@@ -67,32 +67,20 @@ internal class RandomUpdating : ILoadable
         }
     }
 
-    private struct TileCondition
+    private struct TileCondition(bool active, ushort tileID, short frameX, short frameY, Point16 pos)
     {
-        internal bool Active;
-        internal ushort TileId;
-        internal short FrameX;
-        internal short FrameY;
-        internal Point16 Position;
-
-        public TileCondition(bool active, ushort tileID, short frameX, short frameY, Point16 pos)
-        {
-            Active = active;
-            TileId = tileID;
-            FrameX = frameX;
-            FrameY = frameY;
-            Position = pos;
-        }
+        internal bool Active = active;
+        internal ushort TileId = tileID;
+        internal short FrameX = frameX;
+        internal short FrameY = frameY;
+        internal Point16 Position = pos;
 
         public readonly bool DiffersFromTile()
         {
             Tile tile = Main.tile[Position.ToPoint()];
 
             bool isDifferent = tile.HasTile != Active || tile.TileType != TileId || tile.TileFrameX != FrameX || tile.TileFrameY != FrameY;
-
-            if (isDifferent)
-                return true;
-            return false;
+            return isDifferent;
         }
 
         public static List<TileCondition> GetTileSquare(int i, int j)
@@ -109,8 +97,7 @@ internal class RandomUpdating : ILoadable
         public static TileCondition TileAt(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            TileCondition condition = new(tile.HasTile, tile.TileType, tile.TileFrameX, tile.TileFrameY, new Point16(i, j));
-            return condition;
+            return new(tile.HasTile, tile.TileType, tile.TileFrameX, tile.TileFrameY, new Point16(i, j));
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Buffs.Minion;
 using Verdant.Systems.Foreground;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Systems.Syncing;
@@ -142,10 +143,11 @@ internal class ZipvinePlayer : ModPlayer
     private void TryGrabAnyVine()
     {
         bool validDir = (Player.controlUp || Player.controlDown) && !Player.controlJump;
+        bool onPropellerpad = Player.GetModPlayer<PropellerpadPlayer>().lastOnPropellerpad;
         bool openToGrab = !Player.mount.Active && !Player.pulley && Player.grappling[0] < 0;
         bool collision = !Collision.SolidCollision(Player.position, Player.width, Player.height);
 
-        if (!validDir || !openToGrab || !collision)
+        if (!validDir || !openToGrab || !collision || onPropellerpad)
             return; // Return if obstructed or grappled/mounted
 
         Rectangle playerTop = new((int)Player.position.X, (int)Player.position.Y, Player.width, 2);

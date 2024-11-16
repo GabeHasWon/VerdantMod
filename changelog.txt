@@ -1,19 +1,2 @@
-ADDITIONS
-- Added Blue Stargazer tile
-	- It's craftable with Lush Leaves, Fallen Stars or grows naturally at Night
-	- Pollinating it with bees spawns a Lunar Jelly
-- Added Lunar Jelly critter
-	- Item and Terrarium included
-
-CHANGES / BUGFIXES
-- Significantly sped up Verdant generation
-- Made Passionflower Bulbs not drop Wisplants so they can't be farmed [as easily]
-- Passionflower Bulbs now regrow by being pollinated by Bumblebees instead of by random chance
-- Added more Apotheosis dialogue
-- Fixed Lightbulb Leaves not counting as Verdant grass
-- Fixed Small Fly not animating in the Bestiary
-- Fixed Tall Hats not accounting for step stool offset
-- Fixed Crude Paintbrush 1-tile line throwing an error
-- Improved Crude Paintbrush line alignment
-- Lush Soil Aquamarine is now a valid Mudsquid tile
-- Improved Zip/Chlorovine syncing in multiplayer
+- Fixed issue where you could mount a Propellerpad while also on a Zipvine, causing many issues
+- Fixed crash in MP due to poor dictionary usage

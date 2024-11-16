@@ -148,10 +148,16 @@ public class VerdantSystem : ModSystem
         apotheosisIntro = flags[5];
 
         if (flags[6])
-            apotheosisDowns.Add("anyMech", true);
+        {
+            if (!apotheosisDowns.TryAdd("anyMech", true))
+                apotheosisDowns["anyMech"] = true;
+        }
 
         if (flags[7])
-            apotheosisDowns.Add("plantera", true);
+        {
+            if (!apotheosisDowns.TryAdd("plantera", true))
+                apotheosisDowns["plantera"] = true;
+        }
 
         BitsByte moreHmFlags = reader.ReadByte();
 

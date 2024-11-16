@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Buffs.Minion;
 using Verdant.Dusts;
+using Verdant.Players;
 
 namespace Verdant.Projectiles.Minion;
 
@@ -89,6 +90,8 @@ class PropellerpadProjectile : ModProjectile
 
     private void Hanging()
     {
+        Owner.GetModPlayer<PropellerpadPlayer>().onPropellerpad = true;
+
         Projectile.height = 65;
         Owner.gfxOffY = 0;
 
@@ -175,7 +178,7 @@ class PropellerpadProjectile : ModProjectile
         if (Projectile.velocity.LengthSquared() > 16 * 16)
             Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * 8;
 
-        if (Owner.Hitbox.Intersects(GrabHitbox()) && Owner.controlUp && FlightTime > 0 && !Owner.mount.Active)
+        if (Owner.Hitbox.Intersects(GrabHitbox()) && Owner.controlUp && FlightTime > 0 && !Owner.mount.Active && Owner.GetModPlayer<ZipvinePlayer>().zipvine == null)
             State = AIState.PlayerHanging;
 
         if (Collision.SolidCollision(Owner.BottomLeft, Owner.width, 6))
