@@ -66,26 +66,8 @@ internal class HardmodeGen : ModSystem
             bool ground = TileHelper.ActiveType(x, y + 1, ModContent.TileType<VerdantGrassLeaves>());
             bool safeWall = Main.tile[x, y].WallType > WallID.None && Main.wallHouse[Main.tile[x, y].WallType];
 
-            if (repeats > 2000000) //Extremely unlikely fallback
-            {
-                if (!ground)
-                {
-                    i--;
-                    continue;
-                }
-
-                int length = WorldGen.genRand.Next(4, 7);
-
-                for (int j = 0; j < length; ++j)
-                {
-                    if (WorldGen.SolidOrSlopedTile(x, y - j - 2))
-                        length = j + 1;
-
-                    int type = j == length - 1 ? ModContent.TileType<MysteriaTreeTop>() : ModContent.TileType<MysteriaTree>();
-                    WorldGen.PlaceTile(x, y - j, type);
-                }
-                continue;
-            }
+            if (repeats > 200000) //Extremely unlikely fallback
+                break;
 
             if (!ground || safeWall || !MysteriaTree.Generate(x, y, 0, WorldGen.genRand))
                 i--;
