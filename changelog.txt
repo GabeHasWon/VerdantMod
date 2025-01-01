@@ -1,2 +1,2 @@
-1.2.6.2
-- Fixed issue where hardmode would infinitely hang if the world doesn't have a Verdant in it, Verdant didn't spawn right, and similar conditions
+1.2.6.3
+- Fixed sync spam error in multiplayer

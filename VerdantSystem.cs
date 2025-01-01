@@ -161,13 +161,13 @@ public class VerdantSystem : ModSystem
 
         BitsByte moreHmFlags = reader.ReadByte();
 
-        if (moreHmFlags[0])
+        if (moreHmFlags[0] && !apotheosisDowns.ContainsKey("golem"))
             apotheosisDowns.Add("golem", true);
 
-        if (moreHmFlags[1])
+        if (moreHmFlags[1] && !apotheosisDowns.ContainsKey("cultist"))
             apotheosisDowns.Add("cultist", true);
 
-        if (moreHmFlags[2])
+        if (moreHmFlags[2] && !apotheosisDowns.ContainsKey("moonLord"))
             apotheosisDowns.Add("moonLord", true);
     }
 
