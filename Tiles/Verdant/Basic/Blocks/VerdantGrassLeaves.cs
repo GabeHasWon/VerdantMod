@@ -11,7 +11,9 @@ using Verdant.Tiles.Verdant.Basic.Cut;
 using Verdant.Tiles.Verdant.Basic.Mysteria;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Basic.Puff;
+using Verdant.Tiles.Verdant.Misc;
 using Verdant.Tiles.Verdant.Trees;
+using Verdant.World;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks
 {
@@ -64,6 +66,9 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
         {
             Tile self = Framing.GetTileSafely(i, j);
 
+            if (SpawnGreenCrystal(i, j))
+                return true;
+
             if (CheckMysteriaMicrobiome(i, j))
             {
                 MysteriaGrowth(i, j);
@@ -86,6 +91,47 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                     NetMessage.SendTileSquare(-1, i, j + 1, 1, TileChangeType.None);
                 return true;
             }
+            return false;
+        }
+
+        private static bool SpawnGreenCrystal(int i, int j)
+        {
+            if (ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation is null)
+                return false;
+
+            Point16 apoth = ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value;
+
+            if (Vector2.DistanceSquared(new(i, j), new(apoth.X, apoth.Y)) < 40 * 40 && Main.rand.NextBool(300) && Main.hardMode)
+            {
+                if (!Main.tile[i - 1, j].HasTile)
+                {
+                    Tile tile = Main.tile[i - 1, j];
+                    tile.HasTile = true;
+                    tile.TileType = (ushort)ModContent.TileType<GreenCrystal>();
+
+                    WorldGen.TileFrame(i - 1, j);
+
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendTileSquare(-1, i - 1, j, TileChangeType.None);
+
+                    return true;
+                }
+
+                if (!Main.tile[i + 1, j].HasTile)
+                {
+                    Tile tile = Main.tile[i + 1, j];
+                    tile.HasTile = true;
+                    tile.TileType = (ushort)ModContent.TileType<GreenCrystal>();
+
+                    WorldGen.TileFrame(i + 1, j);
+
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendTileSquare(-1, i + 1, j, TileChangeType.None);
+
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -346,7 +392,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
             WorldGen.PlaceTile(i, j, type, true, false, -1, Main.rand.Next(styleRange.min, styleRange.max + 1));
 
             if (Main.netMode == NetmodeID.Server)
-                NetMessage.SendTileSquare(-1, i, j, 1, TileChangeType.None);
+                NetMessage.SendTileSquare(-1, i, j, TileChangeType.None);
         }
 
         internal static void ImpactEffects(Player player)

@@ -106,10 +106,10 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
                 {
                     item.active = false;
 
-                    int[] types = new int[] { DustID.Blood, DustID.CorruptGibs, DustID.Corruption, DustID.CorruptionThorns };
+                    int[] types = [DustID.Blood, DustID.CorruptGibs, DustID.Corruption, DustID.CorruptionThorns];
 
                     if (item.type == ModContent.ItemType<CrimsonEffigy>())
-                        types = new int[] { DustID.Blood, DustID.CrimsonPlants, DustID.Crimstone };
+                        types = [DustID.Blood, DustID.CrimsonPlants, DustID.Crimstone];
 
                     for (int l = 0; l < 140; ++l)
                     {
@@ -143,25 +143,25 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
         if (Apotheosis.CommonDialogue())
             return true;
 
-        if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"]) //Mech boss text
+        if (NPC.downedMechBossAny && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.AnyMech]) //Mech boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".AnyMech");
             return true;
         }
 
-        if (NPC.downedPlantBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]) //Plantera boss text
+        if (NPC.downedPlantBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Plantera]) //Plantera boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Plantera");
             return true;
         }
 
-        if (NPC.downedGolemBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["golem"]) //Golem boss text
+        if (NPC.downedGolemBoss && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Golem]) //Golem boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Golem");
             return true;
         }
 
-        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns["moonLord"]) //Golem boss text
+        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.MoonLord]) //Golem boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".MoonLord");
             return true;

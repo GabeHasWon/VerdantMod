@@ -13,7 +13,7 @@ internal class RecipeConditions : ILoadable
     public void Load(Mod mod)
     {
         AfterApotheosisDownedPlantera = new Condition(Language.GetText("Mods.Verdant.RecipeCondition.AfterApotheosisDownedPlantera"), 
-            () => ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"]);
+            () => ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Plantera]);
 
         HasShears = new Condition(Language.GetText("Mods.Verdant.RecipeCondition.HasShears").WithFormatArgs(ModContent.ItemType<Shears>()),
             () => Main.LocalPlayer.HasItem(ModContent.ItemType<Shears>()));

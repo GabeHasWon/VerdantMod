@@ -314,7 +314,7 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".AnyMech")]
         public static ScreenText AnyMechDownDialogue(bool forServer)
         {
-            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["anyMech"] = true;
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.AnyMech] = true;
 
             if (forServer)
                 return null;
@@ -339,7 +339,7 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Plantera")]
         public static ScreenText PlanteraDownDialogue(bool forServer)
         {
-            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["plantera"] = true;
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Plantera] = true;
 
             if (forServer)
                 return null;
@@ -370,7 +370,7 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Golem")]
         public static ScreenText GolemDownDialogue(bool forServer)
         {
-            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["golem"] = true;
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Golem] = true;
 
             if (forServer)
                 return null;
@@ -397,7 +397,7 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Cultist")]
         public static ScreenText CultistDownDialogue(bool forServer)
         {
-            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["cultist"] = true;
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Cultist] = true;
 
             if (forServer)
                 return null;
@@ -421,7 +421,7 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".MoonLord")]
         public static ScreenText MoonLordDownDialogue(bool forServer)
         {
-            ModContent.GetInstance<VerdantSystem>().apotheosisDowns["moonLord"] = true;
+            ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.MoonLord] = true;
 
             if (forServer)
                 return null;

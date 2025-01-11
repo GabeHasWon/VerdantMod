@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -12,9 +10,7 @@ using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 using Verdant.Backgrounds.BGItem;
 using Verdant.Systems.Foreground;
-using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Blocks.LushWood;
-using Verdant.Items.Verdant.Tools;
 using Verdant.Noise;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Decor;
@@ -22,6 +18,15 @@ using Verdant.World;
 using Terraria.DataStructures;
 
 namespace Verdant;
+
+public class DownedID
+{
+    public const string AnyMech = "anyMech";
+    public const string Plantera = "plantera";
+    public const string Golem = "golem";
+    public const string Cultist = "cultist";
+    public const string MoonLord = "moonLord";
+}
 
 public class VerdantSystem : ModSystem
 {
@@ -41,7 +46,10 @@ public class VerdantSystem : ModSystem
     public bool apotheosisWallDown = false;
     public bool apotheosisPestControlNotif = false;
 
-    public Dictionary<string, bool> apotheosisDowns = new() { { "anyMech", false }, { "plantera", false }, { "golem", false }, { "moonLord", false } };
+    public Dictionary<string, bool> apotheosisDowns = new() 
+    { 
+        { DownedID.AnyMech, false }, { DownedID.Plantera, false }, { DownedID.Golem, false }, { DownedID.Cultist, false }, { DownedID.MoonLord, false } 
+    };
 
     public override void SaveWorldData(TagCompound tag)
     {
@@ -66,7 +74,7 @@ public class VerdantSystem : ModSystem
 
         List<TagCompound> backgroundItems = BackgroundItemManager.Save();
 
-        genNoise = null; //Unload this so it's not taking up space
+        genNoise = null;
 
         tag.Add("apotheosisStats", apotheosisStats);
         tag.Add("backgroundItems", backgroundItems);
@@ -106,6 +114,7 @@ public class VerdantSystem : ModSystem
         if (Main.netMode != NetmodeID.Server)
         {
             var bgItems = tag.GetList<TagCompound>("backgroundItems");
+
             if (bgItems != null)
                 BackgroundItemManager.Load(bgItems);
         }
@@ -125,14 +134,14 @@ public class VerdantSystem : ModSystem
         flags[3] = apotheosisSkelDown;
         flags[4] = apotheosisWallDown;
         flags[5] = apotheosisIntro;
-        flags[6] = apotheosisDowns.TryGetValue("anyMech", out bool anyMech) && anyMech;
-        flags[7] = apotheosisDowns.TryGetValue("plantera", out bool plantera) && plantera;
+        flags[6] = apotheosisDowns.TryGetValue(DownedID.AnyMech, out bool anyMech) && anyMech;
+        flags[7] = apotheosisDowns.TryGetValue(DownedID.Plantera, out bool plantera) && plantera;
         writer.Write(flags);
 
         var moreHmFlags = new BitsByte();
-        moreHmFlags[0] = apotheosisDowns.TryGetValue("golem", out bool golem) && golem;
-        moreHmFlags[1] = apotheosisDowns.TryGetValue("cultist", out bool cultist) && cultist;
-        moreHmFlags[2] = apotheosisDowns.TryGetValue("moonLord", out bool moonLord) && moonLord;
+        moreHmFlags[0] = apotheosisDowns.TryGetValue(DownedID.Golem, out bool golem) && golem;
+        moreHmFlags[1] = apotheosisDowns.TryGetValue(DownedID.Cultist, out bool cultist) && cultist;
+        moreHmFlags[2] = apotheosisDowns.TryGetValue(DownedID.MoonLord, out bool moonLord) && moonLord;
         writer.Write(moreHmFlags);
     }
 
@@ -147,28 +156,22 @@ public class VerdantSystem : ModSystem
         apotheosisWallDown = flags[4];
         apotheosisIntro = flags[5];
 
-        if (flags[6])
-        {
-            if (!apotheosisDowns.TryAdd("anyMech", true))
-                apotheosisDowns["anyMech"] = true;
-        }
+        if (!apotheosisDowns.TryAdd(DownedID.AnyMech, flags[6]))
+            apotheosisDowns[DownedID.AnyMech] = flags[6];
 
-        if (flags[7])
-        {
-            if (!apotheosisDowns.TryAdd("plantera", true))
-                apotheosisDowns["plantera"] = true;
-        }
+        if (!apotheosisDowns.TryAdd(DownedID.Plantera, flags[7]))
+            apotheosisDowns[DownedID.Plantera] = flags[7];
 
         BitsByte moreHmFlags = reader.ReadByte();
 
-        if (moreHmFlags[0] && !apotheosisDowns.ContainsKey("golem"))
-            apotheosisDowns.Add("golem", true);
+        if (!apotheosisDowns.TryAdd(DownedID.Golem, moreHmFlags[0]))
+            apotheosisDowns[DownedID.Golem] = moreHmFlags[0];
 
-        if (moreHmFlags[1] && !apotheosisDowns.ContainsKey("cultist"))
-            apotheosisDowns.Add("cultist", true);
+        if (!apotheosisDowns.TryAdd(DownedID.Cultist, moreHmFlags[1]))
+            apotheosisDowns[DownedID.Cultist] = moreHmFlags[1];
 
-        if (moreHmFlags[2] && !apotheosisDowns.ContainsKey("moonLord"))
-            apotheosisDowns.Add("moonLord", true);
+        if (!apotheosisDowns.TryAdd(DownedID.MoonLord, moreHmFlags[2]))
+            apotheosisDowns[DownedID.MoonLord] = moreHmFlags[2];
     }
 
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)

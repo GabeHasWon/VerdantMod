@@ -2,11 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Verdant.Items.Verdant.Food;
 
-public abstract class FoodItem : ModItem
+public abstract class FoodItem : ApotheoticItem
 {
 	internal abstract Point Size { get; }
 	internal virtual int Rarity => ItemRarityID.Blue;

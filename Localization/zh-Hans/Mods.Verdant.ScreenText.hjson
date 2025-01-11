@@ -304,5 +304,27 @@ Apotheosis: {
 			// 0: Violence is something we cannot avoid,
 			// 1: but we hope you avoid it with our plants.
 		}
+
+		BowlFruit: {
+			// 0: Ah, a Bowlfruit. Pretty thing.
+			// 1: Perhaps you can share how it tastes?
+		}
+
+		Dropberry: {
+			// 0: These berries are lovely.
+			// 1: If only I could remember their taste.
+		}
+
+		// FloralTea: Useful when on the road, isn't it?
+
+		Grapecherry: {
+			// 0: As a scientist, sometimes...
+			// 1: Sometimes you make a mistake.
+		}
+
+		// Mystuber: Fried or not, it's good for the heart.
+		// Walnut: Sometimes...keep it simple.
+		// Waterberry: Plentiful...if only...
+		// HoneyNuggets: Bees are magic. Cherish them.
 	}
 }

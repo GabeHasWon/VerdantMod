@@ -1,2 +1,6 @@
-1.2.6.3
-- Fixed sync spam error in multiplayer
+1.2.6.5
+- Fixed some typos and spelling issues
+- Fixed issue where bees being killed would not reduce the max bees count
+- Made bees return to the hive where they were spawned
+- Adds Apotheosis dialogue for every food item in the mod
+- Adds in config for how fast the Apotheosis dialogue (and all other screen text) is "written" out

@@ -40,3 +40,5 @@ DryadShop: {
 	Restock: Restocks once every 5 days, or once every 3 days if in the Verdant
 	Condition: Every other stock rotation
 }
+
+ShowApoth: Show this to the Apotheosis by right clicking them

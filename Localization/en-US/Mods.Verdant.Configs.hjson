@@ -37,4 +37,9 @@ VerdantClientConfig: {
 		Label: "[i:620] Jungle Spawn"
 		Tooltip: Forces the Verdant to only spawn in the Jungle. This is less likely to overwrite most modded biomes if that is an issue.
 	}
+
+	DialogueSpeed: {
+		Label: "[i:4485] Dialogue Speed"
+		Tooltip: Increases or decreases the dialogue speed for all screen text.
+	}
 }

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
@@ -17,7 +19,10 @@ public abstract class ApotheoticItem : ModItem, IDialogueCache
         if (!NPC.downedMoonlord)
             return;
 
-        tooltips.Add(new TooltipLine(Mod, "Verdant:Apotheotic", "Show this to the Apotheosis by right clicking them"));
+        tooltips.Add(new TooltipLine(Mod, "Verdant:Apotheotic", Language.GetTextValue("Mods.Verdant.ShowApoth"))
+        {
+            OverrideColor = new Color(200, 200, 200)
+        });
     }
 }
 

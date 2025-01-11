@@ -5,6 +5,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.UI.Chat;
 using Verdant.Systems.ScreenText.Animations;
 
@@ -69,7 +70,7 @@ public class ScreenText
 
     public void Update(GameTime gameTime)
     {
-        timeLeft -= gameTime.ElapsedGameTime.Milliseconds / 16f;
+        timeLeft -= gameTime.ElapsedGameTime.Milliseconds / 16f * ModContent.GetInstance<VerdantClientConfig>().DialogueSpeed;
 
         if (AutomaticallyDie && timeLeft <= 0 && Main.mouseRight)
         {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -10,7 +11,6 @@ using Verdant.Items.Verdant.Critter;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant;
 using Verdant.Tiles.Verdant.Basic;
-using Verdant.World;
 
 namespace Verdant.NPCs.Passive
 {
@@ -23,10 +23,11 @@ namespace Verdant.NPCs.Passive
         public ref float Timer => ref NPC.ai[2];
         public ref float WaitTimer => ref NPC.ai[3];
 
-        private Vector2 flowerOffset = Vector2.Zero;
-        private int honeyCount = 0;
+        private readonly List<Point> visitedFlowers = [];
 
-        private List<Point> visitedFlowers = new List<Point>();
+        private Vector2 flowerOffset = Vector2.Zero;
+        private Point spawnPos = Point.Zero;
+        private int honeyCount = 0;
 
         public override void SetStaticDefaults()
         {
@@ -63,23 +64,39 @@ namespace Verdant.NPCs.Passive
             {
                 Clockwise = Main.rand.NextBool();
                 State = 1;
+
+                spawnPos = NPC.Center.ToTileCoordinates();
+                Tile tile = Main.tile[NPC.Center.ToTileCoordinates()];
+
+                spawnPos.X -= tile.TileFrameX / 18;
+                spawnPos.Y -= tile.TileFrameY / 38 * 2;
+
+                while (!Main.tile[spawnPos].HasTile || Main.tile[spawnPos].TileType != ModContent.TileType<Beehive>())
+                    spawnPos.Y++;
+
+                NPC.netUpdate = true;
             }
             else if (State == 1)
             {
-                var nearestTile = NearestTile(out Point tile, out Point? flower);
-
-                if (honeyCount >= MaxHoney && flower is not null) //Beehive check
+                if (honeyCount >= MaxHoney) //Beehive check
                 {
-                    Point hive = flower.Value;
-                    Vector2 destination = hive.ToWorldCoordinates() + new Vector2(16);
+                    Tile home = Main.tile[spawnPos];
+
+                    if (!home.HasTile || home.TileType != ModContent.TileType<Beehive>())
+                    {
+                        FreeMovement(null);
+                        return;
+                    }
+
+                    Vector2 destination = spawnPos.ToWorldCoordinates(16, 16);
 
                     NPC.velocity = NPC.DirectionTo(destination) * 2f;
                     NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
                     if (Vector2.DistanceSquared(destination, NPC.Center) < 9f)
                     {
-                        Beehive.IncreaseFrame(hive);
-                        BeehiveSystem.Remove(hive);
+                        Beehive.IncreaseFrame(spawnPos);
+                        BeehiveSystem.Remove(spawnPos);
                         NPC.active = false;
 
                         for (int i = 0; i < 3; ++i)
@@ -90,6 +107,8 @@ namespace Verdant.NPCs.Passive
                     }
                     return;
                 }
+
+                var nearestTile = NearestTile(out Point tile, out Point? flower);
 
                 if (nearestTile < 25 * 25 && flower is null)
                     NPC.velocity = NPC.DirectionFrom(tile.ToWorldCoordinates());
@@ -225,6 +244,15 @@ namespace Verdant.NPCs.Passive
             }
         }
 
+        public override void OnKill() => BeehiveSystem.Remove(spawnPos);
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => ((spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && Main.raining) ? 2f : 0f) * (spawnInfo.PlayerInTown ? 1.75f : 0f);
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((short)spawnPos.X);
+            writer.Write((short)spawnPos.Y);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) => spawnPos = new Point(reader.ReadInt16(), reader.ReadInt16());
     }
 }
