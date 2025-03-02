@@ -17,10 +17,10 @@ namespace Verdant.Items.Verdant.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<HealingFlowerPlayer>().hasHealFlower = true;
+            player.GetModPlayer<HealingFlowerPlayer>().hasHealFlower = !hideVisual;
             player.GetModPlayer<HealingFlowerPlayer>().flowerEffects = true;
 
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingFlower>()] == 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingFlower>()] == 0 && !hideVisual)
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingFlower>(), 0, 0, player.whoAmI);
         }
 

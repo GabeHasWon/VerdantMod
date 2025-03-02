@@ -25,7 +25,9 @@ internal class VerdantStrongVine : ModTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
         TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
-        TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+        TileObjectData.newTile.AnchorAlternateTiles = [Type];
+        TileObjectData.newTile.DrawYOffset = -2;
+
         TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
         TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
         TileObjectData.newAlternate.AnchorTop = AnchorData.Empty;

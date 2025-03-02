@@ -26,6 +26,7 @@ internal class PuffVine : ModTile
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+    public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) => offsetY = -2;
 
     public override void RandomUpdate(int i, int j)
     {
@@ -73,7 +74,8 @@ internal class PuffVine : ModTile
         else if (Main.tile[i, j - 3].TileType != Type)
             sine *= 0.67f;
 
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0)), new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(sine, 2));
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }
 

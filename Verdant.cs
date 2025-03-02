@@ -13,6 +13,7 @@ using System.Linq;
 using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Terraria.ModLoader.Core;
+using ReLogic.Content;
 
 namespace Verdant;
 
@@ -30,7 +31,7 @@ public partial class VerdantMod : Mod
 
         if (!Main.dedServ)
         {
-            Ref<Effect> filterRef = new(Assets.Request<Effect>("Effects/Screen/SteamEffect", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+            Asset<Effect> filterRef = Assets.Request<Effect>("Effects/Screen/SteamEffect", AssetRequestMode.ImmediateLoad);
             Filters.Scene[EffectIDs.BiomeSteam] = new Filter(new ScreenShaderData(filterRef, "Steam"), EffectPriority.VeryHigh);
             Filters.Scene[EffectIDs.BiomeSteam].Load();
         }

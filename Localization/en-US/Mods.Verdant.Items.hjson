@@ -1669,3 +1669,12 @@ LunarJellyTerrariumItem: {
 	DisplayName: Lunar Jelly Terrarium
 	Tooltip: Night not fleeting, just glowing.
 }
+
+GlassFlowerItem: {
+	DisplayName: Glassflower
+	Tooltip:
+		'''
+		Disables the Verdant biome in the nearby area, allowing for use of other biomes
+		'How frail...'
+		'''
+}

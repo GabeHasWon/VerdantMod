@@ -1,6 +1,4 @@
-1.2.6.5
-- Fixed some typos and spelling issues
-- Fixed issue where bees being killed would not reduce the max bees count
-- Made bees return to the hive where they were spawned
-- Adds Apotheosis dialogue for every food item in the mod
-- Adds in config for how fast the Apotheosis dialogue (and all other screen text) is "written" out
+1.2.6.6
+- Allowed the Yellow Sprout to not be shown if the vanity is turned off
+- Removed terribly inperformant code for making vines look nicer, made vines look nicer in 100x easier and more efficient manner
+- Added the Glassflower, a shimmered item from any of the various Dye plants in the Verdant that disables the biome entirely for use in builds

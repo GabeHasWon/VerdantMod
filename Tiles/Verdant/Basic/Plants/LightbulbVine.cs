@@ -35,6 +35,8 @@ internal class LightbulbVine : ModTile, IFlowerTile
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
 
+    public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) => offsetY = -2;
+
     public override void RandomUpdate(int i, int j)
     {
         if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(8))
@@ -79,7 +81,7 @@ internal class LightbulbVine : ModTile, IFlowerTile
             sine *= 0.67f;
 
         Color col = Lighting.GetColor(i, j);
-        Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(sine, 0));
+        Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(sine, 2));
         spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), col, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         spriteBatch.Draw(glowTex.Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.Lerp(col, Color.White, 0.5f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;

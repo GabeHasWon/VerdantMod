@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.ModLoader;
+using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Scenes;
 
@@ -29,6 +30,6 @@ internal class VerdantBiome : ModBiome
     public override bool IsBiomeActive(Player player)
     {
         bool surface = player.ZoneSkyHeight || player.ZoneOverworldHeight;
-        return VerdantSystem.InVerdant && surface;
+        return VerdantSystem.InVerdant && surface && !GlassFlowerSystem.LocallyNearGlassFlower;
     }
 }
