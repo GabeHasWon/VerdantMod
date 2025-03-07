@@ -1,4 +1,2 @@
-1.2.6.6
-- Allowed the Yellow Sprout to not be shown if the vanity is turned off
-- Removed terribly inperformant code for making vines look nicer, made vines look nicer in 100x easier and more efficient manner
-- Added the Glassflower, a shimmered item from any of the various Dye plants in the Verdant that disables the biome entirely for use in builds
+1.2.6.7
+- Fixed Lushman origin not working properly

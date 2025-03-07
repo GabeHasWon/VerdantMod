@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -25,9 +28,24 @@ internal class NewBeginningsCompatibility
             object equip = beginnings.Call("EquipData", ModContent.ItemType<LushWoodHead>(), ModContent.ItemType<LushWoodBody>(), ModContent.ItemType<LushWoodLegs>(),
                 new int[] { ModContent.ItemType<HealingFlowerItem>(), ModContent.ItemType<Lightbloom>() });
             object misc = beginnings.Call("MiscData", 60, 20, -1, ModContent.ItemType<LushWoodSword>());
-            object dele = beginnings.Call("DelegateData", () => true, (List<GenPass> list) => { }, () => true, () => ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation.Value);
+            object dele = beginnings.Call("DelegateData", () => true, (List<GenPass> list) => { }, () => true, (Func<Point16>)FindVerdantPlacement);
             object result = beginnings.Call("ShortAddOrigin", ModContent.Request<Texture2D>("Verdant/Systems/ModCompat/Textures/MinorSummoner"), "MinorSummoner", 
                 "Mods.Verdant.Origins.MinorSummoner", Array.Empty<(int, int)>(), equip, misc, dele);
+        }
+    }
+
+    private static Point16 FindVerdantPlacement()
+    {
+        Rectangle area = VerdantGenSystem.VerdantArea;
+        
+        while (true)
+        {
+            Point16 pos = new(area.X + WorldGen.genRand.Next(area.Width), area.Y + WorldGen.genRand.Next(area.Height));
+            Vector2 worldPos = pos.ToWorldCoordinates();
+
+            if (!Collision.SolidCollision(worldPos, Player.defaultWidth, Player.defaultHeight) 
+                && Collision.SolidCollision(worldPos + new Vector2(0, Player.defaultHeight + 6), Player.defaultWidth, 32))
+                return pos;
         }
     }
 }
