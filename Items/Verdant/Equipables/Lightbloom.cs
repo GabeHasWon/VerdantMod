@@ -20,12 +20,12 @@ namespace Verdant.Items.Verdant.Equipables
             int val = 2;
             int total = col.R + col.G + col.B;
 
-            if (total < 200) 
+            if (total < 200)
                 val = 0;
-            else if (total < 400) 
+            else if (total < 400)
                 val = 1;
 
-            if (!hideVisual && Main.rand.Next(80) < val * 2)
+            if (player.statLife < player.statLifeMax2 && !hideVisual && Main.rand.Next(80) < val * 2)
             {
                 for (int i = 0; i < val; ++i)
                 {

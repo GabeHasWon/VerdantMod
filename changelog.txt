@@ -1,2 +1,5 @@
-1.2.6.7
-- Fixed Lushman origin not working properly
+1.2.6.8
+- Added sell price to Lush Healing Staff
+- Fixed Lush Healing Staff not working
+- Adjust Microcosm tooltip
+- Stopped the Lightbloom from spawning dust when at full health

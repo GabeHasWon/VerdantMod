@@ -14,7 +14,12 @@ namespace Verdant.Items.Verdant.Weapons
     class VerdantStaff : ModItem
     {
         public override void SetStaticDefaults() => Item.staff[Type] = true;
-        public override void SetDefaults() => QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
+
+        public override void SetDefaults()
+        {
+            QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<VerdantHealingMinion>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
+            Item.value = Item.buyPrice(0, 0, 5, 0);
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

@@ -66,7 +66,8 @@ namespace Verdant.NPCs.Passive
                 State = 1;
 
                 spawnPos = NPC.Center.ToTileCoordinates();
-                Tile tile = Main.tile[NPC.Center.ToTileCoordinates()];
+
+                Tile tile = Main.tile[spawnPos];
 
                 spawnPos.X -= tile.TileFrameX / 18;
                 spawnPos.Y -= tile.TileFrameY / 38 * 2;

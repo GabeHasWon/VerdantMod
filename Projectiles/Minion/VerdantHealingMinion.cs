@@ -61,20 +61,9 @@ class VerdantHealingMinion : ModProjectile, IDrawAdditive
             if (State == 1) 
                 radMult = 1.2f;
 
-            float slowDown = 1f;
-
-            foreach (var projectile in Main.ActiveProjectiles)
-            {
-                if (projectile.type == ModContent.ProjectileType<VerdantHealingMinion>())
-                {
-                    slowDown += 0.25f;
-                    break;
-                }
-            }
-
             bool isClose = Vector2.DistanceSquared(player.MountedCenter, Projectile.Center - off) < MathF.Pow(rad * radMult * 196, 2);
 
-            if (HealingTimer >= 120 * slowDown && player.active && !player.dead && isClose)
+            if (HealingTimer >= 120 && player.active && !player.dead && isClose)
             {
                 if (player.statLife < player.statLifeMax2 - 10)
                 {
