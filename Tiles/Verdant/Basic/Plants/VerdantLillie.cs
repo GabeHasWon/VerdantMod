@@ -27,7 +27,7 @@ internal class VerdantLillie : ModTile, IFlowerTile
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
     {
-        if (!TileHelper.ActiveType(i, j - 1, Type))
+        if (!TileHelper.ActiveType(i, j - 1, Type) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<LilyPad>()))
             Framing.GetTileSafely(i, j).TileFrameX = 18;
         else
             Framing.GetTileSafely(i, j).TileFrameX = 0;

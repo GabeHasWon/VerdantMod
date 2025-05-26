@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Plants;
@@ -15,10 +13,6 @@ namespace Verdant.Tiles.Verdant.Basic.Plants;
 
 internal class LightbulbVine : ModTile, IFlowerTile
 {
-    private static Asset<Texture2D> glowTex;
-
-    public override void Unload() => glowTex = null;
-
     public override void SetStaticDefaults()
     {
         Main.tileSolid[Type] = false;
@@ -30,7 +24,6 @@ internal class LightbulbVine : ModTile, IFlowerTile
         HitSound = SoundID.Grass;
 
         AddMapEntry(new Color(24, 135, 28));
-        glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
@@ -70,8 +63,11 @@ internal class LightbulbVine : ModTile, IFlowerTile
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
+        if (!TileHelper.GetVisualInfo(i, j, out Color color, out Texture2D tex))
+            return false;
+
         Tile t = Framing.GetTileSafely(i, j);
-        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.08f) * 1.4f;
+        float sine = (float)Math.Sin((i + j) * MathHelper.ToRadians(20) + Main.GameUpdateCount * 0.07f) * 1.4f;
 
         if (Main.tile[i, j - 1].TileType != Type)
             sine = 0;
@@ -82,19 +78,21 @@ internal class LightbulbVine : ModTile, IFlowerTile
 
         Color col = Lighting.GetColor(i, j);
         Vector2 pos = TileHelper.TileCustomPosition(i, j, new Vector2(sine, 2));
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), col, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(glowTex.Value, pos, new Rectangle(t.TileFrameX, t.TileFrameY, 16, 16), Color.Lerp(col, Color.White, 0.5f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        Rectangle src = new(t.TileFrameX, t.TileFrameY, 16, 16);
+
+        spriteBatch.Draw(tex, pos, src, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(tex, pos, src with { Y = 90 }, Color.Lerp(color, Color.White, 0.5f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }
 
-    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(8) };
+    public Vector2[] GetOffsets() => [new Vector2(8)];
 
     public bool IsFlower(int i, int j)
     {
         int frameX = Main.tile[i, j].TileFrameX / 18;
         int frameY = Main.tile[i, j].TileFrameY / 18;
 
-        (int, int)[] pairs = new (int, int)[] { (12, 0), (9, 1), (12, 1), (1, 2), (2, 2), (9, 2), (12, 2), (2, 3), (7, 3), (9, 3), (10, 3), (0, 4), (1, 4), (5, 4), (7, 4) };
+        (int, int)[] pairs = [(12, 0), (9, 1), (12, 1), (1, 2), (2, 2), (9, 2), (12, 2), (2, 3), (7, 3), (9, 3), (10, 3), (0, 4), (1, 4), (5, 4), (7, 4)];
         return pairs.Any(x => x.Item1 == frameX && x.Item2 == frameY);
     }
 

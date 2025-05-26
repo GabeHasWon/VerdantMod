@@ -62,14 +62,14 @@ namespace Verdant.Tiles
 			return new Vector2(tileWidth / 2, 16 - halfBrickHeight - tileTop);
 		}
 
-		internal static void DrawTreeSway(int i, int j, Texture2D tex, Rectangle? source, Vector2? offset = null, Vector2? origin = null, SpriteEffects effect = SpriteEffects.None)
+		internal static void DrawTreeSway(int i, int j, Texture2D tex, Rectangle? source, Vector2? offset = null, Vector2? origin = null, SpriteEffects effect = SpriteEffects.None, Color? color = null)
         {
 			Tile tile = Main.tile[i, j];
 			Vector2 drawPos = TileHelper.TileCustomPosition(i, j) + (offset ?? Vector2.Zero);
 			float rot = ModContent.GetInstance<TileSwaySystem>().GetTreeSway(i, j, ref drawPos);
-			Color col = Lighting.GetColor(i, j);
+			Color col = color ?? Lighting.GetColor(i, j);
 
-			if (tile.TileColor == 31)
+			if (tile.TileColor == PaintID.IlluminantPaint)
 				col = Color.White;
 
 			Main.spriteBatch.Draw(tex, drawPos, source, col, rot * 0.08f, origin ?? source.Value.Size() / 2f, 1f, effect, 0f);

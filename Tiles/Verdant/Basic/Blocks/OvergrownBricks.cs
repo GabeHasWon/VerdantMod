@@ -17,7 +17,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (fail)
+            if (!fail)
             {
                 Tile tile = Main.tile[i, j];
                 tile.TileType = TileID.GrayBrick;

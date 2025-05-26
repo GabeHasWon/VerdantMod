@@ -335,9 +335,14 @@ internal class VerdantTree : ModTile
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
         Tile t = Framing.GetTileSafely(i, j);
-        Texture2D tex = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTree").Value;
-        Color col = Lighting.GetColor(i, j);
+
+        if (!TileHelper.GetVisualInfo(i, j, out Color col, out Texture2D tex))
+        {
+            return false;
+        }
+
         float xOff = (float)Math.Sin((j * 19) * 0.04f) * 1.2f;
+
         if (xOff == 1 && (j / 4f) == 0)
             xOff = 0;
 
@@ -357,17 +362,15 @@ internal class VerdantTree : ModTile
 
         if (Framing.GetTileSafely(i, j).TileFrameX == 108) //Draw branches
         {
-            Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeBranches").Value;
             int frame = t.TileFrameY / 18;
-            spriteBatch.Draw(tops, pos, new Rectangle(0, 52 * frame, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(38, 16), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(tex, pos, new Rectangle(292, 52 * frame + 56, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(38, 16), 1f, SpriteEffects.None, 0f);
             return false;
         }
 
         if (Framing.GetTileSafely(i, j).TileFrameX == 126) //Draw branches
         {
-            Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeBranches").Value;
             int frame = t.TileFrameY / 18;
-            spriteBatch.Draw(tops, pos, new Rectangle(58, 52 * frame, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(4, 16), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(tex, pos, new Rectangle(350, 52 * frame + 56, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(4, 16), 1f, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -375,10 +378,9 @@ internal class VerdantTree : ModTile
 
         if (Framing.GetTileSafely(i, j).TileFrameX == 198)
         {
-            Texture2D tops = ModContent.Request<Texture2D>("Verdant/Tiles/Verdant/Trees/VerdantTreeTops" + (Main.hardMode ? "Hardmode" : "")).Value;
             int frame = t.TileFrameY / 18;
 
-            TileSwaySystem.DrawTreeSway(i, j, tops, new Rectangle(98 * frame, 0, 96, 108), offset, new Vector2(40, 96));
+            TileSwaySystem.DrawTreeSway(i, j, tex, new Rectangle(98 * frame, Main.hardMode ? 162 : 56, 96, 108), offset, new Vector2(40, 96));
         }
         return false;
     }

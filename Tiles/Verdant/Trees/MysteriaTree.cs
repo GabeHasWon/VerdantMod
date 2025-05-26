@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Tiles.Verdant.Basic.Mysteria;
 
@@ -29,21 +25,6 @@ internal class MysteriaTree : ModTile
     {
         if (!fail && (TileHelper.ActiveType(i, j - 1, ModContent.TileType<MysteriaTreeTop>()) || TileHelper.ActiveType(i, j - 1, ModContent.TileType<PeaceTreeTop>())))
             WorldGen.KillTile(i, j - 1);
-    }
-
-    public override bool Slope(int i, int j) => false;
-
-    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-    {
-        Tile tile = Main.tile[i, j];
-
-        int frameX = tile.TileFrameX / 18 * 22;
-        int frameY = tile.TileFrameY / 18 * 22;
-
-        var source = new Rectangle(frameX, frameY, 20, 20);
-        Color color = Lighting.GetColor(i, j, tile.IsActuated ? Color.Gray : Color.White);
-        TileHelper.DrawSlopedGlowMask(i, j, TextureAssets.Tile[Type].Value, color, -new Vector2(2), source);
-        return false;
     }
 
     public static bool Generate(int x, int y, int dir = 0, UnifiedRandom random = null)

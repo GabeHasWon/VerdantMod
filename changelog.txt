@@ -1,5 +1,7 @@
-1.2.6.8
-- Added sell price to Lush Healing Staff
-- Fixed Lush Healing Staff not working
-- Adjust Microcosm tooltip
-- Stopped the Lightbloom from spawning dust when at full health
+1.2.6.9
+- Fixed Overgrown Brick removing the grass on hit by any colliding projectile
+- Made Verdant lillies merge with lily pads
+- Made all the dye plant items materials
+- Significantly improved Mysteria Treetop sprite
+- A bunch of plants now draw with proper paint
+- Moved both Mysteria treetops down so they don't detatch from the base

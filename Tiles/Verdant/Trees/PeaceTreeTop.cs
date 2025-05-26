@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -15,9 +14,11 @@ namespace Verdant.Tiles.Verdant.Trees;
 
 internal class PeaceTreeTop : ModTile
 {
-    public override void Load() => Terraria.On_NPC.SpawnNPC += NPC_SpawnNPC;
+    public override string Texture => "Terraria/Images/NPC_0";
 
-    private void NPC_SpawnNPC(Terraria.On_NPC.orig_SpawnNPC orig)
+    public override void Load() => On_NPC.SpawnNPC += NPC_SpawnNPC;
+
+    private void NPC_SpawnNPC(On_NPC.orig_SpawnNPC orig)
     {
         bool hardMode = Main.hardMode;
 
@@ -69,12 +70,15 @@ internal class PeaceTreeTop : ModTile
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
+        if (!TileHelper.GetVisualInfo(i, j, out Color color, out Texture2D tex, ModContent.TileType<MysteriaTree>()))
+            return false;
+
         Tile tile = Main.tile[i, j];
         int frameX = tile.TileFrameX / 18 * 22;
-        Rectangle treeSource = new(0, frameX / 22 % 3 * 102, 196, 100);
+        Rectangle treeSource = new(0, frameX / 22 % 3 * 102 + 402, 196, 100);
         SpriteEffects effects = i % 2 == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-        TileSwaySystem.DrawTreeSway(i, j, TextureAssets.Tile[Type].Value, treeSource, new Vector2(8, 16), new Vector2(98, 100), effects);
+        TileSwaySystem.DrawTreeSway(i, j, tex, treeSource, new Vector2(8, 18), new Vector2(98, 100), effects, color);
         return false;
     }
 

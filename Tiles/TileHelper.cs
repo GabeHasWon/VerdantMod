@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using Terraria.Utilities;
 using Terraria.ID;
 using System.Linq;
+using Terraria.GameContent.Drawing;
+using Terraria.GameContent;
 
 namespace Verdant.Tiles;
 
@@ -350,5 +352,32 @@ public static class TileHelper
                 Main.spriteBatch.Draw(texture, drawPos, frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             }
         }
+    }
+
+    // Copied from Reforged. Thanks!
+    /// <summary> Gets common visual info related to the tile at the given coordinates, such as painted color. </summary>
+    /// <param name="i"> The X coordinate. </param>
+    /// <param name="j"> The Y coordinate.</param>
+    /// <param name="color"> The color of the tile affected by coatings. </param>
+    /// <param name="texture"> The default tile texture, painted. </param>
+    /// <returns> Whether the tile should be drawn based on <see cref="TileDrawing.IsVisible"/>. </returns>
+    public static bool GetVisualInfo(int i, int j, out Color color, out Texture2D texture, int overrideType = -1)
+    {
+        var t = Main.tile[i, j];
+        int type = overrideType == -1 ? t.TileType : overrideType;
+
+        color = t.IsTileFullbright ? Color.White : Lighting.GetColor(i, j);
+        texture = TextureAssets.Tile[type].Value;
+
+        if (!TileDrawing.IsVisible(t))
+            return false;
+
+        if (t.TileColor != PaintID.None)
+        {
+            var painted = Main.instance.TilePaintSystem.TryGetTileAndRequestIfNotReady(type, 0, t.TileColor);
+            texture = painted ?? texture;
+        }
+
+        return true;
     }
 }

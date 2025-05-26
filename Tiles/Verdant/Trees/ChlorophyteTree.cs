@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -15,11 +14,6 @@ namespace Verdant.Tiles.Verdant.Trees;
 
 internal class ChlorophyteTree : ModTile
 {
-    private static Asset<Texture2D> _leaves;
-    private static Asset<Texture2D> _tops;
-
-    public override void Unload() => _leaves = _tops = null;
-
     public override void SetStaticDefaults()
     {
         Main.tileSolid[Type] = false;
@@ -31,17 +25,15 @@ internal class ChlorophyteTree : ModTile
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidBottom | AnchorType.AlternateTile, 1, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.Mud, TileID.Grass, TileID.JungleGrass, TileID.MushroomGrass, TileID.HallowedGrass, TileID.Dirt, TileID.Chlorophyte,
-            ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>() };
-        TileObjectData.newTile.AnchorAlternateTiles = new int[] { Type };
+        TileObjectData.newTile.AnchorValidTiles = [TileID.Mud, TileID.Grass, TileID.JungleGrass, TileID.MushroomGrass, TileID.HallowedGrass, TileID.Dirt, 
+            TileID.Chlorophyte, ModContent.TileType<LushSoil>(), ModContent.TileType<VerdantGrassLeaves>() ];
+        TileObjectData.newTile.AnchorAlternateTiles = [Type];
         TileObjectData.addTile(Type);
 
         DustType = DustID.Chlorophyte;
         HitSound = SoundID.Shatter;
 
         AddMapEntry(new Color(36, 97, 51));
-        _leaves = ModContent.Request<Texture2D>(Texture + "Leaves");
-        _tops = ModContent.Request<Texture2D>(Texture + "Tops");
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
@@ -96,17 +88,22 @@ internal class ChlorophyteTree : ModTile
     {
         Tile tile = Main.tile[i, j];
 
+        if (!TileHelper.GetVisualInfo(i, j, out Color color, out Texture2D tex))
+            return;
+
         if (tile.TileFrameX == 18 && tile.TileFrameY <= 18)
         {
-            Rectangle source = new(0, tile.TileFrameY, 24, 16);
-            spriteBatch.Draw(_leaves.Value, TileHelper.TileCustomPosition(i, j, source.Size() / -2f + new Vector2(4, 0)), source, Lighting.GetColor(i, j), 0f, source.Size() / 2f, 1f, SpriteEffects.None, 0);
+            Rectangle source = new(54, tile.TileFrameY, 24, 16);
+            Vector2 position = TileHelper.TileCustomPosition(i, j, source.Size() / -2f + new Vector2(4, 0));
+            spriteBatch.Draw(tex, position, source, color, 0f, source.Size() / 2f, 1f, SpriteEffects.None, 0);
         }
 
         if (tile.TileFrameX == 36 && tile.TileFrameY <= 18)
         {
-            Rectangle source = new(0, tile.TileFrameY / 18 * 38, 62, 34);
+            Rectangle source = new(0, tile.TileFrameY / 18 * 38 + 54, 62, 34);
             Vector2 halfSize = source.Size() / -2f;
-            TileSwaySystem.DrawTreeSway(i, j, _tops.Value, source, halfSize + new Vector2(8 - halfSize.X, 0), -halfSize);
+            SpriteEffects effect = i % 2 == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            TileSwaySystem.DrawTreeSway(i, j, tex, source, halfSize + new Vector2(8 - halfSize.X, 0), -halfSize, effect, color);
         }
     }
 }
