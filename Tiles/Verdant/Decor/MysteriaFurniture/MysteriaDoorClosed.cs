@@ -49,11 +49,11 @@ public class MysteriaDoorClosed : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
         LocalizedText name = CreateMapEntryName();
-        // name.SetDefault("Mysteria Door");
         AddMapEntry(new Color(124, 93, 68), name);
+        RegisterItemDrop(ModContent.ItemType<MysteriaDoorItem>());
 
         DustType = DustID.t_BorealWood;
-        AdjTiles = new int[] { TileID.ClosedDoor };
+        AdjTiles = [TileID.ClosedDoor];
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

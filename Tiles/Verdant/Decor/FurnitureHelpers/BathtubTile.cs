@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
+﻿using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +28,7 @@ public abstract class BathtubTile<T> : TileBlueprint<T> where T : ModItem
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+        RegisterItemDrop(ModContent.ItemType<T>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

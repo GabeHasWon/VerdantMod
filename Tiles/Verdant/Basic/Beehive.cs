@@ -6,6 +6,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks;
 using Verdant.NPCs.Passive;
 
 namespace Verdant.Tiles.Verdant.Basic;
@@ -21,6 +22,8 @@ class Beehive : ModTile
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, 2, 0);
 
         QuickTile.SetMulti(this, 2, 2, DustID.Bee, SoundID.Dig, true, new Color(232, 167, 74), true, false, false, "Beehive");
+
+        RegisterItemDrop(ModContent.ItemType<BeehiveBlock>());
     }
 
     public override void HitWire(int i, int j)

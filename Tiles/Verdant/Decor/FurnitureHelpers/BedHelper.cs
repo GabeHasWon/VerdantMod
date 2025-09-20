@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor;
 
 internal static class BedHelper
 {
-    public static void Defaults(ModTile tile, Color color)
+    public static void Defaults<T>(ModTile tile, Color color) where T : ModItem
     {
         int type = tile.Type;
         Main.tileFrameImportant[type] = true;
@@ -34,6 +34,7 @@ internal static class BedHelper
         TileObjectData.addTile(type);
 
         tile.AddMapEntry(color, Language.GetText("ItemName.Bed"));
+        tile.RegisterItemDrop(ModContent.ItemType<T>());
     }
 
     public static bool RightClick(int i, int j)

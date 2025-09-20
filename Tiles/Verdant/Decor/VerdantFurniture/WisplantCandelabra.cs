@@ -1,17 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 using Verdant.Systems;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture
 {
     internal class WisplantCandelabra : ModTile
     {
-        public override void SetStaticDefaults() => CandelabraHelper.Defaults(this, new Color(253, 221, 3), false);
+        public override void SetStaticDefaults() => CandelabraHelper.Defaults<WisplantCandelabraItem>(this, new Color(253, 221, 3), false);
         public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

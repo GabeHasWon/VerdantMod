@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
+using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -17,11 +17,12 @@ public class MysteriaBookshelf : ModTile
         Main.tileSolidTop[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
-        TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 18];
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
+        RegisterItemDrop(ModContent.ItemType<MysteriaBookshelfItem>());
 
         DustType = DustID.Grass;
         TileID.Sets.DisableSmartCursor[Type] = true;

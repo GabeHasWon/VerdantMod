@@ -10,7 +10,7 @@ namespace Verdant.Tiles.Verdant.Decor;
 
 public static class CandelabraHelper
 {
-    public static void Defaults(ModTile tile, Color color, bool cantPlaceInWater = true)
+    public static void Defaults<T>(ModTile tile, Color color, bool cantPlaceInWater = true) where T : ModItem
     {
         int type = tile.Type;
         Main.tileLighted[type] = true;
@@ -32,6 +32,7 @@ public static class CandelabraHelper
 
         tile.AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         tile.AddMapEntry(color, Language.GetText("ItemName.Candelabra"));
+        tile.RegisterItemDrop(ModContent.ItemType<T>());
     }
 
     public static void WireHit(int i, int j)

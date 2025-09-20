@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
 public class MysteriaBed : ModTile
 {
-    public override void SetStaticDefaults() => BedHelper.Defaults(this, new Color(124, 93, 68));
+    public override void SetStaticDefaults() => BedHelper.Defaults<MysteriaBedItem>(this, new Color(124, 93, 68));
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 	public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 	public override void ModifySmartInteractCoords(ref int width, ref int height, ref int frameWidth, ref int frameHeight, ref int extraY) => (width, height) = (2, 2);

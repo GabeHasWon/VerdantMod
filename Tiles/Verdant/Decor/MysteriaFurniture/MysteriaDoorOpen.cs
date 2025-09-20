@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -26,11 +26,11 @@ public class MysteriaDoorOpen : ModTile
 
         LocalizedText name = CreateMapEntryName();
         AddMapEntry(new Color(124, 93, 68), name);
-        RegisterItemDrop(ModContent.ItemType<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaDoorItem>());
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
+        RegisterItemDrop(ModContent.ItemType<MysteriaDoorItem>());
 
         DustType = DustID.t_BorealWood;
-        AdjTiles = new int[] { TileID.OpenDoor };
+        AdjTiles = [TileID.OpenDoor];
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

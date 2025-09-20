@@ -6,6 +6,7 @@ using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
+using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
@@ -30,6 +31,7 @@ internal class VerdantChandelier : ModTile
         Main.tileCut[Type] = false;
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+        RegisterItemDrop(ModContent.ItemType<VerdantChandelierBlock>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 2 : 5;
@@ -52,7 +54,8 @@ internal class VerdantChandelier : ModTile
             for (int v = 0; v < 4; ++v)
             {
                 Vector2 off = new(Main.rand.Next(32), Main.rand.Next(54));
-                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("RedPetalFalling").Type, 1);
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i, j) * 16 + off, new Vector2(0), 
+                    Main.rand.NextBool(2) ? Mod.Find<ModGore>("LushLeaf").Type : Mod.Find<ModGore>("RedPetalFalling").Type, 1);
             }
         }
     }

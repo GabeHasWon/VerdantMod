@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -23,12 +24,13 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.newTile.Height = 5;
             TileObjectData.newTile.Origin = new Point16(0, 4);
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16, 16];
 			TileObjectData.addTile(Type);
 
 			AddMapEntry(new Color(114, 69, 39), Language.GetText("ItemName.GrandfatherClock"));
+            RegisterItemDrop(ModContent.ItemType<LushClockItem>());
 
-			AdjTiles = new int[] { TileID.GrandfatherClocks };
+			AdjTiles = [TileID.GrandfatherClocks];
 		}
 
 		public override bool RightClick(int x, int y)

@@ -173,7 +173,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 return ModContent.TileType<HardmodeDecor1x1>();
             }
 
-            styleRange = 7;
+            styleRange = 10;
             return defaultType;
         }
 
@@ -315,7 +315,7 @@ namespace Verdant.Tiles.Verdant.Basic.Blocks
                 if (!Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(3))
                 {
                     bool wisplant = Main.rand.NextBool(20);
-                    WorldGen.PlaceTile(i, j - 1, wisplant ? ModContent.TileType<Wisplant>() : ModContent.TileType<PuffDecor1x1>(), true, false, -1, wisplant ? 0 : Main.rand.Next(7));
+                    WorldGen.PlaceTile(i, j - 1, wisplant ? ModContent.TileType<Wisplant>() : ModContent.TileType<PuffDecor1x1>(), true, false, -1, wisplant ? 0 : Main.rand.Next(10));
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);
                     return true;

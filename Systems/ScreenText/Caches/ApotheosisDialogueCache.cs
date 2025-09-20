@@ -93,14 +93,14 @@ namespace Verdant.Systems.ScreenText.Caches
             if (forServer) //Can't actually happen atm, but good to double check
                 return null;
 
-            List<string> evilBossLines = new()
-            {
+            List<string> evilBossLines =
+            [
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.0",
                 Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.1", 
                     Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}")),
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.2",
                 "$Mods.Verdant.ScreenText.Apotheosis.Idle.EvilBoss.3",
-            };
+            ];
 
             ScreenText randomDialogue = new("$Mods.Verdant.ScreenText.Apotheosis.Idle.Normal." + Main.rand.Next(30))
             {
@@ -164,7 +164,7 @@ namespace Verdant.Systems.ScreenText.Caches
         {
             const string Key = "$Mods.Verdant.ScreenText.Apotheosis.Idle.MiscBosses.";
 
-            List<string> miscBossLines = new();
+            List<string> miscBossLines = [];
 
             if (NPC.downedSlimeKing)
                 miscBossLines.Add(Key + "KingSlime");
@@ -188,6 +188,12 @@ namespace Verdant.Systems.ScreenText.Caches
 
                 if ((bool)spiritMod.Call("downed", "Starplate Raider"))
                     miscBossLines.Add(Key + "StarplateRaider");
+            }
+
+            if (ModLoader.HasMod("CalamityFables"))
+            {
+                miscBossLines.Add(Key + "SirNautilus");
+                miscBossLines.Add(Key + "SunkenSea");
             }
 
             if (miscBossLines.Count > 0)

@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -22,6 +22,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
             AddMapEntry(new Color(114, 69, 39), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
+            RegisterItemDrop(ModContent.ItemType<LushBookshelfItem>());
 
             DustType = DustID.Grass;
             TileID.Sets.DisableSmartCursor[Type] = true;

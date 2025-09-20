@@ -5,12 +5,13 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     internal class LushCandelabra : ModTile
     {
-        public override void SetStaticDefaults() => CandelabraHelper.Defaults(this, new Color(253, 221, 3));
+        public override void SetStaticDefaults() => CandelabraHelper.Defaults<LushCandelabraItem>(this, new Color(253, 221, 3));
         public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

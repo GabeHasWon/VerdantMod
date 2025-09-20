@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,7 +19,11 @@ internal class PuffVine : ModTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
+        
+        TileID.Sets.IsVine[Type] = true;
+
         AddMapEntry(new Color(55, 145, 26));
+        
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
     }
@@ -30,7 +33,7 @@ internal class PuffVine : ModTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(3))
+        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(3) && WorldGen.GrowMoreVines(i, j))
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 

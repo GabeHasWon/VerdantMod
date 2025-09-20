@@ -30,18 +30,18 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Origin = new Point16(0, 1);
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
+            TileObjectData.newTile.CoordinateHeights = [16, 18];
             TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-            TileObjectData.newTile.AnchorInvalidTiles = new[] { 127 };
+            TileObjectData.newTile.AnchorInvalidTiles = [127];
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Lush Wood Chest");
             AddMapEntry(new Color(114, 69, 39), name, MapChestName);
+            RegisterItemDrop(ModContent.ItemType<VerdantWoodChestBlock>());
 
             DustType = DustID.t_BorealWood;
             HitSound = SoundID.Dig;

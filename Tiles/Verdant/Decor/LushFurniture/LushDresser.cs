@@ -42,8 +42,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Lush Dresser");
             AddMapEntry(new Color(114, 69, 39), name);
+            RegisterItemDrop(ModContent.ItemType<LushDresserItem>());
 
             DustType = DustID.t_BorealWood;
             AdjTiles = new int[] { TileID.Dressers };

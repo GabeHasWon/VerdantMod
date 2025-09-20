@@ -30,6 +30,7 @@ internal abstract class SofaTile<T> : TileBlueprint<T> where T : ModItem
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
+        RegisterItemDrop(ModContent.ItemType<T>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

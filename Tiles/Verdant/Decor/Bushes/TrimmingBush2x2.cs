@@ -17,7 +17,7 @@ public class TrimmingBush2x2 : ModTile, IBush
         Main.tileLavaDeath[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.addTile(Type);
 

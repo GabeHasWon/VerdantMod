@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -26,6 +26,7 @@ public class MysteriaSink : ModTile
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("MapObject.Sink"));
+        RegisterItemDrop(ModContent.ItemType<MysteriaSinkItem>());
 
         AdjTiles = new int[] { TileID.Sinks };
     }

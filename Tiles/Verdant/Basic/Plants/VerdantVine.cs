@@ -20,7 +20,11 @@ internal class VerdantVine : ModTile, IFlowerTile
         Main.tileCut[Type] = true;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
+
+        TileID.Sets.IsVine[Type] = true;
+
         AddMapEntry(new Color(24, 135, 28));
+
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
     }
@@ -30,7 +34,7 @@ internal class VerdantVine : ModTile, IFlowerTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(10))
+        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(10) && WorldGen.GrowMoreVines(i, j))
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 

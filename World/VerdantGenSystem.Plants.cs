@@ -20,11 +20,13 @@ public partial class VerdantGenSystem
         {
             Point rP = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             Point adj = TileHelper.GetRandomOpenAdjacent(rP.X, rP.Y);
+
             while (adj == new Point(-2, -2) || adj == new Point(0, -1) || adj == new Point(0, 1))
             {
                 rP = new Point(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
                 adj = TileHelper.GetRandomOpenAdjacent(rP.X, rP.Y);
             }
+
             Tile tile = Framing.GetTileSafely(rP.X, rP.Y);
 
             if (tile.TileType == ModContent.TileType<VerdantGrassLeaves>() || tile.TileType == ModContent.TileType<LushSoil>() || tile.TileType == ModContent.TileType<LivingLushWood>())
@@ -45,20 +47,20 @@ public partial class VerdantGenSystem
                 if (WorldGen.genRand.Next(3) > 0)
                 {
                     for (int k = 0; k < thickness; ++k)
-                        GenHelper.GenBezierDirectWall(new double[] {
+                        GenHelper.GenBezierDirectWall([
                             adjPos.X, adjPos.Y - k,
                             ((adjPos.X + end.X) / 2), midPointY - k,
                             end.X, end.Y - k,
-                        }, 200, ModContent.WallType<VerdantVineWall_Unsafe>(), true, 1);
+                        ], 200, ModContent.WallType<VerdantVineWall_Unsafe>(), true, 1);
                 }
                 else
                 {
                     for (int k = 0; k < thickness; ++k)
-                        GenHelper.GenBezierDirect(new double[] {
+                        GenHelper.GenBezierDirect([
                             adjPos.X, adjPos.Y - k,
                             ((adjPos.X + end.X) / 2), midPointY - k,
                             end.X, end.Y - k,
-                        }, 200, ModContent.TileType<VerdantLeaves>(), false, 1);
+                        ], 200, ModContent.TileType<VerdantLeaves>(), false, 1);
                 }
             }
             else if (WorldGen.genRand.Next(4) > 0)

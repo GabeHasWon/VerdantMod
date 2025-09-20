@@ -1,17 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
     internal class LushCandle : ModTile
     {
-        public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults(this, new Color(253, 221, 3));
+        public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults<LushCandleItem>(this, new Color(253, 221, 3));
 
         public override void HitWire(int i, int j)
         {

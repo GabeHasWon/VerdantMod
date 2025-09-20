@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -32,6 +33,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.Lantern"));
+            RegisterItemDrop(ModContent.ItemType<LushLanternItem>());
         }
 
         public override void HitWire(int i, int j)

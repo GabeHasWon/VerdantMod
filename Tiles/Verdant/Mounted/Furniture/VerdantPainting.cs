@@ -39,8 +39,8 @@ namespace Verdant.Tiles.Verdant.Mounted.Furniture
 			DustType -= 1;
 
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Painting");
 			AddMapEntry(new Color(109, 81, 69), name);
+            RegisterItemDrop(ModContent.ItemType<T>());
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 3 : 7;

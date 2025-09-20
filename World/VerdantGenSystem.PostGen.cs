@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Verdant.Tiles;
@@ -21,7 +22,7 @@ public partial class VerdantGenSystem
 {
     public void VerdantCleanup(GenerationProgress p, GameConfiguration config)
     {
-        p.Message = "Trimming plants...";
+        p.Message = Language.GetTextValue("Mods.Verdant.Generation.Trimming");
 
         AddFlowerStructures();
         p.Value = 0.5f;
@@ -34,7 +35,7 @@ public partial class VerdantGenSystem
                 tile.LiquidType = LiquidID.Water;
 
                 Tile t = Framing.GetTileSafely(i, j);
-                int[] vineAnchors = new int[] { ModContent.TileType<VerdantVine>(), ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantLeaves>() };
+                int[] vineAnchors = [ModContent.TileType<VerdantVine>(), ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantLeaves>()];
                 if (t.TileType == ModContent.TileType<VerdantVine>() && !vineAnchors.Contains(Framing.GetTileSafely(i, j - 1).TileType))
                     WorldGen.KillTile(i, j);
             }
@@ -43,7 +44,7 @@ public partial class VerdantGenSystem
         ClearOrphans();
     }
 
-    private void ClearOrphans()
+    private static void ClearOrphans()
     {
         for (int i = VerdantArea.Right; i > VerdantArea.X; --i)
         {
@@ -52,7 +53,8 @@ public partial class VerdantGenSystem
                 if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantLillie>()) && Framing.GetTileSafely(i, j).LiquidAmount < 155)
                     WorldGen.KillTile(i, j, false, false, true);
 
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()))
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantTree>()) && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantTree>()) 
+                    && !TileHelper.ActiveType(i, j + 1, ModContent.TileType<VerdantGrassLeaves>()))
                     WorldGen.KillTile(i, j, false, false, true);
             }
         }
@@ -61,15 +63,16 @@ public partial class VerdantGenSystem
         {
             for (int j = VerdantArea.Y; j < VerdantArea.Bottom; ++j)
             {
-                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()))
+                if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantStrongVine>()) && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantStrongVine>()) 
+                    && !TileHelper.ActiveType(i, j - 1, ModContent.TileType<VerdantGrassLeaves>()))
                     WorldGen.KillTile(i, j, false, false, true);
             }
         }
     }
 
-    readonly static int[] InvalidTypes = new int[] { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick };
-    readonly static int[] InvalidWalls = new int[] { WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, WallID.GreenDungeonTileUnsafe,
-            WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe };
+    readonly static int[] InvalidTypes = [TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick];
+    readonly static int[] InvalidWalls = [ WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, 
+        WallID.GreenDungeonTileUnsafe, WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe ];
 
     public override void PostWorldGen()
     {
@@ -92,6 +95,7 @@ public partial class VerdantGenSystem
                         apothPos = new Point(VerdantArea.Center.X - 30, VerdantArea.Center.Y - 4);
                         side *= -1;
                     }
+
                     goto redo; //sorry but i had to
                 }
             }
@@ -105,7 +109,7 @@ public partial class VerdantGenSystem
         int studyID = WorldGen.genRand.Next(2);
         Point16 size = new();
         bool foundGround = false;
-        int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
+        int[] valids = [ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>()];
         Point studyLoc = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
 
         if (side == 1)
@@ -171,13 +175,13 @@ public partial class VerdantGenSystem
 
     private void AddFlowerStructures()
     {
-        Point[] offsets = new Point[3] { new Point(7, -1), new Point(3, 0), new Point(3, 0) }; //ruler in-game is ONE HIGHER on both planes
+        Point[] offsets = [new Point(7, -1), new Point(3, 0), new Point(3, 0)]; //ruler in-game is ONE HIGHER on both planes
 
         var list = InvalidTypes.ToList();
         list.Add(ModContent.TileType<Apotheosis>());
         int[] invalids = list.ToArray();
 
-        int[] valids = new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>() };
+        int[] valids = [ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>()];
 
         List<Vector2> positions = new() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
         int attempts = 0;

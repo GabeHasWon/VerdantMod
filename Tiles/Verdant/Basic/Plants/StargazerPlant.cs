@@ -10,6 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.NPCs.Passive;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
@@ -36,6 +37,8 @@ class StargazerPlant : ModTile, IFlowerTile
 
         QuickTile.SetMulti(this, 2, 2, DustID.Grass, SoundID.Grass, true, new Color(143, 21, 193));
         glowTex = ModContent.Request<Texture2D>(Texture + "_Glow");
+
+        RegisterItemDrop(ModContent.ItemType<StargazerPlantItem>());
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch)

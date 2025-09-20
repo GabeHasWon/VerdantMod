@@ -71,7 +71,7 @@ public static class GenHelper
     {
         const int POINTS_ON_CURVE = 100;
 
-        BezierCurve curve = new BezierCurve();
+        BezierCurve curve = new();
         double[] p = new double[POINTS_ON_CURVE];
 
         curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);
@@ -86,7 +86,7 @@ public static class GenHelper
     {
         int POINTS_ON_CURVE = fidelity;
 
-        BezierCurve curve = new BezierCurve();
+        BezierCurve curve = new();
         double[] p = new double[POINTS_ON_CURVE];
 
         curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);
@@ -95,10 +95,18 @@ public static class GenHelper
         {
             for (int j = 0; j < height; ++j)
             {
-                if (overRide)
-                    ReplaceTile((int)p[i + 1], (int)p[i] - j, t, false, true);
-                else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
-                    WorldGen.PlaceTile((int)p[i + 1], (int)p[i] - j, t, true, false);
+                Tile tile = Main.tile[(int)p[i + 1], (int)p[i] - j];
+
+                if (overRide && tile.HasTile)
+                    continue;
+
+                tile.TileType = (ushort)t;
+                tile.HasTile = true;
+
+                //if (overRide)
+                //    ReplaceTile((int)p[i + 1], (int)p[i] - j, t, false, true);
+                //else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
+                //    WorldGen.PlaceTile((int)p[i + 1], (int)p[i] - j, t, true, false);
             }
         }
     }
@@ -107,7 +115,7 @@ public static class GenHelper
     {
         int POINTS_ON_CURVE = fidelity;
 
-        BezierCurve curve = new BezierCurve();
+        BezierCurve curve = new();
         double[] p = new double[POINTS_ON_CURVE];
 
         curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);

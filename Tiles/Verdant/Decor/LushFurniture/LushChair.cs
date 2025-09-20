@@ -7,6 +7,7 @@ using Terraria.Enums;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -36,6 +37,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
             AddMapEntry(new Color(114, 69, 39), Language.GetText("MapObject.Chair"));
+            RegisterItemDrop(ModContent.ItemType<LushChairItem>());
 
             DustType = DustID.t_BorealWood;
             AdjTiles = new int[] { TileID.Chairs };

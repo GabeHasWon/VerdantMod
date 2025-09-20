@@ -58,7 +58,7 @@ public static class FurnitureHelper
             player.cursorItemIconReversed = true;
     }
 
-    public static void CandleDefaults(ModTile tile, Color color, bool cantPlaceInWater = true)
+    public static void CandleDefaults<T>(ModTile tile, Color color, bool cantPlaceInWater = true) where T : ModItem
     {
         int type = tile.Type;
         Main.tileLighted[type] = true;
@@ -80,5 +80,6 @@ public static class FurnitureHelper
 
         tile.AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         tile.AddMapEntry(color, Language.GetText("ItemName.Candle"));
+        tile.RegisterItemDrop(ModContent.ItemType<T>());
     }
 }

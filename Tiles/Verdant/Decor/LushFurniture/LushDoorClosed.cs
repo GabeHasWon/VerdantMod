@@ -34,7 +34,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
 			TileObjectData.newTile.UsesCustomCanPlace = true;
 			TileObjectData.newTile.LavaDeath = true;
-			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
+			TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.newTile.CoordinatePadding = 2;
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
@@ -48,8 +48,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Lush Door");
             AddMapEntry(new Color(114, 69, 39), name);
+            RegisterItemDrop(ModContent.ItemType<LushWoodDoorItem>());
 
             DustType = DustID.t_BorealWood;
 			AdjTiles = new int[] { TileID.ClosedDoor };

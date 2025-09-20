@@ -27,9 +27,10 @@ class Flower_2x2 : ModTile, IFlowerTile
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.Width = 2;
         TileObjectData.newTile.Height = 2;
-        TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
+        TileObjectData.newTile.CoordinateHeights = [16, 16];
         TileObjectData.newTile.AnchorWall = true;
-        TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), ModContent.WallType<VerdantVineWall>(), WallID.GrassUnsafe, WallID.Grass };
+        TileObjectData.newTile.AnchorValidWalls = [ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), 
+            ModContent.WallType<VerdantVineWall_Unsafe>(), ModContent.WallType<VerdantVineWall>(), WallID.GrassUnsafe, WallID.Grass];
         TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
         TileObjectData.newTile.AnchorTop = AnchorData.Empty;
         TileObjectData.addTile(Type);
@@ -68,10 +69,11 @@ class Flower_2x2 : ModTile, IFlowerTile
     public override void NearbyEffects(int i, int j, bool closer)
     {
         if (Main.rand.NextBool(700) && Main.netMode != NetmodeID.Server)
-            Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "RedPetalFalling" : "PinkPetalFalling").Type);
+            Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(16), Main.rand.Next(16)), Vector2.Zero, 
+                Mod.Find<ModGore>((Framing.GetTileSafely(i, j).TileFrameX <= 19) ? "RedPetalFalling" : "PinkPetalFalling").Type);
     }
 
-    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 16) };
+    public Vector2[] GetOffsets() => [new Vector2(16, 16)];
     public bool IsFlower(int i, int j) => true;
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 }
@@ -94,7 +96,8 @@ class Flower_3x3 : ModTile, IFlowerTile
         TileObjectData.newTile.AnchorBottom = default;
         TileObjectData.newTile.AnchorTop = default;
         TileObjectData.newTile.AnchorWall = true;
-        TileObjectData.newTile.AnchorValidWalls = new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), ModContent.WallType<VerdantVineWall_Unsafe>(), ModContent.WallType<VerdantVineWall>(), WallID.GrassUnsafe, WallID.Grass };
+        TileObjectData.newTile.AnchorValidWalls = [ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<VerdantLeafWall>(), 
+            ModContent.WallType<VerdantVineWall_Unsafe>(), ModContent.WallType<VerdantVineWall>(), WallID.GrassUnsafe, WallID.Grass];
         TileObjectData.addTile(Type);
 
         DustType = DustID.Grass;
@@ -136,7 +139,7 @@ class Flower_3x3 : ModTile, IFlowerTile
         }
     }
 
-    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(26) };
+    public Vector2[] GetOffsets() => [new Vector2(26)];
     public bool IsFlower(int i, int j) => true;
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 }

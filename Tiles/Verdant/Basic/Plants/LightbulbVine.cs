@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +19,8 @@ internal class LightbulbVine : ModTile, IFlowerTile
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
 
+        TileID.Sets.IsVine[Type] = true;
+
         DustType = DustID.Grass;
         HitSound = SoundID.Grass;
 
@@ -32,7 +33,7 @@ internal class LightbulbVine : ModTile, IFlowerTile
 
     public override void RandomUpdate(int i, int j)
     {
-        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(8))
+        if (!Main.tile[i, j + 1].HasTile && Main.rand.NextBool(8) && WorldGen.GrowMoreVines(i, j))
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 

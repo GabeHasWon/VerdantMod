@@ -161,7 +161,13 @@ internal class HardmodeApotheosis : ModTile, IAdditiveTile
             return true;
         }
 
-        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.MoonLord]) //Golem boss text
+        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.Cultist]) // Cultist boss text
+        {
+            DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Cultist");
+            return true;
+        }
+
+        if (NPC.downedMoonlord && !ModContent.GetInstance<VerdantSystem>().apotheosisDowns[DownedID.MoonLord]) // Moon Lord boss text
         {
             DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".MoonLord");
             return true;

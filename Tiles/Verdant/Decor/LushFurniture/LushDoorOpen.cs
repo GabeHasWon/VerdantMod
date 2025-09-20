@@ -5,6 +5,7 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -26,8 +27,8 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(114, 69, 39), name);
-            RegisterItemDrop(ModContent.ItemType<Items.Verdant.Blocks.LushWood.LushWoodDoorItem>());
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
+            RegisterItemDrop(ModContent.ItemType<LushWoodDoorItem>());
 
             DustType = DustID.t_BorealWood;
 			AdjTiles = new int[] { TileID.OpenDoor };

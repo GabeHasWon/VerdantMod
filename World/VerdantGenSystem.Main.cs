@@ -16,6 +16,7 @@ using Terraria.IO;
 using System;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
 using System.Diagnostics;
+using Terraria.Localization;
 
 namespace Verdant.World;
 
@@ -35,7 +36,7 @@ public partial class VerdantGenSystem : ModSystem
 
     public void VerdantGeneration(GenerationProgress p, GameConfiguration config)
     {
-        p.Message = "Growing plants...";
+        p.Message = Language.GetTextValue("Mods.Verdant.Generation.Plants");
 
         Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed + "\nNoise Seed: " + VerdantSystem.genNoise.Seed);
 
@@ -120,19 +121,23 @@ public partial class VerdantGenSystem : ModSystem
                 if (WorldGen.genRand.Next(7) <= 3)
                     Tile.SmoothSlope(i, j, false);
 
-        p.Message = "Growing vines...";
+        p.Message = Language.GetTextValue("Mods.Verdant.Generation.Vines");
         p.Value = 0.6f;
         Vines();
-        p.Message = "Growing flowers...";
+        p.Message = Language.GetTextValue("Mods.Verdant.Generation.Flowers");
         p.Value = 0.7f;
         AddPlants();
-        p.Message = "Watering plants...";
+        p.Message = Language.GetTextValue("Mods.Verdant.Generation.Watering");
         p.Value = 0.8f;
         AddWater();
         AddWaterfalls();
-        p.Message = "Growing surface...";
-        p.Value = 0.9f;
-        AddSurfaceTree();
+
+        if (!WorldGen.remixWorldGen)
+        {
+            p.Message = Language.GetTextValue("Mods.Verdant.Generation.Surface");
+            p.Value = 0.9f;
+            AddSurfaceTree();
+        }
     }
 
     private static void AddWaterfalls()
@@ -310,6 +315,11 @@ public partial class VerdantGenSystem : ModSystem
             VerdantArea = new Rectangle(VerdantArea.Center.X - 20, VerdantArea.Center.Y, 200, (int)(5 * WorldSize * WorldGen.genRand.Next(75, 85)));
             VerdantArea.Width += 40;
             VerdantArea.Height += 40;
+
+            if (VerdantArea.Bottom().Y > Main.maxTilesY - 220)
+            {
+                VerdantArea.Y -= (int)VerdantArea.Bottom().Y - (Main.maxTilesY - 220) - 10;
+            } 
         }
 
         for (int i = 0; i < repeats; ++i)

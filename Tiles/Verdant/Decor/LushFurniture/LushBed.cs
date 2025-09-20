@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture;
 
 public class LushBed : ModTile
 {
-    public override void SetStaticDefaults() => BedHelper.Defaults(this, new Color(114, 69, 39));
+    public override void SetStaticDefaults() => BedHelper.Defaults<LushBedItem>(this, new Color(114, 69, 39));
 	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 	public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 	public override void ModifySmartInteractCoords(ref int width, ref int height, ref int frameWidth, ref int frameHeight, ref int extraY) => (width, height) = (2, 2);

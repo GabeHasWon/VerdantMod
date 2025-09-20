@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -29,6 +30,7 @@ internal class MysteriaLamp : ModTile
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.FloorLamp"));
+        RegisterItemDrop(ModContent.ItemType<MysteriaLampItem>());
     }
 
     public override void HitWire(int i, int j)

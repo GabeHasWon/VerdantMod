@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
 internal class MysteriaCandelabra : ModTile
 {
-    public override void SetStaticDefaults() => CandelabraHelper.Defaults(this, new Color(253, 221, 3));
+    public override void SetStaticDefaults() => CandelabraHelper.Defaults<MysteriaCandelabraItem>(this, new Color(253, 221, 3));
     public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

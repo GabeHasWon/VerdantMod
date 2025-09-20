@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.LushWood;
 
 namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 {
@@ -21,10 +22,11 @@ namespace Verdant.Tiles.Verdant.Decor.LushFurniture
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
 			TileObjectData.newTile.Height = 2;
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+			TileObjectData.newTile.CoordinateHeights = [16, 18];
 			TileObjectData.addTile(Type);
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
+			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+            RegisterItemDrop(ModContent.ItemType<LushPianoItem>());
             AddMapEntry(new Color(114, 69, 39), Language.GetText("ItemName.Piano"));
 		}
 

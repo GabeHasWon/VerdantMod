@@ -8,6 +8,7 @@ using Terraria.Enums;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
+using Verdant.Items.Verdant.Tools;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
@@ -30,6 +31,7 @@ internal class Bouncebloom : ModTile, IFlowerTile
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(165, 108, 58));
+        RegisterItemDrop(ModContent.ItemType<BouncebloomItem>());
 
         TileID.Sets.DisableSmartCursor[Type] = true;
         DustType = DustID.Grass;

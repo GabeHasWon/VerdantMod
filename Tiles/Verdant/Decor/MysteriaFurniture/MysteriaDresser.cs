@@ -29,10 +29,10 @@ public class MysteriaDresser : ModTile
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.Origin = new Point16(1, 1);
-        TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
+        TileObjectData.newTile.CoordinateHeights = [16, 16];
         TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-        TileObjectData.newTile.AnchorInvalidTiles = new[] { 127 };
+        TileObjectData.newTile.AnchorInvalidTiles = [127];
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
@@ -41,8 +41,8 @@ public class MysteriaDresser : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
         LocalizedText name = CreateMapEntryName();
-        // name.SetDefault("Mysteria Dresser");
         AddMapEntry(new Color(124, 93, 68), name);
+        RegisterItemDrop(ModContent.ItemType<MysteriaDresserItem>());
 
         DustType = DustID.t_BorealWood;
         AdjTiles = new int[] { TileID.Dressers };
