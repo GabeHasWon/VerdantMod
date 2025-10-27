@@ -1,10 +1,4 @@
-1.2.6.11
-- Made Bumblebees not check tiles on multiplayer clients which may be unloaded, which would give invalid information
-- Made sure all tiles in the mod drop an item if they're supposed to
-- Fixed the Cultist text from the Apotheosis not being used ever whoops
-- Added the tiniest bit of Calamity: Fables compatibility
-- Added a bunch of additional frames to various Verdant decor tiles
-- Improved some slow gen that caused Verdant's generation to take substantially longer than it should
-- Made Don't Dig Up generation less likely to have the Verdant enter the Underworld
-- Localized world generation messages
-- Reduced the amount of vine growth all vines in the mod can experience, per vanilla changes
+1.2.6.12
+- Containers now count as containers (lol)
+- Added Hanging Ash
+- Thorns

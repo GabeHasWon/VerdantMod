@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Tiles.Verdant.Basic.PestControl;
+using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
@@ -24,9 +25,17 @@ internal class ThornTile : ModTile
                 NetMessage.SendTileSquare(-1, i, j - 2, 1, 2, TileChangeType.None);
         }
 
+        if (Main.rand.NextBool(400))
+        {
+            WorldGen.PlaceTile(i, j + 1, ModContent.TileType<PetalPlant>(), true, false, -1, Main.rand.Next(3));
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendTileSquare(-1, i, j + 1, 3, TileChangeType.None);
+        }
+
         if (Main.rand.NextBool(2) && !Main.tile[i, j - 1].HasTile && !Main.tile[i, j].TopSlope)
         {
-            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ThornDecor1x1>(), true, false, -1, Main.rand.Next(4));
+            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ThornDecor1x1>(), true, false, -1, Main.rand.Next(5));
 
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendTileSquare(-1, i, j - 1, 1, TileChangeType.None);

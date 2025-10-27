@@ -15,8 +15,8 @@ internal class ThornDecor1x1 : ModTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<ThornTile>() };
-        TileObjectData.newTile.RandomStyleRange = 4;
+        TileObjectData.newTile.AnchorValidTiles = [ModContent.TileType<ThornTile>()];
+        TileObjectData.newTile.RandomStyleRange = 5;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Stone, SoundID.Dig, false, new Color(112, 112, 112));
     }

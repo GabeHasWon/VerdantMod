@@ -30,6 +30,7 @@ public class VerdantYellowPetalChest : ModTile
         TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
         TileID.Sets.BasicChest[Type] = true;
         TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.IsAContainer[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Width = 2;
@@ -56,7 +57,7 @@ public class VerdantYellowPetalChest : ModTile
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
-    public string MapChestName(string name, int i, int j)
+    public static string MapChestName(string name, int i, int j)
     {
         int left = i;
         int top = j;
@@ -203,7 +204,7 @@ public class VerdantYellowPetalChest : ModTile
         if (player.cursorItemIconText == "")
         {
             player.cursorItemIconEnabled = false;
-            player.cursorItemIconID = 0;
+            player.cursorItemIconID = ItemID.None;
         }
     }
 }
