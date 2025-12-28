@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Systems.Achievements;
 using Verdant.Tiles.TileEntities.Verdant;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
@@ -34,6 +36,9 @@ internal class CoinGlobal : GlobalTile
 
                 WorldGen.PlaceTile(i, j, ModContent.TileType<MarigoldTile>());
                 ModContent.GetInstance<MarigoldTE>().Place(i, j);
+
+                if (Main.LocalPlayer.DistanceSQ(new Vector2(i, j).ToWorldCoordinates()) < 800 * 800 && !MarigoldAchievement.Condition.IsCompleted)
+                    MarigoldAchievement.Condition.Complete();
             }
         }
     }

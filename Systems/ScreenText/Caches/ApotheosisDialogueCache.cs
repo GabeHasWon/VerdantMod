@@ -14,6 +14,7 @@ using Verdant.Items.Verdant.Misc;
 using Verdant.Items.Verdant.Misc.Apotheotic;
 using Verdant.Items.Verdant.Tools;
 using Verdant.Projectiles.Misc;
+using Verdant.Systems.Achievements;
 using Verdant.Systems.PestControl;
 using Verdant.Systems.ScreenText.Animations;
 using Verdant.World;
@@ -211,6 +212,8 @@ namespace Verdant.Systems.ScreenText.Caches
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Eye")]
         public static ScreenText EoCDownDialogue(bool forServer)
         {
+            const string EoCDowned = "$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC";
+
             ModContent.GetInstance<VerdantSystem>().apotheosisEyeDown = true;
 
             if (forServer)
@@ -218,18 +221,42 @@ namespace Verdant.Systems.ScreenText.Caches
 
             if (!UseCustomSystem)
             {
-                Chat("$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.0");
-                Chat(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}")));
+                Chat(EoCDowned);
+                Chat(Language.GetTextValue(EoCDowned + ".1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}")));
 
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
+                UpdateAchievements();
                 return null;
             }
 
-            return new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.0") { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
-                FinishWith(new ScreenText(Language.GetTextValue("Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}"))), (self) =>
+            return new ScreenText(EoCDowned + ".0") { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
+                FinishWith(new ScreenText(Language.GetTextValue(EoCDowned + ".1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}"))), (self) =>
                 {
                     Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
+                    UpdateAchievements();
                 });
+        }
+
+        public static void UpdateAchievements()
+        {
+            if (!GreenThumbAchievement.Condition.IsCompleted)
+                GreenThumbAchievement.Condition.Complete();
+
+            VerdantSystem v = ModContent.GetInstance<VerdantSystem>();
+            int count = Count(out int num, v.apotheosisEvilDown, v.apotheosisEyeDown, v.apotheosisSkelDown, v.apotheosisWallDown, v.apotheosisDowns[DownedID.Cultist], v.apotheosisDowns[DownedID.Golem],
+                v.apotheosisDowns[DownedID.Plantera], v.apotheosisDowns[DownedID.MoonLord], v.apotheosisDowns[DownedID.AnyMech]);
+
+            if (count >= num / 2 && !GardenerAchievement.Condition.IsCompleted)
+                GardenerAchievement.Condition.Complete();
+
+            if (count >= num && !ReachingApotheosisAchievement.Condition.IsCompleted)
+                ReachingApotheosisAchievement.Condition.Complete();
+
+            static int Count(out int count, params bool[] flags)
+            {
+                count = flags.Length;
+                return flags.Count(true);
+            }
         }
 
         [DialogueCacheKey(nameof(ApotheosisDialogueCache) + ".Evil")]

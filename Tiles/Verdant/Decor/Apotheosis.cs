@@ -9,6 +9,7 @@ using Verdant.World;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
 using Verdant.Items;
+using Verdant.Systems.Achievements;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
@@ -66,6 +67,10 @@ internal class Apotheosis : ModTile
         if (!Main.LocalPlayer.HeldItem.IsAir && Main.LocalPlayer.HeldItem.ModItem is ApotheoticItem apoth)
         {
             DialogueCacheAutoloader.Play(nameof(ApotheoticItem) + "." + apoth.Name, false);
+
+            if (!ShowcaseAchievement.Condition.IsCompleted)
+                ShowcaseAchievement.Condition.Complete();
+
             return true;
         }
         return false;

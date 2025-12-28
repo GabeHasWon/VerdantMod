@@ -42,3 +42,25 @@ DryadShop: {
 }
 
 // ShowApoth: Show this to the Apotheosis by right clicking them
+
+Achievements: {
+	GardenerAchievement: {
+		// FriendlyName: Gardener Achievement
+		// Description: Mods.Verdant.Achievements.GardenerAchievement.Description
+	}
+
+	GreenThumbAchievement: {
+		// FriendlyName: Green Thumb Achievement
+		// Description: Mods.Verdant.Achievements.GreenThumbAchievement.Description
+	}
+
+	MarigoldAchievement: {
+		// FriendlyName: Marigold Achievement
+		// Description: Mods.Verdant.Achievements.MarigoldAchievement.Description
+	}
+
+	ReachingApotheosisAchievement: {
+		// FriendlyName: Reaching Apotheosis Achievement
+		// Description: Mods.Verdant.Achievements.ReachingApotheosisAchievement.Description
+	}
+}

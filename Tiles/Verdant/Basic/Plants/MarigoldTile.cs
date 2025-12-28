@@ -17,7 +17,7 @@ class MarigoldTile : ModTile, IFlowerTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 2, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
+        TileObjectData.newTile.AnchorValidTiles = [ModContent.TileType<LushSoil>()];
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
 
@@ -27,7 +27,7 @@ class MarigoldTile : ModTile, IFlowerTile
     public override void PlaceInWorld(int i, int j, Item item) => ModContent.GetInstance<MarigoldTE>().Place(i, j);
     public override void KillMultiTile(int i, int j, int frameX, int frameY) => ModContent.GetInstance<MarigoldTE>().Kill(i, j); 
 
-    public Vector2[] GetOffsets() => new Vector2[] { new Vector2(16, 13) };
+    public Vector2[] GetOffsets() => [new Vector2(16, 13)];
     public bool IsFlower(int i, int j) => true;
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 
