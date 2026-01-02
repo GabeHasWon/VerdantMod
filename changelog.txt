@@ -1,3 +1,6 @@
-1.2.6.12
+1.3.0.0
+
+Additions:
 - Added custom Music Display visual
-- Added 5 new Verdant-related achievements
+- Added 6 new Verdant-related achievements
+- Added new underground rain event in the Verdant

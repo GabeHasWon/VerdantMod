@@ -1,0 +1,29 @@
+GardenerAchievement: {
+	FriendlyName: Gardener
+	Description: Complete half of the Apotheosis's quests.
+}
+
+GreenThumbAchievement: {
+	FriendlyName: Green Thumb
+	Description: Complete one of the Apotheosis's quests.
+}
+
+MarigoldAchievement: {
+	FriendlyName: Marigolden
+	Description: Grow a Marigold on verdant leaves.
+}
+
+ReachingApotheosisAchievement: {
+	FriendlyName: Reaching Apotheosis
+	Description: Complete all of the Apotheosis's quests.
+}
+
+MudsquidAchievement: {
+	FriendlyName: Traveler of Mud
+	Description: Move through 1,000 tiles as a Mudsquid.
+}
+
+ShowcaseAchievement: {
+	FriendlyName: Showcaser
+	Description: Show the Apotheosis an item.
+}

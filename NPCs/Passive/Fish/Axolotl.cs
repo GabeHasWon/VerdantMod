@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NPCUtils;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

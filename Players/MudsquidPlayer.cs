@@ -9,6 +9,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Players.Layers;
+using Verdant.Systems.Achievements;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
@@ -18,9 +19,9 @@ internal class MudsquidPlayer : ModPlayer
 {
     public static bool SquidCollision = true;
 
-    private static int[] ValidSquidTileIDs => new int[] { TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, ModContent.TileType<LushSoil>(), 
+    private static int[] ValidSquidTileIDs => [ TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, ModContent.TileType<LushSoil>(), 
         ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LivingLushWood>(), ModContent.TileType<VerdantLeaves>(), ModContent.TileType<LushGrass>(), 
-        ModContent.TileType<LightbulbLeaves>(), ModContent.TileType<MysteriaFluff>(), ModContent.TileType<EmbeddedAquamarine>() };
+        ModContent.TileType<LightbulbLeaves>(), ModContent.TileType<MysteriaFluff>(), ModContent.TileType<EmbeddedAquamarine>() ];
 
     public bool IsSquid => squidActive && SolidCollisionTyped(Player.position, Player.width, Player.height, ValidSquidTileIDs);
 
@@ -28,6 +29,8 @@ internal class MudsquidPlayer : ModPlayer
     public bool squidActive = false;
 
     internal float squidAlpha = 1f;
+
+    private float _pixelsTraveled = 0f;
 
     public override void Load()
     {
@@ -116,7 +119,15 @@ internal class MudsquidPlayer : ModPlayer
         if (squidActive)
         {
             if (SolidCollisionTyped(Player.position, Player.width, Player.height, ValidSquidTileIDs))
+            {
                 Player.gravity = 0;
+
+                _pixelsTraveled += Player.velocity.Length();
+
+                if (_pixelsTraveled > 16 * 1000 && !MudsquidAchievement.Condition.IsCompleted)
+                    MudsquidAchievement.Condition.Complete();
+            }
+
             Player.noFallDmg = true;
         }
 
@@ -139,9 +150,7 @@ internal class MudsquidPlayer : ModPlayer
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
         if ((hasSquid && VerdantMod.SquidHotkey.JustPressed && !IsSquid) || (Player.mount.Active && squidActive))
-        {
             squidActive = !squidActive;
-        }
     }
 
     public override void PreUpdateMovement()

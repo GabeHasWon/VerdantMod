@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NPCUtils;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;

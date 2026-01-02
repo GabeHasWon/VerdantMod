@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks;
 using Verdant.NPCs.Passive;
+using Verdant.Systems.TearRain;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
@@ -93,6 +94,9 @@ class Beehive : ModTile
 
     public override void RandomUpdate(int i, int j)
     {
+        if (TearRainSystem.AnyRainingAt(j))
+            return;
+
         Tile tile = Main.tile[i, j];
         int adjX = i - (tile.TileFrameX / 18);
         int adjY = j - (tile.TileFrameY / 18);

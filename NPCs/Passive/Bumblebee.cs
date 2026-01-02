@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NPCUtils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -69,15 +70,7 @@ public class Bumblebee : ModNPC
             spawnPos = NPC.Center.ToTileCoordinates();
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                Tile tile = Main.tile[spawnPos];
-
-                spawnPos.X -= tile.TileFrameX / 18;
-                spawnPos.Y -= tile.TileFrameY / 38 * 2;
-
-                while (!Main.tile[spawnPos].HasTile || Main.tile[spawnPos].TileType != ModContent.TileType<Beehive>())
-                    spawnPos.Y++;
-            }
+                SetSpawnInfo();
 
             NPC.netUpdate = true;
         }
@@ -87,14 +80,8 @@ public class Bumblebee : ModNPC
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    Tile home = Main.tile[spawnPos];
-                    WaitTimer = 1;
-
-                    if (!home.HasTile || home.TileType != ModContent.TileType<Beehive>())
-                    {
-                        State = 3;
+                    if (!WaitOn())
                         return;
-                    }
                 }
 
                 if (WaitTimer == 0)
@@ -132,6 +119,31 @@ public class Bumblebee : ModNPC
             PauseOnFlower();
         else if (State == 3)
             FreeMovement(null);
+    }
+
+    private bool WaitOn()
+    {
+        Tile home = Main.tile[spawnPos];
+        WaitTimer = 1;
+
+        if (!home.HasTile || home.TileType != ModContent.TileType<Beehive>())
+        {
+            State = 3;
+            return false;
+        }
+
+        return true;
+    }
+
+    private void SetSpawnInfo()
+    {
+        Tile tile = Main.tile[spawnPos];
+
+        spawnPos.X -= tile.TileFrameX / 18;
+        spawnPos.Y -= tile.TileFrameY / 38 * 2;
+
+        while (!Main.tile[spawnPos].HasTile || Main.tile[spawnPos].TileType != ModContent.TileType<Beehive>())
+            spawnPos.Y++;
     }
 
     private void PauseOnFlower()

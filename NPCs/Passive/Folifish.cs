@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using NPCUtils;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -37,7 +38,7 @@ namespace Verdant.NPCs.Passive
             NPC.catchItem = (short)ModContent.ItemType<FolifishItem>();
             
             AIType = NPCID.Goldfish;
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<Scenes.VerdantBiome>().Type };
+            SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.AddInfo(this, "");

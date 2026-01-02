@@ -39,6 +39,9 @@ public partial class VerdantMod : Mod
         LoadVerdantGrasses();
         MonoModChanges();
         NewBeginningsCompatibility.AddOrigin();
+
+        NPCUtils.NPCUtils.AutoloadModBannersAndCritters(this);
+        NPCUtils.NPCUtils.TryLoadBestiaryHelper(this);
     }
 
     private void LoadVerdantGrasses()

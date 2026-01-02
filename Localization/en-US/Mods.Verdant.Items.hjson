@@ -1678,3 +1678,8 @@ GlassFlowerItem: {
 		'How frail...'
 		'''
 }
+
+DropsnailItem: {
+	DisplayName: Dropsnail Item
+	Tooltip: ""
+}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NPCUtils;
 using System.IO;
 using System.Linq;
 using Terraria;

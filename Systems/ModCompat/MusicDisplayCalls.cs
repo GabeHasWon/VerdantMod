@@ -12,7 +12,7 @@ namespace Verdant.Systems.ModCompat;
 
 internal class MusicDisplayCalls : ModSystem
 {
-    private static Asset<Texture2D> Backvine = ModContent.Request<Texture2D>("Verdant/Textures/MusicDisplayBackvine");
+    private static readonly Asset<Texture2D> Backvine = ModContent.Request<Texture2D>("Verdant/Textures/MusicDisplayBackvine");
 
 	public override void PostAddRecipes()
     {
@@ -53,12 +53,13 @@ internal class MusicDisplayCalls : ModSystem
             Vector2 pos = new(x + i * 30 - size.X / 2, y - 54);
             int frameId = (i % 3 + i + i / 2 + i % 4) % 4;
             Rectangle frame = new(frameId * 42, 0, 40, 44);
-            float rotation = MathF.Sin(Main.GameUpdateCount * 0.08f + i * MathHelper.PiOver4 * 1.5f) * 0.35f * (i % 3 switch
+            float rotation = MathF.Sin(Main.GameUpdateCount * 0.08f + i * MathHelper.PiOver4 * 1.5f) * 0.5f * (i % 3 switch
             {
-                0 => 1.2f,
-                1 => 1f,
-                _ => 0.9f,
+                0 => 1f,
+                1 => 0.9f,
+                _ => 0.75f,
             });
+
             Main.spriteBatch.Draw(Backvine.Value, pos, frame, Color.White * baseAlpha, rotation, frame.Size() / 2f, 1f, SpriteEffects.None, 0);
         }
 

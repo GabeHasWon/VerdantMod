@@ -4,8 +4,8 @@ using Terraria.ModLoader;
 
 namespace Verdant.Systems.Achievements;
 
-// Spawn a Marigold
-public class MarigoldAchievement : ModAchievement
+// Show the Apotheosis something
+public class MudsquidAchievement : ModAchievement
 {
     internal static CustomFlagCondition Condition = null;
 
@@ -13,6 +13,6 @@ public class MarigoldAchievement : ModAchievement
 
     public override IEnumerable<Position> GetModdedConstraints()
     {
-        yield return new After(ModContent.GetInstance<MudsquidAchievement>());
+        yield return new After(ModContent.GetInstance<ReachingApotheosisAchievement>());
     }
 }

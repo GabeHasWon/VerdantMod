@@ -97,3 +97,8 @@ LunarJelly: {
 	// DisplayName: Lunar Jelly
 	// Entry: The night snuck down to the Verdant, it seems. These mysterious critters appear only when a Blue Stargazer is pollinated, and disappear quickly; who knows why?
 }
+
+Dropsnail: {
+	// DisplayName: Dropsnail
+	// Entry: ""
+}
