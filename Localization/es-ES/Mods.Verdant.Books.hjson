@@ -1,0 +1,224 @@
+# Try to keep every line here as long or shorter than the longest lines.
+# If they're too long, they will look really bad in the books.
+
+RockBook: {
+	Content:
+		'''
+
+		"Supuestamente proviene de una isla apartada.
+		¡Sería una oportunidad de investigación increíble!
+		Estrías de obsidiana recubren la roca, ¿acompañadas
+		de partículas de brasa? -Investigar más tarde.
+		Hay indicios de hierro, bismita, cuero
+		y obsidiana sin un orden en particular.
+		Apesar de su edad, resulta cálida al tacto - ¿y suena
+		hueca? Necesito más muestras, pregunté...
+		No hubo éxito. Quizá vaya a buscar más.
+		¡Ha pasado tiempo!
+		El mapa muestra un área volcánica cerca de
+		              [Arañazo] creo..."
+
+		A pesar de la introducción, el libro parece cambiar
+		lentamente -transformándose en una especie de diario:
+
+		"La aventura va bien,
+		aunque infructuosa; bosques idílicos
+		me esperan, al igual que
+
+		lo que me espera
+		al final de esta aventura -
+		un gran volcán...
+
+		Estoy seguro de ello."
+
+		'''
+	Title: Rocas Volcánicas
+}
+
+LightbulbBook: {
+	Content: {
+		0:
+			'''
+
+			"¿Bulbos? ¿semillas?
+			hechos de un material suave, como planta. Brilla 
+			tenuemente, a veces en una... forma de onda u ola.
+			Actúa como fuente de luz solar, crece en ciertas flores."
+
+			'''
+		1:
+			'''
+
+			"¿Llenos de agua? ¿Azúcar?
+			Saben blandos, un poco dulce, terroso, añadido a pasto
+			y una matiz a hierro (¿u otro metal? lo veré.)
+			Poco común, no tengo muchos para probar.
+			Buscaré más después, puede ser buen alimento.
+			Tras análisis, estos son especímenes increíbles...
+			Darán mejor luz que esas luciérnagas"
+
+			Páginas de cosas aleatorias: garabatos, bocetos, notas.
+			Ocasionalmente hay un pequeño dato rescatable:
+			"¿Crecen mejor en agua terrosa?"
+			"¿Cómo funcionará bajo luz solar?"
+			"Casi flores cuando crecen."
+			"Suave, pero rígido. Hm."
+
+			'''
+	}
+
+	Title: Bombillas?
+}
+
+LeafBook: {
+	Content: {
+		0:
+			'''
+
+			El libro parece viejo; opaco de páginas desgastadas.
+			El material es claramente extranjero.
+			Marcas de gotas a través de las páginas superiores.
+			Existen múltiples garabatos menores.
+			Los garabatos parecen tener forma de paisajes aleatorios,
+			luego a mundanos elementos de cueva... por alguna razón.
+			No hay fechas o autores mencionados más allá de una 
+			firma:
+
+			'''
+		1:
+			'''
+
+			Hojeas el libro, te percatas de las siguientes páginas:
+
+			'''
+		2:
+			'''
+
+			"Textura parecida a la tela, resistente pero suave.
+			Inexplicablemente relajante, crece bien bajo bulbaluces.
+			Desagradable al comer, sabor pastoso y sucio.
+			Abundante, útil (¿libros? ¿páginas? miraré pronto).
+			¿Quizá sirva en trozos?
+			Crece en matas, como enredadera, ¿o solo matas? Hm.
+			Crece solo o mayormente entre flores.
+
+			(NO INGERIR)
+
+			intenté presionarlas en páginas, parece ayudar
+			pero necesita más esfuerzo, están demasiado verdes."
+
+			'''
+	}
+
+	Title: Hojas
+}
+
+HardyVineBook: {
+	Content:
+		'''
+
+		"Los últimos jirones de vida por aquí
+		Increíblemente durables, a pesar de ser delgados.
+		Intentar cortar uno de ellos es prácticamente inútil.
+		Crecen de forma escasa, rodeados por más vides
+		pequeñas, hojas y flora. Contadas veces florecen,
+		con pequeños bulbos brillantes.
+
+		NO INGERIR
+
+		Como lechuga pero correoso y sucio.
+		Puede usarse para crear cuerdas muy resistentes.
+		¿Podría utilizarse como reforzamiento?
+		...Desconozco si podré."
+
+		Las páginas que restan tienen pequeños
+		bocetos y cortas anotaciones -
+
+		"...¿Abundan más ahora?..."
+		"Los especímenes se vuelven robustos"
+		"...Brotan más a menudo..."
+
+		-hasta que el libro acaba.
+
+		'''
+	Title: Vides Resistentes
+}
+
+ApotheosisBook: {
+	Content:
+		'''
+
+		"A pasado tiempo desde que me quede sin suministros.
+		Mi caravana e investigación están vacías, 
+		siendo ratones y murciélagos mi único alimento.
+		El agua sorpresivamente es limpia y fresca
+		por aquí, así que... solo es hambre.
+		Sin embargo, tengo algunos estudios.
+		Estoy categorizando la flora local, y es... mágica.
+		Al grado donde no estoy seguro si 
+		es un simple término, o una verdad.
+		Alrededor hay hierba y follaje sorprendente y exótico,
+		incluso he visto retoños de arboles por aquí y por allá.
+		¡Un boscaje de lo más curioso! A pesar de mi hambre,
+		este es un paraíso por el que sufriré."
+
+
+		...
+
+
+		"Los escasos bocados de este lugar han sido 
+		lo suficiente por un tiempo, aunque apenas.
+		He construido un pequeño pero aceptable estudio,
+		tanto para guardar mis cosas como para estar a salvo.
+		Frecuentemente un esqueleto errante o un
+		murciélago enojado se pasean, y yo soy
+		un explorador; nada de cazador de monstruos.
+		Dicho esto, la comida cada vez es más escasa.
+		Mas allá de los murciélagos, ya que perdí los ratones 
+		- parece que reconocieron a su mayor amenaza.
+		El tiempo esta fuera de mi alcance.
+		A pesar de los estudios, me queda poco."
+
+
+		...
+
+
+		"El tiempo se cansa; a la par que yo.
+		Los estudios continúan, el fervor esta en
+		nuevas alturas a medida que veo cosas únicas en esta
+		extraña caverna. Detrás del dolor del hambre,
+		esta la fatiga; a pesar de mi deprimente estado,
+		vivo más fuerte que nunca. Para mi, 
+		esto es vivir, las creaturas alrededor
+		prosperan, juegan, hablan y pelean.
+		Quizás aún hay más que no logro ver.
+		Alas, la muerte esta tocando,
+		y no tengo forma de cerrarle la puerta.
+		Pero tal vez, en algún otro momento,
+		estas plantas encuentren a otro par de 
+		ojos, y los desconcierte tanto como a mi."
+
+
+		...
+
+
+		"Veo; una flor. Una con un bulbo en su interior,
+		uno notable - entre los pétalos, un 
+		gentil resplandor. Uno que calma.
+		Un resplandor como ningún otro que haya visto aquí.
+		Lo tenia todo pero abandone mi estudio. No hay
+		comida, y me encuentro en mi último suspiro.
+		Mi único arrepentimiento es no poder estudiar esta 
+		flora, este regalo que se me ha otorgado.
+		...
+		Puede que alguien encuentre mi trabajo.
+		Puede que una pasión reviva lo que morí haciendo.
+		Puede que este diario encuentre a alguien sano,
+		de gran espíritu,
+		Adiós."
+
+		'''
+	# Note that the lines "in good spirits," and "and goodbye." are intentionally spaced out, ideally keep that if you can.
+	
+	Title: "'Mi Apoteosis'"
+}

@@ -26,6 +26,8 @@ public class StartMicrocosmModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode == NetmodeID.Server) //Spawn on server
             Microcosm.SpawnMicrocosm(new(x, y), glassless);
     }

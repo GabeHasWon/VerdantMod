@@ -54,6 +54,8 @@ public class CloudbloomModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.myPlayer == fromWho)
             return;
 

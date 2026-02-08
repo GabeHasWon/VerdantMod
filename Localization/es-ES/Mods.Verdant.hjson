@@ -1,0 +1,44 @@
+# This file is for miscellaneous stuff that I don't really want to move to its own file.
+# If a single part ever gets too large, I'll move it to its own file.
+MapObject: {
+	VerdantPylonTile: Torre verdeante
+	FloatingCrystal: Cristal flotante
+}
+
+TileInteraction: {
+	MysteriaClock: {
+		London: " (Hora de Londres)"
+		NewYork: " (Hora de New York)"
+	}
+}
+
+ApotheosisName: Apoteosis
+ApotheosisFullName: El Apoteosis
+
+# Try to keep these short, the text looks weird if it's too long
+VineHookLines: {
+	0: Woo!
+	1: Yupii!
+	2: Yei!
+}
+
+Condition.InVerdant: En el bioma verdeante
+
+RecipeCondition: {
+	AfterApotheosisDownedPlantera: Al recibir el regalo de Plantera del Apoteosis
+	HasShears: Al llevar tijeras [i:{0}]
+}
+
+"Keybinds.Verdant:SquidForm.DisplayName": Verdant: Forma Calamar
+
+GameTips: {
+	VerdantGameTip0: Habla con el Apoteosis a menudo, podría tener recompensas para ti.
+	VerdantGameTip1: ¡Las frondosas cuevas verdeantes ofrecen un respiro en cualquier lugar!
+}
+
+DryadShop: {
+	Restock: Reabastece una vez cada 5 días, o una vez cada 3 días si está en el Verdor
+	Condition: Cada otra rotación de existencias
+}
+
+ShowApoth: Enséñale esto al Apoteosis al darle clic derecho

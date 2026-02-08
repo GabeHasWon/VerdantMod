@@ -1,0 +1,99 @@
+HostFly: {
+	// DisplayName: Hostess Winglet
+	// Entry: The matriarch of a small fly colony, angry that its children are being attacked. Seems to be extinct naturally, despite the commonality of the Lush Winglet.
+}
+
+Mossling: {
+	// DisplayName: Mossling
+	// Entry: An almost microscopic speck, growing in and around lush, humid areas. Moves to a beat you cannot hear. Sadly, they can't be found naturally any longer.
+}
+
+# Note that the Hostess Winglet and the Mossling are both deprecated.
+# They are only visible in-game when a cheat mod is active.
+
+SmallFly: {
+	DisplayName: Aleta frondosa
+	Entry: Una pequeña creatura hecha de hojas, pétalos y carne. Temerosa e inofensiva. De alguna manera, cargan una ligera tristeza.
+}
+
+Bumblebee: {
+	DisplayName: Abejorro
+	Entry: Una abeja con extra abejorro. Abejorro con un poquito más de abeja encima. Mota con alas.
+}
+
+Axolotl: {
+	DisplayName: Ajolote
+	Entry: Una creatura mayormente acuática, aunque sobrevive bien en tierra...nerviosilla. Disfruta de los agujeros de algunas paredes de pizarra.
+}
+
+BulbboxJelly: {
+	DisplayName: Medusa cajabulbosa
+	Entry: Una curiosa, pequeña medusa inofensiva. Sus tentáculos vegetales crecen de su cuerpo transparente.
+}
+
+MossCarp: {
+	DisplayName: Carpa musgosa
+	Entry: El inferior de este pez recolecta plantas y nutrientes, que otras Carpas Musgosas pueden cosechar, formando una relación.
+}
+
+Poolworm: {
+	DisplayName: Gusano de piscina
+	Entry: La criatura acuática más pequeña del Verdor. Un cebo excelente.
+}
+
+Flotie: {
+	DisplayName: Flotín
+	Entry: Una curiosa creatura brillante encontrada en cuevas frondosas. Generalmente vista rodeada de sus crías.
+}
+
+Flotiny: {
+	DisplayName: Flotarín
+	Entry: Una pequeña creatura flotante. A pesar de levitar, no hace ruido ni se mueve más allá de un suave balanceo, como si fuera el de una brisa.
+}
+
+MysteriaFlotie: {
+	DisplayName: Flotín misteria
+	Entry: Una variante del flotín común del Verdor, encontrado en las arboledas misterio. Huele a un agradable, aroma floral.
+}
+
+MysteriaFlotiny: {
+	DisplayName: Flotarín misteria
+	Entry: Una creatura recientemente descubierta, los flotarínes misteria parecen congregarse alrededor de los pabellones misteria. ¿Quizás haya más que aprender sobre estas criaturas?
+}
+
+Folifish: {
+	DisplayName: Pezfoli
+	Entry: Un pez cubierto de vida vegetal. Si bien comerlo no es especialmente sabroso, es bastante saludable. Sin embargo, parece haber desaparecido del Verdor.
+}
+
+PuffSlimeSmall: {
+	DisplayName: Slime esponjoso
+	Entry: Un slime típico, aunque significativamente más amistoso, curioso, ¡y esponjoso!...aunque un poco hiperactivo, también.
+}
+
+VerdantBulbSnail: {
+	DisplayName: Caracol bombilla
+	Entry: ¿Acaso se comió un bulboluz? No. ¿Se comió una bombilla? Tal vez.
+}
+
+# Sorry for the below entry being really long, I just think it's funny.
+
+VerdantRedGrassSnail: {
+	DisplayName: Caracol pétalo rojo
+	Entry: Dicen que hace miles de años, un científico loco logro lo imposible - combino planta y animal en un solo ser. La creación bestial, evitado por el hombre y temido por la naturaleza, sigue en pie por sí sola dentro de este mundo cruel e implacable. Estas criaturas comenzaron a buscar todas las facetas de la vida - poder, amor, amistad y sobre todo, ser pequeñines. Algunos podrían decir que en esta búsqueda, y sólo en esta búsqueda, habían tenido éxito. Sin embargo, también dicen que escucharon esto de otra persona en el pueblo y que realmente no recuerdan quién, así que deja de preguntar y compra algo. Al final de cuentas, este caracol es frondoso, Y eso es todo lo que necesitas saber.
+}
+
+ShellSnail: {
+	DisplayName: Caracol acorazado
+	Entry: Con menos hojas este caracol es un poco más resistente, pero no menos asombroso.
+}
+
+CanopySnail: {
+	DisplayName: Caracol pabellón
+	Entry: Un pequeño bosque se equilibra sobre el fuerte caparazón de este caracol. Si miras de cerca, hay toneladas de caracoles pequeños allí.
+}
+
+LunarJelly: {
+	DisplayName: Medusa lunar
+	Entry: Parece, que la noche se coló en el verdor. Estas misteriosas criaturas aparecen solo cuando una astrónoma azul es polinizada, y desaparecen rápidamente; quién sabe por qué.
+}

@@ -1,0 +1,33 @@
+Guide: {
+	ApotheosisEvilDown: Oigo una voz débil proveniente de esas cuevas frondosas. ¿Deberías darle un vistazo?
+	ApotheosisSkeletronDown: Escucho otra, una mucho más fuerte voz proveniente de las cuevas. Ve a ver.
+}
+
+Dryad: {
+	0: Amo esta tierra sobrecrecida. El mundo es poderoso aquí.
+	1: No puedo creer que nunca haya visto este lugar antes...
+	GreenCrystal: Tengo algunos maravillosos cristales verdes para compartir, si te interesan. Pero no son muchos.
+}
+
+Stylist: El aire esta MUY húmedo aquí, mi cabello se esta encrespando mucho.
+
+WitchDoctor: {
+	0: La energía que esta en estas flores...fluye poderosamente.
+	1: Siento un poder antiguo dentro de las hojas.
+	Dryad: "{0}' me ha estado dando algunas de sus cosas... ¿Te importa dar un vistazo? Es bastante agradable."
+}
+
+# Keep the {0} to refer to the Dryad's name.
+
+DyeTrader: {
+	0: ¡ESTO es un espectáculo! ¡Que hermosos colores tienen esas flores!
+	1: El brillo de esos bulbos... espectacular...
+}
+
+TaxCollector: {
+	0: ¡Agh! Esas hojas siguen entrando en la casa. ¡Que alguien las limpié!
+	1: ¡Esas brillantes flores están acabando con mi paciencia! ¡Mantén tu maldita luz fuera de mi vista!
+}
+
+Painter: ¡Esos tonos son espléndidos! ¡Que maravilloso paisaje!
+Princess: ¡Hay demasiados colores hermosos por aquí!

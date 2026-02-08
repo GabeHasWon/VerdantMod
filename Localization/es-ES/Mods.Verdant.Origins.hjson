@@ -1,0 +1,11 @@
+Botanist: {
+	DisplayName: Botánico
+	Flavor: El druida del mundo de la ciencia; entiende qué hace que la vida exista, qué crece y muere, y lo más importante, qué hongos son los más sabrosos.
+	Description: Comienza con 500 astillas frondosas, 10 ramillos, 10 esponjosidades, 80 mana máximo, y una guía experta sobre cordelería con fibra vegetal.
+}
+
+MinorSummoner: {
+	DisplayName: Frondoso
+	Flavor: Hijo del Apoteosis, solo de palabra. Un botánico en una vida pasada.
+	Description: Empieza con un set completo de Madera frondosa, un brote amarillo, un vástago lumínico y vida máxima disminuida.
+}

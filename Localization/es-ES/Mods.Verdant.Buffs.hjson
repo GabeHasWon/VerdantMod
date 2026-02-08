@@ -1,0 +1,19 @@
+HealingFlowerBuff: {
+	DisplayName: Flor sanadora
+	Description: El aura de la flor te sanará
+}
+
+PropellerpadBuff: {
+	DisplayName: Carpecóptero
+	Description: ¡Que extraño nenúfar!
+}
+
+SnailBuff: {
+	DisplayName: Ayudante caracol
+	Description: Los caracoles herbáceos lucharán por ti
+}
+
+FlotiePetBuff: {
+	DisplayName: Flotín de la ira
+	Description: "'A pesar del cráneo, es relajante'"
+}

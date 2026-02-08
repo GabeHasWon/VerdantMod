@@ -1,0 +1,21 @@
+ModName: Verdeante
+
+VibrantHorizon: {
+	DisplayName: Horizonte Vibrante (Tema del día Verdeante)
+	Author: por Heltonyan
+}
+
+TearRain: {
+	DisplayName: Lluvia de lágrimas (Tema de las Cuevas Verdeantes)
+	Author: por GabeHasWon
+}
+
+ApotheosisLullaby: {
+	DisplayName: Nana del Apoteosis (Tema del Apoteosis)
+	Author: por GabeHasWon & Liz
+}
+
+PetalsFall: {
+	DisplayName: Caída de pétalos (Tema de lluvia en el Verdeante)
+	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
+}

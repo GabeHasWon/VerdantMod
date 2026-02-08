@@ -9,9 +9,6 @@ using Verdant.Systems.Foreground.Tiled;
 
 namespace Verdant.Systems.Syncing.Foreground;
 
-/// <summary>
-/// Purpose-made 
-/// </summary>
 [Serializable]
 public class SyncForegroundModule : Module
 {
@@ -24,6 +21,8 @@ public class SyncForegroundModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode == NetmodeID.Server) //Play on server
         {
             foreach (var item in ForegroundManager.PlayerLayerItems)

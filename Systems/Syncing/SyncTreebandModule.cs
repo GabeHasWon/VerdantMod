@@ -26,6 +26,8 @@ public class SyncTreebandModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode != NetmodeID.Server) //Set on client
         {
             if (fromWho < 0 || fromWho >= Main.maxPlayers)

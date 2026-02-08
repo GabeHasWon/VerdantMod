@@ -1,5 +1,4 @@
-----The Verdant Mod----
--- 1.4.4 Update --
+---- Verdant ----
 by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
@@ -14,29 +13,27 @@ It has the following basic content:
     - A sort of quest system by the statue in the center of the biome, the Apotheosis
     - Way too much decoration
 
-----Frequently Asked Questions----
-Q: Does this mod work with Calamity?
-A: It should work. For that matter, it should work with any mod!
-
 --Developer--
 GabeHasWon - Everything except The Plant & some music
 
+Verdant's GitHub: https://github.com/GabeHasWon/VerdantMod
 Verdant's Discord: https://discord.gg/FAnwxtM2vc
 My Twitter: https://twitter.com/GabeHasWon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
 --Support--
 If you'd be so generous, joining the Patreon would help me out a ton. 
-As a hobbyist developer, I spend most of my free time making stuff like this mod.
 If any of you could chip in, I'd appreciate it greatly!
 https://www.patreon.com/gabehaswon
 
 --Contributors--
+MrBurrito7w7 - Spanish localization
+gentleMar - Chinese localization
+
 Helton Yan (Discord: heltonyan#8219) - "Vibrant Horizon" track
 Soundcloud: https://soundcloud.com/heltonyan
 Twitter: https://twitter.com/heltonyan
 
-gentleMar - Localization commit
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback--
@@ -52,12 +49,7 @@ Vidal1sHere - Hardmode fishing suggestion, Gemflower concept
 Ent - Root rope blocks, Mud Balls, snail shell blocks
 torrah - Snail Statue
 
-And, of course, 
---All of my current and former Patreons!--
-Kolya, hoosfire, Effejn, egshels
+All of my current and former Patreons
 
---Development--
 
-Rather than clog up this description, for your development needs & interests, check the GitHub!
-It's also linked in the Discord for those in-game.
-https://github.com/GabeHasWon/VerdantMod
+and, of course, all of you!

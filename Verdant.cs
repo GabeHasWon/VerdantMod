@@ -25,6 +25,13 @@ public partial class VerdantMod : Mod
 
     public static bool DebugModActive => ModLoader.HasMod("CheatSheet") || ModLoader.HasMod("HEROsMod") || ModLoader.HasMod("DragonLens");
 
+    public static void DebugLogMessage(Type type)
+    {
+#if DEBUG
+        Instance.Logger.Debug("Got packet: " + type.Name);
+#endif
+    }
+
     public override void Load()
     {
         SquidHotkey = KeybindLoader.RegisterKeybind(this, "Verdant:SquidForm", Microsoft.Xna.Framework.Input.Keys.LeftShift);
