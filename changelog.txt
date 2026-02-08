@@ -1,4 +1,4 @@
-1.2.6.12
-- Containers now count as containers (lol)
-- Added Hanging Ash
-- Thorns
+1.2.6.13
+- Added Spanish localization, thank you MrBurrito7w7!
+- Fixed packet spam in multiplayer
+- Fixed weird usage of RenderTargetUsage causing issues with other mods

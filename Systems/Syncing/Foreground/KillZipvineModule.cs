@@ -16,6 +16,8 @@ public class KillZipvineModule(short myPlayer, short slot) : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode == NetmodeID.Server) //Play on server
             Send(-1, fromWho, false);
 

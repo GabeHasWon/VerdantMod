@@ -36,6 +36,8 @@ public class ZipvineModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode != NetmodeID.Server && Main.myPlayer != fromWho) //Spawn on client
         {
             var vine = slotInList is null ? null : ForegroundManager.PlayerLayerItems[slotInList.Value] as ZipvineEntity;

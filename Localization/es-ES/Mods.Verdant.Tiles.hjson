@@ -1,0 +1,76 @@
+VerdantPylonTile.MapEntry: Torre verdeante
+FloatingCrystal.MapEntry: Cristal flotante
+AquamarineTile.MapEntry: Aguamarina
+Beehive.MapEntry: Colmena
+LootPlant.MapEntry: Pasionaria
+MysteriaSprout.MapEntry: Retoño misteria
+LushSapling.MapEntry: Retoño frondoso
+MarigoldTile.MapEntry: Rúcula
+WaterberryBush.MapEntry: Arbusto aguabaya
+WaterberryBushPicked.MapEntry: Arbusto
+Wisplant.MapEntry: Plantamanojo
+Apotheosis.MapEntry: Apoteosis
+AquamarineTorch.MapEntry: Antorcha
+HardmodeApotheosis.MapEntry: Apoteosis
+LushDoorClosed.MapEntry: Puerta frondosa
+LushDoorOpen.MapEntry: Puerta frondosa
+
+LushDresser: {
+	MapEntry: Aparador frondoso
+	ContainerName: Aparador frondoso
+}
+
+VerdantWoodChest: {
+	MapEntry: Cofre de madera frondosa
+	ContainerName: Cofre de madera frondosa
+}
+
+VerdantWood.MapEntry: Madera frondosa
+LullabyBoxTile.MapEntry: Caja musical
+PetalsFallBoxTile.MapEntry: Caja musical
+TearRainBoxTile.MapEntry: Caja musical
+VibrantHorizonBoxTile.MapEntry: Caja musical
+MysteriaDoorClosed.MapEntry: Puerta misteria
+MysteriaDoorOpen.MapEntry: Puerta misteria
+
+MysteriaDresser: {
+	MapEntry: Aparador misteria
+	ContainerName: Aparador misteria
+}
+
+SnailStatue.MapEntry: Estatua caracol
+VerdantDoorClosed.MapEntry: Puerta verdeante
+VerdantDoorOpen.MapEntry: Puerta verdeante
+
+VerdantYellowPetalChest: {
+	MapEntry: Cofre pétalo amarillo
+	ContainerName: Cofre pétalo amarillo
+}
+
+GreenCrystal.MapEntry: Cristal verde
+ApotheoticPainting.MapEntry: Pintura
+LightbulbPainting.MapEntry: Pintura
+BigVerdantTree.MapEntry: Gran árbol verdeante
+VerdantTree.MapEntry: Árbol frondoso
+PeaceTreeTop.MapEntry: Copa de paz
+MysteriaTreeTop.MapEntry: Copa misteria
+MysteriaTree.MapEntry: Árbol misteria
+VerdantRedPetal.MapEntry: Pétalo rojo verdeante
+VerdantPinkPetal.MapEntry: Pétalo rosa verdeante
+VerdantLeaves.MapEntry: Hojas verdeantes
+VerdantGrassLeaves.MapEntry: Hierba frondosa
+SnailShellBlock.MapEntry: Caparazones de caracol
+PuffBlock.MapEntry: Bloque esponjoso
+OvergrownBricks.MapEntry: Ladrillo gris frondoso
+LushSoil.MapEntry: Suelo Emporcado
+LivingLushWood.MapEntry: Madera frondosa viviente
+GemsparkAquamarine.MapEntry: Bloque de aguamarina gemachispa
+EmbeddedStoneAquamarine.MapEntry: Bloque de piedra de aguamarina
+EmbeddedAquamarine.MapEntry: Aguamarina incrustada
+BackslateTile.MapEntry: Pizarra
+ThornTile.MapEntry: Espinas
+LushPlanks.MapEntry: Tablones frondosos
+MysteriaFluff.MapEntry: Pelusa misteria
+LushGrass.MapEntry: Césped frondoso
+LightbulbLeaves.MapEntry: Hojas bulboluz
+TrimmedOvergrownBricks.MapEntry: Ladrillo gris frondoso ribeteado

@@ -1,0 +1,45 @@
+HeadLabel: Configuración de cliente Verdant
+EnableSteamEffectLabel: "[i:3365] Activar efecto de vapor"
+EnableSteamEffectTooltip: Activa un recubrimiento al estar en las cuevas verdeantes
+EnableForeOrBackgroundObjectsLabel: "[i:933] Activar objetos de primer plano/fondo"
+EnableForeOrBackgroundObjectsTooltip: Activa objetos de decoración en el fondo de la superficie o por todas partes del primer plano
+EnableCustomWaterfallsLabel: "[i:2169] Activar cascadas personalizadas"
+EnableCustomWaterfallsTooltip: Permite que aparezcan cascadas desde los bloques, como el brote llorón
+CustomDialogueSystemLabel: "[i:320] Sistema de diálogos personalizado"
+CustomDialogueSystemTooltip: Permite el uso de un sistema de dialogo personalizado para el Apoteosis. Si se desactiva, utilizará el chat
+FancyBookUILabel: "[i:4065] UI de libro elegante"
+FancyBookUITooltip: Cambia la UI de libro a algo único
+
+VerdantClientConfig: {
+	DisplayName: "{$Mods.Verdant.Configs.HeadLabel}"
+
+	EnableSteam: {
+		Label: "{$Mods.Verdant.Configs.EnableSteamEffectLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableSteamEffectTooltip}"
+	}
+
+	BackgroundObjects: {
+		Label: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsTooltip}"
+	}
+
+	Waterfalls: {
+		Label: "{$Mods.Verdant.Configs.EnableCustomWaterfallsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableCustomWaterfallsTooltip}"
+	}
+
+	CustomDialogue: {
+		Label: "{$Mods.Verdant.Configs.CustomDialogueSystemLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.CustomDialogueSystemTooltip}"
+	}
+
+	JungleSpawn: {
+		Label: "[i:620] Spawn de jungla"
+		Tooltip: Obliga al verdor a generarse en la jungla. Reduce la probabilidad de sobrescribir biomas modeados
+	}
+
+	DialogueSpeed: {
+		Label: "[i:4485] Velocidad de diálogo"
+		Tooltip: Incrementa o disminuye la velocidad del diálogo para todo el texto
+	}
+}

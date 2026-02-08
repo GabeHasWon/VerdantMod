@@ -40,6 +40,8 @@ public class DrapesModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.myPlayer == FromWho)
             return;
 

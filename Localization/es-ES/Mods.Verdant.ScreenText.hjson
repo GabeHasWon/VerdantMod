@@ -1,0 +1,332 @@
+RightClick: Clic derecho
+
+Apotheosis: {
+	EoWName: voracidad
+	BoCName: insensatez
+
+	Intro: {
+		0: Hola, viajero.
+		1: A pasado tiempo desde que vi un nuevo rostro.
+		2: Llámame Apoteosis.
+		3: Encuéntranos al centro de nuestras plantas verdeantes,
+		4: y quizá tengamos algunos regalos para ayudarte.
+		5: Éxito...             .
+	}
+
+	# Intro.5 "Farewell" line has a little extra space to fade out nicely, keep it there.
+	# Try to keep the following lines around the same length, if possible
+	
+	Greeting: {
+		0: Recuerda respirar,
+		1: mantén las plantas prosperas,
+		2: y regresa una vez hayas derrotado al gran ojo.
+		3: Puede que nos encontremos de buen ánimo pronto.
+	}
+
+	Idle: {
+		Normal: {
+			0: Estoy particularmente orgulloso de esos brotes saltarines.
+			1: Buscabamos alojar una glorieta; ¿Funcionó?
+			2: ¿Dónde esta mi péñola - hm?
+			3: '''"Yo", "Nosotros"; se trata de lo mismo.'''
+			4: No tengo nada más que añadir.
+			5: Sal y huele las flores.
+			6: Puedes retirarte.
+			7: ¿has visto alguna serpiente por aquí?
+			8: Sigo recordando el aroma de las flores, aún.
+			9: Los caracoles son criaturas subestimadas.
+			10: El mundo es tu jardín, mi amigo.
+			11: No hay por que demorar.
+			12: Coloca oro sobre nuestro pasto para una sorpresa...
+			13: A veces recuerdo la puesta del sol...
+			14: En este mundo, esperamos que seas una bendición...
+			15: Explorar henchía el alma.
+			16: Concéntrate en el agua fluyendo, las flores creciendo...
+			17: Atesora lo que tienes, pequeño.
+			18: Hemos crecido juntos, ¿no es así?
+			19: Yo...¿soy un buen jardinero?
+			20: Háblanos en otro momento.
+			21: ¿Disfrutarías de más flores? Hmm...
+			22: ¿Sabes de algún volcán cercano?
+			23: Como un terrario, ya veo. Precioso, hermoso.
+			24: Comparte belleza con todos.
+			25: Extraño ver las abejas de cerca.
+			26: Te veo pasar por aquí. ¿Lo disfrutas?
+			27: Baila cuando puedas, niño. Baila junto a las flores.
+			28: Temo que no tengo mucho más que decir.
+			29: Que nada te detenga. No nos ha detenido a nosotros ni a mí.
+		}
+
+		EvilBoss: {
+			0: Que la dicha te surja.
+			1: La {0} ya no existe.
+			2: Una presencia desligada de la infección...
+			3: Un cielo perdido ahora apacible.
+		}
+
+		Thoughts: {
+			0: ...donde la naturaleza es más plena y pura...
+			1: Hmm...qué hacer...
+			2: ...control de plagas...
+			3: Ah, memorias...
+			4: Investigación, investigación, investigación...
+			5: Hojas caen, trabajamos...
+			6: Nostálgico, crecía..
+			7: Entre hojas, y vides...
+			8: Al unísono en armonía...
+			9: ...perdido...
+			10: Algunas veces, deseo ver mi hogar.
+			11: ...¿qué sigue?...
+			12: Necesita más flores.....
+			13: Las abejas, tan libres...
+			14: Consuelo interior...
+		}
+
+		EoC: Ese gran ojo era una maravilla, aunque una amenaza.
+
+		Skeletron: {
+			0: Ese esqueleto era...uno confuso.
+			1: La libertad de ese pobre hombre fue obtenida...
+		}
+
+		MiscBosses: {
+			KingSlime: Ah, el Rey de los Slimes ha sido asesinado, maravilloso...
+			QueenBee: Ojalá estés teniendo un afable momento con nuestras abejas.
+			Scarabeus: Las arenas del desierto se siento mas tranquilas.
+			MJW: Ah, recuerdo aquellas noches de medusas brillantes...
+			VinewrathBane: Las flores se sienten más relajadas ahora. Gracias.
+			AncientAvian: Los cielos están en paz ahora, bien hecho.
+			StarplateRaider: Estábamos curiosos por ese robot brillante, pero...
+			// SirNautilus: Fish are such fascinating people...
+			// SunkenSea: We can hear some waves upon the flora...
+		}
+	}
+
+	Downed: {
+		EoC: {
+			0: El ojo ha caído. Gracias.
+			1: Toma este tiliche. Vuelve una vez hayas derrotado la {0}.
+		}
+
+		Evil: {
+			0: Nuestra gratitud por batir, a la {0}...
+			1: Nuestra próxima petición; derribar el colosal esqueleto cerca de la mazmorra.
+			2: Ten algunas de mis cosas antiguas... con ciertos cambios.
+		}
+
+		Skeletron: {
+			0: Las almas de la mazmorra... parcialmente liberadas.
+			1: Te lo mereces, llévate estos. Nuestros favoritos.
+			2: Ahora, encuentra al Muro en las profundidades infernales. derrúyelo.
+			3: Pero, tomate el tiempo necesario.
+			4: Crecer no es inmediato.
+		}
+
+		WoF: {
+			0: Un espíritu poderoso ha sido liberado...
+			1: Con nosotros...más libres, comenzarás a ver algunos cambios.
+			2: Probablemente hayas notado un par. De todos modos,
+			3: para agradecerte, toma esto. Yo... ya no lo necesito.
+			4: ...y mientras estés aquí,
+			5: intuye que te recompensare por derrotar más males;
+			6: Así que visítame, ¿hm?
+		}
+
+		AnyMech: {
+			0: Una de esas máquinas fue vencida.
+			1: ¡Bien hecho! He estado haciendo algo...
+			2: Es... raro, pero divertido. Esperamos que lo disfrutes.
+		}
+
+		Plantera: {
+			0: La planta horrible esta muerta.
+			1: Esto libera muchas oportunidades;
+			2: esto es un pequeño favor, esperamos que ayude.
+			3: También deberías crear más de estos tú mismo.
+			4: Siéntete libre de tomar estos igual,
+			5: Con estos, estamos seguros que ayudarán.
+		}
+
+		Golem: {
+			0: El protector del templo cayó.
+			1: Este es un proyecto...que me apasiona.
+			2: No sabemos si ayudará mucho,
+			3: Pero sospechamos que será divertido.
+			4: Mucha suerte.
+		}
+
+		Cultist: {
+			0: Esos charlatanes están muertos, ¿eh?
+			1: Su práctica era una idiotez peligrosa.
+			2: Cada vez hay menos amenazas...he ver.
+			3: Tal vez podamos darte una pequeña parte de nuestro poder,
+			4: Para tu beneficio. Disfruta.
+		}
+
+		MoonLord: {
+			0: Sospecho que es la pelea final.
+			1: No sabemos qué más tienes planeado;
+			2: y tenemos poco más que dar.
+			3: Ha sido muy divertido,
+			4: mucho trabajo,
+			5: y creo que necesitamos descansar.
+			6: Quizás veas algo nuevo en el futuro.
+		}
+	}
+
+	# The following lines are not visible in-game at any point and will be added in a future update.
+	# Feel free to skip these until they're added.
+	
+	PestControlNotif: {
+		// 0: With the wall defeated,
+		// 1: we are free to purify.
+		// 2: You've certainly noticed the corruption of this world, hm?
+		// 3: There's...an agreement we can come to.
+		// 4: This corruption is a ghost over a body;
+		// 5: and we can help purify the body and push back the ghost.
+		// 6: Simply give us, ah, this...effigy.
+		// 7: Be prepared, be well, and I send you luck.
+	}
+
+	PestControlWarning: {
+		// 0: Are you sure you wish to start?
+		// 1: This is no simple matter.
+		// 2: Leave if you need to prepare;
+		// 3: we shall be here.
+	}
+
+	PestControl: {
+		// 0: Very well.
+		// 1: You best have prepared.
+		// 2: Pests must be controlled, invasion quelled,
+		// 3: and you must defeat them. Good luck.
+	}
+
+	# Lines after here are in-game.
+	
+	ItemInteractions: {
+		WiltedFlower: {
+			0: Una margarita, mi flor favorita.
+			1: Es una pena que haya pasado tanto, hm?
+			2: Ah, y siéntete libre de preguntarme sobre cualquier cosa.
+			3: Somos un libro abierto.
+		}
+
+		ApotheosisBook: {
+			0: Mi vieja libreta.
+			1: recuerdo escribir en ella todo el tiempo,
+			2: Todavía tengo ganas de hacerlo, aquí y allá.
+			3: Oh bueno, no podemos usarla más.
+			4: Es bastante extraño considerarlo,
+			5: siendo consciente de...la ultima vez que escribí en ella.
+		}
+
+		LushLeaf: {
+			0: Las hojas que nos rodean;
+			1: hermosas, a su manera.
+		}
+
+		Lightbulb: {
+			0: Mi ultima luz, me ayudó durante mucho tiempo.
+			1: Ojalá su luz te ayude a ti también.
+		}
+
+		YellowBulb: {
+			0: Mi flor favorita,
+			1: La esparcí por esta tierra.
+			2: Que placentero...
+		}
+
+		Wisplant: {
+			0: Nosotros realmente comenzamos...a experimentar con estas.
+			1: No sabemos por que, pero son divertidas.
+		}
+
+		PuffMaterial: Honestamente, solo queríamos saber si podíamos hacer estas.
+		Halfsprout: Una pequeña semilla curiosa, hm?
+		MysteriaClump: Siempre es bueno, ah, diversificarse un poco.
+		PinkPetal: No le digas al pétalo rojo - este es mi favorito.
+		RedPetal: No le digas al pétalo rosa - este es mi favorito.
+
+		CrudePaintbrush: {
+			0: Ah, mi viejo pincel.
+			1: Mis disculpas, es un poco improvisado,
+			2: pero sabemos que será una herramienta útil.
+		}
+
+		Bouncebloom: {
+			0: Nosotros...aún estamos comprendiendo las cosas.
+			1: Divertida, aún así.
+		}
+
+		Cloudsprout: {
+			0: Para ser honestos, no sabríamos decirte por qué hicimos esto.
+			1: Es bonito, hm?
+		}
+
+		ThornBlock: ...
+		FlotieItem: Amamos a este pequeño.
+		FlotinyItem: También amamos a este pequeñín.
+		LushWingletItem: Uno de los primeros...
+
+		Propellerpad: {
+			0: Uno de mis favoritos.
+			1: Simple, limpio, natural, silencioso.
+			2: Que más puedes pedir?
+		}
+
+		Mudsquid: {
+			0: Probablemente nuestro logro más orgulloso.
+			1: Nunca he visto, y mucho menos usado, algo igual.
+			2: No es como hayamos tenido mucha magia antes...
+		}
+
+		SproutInAGlove: Algunas veces, la simpleza es la clave.
+		VineHook: Este chico siempre se lo pasa genial.
+
+		ExpertPlantGuide: {
+			0: Ah, mi viejo libro.
+			1: Escribí esto hace algunos años...
+			2: El tiempo vuela.
+		}
+
+		ApotheoticSoul: {
+			0: ...
+			1: ...No quiero profundizar demasiado,
+			2: pero esto es una pequeña prueba de nuestro poder.
+			3: Es algo que te has ganado,
+			4: y has hecho bien en llegar hasta aquí.
+			5: Dudo que necesites más,
+			6: y esperamos que entiendas lo que te hemos dado.
+			7: El mundo se preocupa por ti,
+			8: tal como tú lo haces.
+		}
+
+		LushDagger: {
+			0: La violencia es algo que no podemos evitar,
+			1: pero esperamos que la evites con nuestras plantas.
+		}
+
+		BowlFruit: {
+			0: Ah, una fruta tazón. Cosa linda.
+			1: ¿Tal vez quieras compartir cómo sabe?
+		}
+
+		Dropberry: {
+			0: Estas bayas son hermosas.
+			1: Si tan solo pudiera recordar su sabor.
+		}
+
+		FloralTea: Útil cuando estás de viaje, ¿no es así?
+
+		Grapecherry: {
+			0: Soy como un científico, a veces...
+			1: A veces puedes cometer un error.
+		}
+
+		Mystuber: Frito o no, es bueno para el corazón.
+		Walnut: Algunas veces...mantén las cosas simples.
+		Waterberry: Si tan solo fuese...abundante...
+		HoneyNuggets: Las abejas son magia. Acaricialas.
+	}
+}

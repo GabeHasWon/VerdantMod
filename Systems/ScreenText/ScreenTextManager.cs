@@ -1,81 +1,94 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Terraria;
 
-namespace Verdant.Systems.ScreenText
+namespace Verdant.Systems.ScreenText;
+
+internal class ScreenTextManager
 {
-    internal class ScreenTextManager
+    internal static string Speaker = string.Empty;
+    internal static ScreenText CurrentText = null;
+    internal static RenderTarget2D textTarget = null;
+
+    internal static void Update()
     {
-        internal static string Speaker = string.Empty;
-        internal static ScreenText CurrentText = null;
-        internal static RenderTarget2D textTarget = null;
-
-        internal static void Update()
+        if (CurrentText != null && !Main.gameMenu && !Main.mapFullscreen)
         {
-            if (CurrentText != null && !Main.gameMenu && !Main.mapFullscreen)
-            {
-                CurrentText.Update(Main.gameTimeCache);
+            CurrentText.Update(Main.gameTimeCache);
 
-                if (!CurrentText.active)
-                    CurrentText = CurrentText.Next;
-            }
+            if (!CurrentText.active)
+                CurrentText = CurrentText.Next;
+        }
+    }
+
+    internal static void Draw()
+    {
+        if (!Main.mapFullscreen)
+            CurrentText?.Draw();
+    }
+
+    internal static void Render()
+    {
+        Main.spriteBatch.End();
+
+        textTarget ??= new RenderTarget2D(Main.graphics.GraphicsDevice, Main.displayWidth.Max(), Main.displayHeight.Max(), false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+
+        Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
+
+        var bindings = Main.graphics.GraphicsDevice.GetRenderTargets();
+        PreserveBindings(bindings);
+
+        Main.graphics.GraphicsDevice.SetRenderTarget(textTarget);
+        Main.graphics.GraphicsDevice.Clear(Color.Transparent);
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+
+        if (!Main.gameMenu)
+            Draw();
+
+        Main.spriteBatch.End();
+
+        Main.graphics.GraphicsDevice.SetRenderTargets(bindings);
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, GetTextEffect(), Main.UIScaleMatrix);
+
+        Main.spriteBatch.Draw(textTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1 / Main.UIScale, SpriteEffects.None, 0);
+        Main.spriteBatch.End();
+
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+    }
+
+    public static void PreserveBindings(RenderTargetBinding[] bindings)
+    {
+        foreach (var binding in bindings)
+        {
+            if (binding.RenderTarget is not RenderTarget2D rt)
+                continue;
+
+            SetRenderTargetUsage(rt, RenderTargetUsage.PreserveContents);
+        }
+    }
+
+    [UnsafeAccessor(UnsafeAccessorKind.Method, Name = "set_RenderTargetUsage")]
+    public static extern void SetRenderTargetUsage(RenderTarget2D target, RenderTargetUsage usage);
+
+    internal static Effect GetTextEffect()
+    {
+        var effect = CurrentText is null || CurrentText.shader is null ? null : CurrentText.shader.Value;
+
+        if (effect is not null)
+        {
+            effect.Parameters["timer"].SetValue(Main.GameUpdateCount * CurrentText.shaderParams.Timer);
+            effect.Parameters["scale"].SetValue(CurrentText.shaderParams.Scale);
+            effect.Parameters["scale2"].SetValue(CurrentText.shaderParams.Scale2);
         }
 
-        internal static void Draw()
-        {
-            if (!Main.mapFullscreen)
-                CurrentText?.Draw();
-        }
+        return effect;
+    }
 
-        internal static void Render()
-        {
-            Main.spriteBatch.End();
-
-            if (textTarget is null)
-                textTarget = new RenderTarget2D(Main.graphics.GraphicsDevice, Main.displayWidth.Max(), Main.displayHeight.Max(), false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-
-            Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
-
-            var bindings = Main.graphics.GraphicsDevice.GetRenderTargets();
-            Main.graphics.GraphicsDevice.SetRenderTarget(textTarget);
-            Main.graphics.GraphicsDevice.Clear(Color.Transparent);
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-
-            if (!Main.gameMenu)
-                Draw();
-
-            Main.spriteBatch.End();
-
-            Main.graphics.GraphicsDevice.SetRenderTargets(bindings);
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, GetTextEffect(), Main.UIScaleMatrix);
-
-            Main.spriteBatch.Draw(textTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1 / Main.UIScale, SpriteEffects.None, 0);
-            Main.spriteBatch.End();
-
-            Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.DiscardContents;
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-        }
-
-        internal static Effect GetTextEffect()
-        {
-            var effect = CurrentText is null || CurrentText.shader is null ? null : CurrentText.shader.Value;
-
-            if (effect is not null)
-            {
-                effect.Parameters["timer"].SetValue(Main.GameUpdateCount * CurrentText.shaderParams.Timer);
-                effect.Parameters["scale"].SetValue(CurrentText.shaderParams.Scale);
-                effect.Parameters["scale2"].SetValue(CurrentText.shaderParams.Scale2);
-            }
-
-            return effect;
-        }
-
-        internal static void DrawAdditive()
-        {
-            if (!Main.mapFullscreen)
-                CurrentText?.DrawAdditive();
-        }
+    internal static void DrawAdditive()
+    {
+        if (!Main.mapFullscreen)
+            CurrentText?.DrawAdditive();
     }
 }

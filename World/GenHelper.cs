@@ -144,15 +144,9 @@ public static class GenHelper
     }
 
     /// <summary>Creates a vine-like bezier curve.</summary>
-    /// <param name="width">X distance between the first point and the last point.</param>
-    /// <param name="heightDifference">Y distance between the first point and the last point.</param>
-    /// <param name="dip">How far down it dips.</param>
     public static void GenBezier(Point start, Point middle, Point end, int width, int type = TileID.Grass)
     {
-        GenBezierDirect(new Point[] {
-            start,
-            middle,
-            end }, 30, type);
+        GenBezierDirect([start, middle, end], 30, type);
     }
 
     public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)

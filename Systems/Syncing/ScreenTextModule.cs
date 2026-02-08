@@ -20,6 +20,8 @@ public class ScreenTextModule : Module
 
     protected override void Receive()
     {
+        VerdantMod.DebugLogMessage(GetType());
+
         if (Main.netMode != NetmodeID.Server) //Play on client
             DialogueCacheAutoloader.Play(dialogueKey, false);
         else if (fromWho != -1) //Play on server

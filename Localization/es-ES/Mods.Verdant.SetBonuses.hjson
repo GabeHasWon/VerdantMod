@@ -1,0 +1,31 @@
+Lush: +1 daño de invocador plano
+Mysteria:
+	'''
+	Aumenta la velocidad y rango de colocación de bloques y paredes
+	Aumenta la velocidad de excavación
+	Se reduce la velocidad de regeneración del enemigo
+	'''
+Verdant:
+	'''
+	Aumenta un +4% el daño de invocación
+	Aumenta en 1 el máximo de súbditos que puedes tener
+	Disminuye la velocidad de caída - Mantén ABAJO para caer más rápido
+	Al revivir, te cura 50 de vida
+	'''
+
+Apotheotic: {
+	Tree:
+		'''
+		Las frutas crecen significativamente más rápido
+		Los efectos de las frutas son más fuertes
+		Aumenta en 1 el máximo de súbditos que puedes tener
+		+10 defensa
+		'''
+	Bee:
+		'''
+		Las abejas causan más daño
+		Al matar, las abejas dejan caer un corazón de miel que cura 10 de salud
+		Aumenta el máximo de súbditos que puedes tener
+		Aumenta un 5% el daño de invocación
+		'''
+}

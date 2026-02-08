@@ -1,0 +1,1680 @@
+ProbablyDelete: {
+	// DisplayName: Tester Tool
+	// Tooltip: @ me if you see this
+}
+
+LushWoodBody: {
+	DisplayName: Cota de madera frondosa
+	Tooltip: Aumenta en +1 plano el invocación
+}
+
+LushWoodHead: {
+	DisplayName: Casco de madera frondosa
+	Tooltip: Aumenta en +1 plano el invocación
+}
+
+LushWoodLegs: {
+	DisplayName: Grebas de madera frondosa
+	Tooltip: ""
+}
+
+MysteriaChest: {
+	DisplayName: Cota misteria
+	Tooltip:
+		'''
+		Aumenta la velocidad de excavación
+		Aumenta la velocidad de colocación de bloques y paredes
+		'''
+}
+
+MysteriaHelmet: {
+	DisplayName: Velo misteria
+	Tooltip:
+		'''
+		Aumenta la velocidad de excavación
+		Aumenta la velocidad de colocación de bloques y paredes
+		Aumenta el rango de colocación de bloques
+		'''
+}
+
+MysteriaLeggings: {
+	DisplayName: Grebas misteria
+	Tooltip:
+		'''
+		Aumenta la velocidad de excavación
+		Aumenta la velocidad de colocación de bloques y paredes
+		'''
+}
+
+VerdantChestplate: {
+	DisplayName: Cota frondosa
+	Tooltip:
+		'''
+		Aumenta un +7% el daño de invocación
+		Aumenta en 1 el máximo de súbditos que puedes tener
+		'''
+}
+
+VerdantHelm: {
+	DisplayName: Guirnalda frondosa
+	Tooltip:
+		'''
+		Aumenta un +5% el daño de invocación
+		Proporciona un poco de luz
+		'''
+}
+
+VerdantLeggings: {
+	DisplayName: Grebas frondosas
+	Tooltip:
+		'''
+		Aumenta la regeneración de vida
+		Aumenta en 1 el máximo de súbditos que puedes tener
+		Brotan flores al caminar
+		'''
+}
+
+AquamarineItem: {
+	DisplayName: Aguamarina
+	Tooltip: ""
+}
+
+AquamarineTorchItem: {
+	DisplayName: Antorcha aguamarina
+	Tooltip: ""
+}
+
+BackslateTileItem: {
+	DisplayName: Pizarra
+	Tooltip: ""
+}
+
+EmbeddedAquamarineItem: {
+	DisplayName: Suelo emporcado aguamarina
+	Tooltip: ""
+}
+
+EmbeddedStoneAquamarineItem: {
+	DisplayName: Bloque de piedra de aguamarina
+	Tooltip: ""
+}
+
+GemsparkAquamarineItem: {
+	DisplayName: Bloque de aguamarina gemachispa
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallItem: {
+	DisplayName: Pared de aguamarina gemachispa
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallOfflineItem: {
+	DisplayName: Pared sin conexión de aguamarina gemachispa
+	Tooltip: ""
+}
+
+BeehiveBlock: {
+	DisplayName: Colmena de abejorros
+	Tooltip:
+		'''
+		Genera abejas, que polinizan las flores cercanas
+		Puede recogerse al regreso de las abejas con polen para algunas delicias
+		'El zumbido es ligeramente preocupante'
+		'''
+}
+
+Bush2x2Item: {
+	DisplayName: Arbusto decorativo
+	Tooltip: Puede ornamentarse con [i:{0}].
+}
+
+Bush3x3Item: {
+	DisplayName: "{$Mods.Verdant.Items.Bush2x2Item.DisplayName} (Grande)"
+	Tooltip: "{$Mods.Verdant.Items.Bush2x2Item.Tooltip}"
+}
+
+LushSoilBlock: {
+	DisplayName: Suelo emporcado
+	Tooltip: ""
+}
+
+LushBathtubItem: {
+	DisplayName: Bañera frondosa
+	Tooltip: ""
+}
+
+LushBedItem: {
+	DisplayName: Cama frondosa
+	Tooltip: ""
+}
+
+LushBookshelfItem: {
+	DisplayName: Librería frondosa
+	Tooltip: ""
+}
+
+LushCandelabraItem: {
+	DisplayName: Candelabro frondoso
+	Tooltip: ""
+}
+
+LushCandleItem: {
+	DisplayName: Vela frondosa
+	Tooltip: ""
+}
+
+LushChairItem: {
+	DisplayName: Silla frondosa
+	Tooltip: ""
+}
+
+LushClockItem: {
+	DisplayName: Reloj frondoso
+	Tooltip: ""
+}
+
+LushDresserItem: {
+	DisplayName: Aparador frondoso
+	Tooltip: ""
+}
+
+LushLampItem: {
+	DisplayName: Lámpara frondosa
+	Tooltip: ""
+}
+
+LushLanternItem: {
+	DisplayName: Linterna frondosa
+	Tooltip: ""
+}
+
+LushPianoItem: {
+	DisplayName: Piano frondoso
+	Tooltip: ""
+}
+
+LushPlatformItem: {
+	DisplayName: Plataforma de madera frondosa
+	Tooltip: ""
+}
+
+LushSinkItem: {
+	DisplayName: Fregadero frondoso
+	Tooltip: ""
+}
+
+LushTableItem: {
+	DisplayName: Mesa frondosa
+	Tooltip: ""
+}
+
+LushWoodDoorItem: {
+	DisplayName: Puerta frondosa
+	Tooltip: ""
+}
+
+LushWoodSofaItem: {
+	DisplayName: Sofá frondoso
+	Tooltip: ""
+}
+
+LushWorkbenchItem: {
+	DisplayName: Banco de trabajo frondoso
+	Tooltip: ""
+}
+
+VerdantWoodBlock: {
+	DisplayName: Madera frondosa
+	Tooltip: ""
+}
+
+VerdantWoodChestBlock: {
+	DisplayName: Cofre de madera frondosa
+	Tooltip: ""
+}
+
+ThePlantItem: {
+	DisplayName: La planta
+	Tooltip: "'en formato real'"
+}
+
+ApotheoticPaintingItem: {
+	DisplayName: Apoteótico
+	Tooltip: "'Emily A.'"
+}
+
+HardyVineBook: {
+	DisplayName: Investigación de vides resistentes
+	Tooltip:
+		'''
+		'Impresionantes descubrimientos de vides resistentes'
+		Clic derecho para leer
+		'''
+}
+
+LeafBook: {
+	DisplayName: Investigación de hojas frondosas
+	Tooltip:
+		'''
+		'Impresionantes descubrimientos de hojas frondosas'
+		Clic derecho para leer
+		'''
+}
+
+LightbulbBook: {
+	DisplayName: Investigación de bulboluces
+	Tooltip:
+		'''
+		'Impresionantes descubrimientos de bulbos luminosos'
+		Clic derecho para leer
+		'''
+}
+
+RockBook: {
+	DisplayName: Investigación de rocas
+	Tooltip:
+		'''
+		'¿Investigaciones sobre…rocas volcánicas?'
+		Clic derecho para leer
+		'''
+}
+
+ChlorophytePlant: {
+	DisplayName: Brote cloroflór
+	Tooltip:
+		'''
+		Retoña clorofita
+		'Una roca irregular que de alguna manera rebosa de vida.'
+		'''
+}
+
+FloatingCrystalItem: {
+	DisplayName: Cristal flotante
+	Tooltip:
+		'''
+		Puede colocarse en el aire
+		Puede ser enganchado
+		'''
+}
+
+GreenCrystalItem: {
+	DisplayName: Cristal verde
+	Tooltip: "'No es tan afilado como parece'"
+}
+
+HangingCrystalItem: {
+	DisplayName: Cristal colgante
+	Tooltip:
+		'''
+		Genera plantas curativas al colocarlo
+		Puede ser activado o desactivado mediante cable
+		'Brilla con un tenue poder'
+		'''
+}
+
+LightbulbPaintingItem: {
+	DisplayName: Bulboluz
+	Tooltip: "'Emily A.'"
+}
+
+OvergrownBrickItem: {
+	DisplayName: Ladrillo gris frondoso
+	Tooltip: ""
+}
+
+ResearchBooksItem: {
+	DisplayName: Libro de investigación
+	Tooltip: "'Páginas y páginas de garabatos, textos y teorías.'"
+}
+
+SnailShellBlockItem: {
+	DisplayName: Caparazón de caracol
+	Tooltip: "'Se siente terrible tener uno de estos.'"
+}
+
+LullabyBox: {
+	DisplayName: Caja de música (Nana del apoteosis)
+	Tooltip: ""
+}
+
+PetalsFallBox: {
+	DisplayName: Caja de música (Caída de pétalos)
+	Tooltip: ""
+}
+
+TearRainBox: {
+	DisplayName: Caja de música (Lluvia de lágrimas)
+	Tooltip: ""
+}
+
+VibrantHorizonBox: {
+	DisplayName: Caja de música (Horizonte Vibrante)
+	Tooltip: ""
+}
+
+MysteriaBathtubItem: {
+	DisplayName: Bañera misteria
+	Tooltip: ""
+}
+
+MysteriaBedItem: {
+	DisplayName: Cama misteria
+	Tooltip: ""
+}
+
+MysteriaBookshelfItem: {
+	DisplayName: Librería misteria
+	Tooltip: ""
+}
+
+MysteriaCandelabraItem: {
+	DisplayName: Candelabro misteria
+	Tooltip: ""
+}
+
+MysteriaCandleItem: {
+	DisplayName: Vela misteria
+	Tooltip: ""
+}
+
+MysteriaChairItem: {
+	DisplayName: Silla misteria
+	Tooltip: ""
+}
+
+MysteriaClockItem: {
+	DisplayName: Reloj misteria
+	Tooltip: "'El reloj pequeño parece estar descoordinado'"
+}
+
+MysteriaDoorItem: {
+	DisplayName: Puerta misteria
+	Tooltip: ""
+}
+
+MysteriaDresserItem: {
+	DisplayName: Aparador misteria
+	Tooltip: ""
+}
+
+MysteriaLampItem: {
+	DisplayName: Lámpara misteria
+	Tooltip: ""
+}
+
+MysteriaLanternItem: {
+	DisplayName: Linterna misteria
+	Tooltip: ""
+}
+
+MysteriaPianoItem: {
+	DisplayName: Piano misteria
+	Tooltip: ""
+}
+
+MysteriaPlatformItem: {
+	DisplayName: Plataforma misteria
+	Tooltip: ""
+}
+
+MysteriaSinkItem: {
+	DisplayName: Fregadero misteria
+	Tooltip: ""
+}
+
+MysteriaSofaItem: {
+	DisplayName: Sofá misteria
+	Tooltip: ""
+}
+
+MysteriaTableItem: {
+	DisplayName: Mesa misteria
+	Tooltip: ""
+}
+
+MysteriaWorkbenchItem: {
+	DisplayName: Banco de trabajo misteria
+	Tooltip: ""
+}
+
+MysteriaAcorn: {
+	DisplayName: Semilla misteria
+	Tooltip:
+		'''
+		Planta un árbol misteria
+		Los árboles misteria propagan el microbioma Misteria sobre el verdor
+		Los árboles no pueden ser atravesados caminando
+		'''
+}
+
+MysteriaDrapesItem: {
+	DisplayName: Cortinas misteria
+	Tooltip:
+		'''
+		Se coloca en un bloque solido
+		Crece como las vides, lento
+		Sobre colócala para alargarla
+		Siempre esta al frente del jugador
+		'''
+}
+
+MysteriaTreetop: {
+	DisplayName: Copa misteria
+	Tooltip:
+		'''
+		Coloca una copa de árbol misteria
+		'Requiere algo de ensamblaje'
+		'''
+}
+
+MysteriaWood: {
+	DisplayName: Madera misteria
+	Tooltip: No puede ser martillada
+}
+
+PeaceTreetopItem: {
+	DisplayName: Copa de paz
+	Tooltip:
+		'''
+		Solo puede ser colocada en madera misteria
+		Coloca una copa de paz
+		Estar cerca de la copa reduce la regeneración del enemigo y
+		la revierte al pre-hardmode.
+		'''
+}
+
+HousproutItem: {
+	// DisplayName: Housprout
+	/* Tooltip:
+		'''
+		WIP - WILL NOT BE FINISHED BEFORE RELEASE
+		'A magnificent growth said to build a small house almost instantly'
+		''' */
+}
+
+LightbulbSeeds: {
+	DisplayName: Semillas bulboluz
+	Tooltip: "'Estos ya emanan una luz tenue.'"
+}
+
+LilyPadItem: {
+	DisplayName: Nenúfar
+	Tooltip: Debe colocarse sobre lirios.
+}
+
+PinkDyeBulb: {
+	DisplayName: Alcatraz
+	Tooltip:
+		'''
+		'Un hermoso color brillante'
+		Se usa para hacer tinte rosa
+		'''
+}
+
+PinkPuff: {
+	DisplayName: Esponjosidad rosa
+	Tooltip:
+		'''
+		Crea un microbioma esponjoso a su alrededor
+		'Engañosamente ligera'
+		'''
+}
+
+RedDyeBulb: {
+	DisplayName: Geranio perenne
+	Tooltip:
+		'''
+		'Un maravilloso color brillante!'
+		Se usa para hacer tinte rojo
+		'''
+}
+
+RootRopeItem: {
+	DisplayName: Cuerda de raíz frondosa
+	Tooltip: Se puede usar para subir
+}
+
+VerdantFlowerBulb: {
+	DisplayName: Bulbo floral
+	Tooltip: Solo puede ser colocado en paredes de vides y hojas frondosas
+}
+
+VerdantStrongVineMaterial: {
+	DisplayName: Vides gruesas
+	Tooltip:
+		'''
+		Ciertas cosas pueden ser colocadas encima o debajo de estas
+		'Se necesita una cuchilla bastante afilada para cortarlas.'
+		'''
+}
+
+VineRopeItem: {
+	DisplayName: Cuerda de vides frondosas
+	Tooltip: Se puede usar para subir
+}
+
+WaterberryBushItem: {
+	DisplayName: Arbusto aguabaya
+	Tooltip:
+		'''
+		Puede colocarse sobre si o en hojas frondosas
+		Solo crece en agua
+		'''
+}
+
+WaterPlantItem: {
+	DisplayName: Brote Llorón
+	Tooltip: "'Un remanente, llorando para siempre'"
+}
+
+WisplantSeeds: {
+	DisplayName: Semillas de ramillo
+	Tooltip: ""
+}
+
+PuffBlockItem: {
+	DisplayName: Bloque esponjoso
+	Tooltip: "'¡Muy suave!'"
+}
+
+SnailStatueItem: {
+	DisplayName: Estatua de caracol
+	Tooltip:
+		'''
+		Una estatua de un gran caracol
+		Tiene una placa en la base
+		'''
+}
+
+HarvestedPickipuffItem: {
+	DisplayName: Esponjocolgante (Cosechado)
+	Tooltip:
+		'''
+		Solo puede ser colocado en hojas frondosas
+		Se usa para recoger esponjosidad
+		Vuelve a crecer después de un tiempo
+		'''
+}
+
+MarigoldItem: {
+	DisplayName: Rúcula
+	Tooltip: "'Huele... metálico... y ligeramente a magia.'"
+}
+
+PickipuffItem: {
+	DisplayName: Esponjocolgante
+	Tooltip:
+		'''
+		Solo puede ser colocado en hojas frondosas
+		Se usa para recoger esponjosidad
+		Vuelve a crecer después de un tiempo
+		'''
+}
+
+ApotheosisPlacer: {
+	DisplayName: Apoteosis
+	Tooltip: Coloca al apoteosis
+}
+
+PinkPetalBlock: {
+	DisplayName: Bloque de pétalo rosa
+	Tooltip: ""
+}
+
+RedPetalBlock: {
+	DisplayName: Bloque de pétalo rojo
+	Tooltip: ""
+}
+
+VerdantGrassBlock: {
+	DisplayName: Bloque de hierba frondosa
+	Tooltip: ""
+}
+
+VerdantBathtubItem: {
+	DisplayName: Bañera verdeante
+	Tooltip: ""
+}
+
+VerdantBedItem: {
+	DisplayName: Cama verdeante
+	Tooltip: ""
+}
+
+VerdantBookshelfItem: {
+	DisplayName: Librería verdeante
+	Tooltip: ""
+}
+
+VerdantCandelabraItem: {
+	DisplayName: Candelabro verdeante
+	Tooltip: ""
+}
+
+VerdantCandleItem: {
+	DisplayName: Vela verdeante
+	Tooltip: ""
+}
+
+VerdantChairItem: {
+	DisplayName: Silla verdeante
+	Tooltip: ""
+}
+
+VerdantChandelierBlock: {
+	DisplayName: Lámpara verdeante (Pequeña)
+	Tooltip: ""
+}
+
+VerdantChandelierLargeItem: {
+	DisplayName: Lámpara verdeante (Grande)
+	Tooltip: ""
+}
+
+VerdantClockItem: {
+	DisplayName: Reloj verdeante
+	Tooltip: ""
+}
+
+VerdantDoorItem: {
+	DisplayName: Puerta verdeante
+	Tooltip: ""
+}
+
+VerdantHungTableBlock_Pink: {
+	DisplayName: Mesa colgante verdeante (Rosa)
+	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+}
+
+VerdantHungTableBlock_PinkLightless: {
+	DisplayName: Mesa colgante verdeante (Rosa, sin bulbo)
+	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+}
+
+VerdantHungTableBlock_Red: {
+	DisplayName: Mesa colgante verdeante (Roja)
+	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+}
+
+VerdantHungTableBlock_RedLightless: {
+	DisplayName: Mesa colgante verdeante (Roja, sin bulbo)
+	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+}
+
+VerdantLampItem: {
+	DisplayName: Lámpara verdeante
+	Tooltip: ""
+}
+
+VerdantLanternItem: {
+	DisplayName: Linterna verdeante
+	Tooltip: ""
+}
+
+VerdantPianoItem: {
+	DisplayName: Piano verdeante
+	Tooltip: ""
+}
+
+VerdantPlatformItem: {
+	DisplayName: Plataforma verdeante
+	Tooltip: ""
+}
+
+VerdantSofaItem: {
+	DisplayName: Sofá verdeante
+	Tooltip: ""
+}
+
+VerdantTableItem: {
+	DisplayName: Mesa verdeante
+	Tooltip: ""
+}
+
+VerdantWorkbenchItem: {
+	DisplayName: Banco de trabajo verdeante
+	Tooltip: ""
+}
+
+VerdantYellowPetalChestBlock: {
+	DisplayName: Cofre pétalo amarillo
+	Tooltip: ""
+}
+
+WisplantCandelabraItem: {
+	DisplayName: Candelabro ramillo
+	Tooltip: Incrementa la velocidad de crecimiento a sus cercanías
+}
+
+VerdantPylonItem: {
+	DisplayName: Torre verdeante
+	Tooltip: ""
+}
+
+BackslateBubblingWallItem: {
+	DisplayName: Pared de pizarra perforada
+	Tooltip: ""
+}
+
+BackslateWallItem: {
+	DisplayName: Pared de pizarra
+	Tooltip: ""
+}
+
+LivingLushWoodWallItem: {
+	DisplayName: Pared de madera frondosa viviente
+	Tooltip: ""
+}
+
+LushSoilWallItem: {
+	DisplayName: Pared de suelo emporcado
+	Tooltip: ""
+}
+
+LushWoodWallItem: {
+	DisplayName: Pared de madera frondosa
+	Tooltip: ""
+}
+
+MysteriaWoodWallItem: {
+	DisplayName: Pared de madera misteria
+	Tooltip: ""
+}
+
+PuffWallItem: {
+	DisplayName: Pared esponjosa
+	Tooltip: ""
+}
+
+VerdantLeafWallItem: {
+	DisplayName: Pared de hierba frondosa
+	Tooltip: ""
+}
+
+VerdantPinkPetalWallItem: {
+	DisplayName: Pared de pétalo rosa
+	Tooltip: ""
+}
+
+VerdantRedPetalWallItem: {
+	DisplayName: Pared de pétalo rojo
+	Tooltip: ""
+}
+
+VerdantVineWallItem: {
+	DisplayName: Pared de vides frondosas
+	Tooltip: ""
+}
+
+WisplantInfusedMudBoulder: {
+	DisplayName: Bola de suelo emporcado imbuida de ramillos
+	Tooltip:
+		'''
+		'Simplemente pegaste dos cosas juntas, no es magia' - Todos
+		'La magia no siempre es un espectáculo' - Magos
+		'''
+}
+
+BulbSnail: {
+	DisplayName: Caracol bombilla
+	Tooltip: Ilumina la vieja carretera.
+}
+
+BumblebeeItem: {
+	DisplayName: Abejorro
+	Tooltip: ""
+}
+
+AxolotlItem: {
+	DisplayName: Ajolote
+	Tooltip: "'¡Que lindo!'"
+}
+
+BulbboxJellyItem: {
+	DisplayName: Medusa cajabulbosa
+	Tooltip: "'¡Blandita!'"
+}
+
+MossCarpItem: {
+	DisplayName: Carpa musgosa
+	Tooltip: "'Una mezcla de carne abundante y hierba'"
+}
+
+PoolwormItem: {
+	DisplayName: Gusano de piscina
+	Tooltip: "'¡Sorprendentemente gelatinoso!'"
+}
+
+FlotieItem: {
+	DisplayName: Flotín
+	Tooltip: ""
+}
+
+FlotinyItem: {
+	DisplayName: Flotarín
+	Tooltip: "'Oh por dios es tan pequeñín'"
+}
+
+FolifishItem: {
+	DisplayName: Pezfoli
+	Tooltip: ""
+}
+
+MysteriaFlotieItem: {
+	DisplayName: Flotín misteria
+	Tooltip: ""
+}
+
+MysteriaFlotinyItem: {
+	DisplayName: Flotarín misteria
+	Tooltip: ""
+}
+
+PuffSlimeSmallItem: {
+	DisplayName: Slime esponjoso
+	Tooltip: ""
+}
+
+RedGrassSnail: {
+	DisplayName: Caracol pétalo rojo
+	Tooltip: ¡Qué criatura tan gentil!
+}
+
+ExpertPlantGuide: {
+	DisplayName: Guía experta para hacer cordeles con fibra vegetal
+	Tooltip:
+		'''
+		Permite el dominio de un elemento muy de nicho
+		Las vides se pueden cosechar en el Verdor
+		Las vides en el Verdor se cosechan significativamente más rápido
+		Las vides trepan hacia arriba cuando no hay espacio debajo
+		'''
+}
+
+FlotieOfWrathItem: {
+	DisplayName: Cráneo curioso
+	Tooltip:
+		'''
+		Invoca a un flotín de la ira
+		Ofrece un poco de luz
+		'El flotín más enojado que hayas visto'
+		'''
+}
+
+HealingFlowerItem: {
+	DisplayName: Brote amarillo
+	Tooltip:
+		'''
+		Incrementa la curación recibida de pociones en 20%
+		Incrementa la maná recibida de pociones en 30%
+		Provee una pequeña luz
+		'Te sigue la fuerza de voluntad'
+		'''
+}
+
+Lightbloom: {
+	DisplayName: Vástago lumínico
+	Tooltip:
+		'''
+		Aumenta la regeneración de vida bajo la luz
+		Cuanto más fuerte sea la luz, mayor será el aumento
+		'''
+}
+
+Mudsquid: {
+	DisplayName: Calamar de barro
+	Tooltip:
+		'''
+		Permite un viajar rápidamente a través de ciertos bloques,
+		Incluyendo todos los bloques naturales del Verdor 
+		'''
+}
+
+Propellerpad: {
+	DisplayName: Carpecóptero
+	Tooltip:
+		'''
+		Invoca un nenúfar extraño
+		Sujeta su enredadera para volar
+		'''
+}
+
+SproutInABoot: {
+	DisplayName: Brote en botas
+	Tooltip:
+		'''
+		Propaga plataformas verdeantes al pisar
+		Usa una hoja frondosa por plataforma
+		Necesita agua para continuar funcionando
+		'Sorprendentemente cómodas y duraderas.'
+		'''
+}
+
+SproutInAGlove: {
+	DisplayName: Brote en guantes
+	Tooltip:
+		'''
+		Probabilidad de esquivar proyectiles de un 33%
+		Esquivar un proyectil otorga una pequeña invulnerabilidad y cura ligeramente
+		Los proyectiles solo pueden golpearte una vez, incluso si perforan o rebotan.
+		'''
+}
+
+VineHook: {
+	DisplayName: Gancho de vides viviente
+	Tooltip:
+		'''
+		Se desengancha automáticamente cuando está lo suficientemente cerca
+		'Es mejor amigo que la mayoría de los ganchos'
+		'''
+}
+
+LushWoodCrateItem: {
+	DisplayName: Caja de madera frondosa
+	Tooltip: Clic derecho para abrir
+}
+
+MysteriaCrateItem: {
+	DisplayName: Caja misteria
+	Tooltip: Clic derecho para abrir
+}
+
+Shellfish: {
+	DisplayName: Marisco frondoso
+	Tooltip: ""
+}
+
+BowlFruit: {
+	DisplayName: Fruta tazón
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Warter'
+		'''
+}
+
+Dropberry: {
+	DisplayName: Gotabaya
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Huele a petricor'
+		'''
+}
+
+FloralTea: {
+	DisplayName: Té floral
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Una receta especial de serpientes'
+		'''
+}
+
+Grapecherry: {
+	DisplayName: Uvacerezo
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Una extraña pero sabrosa combinación'
+		'''
+}
+
+HoneyNuggets: {
+	DisplayName: Nuggets de miel
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Excepcionalmente buena a pesar del origen'
+		'''
+}
+
+Mystuber: {
+	DisplayName: Tubércumisterio
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'¡Perplejante! ¡Confuso! ¡Tubérculo!'
+		'''
+}
+
+Walnut: {
+	DisplayName: Nuez
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'Tus dientes tendrán mejores días'
+		'''
+}
+
+Waterberry: {
+	DisplayName: Aguabaya
+	Tooltip:
+		'''
+		Pequeñas mejoras a todas las características
+		'¡Casi como un dulce!'
+		'''
+}
+
+Lightbulb: {
+	DisplayName: Bulboluz
+	Tooltip: "'Mantiene a Charlie alejada'"
+}
+
+LushLeaf: {
+	DisplayName: Hoja frondosa
+	Tooltip: "'Bastante resistente'"
+}
+
+MysteriaClump: {
+	DisplayName: Mata de flores misteria
+	Tooltip: "'Maravillosamente suaves'"
+}
+
+PinkPetal: {
+	DisplayName: Pétalo rosa
+	Tooltip: "'Es muy suave'"
+}
+
+PuffMaterial: {
+	DisplayName: Esponjosidad
+	Tooltip:
+		'''
+		Ligera y suave al tacto.
+		Sabe mal
+		'''
+}
+
+RedPetal: {
+	DisplayName: Pétalo rojo
+	Tooltip: "'Es muy liso'"
+}
+
+WisplantItem: {
+	DisplayName: Ramillo
+	Tooltip: "'Suave como las nubes'"
+}
+
+YellowBulb: {
+	DisplayName: Margarita amarilla
+	Tooltip: "'Tan raro...'"
+}
+
+ApotheosisBag: {
+	DisplayName: Bolsa del investigador
+	Tooltip: Clic derecho para abrir
+}
+
+ApotheosisBook: {
+	DisplayName: "'Mi apoteosis'"
+	Tooltip: - Emily
+}
+
+WiltedFlower: {
+	DisplayName: Flor marchita
+	Tooltip: Una ya hace tiempo muerta flor amarilla descolorida
+}
+
+HeartOfGrowth: {
+	DisplayName: Corazón del crecimiento
+	Tooltip:
+		'''
+		Aumenta permanentemente el daño de los súbditos en un 5%
+		Sólo puede utilizarse una vez por persona
+		'Un corazón que late eternamente.'
+		'''
+}
+
+MagicWisplant: {
+	DisplayName: Ramillo mágico
+	Tooltip:
+		'''
+		'Un aura poderosa de energía druídica lo rodea'
+		Acelera drásticamente el crecimiento natural en un área
+		'''
+}
+
+Microcosm: {
+	DisplayName: Microcosmo
+	Tooltip:
+		'''
+		Crea un bioma verdeante minúsculo en cualquier lugar
+		¡Cuidado! Esto sobrescribe un área GRANDE (60x60 bloques en un mundo tipo pequeño)
+		¡Asegúrate de usar esto en un lugar que no te importe!
+		'Un reino de cristal que brilla intensamente'
+		'''
+}
+
+PassionflowerBulb: {
+	DisplayName: Bulbo de pasionaria
+	Tooltip:
+		'''
+		Clic derecho para abrir
+		'Huele a cítricos y dulzura'
+		'''
+}
+
+AquamarineHook: {
+	DisplayName: Gancho de aguamarina
+	Tooltip: ""
+}
+
+BouncebloomItem: {
+	DisplayName: Flor trampolín
+	Tooltip:
+		'''
+		Ralentiza la caída
+		Mantén ABAJO para caer más rápido
+		Los enemigos ligeros que estén sobre ti rebotarán en la flor
+		'''
+}
+
+CloudsproutPuff: {
+	DisplayName: Brotenube
+	Tooltip:
+		'''
+		Cojín elástico flotante
+		Permanece incluso después de salir del mundo
+		Clic izquierdo en una nube existente para eliminarla
+		Mantén clic derecho por 2 segundos para eliminar todos los brotenubes
+		'''
+}
+
+GemFlower: {
+	DisplayName: Flor gema
+	Tooltip: Te teletransporta al Apoteosis
+}
+
+Halfsprout: {
+	DisplayName: Semilla germinada
+	Tooltip:
+		'''
+		Florece instantáneamente todas las plantas, las cosecha y las replanta
+		'La belleza de la naturaleza; entregándose a los demás'
+		'''
+}
+
+LivingLushWoodWand: {
+	DisplayName: Varita de madera frondosa viviente
+	Tooltip:
+		'''
+		Coloca bloques de madera frondosa viviente
+		[c/88FF88:Clic derecho] para cambiar a hierba frondosa
+		'''
+}
+
+LushLeafWand: {
+	DisplayName: Varita de hierba frondosa
+	Tooltip:
+		'''
+		Coloca bloques de hierba frondosa
+		[c/88FF88:Clic derecho] para cambiar a pétalos rojos
+		'''
+}
+
+CrudePaintbrush: {
+	DisplayName: Pincel rudimentario
+	Tooltip:
+		'''
+		Puede colocar bloques rápidamente en varios estilos
+		Clic derecho para alternar el estilo de colocación
+		La herramienta de relleno tiene un máximo de 1000 bloques a la vez
+		'Una apariencia rudimentaria esconde un artefacto poderoso'
+		'''
+
+	Information: {
+		NoItemSelected: Selecciona un objeto para empezar!
+		NotEnoughItem: No tienes suficiente [i:{0}]!
+		FillConfirm: ¿Estás seguro de que deseas rellenar?
+		NoUndos: No hay cambios que deshacer
+		SelectBlock: Seleccione un bloque para empezar!
+		NotValidBlock: Seleccione un bloque sólido de 1x1 (como tierra [i:2]) para empezar!
+		Selected: Tipo de estilo establecido a [i:{0}] ({1})!
+	}
+}
+
+PermVineWand: {
+	DisplayName: Viñedo
+	Tooltip:
+		'''
+		Permite construir vides
+		Las vides funcionan como una cuerda y pueden utilizarse en cualquier espacio abierto
+		Estas vides usan [i:{0}] para construirse y las sueltan al ser destruidas
+		Clic derecho al los viñedos al sostenerlo para eliminarlos 
+		'''
+}
+
+PinkPetalWand: {
+	DisplayName: Varita de pétalo rosa
+	Tooltip:
+		'''
+		Coloca bloques de pétalo rosa
+		[c/88FF88:Clic derecho] para cambiar a madera frondosa viviente
+		'''
+}
+
+RedPetalWand: {
+	DisplayName: Varita de pétalo rojo
+	Tooltip:
+		'''
+		Coloca bloques de pétalo rojo
+		[c/88FF88:Clic derecho] para cambiar a pétalo rosa
+		'''
+}
+
+Shears: {
+	DisplayName: Tijeras
+	Tooltip:
+		'''
+		Poda ciertas plantas
+		Puede usarse para quitar esponjocolgantes y cortinas misteria 
+		Puede usarse como un hacha, técnicamente
+		'''
+}
+
+VerdantFishingRod: {
+	DisplayName: Caña frondosa
+	Tooltip:
+		'''
+		Emite luz cuando se sostiene
+		Es potenciada en el verdor
+		'''
+}
+
+YellowPetalFloater: {
+	DisplayName: Brotenube amarillo
+	Tooltip:
+		'''
+		Cojín elástico flotante
+		Permanece incluso después de salir del mundo
+		Clic izquierdo en una nube existente para eliminarla
+		Mantén clic derecho por 2 segundos para eliminar todos los brotenubes
+		'''
+}
+
+AquamarinePhaseblade: {
+	DisplayName: Espada de luz aguamarina
+	Tooltip: ""
+}
+
+AquamarinePhasesaber: {
+	DisplayName: Sable de luz aguamarina
+	Tooltip: ""
+}
+
+AquamarinePlatinumStaff: {
+	DisplayName: Báculo de aguamarina
+	Tooltip:
+		'''
+		Invoca rayos a través de tus invocaciones
+		Los rayos reciben daño añadido de tus invocaciones
+		'''
+}
+
+AquamarineStaff: {
+	DisplayName: Báculo de aguamarina
+	Tooltip:
+		'''
+		Invoca rayos a través de tus invocaciones
+		Los rayos reciben daño añadido de tus invocaciones
+		'''
+}
+
+LushDagger: {
+	DisplayName: Astilla frondosa
+	Tooltip:
+		'''
+		Lanzado en trías
+		'La molesta mejor elección de la naturaleza'
+		'''
+}
+
+LushWoodBow: {
+	DisplayName: Arco de madera frondosa
+	Tooltip: ""
+}
+
+LushWoodHammer: {
+	DisplayName: Martillo de madera frondosa
+	Tooltip: ""
+}
+
+LushWoodSword: {
+	DisplayName: Espada de madera frondosa
+	Tooltip: ""
+}
+
+MudBoulderItem: {
+	DisplayName: Bola de suelo emporcado
+	Tooltip: Una pequeña molestia
+}
+
+SpikedPuffball: {
+	DisplayName: Bola esponjosa espinosa
+	Tooltip: Flota en el aire durante medio minuto, luego cae
+}
+
+VerdantStaff: {
+	DisplayName: Varita curativa frondosa
+	Tooltip:
+		'''
+		Invoca una flor sagrada curativa
+		Mantente cerca para obtener regeneración adicional
+		Sólo puede invocarse una a la vez
+		Invócala nuevamente para cambiar su posición 
+		'''
+	MultiplayerTooltip: Invocar varias varitas potenciará la flor
+}
+
+LargeFlowerBulb: {
+	DisplayName: Bulbo floral grande
+	Tooltip: "{$VerdantFlowerBulb.Tooltip}"
+}
+
+LightbulbFlowerBulb: {
+	DisplayName: Flor bulboluz
+	Tooltip: "{$VerdantFlowerBulb.Tooltip}"
+}
+
+CrystalHeart: {
+	DisplayName: Corazón de cristal
+	Tooltip:
+		'''
+		Otorga inmunidad a varias desventajas al usarla
+		Solo se puede usar una vez por jugador
+		Guarda muchos más secretos, en algún lugar, en algún tiempo
+		'Un corazón roto y hueco'
+		'''
+}
+
+ThornBlock: {
+	DisplayName: Bloque espinoso
+	Tooltip: Desagradable en todas las formas
+}
+
+ThornWallItem: {
+	DisplayName: Pared de espinas
+	Tooltip: Esta... mal
+}
+
+ApotheoticBeeHelmet: {
+	DisplayName: Tocado de anfitrión apoteótico
+	Tooltip:
+		'''
+		Tiene un enjambre de abejorros
+		Al sostener un objeto de invocación, las abejas rodean el cursor y causan daño con el tiempo
+		Aumenta un 10% el daño de invocación
+		Aumenta en 2 el numero máximo de invocaciones 
+		Las abejas se fortalecen con la mochila colmena
+		'Es mucho más preocupante cuando lo tienes encima en la cabeza'
+		'''
+}
+
+ApotheoticTreeHelmet: {
+	DisplayName: Diadema de árbol apoteótica
+	Tooltip:
+		'''
+		De alguna manera, un árbol crece en la diadema
+		Tienes un aura curativa
+		El árbol produce varias frutas
+		Clic en una de tus invocaciones para potenciarla por un corto periodo de tiempo
+		Aumenta un +10% el daño de invocación
+		Aumenta en 1 el numero máximo de invocaciones
+		'El árbol calma la vida, y la vida te calma a ti'
+		'''
+}
+
+ApotheoticChestplate: {
+	DisplayName: Cota apoteótica
+	Tooltip:
+		'''
+		Aumenta un +10% el daño de invocación
+		Aumenta en 1 el numero máximo de invocaciones
+		'''
+}
+
+ApotheoticLeggings: {
+	DisplayName: Grebas apoteóticas
+	Tooltip:
+		'''
+		Aumenta un +10% el daño de invocación
+		Aumenta en 1 el numero máximo de invocaciones
+		'''
+}
+
+HoneyHeart: {
+	DisplayName: Corazón de miel
+	Tooltip: ""
+}
+
+FruitIconGreen: {
+	DisplayName: Chile picoso
+	Tooltip: ""
+}
+
+FruitIconRed: {
+	DisplayName: Manzana dulce
+	Tooltip: ""
+}
+
+FruitIconYellow: {
+	DisplayName: Gota de miel
+	Tooltip: ""
+}
+
+ApotheoticSoul: {
+	DisplayName: Murmullo apoteótico
+	Tooltip:
+		'''
+		La esencia más crucial de una apoteosis
+		'Puedes escuchar zumbidos y bailes'
+		'''
+}
+
+LushWoodPlankBlock: {
+	DisplayName: Tablón frondoso
+	Tooltip: ""
+}
+
+LushPlankWallItem: {
+	DisplayName: Pared de tablón frondoso
+	Tooltip: ""
+}
+
+MysteriaFluffItem: {
+	DisplayName: Pelusa misteria
+	Tooltip: "'Te sientes más pleno tocando esto'"
+}
+
+MysteriaFluffWallItem: {
+	DisplayName: Pared de pelusa misteria
+	Tooltip: "'Es como tener una pared de alfombra!"
+}
+
+LushFenceItem: {
+	DisplayName: Valla frondosa
+	Tooltip: ""
+}
+
+LushGrassSeeds: {
+	DisplayName: Semillas de hierba frondosa
+	Tooltip: "'Estas saben a lechuga.'"
+}
+
+BlueDyeBulb: {
+	DisplayName: Peonía itoh celeste
+	Tooltip:
+		'''
+		'¡Un color maravillosamente vibrante!'
+		Se usa para hacer tinte azul
+		'''
+}
+
+WhiteDyeBulb: {
+	DisplayName: Orquídea polilla
+	Tooltip:
+		'''
+		'¡Un color maravillosamente alegre!'
+		Se usa para hacer tinte plateando
+		'''
+}
+
+LightbulbLeafItem: {
+	DisplayName: Hoja bulboluz
+	Tooltip: Emite un brillo suave
+}
+
+LushLoomItem: {
+	DisplayName: Telar frondoso
+	Tooltip: Funciona como un telar viviente y uno normal
+}
+
+TrimmedOvergrownBrickItem: {
+	DisplayName: Ladrillo gris frondoso ribeteado
+	Tooltip: No se propaga ni hace crecer nada, ¡Solo se ve lindo!
+}
+
+BasicTerrariumItem: {
+	DisplayName: Terrario básico
+	Tooltip: "'Placentero de observar'"
+}
+
+FlotieTerrariumItem: {
+	DisplayName: Terrario de flotín
+	Tooltip: "'Relajante, intrigante...'"
+}
+
+FlotinyTerrariumItem: {
+	DisplayName: Terrario de flotarín
+	Tooltip: "'Bombillas flotantes en un terrario? Ese es el futuro de las lámparas!'"
+}
+
+MysteriaFlotinyTerrariumItem: {
+	DisplayName: Terrario de flotarín misteria
+	Tooltip: "'Casi un patrón hipnótico de ver'"
+}
+
+MysteriaFlotieTerrariumItem: {
+	DisplayName: Terrario de flotín misteria
+	Tooltip: "'El viento sopla por siempre en su alma'"
+}
+
+AquariumItem: {
+	DisplayName: Acuario
+	Tooltip: Puede usarse para mantener animales acuáticos
+}
+
+PoolwormAquariumItem: {
+	DisplayName: Acuario de gusano de piscina
+	Tooltip: "'¡Parece que se está divirtiendo!'"
+}
+
+BulbboxAquariumItem: {
+	DisplayName: Acuario de cajabulbosa
+	Tooltip: "'Este tipo podría ganarte en una carrera de natación'"
+}
+
+MossCarpAquariumItem: {
+	DisplayName: Acuario de carpa musgosa
+	Tooltip: "'Hay un micro terrario en la barriga del pez...'"
+}
+
+AxolotlAquariumItem: {
+	DisplayName: Acuario de ajolote
+	Tooltip: "'¿Has oído sus pequeños sonidos?'"
+}
+
+RedSnailCage: {
+	DisplayName: Jaula de caracol pétalo rojo
+	Tooltip: "'Confiado, pero lento'"
+}
+
+BulbSnailCage: {
+	DisplayName: Jaula de caracol bombilla
+	Tooltip: "'Cobarde, pero poderoso'"
+}
+
+LushWingletItem: {
+	DisplayName: Aleta frondosa
+	Tooltip: "'Pequeña y frágil.'"
+}
+
+LushWingletTerrariumItem: {
+	DisplayName: Terrario de aleta frondosa
+	Tooltip: "'... ¡Parece contenido!'"
+}
+
+PlainMicrocosm: {
+	DisplayName: Llanura microcósmica
+	Tooltip:
+		'''
+		{$Microcosm.Tooltip}
+		Libre de vidrio!
+		'''
+}
+
+PassionflowerBlock: {
+	DisplayName: Retoño de pasionaria
+	Tooltip:
+		'''
+		Retoña lentamente
+		'Un aroma sutil pero reconfortante se desprende de los pétalos restantes'
+		'''
+}
+
+ChlorovineWand: {
+	DisplayName: Cloroviñedo
+	Tooltip:
+		'''
+		Permite construir clorovides
+		Las clorovides funcionan como una cuerda y pueden utilizarse en cualquier espacio abierto
+		Estas clorovides usan [i:{0}] para construirse, y las sueltan al ser destruidas
+		Una energía mágica te permite escalar significativamente más rápido
+		Al sostenerlo clic derecho a los cloroviñedos para eliminarlos
+		'''
+}
+
+ShellSnailCage: {
+	DisplayName: Jaula de caracol acorazado
+	Tooltip: Frívolo, pero resistente
+}
+
+ShellSnailItem: {
+	DisplayName: Caracol acorazado
+	Tooltip: Lindura sólida
+}
+
+CanopySnailItem: {
+	DisplayName: Caracol pabellón
+	Tooltip: ¡Qué hermosa exhibición de la naturaleza!
+}
+
+CanopySnailCage: {
+	DisplayName: Jaula de caracol pabellón
+	Tooltip: Lento, pero amoroso
+}
+
+StargazerPlantItem: {
+	DisplayName: astrónoma azul
+	Tooltip: Brilla suavemente bajo tu cuidado
+}
+
+LunarJellyItem: {
+	DisplayName: Medusa lunar
+	Tooltip: Suave e invertebrada
+}
+
+LunarJellyTerrariumItem: {
+	DisplayName: Terrario de medusa lunar
+	Tooltip: La noche no es fugaz, sólo resplandeciente
+}
+
+GlassFlowerItem: {
+	DisplayName: Flor de cristal
+	Tooltip:
+		'''
+		Desactiva el verdor en el área cercana, lo que permite el uso de otros biomas
+		'Tan frágil...'
+		'''
+}
