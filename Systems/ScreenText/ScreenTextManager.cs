@@ -54,7 +54,6 @@ namespace Verdant.Systems.ScreenText
             Main.spriteBatch.Draw(textTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1 / Main.UIScale, SpriteEffects.None, 0);
             Main.spriteBatch.End();
 
-            Main.graphics.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.DiscardContents;
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
         }
 
