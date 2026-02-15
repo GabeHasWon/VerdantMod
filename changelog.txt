@@ -3,4 +3,20 @@
 Additions:
 - Added custom Music Display visual
 - Added 6 new Verdant-related achievements
-- Added new underground rain event in the Verdant
+- Added new underground rain event in the Verdant - Tear Rain
+	- Added rain particles, splashes
+	- Added new steam effect, also disabled with the config option for default steam
+	- Added new critters for rain: Dropsnail
+- Added Smokebud, a monolith-style tile which enables the steam effect anywhere - crafted with Lush Leaves in a Graveyard
+- Added Tearroot, a monolith-style tile which enables the rain steam effect anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
+
+Fixes:
+- Fixed Steam effect not appearing the first time the Verdant is entered
+- Fixed minor visual offset with stepping up tiles on the Steam effect
+- Improved food drawing, fixed scaling
+
+Changes/Edits:
+- Waterberry Bushes now regrow when in rain (surface or Tear Rain)
+- Added new dialogue for the Apotheosis when they're tearing up
+- Added food particles to every food in the mod
+- 

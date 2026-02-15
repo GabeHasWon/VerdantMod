@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Verdant.Dusts;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Systems.TearRain;
@@ -46,11 +47,15 @@ internal class TearRainRendering : ModSystem
 
             for (int i = 0; i < 2; ++i)
             {
-                rain.Velocity.Y = MathHelper.Lerp(rain.Velocity.Y, 10, 0.15f);
+                rain.Velocity.Y = MathHelper.Lerp(rain.Velocity.Y, 8, 0.04f);
                 rain.Position += rain.Velocity;
 
-                if (BlockedAt(rain.Position.ToTileCoordinates16()))
+                if (BlockedAtOrLiquid(rain.Position.ToTileCoordinates16()))
+                {
                     rain.Active = false;
+
+                    Dust.NewDustPerfect(rain.Position, ModContent.DustType<VerdantWaterSplash>(), new Vector2(Main.rand.NextFloatDirection(), -2));
+                }
             }
         }
 
@@ -60,12 +65,10 @@ internal class TearRainRendering : ModSystem
         const int ScreenOffset = 20;
 
         Vector2 screenPos = Main.screenPosition;
-        int screenW = Main.screenWidth;
-        int screenH = Main.screenHeight;
         int left = (int)(screenPos.X / 16f) - ScreenOffset;
-        int right = (int)((screenPos.X + screenW) / 16f) + ScreenOffset;
+        int right = (int)((screenPos.X + Main.screenWidth) / 16f) + ScreenOffset;
         int top = Math.Min((int)(screenPos.Y / 16f) - ScreenOffset, (int)Main.worldSurface);
-        int bottom = (int)((screenPos.Y + screenH) / 16f) + ScreenOffset;
+        int bottom = (int)((screenPos.Y + Main.screenHeight) / 16f) + ScreenOffset;
 
         int chance = (int)MathHelper.Lerp(400, 16, TearRainSystem.RainStrength);
         byte frameRange = (byte)(TearRainSystem.RainStrength > 0.6f ? 6 : 3);
@@ -76,7 +79,7 @@ internal class TearRainRendering : ModSystem
             {
                 Tile tile = Main.tile[i, j];
 
-                if (!tile.HasTile || !ValidTiles.Contains(tile.TileType) || !Main.rand.NextBool(chance) || BlockedAt(new(i, j + 1)))
+                if (!tile.HasTile || !TearRainSystem.CanRain(j) || !ValidTiles.Contains(tile.TileType) || !Main.rand.NextBool(chance) || BlockedAt(new(i, j + 1)))
                     continue;
 
                 ref Rain rain = ref TryGetFirstRain(out bool success);
@@ -86,7 +89,7 @@ internal class TearRainRendering : ModSystem
 
                 rain.Active = true;
                 rain.Position = new Vector2(i, j + 1).ToWorldCoordinates(Main.rand.NextFloat(2, 14), 2);
-                rain.Velocity = new Vector2(0, Main.rand.NextFloat(2, 8));
+                rain.Velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 2));
                 rain.Frame = (byte)Main.rand.Next(frameRange);
                 rain.Opacity = (Half)Main.rand.NextFloat(0.3f, 1f);
                 rain.StartY = rain.Position.Y;
@@ -105,7 +108,7 @@ internal class TearRainRendering : ModSystem
             }
         }
 
-        success = true;
+        success = false;
         return ref Unsafe.NullRef<Rain>();
     }
 
@@ -116,16 +119,24 @@ internal class TearRainRendering : ModSystem
         return tile.HasTile && Main.tileSolid[tile.TileType];
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool BlockedAtOrLiquid(Point16 pos)
+    {
+        Tile tile = Main.tile[pos];
+        return (tile.HasTile && Main.tileSolid[tile.TileType]) || Main.tile[pos.X, pos.Y - 1].LiquidAmount > 0;
+    }
+
     public override void PostDrawTiles()
     {
         Main.spriteBatch.Begin(SpriteSortMode.Texture, BlendState.NonPremultiplied, SamplerState.PointWrap, DepthStencilState.Default, Main.Rasterizer);
 
-        foreach (Rain rain in Rains)
+        foreach (Rain rain in CollectionsMarshal.AsSpan(Rains))
         {
             if (!rain.Active)
                 continue;
 
-            Rectangle frame = rain.Frame < 3 ? new(8 * rain.Frame, 0, 6, 18) : new(24 + 12 * (rain.Frame - 3), 0, 10, 34);
+            int frameY = 36 * (int)(Main.GameUpdateCount * 0.15f + rain.StartY * 0.75f % 4);
+            Rectangle frame = rain.Frame < 3 ? new(8 * rain.Frame, frameY, 6, 18) : new(24 + 12 * (rain.Frame - 3), frameY, 10, 34);
             Color color = Lighting.GetColor(rain.Position.ToTileCoordinates()) with { A = (byte)(255 * rain.Opacity) };
             Vector2 scale = new(1, rain.Velocity.Y / 10f + 0.5f);
             Vector2 origin = frame.Size() * new Vector2(0.5f, 1);

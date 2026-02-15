@@ -7,6 +7,7 @@ namespace Verdant.Items.Verdant.Food;
 
 public class BowlFruit : FoodItem
 {
+    internal override Color[] ParticleColors => [new Color(163, 219, 74), new(204, 99, 171)];
     internal override Point Size => new(40, 38);
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(BowlFruit))]

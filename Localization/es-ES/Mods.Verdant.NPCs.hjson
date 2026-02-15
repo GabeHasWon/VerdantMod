@@ -97,3 +97,8 @@ LunarJelly: {
 	DisplayName: Medusa lunar
 	Entry: Parece, que la noche se coló en el verdor. Estas misteriosas criaturas aparecen solo cuando una astrónoma azul es polinizada, y desaparecen rápidamente; quién sabe por qué.
 }
+
+Dropsnail: {
+	// DisplayName: Dropsnail
+	// Entry: ""
+}

@@ -7,6 +7,7 @@ namespace Verdant.Items.Verdant.Food;
 
 public class Dropberry : FoodItem
 {
+    internal override Color[] ParticleColors => [new Color(85, 144, 209), new(55, 182, 78)];
     internal override Point Size => new(38, 40);
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Dropberry))]

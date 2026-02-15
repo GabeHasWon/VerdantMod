@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.ID;
 
 namespace Verdant.Systems.ScreenText;
 

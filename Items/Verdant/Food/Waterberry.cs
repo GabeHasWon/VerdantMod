@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Materials;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Systems.ScreenText;
 
@@ -8,9 +7,9 @@ namespace Verdant.Items.Verdant.Food;
 
 public class Waterberry : FoodItem
 {
+    internal override Color[] ParticleColors => [new Color(65, 187, 252)];
     internal override Point Size => new(28, 28);
-    // public override void StaticDefaults() => Tooltip.SetDefault("Minor improvements to all stats\n'Almost like candy!'");
-    internal override int BuffTime => 1 * 60 * 60; //1 minute
+    internal override int BuffTime => 1 * 60 * 60;
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Waterberry))]
     public override ScreenText Dialogue(bool forServer)

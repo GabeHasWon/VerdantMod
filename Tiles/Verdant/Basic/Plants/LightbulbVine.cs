@@ -37,13 +37,20 @@ internal class LightbulbVine : ModTile, IFlowerTile
             TileHelper.SyncedPlace(i, j + 1, Type, true);
     }
 
-    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    public override bool CanDrop(int i, int j)
     {
         int plr = Player.FindClosest(new Vector2(i, j) * 16, 16, 16);
 
         if (plr == -1)
-            yield break;
+            return false;
 
+        Player player = Main.player[plr];
+        return player.active && !player.dead && player.GetModPlayer<VerdantPlayer>().expertPlantGuide;
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j)
+    {
+        int plr = Player.FindClosest(new Vector2(i, j) * 16, 16, 16);
         Player player = Main.player[plr];
 
         if (player.active && !player.dead && player.GetModPlayer<VerdantPlayer>().expertPlantGuide)

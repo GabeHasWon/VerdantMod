@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Items.Verdant.Blocks.Plants;
 using Verdant.Items.Verdant.Food;
+using Verdant.Systems.TearRain;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
@@ -139,7 +140,7 @@ class WaterberryBush : ModTile, IFlowerTile
     {
         static bool WaterAt(int x, int y) => Main.tile[x, y].LiquidType == LiquidID.Water && Main.tile[x, y].LiquidAmount > 150;
 
-        if (WaterAt(i, j) && WaterAt(i + 1, j) && Main.rand.NextBool(40))
+        if ((TearRainSystem.AnyRainingAt(j) || (WaterAt(i, j) && WaterAt(i + 1, j))) && Main.rand.NextBool(40))
         {
             int x = i - (Main.tile[i, j].TileFrameX / 18);
             WorldGen.PlaceObject(x, j - 1, ModContent.TileType<WaterberryBushPicked>(), true);

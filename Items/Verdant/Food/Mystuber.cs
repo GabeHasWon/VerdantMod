@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Materials;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Systems.ScreenText;
 
@@ -8,6 +7,7 @@ namespace Verdant.Items.Verdant.Food;
 
 public class Mystuber : FoodItem
 {
+    internal override Color[] ParticleColors => [new Color(130, 111, 80), new Color(39, 113, 101)];
     internal override Point Size => new(30, 40);
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Mystuber))]

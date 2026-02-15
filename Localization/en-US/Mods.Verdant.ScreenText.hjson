@@ -100,6 +100,19 @@ Apotheosis: {
 			SirNautilus: Fish are such fascinating people...
 			SunkenSea: We can hear some waves upon the flora...
 		}
+
+		TearRain: {
+			0: Oh, is it good to hear rain again.
+			1: I lament many things. Do you?
+			2: ...perhaps to wonder is to live...?
+			3: Do take care not to get wet.
+			4: We hope you're soothed.
+			5: For what we are, why are we so uncertain?
+			6: Ah. The streams of water, o'...
+			7: Reminds us of my colors.
+			8: Well, run along. Don't slip.
+			9: Each tear; another word...
+		}
 	}
 
 	Downed: {

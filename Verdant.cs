@@ -41,6 +41,9 @@ public partial class VerdantMod : Mod
             Asset<Effect> filterRef = Assets.Request<Effect>("Effects/Screen/SteamEffect", AssetRequestMode.ImmediateLoad);
             Filters.Scene[EffectIDs.BiomeSteam] = new Filter(new ScreenShaderData(filterRef, "Steam"), EffectPriority.VeryHigh);
             Filters.Scene[EffectIDs.BiomeSteam].Load();
+
+            Asset<Effect> filterShader = Assets.Request<Effect>("Effects/Screen/RainSteam");
+            Filters.Scene[EffectIDs.RainSteam] = new Filter(new ScreenShaderData(filterShader, "Rain"), EffectPriority.VeryHigh);
         }
 
         LoadVerdantGrasses();

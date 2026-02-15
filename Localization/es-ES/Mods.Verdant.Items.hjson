@@ -1678,3 +1678,22 @@ GlassFlowerItem: {
 		'Tan frágil...'
 		'''
 }
+
+DropsnailItem: {
+	// DisplayName: Dropsnail
+	// Tooltip: ""
+}
+
+SmokeBulbItem: {
+	// DisplayName: Smokebud
+	/* Tooltip:
+		'''
+		Allows the steam effect to be used everywhere
+		'Smells...gross'
+		''' */
+}
+
+TearBulbItem: {
+	// DisplayName: Tear Bulb Item
+	// Tooltip: ""
+}

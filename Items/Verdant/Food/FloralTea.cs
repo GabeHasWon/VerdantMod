@@ -9,6 +9,7 @@ namespace Verdant.Items.Verdant.Food;
 
 public class FloralTea : FoodItem
 {
+    internal override Color[] ParticleColors => [new Color(216, 187, 114), new(216, 54, 43)];
     internal override Point Size => new(26, 28);
     public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.CookingPots, 1, (ItemID.BottledWater, 1), (ModContent.ItemType<RedPetal>(), 2), (ModContent.ItemType<LushLeaf>(), 1));
 

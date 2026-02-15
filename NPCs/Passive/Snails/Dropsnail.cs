@@ -59,7 +59,7 @@ public class Dropsnail : ModNPC
 
     public override bool PreAI()
     {
-        return base.PreAI();
+        return true;
     }
 
     public override void AI()
