@@ -2,6 +2,7 @@
 using Terraria;
 using Verdant.Scenes;
 using Verdant.Systems.TearRain;
+using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Systems.Foreground.Parallax;
 
@@ -9,7 +10,11 @@ public class WaterdropFG : ParallaxedFGItem
 {
     private int offscreenTimer = 0;
 
-    public static bool CanSpawn(Player p) => TearRainSystem.Raining && p.InModBiome<VerdantUndergroundBiome>() && Main.rand.NextFloat() < 0.15f + TearRainSystem.RainStrength * 0.4f;
+    public static bool CanSpawn(Player p)
+    {
+        float strength = TearBulb.TearBulbFlag.NearTearBulb && !TearRainSystem.Raining ? 0.5f : TearRainSystem.RainStrength;
+        return (TearRainSystem.Raining || TearBulb.TearBulbFlag.NearTearBulb) && p.InModBiome<VerdantUndergroundBiome>() && Main.rand.NextFloat() < 0.15f + strength * 0.4f;
+    }
 
     public WaterdropFG(Vector2 pos) : base(pos, Vector2.Zero, 1f, "Parallax/WaterdropFG")
     {
