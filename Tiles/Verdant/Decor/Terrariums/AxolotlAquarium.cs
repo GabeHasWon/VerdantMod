@@ -15,7 +15,7 @@ public class AxolotlAquarium : Aquarium
 
     public override void NearbyEffects(int i, int j, bool closer)
     {
-        if (Main.rand.NextBool(1000))
+        if (Main.rand.NextBool(1000) && Main.hasFocus)
             SoundEngine.PlaySound(new SoundStyle("Verdant/Sounds/AxolotlBoop") with { Pitch = 0.85f, PitchVariance = 0.15f }, new Vector2(i, j) * 16);
     }
 

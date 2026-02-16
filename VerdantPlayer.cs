@@ -14,6 +14,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Systems.ScreenText.Caches;
 using Verdant.Scenes;
 using Terraria.ID;
+using Verdant.Systems.TearRain;
 
 namespace Verdant;
 
@@ -201,10 +202,20 @@ class VerdantPlayer : ModPlayer
             }
 
             int leafFGChance = LushLeafFG.SpawnChance(Player);
+
             if (leafFGChance != -1 && Main.rand.NextBool(leafFGChance))
             {
-                Vector2 pos = Player.Center - new Vector2(Main.rand.Next(-(int)(Main.screenWidth * 2f), (int)(Main.screenWidth * 2f)), Main.screenHeight * 0.52f);
+                Vector2 pos = Player.Center - new Vector2(Main.rand.Next(-Main.screenWidth * 2, Main.screenWidth * 2), Main.screenHeight * 0.52f);
                 ForegroundManager.AddItem(new LushLeafFG(pos));
+            }
+
+            for (int i = 0; i < 3; ++i)
+            {
+                if (WaterdropFG.CanSpawn(Player))
+                {
+                    Vector2 pos = Player.Center - new Vector2(Main.rand.Next(-Main.screenWidth, Main.screenWidth), Main.screenHeight * 0.52f);
+                    ForegroundManager.AddItem(new WaterdropFG(pos));
+                }
             }
         }
 

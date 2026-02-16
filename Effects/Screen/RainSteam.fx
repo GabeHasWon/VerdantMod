@@ -27,6 +27,7 @@ float4 Main(float2 coords : TEXCOORD0) : COLOR0
 	float4 poison = tex2D(uImage1, frac(coords));
 	poison = tex2D(uImage1, frac(coords + float2(uProgress + uDirection.x + poison.g * 0.05, uProgress * 0.25 + uDirection.y + poison.g * 0.05)));
     float factor = poison.r * uIntensity;
+    factor = round(factor * 30) / 30.0;
     color = lerp(lerp(color, float4(0.1, 0.5, 0.65, 0.7), factor), lerp(color, float4(0.83, 0.87, 0.95, 1), factor), factor);
 	return color;
 }

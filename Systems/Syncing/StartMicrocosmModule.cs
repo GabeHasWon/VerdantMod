@@ -3,7 +3,6 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Verdant.Items.Verdant.Misc;
 
 namespace Verdant.Systems.Syncing;

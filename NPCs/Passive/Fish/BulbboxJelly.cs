@@ -6,6 +6,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter.Fish;
+using Verdant.Systems.TearRain;
 
 namespace Verdant.NPCs.Passive.Fish;
 
@@ -21,6 +22,7 @@ public class BulbboxJelly : ModNPC
         Main.npcFrameCount[Type] = 4;
 
         NPCID.Sets.CountsAsCritter[Type] = true;
+        FishFunctionality.IsFish[Type] = true;
     }
 
     public override void SetDefaults()
@@ -117,6 +119,12 @@ public class BulbboxJelly : ModNPC
     {
         if (!Main.hardMode)
             return 0;
+
+        if (TearRainSystem.Raining)
+        {
+            float chance = spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant ? 0.05f : 0f;
+            return chance * (spawnInfo.PlayerInTown ? 1.75f : 1f);
+        }
 
         float baseChance = spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.Water ? 1.25f : 0f;
         return baseChance * (spawnInfo.PlayerInTown ? 1.75f : 1f);

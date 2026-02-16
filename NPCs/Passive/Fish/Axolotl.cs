@@ -7,6 +7,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Critter.Fish;
+using Verdant.Systems.TearRain;
 using Verdant.Walls;
 
 namespace Verdant.NPCs.Passive.Fish;
@@ -21,6 +22,7 @@ public class Axolotl : ModNPC
         Main.npcFrameCount[Type] = 4;
 
         NPCID.Sets.CountsAsCritter[Type] = true;
+        FishFunctionality.IsFish[Type] = true;
     }
 
     public override void SetDefaults()
@@ -62,10 +64,10 @@ public class Axolotl : ModNPC
         NPC.noGravity = NPC.wet;
         NPC.TargetClosest(faceTarget: false);
 
-        if (Main.rand.NextBool(1000))
+        if (Main.rand.NextBool(1000) && Main.hasFocus)
             SoundEngine.PlaySound(new SoundStyle("Verdant/Sounds/AxolotlBoop") with { Pitch = 0.85f, PitchVariance = 0.15f }, NPC.Center);
 
-        if (NPC.wet)
+        if (NPC.wet || TearRainSystem.AnyRainingAt((int)NPC.Center.Y / 16))
         {
             if (NPC.collideX)
                 NPC.direction *= -1;

@@ -1,11 +1,12 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Verdant.Dusts
 {
     public class VerdantWaterSplash : ModDust
     {
-        public override void SetStaticDefaults() => UpdateType = 33;
+        public override void SetStaticDefaults() => UpdateType = DustID.Water;
 
         public override void OnSpawn(Dust dust)
         {

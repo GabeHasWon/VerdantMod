@@ -109,7 +109,7 @@ Apotheosis: {
 			// 4: We hope you're soothed.
 			// 5: For what we are, why are we so uncertain?
 			// 6: Ah. The streams of water, o'...
-			// 7: Reminds us of my colors.
+			// 7: It reminds us of my colors.
 			// 8: Well, run along. Don't slip.
 			// 9: Each tear; another word...
 		}
@@ -327,7 +327,7 @@ Apotheosis: {
 
 		Dropberry: {
 			// 0: These berries are lovely.
-			// 1: If only I could remember their taste.
+			// 1: If only I could know their taste.
 		}
 
 		// FloralTea: Useful when on the road, isn't it?
@@ -341,5 +341,21 @@ Apotheosis: {
 		// Walnut: Sometimes...keep it simple.
 		// Waterberry: Plentiful...if only...
 		// HoneyNuggets: Bees are magic. Cherish them.
+
+		SmokeBulbItem: {
+			// 0: Perhaps disturbing, what we can do;
+			// 1: but it holds a whimsy, doesn't it?
+		}
+
+		TearBulbItem: {
+			// 0: It keeps me feeling human,
+			// 1: this...crying.
+		}
+
+		SnailStatueItem: {
+			// 0: ...
+			// 1: ...I hope I don't forget you.
+			// TooSoon: ...I don't want to, not...yet.
+		}
 	}
 }
