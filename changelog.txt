@@ -8,10 +8,10 @@ Additions:
 	- Added new steam effect, also disabled with the config option for default steam
 	- Added new critters for rain: Dropsnail
 - Added Smokebud, a monolith-style tile which enables the steam effect anywhere - crafted with Lush Leaves in a Graveyard
-- Added Tearroot, a monolith-style tile which enables the rain steam effect anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
+- Added Tearroot, a monolith-style tile which enables the rain steam effect & foreground objects anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
 - Added a bunch of additional Apotheosis item interaction dialogue + functionality
 - Added new fish functionality in the raining Verdant
-- 
+- Added new Puff furniture
 
 Fixes:
 - Fixed Steam effect not appearing the first time the Verdant is entered
@@ -24,3 +24,5 @@ Changes/Edits:
 - Added new dialogue for the Apotheosis when they're tearing up
 - Added food particles to every food in the mod
 - Fireflies/Lightning Bugs now only spawn during Tear Rain, at a much higher rate
+- Some misc minor sprite edits
+- Darkened Puff Walls substantially

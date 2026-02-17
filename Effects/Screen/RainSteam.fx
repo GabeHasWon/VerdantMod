@@ -23,6 +23,8 @@ float2 uZoom;
 
 float4 Main(float2 coords : TEXCOORD0) : COLOR0
 {
+    coords = round(coords * uScreenResolution * 0.5) / (0.5 * uScreenResolution); // Snap to 2x2 pixel grid
+	
 	float4 color = tex2D(uImage0, coords);
 	float4 poison = tex2D(uImage1, frac(coords));
 	poison = tex2D(uImage1, frac(coords + float2(uProgress + uDirection.x + poison.g * 0.05, uProgress * 0.25 + uDirection.y + poison.g * 0.05)));

@@ -1673,3 +1673,23 @@ TearBulbItem: {
 	// DisplayName: Tear Bulb Item
 	// Tooltip: ""
 }
+
+PuffCandleItem: {
+	// DisplayName: Puff Candle Item
+	// Tooltip: ""
+}
+
+PuffLampItem: {
+	// DisplayName: Puff Lamp Item
+	// Tooltip: ""
+}
+
+PuffLanternItem: {
+	// DisplayName: Puff Lantern Item
+	// Tooltip: ""
+}
+
+PuffWorkbenchItem: {
+	// DisplayName: Puff Workbench Item
+	// Tooltip: ""
+}
