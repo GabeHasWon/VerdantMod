@@ -68,10 +68,11 @@ public class MossCarp : ModNPC
 
     public override void HitEffect(NPC.HitInfo hit)
     {
-        if (NPC.life <= 0)
+        if (NPC.life <= 0 && !Main.dedServ)
         {
             for (int i = 0; i < 2; ++i)
                 Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+
             for (int i = 0; i < 6; ++i)
                 Dust.NewDust(NPC.Center, 26, 18, DustID.Grass, Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3));
         }

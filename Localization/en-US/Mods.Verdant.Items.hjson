@@ -1717,3 +1717,8 @@ PuffWorkbenchItem: {
 	DisplayName: Puff Workbench Item
 	Tooltip: ""
 }
+
+PuffDoorItem: {
+	DisplayName: Puff Door Item
+	Tooltip: ""
+}

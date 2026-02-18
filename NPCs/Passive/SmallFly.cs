@@ -105,7 +105,7 @@ namespace Verdant.NPCs.Passive
             if (NPC.ai[0] == 0)
             {
                 if (NPC.frameCounter++ % 6 <= 2) 
-                    NPC.frame.Y = 20; //Animate
+                    NPC.frame.Y = 20;
                 else 
                     NPC.frame.Y = 0;
             }
@@ -120,7 +120,7 @@ namespace Verdant.NPCs.Passive
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (NPC.life <= 0)
+            if (NPC.life <= 0 && !Main.dedServ)
             {
                 for (int i = 0; i < 2; ++i)
                     Gore.NewGore(NPC.GetSource_OnHurt(null), NPC.Center, new Vector2(Main.rand.NextFloat(-3, 3), Main.rand.NextFloat(-3, 3)), Mod.Find<ModGore>("LushLeaf").Type);
