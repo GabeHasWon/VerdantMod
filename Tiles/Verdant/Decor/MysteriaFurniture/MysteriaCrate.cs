@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -18,9 +18,10 @@ public class MysteriaCrate : ModTile
         Main.tileSolidTop[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
+        TileObjectData.newTile.CoordinateHeights = [16, 16];
         TileObjectData.addTile(Type);
 
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(99, 63, 45));
     }

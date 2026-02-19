@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 using Verdant.Systems;
 
@@ -29,6 +30,7 @@ public class MysteriaClock : ModTile
         AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.GrandfatherClock"));
         RegisterItemDrop(ModContent.ItemType<MysteriaClockItem>());
 
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = [TileID.GrandfatherClocks];
     }
 

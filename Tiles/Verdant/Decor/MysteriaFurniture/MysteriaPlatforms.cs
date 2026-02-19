@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -34,7 +35,7 @@ public class MysteriaPlatforms : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
         AddMapEntry(new Color(124, 93, 68));
 
-        DustType = DustID.t_BorealWood;
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = new int[] { TileID.Platforms };
     }
 

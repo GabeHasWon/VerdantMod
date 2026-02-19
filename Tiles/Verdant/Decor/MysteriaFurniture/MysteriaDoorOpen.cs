@@ -4,6 +4,7 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -29,7 +30,7 @@ public class MysteriaDoorOpen : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
         RegisterItemDrop(ModContent.ItemType<MysteriaDoorItem>());
 
-        DustType = DustID.t_BorealWood;
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = [TileID.OpenDoor];
     }
 

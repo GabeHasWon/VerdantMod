@@ -5,13 +5,20 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
 internal class MysteriaCandelabra : ModTile
 {
-    public override void SetStaticDefaults() => CandelabraHelper.Defaults<MysteriaCandelabraItem>(this, new Color(253, 221, 3));
+    public override void SetStaticDefaults()
+    {
+        CandelabraHelper.Defaults<MysteriaCandelabraItem>(this, new Color(253, 221, 3));
+
+        DustType = ModContent.DustType<MysteriaWoodDust>();
+    }
+
     public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

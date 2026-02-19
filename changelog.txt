@@ -26,3 +26,4 @@ Changes/Edits:
 - Fireflies/Lightning Bugs now only spawn during Tear Rain, at a much higher rate
 - Some misc minor sprite edits
 - Darkened Puff Walls substantially
+- Added custom Mysteria Wood dust to all Mysteria furniture, fixed some erroneous dust choices

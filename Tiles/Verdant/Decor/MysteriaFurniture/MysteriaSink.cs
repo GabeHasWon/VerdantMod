@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -17,7 +18,7 @@ public class MysteriaSink : ModTile
         Main.tileLavaDeath[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-        TileObjectData.newTile.CoordinateHeights = new int[2] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.newTile.Direction = Terraria.Enums.TileObjectDirection.PlaceLeft;
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
@@ -28,6 +29,7 @@ public class MysteriaSink : ModTile
         AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("MapObject.Sink"));
         RegisterItemDrop(ModContent.ItemType<MysteriaSinkItem>());
 
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = new int[] { TileID.Sinks };
     }
 

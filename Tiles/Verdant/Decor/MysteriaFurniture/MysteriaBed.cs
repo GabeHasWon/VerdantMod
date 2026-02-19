@@ -5,14 +5,20 @@ using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
 public class MysteriaBed : ModTile
 {
-    public override void SetStaticDefaults() => BedHelper.Defaults<MysteriaBedItem>(this, new Color(124, 93, 68));
-	public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+    public override void SetStaticDefaults()
+    {
+        BedHelper.Defaults<MysteriaBedItem>(this, new Color(124, 93, 68));
+        DustType = ModContent.DustType<MysteriaWoodDust>();
+    }
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 	public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;
 	public override void ModifySmartInteractCoords(ref int width, ref int height, ref int frameWidth, ref int frameHeight, ref int extraY) => (width, height) = (2, 2);
 	public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) => info.VisualOffset.Y += 4f;

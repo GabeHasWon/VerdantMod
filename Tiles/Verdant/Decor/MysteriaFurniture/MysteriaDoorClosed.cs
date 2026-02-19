@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -52,7 +53,7 @@ public class MysteriaDoorClosed : ModTile
         AddMapEntry(new Color(124, 93, 68), name);
         RegisterItemDrop(ModContent.ItemType<MysteriaDoorItem>());
 
-        DustType = DustID.t_BorealWood;
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = [TileID.ClosedDoor];
     }
 

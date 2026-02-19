@@ -3,8 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
 using Terraria.Localization;
+using Verdant.Dusts;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -19,14 +19,16 @@ internal class MysteriaWorkbench : ModTile
         Main.tileLavaDeath[Type] = true;
         
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
-        TileObjectData.newTile.CoordinateHeights = new[] { 18 };
+        TileObjectData.newTile.CoordinateHeights = [18];
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.WorkBench"));
 
         TileID.Sets.DisableSmartCursor[Type] = true;
-        AdjTiles = new int[] { TileID.WorkBenches };
+
+        AdjTiles = [TileID.WorkBenches];
+        DustType = ModContent.DustType<MysteriaWoodDust>();
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -8,13 +8,21 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Dusts;
-using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
+using Verdant.Items;
+using Verdant.Items.Verdant;
+using Verdant.Items.Verdant.Materials;
 
-namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
+namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-public class MysteriaDresser : ModTile
+public class PuffDresser : ModTile
 {
+    [Sacrifice(3)]
+    public class PuffDresserItem : ModItem
+    {
+        public override void SetDefaults() => QuickItem.SetBlock(this, 40, 30, ModContent.TileType<PuffDresser>());
+        public override void AddRecipes() => QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<LushLeaf>(), 6), (ModContent.ItemType<PuffMaterial>(), 10));
+    }
+
     public override void SetStaticDefaults()
     {
         Main.tileSolidTop[Type] = true;
@@ -43,10 +51,10 @@ public class MysteriaDresser : ModTile
 
         LocalizedText name = CreateMapEntryName();
         AddMapEntry(new Color(124, 93, 68), name);
-        RegisterItemDrop(ModContent.ItemType<MysteriaDresserItem>());
+        RegisterItemDrop(ModContent.ItemType<PuffDresserItem>());
 
-        DustType = ModContent.DustType<MysteriaWoodDust>();
-        AdjTiles = new int[] { TileID.Dressers };
+        DustType = DustID.t_BorealWood;
+        AdjTiles = [TileID.Dressers];
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -162,7 +170,7 @@ public class MysteriaDresser : ModTile
 
             if (player.cursorItemIconText == defaultName)
             {
-                player.cursorItemIconID = ModContent.ItemType<MysteriaDresserItem>();
+                player.cursorItemIconID = ModContent.ItemType<PuffDresserItem>();
                 player.cursorItemIconText = "";
             }
         }
@@ -179,7 +187,7 @@ public class MysteriaDresser : ModTile
         if (player.cursorItemIconText == "")
         {
             player.cursorItemIconEnabled = false;
-            player.cursorItemIconID = 0;
+            player.cursorItemIconID = ItemID.None;
         }
     }
 

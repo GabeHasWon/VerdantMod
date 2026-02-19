@@ -1722,3 +1722,13 @@ PuffDoorItem: {
 	// DisplayName: Puff Door Item
 	// Tooltip: ""
 }
+
+PuffBookcaseItem: {
+	// DisplayName: Puff Bookcase Item
+	// Tooltip: ""
+}
+
+PuffDresserItem: {
+	// DisplayName: Puff Dresser Item
+	// Tooltip: ""
+}

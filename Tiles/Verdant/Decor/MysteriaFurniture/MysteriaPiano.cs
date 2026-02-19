@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -21,8 +22,10 @@ public class MysteriaPiano : ModTile
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.Height = 2;
-        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.addTile(Type);
+
+        DustType = ModContent.DustType<MysteriaWoodDust>();
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.Piano"));

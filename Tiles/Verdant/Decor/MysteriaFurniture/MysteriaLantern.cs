@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -29,6 +30,8 @@ internal class MysteriaLantern : ModTile
         TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidBottom | AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
         TileObjectData.addTile(Type);
+
+        DustType = ModContent.DustType<MysteriaWoodDust>();
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         AddMapEntry(new Color(253, 221, 3), Language.GetText("MapObject.Lantern"));

@@ -1,15 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria;
 using Terraria.ObjectData;
-using Verdant.Dusts;
-using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
+using Verdant.Items.Verdant;
+using Verdant.Items;
+using Verdant.Items.Verdant.Materials;
 
-namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
+namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-public class MysteriaBookshelf : ModTile
+public class PuffBookcase : ModTile
 {
+    [Sacrifice(1)]
+    public class PuffBookcaseItem : ModItem
+    {
+        public override void SetDefaults() => QuickItem.SetBlock(this, 54, 34, ModContent.TileType<PuffBookcase>());
+        public override void AddRecipes() 
+            => QuickItem.AddRecipe(this, TileID.WorkBenches, 1, (ModContent.ItemType<PuffMaterial>(), 8), (ModContent.ItemType<LushLeaf>(), 8), (ItemID.Book, 10));
+    }
+
     public override void SetStaticDefaults()
     {
         Main.tileFrameImportant[Type] = true;
@@ -25,9 +34,9 @@ public class MysteriaBookshelf : ModTile
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
-        RegisterItemDrop(ModContent.ItemType<MysteriaBookshelfItem>());
+        RegisterItemDrop(ModContent.ItemType<PuffBookcaseItem>());
 
-        DustType = ModContent.DustType<MysteriaWoodDust>();
+        DustType = DustID.Grass;
         AdjTiles = [TileID.Bookcases];
     }
 

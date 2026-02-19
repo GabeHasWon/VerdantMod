@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using Verdant.Dusts;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
@@ -19,14 +20,16 @@ internal class MysteriaTable : ModTile
         Main.tileLavaDeath[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
-        TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Language.GetText("MapObject.Table"));
 
         TileID.Sets.DisableSmartCursor[Type] = true;
-        AdjTiles = new int[] { TileID.Tables };
+
+        AdjTiles = [TileID.Tables];
+        DustType = ModContent.DustType<MysteriaWoodDust>();
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

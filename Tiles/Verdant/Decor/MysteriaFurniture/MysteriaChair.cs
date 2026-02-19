@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria;
-using Terraria.ObjectData;
-using Terraria.Enums;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
@@ -39,7 +40,7 @@ public class MysteriaChair : ModTile
         AddMapEntry(new Color(124, 93, 68), Language.GetText("MapObject.Chair"));
         RegisterItemDrop(ModContent.ItemType<MysteriaChairItem>());
 
-        DustType = DustID.t_BorealWood;
+        DustType = ModContent.DustType<MysteriaWoodDust>();
         AdjTiles = new int[] { TileID.Chairs };
     }
 
