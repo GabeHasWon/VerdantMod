@@ -50,7 +50,7 @@ public class PuffDresser : ModTile
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
         LocalizedText name = CreateMapEntryName();
-        AddMapEntry(new Color(124, 93, 68), name);
+        AddMapEntry(new Color(255, 112, 202), name);
         RegisterItemDrop(ModContent.ItemType<PuffDresserItem>());
 
         DustType = DustID.t_BorealWood;

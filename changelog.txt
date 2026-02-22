@@ -1,23 +1,28 @@
 1.3.0.0
+"Tear Rain"
 
 Additions:
 - Added custom Music Display visual
 - Added 6 new Verdant-related achievements
 - Added new underground rain event in the Verdant - Tear Rain
 	- Added rain particles, splashes
-	- Added new steam effect, also disabled with the config option for default steam
-	- Added new critters for rain: Dropsnail
+	- Added new steam effect, also disabled with the config option for steam
+	- Added new critters for rain: Dropsnail, Jellydew
 - Added Smokebud, a monolith-style tile which enables the steam effect anywhere - crafted with Lush Leaves in a Graveyard
 - Added Tearroot, a monolith-style tile which enables the rain steam effect & foreground objects anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
 - Added a bunch of additional Apotheosis item interaction dialogue + functionality
 - Added new fish functionality in the raining Verdant
 - Added new Puff furniture
+- Added new Flower of Tears, which constantly rains down Tear Rain tears from itself & counts as a water source
 
 Fixes:
 - Fixed Steam effect not appearing the first time the Verdant is entered
-- Fixed minor visual offset with stepping up tiles on the Steam effect
+- Fixed visual offset with stepping up tiles on the Steam effect
 - Improved food drawing, fixed scaling
 - Fixed Axolotls & Axolotl Aquariums playing their sounds when the game isn't in focus
+- Fixed Lush Winglet, Axolotl hit effects causing issues on servers
+- Fixed foreground elements not using visual offset with stepping up tiles
+- Maybe finally actually fixed Bumblebees causing errors in their behaviour
 
 Changes/Edits:
 - Waterberry Bushes now regrow when in rain (surface or Tear Rain)
@@ -27,3 +32,9 @@ Changes/Edits:
 - Some misc minor sprite edits
 - Darkened Puff Walls substantially
 - Added custom Mysteria Wood dust to all Mysteria furniture, fixed some erroneous dust choices
+- Some plants in the Verdant now are properly broken when the tile they're on is block swapped
+- Flower of Tears and Weeping Bud now spawn naturally in Tear Rain
+- Added 'marker buff' for the Mudsquid to make sure it's clear when it is or isn't enabled
+- Added 'marker buff' for the Peace Tree to clarify what it does & when
+- Fixed Peace Tree increasing spawnrates substantially instead of reducing them
+- Increased the rate at which you catch Vine Hooks from Verdant hardmode fishing

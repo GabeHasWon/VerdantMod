@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
 using Terraria.Localization;
 using Verdant.Dusts;
 

@@ -11,7 +11,7 @@ namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
 public class PuffBookcase : ModTile
 {
-    [Sacrifice(1)]
+    [Sacrifice(3)]
     public class PuffBookcaseItem : ModItem
     {
         public override void SetDefaults() => QuickItem.SetBlock(this, 54, 34, ModContent.TileType<PuffBookcase>());
@@ -33,7 +33,7 @@ public class PuffBookcase : ModTile
         TileObjectData.addTile(Type);
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-        AddMapEntry(new Color(124, 93, 68), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
+        AddMapEntry(new Color(255, 112, 202), Terraria.Localization.Language.GetText("ItemName.Bookcase"));
         RegisterItemDrop(ModContent.ItemType<PuffBookcaseItem>());
 
         DustType = DustID.Grass;

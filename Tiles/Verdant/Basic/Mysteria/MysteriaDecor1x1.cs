@@ -16,7 +16,9 @@ internal class MysteriaDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
         DustType = DustID.Grass;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+
         TileID.Sets.SwaysInWindBasic[Type] = true;
+
         Main.tileCut[Type] = true;
 
         AddMapEntry(new Color(148, 113, 207));

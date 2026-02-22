@@ -137,13 +137,20 @@ public class Bumblebee : ModNPC
 
     private void SetSpawnInfo()
     {
+        if (!WorldGen.InWorld(spawnPos.X, spawnPos.Y, 5) || Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            return;
+        }
+
         Tile tile = Main.tile[spawnPos];
 
         spawnPos.X -= tile.TileFrameX / 18;
         spawnPos.Y -= tile.TileFrameY / 38 * 2;
 
-        while (!Main.tile[spawnPos].HasTile || Main.tile[spawnPos].TileType != ModContent.TileType<Beehive>())
-            spawnPos.Y++;
+        //while (!Main.tile[spawnPos].HasTile || Main.tile[spawnPos].TileType != ModContent.TileType<Beehive>())
+        //    spawnPos.Y++;
+
+        NPC.netUpdate = true;
     }
 
     private void PauseOnFlower()

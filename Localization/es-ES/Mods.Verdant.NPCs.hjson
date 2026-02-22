@@ -100,5 +100,10 @@ LunarJelly: {
 
 Dropsnail: {
 	// DisplayName: Dropsnail
-	// Entry: ""
+	// Entry: A snail coagulated in one of the many teardrops of the Verdant. Despite the source, it is more jovial than any other snail. Perhaps it fights against its origin.
+}
+
+Jellydew: {
+	// DisplayName: Jellydew
+	// Entry: Water given form by the energies in the water, in the shape of a jellyfish.
 }

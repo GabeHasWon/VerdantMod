@@ -72,7 +72,10 @@ internal class VerdantUndergroundBiome : ModBiome
             rainStrength = 1;
 
         if (!Filters.Scene[EffectIDs.RainSteam].Active && canShowTearSteam)
+        {
+            Filters.Scene[EffectIDs.RainSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam", AssetRequestMode.ImmediateLoad));
             SetShader(EffectIDs.RainSteam);
+        }
         else if (Filters.Scene[EffectIDs.RainSteam].Active)
         {
             float opacity = canShowTearSteam ? 0.1f + rainStrength * 0.25f : 0;
@@ -84,7 +87,6 @@ internal class VerdantUndergroundBiome : ModBiome
             direction.X %= 1;
             direction.Y %= 1;
             Filters.Scene[EffectIDs.RainSteam].GetShader().UseDirection(direction);
-            Filters.Scene[EffectIDs.RainSteam].GetShader().UseImage(Mod.Assets.Request<Texture2D>("Effects/Screen/Steam"));
             Filters.Scene[EffectIDs.RainSteam].GetShader().UseIntensity(_rainSteamOpacity);
 
             if (!canShowTearSteam && _rainSteamOpacity <= 0.01f)

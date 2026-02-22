@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Buffs;
 using Verdant.Items.Verdant.Blocks.Mysteria;
 using Verdant.Items.Verdant.Materials;
 
@@ -98,9 +99,18 @@ internal class PeaceTreeTop : ModTile
         {
             if (Main.hardMode && PeaceSystem.NearPeace)
             {
-                spawnRate = (int)(spawnRate * 0.5f);
+                spawnRate = (int)(spawnRate * 1.5f);
                 maxSpawns = (int)(maxSpawns * 0.6f);
             }
+        }
+    }
+
+    private class PeacePlayer : ModPlayer
+    {
+        public override void PostUpdateEquips()
+        {
+            if (PeaceSystem.NearPeace)
+                Player.AddBuff(ModContent.BuffType<PeaceTreeMarkerBuff>(), 2);
         }
     }
 }

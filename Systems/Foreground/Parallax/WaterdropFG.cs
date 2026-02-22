@@ -12,15 +12,15 @@ public class WaterdropFG : ParallaxedFGItem
 
     public static bool CanSpawn(Player p)
     {
-        float strength = TearBulb.TearBulbFlag.NearTearBulb && !TearRainSystem.Raining ? 0.5f : TearRainSystem.RainStrength;
-        return (TearRainSystem.Raining || TearBulb.TearBulbFlag.NearTearBulb) && p.InModBiome<VerdantUndergroundBiome>() && Main.rand.NextFloat() < 0.15f + strength * 0.4f;
+        float strength = TearBulb.TearBulbFlag.NearTearBulb && !TearRainSystem.Raining ? 0.7f : TearRainSystem.RainStrength;
+        return TearBulb.TearBulbFlag.NearTearBulb || (TearRainSystem.Raining && p.InModBiome<VerdantUndergroundBiome>()) && Main.rand.NextFloat() < 0.15f + strength * 0.4f;
     }
 
     public WaterdropFG(Vector2 pos) : base(pos, Vector2.Zero, 1f, "Parallax/WaterdropFG")
     {
         parallax = Main.rand.Next(25, 150) * 0.01f;
         scale = parallax * 0.5f + 0.5f;
-        velocity = new Vector2(Main.rand.NextFloat(-0.2f, 0.2f), Main.rand.NextFloat(6f, 7.5f) * parallax + 2f);
+        velocity = new Vector2(Main.rand.NextFloat(-0.2f, 0.2f), Main.rand.NextFloat(6f, 7.5f) * MathHelper.Lerp(parallax, 1.5f, 0.33f) + 2f);
         source = new Rectangle(11 * Main.rand.Next(2), 0, 11, 30);
     }
 
@@ -28,7 +28,7 @@ public class WaterdropFG : ParallaxedFGItem
     {
         base.Update();
 
-        rotation = velocity.X * 0.5f;
+        rotation = -velocity.X * 0.25f;
 
         if (!new Rectangle((int)Main.screenPosition.X - 60, (int)Main.screenPosition.Y - 60, Main.screenWidth + 120, Main.screenHeight + 120).Contains(drawPosition.ToPoint()))
             offscreenTimer++;

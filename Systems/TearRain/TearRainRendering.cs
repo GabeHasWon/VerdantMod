@@ -82,19 +82,25 @@ internal class TearRainRendering : ModSystem
                 if (!tile.HasTile || !TearRainSystem.CanRain(j) || !ValidTiles.Contains(tile.TileType) || !Main.rand.NextBool(chance) || BlockedAt(new(i, j + 1)))
                     continue;
 
-                ref Rain rain = ref TryGetFirstRain(out bool success);
-
-                if (!success)
-                    continue;
-
-                rain.Active = true;
-                rain.Position = new Vector2(i, j + 1).ToWorldCoordinates(Main.rand.NextFloat(2, 14), 2);
-                rain.Velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 2));
-                rain.Frame = (byte)Main.rand.Next(frameRange);
-                rain.Opacity = (Half)Main.rand.NextFloat(0.3f, 1f);
-                rain.StartY = rain.Position.Y;
+                CreateRain(i, j, frameRange);
             }
         }
+    }
+
+    internal static bool CreateRain(int i, int j, byte frameRange)
+    {
+        ref Rain rain = ref TryGetFirstRain(out bool success);
+
+        if (!success)
+            return false;
+
+        rain.Active = true;
+        rain.Position = new Vector2(i, j + 1).ToWorldCoordinates(Main.rand.NextFloat(2, 14), 2);
+        rain.Velocity = new Vector2(0, Main.rand.NextFloat(0.25f, 2));
+        rain.Frame = (byte)Main.rand.Next(frameRange);
+        rain.Opacity = (Half)Main.rand.NextFloat(0.3f, 1f);
+        rain.StartY = rain.Position.Y;
+        return true;
     }
 
     private static ref Rain TryGetFirstRain(out bool success)

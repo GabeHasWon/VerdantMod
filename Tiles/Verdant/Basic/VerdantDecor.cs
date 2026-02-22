@@ -16,17 +16,20 @@ internal class VerdantDecor1x1 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
+        Main.tileCut[Type] = true;
+        
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
-        TileObjectData.newTile.AnchorValidTiles = new int[] { ModContent.TileType<LushSoil>() };
+        TileObjectData.newTile.AnchorValidTiles = [ModContent.TileType<LushSoil>()];
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
         TileObjectData.newTile.RandomStyleRange = 7;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
-        Main.tileCut[Type] = true;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+
         TileID.Sets.SwaysInWindBasic[Type] = true;
+        TileID.Sets.ReplaceTileBreakUp[Type] = true;
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
@@ -61,6 +64,7 @@ internal class Decor1x1Right : ModTile, IFlowerTile
         Main.tileNoFail[Type] = true;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+
         TileID.Sets.SwaysInWindBasic[Type] = true;
     }
 
@@ -96,6 +100,7 @@ internal class Decor1x1Left : ModTile, IFlowerTile
         Main.tileNoFail[Type] = true;
 
         TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+
         TileID.Sets.SwaysInWindBasic[Type] = true;
     }
 

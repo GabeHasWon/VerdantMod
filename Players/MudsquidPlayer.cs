@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Buffs;
 using Verdant.Players.Layers;
 using Verdant.Systems.Achievements;
 using Verdant.Tiles.Verdant.Basic.Aquamarine;
@@ -155,6 +156,9 @@ internal class MudsquidPlayer : ModPlayer
 
     public override void PreUpdateMovement()
     {
+        if (squidActive)
+            Player.AddBuff(ModContent.BuffType<MudsquidMarkerBuff>(), 2);
+
         if (IsSquid)
         {
             const float MoveSpeed = 0.6f;

@@ -60,7 +60,7 @@ internal class PuffLantern : ModTile
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {
-        Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3f;
+        Vector3 light = new Vector3(0.5f, 0.16f, 0.30f) * 3.5f;
 
         if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
         {

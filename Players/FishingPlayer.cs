@@ -19,7 +19,7 @@ internal class FishingPlayer : ModPlayer
         if (inVerdant && attempt.questFish == ModContent.ItemType<Shellfish>() && Main.rand.NextBool(3))
             itemDrop = ModContent.ItemType<Shellfish>();
 
-        if (inVerdant && Main.hardMode && attempt.legendary && Main.rand.NextBool(6))
+        if (inVerdant && Main.hardMode && attempt.legendary && Main.rand.NextBool(4))
             itemDrop = ModContent.ItemType<VineHook>();
     }
 }

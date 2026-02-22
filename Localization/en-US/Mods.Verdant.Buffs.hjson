@@ -5,7 +5,7 @@ HealingFlowerBuff: {
 
 PropellerpadBuff: {
 	DisplayName: Propellerpad
-	Description: What an odd lilypad!
+	Description: "'What an odd lilypad!'"
 }
 
 SnailBuff: {
@@ -16,4 +16,14 @@ SnailBuff: {
 FlotiePetBuff: {
 	DisplayName: Flotie of Wrath
 	Description: "'Despite the skull, very calming'"
+}
+
+MudsquidMarkerBuff: {
+	DisplayName: Mudsquid
+	Description: You will transform into a mudsquid when touching certain tiles
+}
+
+PeaceTreeMarkerBuff: {
+	DisplayName: Peace Zone
+	Description: Spawn rates reduced and hardmode spawns disabled
 }

@@ -1681,7 +1681,7 @@ GlassFlowerItem: {
 
 DropsnailItem: {
 	// DisplayName: Dropsnail
-	// Tooltip: ""
+	// Tooltip: "'Soft, cold.'"
 }
 
 SmokeBulbItem: {
@@ -1694,41 +1694,110 @@ SmokeBulbItem: {
 }
 
 TearBulbItem: {
-	// DisplayName: Tear Bulb Item
-	// Tooltip: ""
+	// DisplayName: Tear Bulb
+	/* Tooltip:
+		'''
+		Can be right clicked when placed to enable tear rain visual effects
+		'It's like an onion'
+		''' */
 }
 
 PuffCandleItem: {
-	// DisplayName: Puff Candle Item
+	// DisplayName: Puff Candle
 	// Tooltip: ""
 }
 
 PuffLampItem: {
-	// DisplayName: Puff Lamp Item
+	// DisplayName: Puff Lamp
 	// Tooltip: ""
 }
 
 PuffLanternItem: {
-	// DisplayName: Puff Lantern Item
+	// DisplayName: Puff Lantern
 	// Tooltip: ""
 }
 
 PuffWorkbenchItem: {
-	// DisplayName: Puff Workbench Item
+	// DisplayName: Puff Workbench
 	// Tooltip: ""
 }
 
 PuffDoorItem: {
-	// DisplayName: Puff Door Item
+	// DisplayName: Puff Door
 	// Tooltip: ""
 }
 
 PuffBookcaseItem: {
-	// DisplayName: Puff Bookcase Item
+	// DisplayName: Puff Bookcase
 	// Tooltip: ""
 }
 
 PuffDresserItem: {
-	// DisplayName: Puff Dresser Item
+	// DisplayName: Puff Dresser
+	// Tooltip: ""
+}
+
+PuffCandelabraItem: {
+	// DisplayName: Puff Candelabra
+	// Tooltip: ""
+}
+
+PuffChairItem: {
+	// DisplayName: Puff Chair
+	// Tooltip: ""
+}
+
+PuffSinkItem: {
+	// DisplayName: Puff Sink
+	// Tooltip: ""
+}
+
+TearPlantItem: {
+	// DisplayName: Flower of Tears
+	// Tooltip: "'Maybe I'll see again someday'"
+}
+
+DropsnailCage: {
+	// DisplayName: Dropsnail Cage
+	// Tooltip: ""
+}
+
+JellydewItem: {
+	// DisplayName: Jellydew
+	// Tooltip: "'So cute!'"
+}
+
+JellydewAquariumItem: {
+	// DisplayName: Jellydew Aquarium
+	// Tooltip: ""
+}
+
+PuffBathtubItem: {
+	// DisplayName: Puff Bathtub Item
+	// Tooltip: ""
+}
+
+PuffBedItem: {
+	// DisplayName: Puff Bed Item
+	// Tooltip: ""
+}
+
+PuffClockItem: {
+	// DisplayName: Puff Clock Item
+	// Tooltip: ""
+}
+
+PuffTableItem: {
+	// DisplayName: Puff Table Item
+	// Tooltip: ""
+}
+
+PuffPlatformItem: {
+	// DisplayName: Puff Platform Item
+	// Tooltip: ""
+}
+
+PuffSofaItem: {
+	// DisplayName: Puff Sofa Item
 	// Tooltip: ""
 }

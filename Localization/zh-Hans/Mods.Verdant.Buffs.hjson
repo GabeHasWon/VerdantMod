@@ -17,3 +17,13 @@ FlotiePetBuff: {
 	DisplayName: 愤怒之歌
 	Description: “尽管有头骨，但是非常平静”
 }
+
+MudsquidMarkerBuff: {
+	// DisplayName: Mudsquid
+	// Description: You will transform into a mudsquid when touching certain tiles
+}
+
+PeaceTreeMarkerBuff: {
+	// DisplayName: Peace Zone
+	// Description: Spawn rates reduced and hardmode spawns disabled
+}

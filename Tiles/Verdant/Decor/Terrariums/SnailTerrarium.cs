@@ -121,3 +121,11 @@ public class CanopySnailTerrarium : SnailTerrarium
         return true;
     }
 }
+
+public class DropsnailTerrarium : SnailTerrarium
+{
+    protected override int NPCType => ModContent.NPCType<Dropsnail>();
+    protected override Point NPCSize => new(26, 16);
+
+    protected override float GetOffset(int i, int j) => (i - j) * MathHelper.PiOver4 + MathHelper.PiOver2;
+}

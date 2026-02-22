@@ -34,7 +34,7 @@ public class Dropsnail : ModNPC
 
     public override void SetStaticDefaults()
     {
-        Main.npcFrameCount[Type] = 4;
+        Main.npcFrameCount[Type] = 6;
         NPCID.Sets.CountsAsCritter[Type] = true;
     }
 
@@ -49,9 +49,10 @@ public class Dropsnail : ModNPC
         NPC.value = 0f;
         NPC.knockBackResist = 0f;
         NPC.dontCountMe = true;
-        //NPC.aiStyle = -1;
         NPC.noGravity = true;
-
+        
+        AIType = NPCID.Snail;
+        AnimationType = NPCID.Snail;
         SpawnModBiomes = [ModContent.GetInstance<Scenes.VerdantBiome>().Type];
     }
 
@@ -62,9 +63,10 @@ public class Dropsnail : ModNPC
         return true;
     }
 
-    public override void AI()
+    private void Old_AI()
     {
-        return;
+        Old_AI(); // Disables the "unused code"
+
         if (NPC.direction == 0)
         {
             State = Main.rand.NextBool() ? Direction.Left : Direction.Right;
@@ -241,6 +243,6 @@ public class Dropsnail : ModNPC
         if (spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant && spawnInfo.PlayerInTown)
             return 1.2f;
 
-        return spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant ? 0.5f : 0f;
+        return spawnInfo.Player.GetModPlayer<VerdantPlayer>().ZoneVerdant ? 0.8f : 0f;
     }
 }
