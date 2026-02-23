@@ -1801,3 +1801,8 @@ PuffSofaItem: {
 	// DisplayName: Puff Sofa Item
 	// Tooltip: ""
 }
+
+PuffPianoItem: {
+	// DisplayName: Puff Piano Item
+	// Tooltip: ""
+}

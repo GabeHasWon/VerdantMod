@@ -6,19 +6,29 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Verdant.Dusts;
-using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
+using Verdant.Items;
+using Verdant.Items.Verdant;
+using Verdant.Items.Verdant.Materials;
 
-namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
+namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-public class MysteriaPiano : ModTile
+public class PuffPiano : ModTile
 {
+    [Sacrifice(3)]
+    public class PuffPianoItem : ModItem
+    {
+        public override void SetDefaults() => QuickItem.SetBlock(this, 40, 30, ModContent.TileType<PuffPiano>());
+        public override void AddRecipes() 
+            => QuickItem.AddRecipe(this, TileID.Sawmill, 1, (ModContent.ItemType<LushLeaf>(), 7), (ModContent.ItemType<PuffMaterial>(), 8), (ItemID.Book, 1), (ItemID.Bone, 4));
+    }
+
     public override void SetStaticDefaults()
     {
         Main.tileFrameImportant[Type] = true;
         Main.tileNoAttach[Type] = true;
         Main.tileTable[Type] = true;
         Main.tileLavaDeath[Type] = true;
-        
+
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileID.Sets.HasOutlines[Type] = true;
 
@@ -27,11 +37,11 @@ public class MysteriaPiano : ModTile
         TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.addTile(Type);
 
-        DustType = ModContent.DustType<MysteriaWoodDust>();
+        DustType = ModContent.DustType<PuffDust>();
 
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         AddMapEntry(new Color(124, 93, 68), Language.GetText("ItemName.Piano"));
-        RegisterItemDrop(ModContent.ItemType<MysteriaPianoItem>());
+        RegisterItemDrop(ModContent.ItemType<PuffPianoItem>());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

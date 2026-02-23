@@ -76,16 +76,16 @@ public class PuffSlimeSmall : ModNPC
 
         bool left = NPC.direction == -1;
 
-        DrawSingleEye(spriteBatch, new Vector2(left ? 0 : 2, 4), screenPos, drawColor, _leftBlink);
-        DrawSingleEye(spriteBatch, new Vector2(NPC.width - (left ? 6 : 4), 4), screenPos, drawColor, _rightBlink);
+        DrawSingleEye(spriteBatch, new Vector2(left ? 0 : 2, 4), screenPos, _leftBlink);
+        DrawSingleEye(spriteBatch, new Vector2(NPC.width - (left ? 6 : 4), 4), screenPos, _rightBlink);
     }
 
-    private void DrawSingleEye(SpriteBatch spriteBatch, Vector2 offset, Vector2 screenPos, Color drawColor, float blinkTimer)
+    private void DrawSingleEye(SpriteBatch spriteBatch, Vector2 offset, Vector2 screenPos, float blinkTimer)
     {
         Texture2D tex = _eyeTex.Value;
         bool blink = blinkTimer % 70 > 62;
         Vector2 position = NPC.position + offset - screenPos;
-        Color color = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor(NPC.Center.ToTileCoordinates(), drawColor);
+        Color color = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor(NPC.Center.ToTileCoordinates());
         Rectangle source = new(0, 0, 4, 4);
 
         if (blink)

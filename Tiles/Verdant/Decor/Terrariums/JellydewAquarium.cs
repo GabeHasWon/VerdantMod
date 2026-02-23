@@ -26,7 +26,7 @@ public class JellydewAquarium : Aquarium
             int index = (int)Math.Ceiling(offset) % offsets.Length;
             Vector2 off = new(MathHelper.Lerp(offsets[index], offsets[index == offsets.Length - 1 ? 0 : index + 1], offset % 1) + 20, 8);
             float rot = rotations[index] == 1 ? -MathHelper.PiOver2 : MathHelper.PiOver2;
-            var src = new Rectangle(0, 0, 18, 20);
+            var src = new Rectangle(0, 22 * (int)(Main.GameUpdateCount * 0.05f % 4), 18, 20);
 
             spriteBatch.Draw(tex, TileHelper.TileCustomPosition(i, j, new Vector2(MathF.Round(off.X), off.Y)), src, Lighting.GetColor(i, j), rot, new(9, 10), 1f, SpriteEffects.None, 0);
         }

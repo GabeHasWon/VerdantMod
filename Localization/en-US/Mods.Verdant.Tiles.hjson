@@ -55,10 +55,10 @@ VerdantTree.MapEntry: Tree
 PeaceTreeTop.MapEntry: Peace Tree Top
 MysteriaTreeTop.MapEntry: Mysteria Tree Top
 MysteriaTree.MapEntry: Mysteria Tree
-VerdantRedPetal.MapEntry: Verdant Red Petal
-VerdantPinkPetal.MapEntry: Verdant Pink Petal
-VerdantLeaves.MapEntry: Verdant Leaves
-VerdantGrassLeaves.MapEntry: Verdant Grass Leaves
+VerdantRedPetal.MapEntry: Red Petal
+VerdantPinkPetal.MapEntry: Pink Petal
+VerdantLeaves.MapEntry: Vine
+VerdantGrassLeaves.MapEntry: Leaves
 SnailShellBlock.MapEntry: Snail Shells
 PuffBlock.MapEntry: Puff Block
 OvergrownBricks.MapEntry: Overgrown Bricks
@@ -72,6 +72,6 @@ ThornTile.MapEntry: Thorns
 LushPlanks.MapEntry: Lush Planks
 MysteriaFluff.MapEntry: Mysteria Fluff
 LushGrass.MapEntry: Lush Grass
-LightbulbLeaves.MapEntry: Lightbulb Leaves
+LightbulbLeaves.MapEntry: "{$VerdantGrassLeaves.MapEntry}"
 TrimmedOvergrownBricks.MapEntry: Trimmed Overgrown Bricks
 PuffDresser.MapEntry: Puff Dresser

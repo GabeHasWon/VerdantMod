@@ -8,12 +8,19 @@ Additions:
 	- Added rain particles, splashes
 	- Added new steam effect, also disabled with the config option for steam
 	- Added new critters for rain: Dropsnail, Jellydew
+	- Added aquariums/terrariums for both critters
+	- Added Apotheosis dialogue for Tear Rain
 - Added Smokebud, a monolith-style tile which enables the steam effect anywhere - crafted with Lush Leaves in a Graveyard
 - Added Tearroot, a monolith-style tile which enables the rain steam effect & foreground objects anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
 - Added a bunch of additional Apotheosis item interaction dialogue + functionality
 - Added new fish functionality in the raining Verdant
 - Added new Puff furniture
 - Added new Flower of Tears, which constantly rains down Tear Rain tears from itself & counts as a water source
+- Added Mod.Call functionality: 
+	- ("AnyRainAt", int y) - determines if there's rain aboveground or Tear Rain belowground
+	- ("TearRainAt", int y) - determines if there's Tear Rain belowground
+	- ("TearRain") - returns if Tear Rain is occurring currently
+	NOTE: Both of the RainAt methods *do not* check for tile type - solely if the associated events are occuring.
 
 Fixes:
 - Fixed Steam effect not appearing the first time the Verdant is entered
@@ -23,6 +30,7 @@ Fixes:
 - Fixed Lush Winglet, Axolotl hit effects causing issues on servers
 - Fixed foreground elements not using visual offset with stepping up tiles
 - Maybe finally actually fixed Bumblebees causing errors in their behaviour
+- Fixed issue where Puff Slime eyes have lighting applied twice
 
 Changes/Edits:
 - Waterberry Bushes now regrow when in rain (surface or Tear Rain)
@@ -38,3 +46,5 @@ Changes/Edits:
 - Added 'marker buff' for the Peace Tree to clarify what it does & when
 - Fixed Peace Tree increasing spawnrates substantially instead of reducing them
 - Increased the rate at which you catch Vine Hooks from Verdant hardmode fishing
+- Added Smart Cursor hover outlines to all Verdant pianos
+- Animated Bulbbox Jelly's aquarium sprite

@@ -17,7 +17,9 @@ public class VerdantPiano : ModTile
         Main.tileNoAttach[Type] = true;
         Main.tileTable[Type] = true;
         Main.tileLavaDeath[Type] = true;
+
         TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.HasOutlines[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.Height = 2;

@@ -14,6 +14,7 @@ using Verdant.Tiles;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Terraria.ModLoader.Core;
 using ReLogic.Content;
+using Verdant.Systems.TearRain;
 
 namespace Verdant;
 
@@ -108,7 +109,11 @@ public partial class VerdantMod : Mod
             CallMethods.SetVerdantArea(args);
             return null;
         }
+        else if (message == "anyrainat")
+            return CallMethods.AnyRainAt(args[1..]);
+        else if (message == "tearrain")
+            return TearRainSystem.Raining;
 
-        throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis SetVerdantArea");
+        throw new ArgumentException("[Verdant] Call didn't recieve a valid message! Valid messages are:\nInVerdant NearApotheosis SetVerdantArea AnyRainAt");
     }
 }

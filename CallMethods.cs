@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Verdant.Systems.TearRain;
 using Verdant.World;
 
 namespace Verdant;
@@ -57,5 +58,37 @@ internal class CallMethods
                 throw new ArgumentException($"[Verdant] First, second, third and fourth arguments of {nameof(SetVerdantArea)} must be ints!");
         }
         throw new ArgumentException($"[Verdant] {nameof(SetVerdantArea)} call matched no valid override!");
+    }
+
+    internal static bool AnyRainAt(object[] args)
+    {
+        if (args.Length != 1)
+        {
+            throw new ArgumentException("[Verdant] AnyRainAt takes exactly one parameter: int y");
+        }
+
+        if (args[0] is not IConvertible)
+        {
+            throw new ArgumentException("[Verdant] AnyRainAt parameter must be an int or convertible to int!");
+        }
+
+        int y = Convert.ToInt32(args[0]);
+        return TearRainSystem.AnyRainingAt(y);
+    }
+
+    internal static bool TearRainAt(object[] args)
+    {
+        if (args.Length != 1)
+        {
+            throw new ArgumentException("[Verdant] TearRainAt takes exactly one parameter: int y");
+        }
+
+        if (args[0] is not IConvertible)
+        {
+            throw new ArgumentException("[Verdant] TearRainAt parameter must be an int or convertible to int!");
+        }
+
+        int y = Convert.ToInt32(args[0]);
+        return TearRainSystem.RainingAt(y);
     }
 }

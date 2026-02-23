@@ -17,8 +17,8 @@ public class BulbboxJellyAquarium : Aquarium
         Tile tile = Main.tile[i, j];
         if (tile.TileFrameX == 72 && tile.TileFrameY == 36)
         {
-            float[] offsets =   new[] { 0f, 18, 22, 26, 26, 26, 26, 10, -10, -16, -20, -20, -20, -20, -6, 0 };
-            float[] rotations = new[] { 1,  1f, 1f, 1,  1,  1,  -1,  -1, -1,  -1,  -1,  -1,  -1,  1,  1,  1 };
+            float[] offsets =   [0f, 18, 22, 26, 26, 26, 26, 10, -10, -16, -20, -20, -20, -20, -6, 0];
+            float[] rotations = [1,  1f, 1f, 1,  1,  1,  -1,  -1, -1,  -1,  -1,  -1,  -1, +01, +1, 1];
 
             Main.instance.LoadNPC(ModContent.NPCType<BulbboxJelly>());
             Texture2D tex = TextureAssets.Npc[ModContent.NPCType<BulbboxJelly>()].Value;
@@ -26,7 +26,7 @@ public class BulbboxJellyAquarium : Aquarium
             int index = (int)Math.Ceiling(offset) % offsets.Length;
             Vector2 off = new(MathHelper.Lerp(offsets[index], offsets[index == offsets.Length - 1 ? 0 : index + 1], offset % 1) + 20, 8);
             float rot = rotations[index] == 1 ? -MathHelper.PiOver2 : MathHelper.PiOver2;
-            var src = new Rectangle(0, 52, 22, 24);
+            var src = new Rectangle(0, 26 * (int)(Main.GameUpdateCount * 0.07f % 4), 22, 24);
 
             spriteBatch.Draw(tex, TileHelper.TileCustomPosition(i, j, new Vector2(MathF.Round(off.X), off.Y)), src, Lighting.GetColor(i, j), rot, new(11, 12), 1f, SpriteEffects.None, 0);
         }

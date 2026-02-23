@@ -72,6 +72,6 @@ ThornTile.MapEntry: 荆棘
 // LushPlanks.MapEntry: Lush Planks
 // MysteriaFluff.MapEntry: Mysteria Fluff
 // LushGrass.MapEntry: Lush Grass
-// LightbulbLeaves.MapEntry: Lightbulb Leaves
+// LightbulbLeaves.MapEntry: "{$VerdantGrassLeaves.MapEntry}"
 // TrimmedOvergrownBricks.MapEntry: Trimmed Overgrown Bricks
 // PuffDresser.MapEntry: Puff Dresser
