@@ -357,5 +357,24 @@ Apotheosis: {
 			1: ...I hope I don't forget you.
 			TooSoon: ...I don't want to, not...yet.
 		}
+
+		HardyVineBook: {
+			0: My old notes on those vines, huh?
+			1: Wild to think.
+		}
+
+		LeafBook.0: I wish I could still draw like that.
+
+		LightbulbBook: {
+			0: Those small, gentle lights.
+			1: Hopefully they make your stay...nicer.
+		}
+
+		RockBook: {
+			0: I remember those aspirations,
+			1: perhaps they were foolhardy.
+			2: Or, perhaps, just perhaps,
+			3: they lie in your future instead?
+		}
 	}
 }

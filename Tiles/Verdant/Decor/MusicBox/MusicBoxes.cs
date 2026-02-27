@@ -26,3 +26,9 @@ public class VibrantHorizonBoxTile : MusicBoxTile
     public override string MusicPath => "Verdant/Sounds/Music/VibrantHorizon";
     public override int ItemType => ModContent.ItemType<VibrantHorizonBox>();
 }
+
+public class TearRainEventBoxTile : MusicBoxTile
+{
+    public override string MusicPath => "Verdant/Sounds/Music/TearRainEvent";
+    public override int ItemType => ModContent.ItemType<VibrantHorizonBox>();
+}

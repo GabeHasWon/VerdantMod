@@ -1,6 +1,9 @@
 1.3.0.0
 "Tear Rain"
 
+It's nice to see you again.
+- The Apotheosis
+
 Additions:
 - Added custom Music Display visual
 - Added 6 new Verdant-related achievements
@@ -10,6 +13,7 @@ Additions:
 	- Added new critters for rain: Dropsnail, Jellydew
 	- Added aquariums/terrariums for both critters
 	- Added Apotheosis dialogue for Tear Rain
+	- Added new song, '"Of Petrichor"', by mzxie (thank you!) + music box
 - Added Smokebud, a monolith-style tile which enables the steam effect anywhere - crafted with Lush Leaves in a Graveyard
 - Added Tearroot, a monolith-style tile which enables the rain steam effect & foreground objects anywhere - crafted with Lush Leaves and Waterberries in a Graveyard
 - Added a bunch of additional Apotheosis item interaction dialogue + functionality
@@ -21,6 +25,7 @@ Additions:
 	- ("TearRainAt", int y) - determines if there's Tear Rain belowground
 	- ("TearRain") - returns if Tear Rain is occurring currently
 	NOTE: Both of the RainAt methods *do not* check for tile type - solely if the associated events are occuring.
+- Added new book, "Scribbles", from shimmering 'My Apotheosis'
 
 Fixes:
 - Fixed Steam effect not appearing the first time the Verdant is entered

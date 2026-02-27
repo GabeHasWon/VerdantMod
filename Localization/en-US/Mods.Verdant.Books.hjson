@@ -222,3 +222,30 @@ ApotheosisBook: {
 	
 	Title: "'My Apotheosis'"
 }
+
+PoetryBook: {
+	Title: Scribbles
+	Content:
+		'''
+		O'er wandering wood,
+		Under sleeping flowers;
+
+		O'er withering flesh,
+		Beside bones o' towers;
+
+		I found that
+		I know not
+		My own role, I'd not found
+
+		O'er leaf-bristle and life-trunk
+		Of sundew and petrichor
+
+		I found what
+		I'd known not
+		From the soul; that old sound
+
+		Of sundew and of petrichor
+
+		- e. m.
+		'''
+}

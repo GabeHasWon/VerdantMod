@@ -1773,36 +1773,46 @@ JellydewAquariumItem: {
 }
 
 PuffBathtubItem: {
-	// DisplayName: Puff Bathtub Item
+	// DisplayName: Puff Bathtub
 	// Tooltip: ""
 }
 
 PuffBedItem: {
-	// DisplayName: Puff Bed Item
+	// DisplayName: Puff Bed
 	// Tooltip: ""
 }
 
 PuffClockItem: {
-	// DisplayName: Puff Clock Item
+	// DisplayName: Puff Clock
 	// Tooltip: ""
 }
 
 PuffTableItem: {
-	// DisplayName: Puff Table Item
+	// DisplayName: Puff Table
 	// Tooltip: ""
 }
 
 PuffPlatformItem: {
-	// DisplayName: Puff Platform Item
+	// DisplayName: Puff Platform
 	// Tooltip: ""
 }
 
 PuffSofaItem: {
-	// DisplayName: Puff Sofa Item
+	// DisplayName: Puff Sofa
 	// Tooltip: ""
 }
 
 PuffPianoItem: {
-	// DisplayName: Puff Piano Item
+	// DisplayName: Puff Piano
 	// Tooltip: ""
+}
+
+TearRainEventBox: {
+	// DisplayName: Music Box ("Of Petrichor")
+	// Tooltip: ""
+}
+
+PoetryBook: {
+	// DisplayName: '''"Scribbles"'''
+	// Tooltip: Right click to read
 }

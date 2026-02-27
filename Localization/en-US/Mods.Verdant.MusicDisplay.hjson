@@ -19,3 +19,8 @@ PetalsFall: {
 	DisplayName: Petals Fall (Raining Verdant Theme)
 	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
 }
+
+TearRainEvent: {
+	DisplayName: '''"Of Petrichor" (Tear Rain Theme)'''
+	Author: by mzxie
+}

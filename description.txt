@@ -1,14 +1,15 @@
----- Verdant ----
+------- Verdant -------
+"Tear Rain" Update
 by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 251 new items
-    - 171 new tiles
+    - 286 new items
+    - 201 new tiles
     - 4 new armor sets
     - Absolutely no new town NPCs
-    - 16 new NPCs (mostly critters)
-    - 4 brand new music tracks
+    - 21 new NPCs (mostly critters)
+    - 5 brand new music tracks
     - A new foreground and background system that gives more life to the biome
     - A sort of quest system by the statue in the center of the biome, the Apotheosis
     - Way too much decoration
@@ -27,13 +28,12 @@ If any of you could chip in, I'd appreciate it greatly!
 https://www.patreon.com/gabehaswon
 
 --Contributors--
+Helton Yan (Discord: heltonyan#8219) - "Vibrant Horizon" (Verdant Surface Day Theme)
+Soundcloud: https://soundcloud.com/heltonyan, Twitter: https://twitter.com/heltonyan
+
+mzxie - '"Of Petrichor"' (Tear Rain Theme)
 MrBurrito7w7 - Spanish localization
 gentleMar - Chinese localization
-
-Helton Yan (Discord: heltonyan#8219) - "Vibrant Horizon" track
-Soundcloud: https://soundcloud.com/heltonyan
-Twitter: https://twitter.com/heltonyan
-
 Liz - SFX, parts of song compositions, feedback/design & The Plant
 
 --Beta Testers / Feedback--
@@ -51,5 +51,4 @@ torrah - Snail Statue
 
 All of my current and former Patreons
 
-
-and, of course, all of you!
+...and, of course, all of you!

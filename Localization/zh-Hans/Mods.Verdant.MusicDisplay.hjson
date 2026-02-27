@@ -19,3 +19,8 @@ PetalsFall: {
 	DisplayName: 花瓣飘落 (雨中葱茏之地主题曲)
 	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
 }
+
+TearRainEvent: {
+	// DisplayName: '''"Of Petrichor" (Tear Rain Theme)'''
+	// Author: by mzxie
+}

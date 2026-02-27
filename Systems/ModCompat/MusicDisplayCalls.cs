@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
 
 namespace Verdant.Systems.ModCompat;
 
@@ -32,8 +31,10 @@ internal class MusicDisplayCalls : ModSystem
         AddMusic("Sounds/Music/ApotheosisLullaby", "ApotheosisLullaby");
         AddMusic("Sounds/Music/PetalsFall", "PetalsFall");
         AddMusic("Sounds/Music/VibrantHorizon", "VibrantHorizon");
+        AddMusic("Sounds/Music/TearRainEvent", "TearRainEvent");
 
-        object x = display.Call("AddPreDraw", (Delegate)SpecialDraw, new short[] { MusicSlot("TearRain"), MusicSlot("ApotheosisLullaby"), MusicSlot("PetalsFall"), MusicSlot("VibrantHorizon") });
+        object x = display.Call("AddPreDraw", (Delegate)SpecialDraw, new short[] { MusicSlot("TearRain"), MusicSlot("ApotheosisLullaby"), MusicSlot("PetalsFall"), 
+            MusicSlot("VibrantHorizon"), MusicSlot("TearRainEvent") });
         return;
 
         short MusicSlot(string name)
@@ -65,40 +66,4 @@ internal class MusicDisplayCalls : ModSystem
 
         return true;
     }
-
-    public static bool SpecialDraw_Old(ref string nowText, ref string title, ref string author, ref string sub, ref float baseScale, Color[] colors, ref float delta, float defaultMaxDelta,
-    ref float x, ref float y, ref Vector2 originMod, ref float baseAlpha, float? alwaysOn)
-    {
-        string newTitle = title;
-        title = "";
-
-        float factor = 1;
-
-        if (delta < 4f)
-            factor = delta / 4f;
-        else if (delta > 6f)
-            factor = 1 - (delta - 6f) / 4f;
-
-        if (alwaysOn.HasValue)
-            factor = 1;
-
-        BuildString(ref newTitle);
-        Vector2 size = FontAssets.DeathText.Value.MeasureString(newTitle);
-        DrawString(newTitle, new Vector2(x, y - 42), colors[0] * baseAlpha, 0, size * originMod, new Vector2(0.85f) * baseScale);
-
-        BuildString(ref author);
-        BuildString(ref sub);
-        BuildString(ref nowText);
-
-        void BuildString(ref string s)
-        {
-            int len = (int)MathHelper.Clamp(MathHelper.Lerp(0, s.Length, factor), 0, s.Length);
-            s = s[..len];
-        }
-
-        return true;
-    }
-
-    private static void DrawString(string text, Vector2 position, Color baseColor, float rotation, Vector2 origin, Vector2 baseScale, float maxWidth = -1f, float spread = 2f)
-     => ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.DeathText.Value, text, position, baseColor, rotation, origin, baseScale, maxWidth, spread);
 }

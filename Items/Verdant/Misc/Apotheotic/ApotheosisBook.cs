@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Verdant.Items.Verdant.Blocks.Misc.Books;
 using Verdant.Systems.ScreenText;
 using Verdant.Systems.ScreenText.Caches;
 
@@ -9,6 +10,12 @@ namespace Verdant.Items.Verdant.Misc.Apotheotic;
 
 public class ApotheosisBook : ApotheoticItem
 {
+    public override void SetStaticDefaults()
+    {
+        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PoetryBook>();
+        ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<PoetryBook>()] = Type;
+    }
+
     public override void SetDefaults() => QuickItem.SetMaterial(this, 36, 46, ItemRarityID.Purple, 1, false, 0, true);
     public override bool AltFunctionUse(Player player) => true;
 

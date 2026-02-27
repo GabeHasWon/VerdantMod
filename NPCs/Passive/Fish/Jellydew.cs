@@ -61,7 +61,7 @@ public class Jellydew : ModNPC
         NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
         NPC.noGravity = NPC.wet;
         NPC.TargetClosest(faceTarget: false);
-        Lighting.AddLight(NPC.Center, new Vector3(0.6f, 0.6f, 0.7f));
+        Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.2f, 0.23f));
 
         bool canHitPlayer = Collision.CanHit(NPC.position, NPC.width, NPC.height, Target.position, Target.width, Target.height);
         bool playerVisible = Target.wet && !Target.dead && canHitPlayer;
