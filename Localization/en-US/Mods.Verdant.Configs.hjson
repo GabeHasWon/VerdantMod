@@ -35,11 +35,16 @@ VerdantClientConfig: {
 
 	JungleSpawn: {
 		Label: "[i:620] Jungle Spawn"
-		Tooltip: Forces the Verdant to only spawn in the Jungle. This is less likely to overwrite most modded biomes if that is an issue.
+		Tooltip: Forces the Verdant to only spawn in the Jungle. This is less likely to overwrite most modded biomes if that is an issue. This does not work if the Center Spawn option is on.
 	}
 
 	DialogueSpeed: {
 		Label: "[i:4485] Dialogue Speed"
 		Tooltip: Increases or decreases the dialogue speed for all screen text.
+	}
+
+	CenterSpawn: {
+		Label: "[i:9] Center Spawn"
+		Tooltip: Forces the Verdant to spawn exclusively under the world's spawn. This may cause overlap with biomes like the Desert and Snow, and supercedes the Jungle Spawn config option.
 	}
 }

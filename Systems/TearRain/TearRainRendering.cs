@@ -13,6 +13,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Systems.TearRain;
 
+[Autoload(true, Side = ModSide.Client)]
 internal class TearRainRendering : ModSystem
 {
     public struct Rain()

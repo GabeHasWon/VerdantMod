@@ -23,6 +23,9 @@ public class VerdantClientConfig : ModConfig
     [DefaultValue(false)]
     public bool JungleSpawn;
 
+    [DefaultValue(false)]
+    public bool CenterSpawn;
+
     //[DefaultValue(true)]
     //[Label("$Mods.Verdant.Configs.FancyBookUILabel")]
     //[Tooltip("$Mods.Verdant.Configs.FancyBookUITooltip")]

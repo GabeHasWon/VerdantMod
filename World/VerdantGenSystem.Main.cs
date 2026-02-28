@@ -40,69 +40,42 @@ public partial class VerdantGenSystem : ModSystem
 
         Mod.Logger.Info("World Seed: " + WorldGen._genRandSeed + "\nNoise Seed: " + VerdantSystem.genNoise.Seed);
 
-        static bool IsInvalidCenterX(int x)
-        {
-            if (ModContent.GetInstance<VerdantClientConfig>().JungleSpawn)
-            {
-                for (int y = 200; y < Main.maxTilesY - 200; ++y)
-                    if (TileHelper.ActiveType(x, y, TileID.JungleGrass))
-                        return false;
-
-                return true;
-            }
-
-            return Math.Abs(x - (Main.maxTilesX / 2)) < 220;
-        }
-
-        static int GetCenterX()
-        {
-            if (WorldGen.remixWorldGen)
-                return WorldGen.genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 3f * 2));
-
-            int x;
-
-            do
-            {
-                x = WorldGen.genRand.Next(Main.maxTilesX / 5, (int)(Main.maxTilesX / 1.25f));
-            } while (IsInvalidCenterX(x));
-            return x;
-        }
-
-        static int GetCenterY() => ModContent.GetInstance<VerdantClientConfig>().JungleSpawn ?
-            WorldGen.genRand.Next((int)(Main.maxTilesY / 2.7f), (int)(Main.maxTilesY / 1.9f)) :
-            WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f));
-
-        Point center = new(GetCenterX(), GetCenterY());
+        Point center = DetermineCenter();
 
         int FluffX = (int)(230 * WorldSize);
         int FluffY = (int)(130 * WorldSize);
-
         int total = 0;
+
+        HashSet<int> invalidTypes = [TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick, TileID.IceBlock, TileID.SnowBlock]; //Vanilla blacklist
+
         while (true) //Find valid position for biome
         {
-        reset:
-            center = new Point(GetCenterX(), GetCenterY());
-            total = 0;
-            if (GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y + FluffY)
-                || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y + FluffY)
-                || GenVars.UndergroundDesertLocation.Contains(center))
-                continue;
-            for (int i = center.X - (int)(FluffX * 1.2f); i < center.X + (FluffX * 1.2f); ++i) //Assume width
+            if (!ModContent.GetInstance<VerdantClientConfig>().CenterSpawn)
             {
-                for (int j = center.Y - 140; j < center.Y + 140; ++j) //Assume height
+            reset:
+                center = new Point(GetCenterX(), GetCenterY());
+                total = 0;
+                if (GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X - FluffX, center.Y + FluffY)
+                    || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y - FluffY) || GenVars.UndergroundDesertLocation.Contains(center.X + FluffX, center.Y + FluffY)
+                    || GenVars.UndergroundDesertLocation.Contains(center))
+                    continue;
+                for (int i = center.X - (int)(FluffX * 1.2f); i < center.X + (FluffX * 1.2f); ++i) //Assume width
                 {
-                    List<int> invalidTypes = new() { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.LihzahrdBrick, TileID.IceBlock, TileID.SnowBlock }; //Vanilla blacklist
+                    for (int j = center.Y - 140; j < center.Y + 140; ++j) //Assume height
+                    {
+                        if (ModLoader.TryGetMod("SpiritMod", out Mod spirit)) //Spirit blacklist
+                            invalidTypes.Add(spirit.Find<ModTile>("BriarGrass").Type);
+                        if (ModLoader.TryGetMod("CalamityMod", out Mod calamity)) //Calamity blacklist
+                            invalidTypes.Add(calamity.Find<ModTile>("Navystone").Type);
 
-                    if (ModLoader.TryGetMod("SpiritMod", out Mod spirit)) //Spirit blacklist
-                        invalidTypes.Add(spirit.Find<ModTile>("BriarGrass").Type);
-                    if (ModLoader.TryGetMod("CalamityMod", out Mod calamity)) //Calamity blacklist
-                        invalidTypes.Add(calamity.Find<ModTile>("Navystone").Type);
+                        Tile tile = Framing.GetTileSafely(i, j);
 
-                    if ((Framing.GetTileSafely(i, j).HasTile && invalidTypes.Any(x => Framing.GetTileSafely(i, j).TileType == x)))
-                        total++;
+                        if (tile.HasTile && invalidTypes.Contains(tile.TileType))
+                            total++;
 
-                    if (total > 40)
-                        goto reset;
+                        if (total > 40)
+                            goto reset;
+                    }
                 }
             }
 
@@ -132,12 +105,56 @@ public partial class VerdantGenSystem : ModSystem
         AddWater();
         AddWaterfalls();
 
-        if (!WorldGen.remixWorldGen)
+        if (!WorldGen.remixWorldGen && !ModContent.GetInstance<VerdantClientConfig>().CenterSpawn)
         {
             p.Message = Language.GetTextValue("Mods.Verdant.Generation.Surface");
             p.Value = 0.9f;
             AddSurfaceTree();
         }
+    }
+
+    private static int GetCenterX()
+    {
+        if (WorldGen.remixWorldGen)
+            return WorldGen.genRand.Next(Main.maxTilesX / 3, (int)(Main.maxTilesX / 3f * 2));
+
+        if (ModContent.GetInstance<VerdantClientConfig>().CenterSpawn)
+            return Main.maxTilesX / 2 + WorldGen.genRand.Next(-20, 20);
+
+        int x;
+        
+        do
+        {
+            x = WorldGen.genRand.Next(Main.maxTilesX / 5, (int)(Main.maxTilesX / 1.25f));
+        } while (IsInvalidCenterX(x));
+        return x;
+    }
+
+    private static int GetCenterY() => ModContent.GetInstance<VerdantClientConfig>() is { JungleSpawn: true, CenterSpawn: false }
+        ? WorldGen.genRand.Next((int)(Main.maxTilesY / 2.7f), (int)(Main.maxTilesY / 1.9f))
+        : WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f));
+
+    static bool IsInvalidCenterX(int x)
+    {
+        if (ModContent.GetInstance<VerdantClientConfig>().JungleSpawn)
+        {
+            for (int y = 200; y < Main.maxTilesY - 200; ++y)
+                if (TileHelper.ActiveType(x, y, TileID.JungleGrass))
+                    return false;
+
+            return true;
+        }
+
+        return Math.Abs(x - (Main.maxTilesX / 2)) < 220;
+    }
+
+    private static Point DetermineCenter()
+    {
+        if (ModContent.GetInstance<VerdantClientConfig>().CenterSpawn)
+            return new Point(Main.maxTilesX / 2 + WorldGen.genRand.Next(-40, 40), WorldGen.genRand.Next((int)(Main.maxTilesY / 2.1f), (int)(Main.maxTilesY / 1.65f)));
+
+        Point center = new(GetCenterX(), GetCenterY());
+        return center;
     }
 
     private static void AddWaterfalls()

@@ -42,4 +42,9 @@ VerdantClientConfig: {
 		Label: "[i:4485] Velocidad de diálogo"
 		Tooltip: Incrementa o disminuye la velocidad del diálogo para todo el texto
 	}
+
+	CenterSpawn: {
+		// Label: "[i:9] Center Spawn"
+		// Tooltip: Forces the Verdant to spawn exclusively under the world's spawn. This may cause overlap with biomes like the Desert and Snow, and supercedes the Jungle Spawn config option.
+	}
 }
