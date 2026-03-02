@@ -9,7 +9,7 @@ namespace Verdant.Items.Verdant.Blocks.Misc.Books;
 [Sacrifice(1)]
 public class PoetryBook : ModItem
 {
-	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<SpecialBooks>(), rarity: ItemRarityID.Purple, maxStack: 1, createStyle: 7, autoReuse: false);
+	public override void SetDefaults() => QuickItem.SetBlock(this, 28, 32, ModContent.TileType<SpecialBooks>(), rarity: ItemRarityID.Purple, maxStack: 1, createStyle: 8, autoReuse: false);
 	public override bool AltFunctionUse(Player player) => true;
 
     public override bool CanUseItem(Player player)
@@ -33,7 +33,7 @@ public class PoetryBook : ModItem
 			return true;
 		}
 
-		Item.placeStyle = 7 + Main.rand.Next(2);
+		Item.placeStyle = 8 + Main.rand.Next(2);
 		return null;
 	}
 }

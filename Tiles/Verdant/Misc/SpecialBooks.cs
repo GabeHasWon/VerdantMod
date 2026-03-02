@@ -20,25 +20,9 @@ internal class SpecialBooks : ModTile
         RegisterItemDrop(ModContent.ItemType<LeafBook>(), 2, 3);
         RegisterItemDrop(ModContent.ItemType<HardyVineBook>(), 4, 5);
         RegisterItemDrop(ModContent.ItemType<RockBook>(), 5, 6);
+        RegisterItemDrop(ModContent.ItemType<PoetryBook>(), 7, 8);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-
-    //public override bool Drop(int i, int j)
-    //{
-    //    Tile tile = Main.tile[i, j];
-    //    int style = tile.TileFrameX / 18;
-
-    //    if (style <= 1)
-    //        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LightbulbBook>());
-    //    else if (style <= 3)
-    //        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<LeafBook>());
-    //    else if (style <= 5)
-    //        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<HardyVineBook>());
-    //    else if (style <= 7)
-    //        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<RockBook>());
-
-    //    return false;
-    //}
 }
