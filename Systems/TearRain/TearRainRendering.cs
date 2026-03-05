@@ -66,10 +66,10 @@ internal class TearRainRendering : ModSystem
         const int ScreenOffset = 20;
 
         Vector2 screenPos = Main.screenPosition;
-        int left = (int)(screenPos.X / 16f) - ScreenOffset;
-        int right = (int)((screenPos.X + Main.screenWidth) / 16f) + ScreenOffset;
-        int top = Math.Min((int)(screenPos.Y / 16f) - ScreenOffset, (int)Main.worldSurface);
-        int bottom = (int)((screenPos.Y + Main.screenHeight) / 16f) + ScreenOffset;
+        int left = Math.Max(ScreenOffset, (int)(screenPos.X / 16f) - ScreenOffset);
+        int right = Math.Min(Main.maxTilesX - ScreenOffset, (int)((screenPos.X + Main.screenWidth) / 16f) + ScreenOffset);
+        int top = Math.Max((int)Main.worldSurface, (int)(screenPos.Y / 16f) - ScreenOffset);
+        int bottom = Math.Min(Main.maxTilesY - 200, (int)((screenPos.Y + Main.screenHeight) / 16f) + ScreenOffset);
 
         int chance = (int)MathHelper.Lerp(400, 16, TearRainSystem.RainStrength);
         byte frameRange = (byte)(TearRainSystem.RainStrength > 0.6f ? 6 : 3);
