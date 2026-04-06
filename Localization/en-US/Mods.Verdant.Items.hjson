@@ -537,7 +537,7 @@ RootRopeItem: {
 
 VerdantFlowerBulb: {
 	DisplayName: Flower Bulb
-	Tooltip: Can only be placed on Verdant Leaf or Verdant Vine walls
+	Tooltip: Can only be placed on Grass, Flower, Lush Leaf or Lush Vine walls
 }
 
 VerdantStrongVineMaterial: {
