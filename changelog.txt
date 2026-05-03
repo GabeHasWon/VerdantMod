@@ -1,3 +1,15 @@
 1.3.0.3
 - Clarified all Flower Bulb tooltips
 - Added Flower walls as a valid wall for all wall flowers
+- Fixed issue where "Scribbles" book, Rock Research wouldn't drop the appropriate item
+- Hid the "0 seconds duration" buff length tooltip from Propellerpad
+- Removed mana cost from Propellerpad
+- Made Propellerpad no longer count as a minion, doesn't take minion slots
+	This allows it to be used when a minion is summoned, and for it to not be removed when a minion is summoned after it
+- Added Propellerpad vfx and sfx for distance teleports
+- Modified the Propellerpad vfx to clarify how long it has left to fly
+- Added Propellerpad vfx to show when it's 'recharging'
+- Allowed Propellerpad to recharge when the player is on a solid top tile, like platforms
+- Clarified Propellerpad tooltip for usage
+- Made Propellerpad not an accessory, instead being only usable
+- Fixed Music Display visuals being offset incorrectly

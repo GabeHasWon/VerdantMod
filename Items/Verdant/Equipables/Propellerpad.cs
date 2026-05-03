@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,27 +13,14 @@ class Propellerpad : ApotheoticItem
 {
     public override void SetDefaults()
     {
-        QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<PropellerpadProjectile>(), 9, 0, 24, 0, 0, ItemRarityID.Green);
+        QuickItem.SetStaff(this, 48, 48, ModContent.ProjectileType<PropellerpadProjectile>(), 9, 0, 0, 0, 0, ItemRarityID.Green);
 
-        Item.accessory = true;
         Item.buffType = ModContent.BuffType<PropellerpadBuff>();
         Item.buffTime = 2;
+        Item.noUseGraphic = true;
     }
 
     public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ModContent.ProjectileType<PropellerpadProjectile>()] == 0;
-
-    public override void UpdateAccessory(Player player, bool hideVisual)
-    {
-        if (!hideVisual)
-        {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<PropellerpadProjectile>()] == 0)
-                Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.One, ModContent.ProjectileType<PropellerpadProjectile>(), 0, 0, player.whoAmI);
-
-            player.AddBuff(ModContent.BuffType<PropellerpadBuff>(), 2);
-        }
-        else if (player.HasBuff<PropellerpadBuff>())
-            player.ClearBuff(ModContent.BuffType<PropellerpadBuff>());
-    }
 
     [DialogueCacheKey(nameof(ApotheoticItem) + "." + nameof(Propellerpad))]
     public override ScreenText Dialogue(bool forServer)
@@ -47,5 +34,13 @@ class Propellerpad : ApotheoticItem
         return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.0").
             With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.1")).
             FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Propellerpad.2"));
+    }
+
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
+    {
+        int index = tooltips.FindIndex(x => x.Name == "BuffTime");
+
+        if (index != -1)
+            tooltips.RemoveAt(index);
     }
 }

@@ -51,7 +51,7 @@ internal class MusicDisplayCalls : ModSystem
 
         for (int i = 0; i < size.X / 30; ++i)
         {
-            Vector2 pos = new(x + i * 30 - size.X / 2, y - 54);
+            Vector2 pos = new(x + i * 30 - size.X / 2, y - 24);
             int frameId = (i % 3 + i + i / 2 + i % 4) % 4;
             Rectangle frame = new(frameId * 42, 0, 40, 44);
             float rotation = MathF.Sin(Main.GameUpdateCount * 0.08f + i * MathHelper.PiOver4 * 1.5f) * 0.5f * (i % 3 switch

@@ -117,6 +117,7 @@ public static class ForegroundManager
         };
 
         int index = 0;
+
         foreach (var item in Items)
         {
             if (item.SaveMe)

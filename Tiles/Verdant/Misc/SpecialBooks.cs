@@ -19,8 +19,8 @@ internal class SpecialBooks : ModTile
         RegisterItemDrop(ModContent.ItemType<LightbulbBook>(), 0, 1);
         RegisterItemDrop(ModContent.ItemType<LeafBook>(), 2, 3);
         RegisterItemDrop(ModContent.ItemType<HardyVineBook>(), 4, 5);
-        RegisterItemDrop(ModContent.ItemType<RockBook>(), 5, 6);
-        RegisterItemDrop(ModContent.ItemType<PoetryBook>(), 7, 8);
+        RegisterItemDrop(ModContent.ItemType<RockBook>(), 6, 7);
+        RegisterItemDrop(ModContent.ItemType<PoetryBook>(), 8, 9);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;

@@ -935,8 +935,10 @@ Propellerpad: {
 	DisplayName: Propellerpad
 	Tooltip:
 		'''
-		Summons an odd lily pad.
-		Hang onto the pad's vine to fly around.
+		Summons an odd, flowing lily pad
+		Hang onto the pad's vine by holding UP to fly around
+		It flies very quickly horizontally, but slowly vertically
+		'Despite it all, you can't stand on this.'
 		'''
 }
 
@@ -947,7 +949,7 @@ SproutInABoot: {
 		Spreads leafy platforms automatically under the player when worn
 		Uses a single Lush Leaf per platform placed
 		Needs water to continue working
-		'Surprisingly comfortable & durable'
+		'Surprisingly comfortable and durable'
 		'''
 }
 

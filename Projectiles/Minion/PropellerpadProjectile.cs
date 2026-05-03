@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Buffs.Minion;
 using Verdant.Dusts;
+using Verdant.Gores.Verdant;
 using Verdant.Players;
 
 namespace Verdant.Projectiles.Minion;
@@ -26,15 +29,15 @@ class PropellerpadProjectile : ModProjectile
 
     private ref float FlightTime => ref Projectile.ai[1];
 
+    private bool Init
+    {
+        get => Projectile.ai[2] == 1;
+        set => Projectile.ai[2] = value ? 1 : 0;
+    }
+
     Player Owner => Main.player[Projectile.owner];
 
-    public override void SetStaticDefaults()
-    {
-        Main.projFrames[Type] = 4;
-
-        ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-        ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-    }
+    public override void SetStaticDefaults() => Main.projFrames[Type] = 4;
 
     public override void SetDefaults()
     {
@@ -44,17 +47,24 @@ class PropellerpadProjectile : ModProjectile
         Projectile.height = 56;
         Projectile.tileCollide = true;
         Projectile.ignoreWater = true;
-        Projectile.minionSlots = 0.75f;
-        Projectile.minion = true;
         Projectile.hostile = false;
         Projectile.friendly = true;
         Projectile.penetrate = -1;
+        Projectile.minion = false;
+        Projectile.minionSlots = 0;
 
-        AIType = 0;
+        AIType = ProjectileID.None;
     }
 
     public override void AI()
     {
+        if (!Init)
+        {
+            Init = true;
+
+            Owner.AddBuff(ModContent.BuffType<PropellerpadBuff>(), 2);
+        }
+
         if (!Owner.HasBuff<PropellerpadBuff>())
             Projectile.Kill();
 
@@ -68,8 +78,12 @@ class PropellerpadProjectile : ModProjectile
         Owner.gravity *= 0.15f;
 
         if (Main.rand.NextBool(State == AIState.PlayerHanging ? 1 : 3))
-            Dust.NewDustPerfect(Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), 8), ModContent.DustType<WindLine>(), new Vector2(0, Main.rand.NextFloat(10, 14) + Projectile.velocity.Y));
-        
+        {
+            float factor = FlightTime / MaxFlightTime;
+            Vector2 dustPos = Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), 8);
+            Dust.NewDustPerfect(dustPos, ModContent.DustType<WindLine>(), new Vector2(0, 5 + Projectile.velocity.Y + factor * Main.rand.NextFloat(7, 12)));
+        }
+
         if (State == AIState.Idle)
             Idle();
         else
@@ -84,7 +98,31 @@ class PropellerpadProjectile : ModProjectile
             Owner.bodyFrame.Y = 56 * 3;
         }
         else if (Projectile.DistanceSQ(Owner.Center) > 1000 * 1000)
+        {
+            TeleportVFX();
             Projectile.Center = Owner.Center - new Vector2(0, 80);
+            Projectile.velocity = Vector2.Zero;
+            TeleportVFX();
+        }
+    }
+
+    private void TeleportVFX()
+    {
+        if (Main.dedServ)
+            return;
+
+        SoundEngine.PlaySound(SoundID.Grass with { PitchRange = (-0.2f, 0.4f), Volume = 0.75f }, Projectile.Center);
+
+        for (int i = 0; i < 14; ++i)
+        {
+            Dust.NewDust(Projectile.position, Projectile.width, Projectile.height / 2, DustID.Grass);
+
+            if (i < 3)
+            {
+                Vector2 position = Projectile.position + new Vector2(Main.rand.NextFloat(Projectile.width), Main.rand.NextFloat(12));
+                Gore.NewGore(Projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.GoreType<LushLeaf>());
+            }
+        }
     }
 
     private void Hanging()
@@ -152,7 +190,7 @@ class PropellerpadProjectile : ModProjectile
             int y2 = (int)(Projectile.Center.Y / 16f) + 1;
             while (!WorldGen.SolidOrSlopedTile((int)((Projectile.position.X + Projectile.width) / 16), y2++)) { }
 
-            y = System.Math.Min(y, y2);
+            y = Math.Min(y, y2);
 
             if (y - (Projectile.Center.Y / 16f) < 10)
             {
@@ -180,8 +218,19 @@ class PropellerpadProjectile : ModProjectile
         if (Owner.Hitbox.Intersects(GrabHitbox()) && Owner.controlUp && FlightTime > 0 && !Owner.mount.Active && Owner.GetModPlayer<ZipvinePlayer>().zipvine == null)
             State = AIState.PlayerHanging;
 
-        if (Collision.SolidCollision(Owner.BottomLeft, Owner.width, 6))
+        if (Collision.SolidCollision(Owner.BottomLeft, Owner.width, 6, true))
+        {
             FlightTime = MathHelper.Min(FlightTime + 2.5f, MaxFlightTime);
+
+            if (Main.rand.NextBool(12))
+            {
+                Dust d = Dust.NewDustPerfect(Main.rand.NextVector2FromRectangle(Projectile.Hitbox with { Height = 20 }), DustID.Grass, Main.rand.NextVector2Circular(2, 2));
+                d.noGravity = true;
+                d.alpha = 155;
+                d.scale = Main.rand.NextFloat(1, 2);
+                d.velocity.Y = -Math.Abs(d.velocity.Y);
+            }
+        }
 
         if (Projectile.frameCounter++ > 4)
         {
