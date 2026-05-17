@@ -10,12 +10,12 @@ namespace Verdant.Tiles.TileEntities
     {
         public void Load(Mod mod)
         {
-            Terraria.On_Main.DrawNPCs += DrawTEs;
+            On_Main.DrawNPCs += DrawTEs;
         }
 
         void ILoadable.Unload() { }
 
-        private void DrawTEs(Terraria.On_Main.orig_DrawNPCs orig, Main self, bool behind)
+        private void DrawTEs(On_Main.orig_DrawNPCs orig, Main self, bool behind)
         {
             if (behind)
             {

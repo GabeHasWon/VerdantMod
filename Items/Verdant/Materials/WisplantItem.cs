@@ -17,7 +17,7 @@ class WisplantItem : ApotheoticItem
             return null;
 
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
-            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Wisplant.", 3, true);
+            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Wisplant.", 2, true);
 
         return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Wisplant.0").
             FinishWith(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.Wisplant.1"));

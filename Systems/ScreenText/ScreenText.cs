@@ -118,9 +118,9 @@ public class ScreenText
 
         if (timeLeft <= 0 && AutomaticallyDie)
         {
-            Vector2 rSiz = font.Value.MeasureString(rightClick);
-            var drawPos = pos + (Vector2.UnitY * rSiz.Y * 0.75f);
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, rightClick, drawPos, Color.Gray * 0.75f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
+            //Vector2 rSiz = font.Value.MeasureString(rightClick);
+            //var drawPos = pos + (Vector2.UnitY * rSiz.Y * 0.75f);
+            //ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, rightClick, drawPos, Color.Gray * 0.75f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
         }
     }
 

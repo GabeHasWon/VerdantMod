@@ -1,7 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Verdant.Systems.ScreenText;
+using Verdant.Systems.ScreenText.Caches;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Verdant.Walls;
 
 namespace Verdant.Items;
 
@@ -32,12 +35,15 @@ public class ProbablyDelete : ModItem
 		Item.autoReuse = true;
         Item.placeStyle = 0;
         //Item.shoot = ModContent.ProjectileType<HealPlants>();
-        //Item.createWall = ModContent.WallType<BluescreenWall>();
-        Item.createTile = ModContent.TileType<LilyPad>();
+        Item.createWall = ModContent.WallType<BluescreenWall>();
+        //Item.createTile = ModContent.TileType<LilyPad>();
     }
 
     public override bool? UseItem(Player player)
     {
+        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".VIDEO");
+        return true;
+
         Tile tile = Main.tile[Main.MouseWorld.ToTileCoordinates()];
         tile.HasTile = false;
         return true;

@@ -52,7 +52,7 @@ internal class ApotheoticTreeHatLayer : PlayerDrawLayer
             basePosition.Y -= 4;
 
         var position = drawInfo.GetRealDrawPosition(basePosition);
-        var col = Main.gameMenu ? Color.White : Lighting.GetColor((position + Main.screenPosition).ToTileCoordinates());
+        var col = Main.gameMenu || drawInfo.headOnlyRender ? Color.White : Lighting.GetColor((position + Main.screenPosition).ToTileCoordinates());
         var frame = new Rectangle(12 * (int)(treePlayer.fruits[fruitIndex] - 1), 0, 10, 14);
         var rotation = MathF.Sin(Main.GameUpdateCount * 0.05f + index) * MathHelper.PiOver4 * 0.5f;
         var data = new DrawData(tex, position, frame, col, rotation, new Vector2(frame.Width / 2f, 0), Vector2.One, effect, 0);

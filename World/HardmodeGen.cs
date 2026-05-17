@@ -75,7 +75,7 @@ internal class HardmodeGen : ModSystem
                 AddMysteriaDrapes(x, y);
         }
 
-        WorldGen.BroadcastText(Terraria.Localization.NetworkText.FromLiteral("There's some rumbling coming from the Verdant..."), Color.DarkGreen);
+        WorldGen.BroadcastText(Terraria.Localization.NetworkText.FromKey("Mods.Verdant.HardmodeMessage"), Color.DarkGreen);
     }
 
     private static void AddMysteriaDrapes(int x, int y)

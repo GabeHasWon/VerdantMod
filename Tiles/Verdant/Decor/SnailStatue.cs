@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameInput;
-using Terraria.Localization;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameInput;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Verdant.Items.Verdant.Blocks.LushWood;
 using Verdant.NPCs.Passive.Snails;
 
 namespace Verdant.Tiles.Verdant.Decor;
@@ -24,7 +25,9 @@ internal class SnailStatue : ModTile
 
 		if (Main.tile[target].TileType == Type)
 		{
-			Tile tile = Main.tile[target];
+            Main.LocalPlayer.cursorItemIconID = - 1;
+
+            Tile tile = Main.tile[target];
 
 			if (tile.TileFrameY != 90 || (tile.TileFrameX != 18 && tile.TileFrameX != 36))
 				return;
@@ -114,7 +117,7 @@ internal class SnailStatue : ModTile
 		else if (NPC.downedBoss2 || NPC.downedBoss3)
 			key = "LatePrehardmode";
 
-		return Language.GetTextValue("Mods.Verdant.SnailDialogue." + key + "." + (int)(Main.ActivePlayerFileData.GetPlayTime().TotalMinutes * 0.25f) % 3);
+		return Language.GetTextValue("Mods.Verdant.SnailDialogue." + key + "." + (int)(Main.ActivePlayerFileData.GetPlayTime().TotalMinutes * 0.5f) % 3);
     }
 
     public override void HitWire(int i, int j)
@@ -134,4 +137,9 @@ internal class SnailStatue : ModTile
 		if (Main.netMode != NetmodeID.SinglePlayer)
 			NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc);
 	}
+
+    public override void MouseOver(int i, int j)
+    {
+        base.MouseOver(i, j);
+    }
 }

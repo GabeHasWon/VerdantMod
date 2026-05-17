@@ -11,7 +11,7 @@ namespace Verdant.Players.Layers;
 /// </summary>
 internal class TallHatLayer : PlayerDrawLayer
 {
-    public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.ArmOverItem);
+    public override Position GetDefaultPosition() => new AfterParent(PlayerDrawLayers.Head);
     public virtual Texture2D ChosenTexture(ITallHat hat) => hat.HatTexture();
 
     protected override void Draw(ref PlayerDrawSet drawInfo)
@@ -19,6 +19,9 @@ internal class TallHatLayer : PlayerDrawLayer
         Player player = drawInfo.drawPlayer;
 
         if (!player.active && !Main.gameMenu)
+            return;
+
+        if (this is TallHatLayerBack && drawInfo.headOnlyRender)
             return;
 
         bool isArmorTallHatAndNotHidden = player.armor[0].ModItem is ITallHat && player.armor[10].IsAir;
@@ -39,7 +42,7 @@ internal class TallHatLayer : PlayerDrawLayer
         var tex = ChosenTexture(hat);
         var hatPos = hat.HatOffset(player, drawInfo);
         var position = drawInfo.GetRealDrawPosition(hatPos + new Vector2(player.width / 2f, 0));
-        var col = Main.gameMenu ? Color.White : Lighting.GetColor((position + Main.screenPosition).ToTileCoordinates());
+        var col = Main.gameMenu || drawInfo.headOnlyRender ? Color.White : Lighting.GetColor((position + Main.screenPosition).ToTileCoordinates());
         var frame = player.bodyFrame;
 
         if (!hat.HatModifyFraming(frame, out Rectangle newFrame))

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Verdant.Systems.TearRain;
 using Verdant.Tiles.Verdant.Basic.Plants;
+using Terraria.ID;
 
 namespace Verdant.Scenes;
 
@@ -39,7 +40,22 @@ internal class VerdantUndergroundBiome : ModBiome
     public override void SpecialVisuals(Player player, bool isActive)
     {
         if (!ModContent.GetInstance<VerdantClientConfig>().EnableSteam)
+        {
+            if (Filters.Scene[EffectIDs.BiomeSteam].Active)
+            {
+                Filters.Scene[EffectIDs.BiomeSteam].Deactivate();
+                _steamProgress = 0;
+                _steamOpacity = 1;
+            }
+
+            if (Filters.Scene[EffectIDs.RainSteam].Active)
+            {
+                Filters.Scene[EffectIDs.RainSteam].Deactivate();
+                _rainSteamOpacity = 0;
+            }
+
             return;
+        }
 
         bool canShowNormalSteam = (isActive && !TearRainSystem.Raining) || SmokeBulb.SmokeBulbFlag.NearSmokeBulb;
 

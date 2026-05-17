@@ -9,7 +9,7 @@ internal class MysteriaFluff : ModTile
 {
     public override void SetStaticDefaults()
     {
-        QuickTile.SetAll(this, 0, DustID.PurpleMoss, SoundID.Dig, new Color(142, 62, 32), true, false);
+        QuickTile.SetAll(this, 0, DustID.PurpleMoss, SoundID.Dig, new Color(113, 86, 158), true, false);
         Main.tileBrick[Type] = true;
     }
 }
