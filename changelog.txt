@@ -7,3 +7,4 @@
 - Fixed Mysteria Fluff map color
 - Fixed hovering over the Snail Statue still showing item icons
 - Localized the hardmode message
+- Made Aquamarine count as a Gemstone item
