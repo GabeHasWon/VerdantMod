@@ -1,10 +1,10 @@
 1.3.0.4
 - Fixed issue where disabling the Steam effects would not clear active steam effects, instead freezing them on screen
 - Fixed both Apotheotic helmets not displaying properly on the map
-- Allowed Mudsquid to draw on the map
+- Allowed Mudsquid to draw on the map as a "head layer"
 - Removed now-incorrect Mysteria Wood tooltip, replaced with flavor text
 - Sped up how often the Snail Statue changes its plaque text
 - Fixed Mysteria Fluff map color
 - Fixed hovering over the Snail Statue still showing item icons
 - Localized the hardmode message
-- Made Aquamarine count as a Gemstone item
+- Made Aquamarine count as a Gemstone item (namely for Spirit Reforged compatibility)

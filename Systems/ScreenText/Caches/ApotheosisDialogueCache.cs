@@ -612,29 +612,20 @@ internal class ApotheosisDialogueCache : IDialogueCache
         //    shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
         //});
 
-        var text = new ScreenText("Yes! We have made many critters,")
+        var text = new ScreenText("...but we still have more to show you.")
         {
             shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
             color = Color.White,
             shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
             speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
-            speakerColor = Color.Lime
-        }.With(new ScreenText("found all over our evergreen leaves.")
-        {
-            shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
-            color = Color.White * 0.85f,
-            shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
-        }).With(new ScreenText("There is a whimsy to them,")
-        {
-            shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
-            color = Color.White * 0.85f,
-            shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
-        }).FinishWith(new ScreenText("is there not?")
-        {
-            shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
-            color = Color.White,
-            shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
-        });
+            speakerColor = Color.Lime,
+            final = true
+        };//.FinishWith(new ScreenText("is there not?")
+        //{
+        //    shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
+        //    color = Color.White,
+        //    shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
+        //});
 
         return text;
     }
