@@ -41,7 +41,7 @@ public class ProbablyDelete : ModItem
 
     public override bool? UseItem(Player player)
     {
-        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".VIDEO");
+        DialogueCacheAutoloader.SyncPlay(nameof(ApotheosisDialogueCache) + ".Eye");
         return true;
 
         Tile tile = Main.tile[Main.MouseWorld.ToTileCoordinates()];

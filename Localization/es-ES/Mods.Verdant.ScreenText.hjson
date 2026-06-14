@@ -119,6 +119,7 @@ Apotheosis: {
 		EoC: {
 			0: El ojo ha caído. Gracias.
 			1: Toma este tiliche. Vuelve una vez hayas derrotado la {0}.
+			// 2: Return to me once you've beaten the {0}.
 		}
 
 		Evil: {

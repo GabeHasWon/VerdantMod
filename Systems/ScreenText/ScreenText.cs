@@ -11,6 +11,8 @@ using Verdant.Systems.ScreenText.Animations;
 
 namespace Verdant.Systems.ScreenText;
 
+#nullable enable
+
 public class ScreenText
 {
     public enum Alignment
@@ -29,9 +31,12 @@ public class ScreenText
     private readonly float MaxTimeLeft = 0;
     private readonly bool AutomaticallyDie = true;
 
-    public ScreenText Next { get; private set; } = null;
+    public ScreenText? Next { get; private set; } = null;
 
-    public string text = string.Empty;
+    public string Text => localizedText is { } text ? text.Value : unlocalizedText;
+
+    public string unlocalizedText = string.Empty;
+    public LocalizedText? localizedText = null;
     public string speaker = string.Empty;
     public float scale = 1f;
     public Alignment alignment = Alignment.Center;
@@ -41,12 +46,12 @@ public class ScreenText
     public bool final = false;
     public Color color = Color.White;
     public Color speakerColor = Color.White;
-    public Asset<Effect> shader = null;
+    public Asset<Effect>? shader = null;
     public ScreenTextEffectParameters shaderParams = new ScreenTextEffectParameters();
 
     internal bool active = true;
 
-    private Action<ScreenText> _onFinish = null;
+    private Action<ScreenText>? _onFinish = null;
 
     /// <summary>Create a new ScreenText with the given parameters.</summary>
     /// <param name="text">If <paramref name="useTranslationKey"/> is false, the text to use. If not, the key to use to get the text.</param>
@@ -54,18 +59,34 @@ public class ScreenText
     /// <param name="effect">I don't remember lol</param>
     /// <param name="anim">Animation (such as fadeout) to use.</param>
     /// <param name="dieAutomatically">Whether this ScreenText stops showing up by itself or not.</param>
-    public ScreenText(string text, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation anim = null, bool dieAutomatically = true)
+    public ScreenText(string text, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation? anim = null, bool dieAutomatically = true)
     {
-        this.text = VerdantLocalization.ScreenTextLocalization(text);
-        this.alignment = alignment;
-        this.effect = effect;
-        this.anim = anim ?? new DefaultAnimation();
-        
-        timeLeft = this.text.Length * 3.25f;
-        scale = this.text.Length > 30 ? 1 - ((this.text.Length - 30) / 80f) : 1f;
+        unlocalizedText = VerdantLocalization.ScreenTextLocalization(text);
+
+        SetupElement(alignment, effect, anim, dieAutomatically);
 
         MaxTimeLeft = timeLeft;
         AutomaticallyDie = dieAutomatically;
+    }
+
+    public ScreenText(LocalizedText text, Alignment alignment = Alignment.Center, DrawEffect effect = DrawEffect.None, IScreenTextAnimation? anim = null, bool dieAutomatically = true)
+    {
+        localizedText = text;
+
+        SetupElement(alignment, effect, anim, dieAutomatically);
+
+        MaxTimeLeft = timeLeft;
+        AutomaticallyDie = dieAutomatically;
+    }
+
+    private void SetupElement(Alignment alignment, DrawEffect effect, IScreenTextAnimation? anim, bool dieAutomatically)
+    {
+        this.alignment = alignment;
+        this.effect = effect;
+        this.anim = anim ?? new DefaultAnimation();
+
+        timeLeft = Text.Length * 3.25f;
+        scale = Text.Length > 30 ? 1 - ((Text.Length - 30) / 80f) : 1f;
     }
 
     public void Update(GameTime gameTime)
@@ -84,8 +105,8 @@ public class ScreenText
         string rightClick = Language.GetTextValue("Mods.Verdant.ScreenText.RightClick");
         float realFactor = timeLeft / MaxTimeLeft;
         float factor = MathHelper.Clamp(realFactor, 0, 1);
-        int textSize = (int)(text.Length * (1f - factor));
-        string showText = text[..textSize];
+        int textSize = (int)(Text.Length * (1f - factor));
+        string showText = Text[..textSize];
 
         var font = FontAssets.DeathText;
         float xOffset = 0;
@@ -113,7 +134,8 @@ public class ScreenText
         anim.ModifyDraw(realFactor, this, ref pos, ref col, ref speakerCol, ref drawScale);
 
         Vector2 speakerSize = font.Value.MeasureString(speaker);
-        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, speaker, pos - (Vector2.UnitY * speakerSize.Y * 0.7f), speakerCol, 0f, Vector2.UnitX * speakerSize.X / 2f, Vector2.One * 0.6f);
+        Vector2 speakerPos = pos - (Vector2.UnitY * speakerSize.Y * 0.7f);
+        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, speaker, speakerPos, speakerCol, 0f, Vector2.UnitX * speakerSize.X / 2f, Vector2.One * 0.6f);
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, showText, pos, col, 0f, Vector2.UnitX * size.X / 2f, Vector2.One * drawScale); //Actual draw text
 
         if (timeLeft <= 0 && AutomaticallyDie)
@@ -122,10 +144,6 @@ public class ScreenText
             var drawPos = pos + (Vector2.UnitY * rSiz.Y * 0.75f);
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font.Value, rightClick, drawPos, Color.Gray * 0.75f, 0f, Vector2.UnitX * rSiz.X / 2f, Vector2.One * 0.4f);
         }
-    }
-
-    public void DrawAdditive()
-    {
     }
 
     public ScreenText With(ScreenText other, bool sameSpeaker = true)
@@ -141,7 +159,7 @@ public class ScreenText
         return this;
     }
 
-    public ScreenText FinishWith(ScreenText other, Action<ScreenText> action = null, bool sameSpeaker = true)
+    public ScreenText FinishWith(ScreenText other, Action<ScreenText>? action = null, bool sameSpeaker = true)
     {
         other._onFinish = action;
         other.final = true;

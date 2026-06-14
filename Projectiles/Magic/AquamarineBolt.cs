@@ -17,7 +17,7 @@ class AquamarineBolt : ModProjectile, IDrawAdditive
         Projectile.height = 12;
         Projectile.penetrate = 1;
         Projectile.timeLeft = 60 * 5;
-        Projectile.tileCollide = false;
+        Projectile.tileCollide = true;
         Projectile.aiStyle = 0;
     }
 

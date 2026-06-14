@@ -119,6 +119,7 @@ Apotheosis: {
 		EoC: {
 			0: 眼睛被击落了。谢谢你。
 			1: 带着这个饰品。打败{0}后回到我身边。
+			// 2: Return to me once you've beaten the {0}.
 		}
 
 		Evil: {

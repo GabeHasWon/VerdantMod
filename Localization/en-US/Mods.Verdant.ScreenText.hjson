@@ -118,7 +118,8 @@ Apotheosis: {
 	Downed: {
 		EoC: {
 			0: The eye is felled. Thank you.
-			1: Take this trinket. Return to me once you've beaten the {0}.
+			1: Take this trinket.
+			2: Return to me once you've beaten the {0}.
 		}
 
 		Evil: {

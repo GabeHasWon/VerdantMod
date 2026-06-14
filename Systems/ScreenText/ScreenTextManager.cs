@@ -85,10 +85,4 @@ internal class ScreenTextManager
 
         return effect;
     }
-
-    internal static void DrawAdditive()
-    {
-        if (!Main.mapFullscreen)
-            CurrentText?.DrawAdditive();
-    }
 }

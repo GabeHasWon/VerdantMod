@@ -173,7 +173,7 @@ internal class ApotheosisDialogueCache : IDialogueCache
 
         if (!UseCustomSystem)
         {
-            Chat(result.text);
+            Chat(result.unlocalizedText);
             return null;
         }
         return texts;
@@ -249,8 +249,11 @@ internal class ApotheosisDialogueCache : IDialogueCache
             return null;
         }
 
+        string evilBoss = Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(WorldGen.crimson ? "BoCName" : "EoWName")}");
+
         return new ScreenText("$" + EoCDowned + ".0") { speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"), speakerColor = Color.Lime }.
-            FinishWith(new ScreenText(Language.GetTextValue("$" + EoCDowned + ".1", Language.GetTextValue($"Mods.Verdant.ScreenText.Apotheosis.{(!WorldGen.crimson ? "EoWName" : "BoCName")}"))), (self) =>
+            With(new ScreenText("$Mods.Verdant.ScreenText.Apotheosis.Downed.EoC.1")).
+            FinishWith(new ScreenText(Language.GetText(EoCDowned + ".2").WithFormatArgs(evilBoss)), (self) =>
             {
                 Helper.SyncItem(Main.LocalPlayer.GetSource_GiftOrReward("Apotheosis"), Main.LocalPlayer.Center, ModContent.ItemType<PermVineWand>(), 1);
                 UpdateAchievements();

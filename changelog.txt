@@ -1,14 +1,6 @@
-1.3.0.4
-- Fixed issue where disabling the Steam effects would not clear active steam effects, instead freezing them on screen
-- Fixed both Apotheotic helmets not displaying properly on the map
-- Allowed Mudsquid to draw on the map as a "head layer"
-- Removed now-incorrect Mysteria Wood tooltip, replaced with flavor text
-- Sped up how often the Snail Statue changes its plaque text
-- Fixed Mysteria Fluff map color
-- Fixed hovering over the Snail Statue still showing item icons
-- Localized the hardmode message
-- Made Aquamarine count as a Gemstone item (namely for Spirit Reforged compatibility)
-- Added flavor text to Dropsnail Cage item
-- Re-added tree shake checks functionality
-- Fixed Verdant tree canopies clipping into DrawBlack area
-- Publicized most if not all tiles in the mod
+1.3.0.5
+- Increased food max stack to 9999, like most other stackable items
+- Fixed Screen Text not supporting substitutions like {0} properly
+- Nerfed Aquamarine Staff use time (12 -> 15)
+- Made Aquamarine Staff projectiles no longer go through tiles
+- Fixed Aquamarine Staff not changing the user's direction when fired remotely

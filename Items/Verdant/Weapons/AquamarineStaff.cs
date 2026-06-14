@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,8 @@ using Verdant.Items.Verdant.Materials;
 using Verdant.Projectiles.Magic;
 
 namespace Verdant.Items.Verdant.Weapons;
+
+#nullable enable
 
 class AquamarineStaff : ModItem
 {
@@ -20,30 +23,37 @@ class AquamarineStaff : ModItem
         Item.shootSpeed = 14;
         Item.shoot = ModContent.ProjectileType<AquamarineBolt>();
         Item.damage = 8;
-        Item.useTime = 12;
-        Item.useAnimation = 12;
+        Item.useTime = 15;
+        Item.useAnimation = 15;
         Item.mana = 4;
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
     {
-        List<Projectile> projs = new();
+        if (!GetClosestMinion(player, out Projectile? closest))
+            return;
 
+        damage += (int)(closest.damage * 0.6f);
+        position = closest.Center;
+        velocity = closest.DirectionTo(Main.MouseWorld) * Item.shootSpeed;
+        player.ChangeDir(Math.Sign(velocity.X));
+    }
+
+    private static bool GetClosestMinion(Player player, [NotNullWhen(true)] out Projectile? closest)
+    {
+        closest = null;
         for (int i = 0; i < Main.maxProjectiles; ++i)
         {
             Projectile p = Main.projectile[i];
 
-            if (p.active && p.owner == player.whoAmI && p.minionSlots > 0)
-                projs.Add(p);
+            if (p.active && p.owner == player.whoAmI && p.minionSlots > 0 && (closest is null || closest.DistanceSQ(player.Center) > p.DistanceSQ(player.Center)))
+                closest = p;
         }
 
-        if (projs.Count == 0)
-            return;
+        if (closest is null)
+            return false;
 
-        var choice = Main.rand.Next(projs);
-        damage += (int)(choice.damage * 0.6f);
-        position = choice.Center;
-        velocity = choice.DirectionTo(Main.MouseWorld) * Item.shootSpeed;
+        return true;
     }
 
     public override void AddRecipes()
