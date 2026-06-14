@@ -13,7 +13,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-internal class PuffLantern : ModTile
+public class PuffLantern : ModTile
 {
     [Sacrifice(1)]
     public class PuffLanternItem : ModItem

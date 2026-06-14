@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
-internal class HardmodeDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
+public class HardmodeDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
     protected override int StyleRange => 10;
     protected override int[] ValidTiles => VerdantGrassLeaves.VerdantGrassTypes.ToArray();

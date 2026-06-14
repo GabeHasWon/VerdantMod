@@ -10,7 +10,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class TearBulb : ModTile
+public class TearBulb : ModTile
 {
     internal class TearBulbFlag : ModSystem
     {

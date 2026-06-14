@@ -1735,7 +1735,7 @@ TearPlantItem: {
 
 DropsnailCage: {
 	// DisplayName: Dropsnail Cage
-	// Tooltip: ""
+	// Tooltip: "'Watery, but gentle'"
 }
 
 JellydewItem: {

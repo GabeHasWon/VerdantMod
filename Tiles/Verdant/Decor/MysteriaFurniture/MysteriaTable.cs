@@ -8,7 +8,7 @@ using Verdant.Dusts;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
-internal class MysteriaTable : ModTile
+public class MysteriaTable : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -7,7 +7,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class LightbulbLeaves : ModTile, IVerdantGrassTile
+public class LightbulbLeaves : ModTile, IVerdantGrassTile
 {
     public override void SetStaticDefaults()
     {

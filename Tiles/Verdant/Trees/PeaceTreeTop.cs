@@ -13,7 +13,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
-internal class PeaceTreeTop : ModTile
+public class PeaceTreeTop : ModTile
 {
     public override string Texture => "Terraria/Images/NPC_0";
 

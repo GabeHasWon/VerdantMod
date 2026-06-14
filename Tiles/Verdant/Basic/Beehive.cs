@@ -12,7 +12,7 @@ using Verdant.Systems.TearRain;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
-class Beehive : ModTile
+public class Beehive : ModTile
 {
     public const int FrameHeight = 38;
     public const int MaxFrame = 4;

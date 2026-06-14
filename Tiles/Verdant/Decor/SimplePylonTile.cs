@@ -13,7 +13,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal abstract class SimplePylonTile<T> : ModPylon where T : ModItem
+public abstract class SimplePylonTile<T> : ModPylon where T : ModItem
 {
     public const int CrystalHorizontalFrameCount = 2;
     public const int CrystalVerticalFrameCount = 8;

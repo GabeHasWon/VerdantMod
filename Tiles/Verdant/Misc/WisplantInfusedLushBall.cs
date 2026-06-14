@@ -3,7 +3,7 @@ using Verdant.Projectiles.Misc;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-internal class WisplantInfusedLushBall : MudBoulderTile
+public class WisplantInfusedLushBall : MudBoulderTile
 {
     protected override int ProjectileType => ModContent.ProjectileType<WisplantInfusedLushBallProjectile>();
 }

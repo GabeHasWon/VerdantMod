@@ -13,7 +13,7 @@ using Verdant.Systems.Achievements;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal class Apotheosis : ModTile
+public class Apotheosis : ModTile
 {
     public override void SetStaticDefaults()
     {

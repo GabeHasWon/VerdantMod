@@ -8,3 +8,7 @@
 - Fixed hovering over the Snail Statue still showing item icons
 - Localized the hardmode message
 - Made Aquamarine count as a Gemstone item (namely for Spirit Reforged compatibility)
+- Added flavor text to Dropsnail Cage item
+- Re-added tree shake checks functionality
+- Fixed Verdant tree canopies clipping into DrawBlack area
+- Publicized most if not all tiles in the mod

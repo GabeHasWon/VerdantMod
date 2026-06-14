@@ -13,7 +13,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class VerdantStrongVine : ModTile
+public class VerdantStrongVine : ModTile
 {
     public override void SetStaticDefaults()
     {

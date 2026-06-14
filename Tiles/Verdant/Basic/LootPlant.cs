@@ -14,7 +14,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
-class LootPlant : ModTile, IFlowerTile
+public class LootPlant : ModTile, IFlowerTile
 {
     public const int FrameHeight = 38;
 

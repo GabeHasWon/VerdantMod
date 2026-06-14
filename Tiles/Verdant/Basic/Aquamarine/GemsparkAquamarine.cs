@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Aquamarine;
 
-internal class GemsparkAquamarine : ModTile
+public class GemsparkAquamarine : ModTile
 {
     public override void SetStaticDefaults()
     {

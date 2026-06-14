@@ -8,7 +8,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Items.Verdant.Blocks.Aquamarine;
 
 namespace Verdant.Tiles.Verdant.Decor.AquamarineDecor;
 

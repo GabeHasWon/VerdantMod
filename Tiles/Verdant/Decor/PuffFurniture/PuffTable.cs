@@ -11,7 +11,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-internal class PuffTable : ModTile
+public class PuffTable : ModTile
 {
     [Sacrifice(1)]
     public class PuffTableItem : ModItem

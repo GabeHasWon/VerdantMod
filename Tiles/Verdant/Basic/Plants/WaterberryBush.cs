@@ -16,7 +16,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-class WaterberryBush : ModTile, IFlowerTile
+public class WaterberryBush : ModTile, IFlowerTile
 {
     private static bool KillingStack = false;
 

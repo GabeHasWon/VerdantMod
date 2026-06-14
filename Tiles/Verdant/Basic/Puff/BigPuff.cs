@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
@@ -10,7 +9,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Puff;
 
-class BigPuff : ModTile, IFlowerTile
+public class BigPuff : ModTile, IFlowerTile
 {
     public const int FrameHeight = 38;
     public const int MaxFrame = 4;

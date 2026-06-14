@@ -10,7 +10,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-internal class MudBoulderTile : ModTile
+public class MudBoulderTile : ModTile
 {
     protected virtual int ProjectileType => ModContent.ProjectileType<MudBoulder>();
 

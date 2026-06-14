@@ -4,15 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class VerdantVine : ModTile, IFlowerTile
+public class VerdantVine : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

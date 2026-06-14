@@ -11,7 +11,7 @@ using Verdant.Tiles.Verdant.Basic.Mysteria;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
-internal class MysteriaTree : ModTile
+public class MysteriaTree : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -89,7 +89,7 @@ internal class MysteriaTree : ModTile
 
     public static bool[] CheckOpenSpace(int x, int y, int[] widths, int height, UnifiedRandom random)
     {
-        bool[] ret = new bool[2] { true, true };
+        bool[] ret = [true, true];
         bool failExit = false;
 
         for (int repeats = 0; repeats < 2; ++repeats)

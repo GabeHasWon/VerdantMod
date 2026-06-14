@@ -7,7 +7,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class ThornTile : ModTile
+public class ThornTile : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -7,11 +7,10 @@ using Terraria.GameContent.Metadata;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class LilyPadFlower : ModTile, IFlowerTile
+public class LilyPadFlower : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

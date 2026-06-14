@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class LushGrass : ModTile, IVerdantGrassTile
+public class LushGrass : ModTile, IVerdantGrassTile
 {
     public override void SetStaticDefaults()
     {

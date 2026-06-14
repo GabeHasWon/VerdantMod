@@ -8,7 +8,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-internal class PuffCandelabra : ModTile
+public class PuffCandelabra : ModTile
 {
     [Sacrifice(3)]
     public class PuffCandelabraItem : ModItem

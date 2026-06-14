@@ -3,16 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Dusts;
 using Verdant.Items.Verdant.Blocks.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Mysteria;
 
-internal class MysteriaVinePurple : ModTile
+public class MysteriaVinePurple : ModTile
 {
     public override void SetStaticDefaults()
     {

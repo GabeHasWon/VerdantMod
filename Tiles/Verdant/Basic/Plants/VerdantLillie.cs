@@ -10,7 +10,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class VerdantLillie : ModTile, IFlowerTile
+public class VerdantLillie : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

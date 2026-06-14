@@ -11,7 +11,7 @@ using Verdant.Items.Verdant.Blocks.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Puff;
 
-internal class PuffVine : ModTile
+public class PuffVine : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -11,7 +11,7 @@ using Verdant.Walls;
 
 namespace Verdant.Tiles.Verdant.Mounted;
 
-class Flower_2x2 : ModTile, IFlowerTile
+public class Flower_2x2 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {
@@ -78,7 +78,7 @@ class Flower_2x2 : ModTile, IFlowerTile
     public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 }
 
-class Flower_3x3 : ModTile, IFlowerTile
+public class Flower_3x3 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

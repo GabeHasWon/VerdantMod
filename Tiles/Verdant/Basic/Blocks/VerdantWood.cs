@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class VerdantWood : ModTile
+public class VerdantWood : ModTile
 {
     public override void SetStaticDefaults()
     {

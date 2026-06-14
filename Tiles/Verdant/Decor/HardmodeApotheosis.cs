@@ -14,7 +14,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal class HardmodeApotheosis : ModTile, IAdditiveTile
+public class HardmodeApotheosis : ModTile, IAdditiveTile
 {
     private int _effigyTimer = 0;
 

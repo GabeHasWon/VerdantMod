@@ -14,7 +14,7 @@ using Verdant.NPCs.Passive.Floties;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
-internal class MysteriaTreeTop : ModTile
+public class MysteriaTreeTop : ModTile
 {
     public override string Texture => "Terraria/Images/NPC_0";
 
@@ -55,15 +55,10 @@ internal class MysteriaTreeTop : ModTile
         yield return new Item(ModContent.ItemType<MysteriaClump>()) { stack = Main.rand.Next(3, 8) };
     }
 
-    internal static void ShakeTree(int x, int y) //1.4.4PORT
+    internal static void ShakeTree(int x, int y)
     {
-        //for (int k = 0; k < WorldGen.numTreeShakes; k++)
-        //    if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
-        //        return;
-
-        //WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
-        //WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
-        //WorldGen.numTreeShakes++;
+        if (!VerdantTree.CheckCanTreeShake(x, y))
+            return;
 
         WeightedRandom<int> random = new(Main.rand);
 

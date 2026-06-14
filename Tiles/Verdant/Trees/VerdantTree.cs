@@ -3,8 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -16,7 +18,7 @@ using Verdant.NPCs.Passive.Snails;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
-internal class VerdantTree : ModTile
+public class VerdantTree : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -27,6 +29,7 @@ internal class VerdantTree : ModTile
         RegisterItemDrop(ModContent.ItemType<VerdantWoodBlock>());
 
         TileID.Sets.IsATreeTrunk[Type] = true;
+        TileID.Sets.DrawTileInSolidLayer[Type] = true;
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = (fail ? 1 : 3);
@@ -48,7 +51,7 @@ internal class VerdantTree : ModTile
     /// <param name="leaves">If true, spawn leaf gores.</param>
     /// <param name="leavesType">Type of leaf gores spawned, if spawned.</param>
     /// <returns></returns>
-    public static bool Spawn(int i, int j, int type = -1, UnifiedRandom r = null, int minSize = 5, int maxSize = 18, bool leaves = false, int leavesType = -1, bool saplingExists = false)
+    public static bool Spawn(int i, int j, int type = -1, UnifiedRandom r = null, int minSize = 5, int maxSize = 18, bool leaves = false, int leavesType = -1, bool sapling = false)
     {
         if (type == -1) 
             type = ModContent.TileType<VerdantTree>(); //Sets default types
@@ -58,7 +61,7 @@ internal class VerdantTree : ModTile
 
         r ??= Main.rand;
 
-        if (saplingExists)
+        if (sapling)
         {
             WorldGen.KillTile(i, j, false, false, true);
             WorldGen.KillTile(i, j - 1, false, false, true);
@@ -129,7 +132,10 @@ internal class VerdantTree : ModTile
                 {
                     int rnd = r.Next(2, 5);
                     for (int l = 0; l < rnd; ++l)
-                        Gore.NewGore(Entity.GetSource_NaturalSpawn(), (new Vector2(i, j - k) * 16) + new Vector2(8 + r.Next(-4, 5), 8), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), leavesType);
+                    {
+                        Vector2 position = (new Vector2(i, j - k) * 16) + new Vector2(8 + r.Next(-4, 5), 8);
+                        Gore.NewGore(Entity.GetSource_NaturalSpawn(), position, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), leavesType);
+                    }
                 }
             }
 
@@ -145,7 +151,10 @@ internal class VerdantTree : ModTile
             WorldGen.KillTile(i, j, false, false, false);
 
         if (Framing.GetTileSafely(i, j).TileFrameX == 198 && Main.rand.NextBool(120))
-            Gore.NewGore(new EntitySource_TileUpdate(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+        {
+            Vector2 position = (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66);
+            Gore.NewGore(new EntitySource_TileUpdate(i, j), position, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+        }
     }
 
     public override IEnumerable<Item> GetItemDrops(int i, int j)
@@ -182,7 +191,10 @@ internal class VerdantTree : ModTile
 
             if (Main.netMode != NetmodeID.Server)
                 for (int l = 0; l < rnd; ++l)
-                    Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                {
+                    Vector2 position = (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66);
+                    Gore.NewGore(new EntitySource_TileBreak(i, j), position, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                }
         }
 
         if (Framing.GetTileSafely(i, j).TileFrameX == 108 || Framing.GetTileSafely(i, j).TileFrameX == 126)
@@ -194,11 +206,17 @@ internal class VerdantTree : ModTile
                 {
                     int rnd = Main.rand.Next(1, 4);
                     for (int l = 0; l < rnd; ++l)
-                        Gore.NewGore(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                    {
+                        Vector2 position = (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10));
+                        Gore.NewGore(new EntitySource_TileBreak(i, j), position, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                    }
                 }
 
                 if (Main.rand.NextBool(8))
-                    Item.NewItem(new EntitySource_TileBreak(i, j), (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10)), ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
+                {
+                    Vector2 position1 = (new Vector2(i, j) * 16) + new Vector2(Main.rand.Next(40) * side, Main.rand.Next(-10, 10));
+                    Item.NewItem(new EntitySource_TileBreak(i, j), position1, ModContent.ItemType<LushLeaf>(), Main.rand.Next(1, 3));
+                }
             }
         }
 
@@ -240,7 +258,7 @@ internal class VerdantTree : ModTile
             WorldGen.KillTile(i - 1, j, false, false, false);
             WorldGen.KillTile(i + 1, j, false, false, false);
         }
-        else if (t.TileFrameX == 90 || t.TileFrameX == 144 || t.TileFrameX == 162 || t.TileFrameX == 180 || t.TileFrameX == 198 || t.TileFrameX == 288 || t.TileFrameX == 306 || t.TileFrameX == 324) //Main tree cut
+        else if (t.TileFrameX is 90 or 144 or 162 or 180 or 198 or 288 or 306 or 324) //Main tree cut
         {
             int nFrameX = Framing.GetTileSafely(i, j + 1).TileFrameX;
 
@@ -292,13 +310,8 @@ internal class VerdantTree : ModTile
 
         if (Main.tile[x, y].TileFrameX == 198)
         {
-            //for (int k = 0; k < WorldGen.ResetTreeShakes; k++)
-            //    if (WorldGen.treeShakeX[k] == x && WorldGen.treeShakeY[k] == y)
-            //        return;
-
-            //WorldGen.treeShakeX[WorldGen.numTreeShakes] = x;
-            //WorldGen.treeShakeY[WorldGen.numTreeShakes] = y;
-            //WorldGen.numTreeShakes++;
+            if (!CheckCanTreeShake(x, y))
+                return;
 
             WeightedRandom<int> random = new(Main.rand);
 
@@ -310,7 +323,8 @@ internal class VerdantTree : ModTile
             if (rand == 1)
             {
                 int type = Main.rand.NextBool() ? ModContent.ItemType<Dropberry>() : ModContent.ItemType<BowlFruit>();
-                Item.NewItem(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), type, Main.rand.Next(1, 4));
+                Vector2 position = (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66);
+                Item.NewItem(new EntitySource_ShakeTree(x, y), position, type, Main.rand.Next(1, 4));
             }
             else if (rand == 2)
             {
@@ -327,61 +341,139 @@ internal class VerdantTree : ModTile
             }
 
             if (Main.netMode != NetmodeID.Server)
+            {
                 for (int i = 0; i < 20; ++i)
-                    Gore.NewGore(new EntitySource_ShakeTree(x, y), (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66), new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                {
+                    Vector2 position = (new Vector2(x, y) * 16) + new Vector2(Main.rand.Next(-56, 56), Main.rand.Next(-44, 44) - 66);
+                    Gore.NewGore(new EntitySource_ShakeTree(x, y), position, new Vector2(Main.rand.NextFloat(3), Main.rand.NextFloat(-5, 5)), Mod.Find<ModGore>("LushLeaf").Type);
+                }
+            }
         }
+    }
+
+    public static bool CheckCanTreeShake(int x, int y)
+    {
+        ref int numTreeShakes = ref GetNumTreeShakes(null);
+        int[] treeShakeX = GetTreeShakeX(null);
+        int[] treeShakeY = GetTreeShakeY(null);
+
+        for (int k = 0; k < numTreeShakes; k++)
+            if (treeShakeX[k] == x && treeShakeY[k] == y)
+                return false;
+
+        treeShakeX[numTreeShakes] = x;
+        treeShakeY[numTreeShakes] = y;
+        numTreeShakes++;
+        return true;
+    }
+
+    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "numTreeShakes")]
+    public static extern ref int GetNumTreeShakes(WorldGen gen);
+
+    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "treeShakeX")]
+    public static extern ref int[] GetTreeShakeX(WorldGen gen);
+
+    [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "treeShakeY")]
+    public static extern ref int[] GetTreeShakeY(WorldGen gen);
+
+    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
+    {
+        Tile tile = Main.tile[i, j];
+
+        if (tile.TileFrameX is 108 or 126 or 198)
+            Main.instance.TilesRenderer.AddSpecialPoint(i, j, TileDrawing.TileCounterType.CustomNonSolid);
+    }
+
+    public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
+    {
+        if (!GatherVisualInfo(i, j, out Tile t, out Color col, out Texture2D tex, out int frameSize, out int frameOff, out int frameSizY, out Vector2 offset, out Vector2 pos))
+            return;
+
+        DrawFoliage(i, j, spriteBatch, t, col, tex, frameSize, frameOff, frameSizY, offset, pos);
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
     {
-        Tile t = Framing.GetTileSafely(i, j);
+        Tile tile = Main.tile[i, j];
 
-        if (!TileHelper.GetVisualInfo(i, j, out Color col, out Texture2D tex))
+        if (tile.TileFrameX is 108 or 126 or 198)
         {
+            Main.instance.TilesRenderer.AddSpecialPoint(i, j, TileDrawing.TileCounterType.CustomSolid);
             return false;
         }
+
+        if (!GatherVisualInfo(i, j, out Tile t, out Color col, out Texture2D tex, out int frameSize, out int frameOff, out int frameSizY, out Vector2 offset, out Vector2 pos))
+            return false;
+
+        DrawFoliage(i, j, spriteBatch, t, col, tex, frameSize, frameOff, frameSizY, offset, pos);
+        return false;
+    }
+
+    private static void DrawFoliage(int i, int j, SpriteBatch spriteBatch, Tile t, Color col, Texture2D tex, int frameSize, int frameOff, int frameSizY, Vector2 offset, Vector2 pos)
+    {
+        Color color = new(col.R, col.G, col.B, 255);
+
+        if (t.TileFrameX == 108) //Draw branches
+        {
+            int frame = t.TileFrameY / 18;
+            spriteBatch.Draw(tex, pos - TileHelper.TileOffset, new Rectangle(292, 52 * frame + 56, 56, 50), color, 0f, new Vector2(38, 16), 1f, SpriteEffects.None, 0f);
+            return;
+        }
+        else if (t.TileFrameX == 126) //Draw branches
+        {
+            int frame = t.TileFrameY / 18;
+            spriteBatch.Draw(tex, pos - TileHelper.TileOffset, new Rectangle(350, 52 * frame + 56, 56, 50), color, 0f, new Vector2(4, 16), 1f, SpriteEffects.None, 0f);
+            return;
+        }
+        else if (t.TileFrameX == 198) // Draw canopy
+        {
+            int frame = t.TileFrameY / 18;
+            TileSwaySystem.DrawTreeSway(i, j + 1, tex, new Rectangle(98 * frame, Main.hardMode ? 162 : 56, 96, 108), offset - TileHelper.TileOffset, new Vector2(40, 96));
+        }
+        else
+        {
+            // Draw trunk
+            Rectangle src = new(t.TileFrameX + frameOff, t.TileFrameY, frameSize, frameSizY);
+            spriteBatch.Draw(tex, pos, src, color, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+        }
+
+        return;
+    }
+
+    private static bool GatherVisualInfo(int i, int j, out Tile t, out Color col, out Texture2D tex, out int frameSize, out int frameOff, out int frameSizY, out Vector2 offset, out Vector2 pos)
+    {
+        t = Framing.GetTileSafely(i, j);
+
+        col = default;
+        tex = default;
+        frameSize = frameOff = frameSizY = 0;
+        offset = pos = Vector2.Zero;
+
+        if (!TileHelper.GetVisualInfo(i, j, out col, out tex))
+            return false;
 
         float xOff = (float)Math.Sin((j * 19) * 0.04f) * 1.2f;
 
         if (xOff == 1 && (j / 4f) == 0)
             xOff = 0;
 
-        int frameSize = 16;
-        int frameOff = 0;
-        int frameSizY = 16;
-        if (t.TileFrameX == 108 || t.TileFrameX < 36 || t.TileFrameX == 216 || t.TileFrameX == 270) frameSize = 18;
+        frameSize = 16;
+        frameOff = 0;
+        frameSizY = 16;
+        if (t.TileFrameX == 108 || t.TileFrameX < 36 || t.TileFrameX == 216 || t.TileFrameX == 270)
+            frameSize = 18;
+
         if (t.TileFrameX == 126 || t.TileFrameX == 52 || t.TileFrameX == 72 || t.TileFrameX == 232 || t.TileFrameX == 252)
         {
             frameSize = 18;
             frameOff = -2;
         }
-        if (t.TileFrameX < 90 || t.TileFrameX == 216 || t.TileFrameX == 234 || t.TileFrameX == 252 || t.TileFrameX == 270) frameSizY = 18;
 
-        Vector2 offset = new((xOff * 2) - (frameOff / 2), 0);
-        Vector2 pos = TileHelper.TileCustomPosition(i, j, -offset);
+        if (t.TileFrameX < 90 || t.TileFrameX == 216 || t.TileFrameX == 234 || t.TileFrameX == 252 || t.TileFrameX == 270)
+            frameSizY = 18;
 
-        if (Framing.GetTileSafely(i, j).TileFrameX == 108) //Draw branches
-        {
-            int frame = t.TileFrameY / 18;
-            spriteBatch.Draw(tex, pos, new Rectangle(292, 52 * frame + 56, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(38, 16), 1f, SpriteEffects.None, 0f);
-            return false;
-        }
-
-        if (Framing.GetTileSafely(i, j).TileFrameX == 126) //Draw branches
-        {
-            int frame = t.TileFrameY / 18;
-            spriteBatch.Draw(tex, pos, new Rectangle(350, 52 * frame + 56, 56, 50), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(4, 16), 1f, SpriteEffects.None, 0f);
-            return false;
-        }
-
-        spriteBatch.Draw(tex, pos, new Rectangle(t.TileFrameX + frameOff, t.TileFrameY, frameSize, frameSizY), new Color(col.R, col.G, col.B, 255), 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
-
-        if (Framing.GetTileSafely(i, j).TileFrameX == 198)
-        {
-            int frame = t.TileFrameY / 18;
-
-            TileSwaySystem.DrawTreeSway(i, j, tex, new Rectangle(98 * frame, Main.hardMode ? 162 : 56, 96, 108), offset, new Vector2(40, 96));
-        }
-        return false;
+        offset = new((xOff * 2) - (frameOff / 2), 0);
+        pos = TileHelper.TileCustomPosition(i, j, -offset);
+        return true;
     }
 }

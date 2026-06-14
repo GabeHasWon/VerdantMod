@@ -4,19 +4,18 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.LushWood;
 
-namespace Verdant.Tiles.Verdant.Basic.Blocks
+namespace Verdant.Tiles.Verdant.Basic.Blocks;
+
+public class LivingLushWood : ModTile
 {
-    internal class LivingLushWood : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(89, 47, 33), true, false);
-            QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), 
-                ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<LushSoil>());
+        QuickTile.SetAll(this, 0, DustID.Dirt, SoundID.Dig, new Color(89, 47, 33), true, false);
+        QuickTile.MergeWith(Type, TileID.Dirt, TileID.Mud, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<VerdantPinkPetal>(), 
+            ModContent.TileType<VerdantRedPetal>(), ModContent.TileType<LushSoil>());
 
-            Main.tileBrick[Type] = true;
+        Main.tileBrick[Type] = true;
 
-            RegisterItemDrop(ModContent.ItemType<VerdantWoodBlock>());
-        }
+        RegisterItemDrop(ModContent.ItemType<VerdantWoodBlock>());
     }
 }

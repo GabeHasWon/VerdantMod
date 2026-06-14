@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class PuffBlock : ModTile
+public class PuffBlock : ModTile
 {
     public override void SetStaticDefaults()
     {

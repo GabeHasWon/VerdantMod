@@ -2,11 +2,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Verdant.Items.Verdant.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class LushSoil : ModTile
+public class LushSoil : ModTile
 {
     public override void SetStaticDefaults()
     {

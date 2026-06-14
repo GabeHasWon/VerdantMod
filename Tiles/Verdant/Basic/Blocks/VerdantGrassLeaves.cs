@@ -18,7 +18,7 @@ using Verdant.World;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class VerdantGrassLeaves : ModTile, IVerdantGrassTile
+public class VerdantGrassLeaves : ModTile, IVerdantGrassTile
 {
     private static List<string> CountsAsVerdantGrass = [];
     public static ReadOnlyCollection<int> VerdantGrassTypes { get; private set; }

@@ -6,7 +6,7 @@ using Verdant.Items.Verdant.Blocks.Misc;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class TrimmedOvergrownBricks : ModTile
+public class TrimmedOvergrownBricks : ModTile
 {
     public override string Texture => base.Texture.Replace("Trimmed", "");
 

@@ -11,7 +11,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-class MarigoldTile : ModTile, IFlowerTile
+public class MarigoldTile : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

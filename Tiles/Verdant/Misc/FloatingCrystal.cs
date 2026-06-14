@@ -11,7 +11,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-internal class FloatingCrystal : ModTile
+public class FloatingCrystal : ModTile
 {
     public override void Load() => On_Projectile.AI += Projectile_VanillaAI;
 

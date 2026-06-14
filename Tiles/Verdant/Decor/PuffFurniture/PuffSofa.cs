@@ -8,7 +8,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-internal class PuffSofa : SofaTile<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaSofaItem>
+public class PuffSofa : SofaTile<Items.Verdant.Blocks.Mysteria.Furniture.MysteriaSofaItem>
 {
     [Sacrifice(3)]
     public class PuffSofaItem : ModItem

@@ -8,7 +8,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal abstract class SofaTile<T> : TileBlueprint<T> where T : ModItem
+public abstract class SofaTile<T> : TileBlueprint<T> where T : ModItem
 {
     protected sealed override StaticTileInfo StaticInfo => new("ItemName.Sofa", TileID.Benches);
 

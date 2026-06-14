@@ -11,7 +11,7 @@ using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal class VerdantLantern : ModTile
+public class VerdantLantern : ModTile
 {
     public override void SetStaticDefaults()
     {

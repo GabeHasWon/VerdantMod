@@ -2,12 +2,15 @@
 using Terraria.ID;
 using Terraria.GameContent.Metadata;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Cut;
 
-internal class MossDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
+public class MossDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
     protected override int StyleRange => 4;
+
+    public override bool IsLoadingEnabled(Mod mod) => false;
 
     protected override void StaticDefaults()
     {

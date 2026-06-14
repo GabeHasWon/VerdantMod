@@ -7,7 +7,7 @@ using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal class VerdantCandle : ModTile
+public class VerdantCandle : ModTile
 {
     public override void SetStaticDefaults() => FurnitureHelper.CandleDefaults<VerdantCandleItem>(this, new Color(253, 221, 3), false);
 

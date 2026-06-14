@@ -7,7 +7,7 @@ using Verdant.Items.Verdant.Blocks.Misc.Books;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-internal class SpecialBooks : ModTile
+public class SpecialBooks : ModTile
 {
     public override void SetStaticDefaults()
     {

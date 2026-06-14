@@ -10,7 +10,7 @@ using Verdant.Items.Verdant.Blocks.Plants;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class LightbulbVine : ModTile, IFlowerTile
+public class LightbulbVine : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Verdant.Tiles.Verdant.Basic.PestControl;
 
-internal class ThornDecor1x1 : ModTile
+public class ThornDecor1x1 : ModTile
 {
     public override void SetStaticDefaults()
     {

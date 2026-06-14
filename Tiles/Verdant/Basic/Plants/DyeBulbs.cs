@@ -8,7 +8,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-class DyeBulbs : ModTile, IFlowerTile
+public class DyeBulbs : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -16,7 +15,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-class StargazerPlant : ModTile, IFlowerTile
+public class StargazerPlant : ModTile, IFlowerTile
 {
     private static Asset<Texture2D> glowTex;
 

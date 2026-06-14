@@ -12,7 +12,7 @@ using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal class VerdantLamp : ModTile
+public class VerdantLamp : ModTile
 {
     public override void SetStaticDefaults()
     {

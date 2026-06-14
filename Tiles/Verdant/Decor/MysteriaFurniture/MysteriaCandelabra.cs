@@ -10,7 +10,7 @@ using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
-internal class MysteriaCandelabra : ModTile
+public class MysteriaCandelabra : ModTile
 {
     public override void SetStaticDefaults()
     {

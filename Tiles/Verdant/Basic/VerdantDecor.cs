@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic;
 
-internal class VerdantDecor1x1 : ModTile, IFlowerTile
+public class VerdantDecor1x1 : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

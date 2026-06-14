@@ -11,7 +11,6 @@ using Terraria.ObjectData;
 using Verdant.Systems.RealtimeGeneration;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Trees;
-using Verdant.World;
 
 namespace Verdant.Tiles.Verdant.Basic.Mysteria;
 

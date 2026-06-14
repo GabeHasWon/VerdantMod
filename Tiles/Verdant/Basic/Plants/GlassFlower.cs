@@ -10,7 +10,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-class GlassFlower : ModTile, IFlowerTile
+public class GlassFlower : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

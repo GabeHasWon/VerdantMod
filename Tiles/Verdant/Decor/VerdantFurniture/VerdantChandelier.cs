@@ -10,7 +10,7 @@ using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal class VerdantChandelier : ModTile
+public class VerdantChandelier : ModTile
 {
     public override void SetStaticDefaults()
     {

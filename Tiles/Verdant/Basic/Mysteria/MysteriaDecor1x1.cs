@@ -6,7 +6,7 @@ using Terraria.GameContent.Metadata;
 
 namespace Verdant.Tiles.Verdant.Basic.Mysteria;
 
-internal class MysteriaDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
+public class MysteriaDecor1x1 : OmnidirectionalAnchorTile, IFlowerTile
 {
     protected override int StyleRange => 10;
 

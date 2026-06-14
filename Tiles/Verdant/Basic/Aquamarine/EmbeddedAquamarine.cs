@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Aquamarine;
 
-internal class EmbeddedAquamarine : ModTile
+public class EmbeddedAquamarine : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -15,7 +15,7 @@ internal class EmbeddedAquamarine : ModTile
     }
 }
 
-internal class EmbeddedStoneAquamarine : ModTile
+public class EmbeddedStoneAquamarine : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -10,7 +10,7 @@ using Terraria.GameContent;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class LilyPad : ModTile
+public class LilyPad : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace Verdant.Tiles.Verdant.Decor;
 
-internal static class BedHelper
+public static class BedHelper
 {
     public static void Defaults<T>(ModTile tile, Color color) where T : ModItem
     {

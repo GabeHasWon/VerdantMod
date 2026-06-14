@@ -12,7 +12,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Trees;
 
-internal class ChlorophyteTree : ModTile
+public class ChlorophyteTree : ModTile
 {
     public override void SetStaticDefaults()
     {

@@ -8,7 +8,7 @@ using Verdant.Items.Verdant.Blocks.Marble;
 
 namespace Verdant.Tiles.Verdant.Decor.Marble;
 
-class ThePlant : ModTile
+public class ThePlant : ModTile
 {
     public override void SetStaticDefaults()
     {

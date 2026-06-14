@@ -13,7 +13,7 @@ using Verdant.Items.Verdant.Blocks.Mysteria.Furniture;
 
 namespace Verdant.Tiles.Verdant.Decor.MysteriaFurniture;
 
-internal class MysteriaLamp : ModTile
+public class MysteriaLamp : ModTile
 {
     public override void SetStaticDefaults()
     {

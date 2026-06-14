@@ -1406,7 +1406,7 @@ ApotheoticBeeHelmet: {
 		'''
 		Holds a swarm of bees
 		When holding a summon item, these bees surround your cursor and do damage over time
-		The bees are empowered by the Hive Pack		
+		The bees are empowered by the Hive Pack
 		10% increased minion damage
 		+2 minion slots
 		'It is so much more concerning when they're on top of your head'
@@ -1761,7 +1761,7 @@ TearPlantItem: {
 
 DropsnailCage: {
 	DisplayName: Dropsnail Cage
-	Tooltip: ""
+	Tooltip: "'Watery, but gentle'"
 }
 
 JellydewItem: {

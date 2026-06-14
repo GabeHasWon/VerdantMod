@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class RootRopeTile : ModTile
+public class RootRopeTile : ModTile
 {
     public override void SetStaticDefaults()
     {

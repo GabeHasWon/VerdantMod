@@ -12,7 +12,7 @@ using Verdant.Items.Verdant.Tools;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class Bouncebloom : ModTile, IFlowerTile
+public class Bouncebloom : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

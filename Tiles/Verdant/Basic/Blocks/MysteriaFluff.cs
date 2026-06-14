@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class MysteriaFluff : ModTile
+public class MysteriaFluff : ModTile
 {
     public override void SetStaticDefaults()
     {

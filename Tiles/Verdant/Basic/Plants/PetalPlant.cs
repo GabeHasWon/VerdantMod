@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class PetalPlant : ModTile
+public class PetalPlant : ModTile
 {
     public override void SetStaticDefaults()
     {

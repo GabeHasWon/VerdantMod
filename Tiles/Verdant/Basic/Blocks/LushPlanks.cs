@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class LushPlanks : ModTile
+public class LushPlanks : ModTile
 {
     public override void SetStaticDefaults()
     {

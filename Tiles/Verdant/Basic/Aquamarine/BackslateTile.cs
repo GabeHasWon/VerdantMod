@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Aquamarine;
 
-internal class BackslateTile : ModTile
+public class BackslateTile : ModTile
 {
     public override void SetStaticDefaults()
     {

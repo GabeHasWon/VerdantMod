@@ -10,7 +10,7 @@ using Verdant.Items.Verdant.Materials;
 
 namespace Verdant.Tiles.Verdant.Decor.PuffFurniture;
 
-internal class PuffWorkbench : ModTile
+public class PuffWorkbench : ModTile
 {
     [Sacrifice(3)]
     public class PuffWorkbenchItem : ModItem

@@ -10,7 +10,7 @@ using Verdant.Systems.TearRain;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class TearPlant : ModTile
+public class TearPlant : ModTile
 {
     public class TearPlantItem : ModItem
     {

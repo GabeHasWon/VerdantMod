@@ -9,7 +9,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.PestControl;
 
-internal class ThornDecor1x2 : ModTile
+public class ThornDecor1x2 : ModTile
 {
     public override void SetStaticDefaults()
     {

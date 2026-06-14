@@ -6,30 +6,29 @@ using Terraria.ObjectData;
 using Terraria.Localization;
 using Verdant.Items.Verdant.Blocks.LushWood;
 
-namespace Verdant.Tiles.Verdant.Decor.LushFurniture
+namespace Verdant.Tiles.Verdant.Decor.LushFurniture;
+
+public class LushTable : ModTile
 {
-    internal class LushTable : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            Main.tileSolidTop[Type] = true;
-            Main.tileFrameImportant[Type] = true;
-            Main.tileNoAttach[Type] = true;
-            Main.tileTable[Type] = true;
-            Main.tileLavaDeath[Type] = true;
+        Main.tileSolidTop[Type] = true;
+        Main.tileFrameImportant[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileTable[Type] = true;
+        Main.tileLavaDeath[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
-            TileObjectData.newTile.CoordinateHeights = [16, 18];
-            TileObjectData.addTile(Type);
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
+        TileObjectData.addTile(Type);
 
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(114, 69, 39), Language.GetText("MapObject.Table"));
-            RegisterItemDrop(ModContent.ItemType<LushTableItem>());
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+        AddMapEntry(new Color(114, 69, 39), Language.GetText("MapObject.Table"));
+        RegisterItemDrop(ModContent.ItemType<LushTableItem>());
 
-            TileID.Sets.DisableSmartCursor[Type] = true;
-            AdjTiles = new int[] { TileID.Tables };
-        }
-
-        public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        AdjTiles = new int[] { TileID.Tables };
     }
+
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 }

@@ -13,7 +13,7 @@ using Verdant.Tiles.TileEntities.Verdant;
 
 namespace Verdant.Tiles.Verdant.Misc;
 
-class HangingCrystal : ModTile
+public class HangingCrystal : ModTile
 {
     private static Asset<Texture2D> _crystalTex;
 

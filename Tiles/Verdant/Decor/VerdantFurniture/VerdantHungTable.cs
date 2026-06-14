@@ -10,7 +10,7 @@ using Verdant.Tiles.Verdant.Basic.Plants;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal abstract class VerdantHungTableBase<TItem> : ModTile where TItem : ModItem
+public abstract class VerdantHungTableBase<TItem> : ModTile where TItem : ModItem
 {
     public const int ChainLength = 22;
 

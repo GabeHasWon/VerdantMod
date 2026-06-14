@@ -5,7 +5,7 @@ using Verdant.Items.Verdant.Blocks.VerdantFurniture;
 
 namespace Verdant.Tiles.Verdant.Decor.VerdantFurniture;
 
-internal class VerdantCandelabra : ModTile
+public class VerdantCandelabra : ModTile
 {
     public override void SetStaticDefaults() => CandelabraHelper.Defaults<VerdantCandelabraItem>(this, new Color(253, 221, 3), false);
     public override void HitWire(int i, int j) => CandelabraHelper.WireHit(i, j);

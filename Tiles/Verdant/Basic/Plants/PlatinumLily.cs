@@ -6,12 +6,11 @@ using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Verdant.Tiles.Verdant.Basic.Blocks;
-using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class PlatinumLily : ModTile, IFlowerTile
+public class PlatinumLily : ModTile, IFlowerTile
 {
     public override void SetStaticDefaults()
     {

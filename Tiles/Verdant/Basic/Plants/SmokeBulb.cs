@@ -9,7 +9,7 @@ using Verdant.Tiles.Verdant.Basic.Blocks;
 
 namespace Verdant.Tiles.Verdant.Basic.Plants;
 
-internal class SmokeBulb : ModTile
+public class SmokeBulb : ModTile
 {
     internal class SmokeBulbFlag : ModSystem
     {

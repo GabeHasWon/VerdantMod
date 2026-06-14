@@ -612,7 +612,7 @@ internal class ApotheosisDialogueCache : IDialogueCache
         //    shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
         //});
 
-        var text = new ScreenText("...but we still have more to show you.")
+        var text = new ScreenText("Welcome to our leaves.")
         {
             shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
             color = Color.White,
@@ -620,13 +620,20 @@ internal class ApotheosisDialogueCache : IDialogueCache
             speaker = Language.GetTextValue("Mods.Verdant.ApotheosisName"),
             speakerColor = Color.Lime,
             final = true
-        };//.FinishWith(new ScreenText("is there not?")
-        //{
-        //    shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
-        //    color = Color.White,
-        //    shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
-        //});
-
+        }
+        .With(new ScreenText("We have much to show -")
+        {
+            shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
+            color = Color.White * 0.85f,
+            shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
+        })
+        .FinishWith(new ScreenText("so take the time to look, hm?")
+        {
+            shader = ModContent.Request<Effect>(EffectIDs.TextWobble),
+            color = Color.White,
+            shaderParams = new ScreenTextEffectParameters(0.02f, 0.01f, 30),
+        });
+        
         return text;
     }
 }

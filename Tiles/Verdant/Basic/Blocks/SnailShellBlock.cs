@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Verdant.Tiles.Verdant.Basic.Blocks;
 
-internal class SnailShellBlock : ModTile
+public class SnailShellBlock : ModTile
 {
     public override void SetStaticDefaults()
     {
