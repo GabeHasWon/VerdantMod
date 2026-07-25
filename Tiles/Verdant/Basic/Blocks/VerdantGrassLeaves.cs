@@ -57,7 +57,8 @@ public class VerdantGrassLeaves : ModTile, IVerdantGrassTile
 
     public override void NearbyEffects(int i, int j, bool closer)
     {
-        if ((!Framing.GetTileSafely(i, j + 1).HasTile || !Main.tileSolid[Framing.GetTileSafely(i, j + 1).TileType]) && Main.rand.NextBool(1945))
+        bool topSlope = Main.tile[i, j].TopSlope || Main.tile[i, j].Slope == SlopeType.Solid;
+        if ((!Framing.GetTileSafely(i, j + 1).HasTile || !Main.tileSolid[Framing.GetTileSafely(i, j + 1).TileType]) && Main.rand.NextBool(1945) && topSlope)
         {
             Vector2 position = (new Vector2(i, j + 1) * 16) - new Vector2(0, 2);
             Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, new Vector2(0, 0), ModContent.GoreType<Gores.Verdant.VerdantDroplet>(), 1f);

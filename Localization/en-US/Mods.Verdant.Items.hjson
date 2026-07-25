@@ -1122,7 +1122,7 @@ HeartOfGrowth: {
 	DisplayName: The Heart of Growth
 	Tooltip:
 		'''
-		Permenantly increases minion damage by 5%.
+		Permanently increases minion damage by 5%.
 		Can only be used once per person.
 		'A heart that beats everliving.'
 		'''

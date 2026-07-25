@@ -114,7 +114,7 @@ namespace Verdant.Items
             i.Item.useTime = 16;
             i.Item.damage = 0;
             i.Item.rare = rarity;
-            i.Item.maxStack = 999;
+            i.Item.maxStack = Item.CommonMaxStack;
             i.Item.noUseGraphic = true;
             i.Item.noMelee = false;
             i.Item.useStyle = ItemUseStyleID.Swing;

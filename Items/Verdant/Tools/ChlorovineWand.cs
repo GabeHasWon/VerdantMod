@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Verdant.Systems.Foreground.Parallax;
 using Verdant.Items.Verdant.Materials;
 using Terraria.Localization;
+using Verdant.Items.Global;
 
 namespace Verdant.Items.Verdant.Tools;
 
@@ -59,6 +60,8 @@ public class ChlorovineWandProjectile : ModProjectile
     public ZipvineEntity lastVine = null;
 
     private bool _init = false;
+
+    public override void SetStaticDefaults() => VerdantItemSets.HeldProjectile[Type] = true;
 
     public override void SetDefaults()
     {

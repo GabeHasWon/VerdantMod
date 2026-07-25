@@ -9,6 +9,7 @@ using ReLogic.Content;
 using Verdant.Systems.TearRain;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Terraria.ID;
+using System;
 
 namespace Verdant.Scenes;
 
@@ -18,6 +19,7 @@ internal class VerdantUndergroundBiome : ModBiome
     private float _steamProgress = 0f;
 
     private float _rainSteamOpacity = 0f;
+    private float _bloodMoonLerp = 0f;
 
     public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Verdant/VerdantWaterStyle");
     public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.Find<ModUndergroundBackgroundStyle>("Verdant/VerdantUGBackground");
@@ -97,13 +99,19 @@ internal class VerdantUndergroundBiome : ModBiome
             float opacity = canShowTearSteam ? 0.1f + rainStrength * 0.25f : 0;
 
             _rainSteamOpacity = MathHelper.Lerp(_rainSteamOpacity, opacity, 0.02f);
+            _bloodMoonLerp = MathHelper.Lerp(_bloodMoonLerp, Main.bloodMoon ? 1 : 0, 0.02f);
 
-            Filters.Scene[EffectIDs.RainSteam].GetShader().UseProgress(Main.GameUpdateCount * 0.001f + rainStrength * 0.001f);
+            Terraria.Graphics.Shaders.ScreenShaderData shader = Filters.Scene[EffectIDs.RainSteam].GetShader();
+            shader.UseProgress(Main.GameUpdateCount * 0.001f + rainStrength * 0.001f);
             Vector2 direction = Main.screenPosition / Main.ScreenSize.ToVector2();
             direction.X %= 1;
             direction.Y %= 1;
-            Filters.Scene[EffectIDs.RainSteam].GetShader().UseDirection(direction);
-            Filters.Scene[EffectIDs.RainSteam].GetShader().UseIntensity(_rainSteamOpacity);
+            shader.UseDirection(direction);
+            shader.UseIntensity(_rainSteamOpacity);
+
+            shader.Shader.Parameters["primaryColor"].SetValue(BloodMoonify(new Vector4(0.95f, 0.75f, 1f, 0), new Vector4(0.76f, 0.8f, 1, 1)));
+            shader.Shader.Parameters["secondColor"].SetValue(BloodMoonify(new Vector4(0.9f, 0.7f, 0.9f, 1), new Vector4(0.83f, 0.87f, 0.95f, 1)));
+            shader.Shader.Parameters["thirdColor"].SetValue(BloodMoonify(new Vector4(0.6f, 0.06f, 0.45f, 1), new Vector4(0.1f, 0.5f, 0.65f, 0.7f)));
 
             if (!canShowTearSteam && _rainSteamOpacity <= 0.01f)
             {
@@ -112,6 +120,8 @@ internal class VerdantUndergroundBiome : ModBiome
             }
         }
     }
+
+    private Vector4 BloodMoonify(Vector4 blood, Vector4 normal) => Vector4.Lerp(normal, blood, _bloodMoonLerp);
 
     private void SetShader(string effect)
     {

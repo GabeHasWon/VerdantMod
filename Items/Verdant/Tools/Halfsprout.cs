@@ -22,7 +22,7 @@ class Halfsprout : ApotheoticItem
         Item.useTime = 15;
         Item.autoReuse = true;
         Item.consumable = true;
-        Item.maxStack = 99;
+        Item.maxStack = Item.CommonMaxStack;
     }
 
     public override bool? UseItem(Player player)

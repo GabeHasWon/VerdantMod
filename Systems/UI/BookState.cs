@@ -5,11 +5,10 @@ using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace Verdant.Systems.UI;
 
@@ -25,18 +24,17 @@ internal class BookState : UIState
         _titleScale = titleScale;
         _body = body;
 
-        //if (ModContent.GetInstance<VerdantClientConfig>().FancyBookUI)
-            BuildClassic();
+        BuildClassic();
 
         if (_body.Any(x => x is not Asset<Texture2D> && x is not string))
-            throw new ArgumentException("Body contains invalid types!");
+            throw new ArgumentException("Body contains invalid types! Values should be either strings or Asset<Texture2D>s.");
     }
 
     private void BuildClassic()
     {
         UIPanel panel = new UIPanel()
         {
-            Width = StyleDimension.FromPercent(1 / 3.5f),
+            Width = StyleDimension.FromPercent(1 / 3.5f * Main.UIScale),
             Height = StyleDimension.FromPercent(1 / 1.5f),
             VAlign = 0.5f,
             HAlign = 0.5f
@@ -69,7 +67,7 @@ internal class BookState : UIState
 
         UIList list = new UIList()
         {
-            Width = StyleDimension.FromPercent(0.95f),
+            Width = StyleDimension.FromPixelsAndPercent(-36, 1),
             Height = StyleDimension.Fill,
             ListPadding = 8f,
         };

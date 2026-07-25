@@ -20,7 +20,7 @@ public class MysteriaDrapesItem : ModItem
         Item.height = 16;
         Item.useTime = 16;
         Item.useAnimation = 16;
-        Item.maxStack = 999;
+        Item.maxStack = Item.CommonMaxStack;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.knockBack = 6;
         Item.value = Item.buyPrice(0, 0, 0, 50);

@@ -3,6 +3,10 @@ sampler uImage1 : register(s1);
 sampler uImage2 : register(s2);
 sampler uImage3 : register(s3);
 
+float4 primaryColor : register(c0);
+float4 secondColor : register(c1);
+float4 thirdColor : register(c2);
+
 float3 uColor;
 float3 uSecondaryColor;
 float2 uScreenResolution;
@@ -31,8 +35,8 @@ float4 Main(float2 coords : TEXCOORD0) : COLOR0
     factor = round(factor * 30) / 30.0;
     
     float4 wavy = tex2D(uImage2, frac(round(coords * 2) / 2.0));
-    float4 lerpTarget = lerp(float4(0.83, 0.87, 0.95, 1), float4(0.76, 0.8, 1, 1), wavy.r * 0.5 + 0.5);
-    color = lerp(lerp(color, float4(0.1, 0.5, 0.65, 0.7), factor), lerp(color, lerpTarget, factor), factor);
+    float4 lerpTarget = lerp(secondColor, primaryColor, wavy.r * 0.5 + 0.5);
+    color = lerp(lerp(color, thirdColor, factor), lerp(color, lerpTarget, factor), factor);
 	return color;
 }
 

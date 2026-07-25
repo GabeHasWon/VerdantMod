@@ -35,7 +35,6 @@ namespace Verdant.Projectiles.Misc
         public override void AI()
         {
             Player p = Main.player[Projectile.owner];
-            p.heldProj = Projectile.whoAmI;
 
             if (p.whoAmI != Main.myPlayer)
                 return; //mp check (hopefully)
@@ -62,7 +61,8 @@ namespace Verdant.Projectiles.Misc
 
             Rectangle playerTop = new((int)p.position.X, (int)p.position.Y, p.width, 2);
 
-            if (playerTop.Intersects(Projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && !Collision.SolidCollision(p.position, p.width, p.height) && Projectile.timeLeft > 3)
+            if (playerTop.Intersects(Projectile.Hitbox) && (p.controlUp || p.controlDown) && !p.controlJump && !p.pulley && p.grappling[0] < 0 && !p.mount.Active && 
+                !Collision.SolidCollision(p.position, p.width, p.height) && Projectile.timeLeft > 3)
             {
                 p.pulley = true;
                 p.pulleyDir = 1;

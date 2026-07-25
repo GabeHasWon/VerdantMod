@@ -19,7 +19,12 @@ class Lightbulb : ApotheoticItem
         ItemID.Sets.WaterTorches[Type] = true;
     }
 
-    public override void SetDefaults() => QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White, noUseGraphic: true);
+    public override void SetDefaults()
+    {
+        QuickItem.SetMaterial(this, 22, 24, ItemRarityID.White, noUseGraphic: true);
+        Item.useStyle = ItemUseStyleID.None;
+    }
+
     public override void PostUpdate() => Lighting.AddLight(Item.position, new Vector3(0.1f, 0.03f, 0.06f) * 9);
     public override void HoldItemFrame(Player player) => player.bodyFrame.Y = 56;
     public override void HoldItem(Player player) => Lighting.AddLight(player.MountedCenter - new Vector2(0, 28), new Vector3(0.1f, 0.03f, 0.06f) * 12);
