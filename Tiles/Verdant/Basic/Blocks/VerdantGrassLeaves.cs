@@ -74,7 +74,15 @@ public class VerdantGrassLeaves : ModTile, IVerdantGrassTile
         if (SpawnSpecial(i, j))
             return true;
 
-        if (CheckMysteriaMicrobiome(i, j))
+        if (CheckGrave(i, j))
+        {
+            if (TileHelper.ValidTop(self) && !Framing.GetTileSafely(i, j - 1).HasTile && Main.rand.NextBool(3))
+            {
+                PlaceSynced(i, j - 1, ModContent.TileType<WhiteLily>(), (0, 3));
+                return true;
+            }
+        }
+        else if (CheckMysteriaMicrobiome(i, j))
         {
             MysteriaGrowth(i, j);
             return true;
@@ -149,6 +157,18 @@ public class VerdantGrassLeaves : ModTile, IVerdantGrassTile
             }
         }
 
+        return false;
+    }
+
+    internal static bool CheckGrave(int i, int j, float sizeMul = 1f)
+    {
+        int width = (int)(8 * sizeMul);
+        int height = (int)(10 * sizeMul);
+
+        for (int x = i - width; x < i + width; ++x)
+            for (int y = j - height; y < j + height; ++y)
+                if (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<Graves>())
+                    return true;
         return false;
     }
 

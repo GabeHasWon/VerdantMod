@@ -22,7 +22,7 @@ public class VerdantDecor1x1 : ModTile, IFlowerTile
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
         TileObjectData.newTile.AnchorValidTiles = [ModContent.TileType<LushSoil>()];
         TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
-        TileObjectData.newTile.RandomStyleRange = 7;
+        TileObjectData.newTile.RandomStyleRange = 10;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
 
@@ -55,7 +55,7 @@ internal class Decor1x1Right : ModTile, IFlowerTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorRight = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
-        TileObjectData.newTile.RandomStyleRange = 7;
+        TileObjectData.newTile.RandomStyleRange = 10;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
 
@@ -91,7 +91,7 @@ internal class Decor1x1Left : ModTile, IFlowerTile
     {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.AnchorLeft = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
-        TileObjectData.newTile.RandomStyleRange = 7;
+        TileObjectData.newTile.RandomStyleRange = 10;
         TileObjectData.newTile.StyleHorizontal = true;
         QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
 
@@ -216,4 +216,33 @@ internal class VerdantDecor1x3 : ModTile
         Main.tileCut[Type] = true;
     }
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+}
+
+public class WhiteLily : ModTile, IFlowerTile
+{
+    public override void SetStaticDefaults()
+    {
+        Main.tileCut[Type] = true;
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
+        TileObjectData.newTile.AnchorValidTiles = [ModContent.TileType<LushSoil>()];
+        TileObjectData.newTile.ExpandValidAnchors(VerdantGrassLeaves.VerdantGrassTypes.ToList());
+        TileObjectData.newTile.RandomStyleRange = 4;
+        TileObjectData.newTile.StyleHorizontal = true;
+        QuickTile.SetMulti(this, 1, 1, DustID.Grass, SoundID.Grass, false, new Color(161, 226, 99));
+
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]);
+
+        TileID.Sets.SwaysInWindBasic[Type] = true;
+        TileID.Sets.ReplaceTileBreakUp[Type] = true;
+    }
+
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 3;
+    public override void SetSpriteEffects(int i, int j, ref SpriteEffects effects) => effects = (i % 2 == 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+    public Vector2[] GetOffsets() => [new Vector2(8)];
+    public bool IsFlower(int i, int j) => true;
+
+    public Vector2[] OffsetAt(int i, int j) => GetOffsets();
 }

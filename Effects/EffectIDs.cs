@@ -1,6 +1,10 @@
-﻿namespace Verdant.Effects;
+﻿using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using Terraria.ModLoader;
 
-public class EffectIDs
+namespace Verdant.Effects;
+
+public class EffectIDs : ILoadable
 {
     //Screen shaders
     public const string BiomeSteam = "Verdant:SteamForeground";
@@ -8,4 +12,14 @@ public class EffectIDs
 
     //Normal shaders
     public const string TextWobble = "Verdant/Effects/Text/TextWobble";
+
+    public static readonly Asset<Effect> TextWobbleEffect = ModContent.Request<Effect>(TextWobble);
+
+    void ILoadable.Load(Mod mod)
+    {
+    }
+
+    void ILoadable.Unload()
+    {
+    }
 }

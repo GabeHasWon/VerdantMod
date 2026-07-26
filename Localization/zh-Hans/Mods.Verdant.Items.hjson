@@ -1792,3 +1792,23 @@ PoetryBook: {
 	// DisplayName: '''"Scribbles"'''
 	// Tooltip: Right click to read
 }
+
+DreamGrave: {
+	// DisplayName: Overgrown Grave
+	// Tooltip: ""
+}
+
+MaGrave: {
+	// DisplayName: "{$DreamGrave.DisplayName}"
+	// Tooltip: ""
+}
+
+MeGrave: {
+	// DisplayName: Personal Grave
+	// Tooltip: ""
+}
+
+PaGrave: {
+	// DisplayName: "{$DreamGrave.DisplayName}"
+	// Tooltip: ""
+}

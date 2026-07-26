@@ -1,4 +1,7 @@
-﻿using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Verdant.Items.Verdant.Blocks.Walls;
 using Verdant.Systems.ScreenText;
@@ -24,8 +27,12 @@ public class ThornBlock : ApotheoticItem
             return null;
 
         if (!ModContent.GetInstance<VerdantClientConfig>().CustomDialogue)
-            return ApotheosisDialogueCache.ChatLength("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ThornBlock.", 1, true);
+        {
+            LocalizedText localizedText = Language.GetText("Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ThornBlock");
+            Main.NewText($"[c/32cd32:{Language.GetTextValue("Mods.Verdant.ApotheosisFullName")}:] " + localizedText.Value, Color.White);
+            return null;
+        }
 
-        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ThornBlock.0");
+        return ApotheosisDialogueCache.StartLine("$Mods.Verdant.ScreenText.Apotheosis.ItemInteractions.ThornBlock");
     }
 }

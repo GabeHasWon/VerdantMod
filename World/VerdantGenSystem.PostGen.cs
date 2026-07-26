@@ -10,6 +10,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Verdant.Tiles;
+using Verdant.Tiles.Verdant.Basic;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
 using Verdant.Tiles.Verdant.Decor;
@@ -41,7 +42,45 @@ public partial class VerdantGenSystem
             }
         }
 
+        int grave = 0;
+
+        while (grave <= 3)
+        {
+            int x = WorldGen.genRand.Next(VerdantArea.Left, VerdantArea.Right);
+            int y = WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom);
+            Tile ground = Main.tile[x, y + 1];
+
+            if (!ground.HasTile || ground.TileType != ModContent.TileType<VerdantGrassLeaves>())
+                continue;
+
+            WorldGen.PlaceObject(x, y, ModContent.TileType<Graves>(), true, grave);
+            Tile tile = Main.tile[x, y];
+
+            if (tile.HasTile && tile.TileType == ModContent.TileType<Graves>())
+            {
+                ConvertGraveArea(x, y);
+                grave++;
+            }
+        }
+
         ClearOrphans();
+    }
+
+    private static void ConvertGraveArea(int x, int y)
+    {
+        for (int i = x - 10; i < x + 10; ++i)
+        {
+            for (int j = y - 10; j < y + 10; ++j)
+            {
+                Tile tile = Main.tile[i, j];
+
+                if (tile.HasTile && tile.TileType == ModContent.TileType<VerdantDecor1x1>())
+                {
+                    tile.TileType = (ushort)ModContent.TileType<WhiteLily>();
+                    tile.TileFrameX = (short)(18 * WorldGen.genRand.Next(4));
+                }
+            }
+        }
     }
 
     private static void ClearOrphans()
