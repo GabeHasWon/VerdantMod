@@ -1,0 +1,26 @@
+PermVineWandProjectile.DisplayName: Vinha Encantada
+AquamarineBolt.DisplayName: Raio Água-Marinha
+HealPlants.DisplayName: Plantas Curativas
+HealingFlower.DisplayName: Broto Amarelo
+PropellerpadProjectile.DisplayName: Hélice-régia
+VerdantHealingMinion.DisplayName: Flor Exuberante
+VerdantSnailMinion.DisplayName: Caracolo
+AquamarineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
+FlotieOfWrath.DisplayName: Flotie da Ira
+MagicWisplantProj.DisplayName: Plátua Mágica
+MudBoulder.DisplayName: Bola de Solo Exuberante
+PestControlTag.DisplayName: Etiqueta de Controle de Pragas
+VerdantBobber.DisplayName: Isca Flutuante //apparently the old ones has this same name and the new ones are in english.
+VerdantWisp.DisplayName: Flor-Fátua
+VineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
+VineWandVine.DisplayName: Vinha
+WisplantInfusedLushBallProjectile.DisplayName: Bola de Solo Exuberante Infundida com Plátua
+ApotheosisHand.DisplayName: Mão de Apoteose
+HealingParticle.DisplayName: Partícula de Cura
+Smoke.DisplayName: Fumaça
+LushDaggerProj.DisplayName: Adaga Exuberante
+SpikedPuffballProj.DisplayName: Bola Felpuda Espinhosa
+HostSwarm.DisplayName: Enxame de Hospedeiros
+HostSwarmBee.DisplayName: Enxame de Abelhas Hospedeiras
+FruitProjectile.DisplayName: Projétil de Fruta
+ChlorovineWandProjectile.DisplayName: Projétil da Varinha de Clorofita

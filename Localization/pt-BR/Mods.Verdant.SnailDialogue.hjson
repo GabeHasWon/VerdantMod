@@ -1,0 +1,25 @@
+# Try and keep these short, but otherwise go wild.
+
+Prehardmode: {
+	0: Estátua de um Caracol
+	1: Estátua de Caracol
+	2: Caracol Valente
+}
+
+LatePrehardmode: {
+	0: Velho Caracol
+	1: Um Caracol Perdido
+	2: Estátua de um Amigo
+}
+
+Hardmode: {
+	0: Bichinho Perdido
+	1: Memória Passada
+	2: Lembrança
+}
+
+Endgame: {
+	0: Amigo Eterno
+	1: Nossa Memória
+	2: Orwell
+}

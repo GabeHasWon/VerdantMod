@@ -1,0 +1,14 @@
+VerdantUndergroundBiome: {
+	TownNPCDialogueName: o Verdejante
+	DisplayName: Bioma Verdejante //most of the biomes in vanilla's bestiary doesn't have the article, just the name
+}
+
+VerdantBiome: {
+	TownNPCDialogueName: o Verdejante
+	DisplayName: Bioma Verdejante
+}
+
+NearApotheosisBiome: {
+	TownNPCDialogueName: perto de Apoteose
+	DisplayName: Perto de Apoteose
+}

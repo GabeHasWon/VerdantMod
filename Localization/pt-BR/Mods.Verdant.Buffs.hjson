@@ -1,0 +1,29 @@
+HealingFlowerBuff: {
+	DisplayName: Flor Curativa
+	Description: A aura da flor vai te curar
+}
+
+PropellerpadBuff: {
+	DisplayName: Hélice-régia
+	Description: "'Mas que vitória-régia estranha!'"
+}
+
+SnailBuff: {
+	DisplayName: Caracol Lacaio
+	Description: Os caracóis gramíneos lutarão por você
+}
+
+FlotiePetBuff: {
+	DisplayName: Flotie da Ira
+	Description: "'Bem calmante apesar do crânio'" //i used "calmante" because it's the same word the potion has, but maybe a synonym?
+}
+
+MudsquidMarkerBuff: {
+	DisplayName: Lulama //Lula + ma (from "lama")
+	Description: Você se tornará uma lulama enquanto estiver tocando certos tiles
+}
+
+PeaceTreeMarkerBuff: {
+	DisplayName: Zona Pacifica
+	Description: Taxa de criação menor e criaturas do hardmode inativas
+}

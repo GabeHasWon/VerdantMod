@@ -1,0 +1,256 @@
+# Try to keep every line here as long or shorter than the longest lines.
+# If they're too long, they will look really bad in the books.
+
+RockBook: {
+	Content:
+		'''
+
+		"Supostamente de uma ilha distante, desconhecida.
+		Seria uma oportunidade de pesquisa incrível!
+		Ranhuras de obisidiana revestem a rocha, 
+		junto de partículas de brasa por toda parte? Pesquisar depois.
+		Vários indícios de ferro, bismita, chumbo
+		e obsidiana sem ordem em particular.
+		Apesar da sua idade, ainda é quente ao toque - e também soa oca?
+		Preciso de mais amostras, perguntei ao redor... sem respostas.
+		Talvez eu vá procurar por mais.
+		Faz um tempo!
+		O mapa mostra uma área vulcânica em volta de [marca de arranhão]
+		ou algo assim..."
+
+		Apesar da introdução, esse livro parece lentamente
+		mudar seu propósito - se tornando um tipo de registro de exploração:
+
+		"Aventura ta indo bem,
+		embora sem sucesso; florestas idília
+		esperam pacientemente, enquanto
+
+		o que me aguarda no final dessa aventura -
+		um grande vulcão...
+
+		Eu tenho certeza disso."
+
+		'''
+	Title: Rochas Vulcânicas
+}
+
+LightbulbBook: {
+	Content: {
+		0:
+			'''
+
+			"Bulbos estranhos? Sementes?
+			feitos de um material macio e vegetal, como folhas.
+			Brilha suavemente, embora as vezes de forma que parecem ondas.
+			Funcionam como fonte de luz solar, crescem em certas flores."
+
+			'''
+		1:
+			'''
+
+			"Cheio de água? açucar?
+			Tem um gosto insípido, meio doce, meio terroso, levemente gramado
+			e um tom de ferro (ou outro metal? Testar depois.)
+			Raro, então não tenho muitas amostras para testes.
+			Vou procurar por mais depois, pode ser uma boa comida.
+
+			Além da analise, esses são espécimes incríveis...
+			Vão fornecer uma luz melhor do que esses vagalumes"
+
+			Várias linhas com coisas aleatórias: rabiscos, rascunhos, anotações
+			Ocasionalmente tem um pequeno trecho de informação aproveitável:
+			"Cresce melhor em água suja?"
+			"Como isso funcionaria sob a luz do sol?"
+			"Quase flores quando crescendo." +
+			"Mácio, porém resistente. Hm."
+
+			'''
+	}
+
+	Title: Bulbos Luminosos?
+}
+
+LeafBook: {
+	Content: {
+		0:
+			'''
+
+			O livro parece particularmente velho, página desgastada e
+			estranhamente marrom.
+			O material também é claramente estrangeiro.
+			Tem gotas de água nas páginas superiores.
+			Também há diversos pequenos rabiscos.
+			Os rabiscos, à primeira vista, parecem paisagens aleatórias
+			da superfície,
+			então de objetos mundanos da caverna... por alguma razão.
+			Não há datas ou autores mencionados, fora uma
+			assinatura:
+
+			'''
+		1:
+			'''
+
+			Você folheia o livro, e encontra as seguintes páginas:
+
+			'''
+		2:
+			'''
+
+			"Uma textura quase de tecido, durável mas mácio.
+			Inexplicavelmente calmo de segurar, cresce bem em
+			bulbos luminosos.
+			Desagradável de se comer, tem gosto de grama e terra.
+			Abundante, talvez use (livros? páginas? decido depois).
+			Talvez funcione em pedaços pequenos?
+			Cresce em aglomerados tipo trepadeira ou apenas em
+			aglomerados isolados? Não tenho certeza.
+			Cresce apenas ou na maioria das vezes ao redor de flores.
+
+			(NÃO COMA)
+
+			Tentei pressionar em páginas, parece ter funcionando
+			mas precisa de mais trabalho. Elas estão muito verdes."
+
+			'''
+	}
+
+	Title: Folhas
+}
+
+HardyVineBook: {
+	Content:
+		'''
+
+		"Os últimos vestígios de vida por aqui
+		Incrivelmente duráveis, apesar do quão finas elas são.
+		Tentar cortar uma dessas é praticamente inútil.
+		Elas crescem dispersamente, cercadas de vinhas, folhas e
+		flora menores.
+		As vezes é uma flor, com uma pequena luz nelas.
+
+		NÃO COMA
+
+		Parece alface porém coriácea e mais suja.
+		Pode ser usada para criar cordas incrivelmente fortes.
+		Considerar usar como um reforço?
+		... Eu não sei se eu consigo."
+
+		As poucas páginas restantes tem pequenos rascunhos e
+		a pequena nota ocasional -
+
+		"... mais abundante agora?..."
+		"Novos espécimes estão ficando mais robustos"
+		"... brotando com mais frequência..."
+
+		- até que o livro termina.
+
+		'''
+	Title: Vinhas Resistentes
+}
+
+ApotheosisBook: {
+	Content:
+		'''
+
+		"Faz um tempo desde que fiquei sem suprimentos.
+		Minha caravana está vazia fora a pesquisa,
+		com ratos e morcegos sendo tudo o que posso comer.
+		A água é surpreendentemente limpa e refrescante
+		por aqui, então... é só fome.
+		Algumas pesquisas estão prontas, entretanto.
+		Eu estou categorizando a flora daqui, e é... mágica
+		Em um ponto que eu não tenho certeza se isso é
+		simplesmente um termo, ou só a verdade.
+		Surpreendentemente tem grama e folhagem exuberante ao redor,
+		Eu vi algumas poucas mudas de árvore aqui e ali.
+		Uma madeira muito interessante, também!
+		Apesar de minha fome extrema, eu quero sofrer por esse céu.
+
+
+		...
+
+
+		"Os escassos pedaços desta terra foram o suficiente por um
+		tempo, mesmo que quase nenhum.
+		Eu montei um pequeno porém aceitável escritório,
+		tanto para guardar minhas coisas quanto para me manter segura.
+		As vezes um esqueleto errante ou um morcego raivoso
+		se encontram perto de mim,
+		e eu sou uma exploradora; não uma caçadora de monstros.
+		Dito isso, a comida está cada vez mais escassa.
+		Além dos morcegos, eu perdi os ratos - parece que esses bichinhos
+		aprenderam quem é a maior ameaça deles.
+		Eu já perdi a noção do tempo.
+		Apesar dos estudos, não me sobra muito de qualquer forma."
+
+
+		...
+
+
+		"O tempo parece cansado; e eu também.
+		Os estudos continuam, meu fervor alcançando novos patamares
+		enquanto vejo coisas únicas nessa estranha caverna.
+		Apesar da fome, do cansaço e meu estado deplorável
+		Eu me sinto mais viva do que nunca.
+		Pra mim, essa vida, essas criaturas que vivem aqui
+		crescem, brincam, conversam e brigam.
+		Talvez tenha até mais que eu não consigo ver.
+		Infelizmente, eu to com o pé na cova,
+		e eu não consigo tirar.
+		Mas talvez, em algum outro momento,
+		essas plantas encontrem outro par de olhos,
+		e ficam perplexas assim como eu fiquei."
+
+
+		...
+
+
+		"Vejo; uma flor. Uma flor com um bulbo nela,
+		uma flor curiosa -
+		entre as pétalas, um brilho suave.
+		Um brilho calmante.
+		Um brilho diferente de tudo que eu já vi em meu tempo aqui
+		Eu praticamente abandonei meu escritório. //or is she talking about the studies?
+		Não tem comida, e estou em meu último suspiro.
+		Meu único arrependimento,
+		foi não ter conseguido estudar essa flora,
+		Este presente que me foi apresentado.
+		...
+		Que alguém encontre meu trabalho.
+		Que alguma paixão reviva aquilo pelo qual morri fazendo.
+		Que este diário encontre alguém em bom estado,
+		em bons espíritos,
+		e adeus."
+
+		'''
+	# Note that the lines "in good spirits," and "and goodbye." are intentionally spaced out, ideally keep that if you can.
+	
+	Title: "'Minha Apoteose'"
+}
+
+PoetryBook: {
+	Title: Rabiscos
+	Content:
+		'''
+		Sobre os bosques errantes,
+		Abaixo das flores adormecidas;
+
+		Sobre a carne murchante,
+		Ao lado de ossadas compridas.
+
+		Eu encontrei aquilo
+		Eu sei que não
+		Meu próprio papel, eu não havia encontrado
+
+		Sobre a cerda das folhas e o tronco da vida
+		De orvalho e petricor
+
+		I found what
+		I'd known not
+		From the soul; that old sound
+
+		Of sundew and of petrichor
+
+		- e. m.
+		'''
+}

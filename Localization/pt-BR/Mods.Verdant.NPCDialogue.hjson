@@ -1,0 +1,33 @@
+Guide: {
+	ApotheosisEvilDown: Eu ouço uma voz fraca vindo daquelas profundas cavernas verdejantes. Talvez devesse checá-las? //i based myself on the minecraft lush caves translation
+	ApotheosisSkeletronDown: Eu ouço outra voz, mais intensa, vindo das cavernas verdejantes. Dê uma olhada lá
+}
+
+Dryad: {
+	0: Eu amo esta mata. O mundo é poderoso aqui. //mata? Bosque? Terra sobrecrescida?
+	1: Eu não posso acreditar que nunca vi este lugar antes..
+	GreenCrystal: Eu tenho alguns cristais verdes maravilhosos para dividir, se estiver interessado. Só alguns, claro.
+}
+
+Stylist: O ar é úmido DEMAIS aqui, meu cabelo está ficando todo armado.
+
+WitchDoctor: {
+	0: A energia que está nas flores daqui... Ela flui intensamente.
+	1: Eu sinto um poder antigo nas folhas.
+	Dryad: "{0}'s esteve me dando um pouco de seus produtos...Se importa em dar uma olhada? É bem interessante."
+}
+
+# Keep the {0} to refer to the Dryad's name.
+
+DyeTrader: {
+	0: ISSO sim é uma vista! Olhe as cores lindas que essas flores tem!
+	1: O brilho desses bulbos...Espetacular...
+}
+
+TaxCollector: {
+	0: Bah! Estas folhas não param de invadir a casa. Manda alguém se livrar delas pra mim!
+	1: Aquelas flores brilhantes estão me dando nos nervos! Deixe sua luz maldita longe de mim!
+}
+
+Painter: Esses tons são deslumbrantes! Que paisagem maravilhosa!
+Princess: Tem tantas cores belas por aqui!

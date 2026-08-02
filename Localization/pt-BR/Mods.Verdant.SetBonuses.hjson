@@ -1,0 +1,31 @@
+Lush: +1 dano bruto de invocação
+Mysteria:
+	'''
+	Aumenta a velocidade e o alcance de posicionamento das paredes e blocos
+	Aumenta a velocidade de mineração
+	Taxa de criação de inimigos significativamente menor
+	'''
+Verdant:
+	'''
+	+4% dano de invocação
+	+1 lacaio máximo
+	Diminui a velocidade de queda - Segure BAIXO para cair mais rapidamente
+	Ao renascer, te cura em 50 de vida
+	'''
+
+Apotheotic: {
+	Tree:
+		'''
+		Frutas renascem significativamente mais rápido
+		O efeito das frutas são mais fortes
+		+1 lacaio máximo
+		+10 defesa
+		'''
+	Bee:
+		'''
+		As abelhas causam dano aumentado
+		Quando as abelhas matam algo, elas dropam um coração de mel que cura 10 de vida
+		+1 lacaio máximo
+		+5% dano de invocação
+		'''
+}

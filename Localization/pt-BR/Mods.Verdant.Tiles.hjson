@@ -1,0 +1,78 @@
+VerdantPylonTile.MapEntry: Pilar do Verdejante
+FloatingCrystal.MapEntry: Cristal Flutuante
+AquamarineTile.MapEntry: Água-Marinha
+Beehive.MapEntry: Colmeia
+LootPlant.MapEntry: Passiflora
+MysteriaSprout.MapEntry: Broto
+LushSapling.MapEntry: Muda
+MarigoldTile.MapEntry: Margarida
+WaterberryBush.MapEntry: Arbusto
+WaterberryBushPicked.MapEntry: Arbusto
+Wisplant.MapEntry: Plátua
+Apotheosis.MapEntry: Apoteose
+AquamarineTorch.MapEntry: Tocha
+HardmodeApotheosis.MapEntry: Apoteose
+LushDoorClosed.MapEntry: Porta Exuberante
+LushDoorOpen.MapEntry: Porta Exuberante
+
+LushDresser: {
+	MapEntry: Cômoda Exuberante
+	ContainerName: Cômoda Exuberante
+}
+
+VerdantWoodChest: {
+	MapEntry: Baú de Madeira Exuberante
+	ContainerName: Baú de Madeira Exuberante
+}
+
+VerdantWood.MapEntry: Madeira Verdejante
+LullabyBoxTile.MapEntry: Caixinha de Música
+PetalsFallBoxTile.MapEntry: Caixinha de Música
+TearRainBoxTile.MapEntry: Caixinha de Música
+VibrantHorizonBoxTile.MapEntry: Caixinha de Música
+MysteriaDoorClosed.MapEntry: Porta de Glicínia
+MysteriaDoorOpen.MapEntry: Porta de Glicínia
+
+MysteriaDresser: {
+	MapEntry: Cômoda de Glicínia
+	ContainerName: Cômoda de Glicínia
+}
+
+SnailStatue.MapEntry: Estátua de Caracol
+VerdantDoorClosed.MapEntry: Porta Verdejante
+VerdantDoorOpen.MapEntry: Porta Verdejante
+
+VerdantYellowPetalChest: {
+	MapEntry: Baú de Pétalas Amarelas
+	ContainerName:Baú de Pétalas Amarelas
+}
+
+GreenCrystal.MapEntry: Cristal Verde
+ApotheoticPainting.MapEntry: Quadro
+LightbulbPainting.MapEntry: Quadro
+BigVerdantTree.MapEntry: Grande Árvore
+VerdantTree.MapEntry: Árvore
+PeaceTreeTop.MapEntry: Copa da Árvore da Paz
+MysteriaTreeTop.MapEntry: Copa da Árvore de Glicínia
+MysteriaTree.MapEntry: Árvore de Glicínia
+VerdantRedPetal.MapEntry: Pétala Vermelha
+VerdantPinkPetal.MapEntry: Pétala Rosa
+VerdantLeaves.MapEntry: Vinha
+VerdantGrassLeaves.MapEntry: Folhas
+SnailShellBlock.MapEntry: Concha de Caracol
+PuffBlock.MapEntry: Bloco Felpudo
+OvergrownBricks.MapEntry: Tijolo Coberto de Vegetação
+LushSoil.MapEntry: Solo Exuberante
+LivingLushWood.MapEntry: Madeira Viva Exuberante
+GemsparkAquamarine.MapEntry: Bloco de Água-Marinha Brilhante
+EmbeddedStoneAquamarine.MapEntry: Bloco de Pedra de Água-Marinha
+EmbeddedAquamarine.MapEntry: Bloco de Solo Exuberante Água-Marinha
+BackslateTile.MapEntry: Bardósia
+ThornTile.MapEntry: Espinhos
+LushPlanks.MapEntry: Tábuas Exuberantes
+MysteriaFluff.MapEntry: Fiapo de Glicínia
+LushGrass.MapEntry: Grama Exuberante
+LightbulbLeaves.MapEntry: "{$VerdantGrassLeaves.MapEntry}"
+TrimmedOvergrownBricks.MapEntry: Tijolo Coberto de Vegetação Aparada
+PuffDresser.MapEntry: Cômoda Felpuda
+Graves.MapEntry: Covas
