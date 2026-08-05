@@ -15,7 +15,7 @@ namespace Verdant.Systems.UI;
 internal class BookState : UIState
 {
     private readonly string _title = "";
-    private readonly object[] _body = Array.Empty<object>();
+    private readonly object[] _body = [];
     private readonly float _titleScale = 1f;
 
     public BookState(string title, float titleScale, object[] body)
@@ -34,7 +34,7 @@ internal class BookState : UIState
     {
         UIPanel panel = new UIPanel()
         {
-            Width = StyleDimension.FromPercent(1 / 3.5f * Main.UIScale),
+            Width = StyleDimension.FromPixels(544),
             Height = StyleDimension.FromPercent(1 / 1.5f),
             VAlign = 0.5f,
             HAlign = 0.5f
