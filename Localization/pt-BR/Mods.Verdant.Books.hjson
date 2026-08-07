@@ -21,7 +21,7 @@ RockBook: {
 		Apesar da introdução, esse livro parece lentamente
 		mudar seu propósito - se tornando um tipo de registro de exploração:
 
-		"Aventura ta indo bem,
+		"A aventura ta indo bem,
 		embora sem sucesso; florestas idília
 		esperam pacientemente, enquanto
 
@@ -41,14 +41,14 @@ LightbulbBook: {
 
 			"Bulbos estranhos? Sementes?
 			feitos de um material macio e vegetal, como folhas.
-			Brilha suavemente, embora as vezes de forma que parecem ondas.
+			Brilha suavemente, embora às vezes... em um movimento ondulado.
 			Funcionam como fonte de luz solar, crescem em certas flores."
 
 			'''
 		1:
 			'''
 
-			"Cheio de água? açucar?
+			"Cheio de água? açúcar?
 			Tem um gosto insípido, meio doce, meio terroso, levemente gramado
 			e um tom de ferro (ou outro metal? Testar depois.)
 			Raro, então não tenho muitas amostras para testes.
@@ -60,9 +60,9 @@ LightbulbBook: {
 			Várias linhas com coisas aleatórias: rabiscos, rascunhos, anotações
 			Ocasionalmente tem um pequeno trecho de informação aproveitável:
 			"Cresce melhor em água suja?"
-			"Como isso funcionaria sob a luz do sol?"
+			"Como isso funcionária sob a luz do sol?"
 			"Quase flores quando crescendo." +
-			"Mácio, porém resistente. Hm."
+			"Macio, porém resistente. Hm."
 
 			'''
 	}
@@ -96,8 +96,8 @@ LeafBook: {
 		2:
 			'''
 
-			"Uma textura quase de tecido, durável mas mácio.
-			Inexplicavelmente calmo de segurar, cresce bem em
+			"Uma textura quase de tecido, durável mas macia.
+			Inexplicavelmente tranquilizante de segurar, cresce bem em
 			bulbos luminosos.
 			Desagradável de se comer, tem gosto de grama e terra.
 			Abundante, talvez use (livros? páginas? decido depois).
@@ -126,9 +126,9 @@ HardyVineBook: {
 		Tentar cortar uma dessas é praticamente inútil.
 		Elas crescem dispersamente, cercadas de vinhas, folhas e
 		flora menores.
-		As vezes é uma flor, com uma pequena luz nelas.
+		Às vezes são flores, com uma pequena luz nelas.
 
-		NÃO COMA
+		(NÃO COMA)
 
 		Parece alface porém coriácea e mais suja.
 		Pode ser usada para criar cordas incrivelmente fortes.
@@ -174,7 +174,7 @@ ApotheosisBook: {
 		tempo, mesmo que quase nenhum.
 		Eu montei um pequeno porém aceitável escritório,
 		tanto para guardar minhas coisas quanto para me manter segura.
-		As vezes um esqueleto errante ou um morcego raivoso
+		Às vezes um esqueleto errante ou um morcego raivoso
 		se encontram perto de mim,
 		e eu sou uma exploradora; não uma caçadora de monstros.
 		Dito isso, a comida está cada vez mais escassa.
@@ -199,7 +199,7 @@ ApotheosisBook: {
 		e eu não consigo tirar.
 		Mas talvez, em algum outro momento,
 		essas plantas encontrem outro par de olhos,
-		e ficam perplexas assim como eu fiquei."
+		e fiquem perplexas assim como eu fiquei."
 
 
 		...
@@ -210,7 +210,7 @@ ApotheosisBook: {
 		entre as pétalas, um brilho suave.
 		Um brilho calmante.
 		Um brilho diferente de tudo que eu já vi em meu tempo aqui
-		Eu praticamente abandonei meu escritório. //or is she talking about the studies?
+		Eu praticamente abandonei meu escritório.
 		Não tem comida, e estou em meu último suspiro.
 		Meu único arrependimento,
 		foi não ter conseguido estudar essa flora,
@@ -245,11 +245,11 @@ PoetryBook: {
 		Sobre a cerda das folhas e o tronco da vida
 		De orvalho e petricor
 
-		I found what
-		I'd known not
-		From the soul; that old sound
+		Eu descobri
+		O que eu não sabia
+		Da alma; aquele som antigo //idk how good these 3 lines are...
 
-		Of sundew and of petrichor
+		De orvalho e petricor
 
 		- e. m.
 		'''

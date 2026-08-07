@@ -26,19 +26,19 @@ Apotheosis: {
 	Idle: {
 		Normal: {
 			0: Cá entre nós, eu tenho orgulho destes brotos saltitantes.
-			1: Nós buscamos ser acolhedores; funcionou? //i don't know how i could put arbour here
+			1: Nós buscamos ser acolhedores; funcionou?
 			2: Onde está minha pena - hm?
 			3: '''"eu", "nós"; é tudo a mesma coisa.'''
 			4: Não tenho mais nada a acrescentar.
 			5: Saia e sinta o aroma das flores.
-			6: Run along, now.
+			6: Já pode ir, agora.
 			7: Você viu uma cobra por aqui?
 			8: Eu me lembro do cheiro das flores, ainda.
 			9: Caracois são criaturas mal apreciadas.
 			10: O mundo é seu jardim, meu amigo.
 			11: Sem necessidade de perder tempo.
 			12: Coloque uma pilha de ouro em nossa grama para uma surpresa...
-			13: As vezes, me lembro do pôr do sol...
+			13: Às vezes, me lembro do pôr do sol...
 			14: Neste mundo, esperamos que você seja uma bênção...
 			15: A exploração sacia a alma.
 			16: Concentre-se na água fluindo, nas flores brilhando...
@@ -75,7 +75,7 @@ Apotheosis: {
 			7: Entre a folha, e a videira...
 			8: Em uníssono, em harmonia...
 			9: ...perdido...
-			10: As vezes, eu só quero ver meu lar.
+			10: Às vezes, eu só quero ver meu lar.
 			11: ...e agora?...
 			12: Precisa de mais flores....
 			13: As abelhas, tão livres...
@@ -110,7 +110,7 @@ Apotheosis: {
 			5: Pelo que somos, por que somos tão incertos?
 			6: Ah. Os fluxos de água, oh...
 			7: Nos lembra de minhas cores.
-			8: Well, run along. Don't slip.
+			8: Bem, pode ir. Não escorregue.
 			9: Cada lágrima; outra palavra...
 		}
 	}
@@ -143,7 +143,7 @@ Apotheosis: {
 			3: como agradecimento, pegue isto. Eu...Eu não preciso disso mais.
 			4: ...e enquanto ainda está aqui,
 			5: saiba que vou te recompensar por derrotar mais males;
-			6: então converse comigo as vezes, hm?
+			6: então converse comigo de tempos em tempos, hm?
 		}
 
 		AnyMech: {
@@ -166,11 +166,11 @@ Apotheosis: {
 			1: Isso é um dos meus... projetos favoritos.
 			2: Não sabemos se vai ajudar muito,
 			3: mas suspeitamos que vai ser divertido.
-			4: Tudo de bom. //or just "Boa sorte"
+			4: Boa sorte.
 		}
 
 		Cultist: {
-			0: Aqueles charlatães estão mortos, hm?
+			0: Aqueles charlatões estão mortos, hm?
 			1: A prática deles era uma idiotice perigosa.
 			2: Vejo que menos e menos ameaças estão... à frente.
 			3: Talvez podemos oferecer uma pequena fração de nosso poder,
@@ -190,7 +190,6 @@ Apotheosis: {
 
 	# The following lines are not visible in-game at any point and will be added in a future update.
 	# Feel free to skip these until they're added.
-	//i just won't translate because it may have changes when added
 	
 	PestControlNotif: {
 		// 0: With the wall defeated,
@@ -221,7 +220,7 @@ Apotheosis: {
 	
 	ItemInteractions: {
 		WiltedFlower: {
-			0: Uma margarida, minha flor favorita.
+			0: Uma calêndula, minha flor favorita.
 			1: Que pena que tenha passado tanto tempo, hm?
 			2: Ah, e sinta-se livre para me perguntar sobre qualquer coisa.
 			3: Somos um livro aberto.
@@ -259,12 +258,12 @@ Apotheosis: {
 
 		PuffMaterial: Honestamente, só queriamos ver se poderiamos criar esses.
 		Halfsprout: Um pequeno broto curioso, hm?
-		MysteriaClump: É sempre bom, ah, se ramificar as vezes.
+		MysteriaClump: É sempre bom, ah, se ramificar às vezes.
 		PinkPetal: Não conta pra Pétala Vermelha, mas essa é minha favorita.
 		RedPetal: Não conta pra Pétala Rosa, mas essa é minha favorita.
 
 		CrudePaintbrush: {
-			0: Ah, meu velho pincel.
+			0: Ah, meu antigo pincel.
 			1: Desculpe, fiz um pouco às pressas,
 			2: mas sabemos que é uma ferramenta útil.
 		}
@@ -287,7 +286,7 @@ Apotheosis: {
 		Propellerpad: {
 			0: Um dos meus favoritos.
 			1: Simples, limpo, natural, silencioso.
-			2: O que mais você pode pedir?
+			2: O que mais você poderia pedir?
 		}
 
 		Mudsquid: {
@@ -296,7 +295,7 @@ Apotheosis: {
 			2: Não que nós tivemos muita magia antes...
 		}
 
-		SproutInAGlove: As vezes, simplicidade é a chave.
+		SproutInAGlove: Às vezes, simplicidade é a chave.
 		VineHook: Esse cara sempre está tendo o melhor dia de sua vida.
 
 		ExpertPlantGuide: {
@@ -335,12 +334,12 @@ Apotheosis: {
 		FloralTea: Útil quando na estrada, não é?
 
 		Grapecherry: {
-			0: Como um cientista, as vezes...
-			1: As vezes você comete um erro.
+			0: Como um cientista, às vezes...
+			1: Às vezes você comete um erro.
 		}
 
-		Mystuber: Frito ou não, faz bem pro coração. //accidental rhyme B)
-		Walnut: As vezes... mantenha simples.
+		Mystuber: Frito ou não, faz bem pro coração.
+		Walnut: Às vezes... mantenha simples.
 		Waterberry: Abundante... se ao menos...
 		HoneyNuggets: Abelhas são mágicas. Valorize-as.
 

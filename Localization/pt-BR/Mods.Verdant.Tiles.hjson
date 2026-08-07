@@ -5,7 +5,7 @@ Beehive.MapEntry: Colmeia
 LootPlant.MapEntry: Passiflora
 MysteriaSprout.MapEntry: Broto
 LushSapling.MapEntry: Muda
-MarigoldTile.MapEntry: Margarida
+MarigoldTile.MapEntry: Calêndula
 WaterberryBush.MapEntry: Arbusto
 WaterberryBushPicked.MapEntry: Arbusto
 Wisplant.MapEntry: Plátua
@@ -25,7 +25,7 @@ VerdantWoodChest: {
 	ContainerName: Baú de Madeira Exuberante
 }
 
-VerdantWood.MapEntry: Madeira Verdejante
+VerdantWood.MapEntry: Madeira Exuberante
 LullabyBoxTile.MapEntry: Caixinha de Música
 PetalsFallBoxTile.MapEntry: Caixinha de Música
 TearRainBoxTile.MapEntry: Caixinha de Música
@@ -44,7 +44,7 @@ VerdantDoorOpen.MapEntry: Porta Verdejante
 
 VerdantYellowPetalChest: {
 	MapEntry: Baú de Pétalas Amarelas
-	ContainerName:Baú de Pétalas Amarelas
+	ContainerName: Baú de Pétalas Amarelas
 }
 
 GreenCrystal.MapEntry: Cristal Verde
@@ -61,7 +61,7 @@ VerdantLeaves.MapEntry: Vinha
 VerdantGrassLeaves.MapEntry: Folhas
 SnailShellBlock.MapEntry: Concha de Caracol
 PuffBlock.MapEntry: Bloco Felpudo
-OvergrownBricks.MapEntry: Tijolo Coberto de Vegetação
+OvergrownBricks.MapEntry: Tijolo Folhoso
 LushSoil.MapEntry: Solo Exuberante
 LivingLushWood.MapEntry: Madeira Viva Exuberante
 GemsparkAquamarine.MapEntry: Bloco de Água-Marinha Brilhante
@@ -73,6 +73,6 @@ LushPlanks.MapEntry: Tábuas Exuberantes
 MysteriaFluff.MapEntry: Fiapo de Glicínia
 LushGrass.MapEntry: Grama Exuberante
 LightbulbLeaves.MapEntry: "{$VerdantGrassLeaves.MapEntry}"
-TrimmedOvergrownBricks.MapEntry: Tijolo Coberto de Vegetação Aparada
+TrimmedOvergrownBricks.MapEntry: Tijolo Folhoso Aparado
 PuffDresser.MapEntry: Cômoda Felpuda
 Graves.MapEntry: Covas

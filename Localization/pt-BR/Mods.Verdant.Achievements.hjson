@@ -4,13 +4,13 @@ GardenerAchievement: {
 }
 
 GreenThumbAchievement: {
-	FriendlyName: Dedo Verde
+	FriendlyName: Polegar Verde
 	Description: Complete uma das missões de Apoteose.
 }
 
 MarigoldAchievement: {
-	FriendlyName: Margavilha //Calendourada? So it can keep the gold joke
-	Description: Cultive uma margarida nas folhas verdejantes. //folhas verdejantes or folhas de verdejante?
+	FriendlyName: Calêndourada
+	Description: Cultive uma Calêndula nas folhas verdejantes.
 }
 
 ReachingApotheosisAchievement: {
@@ -19,11 +19,11 @@ ReachingApotheosisAchievement: {
 }
 
 MudsquidAchievement: {
-	FriendlyName: Vagante do Lamaçal //Lamagante?
-	Description: Mova-se por 1000 blocos como uma Lulama. //"blocos" sounds better than "ladrilhos" in my opinion
+	FriendlyName: Vagante do Lamaçal
+	Description: Mova-se por 1000 blocos como uma Lulama.
 }
 
 ShowcaseAchievement: {
-	FriendlyName: Showcaser //Apresentador?
+	FriendlyName: Apresentador
 	Description: Mostre um item para Apoteose.
 }

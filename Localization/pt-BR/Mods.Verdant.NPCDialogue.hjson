@@ -1,10 +1,10 @@
 Guide: {
-	ApotheosisEvilDown: Eu ouço uma voz fraca vindo daquelas profundas cavernas verdejantes. Talvez devesse checá-las? //i based myself on the minecraft lush caves translation
+	ApotheosisEvilDown: Eu ouço uma voz fraca vindo daquelas profundas cavernas verdejantes. Talvez devesse checá-las?
 	ApotheosisSkeletronDown: Eu ouço outra voz, mais intensa, vindo das cavernas verdejantes. Dê uma olhada lá
 }
 
 Dryad: {
-	0: Eu amo esta mata. O mundo é poderoso aqui. //mata? Bosque? Terra sobrecrescida?
+	0: Eu amo esta mata. O mundo é poderoso aqui.
 	1: Eu não posso acreditar que nunca vi este lugar antes..
 	GreenCrystal: Eu tenho alguns cristais verdes maravilhosos para dividir, se estiver interessado. Só alguns, claro.
 }

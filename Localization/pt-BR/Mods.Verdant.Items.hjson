@@ -18,12 +18,11 @@ LushWoodLegs: {
 	Tooltip: ""
 }
 
-//Misterio + Glicínia
 MysteriaChest: {
 	DisplayName: Peitoral de Miscínia
 	Tooltip:
 		'''
-		Aumenta velocidade de mineração
+		Aumenta a velocidade de mineração
 		Aumenta a velocidade de posicionamento das paredes e blocos
 		'''
 }
@@ -32,7 +31,7 @@ MysteriaHelmet: {
 	DisplayName: Véu de Miscínia
 	Tooltip:
 		'''
-		Aumenta velocidade de mineração
+		Aumenta a velocidade de mineração
 		Aumenta a velocidade de posicionamento das paredes e blocos
 		Aumenta o alcance de posicionamento
 		'''
@@ -42,7 +41,7 @@ MysteriaLeggings: {
 	DisplayName: Calças de Miscínia
 	Tooltip:
 		'''
-		Aumenta velocidade de mineração
+		Aumenta a velocidade de mineração
 		Aumenta a velocidade de posicionamento das paredes e blocos
 		'''
 }
@@ -57,7 +56,7 @@ VerdantChestplate: {
 }
 
 VerdantHelm: {
-	DisplayName: Cocar do Crescimento //the ancient headdress translates the "headdress" to "cabeça" but in my opinion it sounds strange
+	DisplayName: Cocar do Crescimento
 	Tooltip:
 		'''
 		+5% dano de invocação
@@ -91,7 +90,7 @@ BackslateTileItem: {
 }
 
 EmbeddedAquamarineItem: {
-	DisplayName: Bloco de Solo Exuberante Água-Marinha
+	DisplayName: Bloco de Solo Exuberante de Água-Marinha
 	Tooltip: ""
 }
 
@@ -116,10 +115,10 @@ GemsparkAquamarineWallOfflineItem: {
 }
 
 BeehiveBlock: {
-	DisplayName: Colmeia de Bumblebees //read npcs
+	DisplayName: Colmeia de Zangões
 	Tooltip:
 		'''
-		Invoca abelhas, que polinizam flores próximas
+		Invoca zangões, que polinizam flores próximas
 		Petiscos podem ser colhidos quando abelhas retornarem com pólen suficiente
 		'O zumbido é meio preocupante'
 		'''
@@ -294,7 +293,7 @@ FloatingCrystalItem: {
 	DisplayName: Cristal Flutuante
 	Tooltip:
 		'''
-		Pode ser colocado no ar
+		Pode ser posicionado no ar
 		Pode ser agarrado
 		'''
 }
@@ -320,13 +319,13 @@ LightbulbPaintingItem: {
 }
 
 OvergrownBrickItem: {
-	DisplayName: Tijolo Cinza Verdejante //'musgoso'? but i think it's not moss; 'frondoso'? i didn't even knew existed; and 'folhudo' just sounds funny
+	DisplayName: Tijolo Cinza Folhoso
 	Tooltip: ""
 }
 
 ResearchBooksItem: {
 	DisplayName: Livro de Pesquisa
-	Tooltip: "'Folhas e folhas de rabisco, texto e teorias'"
+	Tooltip: "'Páginas e páginas de rabiscos, textos e teorias'"
 }
 
 SnailShellBlockItem: {
@@ -355,102 +354,102 @@ VibrantHorizonBox: {
 }
 
 MysteriaBathtubItem: {
-	DisplayName: Banheira Miscínia
+	DisplayName: Banheira de Miscínia
 	Tooltip: ""
 }
 
 MysteriaBedItem: {
-	DisplayName: Cama Miscínia
+	DisplayName: Cama de Miscínia
 	Tooltip: ""
 }
 
 MysteriaBookshelfItem: {
-	DisplayName: Estante Miscínia
+	DisplayName: Estante de Miscínia
 	Tooltip: ""
 }
 
 MysteriaCandelabraItem: {
-	DisplayName: Candelabro Miscínia
+	DisplayName: Candelabro de Miscínia
 	Tooltip: ""
 }
 
 MysteriaCandleItem: {
-	DisplayName: Vela Miscínia
+	DisplayName: Vela de Miscínia
 	Tooltip: ""
 }
 
 MysteriaChairItem: {
-	DisplayName: Cadeira Miscínia
+	DisplayName: Cadeira de Miscínia
 	Tooltip: ""
 }
 
 MysteriaClockItem: {
-	DisplayName: Relógio Miscínia
+	DisplayName: Relógio de Miscínia
 	Tooltip: "'O relógio menor parece bem desregulado'"
 }
 
 MysteriaDoorItem: {
-	DisplayName: Porta Miscínia
+	DisplayName: Porta de Miscínia
 	Tooltip: ""
 }
 
 MysteriaDresserItem: {
-	DisplayName: Cômoda Miscínia
+	DisplayName: Cômoda de Miscínia
 	Tooltip: ""
 }
 
 MysteriaLampItem: {
-	DisplayName: Lâmpada Miscínia
+	DisplayName: Lâmpada de Miscínia
 	Tooltip: ""
 }
 
 MysteriaLanternItem: {
-	DisplayName: Lanterna Miscínia 
+	DisplayName: Lanterna de Miscínia
 	Tooltip: ""
 }
 
 MysteriaPianoItem: {
-	DisplayName: Piano Miscínia
+	DisplayName: Piano de Miscínia
 	Tooltip: ""
 }
 
 MysteriaPlatformItem: {
-	DisplayName: Plataforma Miscínia
+	DisplayName: Plataforma de Miscínia
 	Tooltip: ""
 }
 
 MysteriaSinkItem: {
-	DisplayName: Pia Miscínia
+	DisplayName: Pia de Miscínia
 	Tooltip: ""
 }
 
 MysteriaSofaItem: {
-	DisplayName: Sofá Miscínia
+	DisplayName: Sofá de Miscínia
 	Tooltip: ""
 }
 
 MysteriaTableItem: {
-	DisplayName: Mesa Miscínia
+	DisplayName: Mesa de Miscínia
 	Tooltip: ""
 }
 
 MysteriaWorkbenchItem: {
-	DisplayName: Bancada de Trabalho Miscínia
+	DisplayName: Bancada de Trabalho de Miscínia
 	Tooltip: ""
 }
 
 MysteriaAcorn: {
-	DisplayName: Muda Miscínia
+	DisplayName: Muda de Miscínia
 	Tooltip:
 		'''
-		Planta uma árvore Miscínia.
-		Árvores Miscínia espalham o microbioma Miscínia pelo verdejante próximo.
+		Planta uma árvore de Miscínia.
+		Árvores de Miscínia espalham o microbioma Miscínia pelo verdejante próximo.
 		As árvores são sólidas e não podem ser atravessadas.
 		'''
 }
 
 MysteriaDrapesItem: {
-	DisplayName: Cortinas Miscínia
+	DisplayName: Cortinas de Miscínia
 	Tooltip:
 		'''
 		Pode ser posicionada em qualquer bloco sólido
@@ -461,16 +460,16 @@ MysteriaDrapesItem: {
 }
 
 MysteriaTreetop: {
-	DisplayName: Dossel Miscínia
+	DisplayName: Dossel de Miscínia
 	Tooltip:
 		'''
-		Coloca um dossel de Árvores Miscínia
+		Posiciona um dossel de Árvores de Miscínia
 		'Alguma montagem necessária'
 		'''
 }
 
 MysteriaWood: {
-	DisplayName: Madeira Miscínia
+	DisplayName: Madeira de Miscínia
 	Tooltip: "'Seca e resistente'"
 }
 
@@ -478,8 +477,8 @@ PeaceTreetopItem: {
 	DisplayName: Dossel da Paz
 	Tooltip:
 		'''
-		Pode ser posicionado apenas em madeira de Miscínias
-		Coloca um Dossel da Paz
+		Pode ser posicionado apenas em madeira de Miscínia
+		Posiciona um Dossel da Paz
 		Ficar perto do Dossel da Paz reduz as taxas de criação e
 		volta as criaturas para o pre-hardmode.
 		'''
@@ -492,7 +491,7 @@ HousproutItem: {
 		WIP - WILL NOT BE FINISHED BEFORE RELEASE
 		'A magnificent growth said to build a small house almost instantly'
 		'''
-} // is this obtainable?
+}
 
 LightbulbSeeds: {
 	DisplayName: Sementes de Bulbo Luminoso
@@ -523,7 +522,7 @@ PinkPuff: {
 }
 
 RedDyeBulb: {
-	DisplayName: Gerânio perene
+	DisplayName: Gerânio Perene
 	Tooltip:
 		'''
 		'Uma cor maravilhosamente clara!'
@@ -538,7 +537,7 @@ RootRopeItem: {
 
 VerdantFlowerBulb: {
 	DisplayName: Bulbo de Flor
-	Tooltip: Pode ser posicionado apenas em Grama, Flores, Folhas Exuberantes oi Paredes de Vinha Exuberante
+	Tooltip: Pode ser posicionado apenas em Grama, Flores, Folhas Exuberantes ou Paredes de Vinha Exuberante
 }
 
 VerdantStrongVineMaterial: {
@@ -599,8 +598,8 @@ HarvestedPickipuffItem: {
 }
 
 MarigoldItem: {
-	DisplayName: Margarida //calêndula? Tagete? I chose "Margarida" because it's the closest to the sprite
-	Tooltip: "'Tem um cheiro... Metalico... E um pouco a magia.'"
+	DisplayName: Calêndula
+	Tooltip: "'Tem um cheiro... Metálico... E um pouco mágico.'"
 }
 
 PickipuffItem: {
@@ -649,7 +648,7 @@ VerdantBookshelfItem: {
 }
 
 VerdantCandelabraItem: {
-	DisplayName: Candelabro Verdejante 
+	DisplayName: Candelabro Verdejante
 	Tooltip: ""
 }
 
@@ -812,7 +811,7 @@ WisplantInfusedMudBoulder: {
 	DisplayName: Bola de Solo Exuberante Infundida com Plátua
 	Tooltip:
 		'''
-		'Você só juntou duas coisas, isso não é mágica' - Todos //why did i laugh at this
+		'Você só juntou duas coisas, isso não é mágica' - Todos
 		'Magia nem sempre é um espetáculo' - Magos
 		'''
 }
@@ -823,7 +822,7 @@ BulbSnail: {
 }
 
 BumblebeeItem: {
-	DisplayName: Bumblebee //oh yeah i forgot i didn't translated the npc
+	DisplayName: Zangão
 	Tooltip: ""
 }
 
@@ -908,8 +907,8 @@ HealingFlowerItem: {
 	Tooltip:
 		'''
 		Aumenta a cura de poções em 20%
-		Aumenta a cura de mana de poções em 30%
-		Fornece uma pequena quantia de luz
+		Aumenta a cura de poções de mana em 30%
+		Fornece uma baixa quantidade de luz
 		'Você está sendo seguido pela força de vontade'
 		'''
 }
@@ -984,7 +983,7 @@ MysteriaCrateItem: {
 }
 
 Shellfish: {
-	DisplayName: Peixe Concha Sobrecrescido
+	DisplayName: Peixe Concha Folhoso
 	Tooltip: ""
 }
 
@@ -998,7 +997,7 @@ BowlFruit: {
 }
 
 Dropberry: {
-	DisplayName: Gorango //Gota + Morango (the sprite looks like a strawberry)
+	DisplayName: Gorango
 	Tooltip:
 		'''
 		Pequenas melhorias em todas as estatísticas
@@ -1016,7 +1015,7 @@ FloralTea: {
 }
 
 Grapecherry: {
-	DisplayName: Cerejuva //Cereja + Uva
+	DisplayName: Cerejuva
 	Tooltip:
 		'''
 		Pequenas melhorias em todas as estatísticas
@@ -1034,7 +1033,7 @@ HoneyNuggets: {
 }
 
 Mystuber: {
-	DisplayName: Misbérculo //Miscínia + Tubérculo
+	DisplayName: Misbérculo
 	Tooltip:
 		'''
 		Pequenas melhorias em todas as estatísticas
@@ -1062,17 +1061,17 @@ Waterberry: {
 
 Lightbulb: {
 	DisplayName: Bulbo Luminoso
-	Tooltip: "'Afasta a Hera'"
+	Tooltip: "'Mantém Hera afastada'"
 }
 
 LushLeaf: {
 	DisplayName: Folha Exuberante
-	Tooltip: "'Bastante durável'"
+	Tooltip: "'Bem durável'"
 }
 
 MysteriaClump: {
 	DisplayName: Moita de Flores de Miscínia
-	Tooltip: "'Incrivelmente mácio'"
+	Tooltip: "'Incrivelmente macio'"
 }
 
 PinkPetal: {
@@ -1164,7 +1163,7 @@ AquamarineHook: {
 }
 
 BouncebloomItem: {
-	DisplayName: Florpolim //Flor + Trampolim
+	DisplayName: Florpolim
 	Tooltip:
 		'''
 		Diminui a velocidade de queda
@@ -1238,7 +1237,7 @@ CrudePaintbrush: {
 }
 
 PermVineWand: {
-	DisplayName: Vinholesa //Vinha + Tirolesa
+	DisplayName: Vinholesa
 	Tooltip:
 		'''
 		Permite que o usuário construa vinhas
@@ -1271,7 +1270,7 @@ Shears: {
 	Tooltip:
 		'''
 		Apara certas plantas
-		Pode ser usada para remover Trepadeiras Felpudas e Cortinas Miscínia
+		Pode ser usada para remover Trepadeiras Felpudas e Cortinas de Miscínia
 		Pode ser usada como um machado, tecnicamente
 		'''
 }
@@ -1329,7 +1328,7 @@ LushDagger: {
 	Tooltip:
 		'''
 		Arremesadas em trios
-		'O incomodo preferido da natureza'
+		'O incômodo preferido da natureza'
 		'''
 }
 
@@ -1364,7 +1363,7 @@ VerdantStaff: {
 		'''
 		Invoca uma flor curativa sagrada.
 		Fique perto dessa planta para ganhar regeneração extra.
-		Você pode invocar apenas um por vez.
+		Você pode invocar apenas uma por vez.
 		Use novamente enquanto já existe para mover a flor.
 		'''
 	MultiplayerTooltip: Invocar multiplas flores fortalecerá a existente.
@@ -1393,12 +1392,12 @@ CrystalHeart: {
 
 ThornBlock: {
 	DisplayName: Bloco de Espinhos
-	Tooltip: Desagradável de todas as maneiras
+	Tooltip: Desagradável de todas as formas
 }
 
 ThornWallItem: {
 	DisplayName: Parede de Espinhos
-	Tooltip: Está... Errado.
+	Tooltip: É... Errado.
 }
 
 ApotheoticBeeHelmet: {
@@ -1406,7 +1405,7 @@ ApotheoticBeeHelmet: {
 	Tooltip:
 		'''
 		Guarda um enxame de abelhas
-		Enquanto segura um item de invocação, essas abelhas cercam seu cursor e causam dano com o tempo
+		Enquanto segura um item de invocação, essas abelhas cercam seu cursor e causam dano periodicamente
 		As abelhas ficam fortalecidas pelo Pacote de Colmeias
 		+10% dano de invocação
 		+2 lacaios máximos
@@ -1418,10 +1417,10 @@ ApotheoticTreeHelmet: {
 	DisplayName: Faixa de Árvore Apoteótica
 	Tooltip:
 		'''
-		Uma árvore cresce na bandana, de alguma forma
+		Uma árvore cresce na faixa, de alguma forma
 		Você tem uma aura curativa
 		A árvore produz vários frutos
-		Clique em um de seus lacaios para fortalece-lo muito por um curto período de tempo
+		Clique em um de seus lacaios para fortalecê-lo drasticamente por um curto período de tempo
 		+10% dano de invocação
 		+1 lacaio máximo
 		'A árvore conforta a vida e a vida conforta você'
@@ -1467,7 +1466,7 @@ FruitIconYellow: {
 }
 
 ApotheoticSoul: {
-	DisplayName: murmúrio Apoteótico
+	DisplayName: Murmúrio Apoteótico
 	Tooltip:
 		'''
 		A mais pura essência de uma apoteose
@@ -1524,7 +1523,7 @@ WhiteDyeBulb: {
 }
 
 LightbulbLeafItem: {
-	DisplayName: Folhas Lâmpada //i could keep the "bulbo luminoso" thing tho
+	DisplayName: Folhas Luminosas
 	Tooltip: Emite um brilho suave
 }
 
@@ -1534,7 +1533,7 @@ LushLoomItem: {
 }
 
 TrimmedOvergrownBrickItem: {
-	DisplayName: Tijolo Coberto de Vegetação Aparada
+	DisplayName: Tijolo Folhoso Aparado
 	Tooltip: Não espalha nem cresce nada, só é bonito!
 }
 
@@ -1550,7 +1549,7 @@ FlotieTerrariumItem: {
 
 FlotinyTerrariumItem: {
 	DisplayName: Terrário de Flotinho
-	Tooltip: "'Lâmpadas flutuantes em um terrário? Esse é o futuro das lâmpadas!'"
+	Tooltip: "'Lâmpadas flutuantes em um terrário? Esse é o futuro da iluminação!'"
 }
 
 MysteriaFlotinyTerrariumItem: {
@@ -1609,7 +1608,7 @@ LushWingletTerrariumItem: {
 }
 
 PlainMicrocosm: {
-	DisplayName: Microcosmo Simples
+	DisplayName: Microcosmo Solto
 	Tooltip:
 		'''
 		{$Microcosm.Tooltip}
@@ -1627,7 +1626,7 @@ PassionflowerBlock: {
 }
 
 ChlorovineWand: {
-	DisplayName: Clorovinha //"Clorolesa" would match the "Vinholesa"
+	DisplayName: Clorovinha
 	Tooltip:
 		'''
 		Permite que o usuário construa clorovinhas
@@ -1665,7 +1664,7 @@ StargazerPlantItem: {
 
 LunarJellyItem: {
 	DisplayName: Água-viva Lunar
-	Tooltip: "'Tanto mácio quanto incorpóreo.'"
+	Tooltip: "'Tanto macio quanto incorpóreo.'"
 }
 
 LunarJellyTerrariumItem: {
@@ -1684,7 +1683,7 @@ GlassFlowerItem: {
 
 DropsnailItem: {
 	DisplayName: Carágrima
-	Tooltip: "'Mácio, frio.'"
+	Tooltip: "'Macio, frio.'"
 }
 
 SmokeBulbItem: {
@@ -1736,7 +1735,7 @@ PuffBookcaseItem: {
 }
 
 PuffDresserItem: {
-	DisplayName: Cômoda Felpula
+	DisplayName: Cômoda Felpuda
 	Tooltip: ""
 }
 
@@ -1776,37 +1775,37 @@ JellydewAquariumItem: {
 }
 
 PuffBathtubItem: {
-	DisplayName: Banheira Peluda
+	DisplayName: Banheira Felpuda
 	Tooltip: ""
 }
 
 PuffBedItem: {
-	DisplayName: Cama Peluda
+	DisplayName: Cama Felpuda
 	Tooltip: ""
 }
 
 PuffClockItem: {
-	DisplayName: Relógio Peludo
+	DisplayName: Relógio Felpudo
 	Tooltip: ""
 }
 
 PuffTableItem: {
-	DisplayName: Mesa Peluda
+	DisplayName: Mesa Felpuda
 	Tooltip: ""
 }
 
 PuffPlatformItem: {
-	DisplayName: Plataforma Peluda
+	DisplayName: Plataforma Felpuda
 	Tooltip: ""
 }
 
 PuffSofaItem: {
-	DisplayName: Sofá Peludo
+	DisplayName: Sofá Felpudo
 	Tooltip: ""
 }
 
 PuffPianoItem: {
-	DisplayName: Piano Peludo
+	DisplayName: Piano Felpudo
 	Tooltip: ""
 }
 

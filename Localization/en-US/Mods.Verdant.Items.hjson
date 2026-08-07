@@ -470,7 +470,7 @@ MysteriaTreetop: {
 
 MysteriaWood: {
 	DisplayName: Mysteria Wood
-	Tooltip: "'Dry and study'"
+	Tooltip: "'Dry and sturdy'"
 }
 
 PeaceTreetopItem: {

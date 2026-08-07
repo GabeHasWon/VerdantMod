@@ -15,12 +15,12 @@ SnailBuff: {
 
 FlotiePetBuff: {
 	DisplayName: Flotie da Ira
-	Description: "'Bem calmante apesar do crânio'" //i used "calmante" because it's the same word the potion has, but maybe a synonym?
+	Description: "'Bem calmante apesar do crânio'"
 }
 
 MudsquidMarkerBuff: {
-	DisplayName: Lulama //Lula + ma (from "lama")
-	Description: Você se tornará uma lulama enquanto estiver tocando certos tiles
+	DisplayName: Lulama
+	Description: Você se tornará uma lulama enquanto estiver tocando certos blocos
 }
 
 PeaceTreeMarkerBuff: {

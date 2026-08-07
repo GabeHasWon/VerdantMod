@@ -1,11 +1,11 @@
 Botanist: {
 	DisplayName: Botânico
 	Flavor: O druida do mundo científico; Entende o que faz a vida ser vida, o que floresce e apodrece e o mais importante, qual fungo é mais saboroso.
-	Description: Começa com 500 Adagas Exuberantes, 10 Plátuas, 10 Bolas Felpudas Rosa, 80 mana máxima e um Guia Especializado em Cordas de Fibra Vegetal.
+	Description: Começa com 500 adagas exuberantes, 10 plátuas, 10 bolinhas felpudas, 80 mana máxima e um chapéu de arqueólogo.
 }
 
 MinorSummoner: {
 	DisplayName: Homem Exuberante
 	Flavor: Teoricamente um filho de Apoteose. Um botânico em sua vida passada.
-	Description: Começa com um conjunto completo de Madeira Exuberante, um Bulbo Amarelo, um Florescer de Luz e vida reduzida no Verdejante.
+	Description: Começa com um conjunto completo de madeira exuberante, um broto amarelo, um florescer de luz e vida reduzida no Verdejante.
 }

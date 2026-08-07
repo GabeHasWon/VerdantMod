@@ -4,7 +4,7 @@ EnableSteamEffectTooltip: Ativa a sobreposição de vapor quando estiver no subt
 EnableForeOrBackgroundObjectsLabel: "[i:933] Ativar Objetos de Primeiro Plano/Fundo"
 EnableForeOrBackgroundObjectsTooltip: Ativa objetos decorativos que aparecem no fundo ou primeiro plano da superfície em todos lugares.
 EnableCustomWaterfallsLabel: "[i:2169] Ativar Cachoeiras Customizadas"
-EnableCustomWaterfallsTooltip: Permite que cachoeiras apareçam em blocos, tipo o Weeping Bud.
+EnableCustomWaterfallsTooltip: Permite que cachoeiras apareçam em blocos, tipo o Gomo Choradeiro.
 CustomDialogueSystemLabel: "[i:320] Sistema de Diálogo Customizado"
 CustomDialogueSystemTooltip: Permite o uso de um sistema de diálogo customizado para Apoteose. Se desligado, só usará o chat.
 FancyBookUILabel: "[i:4065] Interface de Livro Chique"
@@ -35,7 +35,11 @@ VerdantClientConfig: {
 
 	JungleSpawn: {
 		Label: "[i:620] Criação na Selva"
-		Tooltip: Força o Verdejante a ser criado na selva. Isso diminui as chances de sobrepor a maioria dos biomas de mod se for um problema. Não funciona se a opção de "Criação Central" estiver ativada.
+		Tooltip:
+			'''
+			Força o Verdejante a ser criado na selva. Isso diminui as chances de sobrepor a maioria dos biomas de mod se for um problema.
+			Não funciona se a opção de "Criação Central" estiver ativada.
+			'''
 	}
 
 	DialogueSpeed: {
@@ -45,6 +49,10 @@ VerdantClientConfig: {
 
 	CenterSpawn: {
 		Label: "[i:9] Criação Central"
-		Tooltip: Força o Verdejante a ser criado exclusivamente abaixo do centro do mundo. Isso pode sobrescrever biomas como o Deserto e a Tundra. Sobrescreve a configuração "Criação na Selva".
+		Tooltip:
+			'''
+			Força o Verdejante a ser criado exclusivamente abaixo do centro do mundo. Isso pode sobrescrever biomas como o Deserto e a Tundra.
+			Sobrescreve a configuração "Criação na Selva".
+			'''
 	}
 }

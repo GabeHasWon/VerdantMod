@@ -13,7 +13,7 @@ TileInteraction: {
 }
 
 ApotheosisName: Apoteose
-ApotheosisFullName: Apoteose //idk any non-binary articles in portuguese
+ApotheosisFullName: Apoteose
 
 # Try to keep these short, the text looks weird if it's too long
 VineHookLines: {
@@ -32,7 +32,7 @@ RecipeCondition: {
 "Keybinds.Verdant:SquidForm.DisplayName": Verdant: Forma de Lula
 
 GameTips: {
-	VerdantGameTip0: Fale com Apoteose com frequência, elu pode ter recompensas para você. //is "elu" acceptable?
+	VerdantGameTip0: Fale com Apoteose com frequência, ela pode ter recompensas para você.
 	VerdantGameTip1: As cavernas verdejantes do Verdejante oferecem um refúgio em qualquer lugar!
 }
 
@@ -41,7 +41,7 @@ DryadShop: {
 	Condition: Rotação de estoque em dias alternados
 }
 
-ShowApoth: Mostre isso para Apoteose clicando nelu com o botão direito
+ShowApoth: Mostre isso para Apoteose clicando nele com o botão direito
 HardmodeMessage: Há um estrondo vindo de Verdejante...
 
 GraveDialogue: {
