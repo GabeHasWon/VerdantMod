@@ -1,0 +1,29 @@
+HealingFlowerBuff: {
+	DisplayName: Flor Curativa
+	Description: A aura da flor vai te curar
+}
+
+PropellerpadBuff: {
+	DisplayName: Hélice-régia
+	Description: "'Mas que vitória-régia estranha!'"
+}
+
+SnailBuff: {
+	DisplayName: Caracol Lacaio
+	Description: Os caracóis gramíneos lutarão por você
+}
+
+FlotiePetBuff: {
+	DisplayName: Flotie da Ira
+	Description: "'Bem calmante apesar do crânio'"
+}
+
+MudsquidMarkerBuff: {
+	DisplayName: Lulama
+	Description: Você se tornará uma lulama enquanto estiver tocando certos blocos
+}
+
+PeaceTreeMarkerBuff: {
+	DisplayName: Zona Pacifica
+	Description: Taxa de criação menor e criaturas do hardmode inativas
+}

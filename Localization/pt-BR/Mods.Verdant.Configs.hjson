@@ -1,0 +1,58 @@
+HeadLabel: Configurações do Cliente do Verdant
+EnableSteamEffectLabel: "[i:3365] Ativar Efeito de Vapor"
+EnableSteamEffectTooltip: Ativa a sobreposição de vapor quando estiver no subterrâneo Verdejante.
+EnableForeOrBackgroundObjectsLabel: "[i:933] Ativar Objetos de Primeiro Plano/Fundo"
+EnableForeOrBackgroundObjectsTooltip: Ativa objetos decorativos que aparecem no fundo ou primeiro plano da superfície em todos lugares.
+EnableCustomWaterfallsLabel: "[i:2169] Ativar Cachoeiras Customizadas"
+EnableCustomWaterfallsTooltip: Permite que cachoeiras apareçam em blocos, tipo o Gomo Choradeiro.
+CustomDialogueSystemLabel: "[i:320] Sistema de Diálogo Customizado"
+CustomDialogueSystemTooltip: Permite o uso de um sistema de diálogo customizado para Apoteose. Se desligado, só usará o chat.
+FancyBookUILabel: "[i:4065] Interface de Livro Chique"
+FancyBookUITooltip: Muda a interface do livro para algo único.
+
+VerdantClientConfig: {
+	DisplayName: "{$Mods.Verdant.Configs.HeadLabel}"
+
+	EnableSteam: {
+		Label: "{$Mods.Verdant.Configs.EnableSteamEffectLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableSteamEffectTooltip}"
+	}
+
+	BackgroundObjects: {
+		Label: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableForeOrBackgroundObjectsTooltip}"
+	}
+
+	Waterfalls: {
+		Label: "{$Mods.Verdant.Configs.EnableCustomWaterfallsLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.EnableCustomWaterfallsTooltip}"
+	}
+
+	CustomDialogue: {
+		Label: "{$Mods.Verdant.Configs.CustomDialogueSystemLabel}"
+		Tooltip: "{$Mods.Verdant.Configs.CustomDialogueSystemTooltip}"
+	}
+
+	JungleSpawn: {
+		Label: "[i:620] Criação na Selva"
+		Tooltip:
+			'''
+			Força o Verdejante a ser criado na selva. Isso diminui as chances de sobrepor a maioria dos biomas de mod se for um problema.
+			Não funciona se a opção de "Criação Central" estiver ativada.
+			'''
+	}
+
+	DialogueSpeed: {
+		Label: "[i:4485] Velocidade de Diálogo"
+		Tooltip: Aumenta ou diminui a velocidade de diálogo para todos textos na tela.
+	}
+
+	CenterSpawn: {
+		Label: "[i:9] Criação Central"
+		Tooltip:
+			'''
+			Força o Verdejante a ser criado exclusivamente abaixo do centro do mundo. Isso pode sobrescrever biomas como o Deserto e a Tundra.
+			Sobrescreve a configuração "Criação na Selva".
+			'''
+	}
+}

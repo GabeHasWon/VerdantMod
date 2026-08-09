@@ -1,0 +1,109 @@
+HostFly: {
+	DisplayName: Mosca Anfitriã
+	Entry: A matriarca de uma pequena colonia de moscas, irritada por suas crianças estarem sendo atacadas. Parece estar naturalmente extinta, apesar da comum Mosca Exuberante.
+}
+
+Mossling: {
+	DisplayName: Musguento
+	Entry: Um grão quase microscópico, crescendo em áreas úmidas no exuberante ou arredores. Se move em um ritmo que você não consegue ouvir. Infelizmente, eles não podem mais ser encontrados naturalmente.
+}
+
+# Note that the Hostess Winglet and the Mossling are both deprecated.
+# They are only visible in-game when a cheat mod is active.
+
+SmallFly: {
+	DisplayName: Mosca Exuberante
+	Entry: Uma pequena criatura feita de folhas, pétalas e carne. Medrosa e inofensiva. De alguma forma, elas guardam um pouco de tristeza em si.
+}
+
+Bumblebee: {
+	DisplayName: Zangão
+	Entry: Mesmo zangada essa abelha busca pólen na flora exuberante todos os dias, talvez um dia ela pare de se cobrar tanto.
+}
+
+Axolotl: {
+	DisplayName: Axolote
+	Entry: Uma criatura majoritariamente aquática, embora sobreviva na terra sem problemas...um pouco agitado. Gosta dos buracos de aglumas paredes de bardósia.
+}
+
+BulbboxJelly: {
+	DisplayName: Água-viva Luminosa
+	Entry: Uma pequena, curiosa e inofensiva água-viva. Tentáculos parecidos com plantas crescem de seu corpo transparente.
+}
+
+MossCarp: {
+	DisplayName: Carpa Musgosa
+	Entry: A parte inferior deste peixe coleta nutrientes e plantas, que outras Carpas Musgosas podem colher, formando uma relação simbiótica.
+}
+
+Poolworm: {
+	DisplayName: Verme da Piscina
+	Entry: A menor criatura aquática do Verdejante. É uma ótima isca.
+}
+
+Flotie: {
+	DisplayName: Flotie
+	Entry: Uma criatura brilhante e curiosa encontrada nas cavernas verdejantes. É geralmente encontrada cercada pelos filhotes.
+}
+
+Flotiny: {
+	DisplayName: Flotinho
+	Entry: Uma pequenina criatura flutuante. Apesar de levitar, ela não emite som e não se move muito além de balançar suavemente, como se estivesse em uma brisa.
+}
+
+MysteriaFlotie: {
+	DisplayName: Flotie de Miscínia
+	Entry: Uma variante do habitual Flotie de Verdejante, encontrado nos Bosques de Miscínia. Tem um bom aroma floral.
+}
+
+MysteriaFlotiny: {
+	DisplayName: Flotinho de Miscínia
+	Entry: Uma criatura recém-descoberta, Flotinhos de Miscínia parecem se reunir ao redor das copas das Miscínias. Talvez tenha mais o que aprender sobre essas criaturas?
+}
+
+Folifish: {
+	DisplayName: Folheixe
+	Entry: Um peixe coberto de vegetação. Comê-lo não é particularmente saboroso, mas é um pouco saudável. Entretanto, parece ter praticamente desaparecido de Verdejante.
+}
+
+PuffSlimeSmall: {
+	DisplayName: Geleia Felpuda
+	Entry: Uma geleia típica, embora significativamente mais amigável, curiosa e macia!...E talvez um pouco hiperativa também.
+}
+
+VerdantBulbSnail: {
+	DisplayName: Caracol Lâmpada
+	Entry: Dizem que essa espécie de caracol tem um futuro brilhante pela frente.
+}
+
+# Sorry for the below entry being really long, I just think it's funny.
+
+VerdantRedGrassSnail: {
+	DisplayName: Caracol de Pétalas Vermelhas
+	Entry: Dizem que há milhares de anos atrás, um cientista louco fez o impossível - combinou uma planta com um animal. A criação bestial, evitada pelo homem e temida pela natureza, vive por conta própria neste mundo cruel e implacável. Essas criaturas começaram a buscar todos os aspectos da vida - poder, amor, amizade e o mais importante, ser apenas um carinha. Alguns podem dizer que nessa busca, e somente nessa busca, eles haviam tido sucesso. Entretanto, eles também dizem que ouviram isso de outra pessoa na cidade e que eles só não lembram quem, então chega de perguntas e compre algo. No fim do dia, esse caracol é folhoso e isso é tudo que você precisa saber sobre ele.
+}
+
+ShellSnail: {
+	DisplayName: Caracol Cascudo
+	Entry: Menos folhas faz esse caracol um pouco mais resistente, mas não menos incrível.
+}
+
+CanopySnail: {
+	DisplayName: Caracol Dossel
+	Entry: Uma pequena floresta se equilibra na concha deste forte caracol. Se olhar mais de perto, perceberá que tem vários caracois bem pequenos dentro dela.
+}
+
+LunarJelly: {
+	DisplayName: Água-viva Lunar
+	Entry: A noite parece ter descido até o Verdejante. Essas criaturas misteriosas aparecem apenas quando um Stargazer Azul estiver polenizado, e desaparecem rapidamente; sabe-se lá por quê.
+}
+
+Dropsnail: {
+	DisplayName: Carágrima
+	Entry: Um caracol coagulado em uma de várias lágrimas do Verdejante. Apesar da fonte, é mais jovial do que qualquer outro caracol. Talvez ele lute contra suas origens.
+}
+
+Jellydew: {
+	DisplayName: Orvalho-vivo
+	Entry: Água que ganhou forma graças às energias dentro de si, tem a forma de uma Água-viva.
+}

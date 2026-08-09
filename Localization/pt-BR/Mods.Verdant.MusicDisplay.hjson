@@ -1,0 +1,26 @@
+ModName: Verdejante
+
+VibrantHorizon: {
+	DisplayName: Vibrant Horizon (Tema do Dia Verdejante)
+	Author: por Heltonyan
+}
+
+TearRain: {
+	DisplayName: Tear Rain (Tema do Subterrâneo Verdejante)
+	Author: por GabeHasWon
+}
+
+ApotheosisLullaby: {
+	DisplayName: Apotheosis Lullaby (Tema de Apoteose)
+	Author: por GabeHasWon & Liz
+}
+
+PetalsFall: {
+	DisplayName: Petals Fall (Tema da Chuva Verdejante)
+	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
+}
+
+TearRainEvent: {
+	DisplayName: '''"Of Petrichor" (Tema da Chuva de Lágrimas)'''
+	Author: por mzxie
+}

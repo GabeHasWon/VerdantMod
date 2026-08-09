@@ -1,0 +1,83 @@
+# This file is for miscellaneous stuff that I don't really want to move to its own file.
+# If a single part ever gets too large, I'll move it to its own file.
+MapObject: {
+	VerdantPylonTile: Pilar do Verdejante
+	FloatingCrystal: Cristal Flutuante
+}
+
+TileInteraction: {
+	MysteriaClock: {
+		London: " (Horário de Londres)"
+		NewYork: " (Horário de Nova Iorque)"
+	}
+}
+
+ApotheosisName: Apoteose
+ApotheosisFullName: Apoteose
+
+# Try to keep these short, the text looks weird if it's too long
+VineHookLines: {
+	0: Uhuu!
+	1: Iupi!
+	2: Uau!
+}
+
+Condition.InVerdant: No bioma Verdejante
+
+RecipeCondition: {
+	AfterApotheosisDownedPlantera: Após pegar o presente de Apoteose da Plantera
+	HasShears: Enquanto carrega Tesouras [i:{0}]
+}
+
+"Keybinds.Verdant:SquidForm.DisplayName": Verdant: Forma de Lula
+
+GameTips: {
+	VerdantGameTip0: Fale com Apoteose com frequência, ela pode ter recompensas para você.
+	VerdantGameTip1: As cavernas verdejantes do Verdejante oferecem um refúgio em qualquer lugar!
+}
+
+DryadShop: {
+	Restock: Reestoca a cada 5 dias, ou cada 3 dias se estiver no Verdejante
+	Condition: Rotação de estoque em dias alternados
+}
+
+ShowApoth: Mostre isso para Apoteose clicando nele com o botão direito
+HardmodeMessage: Há um estrondo vindo de Verdejante...
+
+GraveDialogue: {
+	Listen: Ouça
+
+	Ma: {
+		Name: Ma
+		0: Eu ainda...
+		1: Orgulho...de você...
+		2: (Risada)
+	}
+
+	Pa: {
+		Name: Pa
+		0: Volte quando...
+		1: ...você é o...melhor...
+		2: ...é...impressionante...
+	}
+
+	Dreams: {
+		Name: ...
+		0: Uma terra...distante...
+		1: Inexplorada, mas...
+		2: A rocha...apontada...
+	}
+
+	Me: {
+		Name: Eu
+		0: Trabalhou duro, mas... Eu não...
+		1: Será que... Valeu a pena...?
+		2: ...mas eu não consigo vê-los de novo.
+		3: Acho que estou orgulhoso do que...fiz...
+		4: ...talvez sempre tão longe...
+		5: Sinto falta...do som do lápis no papel...
+		6: Tolo, levado pelo...ego...
+		7: Talvez o melhor...de todos os tempos...
+		8: Mas ainda, sou apenas, eu.
+	}
+}

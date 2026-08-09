@@ -1,0 +1,29 @@
+GardenerAchievement: {
+	FriendlyName: Jardineiro
+	Description: Complete metade das missões de Apoteose.
+}
+
+GreenThumbAchievement: {
+	FriendlyName: Polegar Verde
+	Description: Complete uma das missões de Apoteose.
+}
+
+MarigoldAchievement: {
+	FriendlyName: Calêndourada
+	Description: Cultive uma Calêndula nas folhas verdejantes.
+}
+
+ReachingApotheosisAchievement: {
+	FriendlyName: Alcançando a Apoteose
+	Description: Complete todas as missões de Apoteose.
+}
+
+MudsquidAchievement: {
+	FriendlyName: Vagante do Lamaçal
+	Description: Mova-se por 1000 blocos como uma Lulama.
+}
+
+ShowcaseAchievement: {
+	FriendlyName: Apresentador
+	Description: Mostre um item para Apoteose.
+}
