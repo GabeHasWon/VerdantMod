@@ -4,8 +4,8 @@ by GabeHasWon
 
 This mod adds the Verdant, a fairly small, underground biome that spawns naturally, containing many types of plants and critters.
 It has the following basic content:
-    - 286 new items
-    - 201 new tiles
+    - 291 new items
+    - 203 new tiles
     - 4 new armor sets
     - Absolutely no new town NPCs
     - 21 new NPCs (mostly critters)
@@ -13,16 +13,15 @@ It has the following basic content:
     - A new foreground and background system that gives more life to the biome
     - A sort of quest system by the statue in the center of the biome, the Apotheosis
     - Way too much decoration
+    - I mean it, there's a lot
 
 --Developer--
 GabeHasWon - Everything except The Plant & some music
 
 Verdant's GitHub: https://github.com/GabeHasWon/VerdantMod
 Verdant's Discord: https://discord.gg/FAnwxtM2vc
-My Twitter: https://twitter.com/GabeHasWon
 My YouTube: https://www.youtube.com/channel/UCFqSqfSLpMdQYxFED1iTvcg
 
---Support--
 If you'd be so generous, joining the Patreon would help me out a ton. 
 If any of you could chip in, I'd appreciate it greatly!
 https://www.patreon.com/gabehaswon
@@ -34,12 +33,11 @@ Soundcloud: https://soundcloud.com/heltonyan, Twitter: https://twitter.com/helto
 mzxie - '"Of Petrichor"' (Tear Rain Theme)
 MrBurrito7w7 - Spanish localization
 gentleMar - Chinese localization
+Lucluz - Brazilian Portuguese localization
 Liz - SFX, parts of song compositions, feedback/design & The Plant
-
---Beta Testers / Feedback--
-
-Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Miscellaneous feedback & input
+Santra, Cherryversai, Kiraa, Yuyutsu, Vladimier - Original QA & design input
 /u/Nervous-General3220 - Zipvine name
+All of my current and former Patreons (thank you!)
 
 -Community Contributors-
 
@@ -48,7 +46,5 @@ Mangochicken - Marigold concept
 Vidal1sHere - Hardmode fishing suggestion, Gemflower concept
 Ent - Root rope blocks, Mud Balls, snail shell blocks
 torrah - Snail Statue
-
-All of my current and former Patreons
 
 ...and, of course, all of you!
