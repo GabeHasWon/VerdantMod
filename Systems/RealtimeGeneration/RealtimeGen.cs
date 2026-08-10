@@ -43,7 +43,7 @@ internal class RealtimeGen : ModSystem
             return false;
 
         var structure = captures[name];
-        StructureHelper.Generator.GenerateStructure(structure.Item1, structure.Item2, VerdantMod.Instance, true, true);
+        StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure(structure.Item1, structure.Item2, VerdantMod.Instance, true, true);
 
         captures.Remove(name);
         File.Delete(structure.Item1);

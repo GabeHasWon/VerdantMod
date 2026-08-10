@@ -115,9 +115,9 @@ namespace Verdant.World
                 {
                     success = true;
                     var size = Point16.Zero;
-                    StructureHelper.Generator.GetDimensions("World/Structures/ApotheosisGlass", VerdantMod.Instance, ref size);
+                    StructureHelper.API.Legacy.LegacyGenerator.GetDimensions("World/Structures/ApotheosisGlass", VerdantMod.Instance, ref size);
                     Point16 pos = new(x - (size.X / 2), y - (size.Y / 2));
-                    StructureHelper.Generator.GenerateStructure("World/Structures/ApotheosisGlass", pos, VerdantMod.Instance);
+                    StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/ApotheosisGlass", pos, VerdantMod.Instance);
 
                     for (int i = pos.X - 1; i < pos.X + size.X + 1; ++i)
                         for (int j = pos.Y - 1; j < pos.Y + size.Y + 1; ++j)

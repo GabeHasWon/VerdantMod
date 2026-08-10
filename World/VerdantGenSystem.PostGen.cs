@@ -141,7 +141,7 @@ public partial class VerdantGenSystem
         }
 
         ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
-        StructureHelper.Generator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
+        StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
 
     redoAgain:
         side = WorldGen.genRand.NextBool(2) ? -1 : 1;
@@ -154,7 +154,7 @@ public partial class VerdantGenSystem
         if (side == 1)
             studyLoc.X = VerdantArea.Right - (int)(WorldGen.genRand.Next(20, 80) * WorldSize);
 
-        StructureHelper.Generator.GetDimensions("World/Structures/Study" + studyID, VerdantMod.Instance, ref size);
+        StructureHelper.API.Legacy.LegacyGenerator.GetDimensions("World/Structures/Study" + studyID, VerdantMod.Instance, ref size);
 
         for (int i = 0; i < size.X; ++i)
         {
@@ -173,7 +173,7 @@ public partial class VerdantGenSystem
         if (!foundGround)
             goto redoAgain;
 
-        StructureHelper.Generator.GenerateStructure("World/Structures/Study" + studyID, new Point16(studyLoc.X, studyLoc.Y), VerdantMod.Instance);
+        StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/Study" + studyID, new Point16(studyLoc.X, studyLoc.Y), VerdantMod.Instance);
         ReplaceBooks(studyLoc, size);
 
     redoAgainAgain:
@@ -184,7 +184,7 @@ public partial class VerdantGenSystem
 
         int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
         if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 20 && groundCount > 25)
-            StructureHelper.Generator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
+            StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
         else
             goto redoAgainAgain;
     }
@@ -234,7 +234,7 @@ public partial class VerdantGenSystem
 
             if (notNear && Helper.TileRectangle(pos.X, pos.Y, 20, 10, valids) > 4 && Helper.TileRectangle(pos.X, pos.Y, 20, 10, invalids) <= 0 && Helper.NoTileRectangle(pos.X, pos.Y, 20, 10) > 40)
             {
-                StructureHelper.Generator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, Mod, index);
+                StructureHelper.API.Legacy.LegacyGenerator.GenerateMultistructureSpecific("World/Structures/Flowers", pos, Mod, index);
                 positions.Add(pos.ToVector2());
             }
             else

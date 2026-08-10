@@ -4,7 +4,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ObjectData;
 using Verdant.Bezier;
-using Terraria.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using System;

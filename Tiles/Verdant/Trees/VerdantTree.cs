@@ -361,6 +361,9 @@ public class VerdantTree : ModTile
             if (treeShakeX[k] == x && treeShakeY[k] == y)
                 return false;
 
+        if (numTreeShakes > treeShakeX.Length)
+            return false;
+
         treeShakeX[numTreeShakes] = x;
         treeShakeY[numTreeShakes] = y;
         numTreeShakes++;

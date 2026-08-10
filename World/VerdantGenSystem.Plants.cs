@@ -16,7 +16,7 @@ public partial class VerdantGenSystem
 {
     private static void Vines()
     {
-        for (int i = 0; i < 240 * WorldSize; ++i)
+        for (int i = 0; i < 240 * WorldSize * VerdantGenConfiguration.VinesModifier; ++i)
         {
             Point rP = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             Point adj = TileHelper.GetRandomOpenAdjacent(rP.X, rP.Y);
@@ -81,10 +81,10 @@ public partial class VerdantGenSystem
                 if (TileHelper.ActiveType(i, j, ModContent.TileType<VerdantGrassLeaves>()))
                 {
                     //Vines
-                    if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i, j + 1).BottomSlope && WorldGen.genRand.Next(5) <= 2)
+                    if (!Framing.GetTileSafely(i, j + 1).HasTile && !Framing.GetTileSafely(i, j + 1).BottomSlope && WorldGen.genRand.Next(5) <= VerdantGenConfiguration.VinesChance)
                     {
                         int length = WorldGen.genRand.Next(4, 20);
-                        bool strong = WorldGen.genRand.NextBool(10);
+                        bool strong = WorldGen.genRand.NextBool(VerdantGenConfiguration.VineStrongChance);
 
                         int type = strong ? ModContent.TileType<VerdantStrongVine>() : ModContent.TileType<VerdantVine>();
                         if (puff)
@@ -108,7 +108,7 @@ public partial class VerdantGenSystem
 
                 //lightbulb
                 bool doPlace = Helper.AreaClear(i, j - 2, 2, 2) && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
-                if (doPlace && WorldGen.genRand.NextBool(11))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.LightbulbChance))
                 {
                     WorldGen.PlaceTile(i, j - 2, ModContent.TileType<VerdantLightbulb>(), true, false, -1, WorldGen.genRand.Next(3));
                     continue;
@@ -116,7 +116,7 @@ public partial class VerdantGenSystem
 
                 //weeping bud
                 doPlace = Helper.AreaClear(i - 1, j + 1, 3, 2) && TileHelper.ActiveTypeNoBottomSlope(i, j, ModContent.TileType<VerdantGrassLeaves>());
-                if (doPlace && WorldGen.genRand.NextBool(32))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.WaterfallFlowerChance))
                 {
                     WorldGen.PlaceTile(i, j + 1, ModContent.TileType<WaterPlant>(), true, true);
                     continue;
@@ -124,7 +124,7 @@ public partial class VerdantGenSystem
 
                 //beehive
                 doPlace = Helper.AreaClear(i, j - 2, 2, 2) && TileHelper.ActiveTypeNoTopSlope(i, j, ModContent.TileType<VerdantGrassLeaves>()) && TileHelper.ActiveTypeNoTopSlope(i + 1, j, ModContent.TileType<VerdantGrassLeaves>());
-                if (doPlace && WorldGen.genRand.NextBool(40))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.BeehiveChance))
                 {
                     WorldGen.PlaceTile(i, j - 2, ModContent.TileType<Beehive>(), true, false);
                     continue;
@@ -137,7 +137,7 @@ public partial class VerdantGenSystem
 
                 //flower wall 2x2
                 doPlace = Helper.AreaClear(i, j, 2, 2) && Helper.WalledSquare(i, j, 2, 2) && Helper.WalledSquareType(i, j, 2, 2, WallTypes[0]);
-                if (doPlace && WorldGen.genRand.NextBool(42))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.WallLightbulbChance))
                 {
                     int type = WorldGen.genRand.NextBool(13) ? ModContent.TileType<MountedLightbulb_2x2>() : ModContent.TileType<Flower_2x2>();
                     GenHelper.PlaceMultitile(new Point(i, j), type, WorldGen.genRand.Next(type == ModContent.TileType<MountedLightbulb_2x2>() ? 2 : 4));
@@ -146,7 +146,7 @@ public partial class VerdantGenSystem
 
                 //flower wall 3x3
                 doPlace = Helper.AreaClear(i, j, 3, 3) && Helper.WalledSquare(i, j, 3, 3) && Helper.WalledSquareType(i, j, 3, 3, WallTypes[0]);
-                if (doPlace && WorldGen.genRand.NextBool(68))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.WallLightbulbBigChance))
                 {
                     GenHelper.PlaceMultitile(new Point(i, j), ModContent.TileType<Flower_3x3>(), WorldGen.genRand.Next(2));
                     continue;
@@ -170,7 +170,7 @@ public partial class VerdantGenSystem
                         if (!WorldGen.TileEmpty(i, j - k))
                             minHeight = k;
 
-                    if (minHeight > 6 && WorldGen.genRand.NextBool(16))
+                    if (minHeight > 6 && WorldGen.genRand.NextBool(VerdantGenConfiguration.TreeChance))
                         VerdantTree.Spawn(i, j - 1, -1, WorldGen.genRand, 6, minHeight, false, -1, false);
                 }
 
@@ -178,7 +178,7 @@ public partial class VerdantGenSystem
                 bool doPlace = Helper.AreaClear(i, j, 2, 3) && TileHelper.ActiveTypeNoTopSlope(i, j + 3, ModContent.TileType<VerdantGrassLeaves>()) &&
                     TileHelper.ActiveTypeNoTopSlope(i + 1, j + 3, ModContent.TileType<VerdantGrassLeaves>());
 
-                if (doPlace && WorldGen.genRand.NextBool(60))
+                if (doPlace && WorldGen.genRand.NextBool(VerdantGenConfiguration.PuffChance))
                 {
                     WorldGen.PlaceObject(i, j + 1, ModContent.TileType<BigPuff>(), true);
 

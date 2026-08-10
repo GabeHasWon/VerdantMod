@@ -1,22 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Verdant.Noise;
-using Verdant.Walls;
-using Verdant.Tiles.Verdant.Trees;
+using Verdant.Tiles;
+using Verdant.Tiles.Verdant.Basic.Aquamarine;
 using Verdant.Tiles.Verdant.Basic.Blocks;
 using Verdant.Tiles.Verdant.Basic.Plants;
-using Verdant.Tiles;
-using Terraria.IO;
-using System;
-using Verdant.Tiles.Verdant.Basic.Aquamarine;
-using System.Diagnostics;
-using Terraria.Localization;
+using Verdant.Walls;
 
 namespace Verdant.World;
 
@@ -25,12 +23,13 @@ public partial class VerdantGenSystem : ModSystem
 {
     public static float WorldSize { get => Main.maxTilesX / 4200f; }
 
-    private static int[] TileTypes => new int[] { ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.ChlorophyteBrick, ModContent.TileType<VerdantLightbulb>(), ModContent.TileType<LivingLushWood>() };
-    private static int[] WallTypes  => new int[] { ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<LushSoilWall_Unsafe>(), ModContent.WallType<LivingLushWoodWall_Unsafe>() };
+    private static int[] TileTypes => [ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>(), TileID.ChlorophyteBrick, ModContent.TileType<VerdantLightbulb>(), 
+        ModContent.TileType<LivingLushWood>()];
+    private static int[] WallTypes  => [ModContent.WallType<VerdantLeafWall_Unsafe>(), ModContent.WallType<LushSoilWall_Unsafe>(), ModContent.WallType<LivingLushWoodWall_Unsafe>()];
 
     internal static Rectangle VerdantArea = new(0, 0, 0, 0);
 
-    private readonly List<GenCircle> VerdantCircles = new();
+    private readonly List<GenCircle> VerdantCircles = [];
 
     internal Point16? apotheosisLocation = null;
 
@@ -159,7 +158,7 @@ public partial class VerdantGenSystem : ModSystem
 
     private static void AddWaterfalls()
     {
-        for (int i = 0; i < 50 * WorldSize; ++i)
+        for (int i = 0; i < 50 * WorldSize * VerdantGenConfiguration.WaterfallModifier; ++i)
         {
             int x = WorldGen.genRand.Next(VerdantArea.Left, VerdantArea.Right);
             int y = WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom);
@@ -230,7 +229,7 @@ public partial class VerdantGenSystem : ModSystem
         int top = Helper.FindDown(new Vector2(x, 200) * 16);
         Point16 size = Point16.Zero;
 
-        if (!StructureHelper.Generator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size))
+        if (!StructureHelper.API.Legacy.LegacyGenerator.GetDimensions("World/Structures/SurfaceTree", VerdantMod.Instance, ref size))
             return;
 
         if (top <= Main.worldSurface * 0.36f)
@@ -263,12 +262,12 @@ public partial class VerdantGenSystem : ModSystem
             goto retry;
         }
 
-        StructureHelper.Generator.GenerateStructure("World/Structures/SurfaceTree", spawnPos + new Point16(0, tryRepeats), VerdantMod.Instance);
+        StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/SurfaceTree", spawnPos + new Point16(0, tryRepeats), VerdantMod.Instance);
     }
 
     private static void AddStones()
     {
-        for (int i = 0; i < 50 * WorldSize; ++i) //Stones
+        for (int i = 0; i < 50 * WorldSize * VerdantGenConfiguration.StoneModifier; ++i) //Stones
         {
             Point p = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             while (!TileHelper.ActiveType(p.X, p.Y, ModContent.TileType<LushSoil>()))
@@ -276,7 +275,7 @@ public partial class VerdantGenSystem : ModSystem
             WorldGen.TileRunner(p.X, p.Y, WorldGen.genRand.NextFloat(7, 15), WorldGen.genRand.Next(5, 15), TileID.Stone, false, 0, 0, false, true);
         }
 
-        for (int i = 0; i < 12 * WorldSize; ++i) //Ores
+        for (int i = 0; i < 12 * WorldSize * VerdantGenConfiguration.OreModifier; ++i) //Ores
         {
             Point p = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             while (!TileHelper.ActiveType(p.X, p.Y, ModContent.TileType<LushSoil>()))
@@ -289,7 +288,7 @@ public partial class VerdantGenSystem : ModSystem
             WorldGen.TileRunner(p.X, p.Y, WorldGen.genRand.NextFloat(2, 8), WorldGen.genRand.Next(5, 15), TileID.Platinum, false, 0, 0, false, true);
         }
 
-        for (int i = 0; i < 12 * WorldSize; ++i) //Aquamarine
+        for (int i = 0; i < 12 * WorldSize * VerdantGenConfiguration.AquamarineModifier; ++i) //Aquamarine
         {
             Point p = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             while (!TileHelper.ActiveType(p.X, p.Y, ModContent.TileType<LushSoil>()))
@@ -300,7 +299,7 @@ public partial class VerdantGenSystem : ModSystem
 
     private static void AddWater()
     {
-        for (int i = 0; i < 30 * WorldSize; ++i)
+        for (int i = 0; i < 30 * WorldSize * VerdantGenConfiguration.WaterMultiplier; ++i)
         {
             Point p = new(WorldGen.genRand.Next(VerdantArea.X, VerdantArea.Right), WorldGen.genRand.Next(VerdantArea.Y, VerdantArea.Bottom));
             for (int j = -14; j < 14; ++j)
@@ -309,7 +308,7 @@ public partial class VerdantGenSystem : ModSystem
                 {
                     Tile tile = Main.tile[p.X + j, p.Y + k];
                     tile.LiquidAmount = 255;
-                    tile.LiquidType = 0;
+                    tile.LiquidType = LiquidID.Water;
                 }
             }
         }
@@ -322,7 +321,8 @@ public partial class VerdantGenSystem : ModSystem
 
         if (!WorldGen.remixWorldGen)
         {
-            VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3f * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, (int)(7 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
+            VerdantArea = new Rectangle(VerdantArea.Center.X - (int)(3f * WorldSize * WorldGen.genRand.Next(75, 85)) - 20, VerdantArea.Center.Y - 100, 
+                (int)(7 * WorldSize * WorldGen.genRand.Next(75, 85)), 200);
             VerdantArea.Location = new Point(VerdantArea.Location.X - 40, VerdantArea.Location.Y - 40);
             VerdantArea.Width += 80;
             VerdantArea.Height += 80;
@@ -355,7 +355,7 @@ public partial class VerdantGenSystem : ModSystem
                 y = (int)MathHelper.Lerp(VerdantArea.Y + 50, VerdantArea.Bottom - 50, i / repeats);
             }
 
-            VerdantCircles.Add(new GenCircle((int)(WorldGen.genRand.Next(50, 80) * WorldSize), new Point16(x, y)));
+            VerdantCircles.Add(new GenCircle((int)(WorldGen.genRand.Next(50, 80) * WorldSize * VerdantGenConfiguration.CircleModifier), new Point16(x, y)));
         }
 
         for (int i = 0; i < VerdantCircles.Count; ++i)

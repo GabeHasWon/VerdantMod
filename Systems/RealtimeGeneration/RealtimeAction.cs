@@ -82,7 +82,7 @@ public class RealtimeAction
             string path = Path.Combine(ModLoader.ModPath.Replace("Mods", "SavedStructures"), "Structure_Verdant_" + Name + RealtimeGen.StructureID);
 
             var rect = new Rectangle(_topLeft.X, _topLeft.Y, _bottomRight.X - _topLeft.X, _bottomRight.Y - _topLeft.Y);
-            StructureHelper.Saver.SaveToFile(rect, path);
+            //StructureHelper.Saver.SaveToFile(rect, path);
             ModContent.GetInstance<RealtimeGen>().CapturedStructures.Add(Name, (path, new Point16(_topLeft.X, _topLeft.Y)));
 
             if (_captureData is not null)

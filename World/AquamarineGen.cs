@@ -18,9 +18,16 @@ namespace Verdant.World;
 
 internal class AquamarineGen
 {
+    private enum GroundedType
+    {
+        Single,
+        DoubleWide
+    }
+
     public static void Gen(GenerationProgress progress, GameConfiguration config)
     {
-        int repeats = (int)(10 * VerdantGenSystem.WorldSize);
+        int repeats = (int)(10 * VerdantGenSystem.WorldSize * BackslateConfiguration.BackslateMicrobiomeModifier);
+        int tries = 0;
 
         for (int i = 0; i < repeats; i++)
         {
@@ -35,21 +42,25 @@ internal class AquamarineGen
                 x = WorldGen.genRand.Next(VerdantGenSystem.VerdantArea.Left, VerdantGenSystem.VerdantArea.Right);
                 y = WorldGen.genRand.Next(VerdantGenSystem.VerdantArea.Top, VerdantGenSystem.VerdantArea.Bottom);
                 tile = Main.tile[x, y];
-            } while (tile.TileType != ModContent.TileType<VerdantGrassLeaves>() || WorldGen.SolidOrSlopedTile(tile));
+                tries++;
+            } while (tries < 10_000 && tile.TileType != ModContent.TileType<VerdantGrassLeaves>() || WorldGen.SolidOrSlopedTile(tile));
 
-            SingleAquamarine(x, y);
+            if (tries >= 10_000)
+                return;
+
+            SpawnBackslateMinibiome(x, y);
         }
     }
 
-    public static void SingleAquamarine(int x, int y)
+    public static void SpawnBackslateMinibiome(int x, int y)
     {
-        const int BiomeWidth = 16;
+        int biomeWidth = BackslateConfiguration.BackslateWidth;
 
-        for (int i = 0; i < 2 + VerdantGenSystem.WorldSize; ++i)
+        for (int i = 0; i < (2 + VerdantGenSystem.WorldSize) * BackslateConfiguration.BackslateSpam; ++i)
         {
-            int dX = x + WorldGen.genRand.Next(-BiomeWidth / 2, BiomeWidth / 2);
-            int dY = y + WorldGen.genRand.Next(-BiomeWidth / 2, BiomeWidth / 2);
-            WorldGen.TileRunner(dX, dY, 3, 11, ModContent.TileType<BackslateTile>(), false, 0, 0, false, true);
+            int dX = x + WorldGen.genRand.Next(-biomeWidth / 2, biomeWidth / 2);
+            int dY = y + WorldGen.genRand.Next(-biomeWidth / 2, biomeWidth / 2);
+            WorldGen.TileRunner(dX, dY, 3 * BackslateConfiguration.BackslateSizeModifier, 11, ModContent.TileType<BackslateTile>(), false, 0, 0, false, true);
         }
 
         Dictionary<GroundedType, List<Point>> grounds = new()
@@ -64,9 +75,9 @@ internal class AquamarineGen
 
         bool ValidForReplacement(int i, int j) => !WorldGen.SolidOrSlopedTile(i, j - 1) && (!Main.tile[i, j].HasTile || TileHelper.ActiveType(i, j, killables));
 
-        for (int j = y - BiomeWidth; j < y + BiomeWidth; ++j)
+        for (int j = y - biomeWidth; j < y + biomeWidth; ++j)
         {
-            for (int i = x - BiomeWidth; i < x + BiomeWidth; ++i)
+            for (int i = x - biomeWidth; i < x + biomeWidth; ++i)
             {
                 bool singleValid = WorldGen.SolidOrSlopedTile(i, j);
 
@@ -93,9 +104,9 @@ internal class AquamarineGen
 
     private static void TryPlaceAquamarine(int i, int j)
     {
-        void TryPlace(int x, int y)
+        static void TryPlace(int x, int y)
         {
-            if ((!Main.tile[x, y].HasTile || Main.tileCut[Main.tile[x, y].TileType]) && WorldGen.genRand.NextBool(22))
+            if ((!Main.tile[x, y].HasTile || Main.tileCut[Main.tile[x, y].TileType]) && WorldGen.genRand.NextBool(BackslateConfiguration.AquamarineChance))
             {
                 WorldGen.KillTile(x, y);
                 WorldGen.PlaceTile(x, y, ModContent.TileType<AquamarineTile>(), true, true);
@@ -110,7 +121,7 @@ internal class AquamarineGen
 
     private static void TryPlaceWalls(int i, int j)
     {
-        if (!WorldGen.SolidOrSlopedTile(i, j - 1) && !WorldGen.genRand.NextBool(8))
+        if (!WorldGen.SolidOrSlopedTile(i, j - 1) && !WorldGen.genRand.NextBool(BackslateConfiguration.WallChance))
         {
             int y = j - 1;
             int cutoffHeight = WorldGen.genRand.Next(4, 9);
@@ -121,7 +132,10 @@ internal class AquamarineGen
                 WorldGen.KillWall(i, y);
 
                 if (cutoffHeight >= 0)
-                    WorldGen.PlaceWall(i, y, WorldGen.genRand.NextBool(12) ? ModContent.WallType<BubblingWall_Unsafe>() : ModContent.WallType<BackslateWall_Unsafe>());
+                {
+                    bool flag = WorldGen.genRand.NextBool(BackslateConfiguration.BubblingWallChance);
+                    WorldGen.PlaceWall(i, y, flag ? ModContent.WallType<BubblingWall_Unsafe>() : ModContent.WallType<BackslateWall_Unsafe>());
+                }
 
                 y--;
                 height--;
@@ -139,7 +153,7 @@ internal class AquamarineGen
         {
             Point item = grounds[i];
 
-            if (WorldGen.genRand.NextBool(2))
+            if (WorldGen.genRand.NextBool(BackslateConfiguration.BushChance))
             {
                 WorldGen.KillTile(item.X, item.Y - 1, false, false, true);
                 WorldGen.KillTile(item.X + 1, item.Y - 1, false, false, true);
@@ -154,15 +168,9 @@ internal class AquamarineGen
         }
     }
 
-    private enum GroundedType
-    {
-        Single,
-        DoubleWide
-    }
-
     internal static void SpamGems(GenerationProgress progress, GameConfiguration configuration)
     {
-        float repeats = 150 * VerdantGenSystem.WorldSize;
+        float repeats = BackslateConfiguration.RandomAquamarine * VerdantGenSystem.WorldSize;
 
         for (int i = 0; i < repeats; ++i) //Aquamarine
         {
@@ -170,7 +178,7 @@ internal class AquamarineGen
             while (!TileHelper.ActiveType(p.X, p.Y, TileID.Stone, TileID.ClayBlock))
                 p = new(WorldGen.genRand.Next(40, Main.maxTilesX - 40), WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200));
 
-            float str = WorldGen.genRand.NextFloat(2, 5);
+            float str = WorldGen.genRand.NextFloat(2, 5) * BackslateConfiguration.AquamarineChunkSize;
             WorldGen.TileRunner(p.X, p.Y, str, WorldGen.genRand.Next(5, 15), ModContent.TileType<EmbeddedStoneAquamarine>(), false, 0, 0, false, true);
 
             progress.Value = i / repeats;

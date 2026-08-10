@@ -17,6 +17,9 @@
     <Reference Include="NPCUtils">
       <HintPath>lib\NPCUtils.dll</HintPath>
     </Reference>
+    <Reference Include="SpiritReforged">
+      <HintPath>lib\SpiritReforged.dll</HintPath>
+    </Reference>
     <Reference Include="StockableShops">
       <HintPath>lib\StockableShops.dll</HintPath>
     </Reference>

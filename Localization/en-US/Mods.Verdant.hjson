@@ -81,3 +81,151 @@ GraveDialogue: {
 		8: But still, just, me.
 	}
 }
+
+GenConfigs: {
+	Pages: {
+		Verdant: {
+			Name: Verdant
+			Description: Controls aspects of Verdant's generation.
+
+			Members: {
+				WaterMultiplier: {
+					DisplayName: "[i:126] Water Multiplier"
+					Tooltip: Multiplier for the amount of water placed in the Verdant.
+				}
+
+				CircleModifier: {
+					DisplayName: "[i:2] Base Size Multiplier"
+					Tooltip: Modifies how large the "base size" of the biome's generation shapes are.
+				}
+
+				StoneModifier: {
+					DisplayName: "[i:3] Stone Multiplier"
+					Tooltip: Multiplier for the amount of stone placed in the Verdant.
+				}
+
+				OreModifier: {
+					DisplayName: "[i:13] Ore Multiplier"
+					Tooltip: Multiplier for the amount of ores placed in the Verdant.
+				}
+
+				AquamarineModifier: {
+					DisplayName: "[i:Verdant/EmbeddedAquamarineItem] Aquamarine Multiplier"
+					Tooltip: Multiplier for the amount of Lush Soil-embedded aquamarine placed in the Verdant.
+				}
+
+				WaterfallModifier: {
+					DisplayName: "[i:206] Waterfall Multiplier"
+					Tooltip: Multiplier for the amount of waterfalls placed in the Verdant.
+				}
+
+				VinesModifier: {
+					DisplayName: "[i:Verdant/VineRopeItem] Vine Multiplier"
+					Tooltip: Multiplier for the amount of solid arched vines placed in the Verdant.
+				}
+
+				VinesChance: {
+					DisplayName: "[i:Verdant/VineRopeItem] Vine Chance"
+					Tooltip: Indirectly the chance for cuttable vines to spawn on valid surfaces. 0 will spawn no vines.
+				}
+
+				VineStrongChance: {
+					DisplayName: "[i:Verdant/VerdantStrongVineMaterial] Strong Vine Chance"
+					Tooltip: The chance for cuttable vines to instead spawn as hardy vines.
+				}
+
+				LightbulbChance: {
+					DisplayName: "[i:Verdant/Lightbulb] Lightbulb Flower Chance"
+					Tooltip: The chance for a Lightbulb Flower to spawn on valid ground.
+				}
+
+				WaterfallFlowerChance: {
+					DisplayName: "[i:Verdant/WaterPlantItem] Weeping Bud Chance"
+					Tooltip: The chance for a Weeping Bud to spawn on valid ceilings.
+				}
+
+				BeehiveChance: {
+					DisplayName: "[i:Verdant/BeehiveBlock] Beehive Chance"
+					Tooltip: The chance for a Beehive to spawn on valid ground.
+				}
+
+				WallLightbulbChance: {
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Wall Flower Chance"
+					Tooltip: The chance for a wall flower to spawn on valid walls.
+				}
+
+				WallLightbulbBigChance: {
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Big Wall Flower Chance"
+					Tooltip: The chance for a big wall flower to spawn on valid walls.
+				}
+
+				TreeChance: {
+					DisplayName: "[i:Verdant/VerdantWoodBlock] Tree Chance"
+					Tooltip: The chance for a tree to spawn in valid spaces.
+				}
+
+				PuffChance: {
+					DisplayName: "[i:Verdant/PinkPuff] Puff Chance"
+					Tooltip: The chance for a pink puff to spawn on valid ground.
+				}
+			}
+		}
+
+		Backslate: {
+			Name: Backslate
+			Description: Controls generation for the Verdant's 'backslate' microbiomes.
+
+			Members: {
+				BackslateMicrobiomeModifier: {
+					DisplayName: "[i:Verdant/BackslateWallItem] Quanity Modifier"
+					Tooltip: Increases or decreases the amount of Backslate spots grown in the Verdant.
+				}
+
+				BackslateSizeModifier: {
+					DisplayName: "[i:Verdant/BackslateWallItem] Size Modifier"
+					Tooltip: The modifier for the size of Backslate clumps created.
+				}
+
+				BackslateSpam: {
+					DisplayName: "[i:Verdant/BackslateTileItem] Block Count"
+					Tooltip: Modifier to the number of clumps created per microbiome.
+				}
+
+				BackslateWidth: {
+					DisplayName: "[i:Verdant/BackslateTileItem] Biome Width"
+					Tooltip: The overall width of the microbiome in tiles.
+				}
+
+				AquamarineChance: {
+					DisplayName: "[i:Verdant/AquamarineItem] Aquamarine Chance"
+					Tooltip: The chance for non-embedded aquamarine to spawn around the spot en masse.
+				}
+
+				WallChance: {
+					DisplayName: "[i:Verdant/BackslateWallItem] Wall Chance"
+					Tooltip: The chance for a backslate wall pillar to be placed.
+				}
+
+				BubblingWallChance: {
+					DisplayName: "[i:Verdant/BackslateBubblingWallItem] Perforated Wall Chance"
+					Tooltip: The chance for an individual backslate wall to be a perforated backslate wall instead.
+				}
+
+				BushChance: {
+					DisplayName: "[i:Verdant/WaterberryBushItem] Bush Chance"
+					Tooltip: The chance for a waterberry bush to spawn on valid ground.
+				}
+
+				RandomAquamarine: {
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Count"
+					Tooltip: The amount of non-Verdant aquamarine veins embedded in stone.
+				}
+
+				AquamarineChunkSize: {
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Size"
+					Tooltip: The size of non-Verdant aquamarine veins embedded in stone.
+				}
+			}
+		}
+	}
+}
