@@ -1,4 +1,4 @@
-
+﻿
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
@@ -13,6 +13,9 @@
   <ItemGroup>
     <Reference Include="NetEasy">
       <HintPath>lib\NetEasy_v0.1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="NetSerializer">
+      <HintPath>lib\NetSerializer.dll</HintPath>
     </Reference>
     <Reference Include="NPCUtils">
       <HintPath>lib\NPCUtils.dll</HintPath>

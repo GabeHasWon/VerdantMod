@@ -8,20 +8,12 @@ using Verdant.Items.Verdant.Misc;
 namespace Verdant.Systems.Syncing;
 
 [Serializable]
-public class StartMicrocosmModule : Module
+public class StartMicrocosmModule(Point16 pos, short myPlayer, bool glassless) : Module
 {
-    public readonly int x;
-    public readonly int y;
-    public readonly short fromWho = 0;
-    public readonly bool glassless;
-
-    public StartMicrocosmModule(Point16 pos, short myPlayer, bool glassless)
-    {
-        x = pos.X;
-        y = pos.Y;
-        fromWho = myPlayer;
-        this.glassless = glassless;
-    }
+    public readonly int x = pos.X;
+    public readonly int y = pos.Y;
+    public readonly short fromWho = myPlayer;
+    public readonly bool glassless = glassless;
 
     protected override void Receive()
     {

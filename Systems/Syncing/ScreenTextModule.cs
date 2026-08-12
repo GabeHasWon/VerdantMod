@@ -7,16 +7,10 @@ using Verdant.Systems.ScreenText.Caches;
 namespace Verdant.Systems.Syncing;
 
 [Serializable]
-public class ScreenTextModule : Module
+public class ScreenTextModule(string key, short myPlayer) : Module
 {
-    public readonly string dialogueKey = "";
-    public readonly short fromWho = 0;
-
-    public ScreenTextModule(string key, short myPlayer)
-    {
-        dialogueKey = key;
-        fromWho = myPlayer;
-    }
+    public readonly string dialogueKey = key;
+    public readonly short fromWho = myPlayer;
 
     protected override void Receive()
     {

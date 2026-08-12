@@ -1,8 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Verdant.Systems.RealtimeGeneration.CaptureRendering;
@@ -55,7 +52,6 @@ internal class RealtimeGen : ModSystem
     public override void PostDrawTiles()
     {
         var renderer = ModContent.GetInstance<OverlayRenderer>();
-
         renderer.Render();
     }
 }

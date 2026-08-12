@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 namespace Verdant.Systems.Syncing.Foreground;
 
 [Serializable]
-public class DrapesModule : Module
+public class DrapesModule(byte myPlayer, int x, int y, bool grow, short length = 1) : Module
 {
     public enum Data
     {
@@ -23,20 +23,11 @@ public class DrapesModule : Module
     /// </summary>
     private int WhoAmI => X;
 
-    public readonly byte FromWho = 0;
-    public readonly int X;
-    public readonly int Y;
-    public readonly bool Grow;
-    public readonly short Length;
-
-    public DrapesModule(byte myPlayer, int x, int y, bool grow, short length = 1)
-    {
-        FromWho = myPlayer;
-        X = x;
-        Y = y;
-        Grow = grow;
-        Length = length;
-    }
+    public readonly byte FromWho = myPlayer;
+    public readonly int X = x;
+    public readonly int Y = y;
+    public readonly bool Grow = grow;
+    public readonly short Length = length;
 
     protected override void Receive()
     {

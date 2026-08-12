@@ -1,9 +1,13 @@
+using FullSerializer;
 using Microsoft.Xna.Framework.Graphics;
 using NetEasy;
+using NetSerializer;
 using ReLogic.Content;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
@@ -73,12 +77,10 @@ public partial class VerdantMod : Mod
     public override void PostSetupContent()
     {
         NetEasy.NetEasy.Register(this);
-
         Flowers.Load(this);
     }
 
     public override void Unload() => ForegroundManager.Unload();
-
 
     public override void HandlePacket(BinaryReader reader, int whoAmI) => NetEasy.NetEasy.HandleModule(reader, whoAmI);
 

@@ -1,4 +1,2 @@
-1.3.1.1
-- Fixed issues with Book UI in some resolutions
-- Removed "Biome" from both Verdant biomes (underground/aboveground) dialogue localization
-- Added Portuguese translation! (Thanks Lucluz!)
+1.3.1.3
+- Fixed missing attributes for weak reference safety

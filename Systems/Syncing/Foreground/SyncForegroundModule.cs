@@ -1,6 +1,5 @@
 ﻿using NetEasy;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Verdant.Systems.Foreground;

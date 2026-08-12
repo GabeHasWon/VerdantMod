@@ -31,6 +31,8 @@ public class BackslatePage : IGenerationPage
     Mod IGenerationPage.Mod => VerdantMod.Instance;
 }
 
+[ExtendsFromMod("SpiritReforged")]
+[JITWhenModsEnabled("SpiritReforged")]
 public class VerdantGenerationLoading
 {
     internal static void LoadBindings()
