@@ -85,145 +85,145 @@ GraveDialogue: {
 GenConfigs: {
 	Pages: {
 		Verdant: {
-			// Name: Verdant
-			// Description: Controls aspects of Verdant's generation.
+			Name: Verdejante
+			Description: Controla os aspectos da geração do Verdejante.
 
 			Members: {
 				WaterMultiplier: {
-					// DisplayName: "[i:126] Water Multiplier"
-					// Tooltip: Multiplier for the amount of water placed in the Verdant.
+					DisplayName: "[i:126] Multiplicador de Água"
+					Tooltip: Multiplicador da quantidade de água colocada no Verdejante.
 				}
 
 				CircleModifier: {
-					// DisplayName: "[i:2] Base Size Multiplier"
-					// Tooltip: Modifies how large the "base size" of the biome's generation shapes are.
+					DisplayName: "[i:2] Mult. de Tamanho Base"
+					Tooltip: Modifica quão grande o "tamanho base" das formas de geração do bioma são.
 				}
 
 				StoneModifier: {
-					// DisplayName: "[i:3] Stone Multiplier"
-					// Tooltip: Multiplier for the amount of stone placed in the Verdant.
+					DisplayName: "[i:3] Multiplicador de Pedra"
+					Tooltip: Multiplicador da quantidade de pedra colocada no Verdejante.
 				}
 
 				OreModifier: {
-					// DisplayName: "[i:13] Ore Multiplier"
-					// Tooltip: Multiplier for the amount of ores placed in the Verdant.
+					DisplayName: "[i:13] Multiplicador de Minérios"
+					Tooltip: Multiplicador da quantidade de minérios colocados no Verdejante.
 				}
 
 				AquamarineModifier: {
-					// DisplayName: "[i:Verdant/EmbeddedAquamarineItem] Aquamarine Multiplier"
-					// Tooltip: Multiplier for the amount of Lush Soil-embedded aquamarine placed in the Verdant.
+					DisplayName: "[i:Verdant/EmbeddedAquamarineItem] Mult. de Água-Marinha"
+					Tooltip: Multiplicador da quantidade de Blocos de Solo Exuberante de Água-Marinha colocados no Verdejante.
 				}
 
 				WaterfallModifier: {
-					// DisplayName: "[i:206] Waterfall Multiplier"
-					// Tooltip: Multiplier for the amount of waterfalls placed in the Verdant.
+					DisplayName: "[i:206] Multiplicador de Cachoeiras"
+					Tooltip: Multiplicador da quantidade de cachoeiras colocadas no Verdejante.
 				}
 
 				VinesModifier: {
-					// DisplayName: "[i:Verdant/VineRopeItem] Vine Multiplier"
-					// Tooltip: Multiplier for the amount of solid arched vines placed in the Verdant.
+					DisplayName: "[i:Verdant/VineRopeItem] Multiplicador de Vinhas"
+					Tooltip: Multiplicador da quantidade de vinhas arqueadas sólidas colocadas no Verdejante.
 				}
 
 				VinesChance: {
-					// DisplayName: "[i:Verdant/VineRopeItem] Vine Chance"
-					// Tooltip: Indirectly the chance for cuttable vines to spawn on valid surfaces. 0 will spawn no vines.
+					DisplayName: "[i:Verdant/VineRopeItem] Chance de Vinhas"
+					Tooltip: Indiretamente, a chance de vinhas cortáveis surgirem em superfícies válidas. 0 vai colocar nenhuma vinha.
 				}
 
 				VineStrongChance: {
-					// DisplayName: "[i:Verdant/VerdantStrongVineMaterial] Strong Vine Chance"
-					// Tooltip: The chance for cuttable vines to instead spawn as hardy vines.
+					DisplayName: "[i:Verdant/VerdantStrongVineMaterial] Chance de Vinhas Resist."
+					Tooltip: A chance de vinhas cortáveis surgirem como vinhas resistentes.
 				}
 
 				LightbulbChance: {
-					// DisplayName: "[i:Verdant/Lightbulb] Lightbulb Flower Chance"
-					// Tooltip: The chance for a Lightbulb Flower to spawn on valid ground.
+					DisplayName: "[i:Verdant/Lightbulb] Chance de Flor Bulbo Lum."
+					Tooltip: A chance de uma Flor de Bulbo Luminoso surgir em chão válido.
 				}
 
 				WaterfallFlowerChance: {
-					// DisplayName: "[i:Verdant/WaterPlantItem] Weeping Bud Chance"
-					// Tooltip: The chance for a Weeping Bud to spawn on valid ceilings.
+					DisplayName: "[i:Verdant/WaterPlantItem] Chance de Gomo Chorão" //choradeiro was too big...
+					Tooltip: A chance de Gomos Choradeiros surgirem em tetos válidos.
 				}
 
 				BeehiveChance: {
-					// DisplayName: "[i:Verdant/BeehiveBlock] Beehive Chance"
-					// Tooltip: The chance for a Beehive to spawn on valid ground.
+					DisplayName: "[i:Verdant/BeehiveBlock] Chance de Colmeia"
+					Tooltip: A chance de uma colmeia surgir em chão válido.
 				}
 
 				WallLightbulbChance: {
-					// DisplayName: "[i:Verdant/VerdantFlowerBulb] Wall Flower Chance"
-					// Tooltip: The chance for a wall flower to spawn on valid walls.
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Chance de Flor de Parede"
+					Tooltip: A chance de uma flor de parede surgir em paredes válidas.
 				}
 
 				WallLightbulbBigChance: {
-					// DisplayName: "[i:Verdant/VerdantFlowerBulb] Big Wall Flower Chance"
-					// Tooltip: The chance for a big wall flower to spawn on valid walls.
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Chance de Flor de Parede G" //a little too big...
+					Tooltip: A chance de uma flor de parede grande surgir em paredes válidas.
 				}
 
 				TreeChance: {
-					// DisplayName: "[i:Verdant/VerdantWoodBlock] Tree Chance"
-					// Tooltip: The chance for a tree to spawn in valid spaces.
+					DisplayName: "[i:Verdant/VerdantWoodBlock] Chance de Árvore"
+					Tooltip: A chance de uma árvore surgir em espaços válidos.
 				}
 
 				PuffChance: {
-					// DisplayName: "[i:Verdant/PinkPuff] Puff Chance"
-					// Tooltip: The chance for a pink puff to spawn on valid ground.
+					DisplayName: "[i:Verdant/PinkPuff] Chance de Bola Felpuda"
+					Tooltip: A chance de uma bola felpuda rosa surgir em chão válido.
 				}
 			}
 		}
 
 		Backslate: {
-			// Name: Backslate
-			// Description: Controls generation for the Verdant's 'backslate' microbiomes.
+			Name: Bardósia
+			Description: Controla a geração dos microbiomas de 'bardósia' do Verdejante.
 
 			Members: {
 				BackslateMicrobiomeModifier: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Quanity Modifier"
-					// Tooltip: Increases or decreases the amount of Backslate spots grown in the Verdant.
+					DisplayName: "[i:Verdant/BackslateWallItem] Modificador de Quantidade"
+					Tooltip: Aumenta ou diminui a quantidade de pontos de Bardósia criados no Verdejante.
 				}
 
 				BackslateSizeModifier: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Size Modifier"
-					// Tooltip: The modifier for the size of Backslate clumps created.
+					DisplayName: "[i:Verdant/BackslateWallItem] Modificador de Tamanho"
+					Tooltip: Modificador do tamanho dos aglomerados de Bardósia criados.
 				}
 
 				BackslateSpam: {
-					// DisplayName: "[i:Verdant/BackslateTileItem] Block Count"
-					// Tooltip: Modifier to the number of clumps created per microbiome.
+					DisplayName: "[i:Verdant/BackslateTileItem] Quantia de Blocos"
+					Tooltip: Modificador do número de aglomerados criados por microbioma.
 				}
 
 				BackslateWidth: {
-					// DisplayName: "[i:Verdant/BackslateTileItem] Biome Width"
-					// Tooltip: The overall width of the microbiome in tiles.
+					DisplayName: "[i:Verdant/BackslateTileItem] Largura do Bioma"
+					Tooltip: A largura total do microbioma em blocos.
 				}
 
 				AquamarineChance: {
-					// DisplayName: "[i:Verdant/AquamarineItem] Aquamarine Chance"
-					// Tooltip: The chance for non-embedded aquamarine to spawn around the spot en masse.
+					DisplayName: "[i:Verdant/AquamarineItem] Chance de Água-Marinha"
+					Tooltip: A chance de águas-marinhas soltas surgirem em massa ao redor do local.
 				}
 
 				WallChance: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Wall Chance"
-					// Tooltip: The chance for a backslate wall pillar to be placed.
+					DisplayName: "[i:Verdant/BackslateWallItem] Chance de Parede"
+					Tooltip: A chance de uma parede de pilar de bardósia ser colocada.
 				}
 
 				BubblingWallChance: {
-					// DisplayName: "[i:Verdant/BackslateBubblingWallItem] Perforated Wall Chance"
-					// Tooltip: The chance for an individual backslate wall to be a perforated backslate wall instead.
+					DisplayName: "[i:Verdant/BackslateBubblingWallItem] Chance de Parede Perfurada"
+					Tooltip: A chance de uma parede individual de bardósia se tornar uma parede de bardósia perfurada no lugar.
 				}
 
 				BushChance: {
-					// DisplayName: "[i:Verdant/WaterberryBushItem] Bush Chance"
-					// Tooltip: The chance for a waterberry bush to spawn on valid ground.
+					DisplayName: "[i:Verdant/WaterberryBushItem] Chance de Arbusto"
+					Tooltip: A chance de um arbusto de baga aquosa surgir em chão válido.
 				}
 
 				RandomAquamarine: {
-					// DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Count"
-					// Tooltip: The amount of non-Verdant aquamarine veins embedded in stone.
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Quant. de Água-Marinha"
+					Tooltip: A quantidade de veios de água-marinha embutidas em pedra fora do Verdejante.
 				}
 
 				AquamarineChunkSize: {
-					// DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Size"
-					// Tooltip: The size of non-Verdant aquamarine veins embedded in stone.
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Tamanho da Água-Marinha"
+					Tooltip: O tamanho dos veios de água-marinha embutidas em pedra fora do Verdejante.
 				}
 			}
 		}
