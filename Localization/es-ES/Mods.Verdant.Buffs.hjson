@@ -19,11 +19,11 @@ FlotiePetBuff: {
 }
 
 MudsquidMarkerBuff: {
-	// DisplayName: Mudsquid
-	// Description: You will transform into a mudsquid when touching certain tiles
+	DisplayName: Calamar de barro
+	Description: Te transformarás en un calamar de barro al tocar ciertos bloques
 }
 
 PeaceTreeMarkerBuff: {
-	// DisplayName: Peace Zone
-	// Description: Spawn rates reduced and hardmode spawns disabled
+	DisplayName: Zona pacífica 
+	Description: Reduce la regeneración de enemigos y cancela la regeneración de enemigos del modo difícil
 }
