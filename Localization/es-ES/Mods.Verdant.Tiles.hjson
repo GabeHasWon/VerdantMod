@@ -6,12 +6,12 @@ LootPlant.MapEntry: Pasionaria
 MysteriaSprout.MapEntry: Retoño misteria
 LushSapling.MapEntry: Retoño frondoso
 MarigoldTile.MapEntry: Rúcula
-WaterberryBush.MapEntry: Arbusto aguabaya
+WaterberryBush.MapEntry: Arbusto acuabaya
 WaterberryBushPicked.MapEntry: Arbusto
-Wisplant.MapEntry: Plantamanojo
+Wisplant.MapEntry: Ramillo
 Apotheosis.MapEntry: Apoteosis
 AquamarineTorch.MapEntry: Antorcha
-HardmodeApotheosis.MapEntry: Apoteosis
+HardmodeApotheosis.MapEntry: El Apoteosis
 LushDoorClosed.MapEntry: Puerta frondosa
 LushDoorOpen.MapEntry: Puerta frondosa
 
@@ -26,10 +26,10 @@ VerdantWoodChest: {
 }
 
 VerdantWood.MapEntry: Madera frondosa
-LullabyBoxTile.MapEntry: Caja musical
-PetalsFallBoxTile.MapEntry: Caja musical
-TearRainBoxTile.MapEntry: Caja musical
-VibrantHorizonBoxTile.MapEntry: Caja musical
+LullabyBoxTile.MapEntry: Caja de música
+PetalsFallBoxTile.MapEntry: Caja de música
+TearRainBoxTile.MapEntry: Caja de música
+VibrantHorizonBoxTile.MapEntry: Caja de música
 MysteriaDoorClosed.MapEntry: Puerta misteria
 MysteriaDoorOpen.MapEntry: Puerta misteria
 
@@ -38,13 +38,13 @@ MysteriaDresser: {
 	ContainerName: Aparador misteria
 }
 
-SnailStatue.MapEntry: Estatua caracol
+SnailStatue.MapEntry: Estatua de caracol
 VerdantDoorClosed.MapEntry: Puerta verdeante
 VerdantDoorOpen.MapEntry: Puerta verdeante
 
 VerdantYellowPetalChest: {
-	MapEntry: Cofre pétalo amarillo
-	ContainerName: Cofre pétalo amarillo
+	MapEntry: Cofre de pétalo amarillo
+	ContainerName: Cofre de pétalo amarillo
 }
 
 GreenCrystal.MapEntry: Cristal verde
@@ -52,7 +52,7 @@ ApotheoticPainting.MapEntry: Pintura
 LightbulbPainting.MapEntry: Pintura
 BigVerdantTree.MapEntry: Gran árbol verdeante
 VerdantTree.MapEntry: Árbol frondoso
-PeaceTreeTop.MapEntry: Copa de paz
+PeaceTreeTop.MapEntry: Copa de la paz
 MysteriaTreeTop.MapEntry: Copa misteria
 MysteriaTree.MapEntry: Árbol misteria
 VerdantRedPetal.MapEntry: Pétalo rojo verdeante
@@ -62,7 +62,7 @@ VerdantGrassLeaves.MapEntry: Hierba frondosa
 SnailShellBlock.MapEntry: Caparazones de caracol
 PuffBlock.MapEntry: Bloque esponjoso
 OvergrownBricks.MapEntry: Ladrillo gris frondoso
-LushSoil.MapEntry: Suelo Emporcado
+LushSoil.MapEntry: Suelo ubérrimo
 LivingLushWood.MapEntry: Madera frondosa viviente
 GemsparkAquamarine.MapEntry: Bloque de aguamarina gemachispa
 EmbeddedStoneAquamarine.MapEntry: Bloque de piedra de aguamarina
@@ -72,7 +72,7 @@ ThornTile.MapEntry: Espinas
 LushPlanks.MapEntry: Tablones frondosos
 MysteriaFluff.MapEntry: Pelusa misteria
 LushGrass.MapEntry: Césped frondoso
-LightbulbLeaves.MapEntry: Hojas bulboluz
+LightbulbLeaves.MapEntry: Hojas bulbrillo
 TrimmedOvergrownBricks.MapEntry: Ladrillo gris frondoso ribeteado
-// PuffDresser.MapEntry: Puff Dresser
-// Graves.MapEntry: Graves
+PuffDresser.MapEntry: Aparador frondoso
+Graves.MapEntry: Lápidas
