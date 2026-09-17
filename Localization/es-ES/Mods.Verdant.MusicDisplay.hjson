@@ -6,7 +6,7 @@ VibrantHorizon: {
 }
 
 TearRain: {
-	DisplayName: Lluvia de lágrimas (Tema de las Cuevas Verdeantes)
+	DisplayName: Lluvia de Lágrimas (Tema de las Cuevas Verdeantes)
 	Author: por GabeHasWon
 }
 
@@ -16,11 +16,11 @@ ApotheosisLullaby: {
 }
 
 PetalsFall: {
-	DisplayName: Caída de pétalos (Tema de lluvia en el Verdeante)
+	DisplayName: Caída de Pétalos (Tema de lluvia en el Verdor)
 	Author: "{$Mods.Verdant.MusicDisplay.ApotheosisLullaby.Author}"
 }
 
 TearRainEvent: {
-	// DisplayName: '''"Of Petrichor" (Tear Rain Theme)'''
-	// Author: by mzxie
+	DisplayName: '''"De Petricor" (Tema de la lluvia de lágrímas)'''
+	Author: by mzxie
 }
