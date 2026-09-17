@@ -8,9 +8,9 @@ Apotheosis: {
 		0: Hola, viajero.
 		1: A pasado tiempo desde que vi un nuevo rostro.
 		2: Llámame Apoteosis.
-		3: Encuéntranos al centro de nuestras plantas verdeantes,
+		3: Encuéntranos en el centro de nuestras verdeantes plantas,
 		4: y quizá tengamos algunos regalos para ayudarte.
-		5: Éxito...             .
+		5: Hasta entonces...          .
 	}
 
 	# Intro.5 "Farewell" line has a little extra space to fade out nicely, keep it there.
@@ -20,41 +20,41 @@ Apotheosis: {
 		0: Recuerda respirar,
 		1: mantén las plantas prosperas,
 		2: y regresa una vez hayas derrotado al gran ojo.
-		3: Puede que nos encontremos de buen ánimo pronto.
+		3: Que pronto volvamos a coincidir de buen ánimo.
 	}
 
 	Idle: {
 		Normal: {
-			0: Estoy particularmente orgulloso de esos brotes saltarines.
-			1: Buscabamos alojar una glorieta; ¿Funcionó?
+			0: Estoy particularmente orgulloso de esos brotes elásticos.
+			1: Anhelamos dar cobijo al arbolado; ¿lo hemos logrado?
 			2: ¿Dónde esta mi péñola - hm?
 			3: '''"Yo", "Nosotros"; se trata de lo mismo.'''
 			4: No tengo nada más que añadir.
 			5: Sal y huele las flores.
 			6: Puedes retirarte.
-			7: ¿has visto alguna serpiente por aquí?
-			8: Sigo recordando el aroma de las flores, aún.
+			7: ¿Has visto alguna serpiente por aquí?
+			8: Sigo recordando el aroma de las flores... aún.
 			9: Los caracoles son criaturas subestimadas.
 			10: El mundo es tu jardín, mi amigo.
 			11: No hay por que demorar.
-			12: Coloca oro sobre nuestro pasto para una sorpresa...
-			13: A veces recuerdo la puesta del sol...
+			12: Coloca oro sobre nuestro pasto y te sorprenderás...
+			13: A veces recuerdo el atardecer...
 			14: En este mundo, esperamos que seas una bendición...
 			15: Explorar henchía el alma.
-			16: Concéntrate en el agua fluyendo, las flores creciendo...
+			16: Concéntrate en el agua fluyendo, las flores brillando...
 			17: Atesora lo que tienes, pequeño.
 			18: Hemos crecido juntos, ¿no es así?
-			19: Yo...¿soy un buen jardinero?
+			19: Yo... ¿soy un buen jardinero?
 			20: Háblanos en otro momento.
 			21: ¿Disfrutarías de más flores? Hmm...
 			22: ¿Sabes de algún volcán cercano?
 			23: Como un terrario, ya veo. Precioso, hermoso.
-			24: Comparte belleza con todos.
+			24: Comparte belleza con el todo.
 			25: Extraño ver las abejas de cerca.
 			26: Te veo pasar por aquí. ¿Lo disfrutas?
 			27: Baila cuando puedas, niño. Baila junto a las flores.
 			28: Temo que no tengo mucho más que decir.
-			29: Que nada te detenga. No nos ha detenido a nosotros ni a mí.
+			29: Que nada te detenga. No nos ha detenido a nosotros, o a mí.
 		}
 
 		EvilBoss: {
@@ -92,13 +92,13 @@ Apotheosis: {
 		MiscBosses: {
 			KingSlime: Ah, el Rey de los Slimes ha sido asesinado, maravilloso...
 			QueenBee: Ojalá estés teniendo un afable momento con nuestras abejas.
-			Scarabeus: Las arenas del desierto se siento mas tranquilas.
+			Scarabeus: Las arenas del desierto se sienten mas tranquilas.
 			MJW: Ah, recuerdo aquellas noches de medusas brillantes...
 			VinewrathBane: Las flores se sienten más relajadas ahora. Gracias.
 			AncientAvian: Los cielos están en paz ahora, bien hecho.
 			StarplateRaider: Estábamos curiosos por ese robot brillante, pero...
-			// SirNautilus: Fish are such fascinating people...
-			// SunkenSea: We can hear some waves upon the flora...
+			SirNautilus: Los peces son criaturas tan fascinantes...
+			SunkenSea: Podemos oír el murmullo de las olas entre la flora...
 		}
 
 		TearRain: {
@@ -118,12 +118,12 @@ Apotheosis: {
 	Downed: {
 		EoC: {
 			0: El ojo ha caído. Gracias.
-			1: Toma este tiliche. Vuelve una vez hayas derrotado la {0}.
-			// 2: Return to me once you've beaten the {0}.
+			1: Toma este tiliche. 
+			2: Vuelve una vez hayas derrotado la {0}.
 		}
 
 		Evil: {
-			0: Nuestra gratitud por batir, a la {0}...
+			0: Nuestra gratitud por batir a la {0}...
 			1: Nuestra próxima petición; derribar el colosal esqueleto cerca de la mazmorra.
 			2: Ten algunas de mis cosas antiguas... con ciertos cambios.
 		}
@@ -131,7 +131,7 @@ Apotheosis: {
 		Skeletron: {
 			0: Las almas de la mazmorra... parcialmente liberadas.
 			1: Te lo mereces, llévate estos. Nuestros favoritos.
-			2: Ahora, encuentra al Muro en las profundidades infernales. derrúyelo.
+			2: Ahora, encuentra al muro en las profundidades infernales. Destrúyelo.
 			3: Pero, tomate el tiempo necesario.
 			4: Crecer no es inmediato.
 		}
@@ -147,13 +147,13 @@ Apotheosis: {
 		}
 
 		AnyMech: {
-			0: Una de esas máquinas fue vencida.
+			0: Una de esas máquinas fue conquistada.
 			1: ¡Bien hecho! He estado haciendo algo...
 			2: Es... raro, pero divertido. Esperamos que lo disfrutes.
 		}
 
 		Plantera: {
-			0: La planta horrible esta muerta.
+			0: Esa horrible planta esta muerta.
 			1: Esto libera muchas oportunidades;
 			2: esto es un pequeño favor, esperamos que ayude.
 			3: También deberías crear más de estos tú mismo.
@@ -162,8 +162,8 @@ Apotheosis: {
 		}
 
 		Golem: {
-			0: El protector del templo cayó.
-			1: Este es un proyecto...que me apasiona.
+			0: El protector del templo fracasó.
+			1: Esto es un poco de... un proyecto que me apasionaba.
 			2: No sabemos si ayudará mucho,
 			3: Pero sospechamos que será divertido.
 			4: Mucha suerte.
@@ -172,7 +172,7 @@ Apotheosis: {
 		Cultist: {
 			0: Esos charlatanes están muertos, ¿eh?
 			1: Su práctica era una idiotez peligrosa.
-			2: Cada vez hay menos amenazas...he ver.
+			2: Cada vez menos amenazas... he de ver.
 			3: Tal vez podamos darte una pequeña parte de nuestro poder,
 			4: Para tu beneficio. Disfruta.
 		}
@@ -221,7 +221,7 @@ Apotheosis: {
 	ItemInteractions: {
 		WiltedFlower: {
 			0: Una margarita, mi flor favorita.
-			1: Es una pena que haya pasado tanto, hm?
+			1: Es una pena que haya pasado tanto tiempo, hm?
 			2: Ah, y siéntete libre de preguntarme sobre cualquier cosa.
 			3: Somos un libro abierto.
 		}
@@ -232,7 +232,7 @@ Apotheosis: {
 			2: Todavía tengo ganas de hacerlo, aquí y allá.
 			3: Oh bueno, no podemos usarla más.
 			4: Es bastante extraño considerarlo,
-			5: siendo consciente de...la ultima vez que escribí en ella.
+			5: siendo consciente de... la ultima vez que escribí en ella.
 		}
 
 		LushLeaf: {
@@ -252,7 +252,7 @@ Apotheosis: {
 		}
 
 		Wisplant: {
-			0: Nosotros realmente comenzamos...a experimentar con estas.
+			0: Nosotros realmente comenzamos... a experimentar con estas.
 			1: No sabemos por que, pero son divertidas.
 		}
 
@@ -269,7 +269,7 @@ Apotheosis: {
 		}
 
 		Bouncebloom: {
-			0: Nosotros...aún estamos comprendiendo las cosas.
+			0: Nosotros... aún estamos comprendiendo las cosas.
 			1: Divertida, aún así.
 		}
 
@@ -290,7 +290,7 @@ Apotheosis: {
 		}
 
 		Mudsquid: {
-			0: Probablemente nuestro logro más orgulloso.
+			0: Probablemente nuestro logro del que estamos más orgullosos.
 			1: Nunca he visto, y mucho menos usado, algo igual.
 			2: No es como hayamos tenido mucha magia antes...
 		}
@@ -339,43 +339,43 @@ Apotheosis: {
 		}
 
 		Mystuber: Frito o no, es bueno para el corazón.
-		Walnut: Algunas veces...mantén las cosas simples.
-		Waterberry: Si tan solo fuese...abundante...
+		Walnut: Algunas veces... mantén las cosas simples.
+		Waterberry: Si tan solo fuese... abundante...
 		HoneyNuggets: Las abejas son magia. Acaricialas.
 
 		SmokeBulbItem: {
-			// 0: Perhaps disturbing, what we can do;
-			// 1: but it holds a whimsy, doesn't it?
+			0: Tal vez inquietante, aquello que somos capaces de lograr;
+			1: Pero conserva cierta magia, ¿no lo crees?.
 		}
 
 		TearBulbItem: {
-			// 0: It keeps me feeling human,
-			// 1: this...crying.
+			0: Este… sollozo,
+			1: me mantiene ligado a lo humano.
 		}
 
 		SnailStatueItem: {
-			// 0: ...
-			// 1: ...I hope I don't forget you.
-			// TooSoon: ...I don't want to, not...yet.
+			0: ...
+			1: ...Espero que permanezcas en mí.
+			TooSoon: ...No quiero, no... todavía.
 		}
 
 		HardyVineBook: {
-			// 0: My old notes on those vines, huh?
-			// 1: Wild to think.
+			0: Mis viejas notas sobre esas enredaderas, ¿eh?
+			1: Dificil de digerir.
 		}
 
-		// LeafBook.0: I wish I could still draw like that.
+		LeafBook.0: Desearía poder seguir dibujando de esa manera.
 
 		LightbulbBook: {
-			// 0: Those small, gentle lights.
-			// 1: Hopefully they make your stay...nicer.
+			0: Esas pequeñas y gentiles luces.
+			1: Ojalá hagan tu estancia... más amena.
 		}
 
 		RockBook: {
-			// 0: I remember those aspirations,
-			// 1: perhaps they were foolhardy.
-			// 2: Or, perhaps, just perhaps,
-			// 3: they lie in your future instead?
+			0: Recuerdo aquellas aspiraciones,
+			1: quizá fueron insensatas.
+			2: O, tal vez, solo tal vez, 
+			3: estén en cambio en tu futuro.
 		}
 	}
 }
