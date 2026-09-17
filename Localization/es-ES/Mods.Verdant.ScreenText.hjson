@@ -102,16 +102,16 @@ Apotheosis: {
 		}
 
 		TearRain: {
-			// 0: Oh, is it good to hear rain again.
-			// 1: I lament many things. Do you?
-			// 2: ...perhaps to wonder is to live...?
-			// 3: Do take care not to get wet.
-			// 4: We hope you're soothed.
-			// 5: For what we are, why are we so uncertain?
-			// 6: Ah. The streams of water, o'...
-			// 7: It reminds us of my colors.
-			// 8: Well, run along. Don't slip.
-			// 9: Each tear; another word...
+			0: Oh, es bueno escuchar la lluvia otra vez.
+			1: Lamento muchas cosas. ¿Y tú?
+			2: ...¿quizá preguntarse sea vivir...?
+			3: Procura no mojarte.
+			4: Esperamos que te sientas aliviado.
+			5: Por lo que somos, ¿por qué somos tan inciertos?
+			6: Ah. Los arroyos de agua, oh...
+			7: Me recuerda a mis colores.
+			8: Bueno, sigue tu camino. No resbales.
+			9: Cada lágrima; otra palabra...
 		}
 	}
 
@@ -375,7 +375,7 @@ Apotheosis: {
 			0: Recuerdo aquellas aspiraciones,
 			1: quizá fueron insensatas.
 			2: O, tal vez, solo tal vez, 
-			3: estén en cambio en tu futuro.
+			3: en cambio estén en tu futuro.
 		}
 	}
 }
