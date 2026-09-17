@@ -5,12 +5,12 @@ ProbablyDelete: {
 
 LushWoodBody: {
 	DisplayName: Cota de madera frondosa
-	Tooltip: Aumenta en +1 plano el invocación
+	Tooltip: Aumenta en +1 plano el daño de invocación
 }
 
 LushWoodHead: {
 	DisplayName: Casco de madera frondosa
-	Tooltip: Aumenta en +1 plano el invocación
+	Tooltip: Aumenta en +1 plano el daño invocación
 }
 
 LushWoodLegs: {
@@ -33,7 +33,7 @@ MysteriaHelmet: {
 		'''
 		Aumenta la velocidad de excavación
 		Aumenta la velocidad de colocación de bloques y paredes
-		Aumenta el rango de colocación de bloques
+		Aumenta el alcance de colocación de bloques
 		'''
 }
 
@@ -80,7 +80,7 @@ AquamarineItem: {
 }
 
 AquamarineTorchItem: {
-	DisplayName: Antorcha aguamarina
+	DisplayName: Antorcha celeste
 	Tooltip: ""
 }
 
@@ -90,7 +90,7 @@ BackslateTileItem: {
 }
 
 EmbeddedAquamarineItem: {
-	DisplayName: Suelo emporcado aguamarina
+	DisplayName: Suelo ubérrimo aguamarina
 	Tooltip: ""
 }
 
@@ -118,15 +118,15 @@ BeehiveBlock: {
 	DisplayName: Colmena de abejorros
 	Tooltip:
 		'''
-		Genera abejas, que polinizan las flores cercanas
-		Puede recogerse al regreso de las abejas con polen para algunas delicias
+		Genera abejorros que polinizan las flores cercanas
+		Al regreso de los abejorros con polen, puede recogerse para algunas delicias
 		'El zumbido es ligeramente preocupante'
 		'''
 }
 
 Bush2x2Item: {
 	DisplayName: Arbusto decorativo
-	Tooltip: Puede ornamentarse con [i:{0}].
+	Tooltip: Puede ornamentarse con [i:{0}]
 }
 
 Bush3x3Item: {
@@ -135,7 +135,7 @@ Bush3x3Item: {
 }
 
 LushSoilBlock: {
-	DisplayName: Suelo emporcado
+	DisplayName: Suelo ubérrimo
 	Tooltip: ""
 }
 
@@ -281,11 +281,11 @@ RockBook: {
 }
 
 ChlorophytePlant: {
-	DisplayName: Brote cloroflór
+	DisplayName: Semilla de cloroflór
 	Tooltip:
 		'''
 		Retoña clorofita
-		'Una roca irregular que de alguna manera rebosa de vida.'
+		'Una roca irregular que de alguna manera rebosa de vida'
 		'''
 }
 
@@ -330,7 +330,7 @@ ResearchBooksItem: {
 
 SnailShellBlockItem: {
 	DisplayName: Caparazón de caracol
-	Tooltip: "'Se siente terrible tener uno de estos.'"
+	Tooltip: "'Se siente terrible tener uno de estos'"
 }
 
 LullabyBox: {
@@ -444,7 +444,7 @@ MysteriaAcorn: {
 		'''
 		Planta un árbol misteria
 		Los árboles misteria propagan el microbioma Misteria sobre el verdor
-		Los árboles no pueden ser atravesados caminando
+		Los árboles son sólidos y no pueden ser atravesados caminando
 		'''
 }
 
@@ -453,8 +453,8 @@ MysteriaDrapesItem: {
 	Tooltip:
 		'''
 		Se coloca en un bloque solido
-		Crece como las vides, lento
-		Sobre colócala para alargarla
+		Crece lentamente como las vides
+		Sobre colócalas para alargarla
 		Siempre esta al frente del jugador
 		'''
 }
@@ -480,7 +480,7 @@ PeaceTreetopItem: {
 		Solo puede ser colocada en madera misteria
 		Coloca una copa de paz
 		Estar cerca de la copa reduce la regeneración del enemigo y
-		la revierte al pre-hardmode.
+		la revierte al punto previo a la liberación de las almas de luz y oscuridad
 		'''
 }
 
