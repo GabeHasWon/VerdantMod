@@ -5,12 +5,12 @@ ProbablyDelete: {
 
 LushWoodBody: {
 	DisplayName: Cota de madera frondosa
-	Tooltip: Aumenta en +1 el daño de invocación
+	Tooltip: Aumenta en 1 el daño de invocación
 }
 
 LushWoodHead: {
 	DisplayName: Casco de madera frondosa
-	Tooltip: Aumenta en +1 el daño de invocación
+	Tooltip: Aumenta en 1 el daño de invocación
 }
 
 LushWoodLegs: {
@@ -236,7 +236,7 @@ VerdantWoodChestBlock: {
 
 ThePlantItem: {
 	DisplayName: La planta
-	Tooltip: "'en formato real'"
+	Tooltip: "'En formato real'"
 }
 
 ApotheoticPaintingItem: {
@@ -513,7 +513,7 @@ PinkDyeBulb: {
 }
 
 PinkPuff: {
-	DisplayName: Esponjosidad rosa
+	DisplayName: Resplandor esponjoso
 	Tooltip:
 		'''
 		Crea un microbioma esponjoso a su alrededor
@@ -1671,7 +1671,7 @@ LunarJellyTerrariumItem: {
 }
 
 GlassFlowerItem: {
-	DisplayName: Flor de cristal
+	DisplayName: Flor cristalina 
 	Tooltip:
 		'''
 		Desactiva el verdor en el área cercana, lo que permite el uso de otros biomas
