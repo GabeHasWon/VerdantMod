@@ -24,6 +24,6 @@ MudsquidMarkerBuff: {
 }
 
 PeaceTreeMarkerBuff: {
-	DisplayName: Zona pacífica 
+	DisplayName: Zona pacífica
 	Description: Reduce la regeneración de enemigos y cancela la regeneración de enemigos del modo difícil
 }

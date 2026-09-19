@@ -1,2 +1,3 @@
-1.3.1.3
-- Fixed missing attributes for weak reference safety
+1.3.1.4
+- Updated Spanish and Portuguese localization
+- Updated the Gen Configuration support to use the new page back size

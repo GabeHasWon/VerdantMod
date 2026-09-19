@@ -118,7 +118,7 @@ Apotheosis: {
 	Downed: {
 		EoC: {
 			0: El ojo ha caído. Gracias.
-			1: Toma este tiliche. 
+			1: Toma este tiliche.
 			2: Vuelve una vez hayas derrotado la {0}.
 		}
 
@@ -374,7 +374,7 @@ Apotheosis: {
 		RockBook: {
 			0: Recuerdo aquellas aspiraciones,
 			1: quizá fueron insensatas.
-			2: O, tal vez, solo tal vez, 
+			2: O, tal vez, solo tal vez,
 			3: en cambio estén en tu futuro.
 		}
 	}

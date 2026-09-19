@@ -48,38 +48,38 @@ GraveDialogue: {
 	Listen: Escucha
 
 	Ma: {
-        Name: Ma
-        0: Todavía estoy...
-        1: Orgullosa...de ti...
-        2: (Risa)
-    }
+		Name: Ma
+		0: Todavía estoy...
+		1: Orgullosa...de ti...
+		2: (Risa)
+	}
 
-    Pa: {
-        Name: Pa
-        0: Regresa cuando...
-        1: ...seas el...mejor...
-        2: ...es...impresionante...
-    }
+	Pa: {
+		Name: Pa
+		0: Regresa cuando...
+		1: ...seas el...mejor...
+		2: ...es...impresionante...
+	}
 
-    Dreams: {
-        Name: ...
-        0: Una tierra...lejana...
-        1: Inexplorada, pero...
-        2: La roca...apuntaba...
-    }
+	Dreams: {
+		Name: ...
+		0: Una tierra...lejana...
+		1: Inexplorada, pero...
+		2: La roca...apuntaba...
+	}
 
-    Me: {
-        Name: Yo
-        0: Trabajé mucho, pero...no creo...
-        1: ¿Valió...la pena todo...?
-        2: ...pero no puedo verlos de nuevo.
-        3: Creo que estoy orgullosa de...haberlo hecho...
-        4: ...quizás siempre estuvo demasiado lejos...
-        5: Extraño...el sonido del lápiz sobre el papel...
-        6: Necia, guiada por...el ego...
-        7: Quizás la mejor...de todos los tiempos...
-        8: Pero aún así, solo, yo.
-    }
+	Me: {
+		Name: Yo
+		0: Trabajé mucho, pero...no creo...
+		1: ¿Valió...la pena todo...?
+		2: ...pero no puedo verlos de nuevo.
+		3: Creo que estoy orgullosa de...haberlo hecho...
+		4: ...quizás siempre estuvo demasiado lejos...
+		5: Extraño...el sonido del lápiz sobre el papel...
+		6: Necia, guiada por...el ego...
+		7: Quizás la mejor...de todos los tiempos...
+		8: Pero aún así, solo, yo.
+	}
 }
 
 GenConfigs: {
@@ -136,17 +136,17 @@ GenConfigs: {
 
 				LightbulbChance: {
 					DisplayName: "[i:Verdant/Lightbulb] Probabilidad de flor bulbrillo"
-					Tooltip: La probabilidad de que aparezcan flores bulbrillo sobre superficies válidas. 
+					Tooltip: La probabilidad de que aparezcan flores bulbrillo sobre superficies válidas.
 				}
 
 				WaterfallFlowerChance: {
 					DisplayName: "[i:Verdant/WaterPlantItem] Probabilidad de pimpollo lagrimeante"
-					Tooltip: La probabilidad de que aparezcan pimpollos lagrimeantes sobre tejados válidos. 
+					Tooltip: La probabilidad de que aparezcan pimpollos lagrimeantes sobre tejados válidos.
 				}
 
 				BeehiveChance: {
 					DisplayName: "[i:Verdant/BeehiveBlock] Probabilidad de colmena de abejorro"
-					Tooltip: La probabilidad de que aparezcan colmenas de abejorros sobre superficies válidas. 
+					Tooltip: La probabilidad de que aparezcan colmenas de abejorros sobre superficies válidas.
 				}
 
 				WallLightbulbChance: {
@@ -166,7 +166,7 @@ GenConfigs: {
 
 				PuffChance: {
 					DisplayName: "[i:Verdant/PinkPuff] Probabilidad de resplandor esponjoso"
-					Tooltip: La probabilidad de que aparezcan resplandores esponjosos sobre superficies válidas. 
+					Tooltip: La probabilidad de que aparezcan resplandores esponjosos sobre superficies válidas.
 				}
 			}
 		}
@@ -178,7 +178,7 @@ GenConfigs: {
 			Members: {
 				BackslateMicrobiomeModifier: {
 					DisplayName: "[i:Verdant/BackslateWallItem] Modificador de cantidad"
-					Tooltip: Incrementa o reduce la cantidad de puntos de generación de pizarra en el verdor. 
+					Tooltip: Incrementa o reduce la cantidad de puntos de generación de pizarra en el verdor.
 				}
 
 				BackslateSizeModifier: {
@@ -213,7 +213,7 @@ GenConfigs: {
 
 				BushChance: {
 					DisplayName: "[i:Verdant/WaterberryBushItem] Probabilidad de arbusto"
-					Tooltip: La probabilidad de que aparezcan arbustos de acuabaya sobre superficies válidas. 
+					Tooltip: La probabilidad de que aparezcan arbustos de acuabaya sobre superficies válidas.
 				}
 
 				RandomAquamarine: {

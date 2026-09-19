@@ -832,7 +832,7 @@ AxolotlItem: {
 }
 
 BulbboxJellyItem: {
-	DisplayName: Medusa bulbojelia 
+	DisplayName: Medusa bulbojelia
 	Tooltip: "'¡Blandita!'"
 }
 
@@ -1346,7 +1346,7 @@ LushWoodSword: {
 }
 
 MudBoulderItem: {
-	DisplayName: Bola de suelo ubérrimo 
+	DisplayName: Bola de suelo ubérrimo
 	Tooltip: Una pequeña molestia
 }
 
@@ -1671,7 +1671,7 @@ LunarJellyTerrariumItem: {
 }
 
 GlassFlowerItem: {
-	DisplayName: Flor cristalina 
+	DisplayName: Flor cristalina
 	Tooltip:
 		'''
 		Desactiva el verdor en el área cercana, lo que permite el uso de otros biomas
