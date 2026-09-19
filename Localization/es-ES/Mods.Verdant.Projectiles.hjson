@@ -1,26 +1,26 @@
-PermVineWandProjectile.DisplayName: Enredadera Encantada
-AquamarineBolt.DisplayName: Flecha de Aguamarina
-HealPlants.DisplayName: Plantas Sanadoras
-HealingFlower.DisplayName: Brote Amarillo
+PermVineWandProjectile.DisplayName: Enredadera encantada
+AquamarineBolt.DisplayName: Flecha de aguamarina
+HealPlants.DisplayName: Plantas sanadoras
+HealingFlower.DisplayName: Brote amarillo
 PropellerpadProjectile.DisplayName: Carpecóptero
-VerdantHealingMinion.DisplayName: Flor Frondosa
+VerdantHealingMinion.DisplayName: Flor frondosa
 VerdantSnailMinion.DisplayName: Caracol
 AquamarineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
-FlotieOfWrath.DisplayName: Flotador de la Ira
-MagicWisplantProj.DisplayName: Ramillo Mágico
-MudBoulder.DisplayName: Bola de Suelo Frondoso
-PestControlTag.DisplayName: Etiqueta Control de Plagas
-VerdantBobber.DisplayName: Corcho Verdeante
+FlotieOfWrath.DisplayName: Flotín de la ira
+MagicWisplantProj.DisplayName: Briznario mágico
+MudBoulder.DisplayName: Bola de suelo frondoso
+PestControlTag.DisplayName: Etiqueta control de plagas
+VerdantBobber.DisplayName: Corcho verdeante
 VerdantWisp.DisplayName: Jirón
 VineHookProjectile.DisplayName: ${ProjectileName.GemHookAmethyst}
 VineWandVine.DisplayName: Enredadera
-WisplantInfusedLushBallProjectile.DisplayName: Bola de Suelo emporcado Imbuida de Ramillos
+WisplantInfusedLushBallProjectile.DisplayName: Bola de suelo ubérrimo imbuida de ramillos briznales
 ApotheosisHand.DisplayName: Mano del Apoteosis
-HealingParticle.DisplayName: Partícula Curativa
+HealingParticle.DisplayName: Partícula curativa
 Smoke.DisplayName: Humo
 LushDaggerProj.DisplayName: Daga frondosa
-SpikedPuffballProj.DisplayName: Bola Esponjosa Espinada
-HostSwarm.DisplayName: Enjambre de Anfitriones
-HostSwarmBee.DisplayName: Enjambre de Abejas Anfitrionas
-FruitProjectile.DisplayName: Proyectil de Fruta
-ChlorovineWandProjectile.DisplayName: Proyectil de Varita de Clorovides
+SpikedPuffballProj.DisplayName: Bola esponjosa espinada
+HostSwarm.DisplayName: Enjambre del anfitrión
+HostSwarmBee.DisplayName: Abeja del enjambre del anfitrión
+FruitProjectile.DisplayName: Proyectil de fruta
+ChlorovineWandProjectile.DisplayName: Proyectil de varita de clorovides

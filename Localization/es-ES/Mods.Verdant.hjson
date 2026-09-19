@@ -42,188 +42,188 @@ DryadShop: {
 }
 
 ShowApoth: Enséñale esto al Apoteosis al darle clic derecho
-// HardmodeMessage: There's some rumbling coming from the Verdant...
+HardmodeMessage: La lozanía del verdor retumba con vitalidad...
 
 GraveDialogue: {
-	// Listen: Listen
+	Listen: Escucha
 
 	Ma: {
-		// Name: Ma
-		// 0: I still...
-		// 1: Proud...of you...
-		// 2: (Laughter)
-	}
+        Name: Ma
+        0: Todavía estoy...
+        1: Orgullosa...de ti...
+        2: (Risa)
+    }
 
-	Pa: {
-		// Name: Pa
-		// 0: Return when...
-		// 1: ...you're the...best...
-		// 2: ...it's...impressive...
-	}
+    Pa: {
+        Name: Pa
+        0: Regresa cuando...
+        1: ...seas el...mejor...
+        2: ...es...impresionante...
+    }
 
-	Dreams: {
-		// Name: ...
-		// 0: A distant...land...
-		// 1: Unexplored, but...
-		// 2: The rock...pointed...
-	}
+    Dreams: {
+        Name: ...
+        0: Una tierra...lejana...
+        1: Inexplorada, pero...
+        2: La roca...apuntaba...
+    }
 
-	Me: {
-		// Name: Me
-		// 0: Worked much, but...I don't...
-		// 1: Was it...all worth it...?
-		// 2: ...but I can't see them again.
-		// 3: I think I'm proud of...done...
-		// 4: ...perhaps always too far away...
-		// 5: I miss...the sound of pencil on paper...
-		// 6: Foolish, led by...ego...
-		// 7: Perhaps the best...of all time...
-		// 8: But still, just, me.
-	}
+    Me: {
+        Name: Yo
+        0: Trabajé mucho, pero...no creo...
+        1: ¿Valió...la pena todo...?
+        2: ...pero no puedo verlos de nuevo.
+        3: Creo que estoy orgullosa de...haberlo hecho...
+        4: ...quizás siempre estuvo demasiado lejos...
+        5: Extraño...el sonido del lápiz sobre el papel...
+        6: Necia, guiada por...el ego...
+        7: Quizás la mejor...de todos los tiempos...
+        8: Pero aún así, solo, yo.
+    }
 }
 
 GenConfigs: {
 	Pages: {
 		Verdant: {
-			// Name: Verdant
-			// Description: Controls aspects of Verdant's generation.
+			Name: Verdant
+			Description: Controla aspectos de la generación del verdor.
 
 			Members: {
 				WaterMultiplier: {
-					// DisplayName: "[i:126] Water Multiplier"
-					// Tooltip: Multiplier for the amount of water placed in the Verdant.
+					DisplayName: "[i:126] Multiplicador del agua"
+					Tooltip: Multiplica la cantidad de agua generada en el verdor.
 				}
 
 				CircleModifier: {
-					// DisplayName: "[i:2] Base Size Multiplier"
-					// Tooltip: Modifies how large the "base size" of the biome's generation shapes are.
+					DisplayName: "[i:2] Multiplicador del tamaño base"
+					Tooltip: Modifica que tan grande es el "tamaño base" de las formas usadas para la generación del bioma.
 				}
 
 				StoneModifier: {
-					// DisplayName: "[i:3] Stone Multiplier"
-					// Tooltip: Multiplier for the amount of stone placed in the Verdant.
+					DisplayName: "[i:3] Multiplicador de piedra"
+					Tooltip: Multiplica la cantidad de piedra generada en el verdor.
 				}
 
 				OreModifier: {
-					// DisplayName: "[i:13] Ore Multiplier"
-					// Tooltip: Multiplier for the amount of ores placed in the Verdant.
+					DisplayName: "[i:13] Multiplicador de oro"
+					Tooltip: Multiplica la cantidad de oro generado en el verdor.
 				}
 
 				AquamarineModifier: {
-					// DisplayName: "[i:Verdant/EmbeddedAquamarineItem] Aquamarine Multiplier"
-					// Tooltip: Multiplier for the amount of Lush Soil-embedded aquamarine placed in the Verdant.
+					DisplayName: "[i:Verdant/EmbeddedAquamarineItem] Multiplicador de aguamarina"
+					Tooltip: Multiplica la cantidad de aguamarina generada en el verdor.
 				}
 
 				WaterfallModifier: {
-					// DisplayName: "[i:206] Waterfall Multiplier"
-					// Tooltip: Multiplier for the amount of waterfalls placed in the Verdant.
+					DisplayName: "[i:206] Multiplicador de cascadas"
+					Tooltip: Multiplica la cantidad de cascadas generadas en el verdor.
 				}
 
 				VinesModifier: {
-					// DisplayName: "[i:Verdant/VineRopeItem] Vine Multiplier"
-					// Tooltip: Multiplier for the amount of solid arched vines placed in the Verdant.
+					DisplayName: "[i:Verdant/VineRopeItem] Multiplicador de vides"
+					Tooltip: Multiplica la cantidad de vides solidas generadas en el verdor.
 				}
 
 				VinesChance: {
-					// DisplayName: "[i:Verdant/VineRopeItem] Vine Chance"
-					// Tooltip: Indirectly the chance for cuttable vines to spawn on valid surfaces. 0 will spawn no vines.
+					DisplayName: "[i:Verdant/VineRopeItem] Probabilidad de enredadera"
+					Tooltip: La probabilidad de que aparezcan enredaderas cortables sobre superficies válidas. Con valor 0 no aparecerán enredaderas.
 				}
 
 				VineStrongChance: {
-					// DisplayName: "[i:Verdant/VerdantStrongVineMaterial] Strong Vine Chance"
-					// Tooltip: The chance for cuttable vines to instead spawn as hardy vines.
+					DisplayName: "[i:Verdant/VerdantStrongVineMaterial] Probabilidad de enredadera resistente"
+					Tooltip: La probabilidad de que las enredaderas cortables aparezcan en su lugar como vides solidas.
 				}
 
 				LightbulbChance: {
-					// DisplayName: "[i:Verdant/Lightbulb] Lightbulb Flower Chance"
-					// Tooltip: The chance for a Lightbulb Flower to spawn on valid ground.
+					DisplayName: "[i:Verdant/Lightbulb] Probabilidad de flor bulbrillo"
+					Tooltip: La probabilidad de que aparezcan flores bulbrillo sobre superficies válidas. 
 				}
 
 				WaterfallFlowerChance: {
-					// DisplayName: "[i:Verdant/WaterPlantItem] Weeping Bud Chance"
-					// Tooltip: The chance for a Weeping Bud to spawn on valid ceilings.
+					DisplayName: "[i:Verdant/WaterPlantItem] Probabilidad de pimpollo lagrimeante"
+					Tooltip: La probabilidad de que aparezcan pimpollos lagrimeantes sobre tejados válidos. 
 				}
 
 				BeehiveChance: {
-					// DisplayName: "[i:Verdant/BeehiveBlock] Beehive Chance"
-					// Tooltip: The chance for a Beehive to spawn on valid ground.
+					DisplayName: "[i:Verdant/BeehiveBlock] Probabilidad de colmena de abejorro"
+					Tooltip: La probabilidad de que aparezcan colmenas de abejorros sobre superficies válidas. 
 				}
 
 				WallLightbulbChance: {
-					// DisplayName: "[i:Verdant/VerdantFlowerBulb] Wall Flower Chance"
-					// Tooltip: The chance for a wall flower to spawn on valid walls.
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Probabilidad de bulbo floral"
+					Tooltip: La probabilidad de que aparezcan bulbos florales sobre paredes válidas.
 				}
 
 				WallLightbulbBigChance: {
-					// DisplayName: "[i:Verdant/VerdantFlowerBulb] Big Wall Flower Chance"
-					// Tooltip: The chance for a big wall flower to spawn on valid walls.
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Probabilidad de bulbo floral grande"
+					Tooltip: La probabilidad de que aparezcan bulbos florales grandes sobre paredes válidas.
 				}
 
 				TreeChance: {
-					// DisplayName: "[i:Verdant/VerdantWoodBlock] Tree Chance"
-					// Tooltip: The chance for a tree to spawn in valid spaces.
+					DisplayName: "[i:Verdant/VerdantWoodBlock] Probabilidad de árbol frondoso"
+					Tooltip: La probabilidad de que aparezcan arboles frondosos en espacios válidos.
 				}
 
 				PuffChance: {
-					// DisplayName: "[i:Verdant/PinkPuff] Puff Chance"
-					// Tooltip: The chance for a pink puff to spawn on valid ground.
+					DisplayName: "[i:Verdant/PinkPuff] Probabilidad de resplandor esponjoso"
+					Tooltip: La probabilidad de que aparezcan resplandores esponjosos sobre superficies válidas. 
 				}
 			}
 		}
 
 		Backslate: {
-			// Name: Backslate
-			// Description: Controls generation for the Verdant's 'backslate' microbiomes.
+			Name: Pizarra
+			Description: Controla la generación de los microbiomas de 'pizarra' del verdor.
 
 			Members: {
 				BackslateMicrobiomeModifier: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Quantity Modifier"
-					// Tooltip: Increases or decreases the amount of Backslate spots grown in the Verdant.
+					DisplayName: "[i:Verdant/BackslateWallItem] Modificador de cantidad"
+					Tooltip: Incrementa o reduce la cantidad de puntos de generación de pizarra en el verdor. 
 				}
 
 				BackslateSizeModifier: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Size Modifier"
-					// Tooltip: The modifier for the size of Backslate clumps created.
+					DisplayName: "[i:Verdant/BackslateWallItem] Modificador de tamaño"
+					Tooltip: Modifica el tamaño de los grupos de pizarra generados.
 				}
 
 				BackslateSpam: {
-					// DisplayName: "[i:Verdant/BackslateTileItem] Block Count"
-					// Tooltip: Modifier to the number of clumps created per microbiome.
+					DisplayName: "[i:Verdant/BackslateTileItem] Conteo de bloques"
+					Tooltip: Modifica el numero de grupos creados por microbioma.
 				}
 
 				BackslateWidth: {
-					// DisplayName: "[i:Verdant/BackslateTileItem] Biome Width"
-					// Tooltip: The overall width of the microbiome in tiles.
+					DisplayName: "[i:Verdant/BackslateTileItem] Ancho del bioma"
+					Tooltip: La anchura general en bloques del microbioma.
 				}
 
 				AquamarineChance: {
-					// DisplayName: "[i:Verdant/AquamarineItem] Aquamarine Chance"
-					// Tooltip: The chance for non-embedded aquamarine to spawn around the spot en masse.
+					DisplayName: "[i:Verdant/AquamarineItem] Probabilidad de aguamarina"
+					Tooltip: La probabilidad de que la aguamarina no incrustada aparezca alrededor del lugar en masa.
 				}
 
 				WallChance: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Wall Chance"
-					// Tooltip: The chance for a backslate wall pillar to be placed.
+					DisplayName: "[i:Verdant/BackslateWallItem] Probabilidad de pared"
+					Tooltip: La probabilidad de colocar paredes de pizarra.
 				}
 
 				BubblingWallChance: {
-					// DisplayName: "[i:Verdant/BackslateBubblingWallItem] Perforated Wall Chance"
-					// Tooltip: The chance for an individual backslate wall to be a perforated backslate wall instead.
+					DisplayName: "[i:Verdant/BackslateBubblingWallItem] Probabilidad de pared perforada"
+					Tooltip: La probabilidad individual de una pared de pizarra de ser una pared de pizarra perforada en su lugar.
 				}
 
 				BushChance: {
-					// DisplayName: "[i:Verdant/WaterberryBushItem] Bush Chance"
-					// Tooltip: The chance for a waterberry bush to spawn on valid ground.
+					DisplayName: "[i:Verdant/WaterberryBushItem] Probabilidad de arbusto"
+					Tooltip: La probabilidad de que aparezcan arbustos de acuabaya sobre superficies válidas. 
 				}
 
 				RandomAquamarine: {
-					// DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Count"
-					// Tooltip: The amount of non-Verdant aquamarine veins embedded in stone.
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Conteo de bloque de piedra de aguamarina"
+					Tooltip: El numero de venas de aguamarina incrustada en piedra generadas independientes al verdor.
 				}
 
 				AquamarineChunkSize: {
-					// DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Stone Aquamarine Size"
-					// Tooltip: The size of non-Verdant aquamarine veins embedded in stone.
+					DisplayName: "[i:Verdant/EmbeddedStoneAquamarineItem] Tamaño de bloque de piedra de aguamarina"
+					Tooltip: El tamaño de las venas de bloque de piedra de aguamarina independientes al verdor.
 				}
 			}
 		}

@@ -1,29 +1,29 @@
 GardenerAchievement: {
-	// FriendlyName: Gardener
-	// Description: Complete half of the Apotheosis's quests.
+	FriendlyName: Jardinero
+	Description: Completa la mitad de las misiones del Apoteosis.
 }
 
 GreenThumbAchievement: {
-	// FriendlyName: Green Thumb
-	// Description: Complete one of the Apotheosis's quests.
+	FriendlyName: Pulgar verde
+	Description: Completa una misión del Apoteosis.
 }
 
 MarigoldAchievement: {
-	// FriendlyName: Marigolden
-	// Description: Grow a Marigold on verdant leaves.
+	FriendlyName: Cempasúchil 
+	Description: Cultiva cempasúchil sobre hojas frondosas.
 }
 
 ReachingApotheosisAchievement: {
-	// FriendlyName: Reaching Apotheosis
-	// Description: Complete all of the Apotheosis's quests.
+	FriendlyName: Alcanzando la Apoteosis
+	Description: Completa todas las misiones del Apoteosis.
 }
 
 MudsquidAchievement: {
-	// FriendlyName: Traveler of Mud
-	// Description: Move through 1,000 tiles as a Mudsquid.
+	FriendlyName: Viajero del barro
+	Description: Como calamar barro, viaja a traves de 1,000 bloques.
 }
 
 ShowcaseAchievement: {
-	// FriendlyName: Showcaser
-	// Description: Show the Apotheosis an item.
+	FriendlyName: Expositor
+	Description: Muestrale al Apoteosis un objeto.
 }

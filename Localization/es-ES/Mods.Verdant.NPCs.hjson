@@ -99,11 +99,11 @@ LunarJelly: {
 }
 
 Dropsnail: {
-	// DisplayName: Dropsnail
-	// Entry: A snail coagulated in one of the many teardrops of the Verdant. Despite the source, it is more jovial than any other snail. Perhaps it fights against its origin.
+	DisplayName: Caracol gota
+	Entry: Un caracol coagulado en una de las muchas lágrimas del verdor. A pesar de su origen, es más jovial que cualquier otro caracol. Quizá lucha contra la naturaleza de su origen.
 }
 
 Jellydew: {
-	// DisplayName: Jellydew
-	// Entry: Water given form by the energies in the water, in the shape of a jellyfish.
+	DisplayName: Medusa gelatina
+	Entry: Agua moldeada por las energías del agua, con la apariencia de una medusa.
 }
