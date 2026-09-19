@@ -177,7 +177,7 @@ GenConfigs: {
 
 			Members: {
 				BackslateMicrobiomeModifier: {
-					// DisplayName: "[i:Verdant/BackslateWallItem] Quanity Modifier"
+					// DisplayName: "[i:Verdant/BackslateWallItem] Quantity Modifier"
 					// Tooltip: Increases or decreases the amount of Backslate spots grown in the Verdant.
 				}
 
