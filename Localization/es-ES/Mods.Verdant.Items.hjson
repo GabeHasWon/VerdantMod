@@ -5,12 +5,12 @@ ProbablyDelete: {
 
 LushWoodBody: {
 	DisplayName: Cota de madera frondosa
-	Tooltip: Aumenta en +1 plano el invocación
+	Tooltip: Aumenta en 1 el daño de invocación
 }
 
 LushWoodHead: {
 	DisplayName: Casco de madera frondosa
-	Tooltip: Aumenta en +1 plano el invocación
+	Tooltip: Aumenta en 1 el daño de invocación
 }
 
 LushWoodLegs: {
@@ -33,7 +33,7 @@ MysteriaHelmet: {
 		'''
 		Aumenta la velocidad de excavación
 		Aumenta la velocidad de colocación de bloques y paredes
-		Aumenta el rango de colocación de bloques
+		Aumenta el alcance de colocación de bloques
 		'''
 }
 
@@ -50,7 +50,7 @@ VerdantChestplate: {
 	DisplayName: Cota frondosa
 	Tooltip:
 		'''
-		Aumenta un +7% el daño de invocación
+		Aumenta un 7% el daño de invocación
 		Aumenta en 1 el máximo de súbditos que puedes tener
 		'''
 }
@@ -59,7 +59,7 @@ VerdantHelm: {
 	DisplayName: Guirnalda frondosa
 	Tooltip:
 		'''
-		Aumenta un +5% el daño de invocación
+		Aumenta un 5% el daño de invocación
 		Proporciona un poco de luz
 		'''
 }
@@ -80,7 +80,7 @@ AquamarineItem: {
 }
 
 AquamarineTorchItem: {
-	DisplayName: Antorcha aguamarina
+	DisplayName: Antorcha celeste
 	Tooltip: ""
 }
 
@@ -90,7 +90,7 @@ BackslateTileItem: {
 }
 
 EmbeddedAquamarineItem: {
-	DisplayName: Suelo emporcado aguamarina
+	DisplayName: Suelo ubérrimo aguamarina
 	Tooltip: ""
 }
 
@@ -118,15 +118,15 @@ BeehiveBlock: {
 	DisplayName: Colmena de abejorros
 	Tooltip:
 		'''
-		Genera abejas, que polinizan las flores cercanas
-		Puede recogerse al regreso de las abejas con polen para algunas delicias
+		Genera abejorros que polinizan las flores cercanas
+		Al regreso de los abejorros con polen, puede recogerse para algunas delicias
 		'El zumbido es ligeramente preocupante'
 		'''
 }
 
 Bush2x2Item: {
 	DisplayName: Arbusto decorativo
-	Tooltip: Puede ornamentarse con [i:{0}].
+	Tooltip: Puede ornamentarse con [i:{0}]
 }
 
 Bush3x3Item: {
@@ -135,7 +135,7 @@ Bush3x3Item: {
 }
 
 LushSoilBlock: {
-	DisplayName: Suelo emporcado
+	DisplayName: Suelo ubérrimo
 	Tooltip: ""
 }
 
@@ -236,7 +236,7 @@ VerdantWoodChestBlock: {
 
 ThePlantItem: {
 	DisplayName: La planta
-	Tooltip: "'en formato real'"
+	Tooltip: "'En formato real'"
 }
 
 ApotheoticPaintingItem: {
@@ -263,7 +263,7 @@ LeafBook: {
 }
 
 LightbulbBook: {
-	DisplayName: Investigación de bulboluces
+	DisplayName: Investigación de bulbrillos
 	Tooltip:
 		'''
 		'Impresionantes descubrimientos de bulbos luminosos'
@@ -281,11 +281,11 @@ RockBook: {
 }
 
 ChlorophytePlant: {
-	DisplayName: Brote cloroflór
+	DisplayName: Semilla de cloroflór
 	Tooltip:
 		'''
 		Retoña clorofita
-		'Una roca irregular que de alguna manera rebosa de vida.'
+		'Una roca irregular que de alguna manera rebosa de vida'
 		'''
 }
 
@@ -314,7 +314,7 @@ HangingCrystalItem: {
 }
 
 LightbulbPaintingItem: {
-	DisplayName: Bulboluz
+	DisplayName: Bulbrillo
 	Tooltip: "'Emily A.'"
 }
 
@@ -330,7 +330,7 @@ ResearchBooksItem: {
 
 SnailShellBlockItem: {
 	DisplayName: Caparazón de caracol
-	Tooltip: "'Se siente terrible tener uno de estos.'"
+	Tooltip: "'Se siente terrible tener uno de estos'"
 }
 
 LullabyBox: {
@@ -349,7 +349,7 @@ TearRainBox: {
 }
 
 VibrantHorizonBox: {
-	DisplayName: Caja de música (Horizonte Vibrante)
+	DisplayName: Caja de música (Horizonte vibrante)
 	Tooltip: ""
 }
 
@@ -444,7 +444,7 @@ MysteriaAcorn: {
 		'''
 		Planta un árbol misteria
 		Los árboles misteria propagan el microbioma Misteria sobre el verdor
-		Los árboles no pueden ser atravesados caminando
+		Los árboles son sólidos y no pueden ser atravesados caminando
 		'''
 }
 
@@ -453,8 +453,8 @@ MysteriaDrapesItem: {
 	Tooltip:
 		'''
 		Se coloca en un bloque solido
-		Crece como las vides, lento
-		Sobre colócala para alargarla
+		Crece lentamente como las vides
+		Sobre colócalas para alargarla
 		Siempre esta al frente del jugador
 		'''
 }
@@ -474,13 +474,13 @@ MysteriaWood: {
 }
 
 PeaceTreetopItem: {
-	DisplayName: Copa de paz
+	DisplayName: Copa de la paz
 	Tooltip:
 		'''
 		Solo puede ser colocada en madera misteria
-		Coloca una copa de paz
+		Coloca una copa pacificadora
 		Estar cerca de la copa reduce la regeneración del enemigo y
-		la revierte al pre-hardmode.
+		la revierte al punto previo a la liberación de las almas de luz y oscuridad
 		'''
 }
 
@@ -494,13 +494,13 @@ HousproutItem: {
 }
 
 LightbulbSeeds: {
-	DisplayName: Semillas bulboluz
-	Tooltip: "'Estos ya emanan una luz tenue.'"
+	DisplayName: Semillas de bulbrillo
+	Tooltip: "'Estas ya emanan una tenue luz'"
 }
 
 LilyPadItem: {
 	DisplayName: Nenúfar
-	Tooltip: Debe colocarse sobre lirios.
+	Tooltip: Debe colocarse sobre lirios
 }
 
 PinkDyeBulb: {
@@ -513,7 +513,7 @@ PinkDyeBulb: {
 }
 
 PinkPuff: {
-	DisplayName: Esponjosidad rosa
+	DisplayName: Resplandor esponjoso
 	Tooltip:
 		'''
 		Crea un microbioma esponjoso a su alrededor
@@ -555,7 +555,7 @@ VineRopeItem: {
 }
 
 WaterberryBushItem: {
-	DisplayName: Arbusto aguabaya
+	DisplayName: Arbusto de acuabaya
 	Tooltip:
 		'''
 		Puede colocarse sobre si o en hojas frondosas
@@ -564,12 +564,12 @@ WaterberryBushItem: {
 }
 
 WaterPlantItem: {
-	DisplayName: Brote Llorón
+	DisplayName: Pimpollo lagrimeante
 	Tooltip: "'Un remanente, llorando para siempre'"
 }
 
 WisplantSeeds: {
-	DisplayName: Semillas de ramillo
+	DisplayName: Semillas de ramillo briznal
 	Tooltip: ""
 }
 
@@ -588,7 +588,7 @@ SnailStatueItem: {
 }
 
 HarvestedPickipuffItem: {
-	DisplayName: Esponjocolgante (Cosechado)
+	DisplayName: Briznario colgante (Cosechado)
 	Tooltip:
 		'''
 		Solo puede ser colocado en hojas frondosas
@@ -603,7 +603,7 @@ MarigoldItem: {
 }
 
 PickipuffItem: {
-	DisplayName: Esponjocolgante
+	DisplayName: Briznario colgante
 	Tooltip:
 		'''
 		Solo puede ser colocado en hojas frondosas
@@ -684,22 +684,22 @@ VerdantDoorItem: {
 
 VerdantHungTableBlock_Pink: {
 	DisplayName: Mesa colgante verdeante (Rosa)
-	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+	Tooltip: Puede colgarse cuando se coloca debajo de vides gruesas
 }
 
 VerdantHungTableBlock_PinkLightless: {
 	DisplayName: Mesa colgante verdeante (Rosa, sin bulbo)
-	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+	Tooltip: Puede colgarse cuando se coloca debajo de vides gruesas
 }
 
 VerdantHungTableBlock_Red: {
 	DisplayName: Mesa colgante verdeante (Roja)
-	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+	Tooltip: Puede colgarse cuando se coloca debajo de vides gruesas
 }
 
 VerdantHungTableBlock_RedLightless: {
 	DisplayName: Mesa colgante verdeante (Roja, sin bulbo)
-	Tooltip: Puede colgarse cuando se coloca debajo de dos enredaderas gruesas
+	Tooltip: Puede colgarse cuando se coloca debajo de vides gruesas
 }
 
 VerdantLampItem: {
@@ -738,12 +738,12 @@ VerdantWorkbenchItem: {
 }
 
 VerdantYellowPetalChestBlock: {
-	DisplayName: Cofre pétalo amarillo
+	DisplayName: Cofre de pétalo amarillo
 	Tooltip: ""
 }
 
 WisplantCandelabraItem: {
-	DisplayName: Candelabro ramillo
+	DisplayName: Candelabro de ramillo briznal
 	Tooltip: Incrementa la velocidad de crecimiento a sus cercanías
 }
 
@@ -768,7 +768,7 @@ LivingLushWoodWallItem: {
 }
 
 LushSoilWallItem: {
-	DisplayName: Pared de suelo emporcado
+	DisplayName: Pared de suelo ubérrimo
 	Tooltip: ""
 }
 
@@ -808,7 +808,7 @@ VerdantVineWallItem: {
 }
 
 WisplantInfusedMudBoulder: {
-	DisplayName: Bola de suelo emporcado imbuida de ramillos
+	DisplayName: Bola de suelo ubérrimo imbuida de ramillos briznales
 	Tooltip:
 		'''
 		'Simplemente pegaste dos cosas juntas, no es magia' - Todos
@@ -818,7 +818,7 @@ WisplantInfusedMudBoulder: {
 
 BulbSnail: {
 	DisplayName: Caracol bombilla
-	Tooltip: Ilumina la vieja carretera.
+	Tooltip: Ilumina la vieja carretera
 }
 
 BumblebeeItem: {
@@ -832,7 +832,7 @@ AxolotlItem: {
 }
 
 BulbboxJellyItem: {
-	DisplayName: Medusa cajabulbosa
+	DisplayName: Medusa bulbojelia 
 	Tooltip: "'¡Blandita!'"
 }
 
@@ -917,7 +917,7 @@ Lightbloom: {
 	DisplayName: Vástago lumínico
 	Tooltip:
 		'''
-		Aumenta la regeneración de vida bajo la luz
+		Aumenta la regeneración de vida al situarse cerca de fuentes de luz
 		Cuanto más fuerte sea la luz, mayor será el aumento
 		'''
 }
@@ -926,7 +926,7 @@ Mudsquid: {
 	DisplayName: Calamar de barro
 	Tooltip:
 		'''
-		Permite un viajar rápidamente a través de ciertos bloques,
+		Permite un viajar rápidamente a través de ciertos bloques
 		Incluyendo todos los bloques naturales del Verdor 
 		'''
 }
@@ -945,9 +945,9 @@ SproutInABoot: {
 	Tooltip:
 		'''
 		Propaga plataformas verdeantes al pisar
-		Usa una hoja frondosa por plataforma
+		Consume una hoja frondosa por plataforma
 		Necesita agua para continuar funcionando
-		'Sorprendentemente cómodas y duraderas.'
+		'Sorprendentemente cómodas y duraderas'
 		'''
 }
 
@@ -955,9 +955,9 @@ SproutInAGlove: {
 	DisplayName: Brote en guantes
 	Tooltip:
 		'''
-		Probabilidad de esquivar proyectiles de un 33%
-		Esquivar un proyectil otorga una pequeña invulnerabilidad y cura ligeramente
-		Los proyectiles solo pueden golpearte una vez, incluso si perforan o rebotan.
+		Probabilidad de esquivar proyectiles hostiles
+		Esquivar un proyectil cura y prolonga ligeramente el tiempo de invencibilidad 
+		Los proyectiles solo pueden golpearte una vez, incluso si perforan o rebotan
 		'''
 }
 
@@ -981,7 +981,7 @@ MysteriaCrateItem: {
 }
 
 Shellfish: {
-	DisplayName: Marisco frondoso
+	DisplayName: Molusco frondoso
 	Tooltip: ""
 }
 
@@ -1013,7 +1013,7 @@ FloralTea: {
 }
 
 Grapecherry: {
-	DisplayName: Uvacerezo
+	DisplayName: Cerezuva
 	Tooltip:
 		'''
 		Pequeñas mejoras a todas las características
@@ -1049,7 +1049,7 @@ Walnut: {
 }
 
 Waterberry: {
-	DisplayName: Aguabaya
+	DisplayName: Acuabaya
 	Tooltip:
 		'''
 		Pequeñas mejoras a todas las características
@@ -1058,7 +1058,7 @@ Waterberry: {
 }
 
 Lightbulb: {
-	DisplayName: Bulboluz
+	DisplayName: Bulbrillo
 	Tooltip: "'Mantiene a Charlie alejada'"
 }
 
@@ -1092,7 +1092,7 @@ RedPetal: {
 }
 
 WisplantItem: {
-	DisplayName: Ramillo
+	DisplayName: Ramillo briznal
 	Tooltip: "'Suave como las nubes'"
 }
 
@@ -1113,21 +1113,21 @@ ApotheosisBook: {
 
 WiltedFlower: {
 	DisplayName: Flor marchita
-	Tooltip: Una ya hace tiempo muerta flor amarilla descolorida
+	Tooltip: Una ya hace tiempo muerta, flor amarilla descolorida
 }
 
 HeartOfGrowth: {
 	DisplayName: Corazón del crecimiento
 	Tooltip:
 		'''
-		Aumenta permanentemente el daño de los súbditos en un 5%
+		Aumenta permanentemente el daño de los súbditos un 5%
 		Sólo puede utilizarse una vez por persona
 		'Un corazón que late eternamente.'
 		'''
 }
 
 MagicWisplant: {
-	DisplayName: Ramillo mágico
+	DisplayName: Briznario mágico
 	Tooltip:
 		'''
 		'Un aura poderosa de energía druídica lo rodea'
@@ -1140,7 +1140,7 @@ Microcosm: {
 	Tooltip:
 		'''
 		Crea un bioma verdeante minúsculo en cualquier lugar
-		¡Cuidado! Esto sobrescribe un área GRANDE (60x60 bloques en un mundo tipo pequeño)
+		¡Cuidado! Esto sobrescribe un área GRANDE
 		¡Asegúrate de usar esto en un lugar que no te importe!
 		'Un reino de cristal que brilla intensamente'
 		'''
@@ -1161,7 +1161,7 @@ AquamarineHook: {
 }
 
 BouncebloomItem: {
-	DisplayName: Flor trampolín
+	DisplayName: Flor elástica
 	Tooltip:
 		'''
 		Ralentiza la caída
@@ -1171,10 +1171,10 @@ BouncebloomItem: {
 }
 
 CloudsproutPuff: {
-	DisplayName: Brotenube
+	DisplayName: Floración nubosa
 	Tooltip:
 		'''
-		Cojín elástico flotante
+		Brote elástico flotante
 		Permanece incluso después de salir del mundo
 		Clic izquierdo en una nube existente para eliminarla
 		Mantén clic derecho por 2 segundos para eliminar todos los brotenubes
@@ -1182,7 +1182,7 @@ CloudsproutPuff: {
 }
 
 GemFlower: {
-	DisplayName: Flor gema
+	DisplayName: Flor de cristal
 	Tooltip: Te teletransporta al Apoteosis
 }
 
@@ -1217,20 +1217,20 @@ CrudePaintbrush: {
 	DisplayName: Pincel rudimentario
 	Tooltip:
 		'''
-		Puede colocar bloques rápidamente en varios estilos
+		Puede colocar rápidamente bloques de forma eficiente
 		Clic derecho para alternar el estilo de colocación
 		La herramienta de relleno tiene un máximo de 1000 bloques a la vez
 		'Una apariencia rudimentaria esconde un artefacto poderoso'
 		'''
 
 	Information: {
-		NoItemSelected: Selecciona un objeto para empezar!
+		NoItemSelected: ¡Colocale un objeto para empezar!
 		NotEnoughItem: No tienes suficiente [i:{0}]!
 		FillConfirm: ¿Estás seguro de que deseas rellenar?
 		NoUndos: No hay cambios que deshacer
-		SelectBlock: Seleccione un bloque para empezar!
-		NotValidBlock: Seleccione un bloque sólido de 1x1 (como tierra [i:2]) para empezar!
-		Selected: Tipo de estilo establecido a [i:{0}] ({1})!
+		SelectBlock: ¡Selecciona un bloque para empezar!
+		NotValidBlock: ¡Selecciona un bloque sólido de 1x1 (como tierra [i:2]) para empezar!
+		Selected: Tipo de estilo establecido a [i:{0}] ({1})
 	}
 }
 
@@ -1241,7 +1241,7 @@ PermVineWand: {
 		Permite construir vides
 		Las vides funcionan como una cuerda y pueden utilizarse en cualquier espacio abierto
 		Estas vides usan [i:{0}] para construirse y las sueltan al ser destruidas
-		Clic derecho al los viñedos al sostenerlo para eliminarlos 
+		Al sostenerlo, Clic derecho sobre los viñedos para eliminarlos
 		'''
 }
 
@@ -1269,7 +1269,7 @@ Shears: {
 		'''
 		Poda ciertas plantas
 		Puede usarse para quitar esponjocolgantes y cortinas misteria 
-		Puede usarse como un hacha, técnicamente
+		Tecnicamente... se puede usar como hacha
 		'''
 }
 
@@ -1278,15 +1278,15 @@ VerdantFishingRod: {
 	Tooltip:
 		'''
 		Emite luz cuando se sostiene
-		Es potenciada en el verdor
+		Su poder florece en el verdor
 		'''
 }
 
 YellowPetalFloater: {
-	DisplayName: Brotenube amarillo
+	DisplayName: Floración nubosa amarilla
 	Tooltip:
 		'''
-		Cojín elástico flotante
+		Brote elástico flotante
 		Permanece incluso después de salir del mundo
 		Clic izquierdo en una nube existente para eliminarla
 		Mantén clic derecho por 2 segundos para eliminar todos los brotenubes
@@ -1294,12 +1294,12 @@ YellowPetalFloater: {
 }
 
 AquamarinePhaseblade: {
-	DisplayName: Espada de luz aguamarina
+	DisplayName: Espada de luz celeste
 	Tooltip: ""
 }
 
 AquamarinePhasesaber: {
-	DisplayName: Sable de luz aguamarina
+	DisplayName: Sable de luz celeste
 	Tooltip: ""
 }
 
@@ -1346,13 +1346,13 @@ LushWoodSword: {
 }
 
 MudBoulderItem: {
-	DisplayName: Bola de suelo emporcado
+	DisplayName: Bola de suelo ubérrimo 
 	Tooltip: Una pequeña molestia
 }
 
 SpikedPuffball: {
 	DisplayName: Bola esponjosa espinosa
-	Tooltip: Flota en el aire durante medio minuto, luego cae
+	Tooltip: Flota durante un tiempo antes de caer
 }
 
 VerdantStaff: {
@@ -1373,7 +1373,7 @@ LargeFlowerBulb: {
 }
 
 LightbulbFlowerBulb: {
-	DisplayName: Flor bulboluz
+	DisplayName: Flor bulbrillo
 	Tooltip: "{$VerdantFlowerBulb.Tooltip}"
 }
 
@@ -1405,9 +1405,9 @@ ApotheoticBeeHelmet: {
 		Tiene un enjambre de abejorros
 		Al sostener un objeto de invocación, las abejas rodean el cursor y causan daño con el tiempo
 		Aumenta un 10% el daño de invocación
-		Aumenta en 2 el numero máximo de invocaciones 
+		Aumenta en 2 el máximo de súbditos que puedes tener
 		Las abejas se fortalecen con la mochila colmena
-		'Es mucho más preocupante cuando lo tienes encima en la cabeza'
+		'Es mucho más preocupante cuando los tienes zumbándote la cabeza'
 		'''
 }
 
@@ -1418,9 +1418,9 @@ ApotheoticTreeHelmet: {
 		De alguna manera, un árbol crece en la diadema
 		Tienes un aura curativa
 		El árbol produce varias frutas
-		Clic en una de tus invocaciones para potenciarla por un corto periodo de tiempo
-		Aumenta un +10% el daño de invocación
-		Aumenta en 1 el numero máximo de invocaciones
+		Clic izquierdo sobre una de tus invocaciones para potenciarla por un corto periodo de tiempo
+		Aumenta un 10% el daño de invocación
+		Aumenta en 1 el máximo de súbditos que puedes tener
 		'El árbol calma la vida, y la vida te calma a ti'
 		'''
 }
@@ -1429,8 +1429,8 @@ ApotheoticChestplate: {
 	DisplayName: Cota apoteótica
 	Tooltip:
 		'''
-		Aumenta un +10% el daño de invocación
-		Aumenta en 1 el numero máximo de invocaciones
+		Aumenta un 10% el daño de invocación
+		Aumenta en 1 el máximo de súbditos que puedes tener
 		'''
 }
 
@@ -1438,8 +1438,8 @@ ApotheoticLeggings: {
 	DisplayName: Grebas apoteóticas
 	Tooltip:
 		'''
-		Aumenta un +10% el daño de invocación
-		Aumenta en 1 el numero máximo de invocaciones
+		Aumenta un 10% el daño de invocación
+		Aumenta en 1 el máximo de súbditos que puedes tener
 		'''
 }
 
@@ -1521,7 +1521,7 @@ WhiteDyeBulb: {
 }
 
 LightbulbLeafItem: {
-	DisplayName: Hoja bulboluz
+	DisplayName: Hoja bulbrillo
 	Tooltip: Emite un brillo suave
 }
 
@@ -1571,7 +1571,7 @@ PoolwormAquariumItem: {
 }
 
 BulbboxAquariumItem: {
-	DisplayName: Acuario de cajabulbosa
+	DisplayName: Acuario de bulbojelia
 	Tooltip: "'Este tipo podría ganarte en una carrera de natación'"
 }
 
@@ -1610,7 +1610,7 @@ PlainMicrocosm: {
 	Tooltip:
 		'''
 		{$Microcosm.Tooltip}
-		Libre de vidrio!
+		¡Libre de vidrio!
 		'''
 }
 
@@ -1631,7 +1631,7 @@ ChlorovineWand: {
 		Las clorovides funcionan como una cuerda y pueden utilizarse en cualquier espacio abierto
 		Estas clorovides usan [i:{0}] para construirse, y las sueltan al ser destruidas
 		Una energía mágica te permite escalar significativamente más rápido
-		Al sostenerlo clic derecho a los cloroviñedos para eliminarlos
+		Al sostenerlo, Clic derecho a los cloroviñedos para eliminarlos
 		'''
 }
 
@@ -1656,7 +1656,7 @@ CanopySnailCage: {
 }
 
 StargazerPlantItem: {
-	DisplayName: astrónoma azul
+	DisplayName: Astrónoma azul
 	Tooltip: Brilla suavemente bajo tu cuidado
 }
 
@@ -1671,7 +1671,7 @@ LunarJellyTerrariumItem: {
 }
 
 GlassFlowerItem: {
-	DisplayName: Flor de cristal
+	DisplayName: Flor cristalina 
 	Tooltip:
 		'''
 		Desactiva el verdor en el área cercana, lo que permite el uso de otros biomas
@@ -1680,159 +1680,159 @@ GlassFlowerItem: {
 }
 
 DropsnailItem: {
-	// DisplayName: Dropsnail
-	// Tooltip: "'Soft, cold.'"
+	DisplayName: Caracol gota
+	Tooltip: "'Suave, frío.'"
 }
 
 SmokeBulbItem: {
-	// DisplayName: Smokebud
-	/* Tooltip:
+	DisplayName: Bulbo vaporizador
+	Tooltip:
 		'''
-		Allows the steam effect to be used everywhere
-		'Smells...gross'
-		''' */
+		Al colocarlo, clic derecho para activar el efecto de vapor en cualquier lugar
+		'Huele... bascoso'
+		'''
 }
 
 TearBulbItem: {
-	// DisplayName: Tear Bulb
-	/* Tooltip:
+	DisplayName: Bulbo lagrimoso
+	Tooltip:
 		'''
-		Can be right clicked when placed to enable tear rain visual effects
-		'It's like an onion'
-		''' */
+		Al colocarlo, clic derecho para activar el efecto de lluvia de lágrimas en cualquier lugar
+		'Como si fuera una cebolla'
+		'''
 }
 
 PuffCandleItem: {
-	// DisplayName: Puff Candle
-	// Tooltip: ""
+	DisplayName: Vela esponjosa
+	Tooltip: ""
 }
 
 PuffLampItem: {
-	// DisplayName: Puff Lamp
-	// Tooltip: ""
+	DisplayName: Lámpara esponjosa
+	Tooltip: ""
 }
 
 PuffLanternItem: {
-	// DisplayName: Puff Lantern
-	// Tooltip: ""
+	DisplayName: Linterna esponjosa
+	Tooltip: ""
 }
 
 PuffWorkbenchItem: {
-	// DisplayName: Puff Workbench
-	// Tooltip: ""
+	DisplayName: Mesa de trabajo esponjosa
+	Tooltip: ""
 }
 
 PuffDoorItem: {
-	// DisplayName: Puff Door
-	// Tooltip: ""
+	DisplayName: Puerta esponjosa
+	Tooltip: ""
 }
 
 PuffBookcaseItem: {
-	// DisplayName: Puff Bookcase
-	// Tooltip: ""
+	DisplayName: Librería esponjosa
+	Tooltip: ""
 }
 
 PuffDresserItem: {
-	// DisplayName: Puff Dresser
-	// Tooltip: ""
+	DisplayName: Aparador esponjoso
+	Tooltip: ""
 }
 
 PuffCandelabraItem: {
-	// DisplayName: Puff Candelabra
-	// Tooltip: ""
+	DisplayName: Candelabro esponjoso
+	Tooltip: ""
 }
 
 PuffChairItem: {
-	// DisplayName: Puff Chair
-	// Tooltip: ""
+	DisplayName: Silla esponjosa
+	Tooltip: ""
 }
 
 PuffSinkItem: {
-	// DisplayName: Puff Sink
-	// Tooltip: ""
+	DisplayName: Fregadero esponjoso
+	Tooltip: ""
 }
 
 TearPlantItem: {
-	// DisplayName: Flower of Tears
-	// Tooltip: "'Maybe I'll see again someday'"
+	DisplayName: Flor lagrimal
+	Tooltip: "'Quizá algún día vea de nuevo'"
 }
 
 DropsnailCage: {
-	// DisplayName: Dropsnail Cage
-	// Tooltip: "'Watery, but gentle'"
+	DisplayName: Jaula de caracol gota
+	Tooltip: "'Acuoso, per gentil'"
 }
 
 JellydewItem: {
-	// DisplayName: Jellydew
-	// Tooltip: "'So cute!'"
+	DisplayName: Medusa gelatina
+	Tooltip: "'¡Tan linda!'"
 }
 
 JellydewAquariumItem: {
-	// DisplayName: Jellydew Aquarium
-	// Tooltip: ""
+	DisplayName: Acuario de medusa gelatina
+	Tooltip: ""
 }
 
 PuffBathtubItem: {
-	// DisplayName: Puff Bathtub
-	// Tooltip: ""
+	DisplayName: Bañera esponjosa
+	Tooltip: ""
 }
 
 PuffBedItem: {
-	// DisplayName: Puff Bed
-	// Tooltip: ""
+	DisplayName: Cama esponjosa
+	Tooltip: ""
 }
 
 PuffClockItem: {
-	// DisplayName: Puff Clock
-	// Tooltip: ""
+	DisplayName: Reloj esponjoso
+	Tooltip: ""
 }
 
 PuffTableItem: {
-	// DisplayName: Puff Table
-	// Tooltip: ""
+	DisplayName: Mesa esponjosa
+	Tooltip: ""
 }
 
 PuffPlatformItem: {
-	// DisplayName: Puff Platform
-	// Tooltip: ""
+	DisplayName: Plataforma esponjosa
+	Tooltip: ""
 }
 
 PuffSofaItem: {
-	// DisplayName: Puff Sofa
-	// Tooltip: ""
+	DisplayName: Sofá esponjoso
+	Tooltip: ""
 }
 
 PuffPianoItem: {
-	// DisplayName: Puff Piano
-	// Tooltip: ""
+	DisplayName: Piano esponjoso
+	Tooltip: ""
 }
 
 TearRainEventBox: {
-	// DisplayName: Music Box ("Of Petrichor")
-	// Tooltip: ""
+	DisplayName: Caja de música ("De petricor")
+	Tooltip: ""
 }
 
 PoetryBook: {
-	// DisplayName: '''"Scribbles"'''
-	// Tooltip: Right click to read
+	DisplayName: '''"Esbozo"'''
+	Tooltip: Clic derecho para leer
 }
 
 DreamGrave: {
-	// DisplayName: Overgrown Grave
-	// Tooltip: ""
+	DisplayName: Lápida frondosa
+	Tooltip: ""
 }
 
 MaGrave: {
-	// DisplayName: "{$DreamGrave.DisplayName}"
-	// Tooltip: ""
+	DisplayName: "{$DreamGrave.DisplayName}"
+	Tooltip: ""
 }
 
 MeGrave: {
-	// DisplayName: Personal Grave
-	// Tooltip: ""
+	DisplayName: Lápida personal
+	Tooltip: ""
 }
 
 PaGrave: {
-	// DisplayName: "{$DreamGrave.DisplayName}"
-	// Tooltip: ""
+	DisplayName: "{$DreamGrave.DisplayName}"
+	Tooltip: ""
 }

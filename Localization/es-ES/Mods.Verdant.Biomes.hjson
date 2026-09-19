@@ -1,14 +1,14 @@
 VerdantUndergroundBiome: {
-	TownNPCDialogueName: Cuevas Frondosas
+	TownNPCDialogueName: el Verdor
 	DisplayName: El Verdor
 }
 
 VerdantBiome: {
-	TownNPCDialogueName: El Verdor
+	TownNPCDialogueName: el Verdor
 	DisplayName: El Verdor
 }
 
 NearApotheosisBiome: {
-	TownNPCDialogueName: Cerca del Apoteosis
+	TownNPCDialogueName: cerca del Apoteosis
 	DisplayName: Cerca del Apoteosis
 }
