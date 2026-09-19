@@ -140,7 +140,7 @@ GenConfigs: {
 				}
 
 				WaterfallFlowerChance: {
-					DisplayName: "[i:Verdant/WaterPlantItem] Chance de Gomo Chorão" //choradeiro was too big...
+					DisplayName: "[i:Verdant/WaterPlantItem] Chance de Gomo Choradeiro"
 					Tooltip: A chance de Gomos Choradeiros surgirem em tetos válidos.
 				}
 
@@ -155,8 +155,8 @@ GenConfigs: {
 				}
 
 				WallLightbulbBigChance: {
-					DisplayName: "[i:Verdant/VerdantFlowerBulb] Chance de Flor de Parede G" //a little too big...
-					Tooltip: A chance de uma flor de parede grande surgir em paredes válidas.
+					DisplayName: "[i:Verdant/VerdantFlowerBulb] Chance de Flor de Parede Gigante"
+					Tooltip: A chance de uma flor de parede gigante surgir em paredes válidas.
 				}
 
 				TreeChance: {
