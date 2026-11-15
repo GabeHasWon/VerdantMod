@@ -229,3 +229,17 @@ GenConfigs: {
 		}
 	}
 }
+
+Interests: {
+	ApotheosisInterest: {
+		// 0: There you are. So, I was walking around the deep underground, right, when I found this place. Wet, warm, flowery. Suddenly, I hear a voice. 'Hello, traveler', or something. I ran until I couldn't hear it anymore.
+		// 1: I've been told...they were right there, yes. Uh. You ever have a statue talk to you? I don't. I'd like to not repeat that. But if you want someone to speak to you, I guess that's a solid bet.
+		// 2: Should be here. Okay, so, I was finally having a pretty relaxed time walking around this nice, calm area...if wet. Then, big, BIG statue appears. Like, outta nowhere. I freaked out and fell down a big hole, and I don't remember much after that.
+	}
+
+	SnailInterest: {
+		// 0: Here...you...go. I like to think I'm partial to artwork, right? So, I was walking, trying not to fall in big puddles of water, and then I see in the distance this big...snail. Like, a statue. It was really cool. There was a plaque on it that kept changing, though...
+		// 1: Right around there. Not often do I get a story that's pretty easy. Big, jungly place, but nice instead of awful. Big, slightly overgrown statue of a snail. Cool! No hijinx this time. Should be enough for me.
+		// 2: There it is! Okay, so, I was out, doing long distance running so to speak, when I trip and fall on this lush, almost fabric like leafage. Lovely! In front of me, what looked like a shrine to a snail. Anything's a sight for sore legs when you run that much, I suppose.
+	}
+}

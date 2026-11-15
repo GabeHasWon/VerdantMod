@@ -64,6 +64,7 @@ public partial class VerdantGenSystem
         }
 
         ClearOrphans();
+        PostGeneration();
     }
 
     private static void ConvertGraveArea(int x, int y)
@@ -113,7 +114,12 @@ public partial class VerdantGenSystem
     readonly static int[] InvalidWalls = [ WallID.BlueDungeonSlabUnsafe, WallID.BlueDungeonUnsafe, WallID.BlueDungeonTileUnsafe, WallID.GreenDungeonSlabUnsafe, 
         WallID.GreenDungeonTileUnsafe, WallID.GreenDungeonUnsafe, WallID.PinkDungeonUnsafe, WallID.PinkDungeonTileUnsafe, WallID.PinkDungeonSlabUnsafe ];
 
-    public override void PostWorldGen()
+    //public override void PostWorldGen()
+    //{
+    //    PostGeneration();
+    //}
+
+    private static void PostGeneration()
     {
         Point apothPos = new(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4);
         int side = WorldGen.genRand.NextBool(2) ? -1 : 1;
@@ -142,6 +148,9 @@ public partial class VerdantGenSystem
 
         ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
         StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
+
+        if (ModLoader.TryGetMod("SpiritReforged", out Mod reforged))
+            reforged.Call("PlaceInterest", apothPos.X + 8, apothPos.Y + 4, "Verdant/ApotheosisInterest");
 
     redoAgain:
         side = WorldGen.genRand.NextBool(2) ? -1 : 1;

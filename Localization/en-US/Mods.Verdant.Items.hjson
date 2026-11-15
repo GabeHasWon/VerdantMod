@@ -1838,3 +1838,13 @@ PaGrave: {
 	DisplayName: "{$DreamGrave.DisplayName}"
 	Tooltip: ""
 }
+
+ApotheosisPin: {
+	DisplayName: Apotheosis Pin
+	Tooltip: ""
+}
+
+SnailPin: {
+	DisplayName: Snail Pin
+	Tooltip: ""
+}
