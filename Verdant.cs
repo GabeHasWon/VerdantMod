@@ -1,13 +1,8 @@
-using FullSerializer;
 using Microsoft.Xna.Framework.Graphics;
-using NetEasy;
-using NetSerializer;
 using ReLogic.Content;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
@@ -27,7 +22,7 @@ public partial class VerdantMod : Mod
 {
     public static VerdantMod Instance => ModContent.GetInstance<VerdantMod>();
 
-    public static ModKeybind SquidHotkey;
+    internal static ModKeybind SquidHotkey;
 
     public static bool DebugModActive => ModLoader.HasMod("CheatSheet") || ModLoader.HasMod("HEROsMod") || ModLoader.HasMod("DragonLens");
 

@@ -148,6 +148,7 @@ public partial class VerdantGenSystem
 
         ModContent.GetInstance<VerdantGenSystem>().apotheosisLocation = new Point16(apothPos.X + 8, apothPos.Y + 4);
         StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/Apotheosis", new Point16(apothPos.X, apothPos.Y), VerdantMod.Instance);
+        GenVars.structures.AddProtectedStructure(new Rectangle(apothPos.X, apothPos.Y, 16, 8), 4);
 
         if (ModLoader.TryGetMod("SpiritReforged", out Mod reforged))
             reforged.Call("PlaceInterest", apothPos.X + 8, apothPos.Y + 4, "Verdant/ApotheosisInterest");
@@ -184,6 +185,7 @@ public partial class VerdantGenSystem
 
         StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/Study" + studyID, new Point16(studyLoc.X, studyLoc.Y), VerdantMod.Instance);
         ReplaceBooks(studyLoc, size);
+        GenVars.structures.AddProtectedStructure(new Rectangle(studyLoc.X, studyLoc.Y, size.X, size.Y), 2);
 
     redoAgainAgain:
         Point pos = new(VerdantArea.Left + (int)(WorldGen.genRand.Next(20, 80) * WorldSize), WorldGen.genRand.Next(VerdantArea.Top, VerdantArea.Bottom));
@@ -193,7 +195,11 @@ public partial class VerdantGenSystem
 
         int groundCount = Helper.TileRectangle(pos.X, pos.Y + 6, 6, 5, ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>());
         if (Helper.NoTileRectangle(pos.X, pos.Y, 6, 6) > 20 && groundCount > 25)
+        {
+            StructureHelper.API.Legacy.LegacyGenerator.GetDimensions("World/Structures/SnailStatue", VerdantMod.Instance, ref size);
             StructureHelper.API.Legacy.LegacyGenerator.GenerateStructure("World/Structures/SnailStatue", new Point16(pos.X, pos.Y), VerdantMod.Instance);
+            GenVars.structures.AddProtectedStructure(new Rectangle(pos.X, pos.Y, size.X, size.Y), 2);
+        }
         else
             goto redoAgainAgain;
     }
@@ -223,7 +229,7 @@ public partial class VerdantGenSystem
 
     private void AddFlowerStructures()
     {
-        Point[] offsets = [new Point(7, -1), new Point(3, 0), new Point(3, 0)]; //ruler in-game is ONE HIGHER on both planes
+        Point[] offsets = [new Point(7, -1), new Point(3, 0), new Point(3, 0)]; // Ruler in-game is ONE HIGHER on both planes
 
         var list = InvalidTypes.ToList();
         list.Add(ModContent.TileType<Apotheosis>());
@@ -231,7 +237,7 @@ public partial class VerdantGenSystem
 
         int[] valids = [ModContent.TileType<VerdantGrassLeaves>(), ModContent.TileType<LushSoil>()];
 
-        List<Vector2> positions = new() { new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4) }; //So I don't overlap with the Apotheosis
+        List<Vector2> positions = [new Vector2(VerdantArea.Center.X - 10, VerdantArea.Center.Y - 4)]; // So I don't overlap with the Apotheosis
         int attempts = 0;
 
         for (int i = 0; i < 8 * WorldSize; ++i)

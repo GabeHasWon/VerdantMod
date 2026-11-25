@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ObjectData;
-using Verdant.Bezier;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Runtime.CompilerServices;
+using Verdant.World.Utility;
 
 namespace Verdant.World;
 
@@ -25,16 +25,12 @@ public static class GenHelper
         WorldGen.PlaceTile(i, j, t, true, mute, -1, style);
     }
 
-    public static void ReplaceTile(Point p, int t, bool item = false, bool mute = true, int style = 0) => ReplaceTile(p.X, p.Y, t, item, mute, style);
-    public static void ReplaceTile(Point16 p, int t, bool item = false, bool mute = true, int style = 0) => ReplaceTile(p.X, p.Y, t, item, mute, style);
-
     public static void ReplaceWall(Point16 p, int t, bool mute = true)
     {
         WorldGen.KillWall(p.X, p.Y, false);
         WorldGen.PlaceWall(p.X, p.Y, t, mute);
     }
 
-    public static void ReplaceWall(int x, int y, int t, bool mute = true) => ReplaceWall(new Point(x, y), t, mute);
     public static void ReplaceWall(Point p, int t, bool mute = true) => ReplaceWall(new Point16(p.X, p.Y), t, mute);
 
     public static void PlaceMultitile(Point position, int type, int style = -1)
@@ -66,86 +62,12 @@ public static class GenHelper
         }
     }
 
-    public static Point[] GetBezier(double[] orderedPositions)
+    public static void ActOnBezier(float distance, Action<int, int> perPointAction, params Vector2[] controlPoints)
     {
-        const int POINTS_ON_CURVE = 100;
+        Bezier bezier = new(distance, controlPoints);
 
-        BezierCurve curve = new();
-        double[] p = new double[POINTS_ON_CURVE];
-
-        curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);
-
-        Point[] res = new Point[POINTS_ON_CURVE];
-        for (int i = 1; i != POINTS_ON_CURVE - 1; i += 2)
-            res[i] = new Point((int)p[i + 1], (int)p[i]);
-        return res;
-    }
-
-    public static void GenBezierDirect(double[] orderedPositions, int fidelity = 100, int t = TileID.Dirt, bool overRide = false, int height = 1)
-    {
-        int POINTS_ON_CURVE = fidelity;
-
-        BezierCurve curve = new();
-        double[] p = new double[POINTS_ON_CURVE];
-
-        curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);
-
-        for (int i = 1; i != POINTS_ON_CURVE - 1; i += 2)
-        {
-            for (int j = 0; j < height; ++j)
-            {
-                Tile tile = Main.tile[(int)p[i + 1], (int)p[i] - j];
-
-                if (overRide && tile.HasTile)
-                    continue;
-
-                tile.TileType = (ushort)t;
-                tile.HasTile = true;
-
-                //if (overRide)
-                //    ReplaceTile((int)p[i + 1], (int)p[i] - j, t, false, true);
-                //else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
-                //    WorldGen.PlaceTile((int)p[i + 1], (int)p[i] - j, t, true, false);
-            }
-        }
-    }
-
-    public static void GenBezierDirectWall(double[] orderedPositions, int fidelity = 100, int t = WallID.Stone, bool overRide = false, int height = 1)
-    {
-        int POINTS_ON_CURVE = fidelity;
-
-        BezierCurve curve = new();
-        double[] p = new double[POINTS_ON_CURVE];
-
-        curve.Bezier2D(orderedPositions, POINTS_ON_CURVE / 2, p);
-
-        for (int i = 1; i != POINTS_ON_CURVE - 1; i += 2)
-        {
-            for (int j = 0; j < height; ++j)
-            {
-                if (overRide)
-                    ReplaceWall((int)p[i + 1], (int)p[i] - j, t, true);
-                else if (!overRide && !Framing.GetTileSafely((int)p[i + 1], (int)p[i]).HasTile)
-                    WorldGen.PlaceWall((int)p[i + 1], (int)p[i] - j, t, true);
-            }
-        }
-    }
-
-    public static void GenBezierDirect(Point[] orderedPositions, int fidelity = 100, int t = TileID.Dirt)
-    {
-        double[] realPos = new double[orderedPositions.Length * 2];
-        for (int i = 0; i < orderedPositions.Length; ++i)
-        {
-            realPos[i] = orderedPositions[i].X;
-            realPos[i + 1] = orderedPositions[i].Y;
-        }
-        GenBezierDirect(realPos, fidelity, t);
-    }
-
-    /// <summary>Creates a vine-like bezier curve.</summary>
-    public static void GenBezier(Point start, Point middle, Point end, int width, int type = TileID.Grass)
-    {
-        GenBezierDirect([start, middle, end], 30, type);
+        foreach (Vector2 point in bezier.GeneratedPoints)
+            perPointAction((int)point.X, (int)point.Y);
     }
 
     public static bool CanGrowVerdantTree(int i, int j, int minHeight, params int[] ignoreTypes)
@@ -171,9 +93,12 @@ public static class GenHelper
             return 0;
         }
 
-        int repeats = (int)Vector2.Distance(start.ToVector2(), end.ToVector2());
+        Vector2 startVec = start.ToVector2();
+        Vector2 endVec = end.ToVector2();
+        int repeats = (int)Vector2.Distance(startVec, endVec);
         int count = 0;
         Point last = new();
+        bool hasPoints = !Unsafe.IsNullRef(in points);
 
         if (cap == -1)
             cap = repeats + 1;
@@ -183,7 +108,7 @@ public static class GenHelper
             if (i > cap)
                 break;
 
-            Point placePos = Vector2.Lerp(start.ToVector2() + new Vector2(0.5f), end.ToVector2() + new Vector2(0.5f), i / (float)repeats).ToPoint();
+            Point placePos = Vector2.Lerp(startVec + new Vector2(0.5f), endVec + new Vector2(0.5f), i / (float)repeats).ToPoint();
 
             if (WorldGen.SolidTile(placePos.X, placePos.Y) || placePos == last)
                 continue;
@@ -192,18 +117,16 @@ public static class GenHelper
             {
                 count++;
                 last = placePos;
-                points.Add(placePos);
+
+                if (hasPoints)
+                    points.Add(placePos);
             }
         }
 
         return count;
     }
 
-    public static int GenLine(Point start, Point end, int tileType, int cap = -1)
-    {
-        List<Point> throwaway = new();
-        return GenLine(start, end, tileType, ref throwaway);
-    }
+    public static int GenLine(Point start, Point end, int tileType) => GenLine(start, end, tileType, ref Unsafe.NullRef<List<Point>>());
 
     private static int RecursiveFill(Point originalPos, int x, int y, int type, ref int repeats, int maxRepeats, bool forced = false)
     {
@@ -267,6 +190,7 @@ public static class GenHelper
         Point bottomRight = new(Math.Max(first.X, last.X), Math.Max(first.Y, last.Y));
         Vector2 center = Vector2.Lerp(topLeft.ToVector2(), bottomRight.ToVector2(), 0.5f);
 
+        bool hasPoints = !Unsafe.IsNullRef(in points);
         int width = bottomRight.X - topLeft.X;
         int height = bottomRight.Y - topLeft.Y;
         float perimeter = MathHelper.Pi * ((3 * (width + height)) - MathF.Sqrt((3 * width + height) * (width + 3 * height))); //Approximate perimeter
@@ -282,18 +206,16 @@ public static class GenHelper
             int x = (int)(width * MathF.Cos(repeats)) + (int)center.X;
             int y = (int)(height * MathF.Sin(repeats)) + (int)center.Y;
 
-            if (Vector2.Distance(lastPlace.ToVector2(), new Vector2(x, y)) >= 1)
+            if (Vector2.DistanceSquared(lastPlace.ToVector2(), new Vector2(x, y)) >= 1)
             {
                 action(x, y);
                 lastPlace = new Point(x, y);
-                points.Add(lastPlace);
+
+                if (hasPoints)
+                    points.Add(lastPlace);
             }
         }
     }
 
-    public static void Ellipse(Action<int, int> action, Point first, Point last)
-    {
-        List<Point> throwAway = new();
-        Ellipse(action, first, last, ref throwAway);
-    }
+    public static void Ellipse(Action<int, int> action, Point first, Point last) => Ellipse(action, first, last, ref Unsafe.NullRef<List<Point>>());
 }

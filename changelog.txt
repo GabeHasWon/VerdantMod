@@ -1,3 +1,8 @@
-1.3.1.4
-- Updated Spanish and Portuguese localization
-- Updated the Gen Configuration support to use the new page back size
+1.3.1.5
+- Added Spirit Reforged point of interest support, and pins for them too
+- Improved the readme/documented Mod.Call functionality
+- Reduced the texture size of the Lush Wood Sofa item
+- Made all of Verdant's post-generation logic run late in generation instead of after it, allowing for better compatibility
+- Structure-protected each of the three Verdant structures
+- Made incomparably massive improvements to the efficiency of the mod's bezier generation, namely stopping some occasional massive generation slowdown
+- Darkened the Verdant Leaf Wall sprite to improve contrast

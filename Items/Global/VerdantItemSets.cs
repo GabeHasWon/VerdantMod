@@ -15,9 +15,4 @@ internal class VerdantItemSets : ModSystem
     public static readonly bool[] SkipAutoHeldCheck = ProjectileID.Sets.Factory.CreateNamedSet(VerdantMod.Instance, nameof(SkipAutoHeldCheck))
         .Description("Whether this projectile ID skips the auto-check for Reforged's automatic held projectile detection system.")
         .RegisterBoolSet(false);
-
-    public override void PostSetupContent()
-    {
-
-    }
 }

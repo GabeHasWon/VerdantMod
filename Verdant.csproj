@@ -4,6 +4,7 @@
   <PropertyGroup>
     <AssemblyName>Verdant</AssemblyName>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Localization\en-US\Mods.Verdant.Origins.hjson" />

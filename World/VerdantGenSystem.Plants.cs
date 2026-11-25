@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using SpiritReforged.Content.Underground.Tiles;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 using Verdant.Tiles;
@@ -44,28 +46,58 @@ public partial class VerdantGenSystem
                 int midPointY = ((adjPos.Y + end.Y) / 2) + WorldGen.genRand.Next(10, 20);
                 int thickness = WorldGen.genRand.Next(1, 4);
 
-                if (WorldGen.genRand.Next(3) > 0)
+                if (!WorldGen.genRand.NextBool(3))
                 {
                     for (int k = 0; k < thickness; ++k)
-                        GenHelper.GenBezierDirectWall([
-                            adjPos.X, adjPos.Y - k,
-                            ((adjPos.X + end.X) / 2), midPointY - k,
-                            end.X, end.Y - k,
-                        ], 200, ModContent.WallType<VerdantVineWall_Unsafe>(), true, 1);
+                    {
+                        Vector2[] control = BuildVineControlPoints(adjPos, end, midPointY, k);
+
+                        GenHelper.ActOnBezier(0.8f, (x, y) =>
+                        {
+                            float factor = Math.Abs(Utils.GetLerpValue(adjPos.X, end.X, x, true) - 0.5f) + 0.25f;
+                            float off = Math.Max(1, 3 * factor);
+
+                            for (int k = 0; k < off; ++k)
+                            {
+                                Tile tile = Main.tile[x, y + k];
+                                tile.WallType = (ushort)ModContent.WallType<VerdantVineWall_Unsafe>();
+                            }
+                        }, control);
+                    }
                 }
                 else
                 {
                     for (int k = 0; k < thickness; ++k)
-                        GenHelper.GenBezierDirect([
-                            adjPos.X, adjPos.Y - k,
-                            ((adjPos.X + end.X) / 2), midPointY - k,
-                            end.X, end.Y - k,
-                        ], 200, ModContent.TileType<VerdantLeaves>(), false, 1);
+                    {
+                        Vector2[] control = BuildVineControlPoints(adjPos, end, midPointY, k);
+
+                        GenHelper.ActOnBezier(0.8f, (x, y) =>
+                        {
+                            float factor = Math.Abs(Utils.GetLerpValue(adjPos.X, end.X, x, true) - 0.5f) + 0.25f;
+                            float off = Math.Max(1, 3 * factor);
+
+                            for (int k = 0; k < off; ++k)
+                            {
+                                Tile tile = Main.tile[x, y + k];
+                                tile.TileType = (ushort)ModContent.TileType<VerdantLeaves>();
+                                tile.HasTile = true;
+                            }
+                        }, control);
+                    }
                 }
             }
-            else if (WorldGen.genRand.Next(4) > 0)
+            else if (WorldGen.genRand.NextBool(6))
                 i--;
         }
+    }
+
+    internal static Vector2[] BuildVineControlPoints(Point adjPos, Point end, int midPointY, int yMod)
+    {
+        return [
+            new Vector2(adjPos.X, adjPos.Y - yMod),
+            new Vector2(((adjPos.X + end.X) / 2), midPointY - yMod),
+            new Vector2(end.X, end.Y - yMod),
+        ];
     }
 
     private static void AddPlants()
